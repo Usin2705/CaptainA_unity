@@ -19,7 +19,7 @@ public class ButtonRecord : MonoBehaviour
         // Attached to ButtonRecord GameObject
         Debug.Log("Pointer Up");    
         AudioManager.GetManager().StopAndReplay();
-        SetButtonState(false);
+        //SetButtonState(false);
     }
 
 
