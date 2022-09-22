@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using System.IO;
 
 
 public class AudioManager : MonoBehaviour
@@ -14,7 +15,6 @@ public class AudioManager : MonoBehaviour
     int maxRecTime = 5;
 
     AudioSource audioSource;
-    AudioClip recording;
 
     void Awake()
     {
@@ -46,33 +46,25 @@ public class AudioManager : MonoBehaviour
         // {
         //     Debug.Log("Microphone not found");
         // }
-        recording = Microphone.Start(Microphone.devices[0], false, maxRecTime, frequency);
+
+        audioSource.clip = Microphone.Start(Microphone.devices[0], false, maxRecTime, frequency);
     }
 
-    public void StopAndReplay()
+    public void ReplayAndPost(string transcript)
     {
-        Microphone.End("");
-        audioSource.clip = recording;
-        float[] audioBufferFloat = new float[audioSource.clip.samples * audioSource.clip.channels];
-        audioSource.clip.GetData(audioBufferFloat, 0);
+        Microphone.End("");        
+        byte[] wavBuffer = SavWav.GetWav(audioSource.clip, out uint length, trim:true);
+        SavWav.Save("speech_sample", audioSource.clip, trim:true); // for debug purpose
 
-        // create a byte array and copy the floats into it...
-        var byteArray = new byte[audioBufferFloat.Length * 4];
-        Buffer.BlockCopy(audioBufferFloat, 0, byteArray, 0, byteArray.Length);
-
-        // create a second float array and copy the bytes into it...
-        //var floatArray2 = new float[byteArray.Length / 4];
-        //Buffer.BlockCopy(byteArray, 0, floatArray2, 0, byteArray.Length);
-        // do we have the same sequence of floats that we started with?
-        //Debug.Log(audioBufferFloat.SequenceEqual(floatArray2));    // True
-
-        StartCoroutine(NetworkManager.GetManager().ServerPost("test", byteArray));
+        StartCoroutine(NetworkManager.GetManager().ServerPost(transcript, wavBuffer));
         Invoke(nameof(ReplayRecordedSample), 0.5f);
     }
 
     void ReplayRecordedSample()
     {        
         Debug.Log("Audio is playing");
+
+        // TODO: trim the audio clip, not just the wavBuffer
         audioSource.Play();
     }
 }

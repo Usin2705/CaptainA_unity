@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using TMPro;
+using System.IO;
 
 
 public class NetworkManager : MonoBehaviour
 {
-    static NetworkManager netWorkManager;
+    [SerializeField] GameObject buttonRecordGO;     
+	static NetworkManager netWorkManager;
 
     void Awake() {
 		if (netWorkManager != null) {
@@ -26,16 +28,18 @@ public class NetworkManager : MonoBehaviour
 
 	}
 
-    public IEnumerator ServerPost(string transcript, byte[] audioBuffer)//, TextMeshPro errorText) 
+    public IEnumerator ServerPost(string transcript, byte[] wavBuffer)//, TextMeshPro errorText) 
     {
-        WWWForm form = new WWWForm();
-        form.AddBinaryData("file", audioBuffer, fileName:"null", mimeType: "audio/wav");
+	    WWWForm form = new WWWForm();
+        form.AddBinaryData("file", wavBuffer, fileName:"speech_sample", mimeType: "audio/wav");
         form.AddField("transcript", transcript);
 		form.AddField("model_code", "1");
-
 		
-        UnityWebRequest www = UnityWebRequest.Post("http://", form);
+        UnityWebRequest www = UnityWebRequest.Post("", form);
+
 		yield return www.SendWebRequest();
+
+		buttonRecordGO.SetActive(true);
 
 		Debug.Log(www.result);
 
@@ -68,6 +72,5 @@ public class NetworkManager : MonoBehaviour
         }
 
 		Debug.Log(www.downloadHandler.text);
-
     }
 }

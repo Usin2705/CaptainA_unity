@@ -6,7 +6,14 @@ using TMPro;
 
 public class ButtonRecord : MonoBehaviour
 {
+
+    //TODO: ButtonGO should not handle other GO (input)
+    // Sannitize input should be done in inputGO script
+    // And a game view should be the one that handle all func that require 
+    // interconnection between different variable in different GOs
+    
     [SerializeField] GameObject buttonGO;     
+    [SerializeField] GameObject inputGO;     
 
     public void OnButtonPointerEnter() {
         // Attached to ButtonRecord GameObject        
@@ -18,8 +25,10 @@ public class ButtonRecord : MonoBehaviour
     public void OnButtonPointerUp() {
         // Attached to ButtonRecord GameObject
         Debug.Log("Pointer Up");    
-        AudioManager.GetManager().StopAndReplay();
-        //SetButtonState(false);
+
+
+        AudioManager.GetManager().ReplayAndPost(inputGO.GetComponent<TMP_InputField>().text);
+        buttonGO.SetActive(false);
     }
 
 
