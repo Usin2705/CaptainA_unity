@@ -9,6 +9,7 @@ using System.IO;
 public class NetworkManager : MonoBehaviour
 {
     [SerializeField] GameObject buttonRecordGO;     
+	[SerializeField] GameObject textErrorGO;
 	static NetworkManager netWorkManager;
 
     void Awake() {
@@ -46,31 +47,33 @@ public class NetworkManager : MonoBehaviour
         if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
 			Debug.Log(www.error);
 			if (www.downloadHandler.text != "") {
-				//errorText.text = www.downloadHandler.text;
+				textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = www.downloadHandler.text;
 			} else {
-				//errorText.text = "Network error: " + www.error;
+				textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "Network error: " + www.error;
 			}
-			//errorText.gameObject.SetActive(true);
+			textErrorGO.SetActive(true);
+
 			throw new System.Exception(www.downloadHandler.text ?? www.error);
 		} else {
 			Debug.Log("Form upload complete!");
 
 			if (www.downloadHandler.text == "invalid credentials") {
 				Debug.Log("invalid credentials");
-				//errorText.gameObject.SetActive(true);
-				//errorText.text = "error_invalid";
+				textErrorGO.gameObject.SetActive(true);
+				textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "invalid credentials";
 				
 				yield break;
 			}
 
 			if (www.downloadHandler.text == "this account uses auth0") {
 				Debug.Log("this account uses auth0");
-				//errorText.gameObject.SetActive(true);
-				//errorText.text = "error_auth0";
+				textErrorGO.gameObject.SetActive(true);
+				textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "this account uses auth0";
 				yield break;
 			}
         }
 
+		textErrorGO.gameObject.SetActive(false);
 		Debug.Log(www.downloadHandler.text);
     }
 }
