@@ -50,13 +50,13 @@ public class AudioManager : MonoBehaviour
         audioSource.clip = Microphone.Start(Microphone.devices[0], false, maxRecTime, frequency);
     }
 
-    public void ReplayAndPost(string transcript)
+    public void ReplayAndPost(string transcript, GameObject textErrorGO)
     {
         Microphone.End("");        
         byte[] wavBuffer = SavWav.GetWav(audioSource.clip, out uint length, trim:true);
         SavWav.Save("speech_sample", audioSource.clip, trim:true); // for debug purpose
 
-        StartCoroutine(NetworkManager.GetManager().ServerPost(transcript, wavBuffer));
+        StartCoroutine(NetworkManager.GetManager().ServerPost(transcript, wavBuffer, textErrorGO));
         Invoke(nameof(ReplayRecordedSample), 0.5f);
     }
 
