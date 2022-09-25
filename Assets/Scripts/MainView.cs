@@ -9,6 +9,7 @@ public class MainView : MonoBehaviour
     [SerializeField] GameObject buttonRecordGO;     
     [SerializeField] GameObject inputTransGO;
     [SerializeField] GameObject textErrorGO;     
+    [SerializeField] GameObject textResultGO;     
 
     public void OnButtonPointerEnter() {
         // Attached to ButtonRecord GameObject        
@@ -30,7 +31,7 @@ public class MainView : MonoBehaviour
 
         if (inputTransGO.GetComponent<TMP_InputField>().text!="") 
         {
-            AudioManager.GetManager().ReplayAndPost(inputTransGO.GetComponent<TMP_InputField>().text, textErrorGO);
+            AudioManager.GetManager().ReplayAndPost(inputTransGO.GetComponent<TMP_InputField>().text, textErrorGO, textResultGO);
             buttonRecordGO.SetActive(false);
         }
     }

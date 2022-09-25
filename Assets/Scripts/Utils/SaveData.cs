@@ -4,17 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class SaveData : MonoBehaviour
+public static class SaveData
 {
-    [SerializeField] private UserData userData;
-
-	public void SaveIntoJson(UserData userData){
+    public static void SaveIntoJson(UserData userData){
         string data = JsonUtility.ToJson(userData);
-		//Debug.Log("Data" + data);
         System.IO.File.WriteAllText(Application.persistentDataPath + "/UserData.json", data);
+        Debug.Log("File save as " + Application.persistentDataPath + "/UserData.json");
     }
 
-	public UserData LoadFromJson(){
+	public static UserData LoadFromJson(){
 		// Path.Combine combines strings into a file path
         // Application.StreamingAssets points to Assets/StreamingAssets in the Editor, and the StreamingAssets folder in a build
         string filePath = Path.Combine(Application.persistentDataPath, "UserData.json");
@@ -25,17 +23,45 @@ public class SaveData : MonoBehaviour
             string dataAsJson = File.ReadAllText(filePath);    
             // Pass the json to JsonUtility, and tell it to create a UserData object from it            
 			UserData userData = JsonUtility.FromJson<UserData>(dataAsJson);
-
 			return userData;
         }
         else
         {
 			// If no UserData file is created, create an empty UserData file
-            Debug.Log("Create new user data file");
-			userData = new UserData("", 0, new List<PhonemeScore>());		
+			UserData userData = new UserData("", 0, new List<PhonemeScore>());		
 			SaveIntoJson(userData);
 			return userData;
         }
+    }
+
+    public static void UpdateUserScores(string transcript, List<float> scoreList) {
+		// Make sure that stranscript length match with scoreList Length
+		if (transcript.Length != scoreList.Count) {	
+            Debug.LogError("transcript and score didn't match");
+			return;
+		}
+		UserData userData = LoadFromJson();
+
+		for (int i = 0; i < scoreList.Count; i++) 
+		{
+			string phoneme = transcript[i].ToString();		
+			
+			int index = userData.IndexOf(phoneme);
+			// Find phoneme within the list
+			// Ideally, Dictionary work better but Dictionary is not Serializable and 
+			// therefore can't be Save or Load easily with JSON			
+			if (index!=-1)
+			{
+				PhonemeScore phonemeScore = userData.phonemeScores[index];
+				userData.phonemeScores[index].average_score =  (phonemeScore.average_score*phonemeScore.no_tries + scoreList[i])/(phonemeScore.no_tries+1);
+				userData.phonemeScores[index].no_tries++;
+			} else 			
+			{
+				userData.phonemeScores.Add(new PhonemeScore(phoneme, scoreList[i], 1));
+			}
+		}
+
+		SaveIntoJson(userData);
     }
 }
 
