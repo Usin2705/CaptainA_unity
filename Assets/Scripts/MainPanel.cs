@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.Text.RegularExpressions;
 
-public class MainView : MonoBehaviour
+public class MainPanel : MonoBehaviour
 {
     [SerializeField] GameObject buttonRecordGO;     
     [SerializeField] GameObject inputTransGO;
@@ -41,7 +41,7 @@ public class MainView : MonoBehaviour
         text = text.Trim(); // Remove trailing white space
         text = Regex.Replace(text, "[zZ]", "ts"); //Replace z with ts
         text = Regex.Replace(text, "[0-9]", ""); //Remove numbers
-        text = Regex.Replace(text, "[-!$%^&*()_+|~=`{}\\[\\]:\";'<>?,.\\/]", ""); //Remove symbols
+        text = Regex.Replace(text, "[-!$%^&*()_+|~=`{}\\[\\]:\";'<>?,.\\/@]", ""); //Remove symbols
 
         return text;
     }

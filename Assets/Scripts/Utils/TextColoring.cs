@@ -2,6 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// Android asset studio
+// https://romannurik.github.io/AndroidAssetStudio/
+
+
+// Android material designs
+// https://material.io/resources/
+
+// Android color picker
+// https://material.io/resources/color/
+
 public static class TextColoring
 {
     public const string BAD_COLOR = "#ff0000ff";    
@@ -13,6 +24,11 @@ public static class TextColoring
     //public const float GOOD_SCORE = 0.92f;
     
 	public static string FormatTextResult(string transcript, List<float> scoreList) 
+    /*
+    * The font used in the ResultText GO is already set as BOLD        
+    * so no need to add BOLD tag <b> </b> in the tag
+    *   
+    */
 	{
 		// Make sure that stranscript length match with scoreList Length
 		if (transcript.Length != scoreList.Count) {	
@@ -29,7 +45,7 @@ public static class TextColoring
             if (scoreList[i] < BAD_SCORE)  phoneColor = BAD_COLOR; 
             else if (scoreList[i] < AVG_SCORE) phoneColor = AVG_COLOR;
             
-            textResult += "<b><color=" + phoneColor + ">" + transcript[i].ToString() + "</color></b>";
+            textResult += "<color=" + phoneColor + ">" + transcript[i].ToString() + "</color>";
 
         }
         
