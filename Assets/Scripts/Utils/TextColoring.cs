@@ -13,6 +13,9 @@ using UnityEngine;
 // Android color picker
 // https://material.io/resources/color/
 
+// Theme picker
+// https://m3.material.io/theme-builder#/custom
+
 public static class TextColoring
 {
     public const string BAD_COLOR = "#ff0000ff";    

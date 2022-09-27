@@ -6,6 +6,11 @@ using System.IO;
 
 public static class SaveData
 {
+    // Decay rate allow users to update score with more weight put on 
+    // latest score and not the historical
+    public const float DECAY_RATE = 0.4f; 
+    
+
     public static void SaveIntoJson(UserData userData){
         string data = JsonUtility.ToJson(userData);
         System.IO.File.WriteAllText(Application.persistentDataPath + "/UserData.json", data);
@@ -28,7 +33,8 @@ public static class SaveData
         else
         {
 			// If no UserData file is created, create an empty UserData file
-			UserData userData = new UserData("", 0, new List<PhonemeScore>());		
+            List<PhonemeScore> tempL = new List<PhonemeScore>();
+			UserData userData = new UserData("", 0, tempL);
 			SaveIntoJson(userData);
 			return userData;
         }
@@ -53,11 +59,13 @@ public static class SaveData
 			if (index!=-1)
 			{
 				PhonemeScore phonemeScore = userData.phonemeScores[index];
-				userData.phonemeScores[index].average_score =  (phonemeScore.average_score*phonemeScore.no_tries + scoreList[i])/(phonemeScore.no_tries+1);
+				userData.phonemeScores[index].average_score = (phonemeScore.average_score*phonemeScore.no_tries*DECAY_RATE + scoreList[i])
+                                                              /(phonemeScore.no_tries*DECAY_RATE+1);
 				userData.phonemeScores[index].no_tries++;
 			} else 			
 			{
-				userData.phonemeScores.Add(new PhonemeScore(phoneme, scoreList[i], 1));
+                PhonemeScore tempScore = new PhonemeScore(phoneme, scoreList[i], 1);
+				userData.phonemeScores.Add(tempScore);
 			}
 		}
 
