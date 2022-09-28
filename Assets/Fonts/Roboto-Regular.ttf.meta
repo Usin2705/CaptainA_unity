@@ -10,7 +10,9 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontNames:
   - Roboto
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 2591df867df0e6e4abc24008baafd050, type: 3}
+  - {fileID: 12800000, guid: 428f9de7461973543b62d624af76b722, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

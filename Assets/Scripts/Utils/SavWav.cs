@@ -38,6 +38,10 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 
+
+// TODO: probably some memory leaks start to show up here
+// Need some investigation
+
 public static class SavWav
 {
     private const uint HeaderSize = 44;
