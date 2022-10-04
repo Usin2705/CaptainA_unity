@@ -6,11 +6,6 @@ using System.IO;
 
 public static class SaveData
 {
-    // Decay rate allow users to update score with more weight put on 
-    // latest score and not the historical
-    public const float DECAY_RATE = 0.4f; 
-    
-
     public static void SaveIntoJson(UserData userData){
         string data = JsonUtility.ToJson(userData);
         System.IO.File.WriteAllText(Application.persistentDataPath + "/UserData.json", data);
@@ -59,8 +54,8 @@ public static class SaveData
 			if (index!=-1)
 			{
 				PhonemeScore phonemeScore = userData.phonemeScores[index];
-				userData.phonemeScores[index].average_score = (phonemeScore.average_score*phonemeScore.no_tries*DECAY_RATE + scoreList[i])
-                                                              /(phonemeScore.no_tries*DECAY_RATE+1);
+				userData.phonemeScores[index].average_score = phonemeScore.average_score*phonemeScore.no_tries*Const.DECAY_RATE + 
+                                                              (1-Const.DECAY_RATE)*scoreList[i];
 				userData.phonemeScores[index].no_tries++;
 			} else 			
 			{
@@ -132,8 +127,21 @@ public class PhonemeScore: IComparable<PhonemeScore>{
     }
 }
 
+
+
 [System.Serializable]
 public class ASRResult{
+    /*
+    *  
+    *
+    */
+
+    // TODO Add special cases 
+    // (double vowel, double consonant)
+    
+    
+    // TODO Add "ng" and "nk" as they have different IPA
+
     public string prediction;
     public List<float> score;
 }

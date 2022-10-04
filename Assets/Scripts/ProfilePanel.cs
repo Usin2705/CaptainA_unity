@@ -27,9 +27,9 @@ public class ProfilePanel : MonoBehaviour
             string noTries = "Time practice: " + phonemeScore.no_tries.ToString();   
             string score = ((int) (phonemeScore.average_score*100)).ToString() + "%";            
 
-            string phoneColor = TextColoring.GOOD_COLOR;
-            if (phonemeScore.average_score < TextColoring.BAD_SCORE)  phoneColor = TextColoring.BAD_COLOR; 
-            else if (phonemeScore.average_score < TextColoring.AVG_SCORE) phoneColor = TextColoring.AVG_COLOR;                        
+            string phoneColor = Const.GOOD_COLOR;
+            if (phonemeScore.average_score < Const.BAD_SCORE)  phoneColor = Const.BAD_COLOR; 
+            else if (phonemeScore.average_score < Const.AVG_SCORE) phoneColor = Const.AVG_COLOR;                        
             score = "<color=" + phoneColor + ">" + score + "</color>";         
 
             GameObject phonemeScoreGO = Instantiate(phonemeScorePrefab, new Vector3(0,0,0), Quaternion.identity);

@@ -10,10 +10,6 @@ public class AudioManager : MonoBehaviour
 {
     static AudioManager audioManager;
     [SerializeField] AudioClip recordNotif;
-
-    int frequency = 16000;
-    int maxRecTime = 5;
-
     AudioSource audioSource;
 
     void Awake()
@@ -47,7 +43,7 @@ public class AudioManager : MonoBehaviour
         //     Debug.Log("Microphone not found");
         // }
 
-        audioSource.clip = Microphone.Start(Microphone.devices[0], false, maxRecTime, frequency);
+        audioSource.clip = Microphone.Start(Microphone.devices[0], false, Const.MAX_REC_TIME, Const.FREQUENCY);
     }
 
     public void ReplayAndPost(string transcript, GameObject textErrorGO, GameObject textResultGO)
