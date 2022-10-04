@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProfilePanel : MonoBehaviour
 {
-    [SerializeField] GameObject phonemeScorePrefab;
+    [SerializeField] GameObject phonemeScorePrefab; // Refer to ListItemPanel prefab
     [SerializeField] GameObject content;
 
     List<GameObject> listItems = new List<GameObject>();                
@@ -21,6 +21,9 @@ public class ProfilePanel : MonoBehaviour
         // Reverse() for large to small
         userData.phonemeScores.Sort();                
         
+        
+        // Initiate phoneme score list
+        // from prefab "ListItemPanel"
         foreach (PhonemeScore phonemeScore in userData.phonemeScores) 
         {
             string phoneme = phonemeScore.phoneme!=" "?phonemeScore.phoneme:"Spacing";            

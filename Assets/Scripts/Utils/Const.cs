@@ -1,3 +1,4 @@
+using UnityEngine;
 public static class Const
 {
     // ================= TEXR COLOR SCORE ===================
@@ -30,10 +31,10 @@ public static class Const
 
 
     // ====================== TAB COLOR ======================
-    public const Color32 IMAGE_ACTIVE_COLOR = new Color32(22,42,82,255);
-    public const Color32 IMAGE_INACTIVE_COLOR = new Color32(105,105,105,255);
+    public static readonly Color32 IMAGE_ACTIVE_COLOR = new Color32(22,42,82,255);
+    public static readonly Color32 IMAGE_INACTIVE_COLOR = new Color32(105,105,105,255);
 
-    public const Color32 BG_ACTIVE_COLOR = new Color32(200,200,200,255);
-    public const Color32 BG_INACTIVE_COLOR = new Color32(230,230,230,255);
+    public static readonly Color32 BG_ACTIVE_COLOR = new Color32(200,200,200,255);
+    public static readonly Color32 BG_INACTIVE_COLOR = new Color32(230,230,230,255);
     // =======================================================
 }
