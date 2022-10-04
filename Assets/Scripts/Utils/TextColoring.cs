@@ -2,20 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-// Android asset studio
-// https://romannurik.github.io/AndroidAssetStudio/
-
-
-// Android material designs
-// https://material.io/resources/
-
-// Android color picker
-// https://material.io/resources/color/
-
-// Theme picker
-// https://m3.material.io/theme-builder#/custom
-
 public static class TextColoring
 {    
 	public static string FormatTextResult(string transcript, List<float> scoreList) 

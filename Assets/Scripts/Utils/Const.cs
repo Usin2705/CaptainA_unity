@@ -1,4 +1,22 @@
 using UnityEngine;
+
+
+// Android asset studio
+// https://romannurik.github.io/AndroidAssetStudio/
+// Padding: 0%
+// Asset size: 200dp max 
+// Asset padding: 20dp
+// Color 0 0 0 100
+
+// Android material designs
+// https://material.io/resources/
+
+// Android color picker
+// https://material.io/resources/color/
+
+// Theme picker
+// https://m3.material.io/theme-builder#/custom
+
 public static class Const
 {
     // ================= TEXR COLOR SCORE ===================
