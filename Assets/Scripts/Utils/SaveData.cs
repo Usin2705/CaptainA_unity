@@ -36,11 +36,20 @@ public static class SaveData
     }
 
     public static void UpdateUserScores(string transcript, List<float> scoreList) {
+        /*
+        * Remember to turn transcript to lowercase, as there's different between upper and lowercase
+        */
+
+        transcript = transcript.ToLower();
+
 		// Make sure that stranscript length match with scoreList Length
 		if (transcript.Length != scoreList.Count) {	
             Debug.LogError("transcript and score didn't match");
 			return;
 		}
+
+                
+
 		UserData userData = LoadFromJson();
 
 		for (int i = 0; i < scoreList.Count; i++) 

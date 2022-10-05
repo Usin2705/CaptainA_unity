@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ProfilePanel : MonoBehaviour
 {
@@ -36,7 +37,12 @@ public class ProfilePanel : MonoBehaviour
             score = "<color=" + phoneColor + ">" + score + "</color>";         
 
             GameObject phonemeScoreGO = Instantiate(phonemeScorePrefab, new Vector3(0,0,0), Quaternion.identity);
-            phonemeScoreGO.transform.SetParent(content.transform, false);
+            phonemeScoreGO.transform.SetParent(content.transform, false); // Register the big panel (ProfilePanel) as parent 
+
+            // Find the Button to register OnClick Function
+            Button phonemeButton = phonemeScoreGO.transform.Find("ScorePanel").transform.Find("PhonemeBG").GetComponent<Button>();                        
+            // Pass phoneme value to onClick function
+            phonemeButton.onClick.AddListener(() => OnListItemClick(phoneme));
 
             phonemeScoreGO.transform.Find("ScorePanel").
                            transform.Find("PhonemeBG").
@@ -46,6 +52,8 @@ public class ProfilePanel : MonoBehaviour
                            transform.Find("Score").GetComponent<TMPro.TextMeshProUGUI>().text = score;
 
             phonemeScoreGO.transform.Find("NoTries").GetComponent<TMPro.TextMeshProUGUI>().text = noTries;
+
+            
 
             listItems.Add(phonemeScoreGO);
 
@@ -74,8 +82,8 @@ public class ProfilePanel : MonoBehaviour
         }
     }
 
-    public void OnListItemClick(GameObject listItemGO) 
+    public void OnListItemClick(string phoneme) 
     {
-        Debug.Log("AAA");
+        Debug.Log(phoneme);
     }
 }
