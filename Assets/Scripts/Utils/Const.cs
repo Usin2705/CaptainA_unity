@@ -17,6 +17,9 @@ using UnityEngine;
 // Theme picker
 // https://m3.material.io/theme-builder#/custom
 
+// Current theme:
+// https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=fcefce&secondary.color=19ddc9
+
 public static class Const
 {
     // ================= TEXR COLOR SCORE ===================
@@ -30,10 +33,10 @@ public static class Const
     public const float AVG_SCORE = 0.92f;
     //public const float GOOD_SCORE = 0.92f;
 
-    // Decay rate allow users to update score with more weight put on 
+    // Weight % allow users to update score with more weight put on 
     // latest score and not the historical average
-    // 0.3f mean 30% weight on average + 70% on new score
-    public const float DECAY_RATE = 0.3f; 
+    // 0.7f mean 30% weight on average + 70% on new score
+    public const float SCORE_WEIGHT = 0.7f; 
     // =======================================================
 
 
@@ -53,6 +56,7 @@ public static class Const
     public static readonly Color32 IMAGE_INACTIVE_COLOR = new Color32(105,105,105,255);
 
     public static readonly Color32 BG_ACTIVE_COLOR = new Color32(200,200,200,255);
-    public static readonly Color32 BG_INACTIVE_COLOR = new Color32(230,230,230,255);
+    public static readonly Color32 BG_INACTIVE_COLOR = new Color32(255,255,255,255);
     // =======================================================
+// mic color: 13E365    
 }

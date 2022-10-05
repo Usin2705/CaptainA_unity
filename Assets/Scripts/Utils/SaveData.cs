@@ -54,10 +54,11 @@ public static class SaveData
 			if (index!=-1)
 			{
 				PhonemeScore phonemeScore = userData.phonemeScores[index];
-				userData.phonemeScores[index].average_score = phonemeScore.average_score*phonemeScore.no_tries*Const.DECAY_RATE + 
-                                                              (1-Const.DECAY_RATE)*scoreList[i];
+				userData.phonemeScores[index].average_score = phonemeScore.average_score*(1-Const.SCORE_WEIGHT) + 
+                                                              Const.SCORE_WEIGHT*scoreList[i];
 				userData.phonemeScores[index].no_tries++;
 			} else 			
+            // If phone is not in the list, create that phoneme with current score            
 			{
                 PhonemeScore tempScore = new PhonemeScore(phoneme, scoreList[i], 1);
 				userData.phonemeScores.Add(tempScore);

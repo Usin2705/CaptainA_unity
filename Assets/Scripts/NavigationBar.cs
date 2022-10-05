@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Navigation : MonoBehaviour
+public class NavigationBar : MonoBehaviour
 {
 
     [SerializeField] GameObject[] panels;
@@ -21,7 +21,7 @@ public class Navigation : MonoBehaviour
     public void NavigationBarClick(GameObject activePanel) 
     /*
     *  Can only be attached to OnClick with 1 variable,
-    *  therefore we next tabs and index to address
+    *  therefore we loop tabs and index to address
     *  both the panel (active/inactive) and tab buttons
     *  (change color to show active/inactive)    
     */
@@ -29,6 +29,12 @@ public class Navigation : MonoBehaviour
         foreach (GameObject panel in panels) 
         {
             int index = System.Array.IndexOf(panels, panel);
+            // This change the image color (the icon)
+            // and the tab background to show active or inactive
+            // The new Android material design use a small green bar
+            // instead, so we do so by set the ActiveBar active/inactive
+
+            /*            
             Image image = tabs[index].transform.Find("Image").GetComponent<Image>();
             Image image_bg = tabs[index].GetComponent<Image>();
 
@@ -42,7 +48,10 @@ public class Navigation : MonoBehaviour
                 image_bg.color = Const.BG_INACTIVE_COLOR;
                 panel.SetActive(false);
             }
-            
+            */
+            GameObject activeBar = tabs[index].transform.Find("ActiveBar").gameObject;
+            activeBar.SetActive(panel == activePanel);
+            panel.SetActive(panel == activePanel);    
         }
     }
 }

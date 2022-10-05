@@ -85,7 +85,7 @@ public class NetworkManager : MonoBehaviour
 		
 		// Update text result
 		textResultGO.SetActive(true);
-		textResultGO.GetComponent<TMPro.TextMeshProUGUI>().text = TextColoring.FormatTextResult(transcript, asrResult.score);
+		textResultGO.transform.Find("ResultText").GetComponent<TMPro.TextMeshProUGUI>().text = TextColoring.FormatTextResult(transcript, asrResult.score);
     }
 
 
