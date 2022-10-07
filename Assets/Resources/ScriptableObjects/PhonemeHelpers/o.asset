@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44021b220fc7614ad81772a5d1bfe004, type: 3}
+  m_Name: o
+  m_EditorClassIdentifier: 
+  phoneme: o
+  ipa: o
+  instruction: "Round and close your lips a little (bigger than /u/). Put tongue 
+    to the roof of the mouth (lower than /u/, positioned backward. Similar to \xF6
+    but tongue is moved back."
+  videoURL: https://youtu.be/1VoD4_0Gxzc?t=160
+  front_credit: Aino Huhtaniemi
+  side_credit: Aino Huhtaniemi
+  front_1: {fileID: 21300000, guid: fc5c8c486a9741e4fa32e5c420862d8d, type: 3}
+  front_2: {fileID: 21300000, guid: 1ce0db91541332e42af8be0d8a37502c, type: 3}
+  side_1: {fileID: 21300000, guid: e1d5ed7573b12724bbe0aecb69e6c695, type: 3}
+  side_2: {fileID: 21300000, guid: bc552300bf54c624c8ba0b037d491f5d, type: 3}

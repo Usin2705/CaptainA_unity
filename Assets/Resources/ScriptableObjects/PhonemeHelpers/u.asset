@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44021b220fc7614ad81772a5d1bfe004, type: 3}
+  m_Name: u
+  m_EditorClassIdentifier: 
+  phoneme: u
+  ipa: u
+  instruction: Round and narrow your lips. Tongue is close to the roof of the mouth,
+    positioned backward. Similar to y but with tougue move back)
+  videoURL: https://www.youtube.com/watch?v=tWgNZtbtrHU
+  front_credit: Mari Nikonen NOT LICENSED
+  side_credit: Aino Huhtaniemi
+  front_1: {fileID: 21300000, guid: d661c158b95db954db9adae740ef4541, type: 3}
+  front_2: {fileID: 21300000, guid: 7affcfe639b46f74a9b86aeafaaa2bab, type: 3}
+  side_1: {fileID: 21300000, guid: edfb3d60b52fe3f46afa743f3d864def, type: 3}
+  side_2: {fileID: 21300000, guid: 33c64420c0ae4fe4b9cd54c6ba87c690, type: 3}

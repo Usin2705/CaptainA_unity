@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44021b220fc7614ad81772a5d1bfe004, type: 3}
+  m_Name: a
+  m_EditorClassIdentifier: 
+  phoneme: a
+  ipa: "\u0251"
+  instruction: 
+  videoURL: 
+  front_credit: Aino Huhtaniemi
+  side_credit: Aino Huhtaniemi
+  front_1: {fileID: 21300000, guid: 8918c068ac1eb9643b776a6335e25e31, type: 3}
+  front_2: {fileID: 21300000, guid: 51de2d2e5e90b9541b2486fd80993529, type: 3}
+  side_1: {fileID: 21300000, guid: 0bd9e40288a75434aa8a48c6ec2c78cb, type: 3}
+  side_2: {fileID: 21300000, guid: 8c4d482ee17d7f847ad948fd1590be61, type: 3}

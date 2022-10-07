@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ProfilePanel : MonoBehaviour
 {
     [SerializeField] GameObject phonemeScorePrefab; // Refer to ListItemPanel prefab
     [SerializeField] GameObject content;
+    [SerializeField] PhonemePanel phonemePanel;
 
     List<GameObject> listItems = new List<GameObject>();                
 
@@ -27,7 +29,9 @@ public class ProfilePanel : MonoBehaviour
         // from prefab "ListItemPanel"
         foreach (PhonemeScore phonemeScore in userData.phonemeScores) 
         {
+            // TODO consider sth to do with spacing
             string phoneme = phonemeScore.phoneme!=" "?phonemeScore.phoneme:"Spacing";            
+
             string noTries = "Time practice: " + phonemeScore.no_tries.ToString();   
             string score = ((int) (phonemeScore.average_score*100)).ToString() + "%";            
 
@@ -42,7 +46,9 @@ public class ProfilePanel : MonoBehaviour
             // Find the Button to register OnClick Function
             Button phonemeButton = phonemeScoreGO.transform.Find("ScorePanel").transform.Find("PhonemeBG").GetComponent<Button>();                        
             // Pass phoneme value to onClick function
-            phonemeButton.onClick.AddListener(() => OnListItemClick(phoneme));
+            phonemeButton.onClick.AddListener(() => phonemePanel.ShowPhonemePanel(phoneme.ToLower()));
+
+
 
             phonemeScoreGO.transform.Find("ScorePanel").
                            transform.Find("PhonemeBG").
@@ -80,10 +86,5 @@ public class ProfilePanel : MonoBehaviour
         {
             Destroy(go);
         }
-    }
-
-    public void OnListItemClick(string phoneme) 
-    {
-        Debug.Log(phoneme);
     }
 }

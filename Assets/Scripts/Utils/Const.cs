@@ -59,4 +59,7 @@ public static class Const
     public static readonly Color32 BG_INACTIVE_COLOR = new Color32(255,255,255,255);
     // =======================================================
 // mic color: 13E365    
+
+    // ==================== RESOURCES PATH ====================
+    public const string PHONE_HELP_PATH = "ScriptableObjects/PhonemeHelpers/";
 }
