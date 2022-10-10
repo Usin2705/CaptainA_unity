@@ -32,7 +32,7 @@ public class PhonemePanel : MonoBehaviour
     }
 
     void OnEnable()
-    {
+    {        
         // In case the SO is null
         if (phonemeSO==null) phonemeSO = Resources.Load<PhonemeHelperSO>(Const.PHONE_HELP_PATH + "spacing");
 
@@ -41,6 +41,8 @@ public class PhonemePanel : MonoBehaviour
         frontMouth2.GetComponent<Image>().sprite = phonemeSO.front_2;
         sideMouth1.GetComponent<Image>().sprite = phonemeSO.side_1;
         sideMouth2.GetComponent<Image>().sprite = phonemeSO.side_2;
+        phonemePanel.transform.GetComponent<Animation>().clip = phonemeSO.animaClip;
+        phonemePanel.transform.GetComponent<Animation>().Play();
 
         creditText.text = "Top images: " + phonemeSO.front_credit + ". Bottom images: " + phonemeSO.side_credit;
     }
@@ -48,7 +50,7 @@ public class PhonemePanel : MonoBehaviour
     // Update is called once per frame
     void OnDisable()
     {
-        
+        phonemePanel.transform.GetComponent<Animation>().clip = null;
     }
 
     void Update()

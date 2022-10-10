@@ -15,10 +15,11 @@ MonoBehaviour:
   phoneme: c
   ipa: '?'
   instruction: c is a loan word that can be generally replaced by k or s.
-  videoURL: 
+  videoURL: https://youtu.be/1VoD4_0Gxzc?t=50
   front_credit: 
   side_credit: 
   front_1: {fileID: 0}
   front_2: {fileID: 0}
   side_1: {fileID: 0}
   side_2: {fileID: 0}
+  animaClip: {fileID: 0}

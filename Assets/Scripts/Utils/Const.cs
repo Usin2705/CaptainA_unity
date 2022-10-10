@@ -46,7 +46,7 @@ public static class Const
 
     // Maximum recording time per seconds
     // The extra record time after the button release is trimmed
-    public const int MAX_REC_TIME = 5;
+    public const int MAX_REC_TIME = 10;
     // =======================================================
 
 

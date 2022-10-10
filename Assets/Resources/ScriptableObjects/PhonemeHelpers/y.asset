@@ -23,3 +23,4 @@ MonoBehaviour:
   front_2: {fileID: 21300000, guid: af95c19cd14b28948b56a6e6cc790306, type: 3}
   side_1: {fileID: 21300000, guid: c248b7f5693e30c4f8f008151b9483e2, type: 3}
   side_2: {fileID: 21300000, guid: 0965489a548682b419dda5980808a6fc, type: 3}
+  animaClip: {fileID: 7400000, guid: a372e7fc7a114b04bb4c43ae9940f0cf, type: 2}

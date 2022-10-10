@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: d
   ipa: d
-  instruction: 
-  videoURL: 
+  instruction: Use tip of the tongue to block and release airflow. Tongue is at the
+    upper teeth .d is a voiced sound. Similar to t but with vocal cords vibrating.
+  videoURL: https://www.youtube.com/watch?v=hGZ9GwrNWmU
   front_credit: 
-  side_credit: 
+  side_credit: Based on Aino Huhtaniemi with added animation
   front_1: {fileID: 0}
   front_2: {fileID: 0}
-  side_1: {fileID: 0}
-  side_2: {fileID: 0}
+  side_1: {fileID: 21300000, guid: 1a03116768ad60d46b2741000bc07d1d, type: 3}
+  side_2: {fileID: 21300000, guid: adebbf83943f86143b067c4a0f677184, type: 3}
+  animaClip: {fileID: 7400000, guid: 8f2720e76aa531941835cb38f9df03ca, type: 2}

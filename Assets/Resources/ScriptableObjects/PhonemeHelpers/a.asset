@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: a
   ipa: "\u0251"
-  instruction: 
-  videoURL: 
+  instruction: "Open mouth. Tongue is low, positioned backward. Similar to \xE4,
+    but mouth open larger (but not wider), tongue is in the back."
+  videoURL: https://www.youtube.com/watch?v=uA7YLTHnnew
   front_credit: Aino Huhtaniemi
   side_credit: Aino Huhtaniemi
   front_1: {fileID: 21300000, guid: 8918c068ac1eb9643b776a6335e25e31, type: 3}
-  front_2: {fileID: 21300000, guid: 51de2d2e5e90b9541b2486fd80993529, type: 3}
+  front_2: {fileID: 21300000, guid: 8918c068ac1eb9643b776a6335e25e31, type: 3}
   side_1: {fileID: 21300000, guid: 0bd9e40288a75434aa8a48c6ec2c78cb, type: 3}
-  side_2: {fileID: 21300000, guid: 8c4d482ee17d7f847ad948fd1590be61, type: 3}
+  side_2: {fileID: 21300000, guid: 0bd9e40288a75434aa8a48c6ec2c78cb, type: 3}
+  animaClip: {fileID: 0}

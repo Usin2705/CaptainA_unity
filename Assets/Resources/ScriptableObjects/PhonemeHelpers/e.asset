@@ -21,6 +21,7 @@ MonoBehaviour:
   front_credit: Aino Huhtaniemi
   side_credit: Aino Huhtaniemi
   front_1: {fileID: 21300000, guid: 0b3b9e688ba979040a7c6f5bd69de14f, type: 3}
-  front_2: {fileID: 21300000, guid: 0b957284bfc0fa94187954ab78a97b64, type: 3}
+  front_2: {fileID: 21300000, guid: 0b3b9e688ba979040a7c6f5bd69de14f, type: 3}
   side_1: {fileID: 21300000, guid: 4462ae96bbe75c9449d50fee35e55cb3, type: 3}
-  side_2: {fileID: 21300000, guid: e2c4d89e3e061f9419b412811c412e2e, type: 3}
+  side_2: {fileID: 21300000, guid: 4462ae96bbe75c9449d50fee35e55cb3, type: 3}
+  animaClip: {fileID: 7400000, guid: b92febd60ef43d347a69cb1f1eb259de, type: 2}

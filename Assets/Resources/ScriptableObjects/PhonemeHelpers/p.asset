@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: p
   ipa: p
-  instruction: 
-  videoURL: 
+  instruction: Close lips to release air. p is an unvoiced sound. Similar to b but
+    do not use vocal cords.
+  videoURL: https://www.youtube.com/watch?v=CHz7sAGfB04
   front_credit: 
-  side_credit: 
+  side_credit: Aino Huhtaniemi
   front_1: {fileID: 0}
   front_2: {fileID: 0}
-  side_1: {fileID: 0}
+  side_1: {fileID: 21300000, guid: 9593922a144877945bf99c516cb12ed0, type: 3}
   side_2: {fileID: 0}
+  animation: {fileID: 7400000, guid: b92febd60ef43d347a69cb1f1eb259de, type: 2}

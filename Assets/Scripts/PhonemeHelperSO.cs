@@ -16,4 +16,13 @@ public class PhonemeHelperSO : ScriptableObject
     [SerializeField] public Sprite front_2;
     [SerializeField] public Sprite side_1;
     [SerializeField] public Sprite side_2;
+    
+    /*
+    *   Three option for animaClip:
+    *   1: Fixed interval animation change pic every 1/4 sec
+    *   2: Long Second animation change to second pic after 1/4 sec and keep it for 1sec
+    *   3: No animation: in this case we can leave it empty (tested and work just fine)
+    */
+    
+    [SerializeField] public AnimationClip animaClip; 
 }

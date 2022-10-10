@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: b
   ipa: b
-  instruction: 
-  videoURL: 
+  instruction: Close lips to block and release airflow. b is a voiced sound. Similar
+    to p but with vocal cords vibrating.
+  videoURL: https://www.youtube.com/watch?v=CHz7sAGfB04
   front_credit: 
-  side_credit: 
+  side_credit: Based on Aino Huhtaniemi with added animation
   front_1: {fileID: 0}
   front_2: {fileID: 0}
-  side_1: {fileID: 0}
-  side_2: {fileID: 0}
+  side_1: {fileID: 21300000, guid: 61237b9769354b44f8bf661c6f87700c, type: 3}
+  side_2: {fileID: 21300000, guid: f2838c15ff9b0204f85b224eb069f109, type: 3}
+  animaClip: {fileID: 7400000, guid: 8f2720e76aa531941835cb38f9df03ca, type: 2}

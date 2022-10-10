@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: t
   ipa: t
-  instruction: 
-  videoURL: 
+  instruction: Use tongue to block and release airflow. Tongue is at the roof of
+    the mouth. t is an unvoiced sound. Similar to d but  do not use vocal cords.
+  videoURL: https://www.youtube.com/watch?v=hGZ9GwrNWmU
   front_credit: 
-  side_credit: 
+  side_credit: Aino Huhtaniemi
   front_1: {fileID: 0}
   front_2: {fileID: 0}
-  side_1: {fileID: 0}
+  side_1: {fileID: 21300000, guid: f5cae924a769f0744bb1bb5bb154060c, type: 3}
   side_2: {fileID: 0}
+  animaClip: {fileID: 0}

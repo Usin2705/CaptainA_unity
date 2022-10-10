@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: v
   ipa: "\u028B"
-  instruction: 
+  instruction: "Use lower lip and upper teeth to make the sound. Noted that Finnish
+    v /\u028B/ is different with English v /v/. v is an unvoiced sound. It similar
+    to f but with vocal cords vibrating."
   videoURL: 
   front_credit: 
   side_credit: 
@@ -22,3 +24,4 @@ MonoBehaviour:
   front_2: {fileID: 0}
   side_1: {fileID: 0}
   side_2: {fileID: 0}
+  animaClip: {fileID: 0}

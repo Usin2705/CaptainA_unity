@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: f
   ipa: f
-  instruction: 
-  videoURL: 
+  instruction: "Use lower lip and upper teeth to make the sound. f is an unvoiced
+    sound. It similar to Finnish v /\u028B/ but do not use vocal cords,"
+  videoURL: https://www.youtube.com/watch?v=1VoD4_0Gxzc&t=78s
   front_credit: 
   side_credit: 
   front_1: {fileID: 0}
   front_2: {fileID: 0}
-  side_1: {fileID: 0}
+  side_1: {fileID: 21300000, guid: b2025b94464fac04fa48a59d7654b13f, type: 3}
   side_2: {fileID: 0}
+  animaClip: {fileID: 0}
