@@ -158,6 +158,7 @@ Library: lib_burst_generated
 --root-assembly=/l/phann2/CaptainA_unity/Temp/StagingArea/Data/Managed/Unity.Services.Core.Internal.dll
 --root-assembly=/l/phann2/CaptainA_unity/Temp/StagingArea/Data/Managed/Unity.Services.Core.Analytics.dll
 --root-assembly=/l/phann2/CaptainA_unity/Temp/StagingArea/Data/Managed/Unity.2D.SpriteShape.Runtime.dll
+--root-assembly=/l/phann2/CaptainA_unity/Temp/StagingArea/Data/Managed/Assembly-CSharp.dll
 --root-assembly=/l/phann2/CaptainA_unity/Temp/StagingArea/Data/Managed/Unity.Services.Core.Scheduler.dll
 --root-assembly=/l/phann2/CaptainA_unity/Temp/StagingArea/Data/Managed/Unity.Services.Core.Registration.dll
 --root-assembly=/l/phann2/CaptainA_unity/Temp/StagingArea/Data/Managed/Unity.2D.PixelPerfect.dll
@@ -167,7 +168,6 @@ Library: lib_burst_generated
 --root-assembly=/l/phann2/CaptainA_unity/Temp/StagingArea/Data/Managed/Unity.Services.Core.Threading.dll
 --root-assembly=/l/phann2/CaptainA_unity/Temp/StagingArea/Data/Managed/Unity.2D.Tilemap.Extras.dll
 --root-assembly=/l/phann2/CaptainA_unity/Temp/StagingArea/Data/Managed/Unity.Services.Core.Networking.dll
---root-assembly=/l/phann2/CaptainA_unity/Temp/StagingArea/Data/Managed/Assembly-CSharp.dll
 --root-assembly=/l/phann2/CaptainA_unity/Temp/StagingArea/Data/Managed/Unity.InternalAPIEngineBridge.001.dll
 --root-assembly=/l/phann2/CaptainA_unity/Temp/StagingArea/Data/Managed/Unity.Services.Core.Configuration.dll
 --assembly-folder=/l/phann2/CaptainA_unity/Temp/StagingArea/Data/Managed/

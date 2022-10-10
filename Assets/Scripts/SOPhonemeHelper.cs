@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(menuName = "Phoneme Helper", fileName = "Phoneme Helper", order = 0)]
-public class PhonemeHelperSO : ScriptableObject 
+[CreateAssetMenu(menuName = "Phoneme Helper", fileName = "Phoneme Helper", order = 1)]
+public class SOPhonemeHelper : ScriptableObject 
 {
     public string phoneme;
     public string ipa;

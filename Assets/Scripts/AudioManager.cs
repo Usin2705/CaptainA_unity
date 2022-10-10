@@ -28,11 +28,17 @@ public class AudioManager : MonoBehaviour
         return audioManager;
     }
 
-    public void RecordSound()
+    public void StartRecording()
     {
         audioSource.PlayOneShot(recordNotif, 0.5f);
+        //The notification sound cause some noise in the recording
+        //So we need to delay it a little
+        Invoke(nameof(RecordSound), 0.5f);
+    }
 
-        // Debug.Log("Name: " + Microphone.devices[0]);        
+    void RecordSound() 
+    {
+                // Debug.Log("Name: " + Microphone.devices[0]);        
 
         // if (Application.HasUserAuthorization(UserAuthorization.Microphone))
         // {
@@ -42,7 +48,6 @@ public class AudioManager : MonoBehaviour
         // {
         //     Debug.Log("Microphone not found");
         // }
-
         audioSource.clip = Microphone.Start(Microphone.devices[0], false, Const.MAX_REC_TIME, Const.FREQUENCY);
     }
 

@@ -9,10 +9,9 @@ public class ProfilePanel : MonoBehaviour
     [SerializeField] GameObject phonemeScorePrefab; // Refer to ListItemPanel prefab
     [SerializeField] GameObject content;
     [SerializeField] PhonemePanel phonemePanel;
+    [SerializeField] InfoPanel infoPanel;
 
     List<GameObject> listItems = new List<GameObject>();                
-
-    // const float EXTRA_PADDING = 50.0f;
 
     void OnEnable() 
     // Is called when SetActive(true)
@@ -41,7 +40,7 @@ public class ProfilePanel : MonoBehaviour
             score = "<color=" + phoneColor + ">" + score + "</color>";         
 
             GameObject phonemeScoreGO = Instantiate(phonemeScorePrefab, new Vector3(0,0,0), Quaternion.identity);
-            phonemeScoreGO.transform.SetParent(content.transform, false); // Register the big panel (ProfilePanel) as parent 
+            phonemeScoreGO.transform.SetParent(content.transform, false); // Register the big panel (ProfilePanel --> Content) as parent 
 
             // Find the Button to register OnClick Function
             Button phonemeButton = phonemeScoreGO.transform.Find("ScorePanel").transform.Find("PhonemeBG").GetComponent<Button>();                        
@@ -67,14 +66,21 @@ public class ProfilePanel : MonoBehaviour
             //phonemeScore.phoneme;
             //phonemeScore.no_tries;
         }
+        // We don't need to set this anymore if we set content as parent
         // float prefabHeight = phonemeScorePrefab.transform.Find("ScorePanel").GetComponent<RectTransform>().sizeDelta.y;
         // prefabHeight += phonemeScorePrefab.transform.Find("NoTries").GetComponent<RectTransform>().sizeDelta.y;
         
         // content.GetComponent<RectTransform>().
         //         SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 
-        //                                   prefabHeight*(userData.phonemeScores.Count+1) + EXTRA_PADDING);
+        //                                   prefabHeight*(userData.phonemeScores.Count+1) + 50.f);
 
 
+
+    }
+
+    public void OnInfoButtonClick()
+    {
+        infoPanel.ShowInfoPanel();
     }
 
     void OnDisable() 

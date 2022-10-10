@@ -30,7 +30,7 @@ public static class Const
 
     // Score range (less than) for each type of scoring
     public const float BAD_SCORE = 0.49f;
-    public const float AVG_SCORE = 0.92f;
+    public const float AVG_SCORE = 0.90f;
     //public const float GOOD_SCORE = 0.92f;
 
     // Weight % allow users to update score with more weight put on 

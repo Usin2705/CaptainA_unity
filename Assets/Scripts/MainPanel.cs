@@ -20,7 +20,7 @@ public class MainPanel : MonoBehaviour
         inputTransGO.GetComponent<TMP_InputField>().text = SantinizeText(inputTransGO.GetComponent<TMP_InputField>().text);
         if (inputTransGO.GetComponent<TMP_InputField>().text!="") 
         {
-            AudioManager.GetManager().RecordSound();
+            AudioManager.GetManager().StartRecording();
         }
         
     }

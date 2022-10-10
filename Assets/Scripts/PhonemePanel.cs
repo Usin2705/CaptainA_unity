@@ -7,9 +7,7 @@ using TMPro;
 public class PhonemePanel : MonoBehaviour
 {
     [SerializeField] GameObject phonemePanel;
-    [SerializeField] GameObject backButton;
-
-    
+        
     [SerializeField] TextMeshProUGUI explainText;
     [SerializeField] GameObject frontMouth1;
     [SerializeField] GameObject frontMouth2;
@@ -17,12 +15,12 @@ public class PhonemePanel : MonoBehaviour
     [SerializeField] GameObject sideMouth2;
     [SerializeField] TextMeshProUGUI creditText;
     
-    PhonemeHelperSO phonemeSO;
+    SOPhonemeHelper phonemeSO;
     // Start is called before the first frame update
 
     public void ShowPhonemePanel(string phoneme) {
         // Find the scriptable object related to the phoneme
-        phonemeSO = Resources.Load<PhonemeHelperSO>(Const.PHONE_HELP_PATH + phoneme.ToLower());
+        phonemeSO = Resources.Load<SOPhonemeHelper>(Const.PHONE_HELP_PATH + phoneme.ToLower());
         phonemePanel.SetActive(true);
     }
 
@@ -34,7 +32,7 @@ public class PhonemePanel : MonoBehaviour
     void OnEnable()
     {        
         // In case the SO is null
-        if (phonemeSO==null) phonemeSO = Resources.Load<PhonemeHelperSO>(Const.PHONE_HELP_PATH + "spacing");
+        if (phonemeSO==null) phonemeSO = Resources.Load<SOPhonemeHelper>(Const.PHONE_HELP_PATH + "spacing");
 
         explainText.text = phonemeSO.phoneme + " /" + phonemeSO.ipa + "/ "  + phonemeSO.instruction;
         frontMouth1.GetComponent<Image>().sprite = phonemeSO.front_1;
@@ -55,7 +53,7 @@ public class PhonemePanel : MonoBehaviour
 
     void Update()
     {
-        // Handle back button press
+        // Handle back button press on phone
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ClosePanel();
@@ -63,6 +61,10 @@ public class PhonemePanel : MonoBehaviour
     }
 
     public void ClosePanel()
+    /*
+    *   This function also attached to BackButton OnClick() in Unity
+    */
+
     {
         phonemePanel.SetActive(false);
     }

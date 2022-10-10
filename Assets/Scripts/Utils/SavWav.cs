@@ -153,7 +153,7 @@ public static class SavWav
         var subChunk1 = BitConverter.GetBytes(16u);
         AddDataToBuffer(stream, ref offset, subChunk1);
 
-        const ushort two = 2;
+        //const ushort two = 2;
         const ushort one = 1;
 
         var audioFormat = BitConverter.GetBytes(one);
