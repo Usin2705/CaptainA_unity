@@ -1,11 +1,12 @@
 public enum Topics
 {
     Easy,
+    Normal,
     Hard,
     Phrases,
     General,
     Grocery,
-    Temp1,
+    Business,
     Temp2,
     Temp3,
     Temp4,

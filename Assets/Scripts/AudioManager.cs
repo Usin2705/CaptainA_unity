@@ -51,6 +51,7 @@ public class AudioManager : MonoBehaviour
         audioSource.clip = Microphone.Start(Microphone.devices[0], false, Const.MAX_REC_TIME, Const.FREQUENCY);
     }
 
+    
     public void ReplayAndPost(string transcript, GameObject textErrorGO, GameObject textResultGO)
     {
         Microphone.End("");        
@@ -60,6 +61,8 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(NetworkManager.GetManager().ServerPost(transcript, wavBuffer, textErrorGO, textResultGO));
         Invoke(nameof(ReplayRecordedSample), 0.5f);
     }
+
+
 
     void ReplayRecordedSample()
     {        

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 
 // Android asset studio
@@ -28,8 +29,23 @@ public static class Const
     public const string AVG_COLOR = "#ffa500ff";
     public const string GOOD_COLOR = "#0000ffff";    
 
-    // Score range (less than) for each type of scoring
-    public const float BAD_SCORE = 0.49f;
+    /* Score range (less than) for each type of scoring
+    *  The bad score actually depend on the model
+    *  Without finetuned, 3rd quartile (75%) of error from FA score
+    *  is about 45%, which then 0.49f sound good (mathematically also good)
+    *  Then it's hard to select avg_score, but let's just pick 0.92f
+    *  
+    *  For finetuned models with digitala, 3rd quartile only about 29%, so  
+    *  we can select something around 0.3f or 0.35f
+    *  This will also allow more room for addtional score range 
+    *  (from bad to more than 50% would be another option)
+    *
+    *  The average score then should also be lower, different model will have 
+    *  different scale, but a rule of thumb would be anything below 0.9f is not 
+    *  NATIVE level, so avg score should be around 0.9f
+    *  
+    */
+    public const float BAD_SCORE = 0.35f;
     public const float AVG_SCORE = 0.90f;
     //public const float GOOD_SCORE = 0.92f;
 
@@ -57,9 +73,22 @@ public static class Const
 
     public static readonly Color32 BG_ACTIVE_COLOR = new Color32(200,200,200,255);
     public static readonly Color32 BG_INACTIVE_COLOR = new Color32(255,255,255,255);
+
+    // mic color: 13E365    
+
     // =======================================================
-// mic color: 13E365    
+    
 
     // ==================== RESOURCES PATH ====================
     public const string PHONE_HELP_PATH = "ScriptableObjects/PhonemeHelpers/";
+    public const string WORD_LIST_PATH = "ScriptableObjects/Words/";
+    // ========================================================
+
+    // ==================== RESOURCES PATH ====================
+    
+    // TODO make this one read only
+    public static string[] VOCABS_LIST = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", 
+                                                       "k", "l", "m", "n", "o", "p", "q", "r", "s", " ", 
+                                                       "t", "u", "v", "w", "x", "y", "ä", "å", "ö"};
+    // ========================================================    
 }

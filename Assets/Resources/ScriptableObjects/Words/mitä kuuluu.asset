@@ -15,5 +15,5 @@ MonoBehaviour:
   word: "Mit\xE4 kuuluu?"
   meaning: How are you?
   credit: Note that the app can't check your tone yet.
-  topicList: 02000000
+  topicList: 0100000003000000
   sampleAudio: {fileID: 0}

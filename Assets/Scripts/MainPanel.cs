@@ -11,7 +11,7 @@ public class MainPanel : MonoBehaviour
     [SerializeField] GameObject textErrorGO;     
     [SerializeField] GameObject textResultGO;     
 
-    public void OnButtonPointerEnter() {
+    public void OnButtonPointerDown() {
         // Attached to ButtonRecord GameObject        
         //Debug.Log("Pointer Pressed");
 
@@ -28,11 +28,19 @@ public class MainPanel : MonoBehaviour
     public void OnButtonPointerUp() {
         // Attached to ButtonRecord GameObject
         //Debug.Log("Pointer Up");   
-
         if (inputTransGO.GetComponent<TMP_InputField>().text!="") 
         {
-            AudioManager.GetManager().ReplayAndPost(inputTransGO.GetComponent<TMP_InputField>().text, textErrorGO, textResultGO);
             buttonRecordGO.SetActive(false);
+
+            // Maybe this won't cut the recording abruptly
+            // by delay the microphone end by 0.5sec            
+            StartCoroutine(DelayReplayAndPost());
+            IEnumerator DelayReplayAndPost()
+            {
+                yield return new WaitForSeconds(0.5f);
+            
+                AudioManager.GetManager().ReplayAndPost(inputTransGO.GetComponent<TMP_InputField>().text, textErrorGO, textResultGO);
+            }
         }
     }
 

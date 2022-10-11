@@ -15,8 +15,8 @@ MonoBehaviour:
   phoneme: "\xF6"
   ipa: "\xF8"
   instruction: Round and close your lips a little (bigger than /y/ sound). Put tongue 
-    to the roof of the mouth (lower than /i/ sound, positioned forward. Similar to
-    o but tongue is in front.
+    to the roof of the mouth (lower than /i/ sound), put tongue forward. Similar
+    to o but tongue is in front.
   videoURL: https://www.youtube.com/watch?v=vnsGvkLF2pE&t=144s
   front_credit: Aino Huhtaniemi
   side_credit: Aino Huhtaniemi

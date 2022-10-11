@@ -28,13 +28,21 @@ public static class SaveData
         else
         {
 			// If no UserData file is created, create an empty UserData file
+            // with all posible vocab in VOCABS_LIST            
             List<PhonemeScore> tempL = new List<PhonemeScore>();
-			UserData userData = new UserData("", 0, tempL);
-			SaveIntoJson(userData);
+
+            foreach (string vocab in Const.VOCABS_LIST)
+            {
+                PhonemeScore tempScore = new PhonemeScore(vocab, 0.0f, 0);
+                tempL.Add(tempScore);                
+            }
+			
+            UserData userData = new UserData("", 0, tempL);			
+            SaveIntoJson(userData);
 			return userData;
         }
     }
-
+    
     public static void UpdateUserScores(string transcript, List<float> scoreList) {
         /*
         * Remember to turn transcript to lowercase, as there's different between upper and lowercase
