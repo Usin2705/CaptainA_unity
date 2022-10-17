@@ -84,11 +84,19 @@ public static class Const
     public const string WORD_LIST_PATH = "ScriptableObjects/Words/";
     // ========================================================
 
-    // ==================== RESOURCES PATH ====================
+    
+    
+    // ====================== VOCAB LIST ======================
     
     // TODO make this one read only
     public static string[] VOCABS_LIST = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", 
                                                        "k", "l", "m", "n", "o", "p", "q", "r", "s", " ", 
                                                        "t", "u", "v", "w", "x", "y", "ä", "å", "ö"};
     // ========================================================    
+
+
+    // ====================== EXERCISE ======================    
+    public const int MAX_QUEUE = 5;
+    public const int MAX_NO_TRIES = 3;
+    // ======================================================== 
 }
