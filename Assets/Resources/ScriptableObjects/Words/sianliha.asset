@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: sianliha
   m_EditorClassIdentifier: 
   word: Sianliha
-  meaning: Pork
+  definition: Pork
   credit: 
   topicList: 0100000005000000
   sampleAudio: {fileID: 0}

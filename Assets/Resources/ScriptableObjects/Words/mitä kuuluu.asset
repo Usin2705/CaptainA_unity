@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "mit\xE4 kuuluu"
   m_EditorClassIdentifier: 
   word: "Mit\xE4 kuuluu?"
-  meaning: How are you?
+  definition: How are you?
   credit: Note that the app can't check your tone yet.
   topicList: 0100000003000000
   sampleAudio: {fileID: 0}

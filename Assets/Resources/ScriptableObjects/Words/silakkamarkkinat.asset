@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: silakkamarkkinat
   m_EditorClassIdentifier: 
   word: Silakkamarkkinat
-  meaning: Herring market, herring fair
+  definition: Herring market, herring fair
   credit: 
   topicList: 02000000
   sampleAudio: {fileID: 0}

@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Text.RegularExpressions;
 using UnityEngine.Networking;
 using System;
 
 public class MainPanel : MonoBehaviour
 {
-    [SerializeField] GameObject buttonRecordGO;     
+    [SerializeField] GameObject recordButtonGO;     
     [SerializeField] GameObject inputTransGO;
     [SerializeField] GameObject errorTextGO;     
     [SerializeField] GameObject resultPanelGO;     
@@ -23,7 +22,7 @@ public class MainPanel : MonoBehaviour
 
         errorTextGO.SetActive(false);
 
-        inputTransGO.GetComponent<TMP_InputField>().text = SantinizeText(inputTransGO.GetComponent<TMP_InputField>().text);
+        inputTransGO.GetComponent<TMP_InputField>().text = TextUtils.SantinizeText(inputTransGO.GetComponent<TMP_InputField>().text);
         if (inputTransGO.GetComponent<TMP_InputField>().text!="") 
         {
             AudioManager.GetManager().StartRecording();
@@ -36,7 +35,7 @@ public class MainPanel : MonoBehaviour
         //Debug.Log("Pointer Up");   
         if (inputTransGO.GetComponent<TMP_InputField>().text!="") 
         {
-            buttonRecordGO.SetActive(false);
+            recordButtonGO.SetActive(false);
             resultPanelGO.SetActive(false);
 
             // Maybe this won't cut the recording abruptly
@@ -49,7 +48,7 @@ public class MainPanel : MonoBehaviour
                 // Send transcript to server
                 // errorTextGO to update if server yield error
                 // resultPanelGO to update result (by Enable the AudioClip and display text result)
-                AudioManager.GetManager().GetAudioAndPost(inputTransGO.GetComponent<TMP_InputField>().text, errorTextGO, resultPanelGO);
+                AudioManager.GetManager().GetAudioAndPost(inputTransGO.GetComponent<TMP_InputField>().text, errorTextGO, resultPanelGO, recordButtonGO);
                 
                 // TODO Make this part more efficiency
                 // The whole block stink
@@ -57,7 +56,7 @@ public class MainPanel : MonoBehaviour
                 // But the clip was trimmed & convert to wav in the above code
                 // so we RELOAD it back to clip again, which is a waste of processing
                 // but at least we got some nice trimmed audioclip        
-                StartCoroutine(LoadAudioClip("speech_sample"));        
+                StartCoroutine(LoadAudioClip(Const.REPLAY_FILENAME));        
 
                 Button replayButton = replayButtonGO.transform.GetComponent<Button>();                       
                 replayButton.onClick.AddListener(() => ReplaySample()); 
@@ -106,15 +105,5 @@ public class MainPanel : MonoBehaviour
 
     void ReplaySample() {
         if (replayClip!=null) AudioManager.GetManager().PlayAudioClip(replayClip);
-    }
-
-    string SantinizeText(string text) 
-    {
-        text = text.Trim(); // Remove trailing white space
-        text = Regex.Replace(text, "[zZ]", "ts"); //Replace z with ts
-        text = Regex.Replace(text, "[0-9]", ""); //Remove numbers
-        text = Regex.Replace(text, "[-!$%^&*()_+|~=`{}\\[\\]:\";'<>?,.\\/@]", ""); //Remove symbols
-
-        return text;
     }
 }

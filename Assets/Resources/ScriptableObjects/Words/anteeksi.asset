@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: anteeksi
   m_EditorClassIdentifier: 
   word: Anteeksi
-  meaning: Excuse me
+  definition: Excuse me
   credit: 
   topicList: 0000000004000000
   sampleAudio: {fileID: 0}

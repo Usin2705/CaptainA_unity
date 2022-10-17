@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: mansikka
   m_EditorClassIdentifier: 
   word: Mansikka
-  meaning: Strawberry
+  definition: Strawberry
   credit: 
   topicList: 0500000001000000
   sampleAudio: {fileID: 0}

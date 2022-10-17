@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: porsaanliha
   m_EditorClassIdentifier: 
   word: Porsaanliha
-  meaning: Pork
+  definition: Pork
   credit: 
   topicList: 0500000001000000
   sampleAudio: {fileID: 0}

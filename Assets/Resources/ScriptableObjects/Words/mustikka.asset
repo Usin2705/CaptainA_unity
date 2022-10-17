@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: mustikka
   m_EditorClassIdentifier: 
   word: Mustikka
-  meaning: Finnish blueberry
+  definition: Finnish blueberry
   credit: 
   topicList: 0500000001000000
   sampleAudio: {fileID: 0}

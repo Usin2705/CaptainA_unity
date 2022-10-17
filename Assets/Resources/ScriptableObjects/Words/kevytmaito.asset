@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: kevytmaito
   m_EditorClassIdentifier: 
   word: Kevytmaito
-  meaning: Skimmed milk (low-fat milk)
+  definition: Skimmed milk (low-fat milk)
   credit: 
   topicList: 0400000001000000
   sampleAudio: {fileID: 0}

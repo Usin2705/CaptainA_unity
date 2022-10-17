@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: hallanvaara
   m_EditorClassIdentifier: 
   word: Hallanvaara
-  meaning: Risk of frost
+  definition: Risk of frost
   credit: 
   topicList: 02000000
   sampleAudio: {fileID: 0}

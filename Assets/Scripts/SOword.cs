@@ -6,8 +6,11 @@ using UnityEngine.UI;
 [CreateAssetMenu(menuName = "Word List", fileName = "Word List", order = 0)]
 public class SOword : ScriptableObject 
 {
+    [TextArea]
     public string word;
-    public string meaning;
+    [TextArea]
+    public string definition;
+    [TextArea]
     public string credit;
 
     public Topics[] topicList;

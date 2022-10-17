@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: maito
   m_EditorClassIdentifier: 
   word: Maito
-  meaning: Milk
+  definition: Milk
   credit: 
   topicList: 0000000005000000
   sampleAudio: {fileID: 0}

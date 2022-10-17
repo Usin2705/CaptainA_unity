@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: saippuakauppias
   m_EditorClassIdentifier: 
   word: Saippuakauppias
-  meaning: Soap merchant
+  definition: Soap merchant
   credit: 
   topicList: 02000000
   sampleAudio: {fileID: 0}

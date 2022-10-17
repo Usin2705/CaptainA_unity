@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: rasvaton
   m_EditorClassIdentifier: 
   word: Rasvaton
-  meaning: Non-fat
+  definition: Non-fat
   credit: 
   topicList: 0100000005000000
   sampleAudio: {fileID: 0}

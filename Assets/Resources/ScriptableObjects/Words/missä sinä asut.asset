@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "miss\xE4 sin\xE4 asut"
   m_EditorClassIdentifier: 
   word: "Miss\xE4 sin\xE4 asut?"
-  meaning: Where do you live?
+  definition: Where do you live?
   credit: Note that the app can't check your tone yet.
   topicList: 0100000003000000
   sampleAudio: {fileID: 0}

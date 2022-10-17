@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
   m_Name: minun nimi on mikko
   m_EditorClassIdentifier: 
-  word: Minun nimi on Mikko
-  meaning: My name is Mikko
+  word: Minun nimi on Mikko.
+  definition: My name is Mikko.
   credit: 
   topicList: 0300000001000000
   sampleAudio: {fileID: 0}

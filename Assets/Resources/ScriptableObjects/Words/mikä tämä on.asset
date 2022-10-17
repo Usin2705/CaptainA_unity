@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "mik\xE4 t\xE4m\xE4 on"
   m_EditorClassIdentifier: 
   word: "Mik\xE4 t\xE4m\xE4 on?"
-  meaning: What is this?
+  definition: What is this?
   credit: Note that the app can't check your tone yet.
-  topicList: 0200000003000000
+  topicList: 0100000003000000
   sampleAudio: {fileID: 0}

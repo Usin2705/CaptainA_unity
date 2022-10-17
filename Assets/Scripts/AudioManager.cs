@@ -52,13 +52,13 @@ public class AudioManager : MonoBehaviour
         if (audioSource.isPlaying == false) audioSource.PlayOneShot(audioClip);
     }
     
-    public void GetAudioAndPost(string transcript, GameObject textErrorGO, GameObject resultPanelGO)
+    public void GetAudioAndPost(string transcript, GameObject textErrorGO, GameObject resultPanelGO, GameObject recordButtonGO)
     {
         Microphone.End("");        
         byte[] wavBuffer = SavWav.GetWav(audioSource.clip, out uint length, trim:true);
-        SavWav.Save("speech_sample", audioSource.clip, trim:true); // for debug purpose
+        SavWav.Save(Const.REPLAY_FILENAME, audioSource.clip, trim:true); // for debug purpose
 
-        StartCoroutine(NetworkManager.GetManager().ServerPost(transcript, wavBuffer, textErrorGO, resultPanelGO));
+        StartCoroutine(NetworkManager.GetManager().ServerPost(transcript, wavBuffer, textErrorGO, resultPanelGO, recordButtonGO));
     }
 
     void ReplayRecordedSample()

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "miksi suomessa on niin kylm\xE4"
   m_EditorClassIdentifier: 
   word: "Miksi Suomessa on niin kylm\xE4?"
-  meaning: Why is it so cold in Finland?
+  definition: Why is it so cold in Finland?
   credit: Note that the app can't check your tone yet.
   topicList: 0200000003000000
   sampleAudio: {fileID: 0}

@@ -8,8 +8,7 @@ using System.IO;
 
 public class NetworkManager : MonoBehaviour
 {
-    [SerializeField] GameObject buttonRecordGO;     
-	static NetworkManager netWorkManager;
+    static NetworkManager netWorkManager;
 
 	string url = Secret.URL;
 
@@ -32,7 +31,7 @@ public class NetworkManager : MonoBehaviour
 
 	}
 
-    public IEnumerator ServerPost(string transcript, byte[] wavBuffer, GameObject textErrorGO, GameObject resultPanelGO)
+    public IEnumerator ServerPost(string transcript, byte[] wavBuffer, GameObject textErrorGO, GameObject resultPanelGO, GameObject recordButtonGO)
     {
 	    //IMultipartFormSection & MultipartFormFileSection  could be another solution, 
 		// but apparent it also require raw byte data to upload
@@ -46,7 +45,7 @@ public class NetworkManager : MonoBehaviour
 
 		yield return www.SendWebRequest();
 
-		buttonRecordGO.SetActive(true);
+		recordButtonGO.SetActive(true);
 
 		Debug.Log(www.result);
 
@@ -85,7 +84,7 @@ public class NetworkManager : MonoBehaviour
 		
 		// Update text result
 		resultPanelGO.SetActive(true);
-		resultPanelGO.transform.Find("ResultText").GetComponent<TMPro.TextMeshProUGUI>().text = TextColoring.FormatTextResult(transcript, asrResult.score);
+		resultPanelGO.transform.Find("ResultText").GetComponent<TMPro.TextMeshProUGUI>().text = TextUtils.FormatTextResult(transcript, asrResult.score);
     }
 
 

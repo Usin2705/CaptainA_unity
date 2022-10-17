@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text.RegularExpressions;
 
-public static class TextColoring
+public static class TextUtils
 {    
 	public static string FormatTextResult(string transcript, List<float> scoreList) 
     /*
@@ -32,4 +33,14 @@ public static class TextColoring
         
 		return textResult;
 	}
+
+    public static string SantinizeText(string text) 
+    {
+        text = text.Trim(); // Remove trailing white space
+        text = Regex.Replace(text, "[zZ]", "ts"); //Replace z with ts
+        text = Regex.Replace(text, "[0-9]", ""); //Remove numbers
+        text = Regex.Replace(text, "[-!$%^&*()_+|~=`{}\\[\\]:\";'<>?,.\\/@]", ""); //Remove symbols
+
+        return text;
+    }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: yritys
   m_EditorClassIdentifier: 
   word: Yritys
-  meaning: Company, firm, enterprise
+  definition: Company, firm, enterprise
   credit: 
   topicList: 0200000006000000
   sampleAudio: {fileID: 0}
