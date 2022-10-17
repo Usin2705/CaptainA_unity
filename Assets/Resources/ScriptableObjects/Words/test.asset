@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
-  m_Name: kiitos
+  m_Name: test
   m_EditorClassIdentifier: 
-  word: Kiitos
-  meaning: Thank you
-  credit: 'Vassilik. Licensed under CC BY-SA 3.0: https://creativecommons.org/licenses/by-sa/3.0/deed.en'
-  topicList: 0000000004000000
+  word: This is a very long word with face sound sample for fun
+  meaning: meanting new line \n new line hehe
+  credit: this is a test credit line
+  topicList: 0a000000
   sampleAudio: {fileID: 8300000, guid: 1d92ea6d5c3b708b398eee54cda393e0, type: 3}

@@ -32,7 +32,7 @@ public class NetworkManager : MonoBehaviour
 
 	}
 
-    public IEnumerator ServerPost(string transcript, byte[] wavBuffer, GameObject textErrorGO, GameObject textResultGO)
+    public IEnumerator ServerPost(string transcript, byte[] wavBuffer, GameObject textErrorGO, GameObject resultPanelGO)
     {
 	    //IMultipartFormSection & MultipartFormFileSection  could be another solution, 
 		// but apparent it also require raw byte data to upload
@@ -84,8 +84,8 @@ public class NetworkManager : MonoBehaviour
 		SaveData.UpdateUserScores(transcript, asrResult.score);
 		
 		// Update text result
-		textResultGO.SetActive(true);
-		textResultGO.transform.Find("ResultText").GetComponent<TMPro.TextMeshProUGUI>().text = TextColoring.FormatTextResult(transcript, asrResult.score);
+		resultPanelGO.SetActive(true);
+		resultPanelGO.transform.Find("ResultText").GetComponent<TMPro.TextMeshProUGUI>().text = TextColoring.FormatTextResult(transcript, asrResult.score);
     }
 
 

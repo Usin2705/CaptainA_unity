@@ -12,10 +12,15 @@ public class QueueManager : MonoBehaviour
     static QueueManager queueManager;
     Queue<SOword> wordQueue;
 
+    Topics currentTopic = 0;
+
 	public static QueueManager GetQueueManager {
 		get {
 			if (queueManager == null) {
 				queueManager = new GameObject("QueueManager").AddComponent<QueueManager>();
+
+                // Find always come with huge resources, so best not do it
+                // queueManager.transform.SetParent(GameObject.Find("Manager").transform); // Register the Manager as parent 
 			}
 
 			return queueManager;
@@ -23,6 +28,7 @@ public class QueueManager : MonoBehaviour
 	}
 
     public void MakeQueue(Topics topic, int maxLength) {
+        currentTopic = topic;
 		wordQueue = new Queue<SOword>();
         
         //Load all SOword into a list for easier to control
@@ -46,9 +52,12 @@ public class QueueManager : MonoBehaviour
 
     }
 
+    public void ClearQueue() {        
+		wordQueue.Clear();
+    }
+
     public void Dequeue() {        
-		wordQueue.Dequeue();
-         
+		wordQueue.Dequeue();         
     }
 
     public SOword Peek() {
@@ -57,5 +66,9 @@ public class QueueManager : MonoBehaviour
 
     public int GetCount() {
         return wordQueue.Count;
+    }
+
+    public Topics GetTopic() {
+        return currentTopic;
     }
 }

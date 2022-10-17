@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-using System.Linq;
-using System.IO;
 
 
 public class AudioManager : MonoBehaviour
@@ -50,19 +47,19 @@ public class AudioManager : MonoBehaviour
         // }
         audioSource.clip = Microphone.Start(Microphone.devices[0], false, Const.MAX_REC_TIME, Const.FREQUENCY);
     }
-
+    public void PlayAudioClip(AudioClip audioClip) {
+        // Adding an if statement so that user won't abuse the play audio
+        if (audioSource.isPlaying == false) audioSource.PlayOneShot(audioClip);
+    }
     
-    public void ReplayAndPost(string transcript, GameObject textErrorGO, GameObject textResultGO)
+    public void GetAudioAndPost(string transcript, GameObject textErrorGO, GameObject resultPanelGO)
     {
         Microphone.End("");        
         byte[] wavBuffer = SavWav.GetWav(audioSource.clip, out uint length, trim:true);
         SavWav.Save("speech_sample", audioSource.clip, trim:true); // for debug purpose
 
-        StartCoroutine(NetworkManager.GetManager().ServerPost(transcript, wavBuffer, textErrorGO, textResultGO));
-        Invoke(nameof(ReplayRecordedSample), 0.5f);
+        StartCoroutine(NetworkManager.GetManager().ServerPost(transcript, wavBuffer, textErrorGO, resultPanelGO));
     }
-
-
 
     void ReplayRecordedSample()
     {        
