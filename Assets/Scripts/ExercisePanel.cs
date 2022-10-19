@@ -55,9 +55,14 @@ public class ExercisePanel : MonoBehaviour
         }
         
         // Set up sample play button
+        
         if (word.sampleAudio != null) {
-            sampleButtonGO.SetActive(true);
-            Button sampleButton = sampleButtonGO.transform.GetComponent<Button>();       
+            Debug.Log("Sample audio update");
+            sampleButtonGO.SetActive(true);     
+
+            Button sampleButton = sampleButtonGO.transform.GetComponent<Button>();               
+            // Need to remove old OnClick Listeners, otherwise it will keep adding up
+            sampleButton.onClick.RemoveAllListeners();       
             sampleButton.onClick.AddListener(() => AudioManager.GetManager().PlayAudioClip(word.sampleAudio));            
         } else{
             sampleButtonGO.SetActive(false);

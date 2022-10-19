@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
-  m_Name: test
+  m_Name: "onpa h\xE4n koettanut"
   m_EditorClassIdentifier: 
-  word: This is a very long word with face sound sample for fun
-  meaning: meanting new line \n new line hehe
-  credit: this is a test credit line
-  topicList: 0a000000
-  sampleAudio: {fileID: 8300000, guid: 1d92ea6d5c3b708b398eee54cda393e0, type: 3}
+  word: "Onpa h\xE4n koettanut"
+  definition: '(No translation)
+
+    Note that <b>o<color=red>n</color>pa</b> should
+    be pronounced as <b>o<color=red>m</color>pa</b>. '
+  credit: Common Voice 11 (CC0 1.0)
+  topicList: 0100000003000000
+  sampleAudio: {fileID: 8300000, guid: ae5ad4960b6f1eb4d86148e112a3fa1f, type: 3}

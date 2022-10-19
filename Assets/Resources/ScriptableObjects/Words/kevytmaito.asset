@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: kevytmaito
   m_EditorClassIdentifier: 
   word: Kevytmaito
-  definition: Skimmed milk (low-fat milk)
+  definition: Semi-skimmed milk (reduced-fat milk)
   credit: 
-  topicList: 0400000001000000
+  topicList: 050000000100000008000000
   sampleAudio: {fileID: 0}

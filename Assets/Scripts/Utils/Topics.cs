@@ -4,13 +4,13 @@ public enum Topics
     Normal,
     Hard,
     Sentences,
-    General,
+    Greetings,
     Grocery,
     Business,
-    Temp2,
-    Temp3,
-    Temp4,
+    Empty,
+    Vocabulary,
     AudioBooks,
+    All,
 }
 
 public static class TopicDetail
@@ -26,25 +26,23 @@ public static class TopicDetail
             case Topics.Hard:
                 return "Very long words/sentence. Might have difficult pairs (a-ä) and double letters.";
             case Topics.Sentences:
-                return "Sample is one or (maximum) two sentences that commonly use in Finland.";
-            case Topics.General:
-                return " ";                
+                return "One or (maximum) two Finnish sentences. Often have audio samples.";
+            case Topics.Greetings:
+                return "Common Finnish greetings.";                
             case Topics.Grocery:
                 return "A list of words you should know when buying grocery in Finland";
             case Topics.Business:
                 return "A list of words you should know when if you want to start business in Finland";
-            case Topics.Temp2:
+            case Topics.Empty:
                 return " ";
-            case Topics.Temp3:
-                return " ";   
-            case Topics.Temp4:
-                return " ";  
+            case Topics.Vocabulary:
+                return "All single words. Useful to learn new vocabulary while practice pronunciation";                   
             case Topics.AudioBooks:
                 return "Contain samples from Finnish book in Public Domain (no copyright). Always have audio samples from LibriVox.";                                                                                               
+            case Topics.All:
+                return "Contain all samples in the appliaiton.";                                                                                               
             default:
                 return "";
         }
     }
-
-
 }

@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   word: "Kuka h\xE4n on?"
   definition: Who is (s)he?
-  credit: Note that the app can't check your tone yet.
-  topicList: 0300000001000000
-  sampleAudio: {fileID: 0}
+  credit: 'Common Voice 11 (CC0 1.0)
+
+    Note that the app can''t check your tone
+    yet.'
+  topicList: 03000000010000000400000008000000
+  sampleAudio: {fileID: 8300000, guid: 1d465f556a4b887419d428c3c45ec896, type: 3}

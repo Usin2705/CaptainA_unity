@@ -6886,7 +6886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1312077217
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9329,7 +9329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1805948026
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10850,7 +10850,7 @@ MonoBehaviour:
     Some modifications were made in animated pictures, including: add indicators
     of voiced sound, show tongue movement.\n\nSome audio samples were from Common
     Voice 11.0 under Creative Comons Zero 1.0.\n\nSome audio samples were from LibrivVox
-    under Public Domain.\n\nLink to licenses:\nhttps://www.apache.org/licenses/LICENSE-2.0.txt\nhttps://creativecommons.org/publicdomain/zero/1.0/\nhttps://creativecommons.org/licenses/by-sa/3.0/deed.en"
+    under Public Domain.\n\nLink to licenses:\nhttps://www.apache.org/licenses/LICENSE-2.0.txt\nhttps://creativecommons.org/publicdomain/zero/1.0/\nhttps://creativecommons.org/licenses/by-sa/3.0/"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

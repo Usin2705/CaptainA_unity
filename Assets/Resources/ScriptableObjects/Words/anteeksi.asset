@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   word: Anteeksi
   definition: Excuse me
-  credit: 
-  topicList: 0000000004000000
-  sampleAudio: {fileID: 0}
+  credit: Common Voice 11 (CC0 1.0)
+  topicList: 000000000400000008000000
+  sampleAudio: {fileID: 8300000, guid: 19881767752cf6644be009a6fd7556c8, type: 3}

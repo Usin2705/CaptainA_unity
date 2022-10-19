@@ -15,5 +15,5 @@ MonoBehaviour:
   word: "Miss\xE4 sin\xE4 asut?"
   definition: Where do you live?
   credit: Note that the app can't check your tone yet.
-  topicList: 0100000003000000
+  topicList: 010000000300000004000000
   sampleAudio: {fileID: 0}

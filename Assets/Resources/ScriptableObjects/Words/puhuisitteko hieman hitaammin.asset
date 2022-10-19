@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   word: Puhuisitteko hieman hitaammin?
   definition: Could you speak a little slower?
-  credit: 
+  credit: Note that the app can't check your tone yet.
   topicList: 0200000003000000
   sampleAudio: {fileID: 0}

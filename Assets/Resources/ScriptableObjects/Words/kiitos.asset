@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   word: Kiitos
   definition: Thank you
-  credit: Vassilik. Licensed under CC BY-SA 3.0
+  credit: Common Voice 11 (CC0 1.0)
   topicList: 0000000004000000
-  sampleAudio: {fileID: 8300000, guid: 1d92ea6d5c3b708b398eee54cda393e0, type: 3}
+  sampleAudio: {fileID: 8300000, guid: 6cb7b472502bc234d907f4d244965b18, type: 3}

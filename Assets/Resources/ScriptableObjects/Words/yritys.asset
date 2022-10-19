@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: yritys
   m_EditorClassIdentifier: 
   word: Yritys
-  definition: Company, firm, enterprise
-  credit: 
-  topicList: 0200000006000000
-  sampleAudio: {fileID: 0}
+  definition: '1. Company, firm, enterprise
+
+    2. Attempt'
+  credit: Common Voice 11 (CC0 1.0)
+  topicList: 010000000600000008000000
+  sampleAudio: {fileID: 8300000, guid: b4e8f837333672940bfdd20311b652fa, type: 3}

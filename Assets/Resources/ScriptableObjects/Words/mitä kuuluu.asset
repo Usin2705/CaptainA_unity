@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   word: "Mit\xE4 kuuluu?"
   definition: How are you?
-  credit: Note that the app can't check your tone yet.
-  topicList: 0100000003000000
-  sampleAudio: {fileID: 0}
+  credit: 'Common Voice 11 (CC0 1.0)
+
+    Note that the app can''t check your tone
+    yet.'
+  topicList: 010000000300000004000000
+  sampleAudio: {fileID: 8300000, guid: 463b0718241d8bd4caa963bd4470bd5b, type: 3}

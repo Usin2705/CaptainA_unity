@@ -21,6 +21,16 @@ using System.Collections.Generic;
 // Current theme:
 // https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=fcefce&secondary.color=19ddc9
 
+// TODO check mitä kuuluu word audio example.
+// Extra frame (might be 6) is needed since entropy tend to yield weird result
+// with the last two uu, one u score is just the leftover entropy not the middle highest score
+// so uu without extra frame might result bad score for the first u and ingore the correct score for 2nd u
+// Also see "hänellä ei ollut mitään opittavaa"
+// The aa at the end only get the highest score for 1 a (due to entropy)
+
+// TODO 
+// Add more Grocery, Business, Others, AudioBooks
+
 public static class Const
 {
     // ================= TEXR COLOR SCORE ===================
@@ -43,10 +53,12 @@ public static class Const
     *  The average score then should also be lower, different model will have 
     *  different scale, but a rule of thumb would be anything below 0.9f is not 
     *  NATIVE level, so avg score should be around 0.9f
+    *  Some finetuned model could result in lower AVG_SCORE
+    *  And some model allow for addtional scale (BAD, AVG, GOOD, EXCELLENT)
     *  
     */
     public const float BAD_SCORE = 0.35f;
-    public const float AVG_SCORE = 0.90f;
+    public const float AVG_SCORE = 0.85f;
     //public const float GOOD_SCORE = 0.92f;
 
     // Weight % allow users to update score with more weight put on 
@@ -62,7 +74,7 @@ public static class Const
 
     // Maximum recording time per seconds
     // The extra record time after the button release is trimmed
-    public const int MAX_REC_TIME = 10;
+    public const int MAX_REC_TIME = 8;
 
     public const string REPLAY_FILENAME = "recorded_speech";
     // =======================================================

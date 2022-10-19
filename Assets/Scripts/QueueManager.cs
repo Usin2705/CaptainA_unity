@@ -31,25 +31,41 @@ public class QueueManager : MonoBehaviour
         currentTopic = topic;
 		wordQueue = new Queue<SOword>();
         
-        //Load all SOword into a list for easier to control
-        SOword[] wordList = Resources.LoadAll<SOword>(Const.WORD_LIST_PATH);
+        // Load all SOword into a list for easier to control
+        // Resources LoadAll return array so best to keep it as array
+        SOword[] wordArray = Resources.LoadAll<SOword>(Const.WORD_LIST_PATH); 
+        List<SOword> selectedWordList = new List<SOword>();      
+        
+        // It's better to loop through all words array to build a selected list
+        // then randomize that list for X sample
+        // it's O(n) with no extra at the end
+        // Otherwise we need to build the all words array and shuffle that array O(n),
+        // then do the loop again to select the first X samples that match,
+        // Which might require extra calculation
 
-        int count = 0;
-        foreach (SOword word in wordList) 
-        {
-            foreach (Topics t in word.topicList) 
-            {
-                if (t==topic) 
+        foreach (SOword word in wordArray) 
+        {   
+            if (topic!=Topics.All) {
+                foreach (Topics t in word.topicList) 
                 {
-                    count++;
-                    wordQueue.Enqueue(word);
-                    break;
+                    if (t==topic) 
+                    {
+                        selectedWordList.Add(word);
+                        break;
+                    }
                 }
+            } else {
+                selectedWordList.Add(word);
             }
-
-            if (count>=maxLength)  {break;}
         }
-
+        
+        // Randomize select from word list until we get it all
+        Debug.Log(selectedWordList.Count);
+        for (int count = 0; count < Const.MAX_QUEUE; count++) {            
+            int index = Random.Range(0, selectedWordList.Count);
+            wordQueue.Enqueue(selectedWordList[index]);
+            selectedWordList.RemoveAt(index);
+        }
     }
 
     public void ClearQueue() {        

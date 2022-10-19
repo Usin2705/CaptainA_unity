@@ -15,5 +15,5 @@ MonoBehaviour:
   word: "Mist\xE4 sin\xE4 olet kotoisin?"
   definition: 'Where are you from? '
   credit: Note that the app can't check your tone yet.
-  topicList: 0300000002000000
+  topicList: 030000000200000004000000
   sampleAudio: {fileID: 0}
