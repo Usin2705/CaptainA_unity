@@ -33,6 +33,18 @@ using System.Collections.Generic;
 
 public static class Const
 {
+
+    //Font size:
+    /*
+    *   Biggest label: 40: Top text, App name, Input text, Result Text...
+    *   Big label: 36: Correct Sound, Actual Sound, for differentiate from avg text but not the biggest label
+    *   Average text: 30 dictionary, info, explanation
+    *   Small text: 20:  credit
+    *
+    *
+    */
+
+
     // ================= TEXR COLOR SCORE ===================
     // Rich text color tag for each type of scoring
     public const string BAD_COLOR = "#ff0000ff";    
@@ -103,9 +115,9 @@ public static class Const
     // ====================== VOCAB LIST ======================
     
     // TODO make this one read only
-    public static string[] VOCABS_LIST = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", 
-                                                       "k", "l", "m", "n", "o", "p", "q", "r", "s", " ", 
-                                                       "t", "u", "v", "w", "x", "y", "ä", "å", "ö"};
+    public static readonly string[] VOCABS_LIST =  {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", 
+                                                    "k", "l", "m", "n", "o", "p", "q", "r", "s", " ", 
+                                                    "t", "u", "v", "w", "x", "y", "ä", "å", "ö"};
     // ========================================================    
 
 
