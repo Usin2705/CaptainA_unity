@@ -45,6 +45,8 @@ public class ProfilePanel : MonoBehaviour
             // Find the Button to register OnClick Function
             Button phonemeButton = phonemeScoreGO.transform.Find("ScorePanel").transform.Find("PhonemeBG").GetComponent<Button>();                        
             // Pass phoneme value to onClick function
+            // To be safe, remove all old listeners were add to this component
+            phonemeButton.onClick.RemoveAllListeners();    
             phonemeButton.onClick.AddListener(() => phonemePanel.ShowPhonemePanel(phoneme.ToLower()));
 
 

@@ -33,7 +33,7 @@ public static class SaveData
 
             foreach (string vocab in Const.VOCABS_LIST)
             {
-                PhonemeScore tempScore = new PhonemeScore(vocab, 0.5f, 0);
+                PhonemeScore tempScore = new PhonemeScore(vocab, 1.0f, 0);
                 tempL.Add(tempScore);                
             }
 			

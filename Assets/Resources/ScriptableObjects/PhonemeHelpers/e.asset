@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: e
   ipa: e
-  instruction: "Close your lips a little (bigger than /i/ sound). Put tongue  to
-    the roof of the mouth (lower than /i/, positioned forward. Similar to \xF6 without
-    round lips."
+  instruction: "Close your lips a little (bigger than /<b>i</b>/ sound). Put tongue
+    to the roof of the mouth (lower than /<b>i</b>/, positioned forward. Similar
+    to <b>\xF6</b> without round lips."
   videoURL: https://www.youtube.com/watch?v=1VoD4_0Gxzc&t=110s
   front_credit: Aino Huhtaniemi
   side_credit: Aino Huhtaniemi

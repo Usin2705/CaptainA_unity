@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: w
   ipa: 
-  instruction: 'Loan words, can be treated like v - (Jukka Korpela: https://jkorpela.fi/abc.html) '
+  instruction: 'Loan words, can be treated like <b>v</b> - (Jukka Korpela: https://jkorpela.fi/abc.html) '
   videoURL: 
   front_credit: 
   side_credit: 
@@ -22,3 +22,4 @@ MonoBehaviour:
   front_2: {fileID: 0}
   side_1: {fileID: 0}
   side_2: {fileID: 0}
+  animaClip: {fileID: 0}

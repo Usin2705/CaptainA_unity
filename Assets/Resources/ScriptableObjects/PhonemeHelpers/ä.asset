@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: "\xE4"
   ipa: "\xE6"
-  instruction: Open mouth. Tongue is low, positioned forward. Similar to a, but mouth
-    open wider, tongue is in front.
+  instruction: Open mouth. Tongue is low, positioned forward. Similar to <b>a</b>,
+    but mouth open wider, tongue is in front.
   videoURL: https://www.youtube.com/watch?v=uA7YLTHnnew
   front_credit: Aino Huhtaniemi
   side_credit: Aino Huhtaniemi
@@ -23,4 +23,4 @@ MonoBehaviour:
   front_2: {fileID: 21300000, guid: 2bab47224f3412c4dba06c28936b4473, type: 3}
   side_1: {fileID: 21300000, guid: 42d5c9e615a26834e8e784c6b65e394c, type: 3}
   side_2: {fileID: 21300000, guid: 42d5c9e615a26834e8e784c6b65e394c, type: 3}
-  animation: {fileID: 7400000, guid: b92febd60ef43d347a69cb1f1eb259de, type: 2}
+  animaClip: {fileID: 0}

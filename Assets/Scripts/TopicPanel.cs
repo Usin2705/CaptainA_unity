@@ -25,6 +25,8 @@ public class TopicPanel : MonoBehaviour
             // Find the Button to register OnClick Function
             Button topicButton = topicGO.transform.Find("TopicPanel").transform.Find("TopicBG").GetComponent<Button>();                        
             // Pass phoneme value to onClick function
+            // To be safe, remove all old listeners were add to this component
+            topicButton.onClick.RemoveAllListeners();    
             topicButton.onClick.AddListener(() => StartExerciseWithTopic(topic));
 
             topicGO.transform.Find("TopicPanel").

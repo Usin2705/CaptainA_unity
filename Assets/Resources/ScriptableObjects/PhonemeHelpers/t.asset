@@ -15,7 +15,8 @@ MonoBehaviour:
   phoneme: t
   ipa: t
   instruction: Use tongue to block and release airflow. Tongue is at the roof of
-    the mouth. t is an unvoiced sound. Similar to d but  do not use vocal cords.
+    the mouth. <b>t</b> is an unvoiced sound. Similar to <b>d</b> but  do not use
+    vocal cords.
   videoURL: https://www.youtube.com/watch?v=hGZ9GwrNWmU
   front_credit: 
   side_credit: Aino Huhtaniemi

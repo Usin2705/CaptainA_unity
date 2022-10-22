@@ -15,7 +15,8 @@ MonoBehaviour:
   phoneme: d
   ipa: d
   instruction: Use tip of the tongue to block and release airflow. Tongue is at the
-    upper teeth .d is a voiced sound. Similar to t but with vocal cords vibrating.
+    upper teeth .<b>d</b> is a voiced sound. Similar to <b>t</b> but with vocal cords
+    vibrating.
   videoURL: https://www.youtube.com/watch?v=hGZ9GwrNWmU
   front_credit: 
   side_credit: Based on Aino Huhtaniemi with added animation

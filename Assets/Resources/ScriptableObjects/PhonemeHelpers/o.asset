@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: o
   ipa: o
-  instruction: "Round and close your lips a little (bigger than /u/). Put tongue 
-    to the roof of the mouth (lower than /u/, positioned backward. Similar to \xF6
-    but tongue is moved back."
+  instruction: "Round and close your lips a little (bigger than /<b>u</b>/). Put
+    tongue to the roof of the mouth (lower than /<b>u</b>/, positioned backward.
+    Similar to <b>\xF6</b> but tongue is moved back."
   videoURL: https://youtu.be/1VoD4_0Gxzc?t=160
   front_credit: Aino Huhtaniemi
   side_credit: Aino Huhtaniemi

@@ -15,8 +15,8 @@ MonoBehaviour:
   phoneme: v
   ipa: "\u028B"
   instruction: "Use lower lip and upper teeth to make the sound. Noted that Finnish
-    v /\u028B/ is different with English v /v/. v is an unvoiced sound. It similar
-    to f but with vocal cords vibrating."
+    <b>v</b> /<b>\u028B</b>/ is different with English <b>v</b> /<b>v</b>/. <b>v</b>
+    is an unvoiced sound. It similar to <b>f</b> but with vocal cords vibrating."
   videoURL: 
   front_credit: 
   side_credit: 

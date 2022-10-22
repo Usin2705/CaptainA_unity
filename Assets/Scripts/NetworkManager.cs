@@ -2,18 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-using TMPro;
-using System.IO;
 
 
 public class NetworkManager : MonoBehaviour
 {
-    static NetworkManager netWorkManager;
+	static NetworkManager netWorkManager;
 
 	string url = Secret.URL;
 
-	ASRResult asrResult;
-	
+	public ASRResult asrResult {get; private set;}
+
+
     void Awake() {
 		if (netWorkManager != null) {
 			Debug.LogError("Multiple NetWorkManagers");
@@ -22,25 +21,25 @@ public class NetworkManager : MonoBehaviour
 		}
 		netWorkManager = this;
 	}
-    
+
 	public static NetworkManager GetManager() {
 		return netWorkManager;
 	}
 
     void OnDestroy() {
-
 	}
+
 
     public IEnumerator ServerPost(string transcript, byte[] wavBuffer, GameObject textErrorGO, GameObject resultPanelGO, GameObject recordButtonGO)
     {
-	    //IMultipartFormSection & MultipartFormFileSection  could be another solution, 
+	    //IMultipartFormSection & MultipartFormFileSection  could be another solution,
 		// but apparent it also require raw byte data to upload
-		
+
 		WWWForm form = new WWWForm();
         form.AddBinaryData("file", wavBuffer, fileName:"speech_sample", mimeType: "audio/wav");
         form.AddField("transcript", transcript);
 		form.AddField("model_code", "1");
-		
+
         UnityWebRequest www = UnityWebRequest.Post(url, form);
 
 		yield return www.SendWebRequest();
@@ -66,7 +65,7 @@ public class NetworkManager : MonoBehaviour
 				Debug.Log("invalid credentials");
 				textErrorGO.SetActive(true);
 				textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "invalid credentials";
-				
+
 				yield break;
 			}
 
@@ -79,13 +78,19 @@ public class NetworkManager : MonoBehaviour
         }
 
 		textErrorGO.SetActive(false);
-		asrResult = JsonUtility.FromJson<ASRResult>(www.downloadHandler.text);	
+		asrResult = JsonUtility.FromJson<ASRResult>(www.downloadHandler.text);
 		SaveData.UpdateUserScores(transcript, asrResult.score);
-		
+
 		// Update text result
+		// This part only update the TextResult text
+		// The Replay Sample button, which is part of ResultPanelGO
+		// is updated (added onclick, show active) in their MainPanel (either MainPanel or ExercisePanel)
+
+		// After TextResult text is updated,
+		// it's safe to set onclick on result text on it's main panel
+		// that's why we can set the Panel to active		
+		string textResult = TextUtils.FormatTextResult(transcript, asrResult.score);
+		resultPanelGO.transform.Find("ResultText").GetComponent<TMPro.TextMeshProUGUI>().text = textResult;
 		resultPanelGO.SetActive(true);
-		resultPanelGO.transform.Find("ResultText").GetComponent<TMPro.TextMeshProUGUI>().text = TextUtils.FormatTextResult(transcript, asrResult.score);
     }
-
-
 }

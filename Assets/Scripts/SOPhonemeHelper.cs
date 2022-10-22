@@ -8,6 +8,7 @@ public class SOPhonemeHelper : ScriptableObject
 {
     public string phoneme;
     public string ipa;
+    [TextArea]
     public string instruction;
     public string videoURL;    
     public string front_credit;

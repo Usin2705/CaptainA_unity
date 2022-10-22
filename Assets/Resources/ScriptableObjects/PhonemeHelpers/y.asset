@@ -15,7 +15,7 @@ MonoBehaviour:
   phoneme: y
   ipa: y
   instruction: Round and narrow your lips. Tongue is close to the roof of the mouth,
-    positioned forward. Similar to i but with lips round.
+    positioned forward. Similar to <b>i</b> but with lips round.
   videoURL: https://www.youtube.com/watch?v=T2_akD4QKp4
   front_credit: Mari Nikonen NOT LICENSED
   side_credit: Aino Huhtaniemi

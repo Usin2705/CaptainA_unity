@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: a
   ipa: "\u0251"
-  instruction: "Open mouth. Tongue is low, positioned backward. Similar to \xE4,
+  instruction: "Open mouth. Tongue is low, positioned backward. Similar to <b>\xE4</b>,
     but mouth open larger (but not wider), tongue is in the back."
   videoURL: https://www.youtube.com/watch?v=uA7YLTHnnew
   front_credit: Aino Huhtaniemi

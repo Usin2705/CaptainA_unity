@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: b
   ipa: b
-  instruction: Close lips to block and release airflow. b is a voiced sound. Similar
-    to p but with vocal cords vibrating.
+  instruction: Close lips to block and release airflow. <b>b</b> is a voiced sound.
+    Similar to <b>p</b> but with vocal cords vibrating.
   videoURL: https://www.youtube.com/watch?v=CHz7sAGfB04
   front_credit: 
   side_credit: Based on Aino Huhtaniemi with added animation

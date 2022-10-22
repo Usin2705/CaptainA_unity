@@ -14,6 +14,8 @@ public class MainPanel : MonoBehaviour
     [SerializeField] GameObject resultPanelGO;     
     [SerializeField] GameObject replayButtonGO;     
 
+    [SerializeField] DetailScorePanel detailScorePanel;
+
     AudioClip replayClip;
 
     public void OnButtonPointerDown() {
@@ -30,10 +32,17 @@ public class MainPanel : MonoBehaviour
         
     }
 
+    // TODO
+    // This code is 95% the same with ExercisePanel
+    // maybe consider to merge both code into 1
     public void OnButtonPointerUp() {
         // Attached to ButtonRecord GameObject
-        //Debug.Log("Pointer Up");   
-        if (inputTransGO.GetComponent<TMP_InputField>().text!="") 
+        // Debug.Log("Pointer Up");   
+        // We already done a santinize text before, but we did it again to keep the 
+        // code consistent with Exercise Panel
+        // NOTE that in MainPanel the text is get from TMP_InputField, not TMPro.TextMeshProUGUI
+        string transcript = TextUtils.SantinizeText(inputTransGO.GetComponent<TMP_InputField>().text);
+        if (transcript!="") 
         {
             recordButtonGO.SetActive(false);
             resultPanelGO.SetActive(false);
@@ -48,19 +57,31 @@ public class MainPanel : MonoBehaviour
                 // Send transcript to server
                 // errorTextGO to update if server yield error
                 // resultPanelGO to update result (by Enable the AudioClip and display text result)
-                AudioManager.GetManager().GetAudioAndPost(inputTransGO.GetComponent<TMP_InputField>().text, errorTextGO, resultPanelGO, recordButtonGO);
-                
+                AudioManager.GetManager().GetAudioAndPost(transcript, errorTextGO, resultPanelGO, recordButtonGO);
+
                 // TODO Make this part more efficiency
                 // The whole block stink
                 // The idea is return the audioSource.clip
                 // But the clip was trimmed & convert to wav in the above code
                 // so we RELOAD it back to clip again, which is a waste of processing
                 // but at least we got some nice trimmed audioclip        
-                StartCoroutine(LoadAudioClip(Const.REPLAY_FILENAME));        
+                yield return StartCoroutine(LoadAudioClip(Const.REPLAY_FILENAME));        
 
                 Button replayButton = replayButtonGO.transform.GetComponent<Button>();                       
-                replayButton.onClick.AddListener(() => ReplaySample()); 
-                replayButtonGO.SetActive(true);
+                replayButton.onClick.RemoveAllListeners();    
+                if(replayClip!=null) {
+                    replayButton.onClick.AddListener(()=> AudioManager.GetManager().PlayAudioClip(replayClip));            
+                    replayButtonGO.SetActive(true);
+                } else {
+                    replayButtonGO.SetActive(false);
+                }
+
+                // Look for the ResultTextButton (which will pop up the DetailScorePanel onclick)
+                Button resultTextButton = resultPanelGO.transform.Find("ResultText").transform.GetComponent<Button>();
+                // To be safe, remove all old listeners were add to this component
+                resultTextButton.onClick.RemoveAllListeners();
+                // Add onclick to text result
+                resultTextButton.onClick.AddListener(() => detailScorePanel.ShowDetailScorePanel(transcript, null, replayClip));
             }
         }
     }
@@ -101,9 +122,5 @@ public class MainPanel : MonoBehaviour
             
             yield break;
         }
-    }
-
-    void ReplaySample() {
-        if (replayClip!=null) AudioManager.GetManager().PlayAudioClip(replayClip);
     }
 }

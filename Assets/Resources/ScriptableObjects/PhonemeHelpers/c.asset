@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: c
   ipa: '?'
-  instruction: c is a loan word that can be generally replaced by k or s.
+  instruction: <b>c</b> is a loan word that can be generally replaced by <b>k</b>
+    or <b>s</b>. The AI model will automatically predict <b>c</b> as either <b>k</b>
+    or <b>s</b> so you will rarely get the actual <b>c</b>.
   videoURL: https://youtu.be/1VoD4_0Gxzc?t=50
   front_credit: 
   side_credit: 

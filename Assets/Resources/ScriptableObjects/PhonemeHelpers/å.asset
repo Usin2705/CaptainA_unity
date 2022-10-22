@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: "\xE5"
   ipa: "o\u02D0"
-  instruction: The Swedish o, pronounced as oo /o:/
+  instruction: 'The Swedish <b>o</b>, pronounced as a long o: <b>oo</b> /<b>o:</b>/'
   videoURL: 
   front_credit: 
   side_credit: 

@@ -29,7 +29,7 @@ using System.Collections.Generic;
 // The aa at the end only get the highest score for 1 a (due to entropy)
 
 // TODO 
-// Add more Grocery, Business, Others, AudioBooks
+// Add more Grocery, AudioBooks
 
 public static class Const
 {

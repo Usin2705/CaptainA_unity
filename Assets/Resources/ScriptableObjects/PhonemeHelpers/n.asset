@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: n
   ipa: n
-  instruction: "Noted that there's ng /\u014B:/ and nk /\u014B/ sound"
+  instruction: "Noted that when n come with g (ng) it's pronounced as /<b>\u014B:</b>/
+    and nk is /<b>\u014B</b>/ sound"
   videoURL: 
   front_credit: 
   side_credit: 
@@ -22,3 +23,4 @@ MonoBehaviour:
   front_2: {fileID: 0}
   side_1: {fileID: 0}
   side_2: {fileID: 0}
+  animaClip: {fileID: 0}

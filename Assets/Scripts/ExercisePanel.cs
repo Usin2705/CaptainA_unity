@@ -11,17 +11,20 @@ public class ExercisePanel : MonoBehaviour
     [SerializeField] GameObject exerPanelGO;     
     [SerializeField] GameObject recordButtonGO;     
     [SerializeField] GameObject topTextGO;
-    [SerializeField] GameObject sampleButtonGO;
+    [SerializeField] GameObject sampleButtonGO; // Replay sample audio
     [SerializeField] GameObject sampleTextGO;
     [SerializeField] GameObject dictTextGO;
     [SerializeField] GameObject creditTextGO;
     [SerializeField] GameObject resultPanelGO; 
-    [SerializeField] GameObject replayButtonGO;
+    [SerializeField] GameObject replayButtonGO; // Replay recorded audio
     [SerializeField] GameObject errorTextGO; 
     [SerializeField] GameObject bottomPanelGO;    
     [SerializeField] GameObject skipButtonGO;    
     [SerializeField] GameObject nextButtonGO;    
 
+    [SerializeField] DetailScorePanel detailScorePanel;
+
+    AudioClip sampleClip;
     AudioClip replayClip;
     
     void OnEnable() 
@@ -55,15 +58,15 @@ public class ExercisePanel : MonoBehaviour
         }
         
         // Set up sample play button
-        
-        if (word.sampleAudio != null) {
+        sampleClip = word.sampleAudio;
+        if (sampleClip != null) {
             Debug.Log("Sample audio update");
             sampleButtonGO.SetActive(true);     
 
             Button sampleButton = sampleButtonGO.transform.GetComponent<Button>();               
             // Need to remove old OnClick Listeners, otherwise it will keep adding up
             sampleButton.onClick.RemoveAllListeners();       
-            sampleButton.onClick.AddListener(() => AudioManager.GetManager().PlayAudioClip(word.sampleAudio));            
+            sampleButton.onClick.AddListener(() => AudioManager.GetManager().PlayAudioClip(sampleClip));            
         } else{
             sampleButtonGO.SetActive(false);
         }
@@ -94,6 +97,7 @@ public class ExercisePanel : MonoBehaviour
         if (QueueManager.GetQueueManager.GetCount() == 0) 
             FinishExercise();
         else            
+            sampleClip = null;
             replayClip = null;
             resultPanelGO.SetActive(false);
             UpdateExercise();
@@ -144,13 +148,26 @@ public class ExercisePanel : MonoBehaviour
                 // The whole block stink
                 // The idea is return the audioSource.clip
                 // But the clip was trimmed & convert to wav in the above code
-                // so we RELOAD it back to clip again, which is a waste of processing
+                // so we RELOAD it back to audioclip again, which is a waste of processing
                 // but at least we got some nice trimmed audioclip        
-                StartCoroutine(LoadAudioClip(Const.REPLAY_FILENAME));        
+                yield return StartCoroutine(LoadAudioClip(Const.REPLAY_FILENAME));        
 
-                Button replayButton = replayButtonGO.transform.GetComponent<Button>();                       
-                replayButton.onClick.AddListener(() => ReplaySample()); 
-                replayButtonGO.SetActive(true);
+                Button replayButton = replayButtonGO.transform.GetComponent<Button>();     
+                // To be safe, remove all old listeners were add to this component
+                replayButton.onClick.RemoveAllListeners();    
+                if(replayClip!=null) {
+                    replayButton.onClick.AddListener(()=> AudioManager.GetManager().PlayAudioClip(replayClip));            
+                    replayButtonGO.SetActive(true);
+                } else {
+                    replayButtonGO.SetActive(false);
+                }
+
+                // Look for the ResultTextButton (which will pop up the DetailScorePanel onclick)
+                Button resultTextButton = resultPanelGO.transform.Find("ResultText").transform.GetComponent<Button>();
+                // To be safe, remove all old listeners were add to this component
+                resultTextButton.onClick.RemoveAllListeners();
+                // Add onclick to text result
+                resultTextButton.onClick.AddListener(() => detailScorePanel.ShowDetailScorePanel(transcript, sampleClip, replayClip));
             }
         }
     }
@@ -192,8 +209,4 @@ public class ExercisePanel : MonoBehaviour
             yield break;
         }
     }
-    void ReplaySample() {
-        if (replayClip!=null) AudioManager.GetManager().PlayAudioClip(replayClip);
-    }
-
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "en tied\xE4"
   m_EditorClassIdentifier: 
   word: "En tied\xE4."
-  definition: I don't know
+  definition: I don't know.
   credit: Common Voice 11 (CC0 1.0)
   topicList: 000000000400000008000000
   sampleAudio: {fileID: 8300000, guid: 1fc22563d8f29874f8fee0d80a400bff, type: 3}

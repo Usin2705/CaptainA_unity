@@ -36,11 +36,11 @@ public static class TopicDetail
             case Topics.Empty:
                 return " ";
             case Topics.Vocabulary:
-                return "All single words. Useful to learn new vocabulary while practice pronunciation";                   
+                return "All single, simple words. Useful to learn new vocabulary while practice pronunciation";                   
             case Topics.AudioBooks:
                 return "Contain samples from Finnish book in Public Domain (no copyright). Always have audio samples from LibriVox.";                                                                                               
             case Topics.All:
-                return "Contain all samples in the appliaiton.";                                                                                               
+                return "Contain all samples in the app.";                                                                                               
             default:
                 return "";
         }

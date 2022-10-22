@@ -15,7 +15,7 @@ MonoBehaviour:
   phoneme: i
   ipa: i
   instruction: Close your lips narrowly (but do not round). Put tongue close to the
-    roof of the mouth, positioned forward. Similar to y but don't round lips.
+    roof of the mouth, positioned forward. Similar to <b>y</b> but don't round lips.
   videoURL: https://www.youtube.com/watch?v=1VoD4_0Gxzc&t=110s
   front_credit: Aino Huhtaniemi
   side_credit: Aino Huhtaniemi

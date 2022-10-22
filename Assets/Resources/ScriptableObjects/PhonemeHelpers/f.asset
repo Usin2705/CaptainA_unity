@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: f
   ipa: f
-  instruction: "Use lower lip and upper teeth to make the sound. f is an unvoiced
-    sound. It similar to Finnish v /\u028B/ but do not use vocal cords,"
+  instruction: "Use lower lip and upper teeth to make the sound. <b>f</b> is an unvoiced
+    sound. It similar to Finnish <b>v</b> /<b>\u028B</b>/ but do not use vocal cords."
   videoURL: https://www.youtube.com/watch?v=1VoD4_0Gxzc&t=78s
   front_credit: 
   side_credit: 
