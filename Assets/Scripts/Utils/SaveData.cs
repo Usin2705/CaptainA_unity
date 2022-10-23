@@ -48,7 +48,7 @@ public static class SaveData
         * Remember to turn transcript to lowercase, as there's different between upper and lowercase
         */
 
-        transcript = transcript.ToLower();
+        transcript = transcript.ToLower();        
 
 		// Make sure that stranscript length match with scoreList Length
 		if (transcript.Length != scoreList.Count) {	
@@ -153,13 +153,75 @@ public class ASRResult{
     *  
     *
     */
-
     // TODO Add special cases 
-    // (double vowel, double consonant)
-    
-    
+    // (double vowel, double consonant)        
     // TODO Add "ng" and "nk" as they have different IPA
 
+    public List<OPS> levenshtein;
     public string prediction;
     public List<float> score;
+    public List<WARNINGS> warning;
+}
+
+[System.Serializable]
+public class OPS 
+{
+    public string ops;
+    public int tran_index;
+    public int pred_index;
+}
+
+
+
+public enum WARNINGS
+{
+    AAA,
+    NP,
+    NGK,
+    MENEP,
+}
+
+public static class WarningDetail 
+{
+    public static string GetWarning(List<WARNINGS> warningList)
+    {
+        string warn_text = "";
+        int count = 1;
+        //TODO try to sort from small to large to be safe
+        foreach (WARNINGS warn in warningList)
+        {
+            if (warn == WARNINGS.AAA)
+            {
+                warn_text += count + ". ";
+                count++;
+                warn_text += "The AI model is not designed for very short word like ää or öö. Try using longer word by combining with consonants for better accuracy. For example, instead of using <b>ää</b>, use k<b>ää</b>n";                
+            }
+            
+            if (warn == WARNINGS.NP)
+            {                
+                if (!warn_text.EndsWith("\n") && warn_text !="") warn_text += "\n";
+                warn_text += count + ". ";
+                count++;
+                warn_text += "In Finnish, <b>np</b> is pronouced as <b>mp</b>";
+            }
+            
+            if (warn == WARNINGS.NGK)
+            {
+                if (!warn_text.EndsWith("\n") && warn_text !="") warn_text += "\n";
+                warn_text += count + ". ";
+                count++;
+                warn_text += "The <b>ng</b> is pronounced as /<b>ŋː</b>/, and nk is pronounced as /<b>ŋ</b>/. The current model can detect correct pronunciation but can't give the correct score for ŋ and ŋ:";
+            }
+
+            if (warn == WARNINGS.MENEP)
+            {
+                if (!warn_text.EndsWith("\n") && warn_text !="") warn_text += "\n";
+                warn_text += count + ". ";
+                count++;
+                warn_text += "We detect a possible case of <b>boundary gemination</b> (loppukahdennus). The most common example is \"mene pois\", which is pronounced as mene<b>p</b> <b>p</b>ois. This is an advanced spoken Finnish problem and you should consult your Finnish teacher.";                
+            }
+        }
+
+        return warn_text;
+    }
 }

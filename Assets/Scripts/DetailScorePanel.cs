@@ -13,9 +13,10 @@ public class DetailScorePanel : MonoBehaviour
 
     [SerializeField] ScrollRect scrollRectWarning; // Use this to reset scroll of WarningScroll
     [SerializeField] ScrollRect scrollRectDetail; // Use this to reset scroll of DetailScoreScroll
-    
 
-    [SerializeField] int warningNo; // number of warning of the ASRResult
+    [SerializeField] TMPro.TextMeshProUGUI warningText; // Use this to reset scroll of DetailScoreScroll   
+
+    int warningNo = 0; // number of warning of the ASRResult
     ASRResult asrResult;
     AudioClip sampleClip;
     AudioClip replayClip;
@@ -57,6 +58,9 @@ public class DetailScorePanel : MonoBehaviour
         } else {
             replayButtonGO.SetActive(false);
         }
+
+        warningNo = asrResult.warning.Count;
+        warningText.text = WarningDetail.GetWarning(asrResult.warning);
 
         /*
         *   Since we do not destroy and recreate this Panel
@@ -113,9 +117,11 @@ public class DetailScorePanel : MonoBehaviour
     /*
     *   This function also attached to BackButton OnClick() in Unity
     */
-    {             
+    {   
+        warningNo = 0;
+        isScrolledUp=false;          
         detailScorePanel.SetActive(false);                
-        isScrolledUp=false;
+        
     }
 
     

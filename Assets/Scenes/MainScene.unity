@@ -1258,7 +1258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 626290429432822465, guid: f6d8f455823e95a41aacb353ac208e34, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -50.00049
+      value: -50.000244
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6d8f455823e95a41aacb353ac208e34, type: 3}
@@ -1444,7 +1444,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10, y: -450}
+  m_AnchoredPosition: {x: -9.999512, y: -450}
   m_SizeDelta: {x: -20, y: 180}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &214610804
@@ -5111,7 +5111,7 @@ GameObject:
   - component: {fileID: 785027211}
   - component: {fileID: 785027210}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: WarningText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5157,12 +5157,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "1. We detect there're ng nk in the text, in Finnish, ng and nk sound different
-    than n + g. We are developing newer model that can detect this problem.\n2. There're
-    np in the model, in Finnish, np should be pronounce as mp instead. \n3. There's
-    potential mene pois situation. Mene pois should be pronounce as menep pois. Consult
-    your Finnish teacher for more detail.\n4. Another warning text incase. Another
-    warning text incase. Another warning text incase. Another warning text incase. "
+  m_text: "The AI model is not designed for very short words like \xE4\xE4 or \xF6\xF6.
+    Try using longer words for better accuracy. For example, instead of using <b>\xE4\xE4</b>,
+    use k<b>\xE4\xE4</b>n\nThe <b>ng</b> is pronounced as /<b>\u014B\u02D0</b>/,
+    and nk is pronounced as /<b>\u014B</b>/. The current model can detect correct
+    pronunciation but can't give the correct score for \u014B and \u014B:"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cc8e115a5df151a409670fe1573abdee, type: 2}
   m_sharedMaterial: {fileID: -4676070619788108815, guid: cc8e115a5df151a409670fe1573abdee, type: 2}
@@ -5214,7 +5213,7 @@ MonoBehaviour:
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_parseCtrlCharacters: 1
+  m_parseCtrlCharacters: 0
   m_isOrthographic: 1
   m_isCullingEnabled: 0
   m_horizontalMapping: 0
@@ -7345,7 +7344,7 @@ GameObject:
   - component: {fileID: 1070706065}
   - component: {fileID: 1070706064}
   m_Layer: 5
-  m_Name: Scroll View
+  m_Name: Scroll View Warning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7390,7 +7389,7 @@ MonoBehaviour:
   m_Vertical: 1
   m_MovementType: 2
   m_Elasticity: 0.1
-  m_Inertia: 1
+  m_Inertia: 0
   m_DecelerationRate: 0.135
   m_ScrollSensitivity: 1
   m_Viewport: {fileID: 1524117497}
@@ -8088,7 +8087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 626290429432822465, guid: f6d8f455823e95a41aacb353ac208e34, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -50.00049
+      value: -50.000244
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6d8f455823e95a41aacb353ac208e34, type: 3}
@@ -8105,7 +8104,7 @@ GameObject:
   - component: {fileID: 1131507136}
   - component: {fileID: 1131507135}
   m_Layer: 5
-  m_Name: Scroll View
+  m_Name: Scroll View Detail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8150,7 +8149,7 @@ MonoBehaviour:
   m_Vertical: 1
   m_MovementType: 2
   m_Elasticity: 0.1
-  m_Inertia: 1
+  m_Inertia: 0
   m_DecelerationRate: 0.135
   m_ScrollSensitivity: 1
   m_Viewport: {fileID: 1111530562}
@@ -10205,7 +10204,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 626290429432822465, guid: f6d8f455823e95a41aacb353ac208e34, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -50.00049
+      value: -50.000244
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6d8f455823e95a41aacb353ac208e34, type: 3}
@@ -10614,7 +10613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 626290429432822465, guid: f6d8f455823e95a41aacb353ac208e34, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -50.00049
+      value: -50.000244
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6d8f455823e95a41aacb353ac208e34, type: 3}
@@ -12063,7 +12062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 626290429432822465, guid: f6d8f455823e95a41aacb353ac208e34, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -50.00049
+      value: -50.000244
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6d8f455823e95a41aacb353ac208e34, type: 3}
@@ -12869,8 +12868,9 @@ MonoBehaviour:
   sampleButtonGO: {fileID: 349715842}
   replayButtonGO: {fileID: 1627551156}
   animator: {fileID: 1769915103}
-  scrollRect: {fileID: 1131507135}
-  warningNo: 0
+  scrollRectWarning: {fileID: 1070706064}
+  scrollRectDetail: {fileID: 1131507135}
+  warningText: {fileID: 785027210}
 --- !u!95 &1769915103
 Animator:
   serializedVersion: 4
@@ -14348,7 +14348,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 626290429432822465, guid: f6d8f455823e95a41aacb353ac208e34, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -50.00049
+      value: -50.000244
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6d8f455823e95a41aacb353ac208e34, type: 3}
@@ -14883,7 +14883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 626290429432822465, guid: f6d8f455823e95a41aacb353ac208e34, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -50.00049
+      value: -50.000244
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6d8f455823e95a41aacb353ac208e34, type: 3}
@@ -15042,7 +15042,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10, y: -150}
+  m_AnchoredPosition: {x: -9.999512, y: -150}
   m_SizeDelta: {x: -20, y: 180}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2096808397
@@ -15341,7 +15341,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10, y: -450}
+  m_AnchoredPosition: {x: -9.999512, y: -450}
   m_SizeDelta: {x: -20, y: 180}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2130678400
@@ -15962,7 +15962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 626290429432822465, guid: f6d8f455823e95a41aacb353ac208e34, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -50.00049
+      value: -50.000244
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6d8f455823e95a41aacb353ac208e34, type: 3}

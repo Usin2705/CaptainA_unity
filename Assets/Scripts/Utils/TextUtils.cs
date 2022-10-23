@@ -35,12 +35,20 @@ public static class TextUtils
 	}
 
     public static string SantinizeText(string text) 
+    /*
+    *
+    *   Santinize Text should be done at the unity level, since we will 
+    *   compare the transcript with OPS operations after
+    */
+
     {
         text = text.Trim(); // Remove trailing white space
         text = Regex.Replace(text, "[zZ]", "ts"); //Replace z with ts
         text = Regex.Replace(text, "[0-9]", ""); //Remove numbers
+        text = text.Replace("\n", " ");
         text = Regex.Replace(text, "[-!$%^&*()_+|~=`{}\\[\\]:\";'<>?,.\\/@]", ""); //Remove symbols
 
+                
         return text;
     }
 }

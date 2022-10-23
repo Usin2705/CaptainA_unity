@@ -76,9 +76,16 @@ public class NetworkManager : MonoBehaviour
 				yield break;
 			}
         }
-
+		
 		textErrorGO.SetActive(false);
 		asrResult = JsonUtility.FromJson<ASRResult>(www.downloadHandler.text);
+		// Debug.Log(www.downloadHandler.text);
+		// Debug.Log(transcript);
+		// Debug.Log(asrResult.prediction);
+		// Debug.Log(asrResult.score);
+		// Debug.Log(asrResult.warning);
+		// Debug.Log(asrResult.levenshtein);		
+
 		SaveData.UpdateUserScores(transcript, asrResult.score);
 
 		// Update text result
