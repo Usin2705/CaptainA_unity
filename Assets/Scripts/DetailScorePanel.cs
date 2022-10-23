@@ -9,9 +9,17 @@ public class DetailScorePanel : MonoBehaviour
     [SerializeField] GameObject resultPanelGO;
     [SerializeField] GameObject sampleButtonGO; // Replay sample audio
     [SerializeField] GameObject replayButtonGO; // Replay recorded audio
+    [SerializeField] Animator animator; // Replay recorded audio
+
+    [SerializeField] ScrollRect scrollRectWarning; // Use this to reset scroll of WarningScroll
+    [SerializeField] ScrollRect scrollRectDetail; // Use this to reset scroll of DetailScoreScroll
+    
+
+    [SerializeField] int warningNo; // number of warning of the ASRResult
     ASRResult asrResult;
     AudioClip sampleClip;
     AudioClip replayClip;
+    bool isScrolledUp = false;
     
     public void ShowDetailScorePanel(string transcript, AudioClip _sampleClip, AudioClip _replayClip) 
     {
@@ -50,9 +58,48 @@ public class DetailScorePanel : MonoBehaviour
             replayButtonGO.SetActive(false);
         }
 
+        /*
+        *   Since we do not destroy and recreate this Panel
+        *   but only SetActive true and false. The position of ScrollRect
+        *   don't reset each time. Therefore, we have to reset the scroll position
+        *   to the default (top postion is 1.0f) each time we show it again
+        */        
+        scrollRectWarning.verticalNormalizedPosition = 1.0f;
+        scrollRectDetail.verticalNormalizedPosition = 1.0f;
         detailScorePanel.SetActive(true);
+
+        /*
+        *
+        *   There're two cases here:
+        *   No warning --> default animation with warning box disable
+        *   At least 1 warninig --> show warning box
+        */
+        if (warningNo == 0) {animator.Play("Default");}
+        else {animator.Play("DefaultWarn");}
     }
     
+    public void OnDetailScoreScroll(Vector2 value) 
+    /*
+    *   This function was attached to scrollRectDetail of detail score
+    *   The idea is whenver user scroll up (y change from 1 to sth lower)
+    *   we can move up the entire Panel so we can display more
+    *   
+    *   There're 3 options: 
+    *   ScrollUp that only for case the result don't have warning        
+    *   ScrollUpWarn that only for case the result have 1 warning       
+    *   ScrollUpWarnLarge for at least 2 warning, the warning panel is expanded
+    */
+
+    {
+        // Scroll down        
+        if (value.y < 0.95f && value.y >=0.5f && !isScrolledUp) {
+            isScrolledUp = true;
+            if (warningNo == 0) animator.Play("ScrollUp");
+            else if (warningNo == 1) animator.Play("ScrollUpWarn");
+            else animator.Play("ScrollUpWarnLarge");            
+        }
+    }
+
     void Update()
     {
         // Handle back button press on phone
@@ -66,9 +113,11 @@ public class DetailScorePanel : MonoBehaviour
     /*
     *   This function also attached to BackButton OnClick() in Unity
     */
-
-    {
-        detailScorePanel.SetActive(false);
+    {             
+        detailScorePanel.SetActive(false);                
+        isScrolledUp=false;
     }
+
+    
 }
 

@@ -44,7 +44,7 @@ public class PhonemePanel : MonoBehaviour
 
         creditText.text = "Top images: " + phonemeSO.front_credit + ". Bottom images: " + phonemeSO.side_credit;
     }
-
+    
     // Update is called once per frame
     void OnDisable()
     {
