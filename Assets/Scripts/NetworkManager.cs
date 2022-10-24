@@ -30,7 +30,7 @@ public class NetworkManager : MonoBehaviour
 	}
 
 
-    public IEnumerator ServerPost(string transcript, byte[] wavBuffer, GameObject textErrorGO, GameObject resultPanelGO, GameObject recordButtonGO)
+    public IEnumerator ServerPost(string transcript, byte[] wavBuffer, GameObject textErrorGO, GameObject resultPanelGO, GameObject recordButtonGO, TMPro.TextMeshProUGUI debugText)
     {
 	    //IMultipartFormSection & MultipartFormFileSection  could be another solution,
 		// but apparent it also require raw byte data to upload
@@ -98,6 +98,7 @@ public class NetworkManager : MonoBehaviour
 		// that's why we can set the Panel to active		
 		string textResult = TextUtils.FormatTextResult(transcript, asrResult.score);
 		resultPanelGO.transform.Find("ResultText").GetComponent<TMPro.TextMeshProUGUI>().text = textResult;
+		debugText.text = asrResult.prediction;
 		resultPanelGO.SetActive(true);
     }
 }

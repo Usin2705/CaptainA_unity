@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
+//######################################## SAVE DATA ########################################
 public static class SaveData
 {
     public static void SaveIntoJson(UserData userData){
@@ -144,9 +145,10 @@ public class PhonemeScore: IComparable<PhonemeScore>{
         else return 1;
     }
 }
+//#########################################################################################
 
 
-
+//##################################### GET RESTFUL RESULT #####################################
 [System.Serializable]
 public class ASRResult{
     /*
@@ -163,16 +165,25 @@ public class ASRResult{
     public List<WARNINGS> warning;
 }
 
+//##################################### LEVENSHTEIN #######################################
 [System.Serializable]
 public class OPS 
-{
+{   
+    /*
+    *
+    *   There's 3 code in ops: replace, insert, delete
+    *   there's "equal" which is not used in the python code so it won't show up here
+    *
+    */
+
     public string ops;
     public int tran_index;
     public int pred_index;
 }
+//#########################################################################################
 
 
-
+//######################################## WARNING ########################################
 public enum WARNINGS
 {
     AAA,
@@ -184,6 +195,12 @@ public enum WARNINGS
 public static class WarningDetail 
 {
     public static string GetWarning(List<WARNINGS> warningList)
+    /*
+    *
+    *
+    *
+    *
+    */
     {
         string warn_text = "";
         int count = 1;
@@ -202,7 +219,7 @@ public static class WarningDetail
                 if (!warn_text.EndsWith("\n") && warn_text !="") warn_text += "\n";
                 warn_text += count + ". ";
                 count++;
-                warn_text += "In Finnish, <b>np</b> is pronouced as <b>mp</b>";
+                warn_text += "In Finnish, <b>np</b> is pronounced as <b>mp</b>. The AI model still mark you correctly if you use \"mp\"";
             }
             
             if (warn == WARNINGS.NGK)
@@ -210,7 +227,7 @@ public static class WarningDetail
                 if (!warn_text.EndsWith("\n") && warn_text !="") warn_text += "\n";
                 warn_text += count + ". ";
                 count++;
-                warn_text += "The <b>ng</b> is pronounced as /<b>ŋː</b>/, and nk is pronounced as /<b>ŋ</b>/. The current model can detect correct pronunciation but can't give the correct score for ŋ and ŋ:";
+                warn_text += "The <b>ng</b> is pronounced as /<b>ŋː</b>/, and nk is pronounced as /<b>ŋ</b>/. The current model can detect correct pronunciation but can't give the correct score for ŋ and ŋ:. We are developing a new model to address this problem.";
             }
 
             if (warn == WARNINGS.MENEP)
@@ -224,4 +241,7 @@ public static class WarningDetail
 
         return warn_text;
     }
+
+//#########################################################################################
+
 }

@@ -11,7 +11,7 @@ public class ProfilePanel : MonoBehaviour
     [SerializeField] PhonemePanel phonemePanel;
     [SerializeField] InfoPanel infoPanel;
 
-    List<GameObject> listItems = new List<GameObject>();                
+    List<GameObject> listItems = new List<GameObject>(); // To store item from scroll list and delete after inactive                
 
     void OnEnable() 
     // Is called when SetActive(true)
@@ -90,9 +90,6 @@ public class ProfilePanel : MonoBehaviour
     *   Need to Destroy all GO in the list to avoid create duplicate scorelist
     */
     {
-        foreach (GameObject go in listItems) 
-        {
-            Destroy(go);
-        }
+        foreach (GameObject go in listItems) Destroy(go);
     }
 }

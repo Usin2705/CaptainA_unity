@@ -34,7 +34,9 @@ public class PhonemePanel : MonoBehaviour
         // In case the SO is null
         if (phonemeSO==null) phonemeSO = Resources.Load<SOPhonemeHelper>(Const.PHONE_HELP_PATH + "spacing");
 
-        explainText.text = phonemeSO.phoneme + " /" + phonemeSO.ipa + "/ "  + phonemeSO.instruction;
+        string phonemeString = TextUtils.WrapPhonemeSO(phonemeSO, Const.GOOD_COLOR, isBold:false);
+
+        explainText.text = phonemeString  + " " + phonemeSO.instruction;
         frontMouth1.GetComponent<Image>().sprite = phonemeSO.front_1;
         frontMouth2.GetComponent<Image>().sprite = phonemeSO.front_2;
         sideMouth1.GetComponent<Image>().sprite = phonemeSO.side_1;
@@ -45,12 +47,12 @@ public class PhonemePanel : MonoBehaviour
         creditText.text = "Top images: " + phonemeSO.front_credit + ". Bottom images: " + phonemeSO.side_credit;
     }
     
-    // Update is called once per frame
     void OnDisable()
     {
         phonemePanel.transform.GetComponent<Animation>().clip = null;
     }
 
+    // Update is called once per frame
     void Update()
     {
         // Handle back button press on phone

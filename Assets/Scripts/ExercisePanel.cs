@@ -24,6 +24,8 @@ public class ExercisePanel : MonoBehaviour
 
     [SerializeField] DetailScorePanel detailScorePanel;
 
+    [SerializeField] TMPro.TextMeshProUGUI predictionDebugText;
+
     AudioClip sampleClip;
     AudioClip replayClip;
     
@@ -142,7 +144,8 @@ public class ExercisePanel : MonoBehaviour
                 // Send transcript to server
                 // errorTextGO to update if server yield error
                 // resultPanelGO to update result (by Enable the AudioClip and display text result)
-                AudioManager.GetManager().GetAudioAndPost(transcript, errorTextGO, resultPanelGO, recordButtonGO);
+                predictionDebugText.text = "";
+                AudioManager.GetManager().GetAudioAndPost(transcript, errorTextGO, resultPanelGO, recordButtonGO, predictionDebugText);
                 
                 // TODO Make this part more efficiency
                 // The whole block stink

@@ -11,7 +11,7 @@ public class TopicPanel : MonoBehaviour
     [SerializeField] GameObject topicPanelGO;
     [SerializeField] GameObject exerPanelGO;
 
-    List<GameObject> topicList = new List<GameObject>();        
+    List<GameObject> listScrollItems = new List<GameObject>();        
     
 
     // Start is called before the first frame update
@@ -36,7 +36,7 @@ public class TopicPanel : MonoBehaviour
             topicGO.transform.Find("TopicPanel").
                            transform.Find("NoSamples").GetComponent<TMPro.TextMeshProUGUI>().text = TopicDetail.GetDetail(topic);
             
-            topicList.Add(topicGO);
+            listScrollItems.Add(topicGO);
         }
     }
 
@@ -52,7 +52,7 @@ public class TopicPanel : MonoBehaviour
     *   Need to Destroy all GO in the list to avoid create duplicate scorelist
     */
     {
-        foreach (GameObject go in topicList) 
+        foreach (GameObject go in listScrollItems) 
         {
             Destroy(go);
         }

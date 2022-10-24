@@ -34,6 +34,28 @@ public static class TextUtils
 		return textResult;
 	}
 
+    public static string WrapPhonemeSO(SOPhonemeHelper phonemeSO, string colorStr, bool isBold = true) 
+    /*
+    *
+    *   
+    */
+	{             
+        string text = WrapTextColor(phonemeSO.phoneme, colorStr, isBold);
+
+        // Some phoneme don't have ipa (especiall for loan word)
+        if (phonemeSO.ipa!="") 
+        {            
+            text += $" /{WrapTextColor(phonemeSO.ipa, colorStr, isBold)}/";
+        }
+
+		return text;
+	}
+
+    public static string WrapTextColor(string text, string colorStr, bool isBold = true) 
+	{             
+        return $"<color={colorStr}>{(isBold?"<b>":"")}{text}{(isBold?"</b>":"")}</color>";
+	}
+
     public static string SantinizeText(string text) 
     /*
     *
