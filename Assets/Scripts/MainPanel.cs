@@ -102,7 +102,9 @@ public class MainPanel : MonoBehaviour
         if(!String.IsNullOrEmpty(filename)) {
             string path = System.IO.Path.Combine(Application.persistentDataPath, filename.EndsWith(".wav") ? filename : filename + ".wav");
             
-            using (var uwr = UnityWebRequestMultimedia.GetAudioClip(path, AudioType.WAV))
+            // Need the file:// for GetAudioClip
+            // TODO check with iOS version does it need sth similar
+            using (var uwr = UnityWebRequestMultimedia.GetAudioClip("file://" + path, AudioType.WAV))
             {
                 ((DownloadHandlerAudioClip)uwr.downloadHandler).streamAudio = true;
         
@@ -111,6 +113,8 @@ public class MainPanel : MonoBehaviour
                 if (uwr.result==UnityWebRequest.Result.ConnectionError || uwr.result == UnityWebRequest.Result.ProtocolError)
                 {   
                     Debug.LogError("Failed to reload replay audio clip");
+                    Debug.LogError(uwr.result);
+                    Debug.LogError(path);
                     yield break;
                 }
         

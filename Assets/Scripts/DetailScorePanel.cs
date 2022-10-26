@@ -171,7 +171,7 @@ public class DetailScorePanel : MonoBehaviour
 
     {
         // Scroll down        
-        if (value.y < 0.95f && value.y >=0.5f && !isScrolledUp) {
+        if (value.y < 1.0f && !isScrolledUp) {
             isScrolledUp = true;
             if (warningNo == 0) animator.Play("ScrollUp");
             else if (warningNo == 1) animator.Play("ScrollUpWarn");

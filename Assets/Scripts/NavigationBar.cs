@@ -18,6 +18,8 @@ public class NavigationBar : MonoBehaviour
     // 2: Topic
     // 3: Profile
 
+    [SerializeField] GameObject ExercisePanel;
+
     public void NavigationBarClick(GameObject activePanel) 
     /*
     *  Can only be attached to OnClick with 1 variable,
@@ -52,6 +54,16 @@ public class NavigationBar : MonoBehaviour
             GameObject activeBar = tabs[index].transform.Find("ActiveBar").gameObject;
             activeBar.SetActive(panel == activePanel);
             panel.SetActive(panel == activePanel);    
+
+            //  There're aditional panel (ExercisePanel) that will show on top
+            //  of MainPanel (it hierachy is below MainPanel)
+            //  We will also need to deactivate it when MainPanel is active
+            if (panel == activePanel && index==0) 
+            {
+                ExercisePanel.SetActive(false);
+            }
+            
+
         }
     }
 }

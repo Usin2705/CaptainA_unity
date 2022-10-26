@@ -188,7 +188,7 @@ public class ExercisePanel : MonoBehaviour
         if(!String.IsNullOrEmpty(filename)) {
             string path = System.IO.Path.Combine(Application.persistentDataPath, filename.EndsWith(".wav") ? filename : filename + ".wav");
             
-            using (var uwr = UnityWebRequestMultimedia.GetAudioClip(path, AudioType.WAV))
+            using (var uwr = UnityWebRequestMultimedia.GetAudioClip("file://" + path, AudioType.WAV))
             {
                 ((DownloadHandlerAudioClip)uwr.downloadHandler).streamAudio = true;
         
