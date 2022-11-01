@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
+  m_Name: "min\xE4 olen aleks"
+  m_EditorClassIdentifier: 
+  word: "Min\xE4 olen Aleks."
+  definition: 'I''m Alex
+
+    (Note that the <b>x</b> in Ale<b>x</b> is pronounced
+    as Ale<b>ks</b>)'
+  credit: Aalto University Language Centre
+  topicList: 0100000004000000
+  sampleAudio: {fileID: 8300000, guid: f0b6439edba5f9d7d972e2f6d627b530, type: 3}
