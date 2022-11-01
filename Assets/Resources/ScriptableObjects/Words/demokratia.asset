@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
   m_Name: demokratia
   m_EditorClassIdentifier: 
-  word: 
-  definition: 
-  credit: 
-  topicList: 
-  sampleAudio: {fileID: 0}
+  word: Demokratia
+  definition: Democracy
+  credit: Aalto University Language Centre
+  topicList: 0100000008000000
+  sampleAudio: {fileID: 8300000, guid: 530a0c8653e1d0416859fef9268324c0, type: 3}

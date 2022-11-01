@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
   m_Name: kahvi
   m_EditorClassIdentifier: 
-  word: 
-  definition: 
-  credit: 
-  topicList: 
-  sampleAudio: {fileID: 0}
+  word: Kahvi
+  definition: Coffee
+  credit: Aalto University Language Centre
+  topicList: 010000000500000008000000
+  sampleAudio: {fileID: 8300000, guid: 2715175802acbc19fa7955cd321332dd, type: 3}

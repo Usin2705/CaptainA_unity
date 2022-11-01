@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
   m_Name: presidentti
   m_EditorClassIdentifier: 
-  word: 
-  definition: 
-  credit: 
-  topicList: 
-  sampleAudio: {fileID: 0}
+  word: Presidentti
+  definition: President
+  credit: Aalto University Language Centre
+  topicList: 0100000008000000
+  sampleAudio: {fileID: 8300000, guid: df026e8eeb26c241f91fd968d7641533, type: 3}

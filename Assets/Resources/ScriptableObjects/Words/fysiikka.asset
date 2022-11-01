@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
   m_Name: fysiikka
   m_EditorClassIdentifier: 
-  word: 
-  definition: 
-  credit: 
-  topicList: 
-  sampleAudio: {fileID: 0}
+  word: Fysiikka
+  definition: Physics
+  credit: Aalto University Language Centre
+  topicList: 0100000008000000
+  sampleAudio: {fileID: 8300000, guid: 1a03fd3c31e17273c964e85285e1698f, type: 3}

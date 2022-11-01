@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: professori
   m_EditorClassIdentifier: 
   word: Professori
-  definition: 
+  definition: Professor
   credit: Aalto University Language Centre
-  topicList: 
-  sampleAudio: {fileID: 0}
+  topicList: 0100000008000000
+  sampleAudio: {fileID: 8300000, guid: 229696ae34fd72d91b4df54f926048d4, type: 3}

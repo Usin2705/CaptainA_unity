@@ -15,10 +15,11 @@ MonoBehaviour:
   phoneme: r
   ipa: r
   instruction: 
-  videoURL: 
+  videoURL: https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=328c8ff5-ed8f-402d-8508-1a35d56d5bca
   front_credit: 
   side_credit: 
   front_1: {fileID: 0}
   front_2: {fileID: 0}
   side_1: {fileID: 0}
   side_2: {fileID: 0}
+  animaClip: {fileID: 0}

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
   m_Name: matematiikka
   m_EditorClassIdentifier: 
-  word: 
-  definition: 
-  credit: 
-  topicList: 
-  sampleAudio: {fileID: 0}
+  word: Matematiikka
+  definition: Mathematics
+  credit: Aalto University Language Centre
+  topicList: 0200000008000000
+  sampleAudio: {fileID: 8300000, guid: c6d8473a0fd06bf1494ba8c801429f23, type: 3}

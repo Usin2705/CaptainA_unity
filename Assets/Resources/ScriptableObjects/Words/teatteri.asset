@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
   m_Name: teatteri
   m_EditorClassIdentifier: 
-  word: 
-  definition: 
-  credit: 
-  topicList: 
-  sampleAudio: {fileID: 0}
+  word: Teatteri
+  definition: Theatre
+  credit: Aalto University Language Centre
+  topicList: 0100000008000000
+  sampleAudio: {fileID: 8300000, guid: a4e0f1d1c667cc527bb3e4cf78dbf568, type: 3}

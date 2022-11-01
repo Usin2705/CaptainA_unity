@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
   m_Name: projekti
   m_EditorClassIdentifier: 
-  word: 
-  definition: 
-  credit: 
-  topicList: 
-  sampleAudio: {fileID: 0}
+  word: Projekti
+  definition: Project
+  credit: Aalto University Language Centre
+  topicList: 010000000600000008000000
+  sampleAudio: {fileID: 8300000, guid: 64a69932c8ce06114b07b8de3ffeffcf, type: 3}

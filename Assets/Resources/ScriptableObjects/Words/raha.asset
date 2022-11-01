@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
   m_Name: raha
   m_EditorClassIdentifier: 
-  word: 
-  definition: 
-  credit: 
-  topicList: 
-  sampleAudio: {fileID: 0}
+  word: Raha
+  definition: Money
+  credit: Aalto University Language Centre
+  topicList: 000000000600000008000000
+  sampleAudio: {fileID: 8300000, guid: 528c0465c208a57469617048c518028b, type: 3}

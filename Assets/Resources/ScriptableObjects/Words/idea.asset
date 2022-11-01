@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
   m_Name: idea
   m_EditorClassIdentifier: 
-  word: 
-  definition: 
-  credit: 
-  topicList: 
-  sampleAudio: {fileID: 0}
+  word: Idea
+  definition: Idea
+  credit: Aalto University Language Centre
+  topicList: 0000000008000000
+  sampleAudio: {fileID: 8300000, guid: 30f473370f9c4841d916917315f6f1ae, type: 3}

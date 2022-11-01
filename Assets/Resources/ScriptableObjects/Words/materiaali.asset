@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
   m_Name: materiaali
   m_EditorClassIdentifier: 
-  word: 
-  definition: 
-  credit: 
-  topicList: 
-  sampleAudio: {fileID: 0}
+  word: Materiaali
+  definition: (noun) Material
+  credit: Aalto University Language Centre
+  topicList: 0800000001000000
+  sampleAudio: {fileID: 8300000, guid: 12e9cbb48edff00cfb1dcb6476329a87, type: 3}
