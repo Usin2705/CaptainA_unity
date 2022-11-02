@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
-  m_Name: rahaton
+  m_Name: "helsinki helsingiss\xE4"
   m_EditorClassIdentifier: 
-  word: Rahaton
-  definition: Peniless. Broke
+  word: "Helsinki - Helsingiss\xE4"
+  definition: (No translation)
   credit: Aalto University Language Centre
-  topicList: 0100000008000000
-  sampleAudio: {fileID: 8300000, guid: c4a1f333ad5ef7f1f8f7605af47140f0, type: 3}
+  topicList: 0100000007000000
+  sampleAudio: {fileID: 8300000, guid: 0ef9fd19412390d5782128ccc6a6caf9, type: 3}

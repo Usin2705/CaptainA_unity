@@ -211,7 +211,7 @@ public static class WarningDetail
             {
                 warn_text += count + ". ";
                 count++;
-                warn_text += "The AI model is not designed for very short word like ää or öö. Try using longer word by combining with consonants for better accuracy. For example, instead of using <b>ää</b>, use k<b>ää</b>n";                
+                warn_text += "The AI model is not designed for very short word like ää or syy. Try using longer word by combining with consonants. For example, instead of using <b>ää</b>, use s<b>ää</b>t<b>ää</b>";                
             }
             
             if (warn == WARNINGS.NP)
@@ -219,7 +219,7 @@ public static class WarningDetail
                 if (!warn_text.EndsWith("\n") && warn_text !="") warn_text += "\n";
                 warn_text += count + ". ";
                 count++;
-                warn_text += "In Finnish, <b>np</b> is pronounced as <b>mp</b>. The AI model still mark you correctly if you use \"mp\"";
+                warn_text += "In Finnish, <b>np</b> is pronounced as <b>mp</b>. The AI model still mark you correctly if you use either \"np\" or \"mp\"";
             }
             
             if (warn == WARNINGS.NGK)

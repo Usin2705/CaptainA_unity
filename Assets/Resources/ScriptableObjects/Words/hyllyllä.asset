@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
-  m_Name: rahaton
+  m_Name: "hyllyll\xE4"
   m_EditorClassIdentifier: 
-  word: Rahaton
-  definition: Peniless. Broke
+  word: "Hyllyll\xE4"
+  definition: on a/the self
   credit: Aalto University Language Centre
-  topicList: 0100000008000000
-  sampleAudio: {fileID: 8300000, guid: c4a1f333ad5ef7f1f8f7605af47140f0, type: 3}
+  topicList: 0200000008000000
+  sampleAudio: {fileID: 8300000, guid: 99fe4379b5ddbd2e9a9a2f8b66e2828f, type: 3}

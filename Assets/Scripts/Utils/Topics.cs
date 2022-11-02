@@ -7,7 +7,7 @@ public enum Topics
     Greetings,
     Grocery,
     Business,
-    Empty,
+    Pair,
     Vocabulary,
     AudioBooks,
     All,
@@ -32,9 +32,9 @@ public static class TopicDetail
             case Topics.Grocery:
                 return "A list of words you should know when buying grocery in Finland";
             case Topics.Business:
-                return "A list of words you should know when if you want to start business in Finland";
-            case Topics.Empty:
-                return " ";
+                return "A list of words you should know if you want to work or start business in Finland";
+            case Topics.Pair: 
+                return "A pair of words with similar pronounciation. For example: a - ä, o - ö";
             case Topics.Vocabulary:
                 return "All single, simple words. Useful to learn new vocabulary while practice pronunciation";                   
             case Topics.AudioBooks:
