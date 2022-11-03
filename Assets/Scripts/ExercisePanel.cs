@@ -80,7 +80,7 @@ public class ExercisePanel : MonoBehaviour
         dictTextGO.GetComponent<TMPro.TextMeshProUGUI>().text = word.definition;
 
         // Set up credit text        
-        creditTextGO.GetComponent<TMPro.TextMeshProUGUI>().text = word.credit==null?"":$"Credit: {word.credit}";
+        creditTextGO.GetComponent<TMPro.TextMeshProUGUI>().text = string.IsNullOrEmpty(word.credit)?"":$"Credit: {word.credit}";
 
         // Only turn on the replay clip button if there's a replay sample
         replayButtonGO.SetActive(replayClip!=null);

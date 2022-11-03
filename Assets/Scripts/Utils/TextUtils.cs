@@ -64,10 +64,11 @@ public static class TextUtils
     */
 
     {
-        text = text.Trim(); // Remove trailing white space
-        text = Regex.Replace(text, "[zZ]", "ts"); //Replace z with ts
-        text = Regex.Replace(text, "[0-9]", ""); //Remove numbers
         text = text.Replace("\n", " ");
+        text = text.Trim(); // Remove trailing white space
+        text = Regex.Replace(text, "  +", " "); // Replace extra spaces with just 1 space
+        text = Regex.Replace(text, "[zZ]", "ts"); //Replace z with ts
+        text = Regex.Replace(text, "[0-9]", ""); //Remove numbers        
         text = Regex.Replace(text, "[-!$%^&*()_+|~=`{}\\[\\]:\";'<>?,.\\/@]", ""); //Remove symbols
 
                 
