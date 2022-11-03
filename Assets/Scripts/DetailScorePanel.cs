@@ -170,8 +170,9 @@ public class DetailScorePanel : MonoBehaviour
     */
 
     {
+        // Debug.Log(value.y);
         // Scroll down        
-        if (value.y < 1.0f && !isScrolledUp) {
+        if (value.y < 1.0f && !isScrolledUp && value.y!=0.0f) {
             isScrolledUp = true;
             if (warningNo == 0) animator.Play("ScrollUp");
             else if (warningNo == 1) animator.Play("ScrollUpWarn");
@@ -194,6 +195,8 @@ public class DetailScorePanel : MonoBehaviour
     */
     {   
         warningNo = 0;
+        scrollRectWarning.verticalNormalizedPosition = 1.0f;
+        scrollRectDetail.verticalNormalizedPosition = 1.0f;
         isScrolledUp=false;          
         detailScorePanel.SetActive(false);                
         
@@ -206,10 +209,8 @@ public class DetailScorePanel : MonoBehaviour
     {
         foreach (GameObject go in listScrollItems) 
         {
-            Destroy(go);
-        }
-    }
-
-    
+            Destroy(go);        
+        }        
+    }    
 }
 
