@@ -17,10 +17,10 @@ MonoBehaviour:
   instruction: Round and narrow your lips. Tongue is close to the roof of the mouth,
     positioned forward. Similar to <b>i</b> but with lips round.
   videoURL: https://www.youtube.com/watch?v=T2_akD4QKp4
-  front_credit: Mari Nikonen NOT LICENSED
+  front_credit: Aalto University Language Centre
   side_credit: Aino Huhtaniemi
-  front_1: {fileID: 21300000, guid: aba0a8f23dbfdd84fa99c06ca6cddaf6, type: 3}
-  front_2: {fileID: 21300000, guid: af95c19cd14b28948b56a6e6cc790306, type: 3}
+  front_1: {fileID: 21300000, guid: b77f39c5f7a65464b8a217e9bcd5ebed, type: 3}
+  front_2: {fileID: 21300000, guid: 0f61716285ff44a4bb3dcd014deacb3c, type: 3}
   side_1: {fileID: 21300000, guid: c248b7f5693e30c4f8f008151b9483e2, type: 3}
   side_2: {fileID: 21300000, guid: 0965489a548682b419dda5980808a6fc, type: 3}
   animaClip: {fileID: 7400000, guid: a372e7fc7a114b04bb4c43ae9940f0cf, type: 2}

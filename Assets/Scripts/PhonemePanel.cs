@@ -44,7 +44,7 @@ public class PhonemePanel : MonoBehaviour
         phonemePanel.transform.GetComponent<Animation>().clip = phonemeSO.animaClip;
         phonemePanel.transform.GetComponent<Animation>().Play();
 
-        creditText.text = "Top images: " + phonemeSO.front_credit + ". Bottom images: " + phonemeSO.side_credit;
+        creditText.text = "Top images: " + phonemeSO.front_credit + ".\nBottom images: " + phonemeSO.side_credit + ".";
     }
     
     void OnDisable()

@@ -34,7 +34,7 @@ public static class TopicDetail
             case Topics.Business:
                 return "A list of words you should know if you want to work or start business in Finland";
             case Topics.Pair: 
-                return "A pair of words with similar pronounciation. For example: a - ä, o - ö";
+                return "A pair of words with similar pronunciation. For example: a - ä, o - ö";
             case Topics.Vocabulary:
                 return "All single, simple words. Useful to learn new vocabulary while practice pronunciation";                   
             case Topics.AudioBooks:

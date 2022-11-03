@@ -98,6 +98,13 @@ public class NetworkManager : MonoBehaviour
 		// that's why we can set the Panel to active		
 		string textResult = TextUtils.FormatTextResult(transcript, asrResult.score);
 		resultPanelGO.transform.Find("ResultText").GetComponent<TMPro.TextMeshProUGUI>().text = textResult;
+		
+		// Show or now show the warning image
+		int warningNo = asrResult.warning.Count;
+		GameObject WarningImageGO = resultPanelGO.transform.Find("WarningImage").gameObject;
+		WarningImageGO.SetActive(warningNo!=0);
+		
+
 		debugText.text = asrResult.prediction;
 		resultPanelGO.SetActive(true);
     }
