@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: "\xE4"
   ipa: "\xE6"
-  instruction: Open mouth. Tongue is low, positioned forward. Similar to <b>a</b>,
-    but mouth open wider, tongue is in front.
-  videoURL: https://www.youtube.com/watch?v=uA7YLTHnnew
-  front_credit: Aino Huhtaniemi
+  instruction: Open mouth large and wide. Tongue is at bottom, positioned forward.
+    Similar to <b>a</b>, but move tongue to the front.
+  videoURL: https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=f2a1b3db-32db-4baa-8112-af4800ee8e0b
+  front_credit: Aalto University Language Centre
   side_credit: Aino Huhtaniemi
-  front_1: {fileID: 21300000, guid: 2bab47224f3412c4dba06c28936b4473, type: 3}
-  front_2: {fileID: 21300000, guid: 2bab47224f3412c4dba06c28936b4473, type: 3}
+  front_1: {fileID: 21300000, guid: 98f1b8abf9ea6caccbc0e753b5ed9fb9, type: 3}
+  front_2: {fileID: 21300000, guid: afdec697e1601268a81eff348a4e1a61, type: 3}
   side_1: {fileID: 21300000, guid: 42d5c9e615a26834e8e784c6b65e394c, type: 3}
   side_2: {fileID: 21300000, guid: 42d5c9e615a26834e8e784c6b65e394c, type: 3}
-  animaClip: {fileID: 0}
+  animaClip: {fileID: 7400000, guid: 8f2720e76aa531941835cb38f9df03ca, type: 2}

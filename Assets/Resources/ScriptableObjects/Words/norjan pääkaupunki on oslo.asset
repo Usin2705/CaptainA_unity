@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
   m_Name: "norjan p\xE4\xE4kaupunki on oslo"
   m_EditorClassIdentifier: 
-  word: Aikataulu
-  definition: Timetable, schedule.
+  word: "Norjan p\xE4\xE4kaupunki on Oslo."
+  definition: The capital city of Norway is Oslo.
   credit: Aalto University Language Centre
-  topicList: 010000000600000008000000
-  sampleAudio: {fileID: 0}
+  topicList: 0200000003000000
+  sampleAudio: {fileID: 8300000, guid: b69b8ba3f6b8ae6eeb370c71274ae82c, type: 3}

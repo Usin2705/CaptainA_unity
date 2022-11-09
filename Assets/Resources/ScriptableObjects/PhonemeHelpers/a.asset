@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: a
   ipa: "\u0251"
-  instruction: "Open mouth. Tongue is low, positioned backward. Similar to <b>\xE4</b>,
-    but mouth open larger (but not wider), tongue is in the back."
-  videoURL: https://www.youtube.com/watch?v=uA7YLTHnnew
-  front_credit: Aino Huhtaniemi
+  instruction: "Open mouth largerly. Tongue is at bottom, positioned backward. Similar
+    to <b>\xE4</b>, but move tongue to the back."
+  videoURL: https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=2ee0ffc3-96a7-4899-b457-af4700f67175
+  front_credit: Aalto University Language Centre
   side_credit: Aino Huhtaniemi
   front_1: {fileID: 21300000, guid: 8918c068ac1eb9643b776a6335e25e31, type: 3}
-  front_2: {fileID: 21300000, guid: 8918c068ac1eb9643b776a6335e25e31, type: 3}
-  side_1: {fileID: 21300000, guid: 0bd9e40288a75434aa8a48c6ec2c78cb, type: 3}
-  side_2: {fileID: 21300000, guid: 0bd9e40288a75434aa8a48c6ec2c78cb, type: 3}
-  animaClip: {fileID: 0}
+  front_2: {fileID: 21300000, guid: 91f3681637663a1b5b7cb7edf6e2a723, type: 3}
+  side_1: {fileID: 21300000, guid: 984cfd188d48a44a18194f59b48149b1, type: 3}
+  side_2: {fileID: 21300000, guid: 984cfd188d48a44a18194f59b48149b1, type: 3}
+  animaClip: {fileID: 7400000, guid: 8f2720e76aa531941835cb38f9df03ca, type: 2}
