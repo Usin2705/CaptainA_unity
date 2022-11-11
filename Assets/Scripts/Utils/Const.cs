@@ -93,6 +93,14 @@ public static class Const
 
 
 
+        // ===================== NETWORK CONST =====================
+
+    // Maximum waiting time for Unity web request
+    public const int TIME_OUT_SECS = 20;
+    // =======================================================
+
+
+
     // ====================== TAB COLOR ======================
     public static readonly Color32 IMAGE_ACTIVE_COLOR = new Color32(22,42,82,255);
     public static readonly Color32 IMAGE_INACTIVE_COLOR = new Color32(105,105,105,255);

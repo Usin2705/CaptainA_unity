@@ -31,7 +31,7 @@ public class NetworkManager : MonoBehaviour
 
 
     public IEnumerator ServerPost(string transcript, byte[] wavBuffer, GameObject textErrorGO, GameObject resultPanelGO, GameObject recordButtonGO, TMPro.TextMeshProUGUI debugText)
-    {
+    {		
 	    //IMultipartFormSection & MultipartFormFileSection  could be another solution,
 		// but apparent it also require raw byte data to upload
 
@@ -42,16 +42,17 @@ public class NetworkManager : MonoBehaviour
 
         UnityWebRequest www = UnityWebRequest.Post(url, form);
 
+		www.timeout = Const.TIME_OUT_SECS;
 		yield return www.SendWebRequest();
-
+		
 		recordButtonGO.SetActive(true);
 
 		Debug.Log(www.result);
 
         if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
 			Debug.Log(www.error);
-			if ( www.result.ToString() != "") {
-				textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text =  www.result.ToString();
+			if (!string.IsNullOrEmpty(www.error)) {
+				textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text =  www.error;
 			} else {
 				textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "Network error!";
 			}
