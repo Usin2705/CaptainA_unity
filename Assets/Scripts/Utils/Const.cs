@@ -93,7 +93,7 @@ public static class Const
 
 
 
-        // ===================== NETWORK CONST =====================
+    // ===================== NETWORK CONST =====================
 
     // Maximum waiting time for Unity web request
     public const int TIME_OUT_SECS = 20;
@@ -133,4 +133,10 @@ public static class Const
     public const int MAX_QUEUE = 5;
     public const int MAX_NO_TRIES = 3;
     // ======================================================== 
+
+    // ===================== PLAYER PREFS CONST =====================
+
+    // Check if user open the game for the first time
+    public const string PREF_FIRST_KEY = "IsFirstTime";
+    // =======================================================
 }

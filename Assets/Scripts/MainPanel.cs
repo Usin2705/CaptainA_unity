@@ -8,6 +8,7 @@ using System;
 
 public class MainPanel : MonoBehaviour
 {
+    [SerializeField] GameObject OnboardingPanel;     
     [SerializeField] GameObject recordButtonGO;     
     [SerializeField] GameObject inputTransGO;
     [SerializeField] GameObject errorTextGO;     
@@ -19,6 +20,16 @@ public class MainPanel : MonoBehaviour
     [SerializeField] TMPro.TextMeshProUGUI predictionDebugText;
 
     AudioClip replayClip;
+
+    void Start()
+    {
+        // Toggle fullscreen
+        Screen.fullScreen = false;
+
+        // Check if first time open the app or not
+        // Otherwise show the Onboarding Panel
+        OnboardingPanel.SetActive(!PlayerPrefs.HasKey(Const.PREF_FIRST_KEY));
+    }
 
     public void OnButtonPointerDown() {
         // Attached to ButtonRecord GameObject        
