@@ -19,7 +19,7 @@ MonoBehaviour:
   videoURL: https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=f2a1b3db-32db-4baa-8112-af4800ee8e0b
   front_credit: Aalto University Language Centre
   side_credit: Aino Huhtaniemi
-  front_1: {fileID: 21300000, guid: 98f1b8abf9ea6caccbc0e753b5ed9fb9, type: 3}
+  front_1: {fileID: 21300000, guid: cc54e7efef591d2448a21ce09aae05db, type: 3}
   front_2: {fileID: 21300000, guid: afdec697e1601268a81eff348a4e1a61, type: 3}
   side_1: {fileID: 21300000, guid: 42d5c9e615a26834e8e784c6b65e394c, type: 3}
   side_2: {fileID: 21300000, guid: 42d5c9e615a26834e8e784c6b65e394c, type: 3}
