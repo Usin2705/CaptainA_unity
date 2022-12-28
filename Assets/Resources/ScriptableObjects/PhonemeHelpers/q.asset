@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: q
   m_EditorClassIdentifier: 
   phoneme: q
-  ipa: '?'
+  ipa: k
   instruction: Loan word, typical can be pronounced as <b>k</b>
   videoURL: 
   front_credit: 

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: x
   ipa: ks
-  instruction: Loan words. Often pronounced as <b>x</b>
+  instruction: Loan words. Often pronounced as <b>ks</b>
   videoURL: 
   front_credit: 
   side_credit: 

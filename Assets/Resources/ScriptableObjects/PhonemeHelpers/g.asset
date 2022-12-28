@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: g
   ipa: g
-  instruction: 
+  instruction: Alone, <b>g</b> only appear in foreign loanwords. In Finnish, <b>g</b>
+    is in combination with <b>k</b> or <b>g</b> to form nk or ng
   videoURL: 
   front_credit: 
   side_credit: 
@@ -22,3 +23,4 @@ MonoBehaviour:
   front_2: {fileID: 0}
   side_1: {fileID: 0}
   side_2: {fileID: 0}
+  animaClip: {fileID: 0}

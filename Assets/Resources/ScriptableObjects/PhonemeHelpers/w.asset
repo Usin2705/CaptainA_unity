@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: w
   m_EditorClassIdentifier: 
   phoneme: w
-  ipa: 
-  instruction: 'Loan words, can be treated like <b>v</b> - (Jukka Korpela: https://jkorpela.fi/abc.html) '
+  ipa: '?'
+  instruction: Loan words, can be treated like <b>v</b>
   videoURL: 
   front_credit: 
   side_credit: 

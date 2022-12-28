@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: u
   ipa: u
-  instruction: Round and narrow your lips. Tongue is close to the roof of the mouth,
-    positioned backward. Similar to <b>y</b> but with tougue move back)
+  instruction: Round and narrow your lips. The tongue is near the roof of the mouth,
+    positioned backward. Like <b>y</b> but move the tongue to the back.
   videoURL: https://www.youtube.com/watch?v=tWgNZtbtrHU
   front_credit: Aalto University Language Centre
   side_credit: Aino Huhtaniemi

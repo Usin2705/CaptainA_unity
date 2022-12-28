@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: a
   ipa: "\u0251"
-  instruction: "Open mouth largerly. Tongue is at bottom, positioned backward. Similar
-    to <b>\xE4</b>, but move tongue to the back."
+  instruction: "Open mouth largely. The tongue is at the bottom, positioned backward.
+    Like <b>\xE4</b>, but move the tongue to the back."
   videoURL: https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=2ee0ffc3-96a7-4899-b457-af4700f67175
   front_credit: Aalto University Language Centre
   side_credit: Aino Huhtaniemi

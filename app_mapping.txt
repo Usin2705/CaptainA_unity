@@ -240,6 +240,8 @@ com.unity3d.player.ReflectionHelper -> com.unity3d.player.ReflectionHelper:
     boolean LOGV -> LOGV
     com.unity3d.player.ReflectionHelper$a[] a -> a
     long b -> b
+    long c -> c
+    boolean d -> d
     void <init>() -> <init>
     boolean a(com.unity3d.player.ReflectionHelper$a) -> a
     void a(com.unity3d.player.ReflectionHelper$a,java.lang.reflect.Member) -> a
@@ -254,6 +256,8 @@ com.unity3d.player.ReflectionHelper -> com.unity3d.player.ReflectionHelper:
     java.lang.Object nativeProxyInvoke(long,java.lang.String,java.lang.Object[]) -> nativeProxyInvoke
     void nativeProxyFinalize(long) -> nativeProxyFinalize
     void nativeProxyLogJNIInvokeException(long) -> nativeProxyLogJNIInvokeException
+    boolean beginProxyCall(long) -> beginProxyCall
+    void endProxyCall() -> endProxyCall
     void endUnityLaunch() -> endUnityLaunch
     java.lang.Object newProxyInstance(long,java.lang.Class) -> newProxyInstance
     void setNativeExceptionOnProxy(java.lang.Object,long,boolean) -> setNativeExceptionOnProxy
@@ -942,6 +946,13 @@ com.unity3d.player.g -> com.unity3d.player.g:
     void <init>(android.app.Activity,com.unity3d.player.IPermissionRequestCallbacks) -> <init>
     void onCreate(android.os.Bundle) -> onCreate
     void onRequestPermissionsResult(int,java.lang.String[],int[]) -> onRequestPermissionsResult
+    void a(java.lang.String[]) -> a
+    void a(com.unity3d.player.g,java.lang.String[]) -> a
+com.unity3d.player.g$1 -> com.unity3d.player.g$1:
+    java.lang.String[] a -> a
+    com.unity3d.player.g b -> b
+    void <init>(com.unity3d.player.g,java.lang.String[]) -> <init>
+    void run() -> run
 com.unity3d.player.g$a -> com.unity3d.player.g$a:
     com.unity3d.player.IPermissionRequestCallbacks b -> b
     java.lang.String c -> c
@@ -978,6 +989,7 @@ com.unity3d.player.i -> com.unity3d.player.i:
     int d -> d
     int e -> e
     int f -> f
+    boolean g -> g
     boolean a -> a
     void <init>(android.content.Context,com.unity3d.player.UnityPlayer,java.lang.String,int,boolean,boolean,boolean,java.lang.String,int,boolean,boolean) -> <init>
     void a(boolean) -> a
@@ -1218,6 +1230,7 @@ org.fmod.FMODAudioDevice -> org.fmod.FMODAudioDevice:
     int i -> i
     int j -> j
     int k -> k
+    int l -> l
     void <init>() -> <init>
     void start() -> start
     void stop() -> stop

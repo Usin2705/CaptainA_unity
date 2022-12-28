@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: e
   ipa: e
-  instruction: "Close your lips a little (bigger than /<b>i</b>/ sound). Put tongue
-    to the roof of the mouth (lower than /<b>i</b>/, positioned forward. Similar
-    to <b>\xF6</b> without round lips."
-  videoURL: https://www.youtube.com/watch?v=1VoD4_0Gxzc&t=110s
-  front_credit: Aino Huhtaniemi
+  instruction: "Close your lips a little (bigger than /<b>i</b>/ sound). Put the
+    tongue to the roof of the mouth (lower than /<b>i</b>/, positioned forward. Similar
+    to <b>\xF6</b> but without round lips."
+  videoURL: https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=51fd4c2f-1ee7-401b-833e-af7900daf584
+  front_credit: Aalto University Language Centre
   side_credit: Aino Huhtaniemi
   front_1: {fileID: 21300000, guid: 0b3b9e688ba979040a7c6f5bd69de14f, type: 3}
-  front_2: {fileID: 21300000, guid: 0b3b9e688ba979040a7c6f5bd69de14f, type: 3}
+  front_2: {fileID: 0}
   side_1: {fileID: 21300000, guid: 4462ae96bbe75c9449d50fee35e55cb3, type: 3}
-  side_2: {fileID: 21300000, guid: 4462ae96bbe75c9449d50fee35e55cb3, type: 3}
-  animaClip: {fileID: 7400000, guid: b92febd60ef43d347a69cb1f1eb259de, type: 2}
+  side_2: {fileID: 0}
+  animaClip: {fileID: 0}

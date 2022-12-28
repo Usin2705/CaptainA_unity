@@ -56,6 +56,11 @@ public static class TextUtils
         return $"<color={colorStr}>{(isBold?"<b>":"")}{text}{(isBold?"</b>":"")}</color>";
 	}
 
+    // TODO
+    // Some vocabulary should be removed from Finnish vocab in wav2vec2
+    // å
+    // c,q,w,x, 
+    // g alone
     public static string SantinizeText(string text) 
     /*
     *

@@ -23,7 +23,13 @@ public class Onboarding : MonoBehaviour
     }
 
     public void NextOnboard() {
-        if (onboard_index >= 3) FinishOnboard();
+        if (onboard_index >= 3) {
+            foreach (var device in Microphone.devices)
+            {
+                Debug.Log("Name: " + device);
+            }
+            FinishOnboard();
+        }
     
         else 
         {

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: "\xE4"
   ipa: "\xE6"
-  instruction: Open mouth large and wide. Tongue is at bottom, positioned forward.
-    Similar to <b>a</b>, but move tongue to the front.
+  instruction: Open mouth large and wide. The tongue is at the bottom, positioned
+    forward. Like <b>a</b> but move the tongue to the front.
   videoURL: https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=f2a1b3db-32db-4baa-8112-af4800ee8e0b
   front_credit: Aalto University Language Centre
   side_credit: Aino Huhtaniemi
