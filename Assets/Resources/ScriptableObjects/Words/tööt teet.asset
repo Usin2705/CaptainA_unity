@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
   m_Name: "t\xF6\xF6t teet"
   m_EditorClassIdentifier: 
-  word: 
-  definition: 
-  credit: 
-  topicList: 
-  sampleAudio: {fileID: 0}
+  word: "T\xF6\xF6t - Teet"
+  definition: (no translation)
+  credit: Aalto University Language Centre
+  topicList: 0100000007000000
+  sampleAudio: {fileID: 8300000, guid: 49f840ff4cfa67d48b7d6c1963fc4a06, type: 3}

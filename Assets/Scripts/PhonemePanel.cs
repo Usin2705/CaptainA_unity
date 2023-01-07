@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class PhonemePanel : MonoBehaviour
 {
@@ -55,11 +56,15 @@ public class PhonemePanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Set focus to the panel
+        // so that the back button won't go back to the URL
+        EventSystem.current.SetSelectedGameObject(phonemePanel, null);
+
         // Handle back button press on phone
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ClosePanel();
-        }
+        }        
     }
 
     public void ClosePanel()

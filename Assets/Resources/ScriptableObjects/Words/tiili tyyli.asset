@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
   m_Name: tiili tyyli
   m_EditorClassIdentifier: 
-  word: 
-  definition: 
+  word: Tiili - Tyyli
+  definition: Brick. Tile - Style
   credit: 
-  topicList: 
-  sampleAudio: {fileID: 0}
+  topicList: 0100000007000000
+  sampleAudio: {fileID: 8300000, guid: feed36055c122544187bd8f60374966e, type: 3}
