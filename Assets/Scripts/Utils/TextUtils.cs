@@ -72,6 +72,13 @@ public static class TextUtils
         text = text.Replace("\n", " ");
         text = text.Trim(); // Remove trailing white space
         text = Regex.Replace(text, "  +", " "); // Replace extra spaces with just 1 space
+        
+        text = Regex.Replace(text, "[åÅ]", "oo"); //Replace å with oo
+        // nk and
+        // ng are not converted in app but should be converted during 
+        text = Regex.Replace(text, "[qQ]", "k"); //Replace q with k
+        text = Regex.Replace(text, "[wW]", "v"); //Replace w with v
+        text = Regex.Replace(text, "[xX]", "ks"); //Replace x with ks
         text = Regex.Replace(text, "[zZ]", "ts"); //Replace z with ts
         text = Regex.Replace(text, "[0-9]", ""); //Remove numbers        
         text = Regex.Replace(text, "[-!$%^&*()_+|~=`{}\\[\\]:\";'<>?,.\\/@]", ""); //Remove symbols

@@ -34,7 +34,8 @@ public static class SaveData
 
             foreach (string vocab in Const.VOCABS_LIST)
             {
-                PhonemeScore tempScore = new PhonemeScore(vocab, 1.0f, 0);
+                List<ScoreWithUTC> tempHistoryScore = new List<ScoreWithUTC>();
+                PhonemeScore tempScore = new PhonemeScore(phoneme: vocab, average_score: 1.0f, no_tries: 0, historyScore: tempHistoryScore);
                 tempL.Add(tempScore);                
             }
 			
@@ -57,8 +58,6 @@ public static class SaveData
 			return;
 		}
 
-                
-
 		UserData userData = LoadFromJson();
 
 		for (int i = 0; i < scoreList.Count; i++) 
@@ -66,19 +65,43 @@ public static class SaveData
 			string phoneme = transcript[i].ToString();		
 			
 			int index = userData.IndexOf(phoneme);
+
+            // This record the currernt time in to Seconds Since 1970
+            DateTime epochStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);//January 1, 1970 0 hours, 0 minutes, 0 seconds
+            int secondsInUTC =  (int)(DateTime.UtcNow - epochStart).TotalSeconds;            
+            ScoreWithUTC scoreWithUTC = new ScoreWithUTC(score: scoreList[i], secondsInUTC: secondsInUTC); 
+
 			// Find phoneme within the list
 			// Ideally, Dictionary work better but Dictionary is not Serializable and 
 			// therefore can't be Save or Load easily with JSON			
 			if (index!=-1)
+            
+            // If phone is in the list, we can just update the 
+            // Maybe using a constructor here would work as well?
 			{
 				PhonemeScore phonemeScore = userData.phonemeScores[index];
-				userData.phonemeScores[index].average_score = phonemeScore.average_score*(1-Const.SCORE_WEIGHT) + 
-                                                              Const.SCORE_WEIGHT*scoreList[i];
-				userData.phonemeScores[index].no_tries++;
+				userData.phonemeScores[index].average_score = (phonemeScore.average_score * phonemeScore.no_tries + scoreList[i])
+                                                              /(phonemeScore.no_tries + 1);
+				userData.phonemeScores[index].no_tries++;   
+                
+                if (userData.phonemeScores[index].historyScore == null) {
+                // If there weren't a list to store historical score we will create one
+                // This function is important for backward compatible (old version don't have the historical score)
+                    List<ScoreWithUTC> tempHistoryScore = new List<ScoreWithUTC>();            
+                    tempHistoryScore.Add(scoreWithUTC);
+                    userData.phonemeScores[index].historyScore = tempHistoryScore;
+                    
+                } else userData.phonemeScores[index].historyScore.Add(scoreWithUTC);    
+
+                
+
 			} else 			
-            // If phone is not in the list, create that phoneme with current score            
+            // If phoneme is not in the list, create that phoneme with current score            
 			{
-                PhonemeScore tempScore = new PhonemeScore(phoneme, scoreList[i], 1);
+                List<ScoreWithUTC> tempHistoryScore = new List<ScoreWithUTC>();                
+                tempHistoryScore.Add(scoreWithUTC);
+                PhonemeScore tempScore = new PhonemeScore(phoneme: phoneme, average_score: scoreList[i], no_tries: 1, 
+                                                          historyScore: tempHistoryScore);
 				userData.phonemeScores.Add(tempScore);
 			}
 		}
@@ -122,12 +145,14 @@ public class PhonemeScore: IComparable<PhonemeScore>{
     public string phoneme;
     public float average_score;
     public int no_tries;
+    public List<ScoreWithUTC> historyScore;
 
-    public PhonemeScore(string phoneme, float average_score, int no_tries) 
+    public PhonemeScore(string phoneme, float average_score, int no_tries, List<ScoreWithUTC> historyScore) 
     {        
         this.phoneme = phoneme;
         this.average_score = average_score;
-        this.no_tries = no_tries;
+        this.no_tries = no_tries;        
+        this.historyScore = historyScore;
     }
 
     public int CompareTo(PhonemeScore other)
@@ -145,6 +170,19 @@ public class PhonemeScore: IComparable<PhonemeScore>{
         else return 1;
     }
 }
+
+[System.Serializable]
+public class ScoreWithUTC {
+    public float score;
+    public int secondsInUTC;
+
+    public ScoreWithUTC(float score, int secondsInUTC) 
+    {        
+        this.score = score;
+        this.secondsInUTC = secondsInUTC;        
+    }
+}
+
 //#########################################################################################
 
 

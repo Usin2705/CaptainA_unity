@@ -123,9 +123,9 @@ public static class Const
     // ====================== VOCAB LIST ======================
     
     // TODO make this one read only
-    public static readonly string[] VOCABS_LIST =  {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", 
-                                                    "k", "l", "m", "n", "o", "p", "q", "r", "s", " ", 
-                                                    "t", "u", "v", "w", "x", "y", "ä", "å", "ö"};
+    public static readonly string[] VOCABS_LIST =  {"a", "ä", "b", "d", "e", "f", "h", "i", "j", 
+                                                    "k", "l", "m", "n", "o", "ö", "p", "r", "s", "t", 
+                                                    "u", "v", "y", " ", "å", "c", "g", "q", "w", "x", };
     // ========================================================    
 
 
