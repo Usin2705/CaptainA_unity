@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
+  m_Name: "helmen h\xF6lm\xF6n"
+  m_EditorClassIdentifier: 
+  word: "Helmen - H\xF6lm\xF6n"
+  definition: (No translation)
+  credit: Aalto University Language Centre
+  topicList: 0200000000000000
+  sampleAudio: {fileID: 8300000, guid: 23bac0cffe8fd4746bf9394e72f65b67, type: 3}

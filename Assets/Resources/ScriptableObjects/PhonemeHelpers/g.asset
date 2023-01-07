@@ -18,9 +18,9 @@ MonoBehaviour:
     is in combination with <b>k</b> or <b>g</b> to form nk or ng
   videoURL: 
   front_credit: 
-  side_credit: 
+  side_credit: Aino Huhtaniemi
   front_1: {fileID: 0}
   front_2: {fileID: 0}
-  side_1: {fileID: 0}
+  side_1: {fileID: 21300000, guid: f682af3305fcfcc49aa043cd1b4a2aa4, type: 3}
   side_2: {fileID: 0}
   animaClip: {fileID: 0}

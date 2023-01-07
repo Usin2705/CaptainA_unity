@@ -18,9 +18,9 @@ MonoBehaviour:
     cords vibrating.
   videoURL: 
   front_credit: 
-  side_credit: 
+  side_credit: Aino Huhtaniemi
   front_1: {fileID: 0}
   front_2: {fileID: 0}
-  side_1: {fileID: 0}
+  side_1: {fileID: 21300000, guid: d968116d2511da84fb562dcc8c6edded, type: 3}
   side_2: {fileID: 0}
   animaClip: {fileID: 0}

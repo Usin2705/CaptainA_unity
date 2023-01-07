@@ -16,7 +16,7 @@ MonoBehaviour:
   ipa: p
   instruction: Close lips to release air. <b>p</b> is an unvoiced sound. Similar
     to <b>b</b> but do not use vocal cords.
-  videoURL: https://www.youtube.com/watch?v=CHz7sAGfB04
+  videoURL: 
   front_credit: 
   side_credit: Aino Huhtaniemi
   front_1: {fileID: 0}

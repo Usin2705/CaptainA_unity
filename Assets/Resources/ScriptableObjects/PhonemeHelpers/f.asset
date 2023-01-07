@@ -16,9 +16,9 @@ MonoBehaviour:
   ipa: f
   instruction: "Use lower lip and upper teeth to make the sound. <b>f</b> is an unvoiced
     sound. It similar to Finnish <b>v</b> /<b>\u028B</b>/ but do not use vocal cords."
-  videoURL: https://www.youtube.com/watch?v=1VoD4_0Gxzc&t=78s
+  videoURL: 
   front_credit: 
-  side_credit: 
+  side_credit: Aino Huhtaniemi
   front_1: {fileID: 0}
   front_2: {fileID: 0}
   side_1: {fileID: 21300000, guid: b2025b94464fac04fa48a59d7654b13f, type: 3}

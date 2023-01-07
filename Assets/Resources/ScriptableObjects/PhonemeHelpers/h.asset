@@ -17,8 +17,9 @@ MonoBehaviour:
   instruction: 
   videoURL: 
   front_credit: 
-  side_credit: 
+  side_credit: Aino Huhtaniemi
   front_1: {fileID: 0}
   front_2: {fileID: 0}
-  side_1: {fileID: 0}
+  side_1: {fileID: 21300000, guid: fe43b8583e8879e4c831b456c0955b65, type: 3}
   side_2: {fileID: 0}
+  animaClip: {fileID: 0}

@@ -19,9 +19,9 @@ MonoBehaviour:
     so do not use vocal cords.
   videoURL: 
   front_credit: 
-  side_credit: 
+  side_credit: Aino Huhtaniemi
   front_1: {fileID: 0}
   front_2: {fileID: 0}
-  side_1: {fileID: 0}
+  side_1: {fileID: 21300000, guid: 3e0d9ccaf7ded744d939a9cfec474f43, type: 3}
   side_2: {fileID: 0}
   animaClip: {fileID: 0}
