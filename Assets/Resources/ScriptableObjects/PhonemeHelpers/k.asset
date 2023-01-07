@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: k
   ipa: k
-  instruction: 
+  instruction: Move the back of the tongue to back of roof of the mouth to block
+    all the airflow then release to make the sound. <b>k</b> is an unvoiced sound
+    so do not use vocal cords.
   videoURL: 
   front_credit: 
   side_credit: 
@@ -22,3 +24,4 @@ MonoBehaviour:
   front_2: {fileID: 0}
   side_1: {fileID: 0}
   side_2: {fileID: 0}
+  animaClip: {fileID: 0}

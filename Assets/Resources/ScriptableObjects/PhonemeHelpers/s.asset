@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: s
   ipa: s
-  instruction: 
+  instruction: Move the front of the tongue to the gum line behind the top teeth
+    to block the airflow. <b>s</b> is an unvoiced sound so  do not use vocal cords.
   videoURL: 
   front_credit: 
   side_credit: 
@@ -22,3 +23,4 @@ MonoBehaviour:
   front_2: {fileID: 0}
   side_1: {fileID: 0}
   side_2: {fileID: 0}
+  animaClip: {fileID: 0}

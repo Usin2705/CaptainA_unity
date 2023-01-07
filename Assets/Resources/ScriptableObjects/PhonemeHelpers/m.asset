@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: m
   ipa: m
-  instruction: 
+  instruction: Close lips to block the airflow. <b>m</b> is a voiced sound with vocal
+    cords vibrating.
   videoURL: 
   front_credit: 
   side_credit: 
@@ -22,3 +23,4 @@ MonoBehaviour:
   front_2: {fileID: 0}
   side_1: {fileID: 0}
   side_2: {fileID: 0}
+  animaClip: {fileID: 0}

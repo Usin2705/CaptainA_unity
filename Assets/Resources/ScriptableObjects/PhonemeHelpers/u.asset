@@ -15,12 +15,12 @@ MonoBehaviour:
   phoneme: u
   ipa: u
   instruction: Round and narrow your lips. The tongue is near the roof of the mouth,
-    positioned backward. Like <b>y</b> but move the tongue to the back.
-  videoURL: https://www.youtube.com/watch?v=tWgNZtbtrHU
+    positioned backward. Like y but move the tongue to the back.
+  videoURL: https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=8b3b39f6-748f-4ec3-9831-af82015695ce
   front_credit: Aalto University Language Centre
   side_credit: Aino Huhtaniemi
   front_1: {fileID: 21300000, guid: b77f39c5f7a65464b8a217e9bcd5ebed, type: 3}
   front_2: {fileID: 21300000, guid: 0f61716285ff44a4bb3dcd014deacb3c, type: 3}
   side_1: {fileID: 21300000, guid: edfb3d60b52fe3f46afa743f3d864def, type: 3}
-  side_2: {fileID: 21300000, guid: 33c64420c0ae4fe4b9cd54c6ba87c690, type: 3}
+  side_2: {fileID: 21300000, guid: edfb3d60b52fe3f46afa743f3d864def, type: 3}
   animaClip: {fileID: 7400000, guid: a372e7fc7a114b04bb4c43ae9940f0cf, type: 2}
