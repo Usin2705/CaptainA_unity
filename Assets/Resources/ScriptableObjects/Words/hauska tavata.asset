@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
   m_Name: hauska tavata
   m_EditorClassIdentifier: 
-  word: 
-  definition: 
+  word: Hauska tavata!
+  definition: Nice you meet you
   credit: 
-  topicList: 
+  topicList: 000000000400000008000000
   sampleAudio: {fileID: 0}

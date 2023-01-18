@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
   m_Name: hauska tutustua
   m_EditorClassIdentifier: 
-  word: 
-  definition: 
+  word: "Hauska tutustua!\t"
+  definition: Nice to get to know you! Nice to meet you! (more formal)
   credit: 
-  topicList: 
+  topicList: 010000000400000008000000
   sampleAudio: {fileID: 0}
