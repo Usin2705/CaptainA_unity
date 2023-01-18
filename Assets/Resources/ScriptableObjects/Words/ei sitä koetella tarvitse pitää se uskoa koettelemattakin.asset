@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
+  m_Name: "ei sit\xE4 koetella tarvitse pit\xE4\xE4 se uskoa koettelemattakin"
+  m_EditorClassIdentifier: 
+  word: "Ei sit\xE4 koetella tarvitse, pit\xE4\xE4 se uskoa koettelemattakin."
+  definition: There's no need to test it, you have to believe it without testing
+    it.
+  credit: "Ensimm\xE4iset novellit - Juhani Aho. Read by Harri Tapani Ylilammi, Librivox."
+  topicList: 020000000a000000
+  sampleAudio: {fileID: 8300000, guid: dbfd8bfa88f66414d83b5b187e52fa57, type: 3}

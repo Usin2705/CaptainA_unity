@@ -265,7 +265,7 @@ public static class WarningDetail
                 if (!warn_text.EndsWith("\n") && warn_text !="") warn_text += "\n";
                 warn_text += count + ". ";
                 count++;
-                warn_text += "The <b>ng</b> is pronounced as /<b>ŋː</b>/, and nk is pronounced as /<b>ŋ</b>/. The current model can detect correct pronunciation but can't give the correct score for ŋ and ŋ:. We are developing a new model to address this problem.";
+                warn_text += "The <b>ng</b> is pronounced as /<b>ŋː</b>/, and nk is pronounced as /<b>ŋk</b>/. The current model can detect correct pronunciation but can't give the correct score for ŋ and ŋ:. We are developing a new model to address this problem.";
             }
 
             if (warn == WARNINGS.MENEP)

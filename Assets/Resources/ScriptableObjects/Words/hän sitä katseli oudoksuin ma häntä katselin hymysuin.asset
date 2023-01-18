@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
+  m_Name: "h\xE4n sit\xE4 katseli oudoksuin ma h\xE4nt\xE4 katselin hymysuin"
+  m_EditorClassIdentifier: 
+  word: "H\xE4n sit\xE4 katseli oudoksuin, Ma h\xE4nt\xE4 katselin hymysuin,"
+  definition: (S)he looked at it in amazement, I looked at her/him with a smile,
+    (AI translation)
+  credit: "K\xE4rp\xE4nen - Paavo Cajander. Read by Maire Rhode, Librivox. "
+  topicList: 020000000a000000
+  sampleAudio: {fileID: 8300000, guid: b798a5e159b4ddf42a2e64860d64e34e, type: 3}

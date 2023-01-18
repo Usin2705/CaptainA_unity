@@ -75,7 +75,7 @@ public static class TextUtils
         
         text = Regex.Replace(text, "[åÅ]", "oo"); //Replace å with oo
         // nk and
-        // ng are not converted in app but should be converted during 
+        // ng are not converted in app but should be converted during wav2vec2 
         text = Regex.Replace(text, "[qQ]", "k"); //Replace q with k
         text = Regex.Replace(text, "[wW]", "v"); //Replace w with v
         text = Regex.Replace(text, "[xX]", "ks"); //Replace x with ks

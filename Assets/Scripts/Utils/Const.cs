@@ -69,13 +69,14 @@ public static class Const
     *  And some model allow for addtional scale (BAD, AVG, GOOD, EXCELLENT)
     *  
     */
-    public const float BAD_SCORE = 0.35f;
-    public const float AVG_SCORE = 0.85f;
+    public const float BAD_SCORE = 0.30f;
+    public const float AVG_SCORE = 0.80f;
     //public const float GOOD_SCORE = 0.92f;
 
     // Weight % allow users to update score with more weight put on 
     // latest score and not the historical average
     // 0.7f mean 30% weight on average + 70% on new score
+    // No longer using this, we use average instead (which is not as good)
     public const float SCORE_WEIGHT = 0.7f; 
     // =======================================================
 
