@@ -9,7 +9,6 @@ public enum Topics
     Business,
     Pair,
     Vocabulary,
-    SpokenFinnish,
     AudioBooks,
     All,
 }
@@ -37,9 +36,7 @@ public static class TopicDetail
             case Topics.Pair: 
                 return "A pair of words with similar pronunciation. For example: a - ä, o - ö";
             case Topics.Vocabulary:
-                return "All single, simple words. Useful to learn new vocabulary while practice pronunciation";                   
-            case Topics.SpokenFinnish:
-                return "Contain samples for practicing spoken Finnish.";                                                                                               
+                return "All single, simple words. Useful to learn new vocabulary while practice pronunciation";                                                                                                
             case Topics.AudioBooks:
                 return "Contain samples from Finnish book in Public Domain. Always have audio samples from LibriVox.";                                                                                               
             case Topics.All:

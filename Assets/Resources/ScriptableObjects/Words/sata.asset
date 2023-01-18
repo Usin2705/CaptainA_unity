@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: sata
   m_EditorClassIdentifier: 
   word: Sata
-  definition: Hundred (100)
+  definition: 'Hundred (100)
+
+    (The current AI model does not recognize short
+    word well)'
   credit: 
   topicList: 0000000008000000
   sampleAudio: {fileID: 0}

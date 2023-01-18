@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: tuhat
   m_EditorClassIdentifier: 
   word: Tuhat
-  definition: Thousand (1 000)
+  definition: 'Thousand (1 000)
+
+    (The current AI model does not recognize short
+    word well)'
   credit: 
   topicList: 0000000008000000
   sampleAudio: {fileID: 0}

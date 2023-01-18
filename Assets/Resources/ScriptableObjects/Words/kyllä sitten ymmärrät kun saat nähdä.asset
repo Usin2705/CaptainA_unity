@@ -15,5 +15,5 @@ MonoBehaviour:
   word: "Kyll\xE4 sitten ymm\xE4rr\xE4t, kun saat n\xE4hd\xE4"
   definition: You will understand when you see (it)
   credit: "Ensimm\xE4iset novellit - Juhani Aho. Read by Harri Tapani Ylilammi, Librivox."
-  topicList: 02000000030000000a000000
+  topicList: 020000000300000009000000
   sampleAudio: {fileID: 8300000, guid: c7e041ecc1d1689469c9efad272109be, type: 3}
