@@ -105,7 +105,7 @@ public class DetailScorePanel : MonoBehaviour
                 // which mean user mispoken this phonename for others
                 // then we can tell which phoneneme user made mistakes
                 string actualColor = scoreList[i]<Const.BAD_SCORE?Const.BAD_COLOR:Const.AVG_COLOR;                        
-                string phoneActualRate = scoreList[i]<Const.BAD_SCORE?"Incorrect":"Almost correct";                        
+                string phoneActualRate = scoreList[i]<Const.BAD_SCORE?Const.BAD_STRING:Const.AVG_STRING;                        
                 string phoneActual = "";
                 phoneActualRate = TextUtils.WrapTextColor(phoneActualRate, actualColor, isBold:false);
 

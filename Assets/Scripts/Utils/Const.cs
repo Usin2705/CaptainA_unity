@@ -51,6 +51,12 @@ public static class Const
     public const string AVG_COLOR = "#ffa500ff";
     public const string GOOD_COLOR = "#0000ffff";    
 
+    // Maximum for bad string is 9 length (for UI to look nice in most case), ideal was "Incorrect"
+    public const string BAD_STRING = "Flawed";    
+    public const string AVG_STRING = "Almost correct";
+    // The onboarding is manual text input so we don't use this for now
+    public const string GOOD_STRING = "Correct";    
+
     /* Score range (less than) for each type of scoring
     *  The bad score actually depend on the model
     *  Without finetuned, 3rd quartile (75%) of error from FA score

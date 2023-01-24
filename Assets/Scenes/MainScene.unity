@@ -1630,7 +1630,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10.000244, y: -450}
+  m_AnchoredPosition: {x: -10, y: -450}
   m_SizeDelta: {x: -20, y: 180}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &214610804
@@ -7951,7 +7951,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CaptainaA v0.9.6
+  m_text: CaptainaA v0.9.81
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cc8e115a5df151a409670fe1573abdee, type: 2}
   m_sharedMaterial: {fileID: -4676070619788108815, guid: cc8e115a5df151a409670fe1573abdee, type: 2}
@@ -11814,7 +11814,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10.000244, y: -450}
+  m_AnchoredPosition: {x: -10, y: -450}
   m_SizeDelta: {x: -20, y: 180}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1267998834
@@ -17999,7 +17999,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10.000244, y: -150}
+  m_AnchoredPosition: {x: -10, y: -150}
   m_SizeDelta: {x: -20, y: 180}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2096808397
@@ -18299,7 +18299,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10.000244, y: -450}
+  m_AnchoredPosition: {x: -10, y: -450}
   m_SizeDelta: {x: -20, y: 180}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2130678400
