@@ -21,7 +21,7 @@ MonoBehaviour:
   front_credit: Aalto University Language Centre
   side_credit: Aino Huhtaniemi
   front_1: {fileID: 21300000, guid: 0bc38adb239df0141ad0faf837016bdb, type: 3}
-  front_2: {fileID: 21300000, guid: 0bc38adb239df0141ad0faf837016bdb, type: 3}
+  front_2: {fileID: 21300000, guid: 7a0b996c694fad24991ef40e213555fd, type: 3}
   side_1: {fileID: 21300000, guid: 2e2db5e7212027540bea7ac2b1d8e3e9, type: 3}
   side_2: {fileID: 21300000, guid: 2e2db5e7212027540bea7ac2b1d8e3e9, type: 3}
   animaClip: {fileID: 7400000, guid: 8f2720e76aa531941835cb38f9df03ca, type: 2}
