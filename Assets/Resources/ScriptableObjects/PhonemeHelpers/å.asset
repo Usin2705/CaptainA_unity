@@ -22,4 +22,4 @@ MonoBehaviour:
   front_2: {fileID: 0}
   side_1: {fileID: 0}
   side_2: {fileID: 0}
-  animaClip: {fileID: 0}
+  animaClip: {fileID: 7400000, guid: 503575d5ae7e8154e9a52499d166467b, type: 2}

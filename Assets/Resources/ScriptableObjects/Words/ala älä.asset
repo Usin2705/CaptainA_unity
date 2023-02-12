@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: "ala \xE4l\xE4"
   m_EditorClassIdentifier: 
   word: "Ala - \xC4l\xE4"
-  definition: Area. Field. Domain. Industry - Don't
+  definition: 'Area. Field. Domain. Industry - Don''t
+
+    (Please note that the
+    current model cannot evaluate short words precisely.)'
   credit: Aalto University Language Centre
   topicList: 010000000700000008000000
   sampleAudio: {fileID: 8300000, guid: 6450629c93d2f7e25b83cf529eb06da3, type: 3}

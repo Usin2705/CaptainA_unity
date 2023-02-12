@@ -7951,7 +7951,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CaptainaA v0.9.82
+  m_text: CaptainaA v0.9.85
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cc8e115a5df151a409670fe1573abdee, type: 2}
   m_sharedMaterial: {fileID: -4676070619788108815, guid: cc8e115a5df151a409670fe1573abdee, type: 2}
@@ -18234,10 +18234,11 @@ Animation:
   m_GameObject: {fileID: 2127582240}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 0}
+  m_Animation: {fileID: 7400000, guid: 4000797dc4519194e9228f0c0e6f30d5, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 8f2720e76aa531941835cb38f9df03ca, type: 2}
   - {fileID: 7400000, guid: a372e7fc7a114b04bb4c43ae9940f0cf, type: 2}
+  - {fileID: 7400000, guid: 4000797dc4519194e9228f0c0e6f30d5, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0

@@ -23,5 +23,5 @@ MonoBehaviour:
   front_1: {fileID: 0}
   front_2: {fileID: 0}
   side_1: {fileID: 21300000, guid: 1a03116768ad60d46b2741000bc07d1d, type: 3}
-  side_2: {fileID: 0}
-  animaClip: {fileID: 0}
+  side_2: {fileID: 21300000, guid: 1a03116768ad60d46b2741000bc07d1d, type: 3}
+  animaClip: {fileID: 7400000, guid: 503575d5ae7e8154e9a52499d166467b, type: 2}

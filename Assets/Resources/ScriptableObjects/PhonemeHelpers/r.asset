@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phoneme: r
   ipa: r
-  instruction: 
+  instruction: The <b>rolled R</b> sound is challenging in Finnish. To help practice,
+    we recommend watching the video linked below. Don't be discouraged if you struggle
+    with it - even native Finnish speakers find it difficult.
   videoURL: https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=328c8ff5-ed8f-402d-8508-1a35d56d5bca
   front_credit: 
   side_credit: Aino Huhtaniemi
   front_1: {fileID: 0}
   front_2: {fileID: 0}
   side_1: {fileID: 21300000, guid: 72e87ed26daec404096024ecf262e41a, type: 3}
-  side_2: {fileID: 0}
-  animaClip: {fileID: 0}
+  side_2: {fileID: 21300000, guid: 72e87ed26daec404096024ecf262e41a, type: 3}
+  animaClip: {fileID: 7400000, guid: 503575d5ae7e8154e9a52499d166467b, type: 2}

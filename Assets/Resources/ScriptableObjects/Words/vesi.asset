@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: vesi
   m_EditorClassIdentifier: 
   word: Vesi
-  definition: Water
+  definition: 'Water
+
+    (Please note that the current model cannot evaluate short
+    words precisely.)'
   credit: Aalto University Language Centre
   topicList: 000000000500000008000000
   sampleAudio: {fileID: 8300000, guid: d74fb45e8fb622517951b57cf2bb32c3, type: 3}

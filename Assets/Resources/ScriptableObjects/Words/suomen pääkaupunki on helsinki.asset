@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
   m_Name: "suomen p\xE4\xE4kaupunki on helsinki"
   m_EditorClassIdentifier: 
-  word: "Suomen p\xE4\xE4kaupunki on helsinki."
+  word: "Suomen p\xE4\xE4kaupunki on Helsinki."
   definition: The capital city of Finland is Helsinki.
   credit: Aalto University Language Centre
   topicList: 0200000003000000

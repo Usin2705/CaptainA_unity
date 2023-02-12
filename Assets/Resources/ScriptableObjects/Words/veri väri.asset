@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: "veri v\xE4ri"
   m_EditorClassIdentifier: 
   word: "Veri - V\xE4ri"
-  definition: Blood - Colour
+  definition: 'Blood - Colour
+
+    (Please note that the current model cannot evaluate
+    short words precisely.)'
   credit: Aalto University Language Centre
-  topicList: 0100000007000000
+  topicList: 0200000007000000
   sampleAudio: {fileID: 8300000, guid: 4d864f99fed9aa04ca470d4cef3cdfd8, type: 3}
