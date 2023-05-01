@@ -75,7 +75,7 @@ public static class Const
     *  And some model allow for addtional scale (BAD, AVG, GOOD, EXCELLENT)
     *  
     */
-    public const float BAD_SCORE = 0.30f;
+    public const float BAD_SCORE = 0.20f;
     public const float AVG_SCORE = 0.80f;
     //public const float GOOD_SCORE = 0.92f;
 
@@ -96,6 +96,23 @@ public static class Const
     public const int MAX_REC_TIME = 8;
 
     public const string REPLAY_FILENAME = "recorded_speech";
+
+    // The time to buffer the audio clip
+    // This is to make sure users have some time to prepare
+    // before the recording start
+    // Note that this is twice the time of the buffer time
+    // 1 for playing notification sound + 1 for recording    
+    public const float BUFFER_TIME = 0.2f;
+
+    // Used to set the recording time for the audio clip
+    // The length of the audio clip depend on the number of characters
+    // of the text to be recorded
+    public const float SEC_PER_CHAR = 0.15f;
+
+    // Always provide at least 0.5s extra time for recording
+    // to avoid the speaker speak too slow and the recording stop
+    public const float EXTRA_TIME = 1.0f;
+
     // =======================================================
 
 

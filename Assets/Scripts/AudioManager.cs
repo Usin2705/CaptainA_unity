@@ -27,10 +27,11 @@ public class AudioManager : MonoBehaviour
 
     public void StartRecording()
     {
-        audioSource.PlayOneShot(recordNotif, 0.5f);
+        //Debug.Log("Play record notif");
+        audioSource.PlayOneShot(recordNotif, Const.BUFFER_TIME);
         //The notification sound cause some noise in the recording
         //So we need to delay it a little
-        Invoke(nameof(RecordSound), 0.5f);
+        Invoke(nameof(RecordSound), Const.BUFFER_TIME);
     }
 
     void RecordSound() 
@@ -63,7 +64,7 @@ public class AudioManager : MonoBehaviour
 
     void ReplayRecordedSample()
     {        
-        Debug.Log("Audio is playing");
+        //Debug.Log("Audio is playing");
 
         // TODO: trim the audio clip, not just the wavBuffer
         audioSource.Play();

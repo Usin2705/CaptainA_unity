@@ -26,9 +26,39 @@ public class ExercisePanel : MonoBehaviour
 
     [SerializeField] TMPro.TextMeshProUGUI predictionDebugText;
 
+    [SerializeField] GameObject progressBarGO;
+
     AudioClip sampleClip;
     AudioClip replayClip;
-    
+
+    private float countdownTime = 2.0f;
+    private float currentTime = 2.0f;
+    private string transcript;
+
+    void Update()
+    {
+        // Only run this code if the progress bar is active
+        if (progressBarGO.activeSelf == true) {
+            UpdateProgressBar();            
+        } 
+    }
+
+    void UpdateProgressBar() {
+        /*
+        *   This function will update the progress bar
+        */
+        currentTime -= Time.deltaTime;        
+        progressBarGO.GetComponent<Image>().fillAmount = currentTime / countdownTime;
+        
+        if (currentTime <= 0)
+        {
+            
+            currentTime = 0;
+            progressBarGO.SetActive(false);
+            OnFinnishTimer();
+        }
+    }
+
     void OnEnable() 
     {
         // Just in case the queue have 0 samples
@@ -114,67 +144,104 @@ public class ExercisePanel : MonoBehaviour
         QueueManager.GetQueueManager.ClearQueue();
 
     }
-    public void OnButtonPointerDown() {
-        // Attached to ButtonRecord GameObject        
-        //Debug.Log("Pointer Pressed");
-        errorTextGO.SetActive(false);
 
-        string transcript = TextUtils.SantinizeText(sampleTextGO.GetComponent<TMPro.TextMeshProUGUI>().text);
-        if (transcript!="") 
-        {
-            AudioManager.GetManager().StartRecording();
-        }        
+    void StartTimer()
+    /*
+    *   
+    */
+    {        
+        // The length of the audio clip depend on the number of characters
+        // of the text to be recorded + EXTRA_TIME
+        countdownTime = transcript.Length*Const.SEC_PER_CHAR + Const.EXTRA_TIME;
+
+        // Make sure the countdown time is not more than MAX_REC_TIME
+        if (countdownTime > Const.MAX_REC_TIME) countdownTime = Const.MAX_REC_TIME;        
+
+        // Start countdown so the user know how long the recording will be
+        currentTime = countdownTime;
+
+        // Hide the record button
+        recordButtonGO.SetActive(false);
+
+        // Show the countdown progress bar
+        progressBarGO.SetActive(true);
     }
 
+    public void OnRecordButtonClick() 
+    /*
+    *   This function also attached to RecordButton OnClick() in Unity
+    */
+    {
+        // Hide the error text
+        errorTextGO.SetActive(false);
 
-    public void OnButtonPointerUp() {
-        // Attached to ButtonRecord GameObject
-        //Debug.Log("Pointer Up");  
-        string transcript = TextUtils.SantinizeText(sampleTextGO.GetComponent<TMPro.TextMeshProUGUI>().text);
-        if (transcript!="") 
+        // Get the text from the input field
+        transcript = sampleTextGO.GetComponent<TMPro.TextMeshProUGUI>().text;
+
+        // Santinize the text
+        transcript = TextUtils.SantinizeText(transcript);
+
+        // Check if the text is empty or not
+        if (transcript=="") 
         {
-            recordButtonGO.SetActive(false);
-            resultPanelGO.SetActive(false);
-
-            // Maybe this won't cut the recording abruptly
-            // by delay the microphone end by 0.5sec            
-            StartCoroutine(DelayPost());
-            IEnumerator DelayPost()
-            {
-                yield return new WaitForSeconds(0.5f);
-            
-                // Send transcript to server
-                // errorTextGO to update if server yield error
-                // resultPanelGO to update result (by Enable the AudioClip and display text result)
-                predictionDebugText.text = "";
-                AudioManager.GetManager().GetAudioAndPost(transcript, errorTextGO, resultPanelGO, recordButtonGO, predictionDebugText);
-                
-                // TODO Make this part more efficiency
-                // The whole block stink
-                // The idea is return the audioSource.clip
-                // But the clip was trimmed & convert to wav in the above code
-                // so we RELOAD it back to audioclip again, which is a waste of processing
-                // but at least we got some nice trimmed audioclip        
-                yield return StartCoroutine(LoadAudioClip(Const.REPLAY_FILENAME));        
-
-                Button replayButton = replayButtonGO.transform.GetComponent<Button>();     
-                // To be safe, remove all old listeners were add to this component
-                replayButton.onClick.RemoveAllListeners();    
-                if(replayClip!=null) {
-                    replayButton.onClick.AddListener(()=> AudioManager.GetManager().PlayAudioClip(replayClip));            
-                    replayButtonGO.SetActive(true);
-                } else {
-                    replayButtonGO.SetActive(false);
-                }
-
-                // Look for the ResultTextButton (which will pop up the DetailScorePanel onclick)
-                Button resultTextButton = resultPanelGO.transform.Find("ResultText").transform.GetComponent<Button>();
-                // To be safe, remove all old listeners were add to this component
-                resultTextButton.onClick.RemoveAllListeners();
-                // Add onclick to text result
-                resultTextButton.onClick.AddListener(() => detailScorePanel.ShowDetailScorePanel(transcript, sampleClip, replayClip));
-            }
+            // Show the error text
+            errorTextGO.SetActive(true);
+            errorTextGO.GetComponent<TMPro.TextMeshProUGUI>().text = "Please enter a word or phrase";
         }
+        else 
+        {   
+            progressBarGO.SetActive(true);
+            // Start recording
+            AudioManager.GetManager().StartRecording();
+
+            // Start the timer
+            // Should not use invoke or delay as it will cause the timer to be inaccurate
+            StartTimer();
+        }
+    }    
+
+    public void OnFinnishTimer() {
+        resultPanelGO.SetActive(false);
+
+        // Maybe this won't cut the recording abruptly
+        // by delay the microphone end by 0.5sec            
+        StartCoroutine(DelayPost());
+        IEnumerator DelayPost()
+        {
+            yield return new WaitForSeconds(0.5f);
+        
+            // Send transcript to server
+            // errorTextGO to update if server yield error
+            // resultPanelGO to update result (by Enable the AudioClip and display text result)
+            predictionDebugText.text = "";
+            AudioManager.GetManager().GetAudioAndPost(transcript, errorTextGO, resultPanelGO, recordButtonGO, predictionDebugText);
+            
+            // TODO Make this part more efficiency
+            // The whole block stink
+            // The idea is return the audioSource.clip
+            // But the clip was trimmed & convert to wav in the above code
+            // so we RELOAD it back to audioclip again, which is a waste of processing
+            // but at least we got some nice trimmed audioclip        
+            yield return StartCoroutine(LoadAudioClip(Const.REPLAY_FILENAME));        
+
+            Button replayButton = replayButtonGO.transform.GetComponent<Button>();     
+            // To be safe, remove all old listeners were add to this component
+            replayButton.onClick.RemoveAllListeners();    
+            if(replayClip!=null) {
+                replayButton.onClick.AddListener(()=> AudioManager.GetManager().PlayAudioClip(replayClip));            
+                replayButtonGO.SetActive(true);
+            } else {
+                replayButtonGO.SetActive(false);
+            }
+
+            // Look for the ResultTextButton (which will pop up the DetailScorePanel onclick)
+            Button resultTextButton = resultPanelGO.transform.Find("ResultText").transform.GetComponent<Button>();
+            // To be safe, remove all old listeners were add to this component
+            resultTextButton.onClick.RemoveAllListeners();
+            // Add onclick to text result
+            resultTextButton.onClick.AddListener(() => detailScorePanel.ShowDetailScorePanel(transcript, sampleClip, replayClip));
+        }
+        
     }
 
     IEnumerator LoadAudioClip(string filename) 

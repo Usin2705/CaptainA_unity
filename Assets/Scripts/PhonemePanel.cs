@@ -25,7 +25,11 @@ public class PhonemePanel : MonoBehaviour
         phonemePanel.SetActive(true);
     }
 
+    
     public void OnVideoButtonClick()
+    /*
+    *   This function also attached to VideoButton OnClick() in Unity
+    */
     {
         Application.OpenURL(phonemeSO.videoURL);
     }
