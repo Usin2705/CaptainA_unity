@@ -10,13 +10,15 @@ public class NavigationBar : MonoBehaviour
     // Panel orders:
     // 1: MainPanel (Freestyle)
     // 2: Topic
-    // 3: Profile
+    // 3: Vocab
+    // 4: Profile
 
     [SerializeField] GameObject[] tabs;
     // Tab orders:
     // 1: MainTab (Freestyle)
     // 2: Topic
-    // 3: Profile
+    // 3: Vocab
+    // 4: Profile
 
     [SerializeField] GameObject ExercisePanel;
 
