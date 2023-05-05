@@ -8,9 +8,9 @@ using System.IO;
 public static class SaveData
 {
     public static void SaveIntoJson(UserData userData){
-        string data = JsonUtility.ToJson(userData);
-        System.IO.File.WriteAllText(Application.persistentDataPath + "/UserData.json", data);
-        Debug.Log("File save as " + Application.persistentDataPath + "/UserData.json");
+        string jsonString = JsonUtility.ToJson(userData);
+        System.IO.File.WriteAllText($"{Application.persistentDataPath}/UserData.json", jsonString);
+        Debug.Log("File save as " + $"{Application.persistentDataPath}/UserData.json");
     }
 
 	public static UserData LoadFromJson(){

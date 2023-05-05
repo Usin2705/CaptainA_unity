@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
   m_Name: "h\xE4n sit\xE4 katseli oudoksuin ma h\xE4nt\xE4 katselin hymysuin"
   m_EditorClassIdentifier: 
-  word: "H\xE4n sit\xE4 katseli oudoksuin, Ma h\xE4nt\xE4 katselin hymysuin,"
-  definition: (S)he looked at it in amazement, I looked at her/him with a smile,
+  word: "H\xE4n sit\xE4 katseli oudoksuin. Ma h\xE4nt\xE4 katselin hymysuin."
+  definition: (S)he looked at it in amazement. I looked at her/him with a smile.
     (AI translation)
   credit: "K\xE4rp\xE4nen - Paavo Cajander. Read by Maire Rhode, Librivox. "
   topicList: 0200000009000000

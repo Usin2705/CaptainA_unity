@@ -48,7 +48,7 @@ public static class Const
     // ================= TEXR COLOR SCORE ===================
     // Rich text color tag for each type of scoring
     public const string BAD_COLOR = "#ff0000ff";    
-    public const string AVG_COLOR = "#ffa500ff";
+    public const string AVG_COLOR = "#ff8000";
     public const string GOOD_COLOR = "#0000ffff";    
 
     // Maximum for bad string is 9 length (for UI to look nice in most case), ideal was "Incorrect"
@@ -97,21 +97,14 @@ public static class Const
 
     public const string REPLAY_FILENAME = "recorded_speech";
 
-    // The time to buffer the audio clip
-    // This is to make sure users have some time to prepare
-    // before the recording start
-    // Note that this is twice the time of the buffer time
-    // 1 for playing notification sound + 1 for recording    
-    public const float BUFFER_TIME = 0.2f;
-
     // Used to set the recording time for the audio clip
     // The length of the audio clip depend on the number of characters
     // of the text to be recorded
-    public const float SEC_PER_CHAR = 0.15f;
+    public const float SEC_PER_CHAR = 0.1f;
 
-    // Always provide at least 0.5s extra time for recording
+    // Always provide at least 1.5s extra time for recording
     // to avoid the speaker speak too slow and the recording stop
-    public const float EXTRA_TIME = 1.0f;
+    public const float EXTRA_TIME = 1.5f;
 
     // =======================================================
 

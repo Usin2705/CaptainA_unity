@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
   m_Name: "kun p\xE4iv\xE4n koitossa havahdun niin silt\xE4 saan heti suutelun"
   m_EditorClassIdentifier: 
-  word: "Kun p\xE4iv\xE4n koitossa havahdun, Niin silt\xE4 saan heti suutelun;"
+  word: "Kun p\xE4iv\xE4n koitossa havahdun, niin silt\xE4 saan heti suutelun;"
   definition: When I wake up at dawn, I immediately get a kiss from it; (AI translation)
   credit: "K\xE4rp\xE4nen - Paavo Cajander. Read by Maire Rhode, Librivox."
   topicList: 0200000009000000

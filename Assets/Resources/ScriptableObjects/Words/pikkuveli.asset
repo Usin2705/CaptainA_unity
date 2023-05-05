@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0ceab08c0ea2d6b70c0afb1538501, type: 3}
   m_Name: pikkuveli
   m_EditorClassIdentifier: 
-  word: pikkuveli
+  word: Pikkuveli
   definition: Younger brother.
   credit: 
   topicList: 0100000008000000

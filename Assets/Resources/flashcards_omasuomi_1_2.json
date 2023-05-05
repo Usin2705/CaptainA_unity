@@ -1,0 +1,34 @@
+{
+   "cards":[
+      {
+         "frontText":"coffee",
+         "backText":"kahvi",
+         "interval":1,
+         "easeFactor":2.5,
+         "repetitions":0,
+         "nextReviewDateStr":"2023-05-05T15:30:00Z",
+         "frontLanguage":"EN",
+         "backLanguage":"FI"
+      },
+      {
+         "frontText":"flower",
+         "backText":"kukka",
+         "interval":1,
+         "easeFactor":2.5,
+         "repetitions":0,
+         "nextReviewDateStr":"2023-05-05T15:30:00Z",
+         "frontLanguage":"EN",
+         "backLanguage":"FI"
+      },
+      {
+         "frontText":"what",
+         "backText":"mitä",
+         "interval":1,
+         "easeFactor":2.5,
+         "repetitions":0,
+         "nextReviewDateStr":"2023-05-05T15:30:00Z",
+         "frontLanguage":"EN",
+         "backLanguage":"FI"
+      }
+   ]
+}
