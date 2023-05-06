@@ -24,7 +24,7 @@ public class CardManagerSM2
     {
         // Path.Combine combines strings into a file path
         // Application.StreamingAssets points to Assets/StreamingAssets in the Editor, and the StreamingAssets folder in a build
-        string filePath = Path.Combine(Application.persistentDataPath, "flashcards_omasuomi_1_2.json");
+        string filePath = Path.Combine(Application.persistentDataPath, "flashcards_omasuomi_1_Finnish1.json");
 
 		if(File.Exists(filePath)) {
             // Since we can't save in Resources folder, we save the edited flashcard file in the persistentDataPath
@@ -39,24 +39,31 @@ public class CardManagerSM2
             // If the filePath is not exit, load the json file from Resources folder        
             // Load the json file from Resources folder
             // When load the json file from Resources folder as TextAsset, the file extension should be removed
-            TextAsset jsonFile = Resources.Load<TextAsset>("flashcards_omasuomi_1_2");
+            TextAsset jsonFile = Resources.Load<TextAsset>("flashcards_omasuomi_1_Finnish1");
             Debug.Log("File loaded from " + jsonFile.text);
             flashCard = JsonUtility.FromJson<FlashCard>(jsonFile.text);
         }
 
-        foreach (Card item in flashCard.cards)
+        foreach (Card card in flashCard.cards)
         {
-            Debug.Log(item.frontText + item.backText + item.interval + item.easeFactor + item.repetitions + item.nextReviewDateStr + item.frontLanguage + item.backLanguage);            
+            // If the cardType is not set, set it to NEW
+            // Default value for int is 0, so if the cardType is not set, it will be 0
+            //if (card.cardType == null) card.cardType = (int)CARD_TYPE.NEW;
+            Debug.Log(card.ToString());                        
         }
     }
 
     public Card GetNextCard()
     {
-        Card nextCard = flashCard.cards.Where(card => DateTime.Parse(card.nextReviewDateStr) <= DateTime.UtcNow)
-            .OrderBy(card => DateTime.Parse(card.nextReviewDateStr))
-            .FirstOrDefault();
-
-        return nextCard;
+        try {
+            Card nextCard = flashCard.cards.Where(card => DateTime.Parse(card.nextReviewDateStr) <= DateTime.UtcNow)
+                .OrderBy(card => DateTime.Parse(card.nextReviewDateStr))
+                .FirstOrDefault();
+            return nextCard;
+        } catch (ArgumentNullException e) {
+            Debug.LogError($"Caught ArgumentNullException: {e.Message}");
+            return null;
+        }        
     }
     
     public void UpdateCardReviewDate(Card card, int quality) 
@@ -104,7 +111,7 @@ public class CardManagerSM2
         Debug.Log("Next card.interval: " + card.interval);
         Debug.Log("Next review date: " + card.nextReviewDateStr);
 
-        SaveIntoJson(flashCard, "flashcards_omasuomi_1_2");
+        SaveIntoJson(flashCard, "flashcards_omasuomi_1_Finnish1_TESSSSSSSSSSSSTTTTTTTTT");
     }
 
     public void SaveIntoJson(FlashCard flashCard, string fileName){
@@ -122,16 +129,40 @@ public class Card
 {
     public string frontText;
     public string backText;
+    public int cardType; // 0: New, 1: Learning, 2: Review, 3: Relearning
     public float interval;
     public float easeFactor;
     public int repetitions;
     public string nextReviewDateStr; // Use the ISO 8601 format for the string representation. To convert back use DateTime.Parse(nextReviewDateStr);
     public string frontLanguage;
     public string backLanguage;
+
+    public override string ToString()
+    {
+        return $"Front Text: {frontText}\nBack Text: {backText}\nCard Type: {cardType}\nInterval: {interval}\nEase Factor: {easeFactor}\nRepetitions: {repetitions}\nNext Review Date Str: {nextReviewDateStr}\nFront Language: {frontLanguage}\nBack Language: {backLanguage}";
+    }
 }
 
 [System.Serializable]
 public class FlashCard
 {
     public List<Card> cards;
+}
+
+public enum CARD_TYPE
+{
+    /*
+    *   In Anki, there are 4 types of card:
+    *   1. New
+    *   2. Learning
+    *   3. Review
+    *   4. Relearning
+    *   https://faqs.ankiweb.net/what-spaced-repetition-algorithm.html#what-are-the-different-card-types
+    *   Each card type has different behavior in the algorithm   
+    *
+    */
+    NEW,
+    LEARNING,
+    REVIEW,
+    RELEARNING
 }

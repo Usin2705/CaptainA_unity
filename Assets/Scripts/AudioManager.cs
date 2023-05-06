@@ -64,6 +64,20 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(NetworkManager.GetManager().ServerPost(transcript, wavBuffer, textErrorGO, resultPanelGO, recordButtonGO, debugText));
     }
 
+    public void GetAudioAndPost(string transcript, GameObject textErrorGO, TMPro.TextMeshProUGUI flashCardText, GameObject recordButtonGO, TMPro.TextMeshProUGUI debugText)
+    {
+    /*
+    *   Different from the above function, this function will not update the result panel
+    *   Instead, it will update the flashCardText
+    *   This function is used in the SuperMemo Panel
+    */
+        Microphone.End("");        
+        byte[] wavBuffer = SavWav.GetWav(audioSource.clip, out uint length, trim:true);
+        SavWav.Save(Const.REPLAY_FILENAME, audioSource.clip, trim:true); // for debug purpose
+
+        StartCoroutine(NetworkManager.GetManager().ServerPost(transcript, wavBuffer, textErrorGO, flashCardText, recordButtonGO, debugText));
+    }
+
     void ReplayRecordedSample()
     {        
         //Debug.Log("Audio is playing");

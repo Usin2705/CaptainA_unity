@@ -208,7 +208,7 @@ public class ExercisePanel : MonoBehaviour
         StartCoroutine(DelayPost());
         IEnumerator DelayPost()
         {
-            yield return new WaitForSeconds(0.5f);
+            //yield return new WaitForSeconds(0.5f);
         
             // Send transcript to server
             // errorTextGO to update if server yield error
