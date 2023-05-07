@@ -156,4 +156,13 @@ public static class Const
     // Check if user open the game for the first time
     public const string PREF_FIRST_KEY = "IsFirstTime";
     // =======================================================
+
+    // ===================== FLASH CARD CONST =====================
+
+    // Check if user open the game for the first time
+    public const int CARD_AGAIN = 0;
+    public const int CARD_HARD = 3;
+    public const int CARD_GOOD = 4;
+    public const int CARD_EASY = 5;
+    // =======================================================
 }

@@ -9,6 +9,10 @@ public class SuperMemoPanel : MonoBehaviour
 {
     [SerializeField] TMPro.TextMeshProUGUI frontCardText; // Front card
     [SerializeField] TMPro.TextMeshProUGUI backCardText; // Back card    
+    [SerializeField] TMPro.TextMeshProUGUI intervalText_again; // Interval text for AGAIN button
+    [SerializeField] TMPro.TextMeshProUGUI intervalText_hard; // Interval text for HARD button
+    [SerializeField] TMPro.TextMeshProUGUI intervalText_good; // Interval text for GOOD button
+    [SerializeField] TMPro.TextMeshProUGUI intervalText_easy; // Interval text for EASY button
     [SerializeField] GameObject showAnswerGO; // Show answer GO
     [SerializeField] GameObject qualityBarGO; // Quality bar GO
     [SerializeField] GameObject recordButtonGO;     
@@ -69,8 +73,32 @@ public class SuperMemoPanel : MonoBehaviour
         // Hide the show answer button
         showAnswerGO.SetActive(false);
 
+        // update the expected interval for 4 quality buttons
+        float interval = cardManager.GetCarNewInterval(currentCard, 0);
+        intervalText_again.text = GetIntervalText(interval);
+
+        interval = cardManager.GetCarNewInterval(currentCard, 3);
+        intervalText_hard.text = GetIntervalText(interval);
+
+        interval = cardManager.GetCarNewInterval(currentCard, 4);
+        intervalText_good.text = GetIntervalText(interval);
+
+        interval = cardManager.GetCarNewInterval(currentCard, 5);
+        intervalText_easy.text = GetIntervalText(interval);        
+        
         // Show the quality bar
         qualityBarGO.SetActive(true);
+    }
+
+    public string GetIntervalText(float interval) {
+        if (interval >= 1.0f) {
+            return interval.ToString("0") + " d";
+        } else if (interval < 1.0f && interval >= 0.05f) {
+            return (interval*24).ToString("0") + " h";
+        } else {
+            return (interval*24*60).ToString("0") + " m";
+        }
+        
     }
 
     public void clearAnswer()
@@ -91,7 +119,8 @@ public class SuperMemoPanel : MonoBehaviour
     *   The quality is from the OnClick event of the button in the SuperMemoPanel.
     */
     {
-        cardManager.UpdateCardReviewDate(currentCard, quality);
+        float interval = cardManager.GetCarNewInterval(currentCard, quality);
+        cardManager.UpdateCardToJson(currentCard, quality, interval);
         ShowNextCard();
         clearAnswer();
     }

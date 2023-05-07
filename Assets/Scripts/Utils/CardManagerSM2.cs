@@ -66,48 +66,196 @@ public class CardManagerSM2
         }        
     }
     
-    public void UpdateCardReviewDate(Card card, int quality) 
+    public float GetCarNewInterval(Card card, int quality) 
     {       
-        // This code resets the repetitions count, interval, and ease factor to their initial values, 
-        // effectively treating the card as if it's being seen for the first time. 
-        // This will cause the card to be reviewed more frequently, which aligns with the principles 
-        // of spaced repetition learning for items with low-quality scores.
-        if (quality < 3)
-        {           
-            card.repetitions = 0;            
-            card.interval = 1;
-            card.easeFactor = 2.5f; // the default starting ease factor
+        /*
+        *   This calculate the interval for the next review date
+        *   based on the quality of the button (Again, Hard, Good, Easy)
+        *   The interval is in minutes or days depend on the interval time
+        *   The interval time is calculated based on Anki algorithm
+        *   When the card enter REVIEW, the interval time is calculated based on SM2 algorithm
+        *   We need to calculate the interval in advance to show the next review date to the user
+        */        
 
-        }  else {
-            // Quality in the SM2 formula have range from 0 to 5.
-            // https://www.supermemo.com/en/blog/application-of-a-computer-to-improve-the-results-obtained-in-working-with-the-supermemo-method
-            // Quality in the Anki only have 4 scale 0 - 3 (only 0 is counted as failure)
-            // https://faqs.ankiweb.net/what-spaced-repetition-algorithm.html
-            float newEaseFactor = card.easeFactor + (0.1f - (5 - quality) * (0.08f + (5 - quality) * 0.02f));
-
-            // Author noticed that E-Factors should not fall below the value of 1.3. Items having 
-            // E-Factors lower than 1.3 were repeated annoyingly often and always seemed to have inherent 
-            // flaws in their formulation (usually they did not conform to the minimum information principle)        
-            card.easeFactor = Mathf.Max(newEaseFactor, 1.3f);
-
-            card.repetitions++;
-
-            // Calculate the new interval
-            if (card.repetitions == 1)
+        // When you select an ease button on a review card, Anki also applies a small amount of random “fuzz” 
+        // to prevent cards that were introduced at the same time and given the same ratings from sticking together 
+        // and always coming up for review on the same day.                
+        float fuzz_factor = UnityEngine.Random.Range(0.0f/24f/60f, 5f/24f/60f); // 0 to 5 minutes
+        
+        // ########################## NEW CARD ##########################
+        // The schedule for new card is 1minute, 5.5 minutes, 10m (next step) and 4 d (REVIEW)
+        // https://docs.ankiweb.net/deck-options.html?#learning-steps
+        // https://docs.ankiweb.net/studying.html#learningrelearning-cards
+        if (card.cardType == (int)CARD_TYPE.NEW) 
+        {
+            if (quality < Const.CARD_HARD) 
             {
-                card.interval = 1;
+                card.interval = 1f/24f/60f; // 1 minutes
+            } else if (quality == Const.CARD_HARD) 
+            {
+                card.interval = 5.5f/24f/60f; // average of AGAIN and GOOD
+            } else if (quality == Const.CARD_GOOD) 
+            {            
+                card.interval = 10f/24f/60f; // 10m
+            } else if (quality == Const.CARD_EASY) 
+            {                
+                card.interval = 4.0f; // 4 day
             }
-            else if (card.repetitions == 2)
+        
+        } else if (card.cardType == (int) CARD_TYPE.LEARNING) {
+        // ########################## LEARNING CARD ##########################
+        // The schedule for LEARNING card is 1 minute (first step), repeat, 10 m (next step) and 4 d (REVIEW)        
+            if (quality < Const.CARD_AGAIN) 
             {
-                card.interval = 6;
+                card.interval = 1f/24f/60f; // 1 minutes
+            } else if (quality == Const.CARD_AGAIN) 
+            {
+                // Repeat the current delay
+                card.interval = card.interval + fuzz_factor/20f;
+            } else if (quality == Const.CARD_GOOD) 
+            {            
+               card.interval = 10f/24f/60f + fuzz_factor/20f; // 10m
+            } else if (quality == Const.CARD_EASY) 
+            {                
+                card.interval = 4.0f + fuzz_factor; // 4 day
             }
-            else
+        
+        } else if (card.cardType == (int) CARD_TYPE.RELEARNING) {
+        // ########################## RELEARNING CARD ##########################
+        // The schedule for LEARNING card is 1 minute (first step), repeat, 1 d (next step) and 4 d (REVIEW)        
+            if (quality < Const.CARD_AGAIN) 
             {
-                card.interval = card.interval * card.easeFactor;
+                card.interval = 1f/24f/60f; // 1 minutes
+            } else if (quality == Const.CARD_AGAIN) 
+            {
+                // Repeat the current delay
+                card.interval = card.interval + fuzz_factor/20f;
+            } else if (quality == Const.CARD_GOOD) 
+            {            
+                card.interval = 1.0f + fuzz_factor; // 1 day
+            } else if (quality == Const.CARD_EASY) 
+            {                
+                card.interval = 4.0f + fuzz_factor; // 4 day
+            }
+    
+        } else if (card.cardType == (int) CARD_TYPE.REVIEW) {
+        // ########################## REVIEW CARD ##########################
+        // The schedule for REVIEW card is - 0.2f, (move back) easeFactor, repeat (-0.15f), 0 , and 1.3* Ease + 0.15f
+            if (quality < Const.CARD_AGAIN) {
+                // The card is placed into relearning mode, the ease is decreased by 20 percentage points 
+                // (that is, 20 is subtracted from the ease value, which is in units of percentage points), 
+                // and the current interval is multiplied by the value of new interval 
+                // (this interval will be used when the card exits relearning mode).
+
+                // When you forget a review card, it is said to have 'lapsed', and the card must be relearnt. 
+                // The default behaviour for lapsed reviews is to reset the interval to 1 (i.e. make it due tomorrow), 
+                // and put it in the learning queue for a refresher in 10 minutes. 
+                // This behaviour can be customized with the options listed below.
+                float newEaseFactor = card.easeFactor - 0.2f;
+                card.easeFactor = Mathf.Max(newEaseFactor, 1.3f);
+                card.interval = 10f/24f/60f; // 10 minutes
+            } 
+            
+            else if (quality == Const.CARD_HARD) {
+                // The multiplier used when you use the Hard button. 
+                // The percentage is relative to the previous interval: e.g. with a default of 1.20, 
+                // a card with a 10-day interval will be given 12 days.
+                float hard_multiplier = 1.2f;
+
+                // The card’s ease is decreased by 15 percentage points and the current interval 
+                // is multiplied by the value of hard interval (1.2 by default)
+                float newEaseFactor = card.easeFactor - 0.15f;
+                card.easeFactor = Mathf.Max(newEaseFactor, 1.3f);
+                
+                // The current interval is multiplied by the value of hard interval (1.2 by default)
+                card.interval = card.interval * hard_multiplier + fuzz_factor; 
+
+            } else if (quality == Const.CARD_GOOD) 
+            {                            
+                //The current interval is multiplied by the current ease. The ease is unchanged.                
+                float newEaseFactor = card.easeFactor;
+                card.easeFactor = Mathf.Max(newEaseFactor, 1.3f);    
+                card.interval = card.interval * card.easeFactor + fuzz_factor;                 
+                
+            } else if (quality == Const.CARD_EASY) 
+            {
+                // An extra multiplier applied to the interval when a review card is answered Easy. 
+                // With the default value of 1.30, Easy will give an interval that is 1.3 times the Good interval 
+                // (e.g. if the Good interval was 10 days, the Easy interval would be around 13 days).
+                float easy_multiplier = 1.3f; 
+
+                // The current interval is multiplied by the current ease times the easy bonus 
+                // and the ease is increased by 15 percentage points.
+                float newEaseFactor = card.easeFactor + 0.15f;       
+
+                card.easeFactor = Mathf.Max(newEaseFactor, 1.3f);
+                card.interval = card.interval * card.easeFactor * easy_multiplier + fuzz_factor;                                                
             }
         }
+        
+        //  Intervals will never be increased beyond the value of maximum interval (36500 by default).
+        card.interval = Mathf.Min(card.interval, 36500f);
 
-        card.nextReviewDateStr = DateTime.UtcNow.AddDays(card.interval).ToString("O"); // Use the ISO 8601 format for the string representation
+        Debug.Log("Card interval: " + card.interval);
+        return card.interval;
+    }
+
+    public void UpdateCardToJson(Card card, int quality, float interval) {
+        // ########################## NEW CARD ##########################
+        // If the card is new and get HARD or GOOD move the card to LEARNING
+        // If the card is new and get EASY move the card to REVIEW
+        // https://docs.ankiweb.net/deck-options.html?#learning-steps
+        // https://docs.ankiweb.net/studying.html#learningrelearning-cards
+
+        if (card.cardType == (int)CARD_TYPE.NEW) {
+            if ((quality == Const.CARD_HARD) || (quality == Const.CARD_GOOD)) {
+                card.cardType = (int)CARD_TYPE.LEARNING;
+            }             
+            
+            else if (quality ==  Const.CARD_EASY ) card.cardType = (int)CARD_TYPE.REVIEW;
+        }
+
+        else if (card.cardType == (int)CARD_TYPE.LEARNING)         
+        {
+            // ########################## LEARNING CARD ##########################
+            // AGAIN: Moves the card back to the first step setted in Learning/Relearning Steps (DO NOTHING)
+            // When you press Good on a card after the 10 minute step, it will be delayed until the next day.
+            // (become relearning)
+            // Easy always move to REVIEW
+
+            if (quality == Const.CARD_GOOD) {
+                card.cardType = (int)CARD_TYPE.RELEARNING;
+            } else if (quality == Const.CARD_EASY) {
+                card.cardType = (int)CARD_TYPE.REVIEW;
+            }
+        } 
+        
+        else if ((card.cardType == (int)CARD_TYPE.RELEARNING)) {
+            // ########################## RELEARNING CARD ##########################
+            // AGAIN: Moves the card back to the first step setted in Learning/Relearning Steps (LEARNING)
+            // When you press Good on the card the next day, it will leave learning 
+            // (i.e. it will graduate), and become a review card
+            // Easy always move to REVIEW
+
+            if (quality == Const.CARD_AGAIN) {
+                card.cardType = (int)CARD_TYPE.LEARNING;
+            } 
+
+            else if ((quality == Const.CARD_GOOD) || (quality == Const.CARD_EASY)) {
+                card.cardType = (int)CARD_TYPE.REVIEW;
+            }
+        } 
+        
+        else if ((card.cardType == (int)CARD_TYPE.REVIEW)) {
+            // ########################## REVIEW CARD ##########################
+            // AGAIN: Moves the card back to the first step setted in Learning/Relearning Steps (LEARNING)
+            // When you press Good on the card the next day, it will leave learning 
+            // (i.e. it will graduate), and become a review card
+            if (quality == Const.CARD_AGAIN) {
+                card.cardType = (int)CARD_TYPE.LEARNING;
+            }
+        }        
+        card.nextReviewDateStr = DateTime.UtcNow.AddDays(interval).ToString("O"); // Use the ISO 8601 format for the string representation
         Debug.Log("Next card.interval: " + card.interval);
         Debug.Log("Next review date: " + card.nextReviewDateStr);
 
@@ -163,6 +311,6 @@ public enum CARD_TYPE
     */
     NEW,
     LEARNING,
-    REVIEW,
-    RELEARNING
+    RELEARNING,
+    REVIEW,    
 }
