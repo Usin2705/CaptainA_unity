@@ -22,6 +22,8 @@ public class NavigationBar : MonoBehaviour
 
     [SerializeField] GameObject ExercisePanel;
 
+    [SerializeField] GameObject SuperMemoPanel;
+
     public void NavigationBarClick(GameObject activePanel) 
     /*
     *  Can only be attached to OnClick with 1 variable,
@@ -53,18 +55,22 @@ public class NavigationBar : MonoBehaviour
                 panel.SetActive(false);
             }
             */
-            GameObject activeBar = tabs[index].transform.Find("ActiveBar").gameObject;
-            activeBar.SetActive(panel == activePanel);
-            panel.SetActive(panel == activePanel);    
 
+            // Disable other extra panel before swap panel
             //  There're aditional panel (ExercisePanel) that will show on top
             //  of MainPanel (it hierachy is below MainPanel)
             //  We will also need to deactivate it when MainPanel is active
-            if (panel == activePanel && index==0) 
-            {
-                ExercisePanel.SetActive(false);
-            }
+
             
+            // There're aditional panel (SuperMemoPanel) that will show on top
+            // of MainPanel & TopicPanel (it hierachy is below TopicPanel)
+            // We will also need to deactivate it when MainPanel or TopicPanel is active
+            if (index !=1) ExercisePanel.SetActive(false);
+            if (index !=2) SuperMemoPanel.SetActive(false);
+
+            GameObject activeBar = tabs[index].transform.Find("ActiveBar").gameObject;
+            activeBar.SetActive(panel == activePanel);
+            panel.SetActive(panel == activePanel); 
 
         }
     }

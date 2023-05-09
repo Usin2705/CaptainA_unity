@@ -3,7 +3,7 @@
 *   The algorithm is described here:
 *   https://www.supermemo.com/en/blog/application-of-a-computer-to-improve-the-results-obtained-in-working-with-the-supermemo-method 
 *
-*   Part of the algorithm is also based on Anki algorithm.
+*   The main part of the algorithm isbased on Anki algorithm and their design
 *   The algorithm is described here: https://faqs.ankiweb.net/what-spaced-repetition-algorithm.html#why-doesnt-anki-use-supermemos-latest-algorithm
 *   and here: https://github.com/ankitects/anki/blob/main/pylib/anki/scheduler/v3.py
 *   and here: https://github.com/ankitects/anki/blob/main/pylib/anki/scheduler/v2.py
@@ -19,51 +19,17 @@ public class CardManagerSM2
 {
 
     public FlashCard flashCard;
+    public string flashCardFileName;
 
-    public CardManagerSM2()
+    public CardManagerSM2(string _flashCardFileName)
     {
-        // Path.Combine combines strings into a file path
-        // Application.StreamingAssets points to Assets/StreamingAssets in the Editor, and the StreamingAssets folder in a build
-        string filePath = Path.Combine(Application.persistentDataPath, "flashcards_omasuomi_1_Finnish1.json");
+        /*
+        *   FlashCard info update is done in CardDeckPanel
+        */
 
-		if(File.Exists(filePath)) {
-            // Since we can't save in Resources folder, we save the edited flashcard file in the persistentDataPath
-            // If filePath is exit, load the json file from the persistentDataPath            
-
-            // Read the json from the file into a string
-            string dataAsJson = File.ReadAllText(filePath);    
-            // Pass the json to JsonUtility, and tell it to create a UserData object from it            
-			flashCard = JsonUtility.FromJson<FlashCard>(dataAsJson);
-
-        } else {
-            // If the filePath is not exit, load the json file from Resources folder        
-            // Load the json file from Resources folder
-            // When load the json file from Resources folder as TextAsset, the file extension should be removed
-            TextAsset jsonFile = Resources.Load<TextAsset>("flashcards_omasuomi_1_Finnish1");
-            Debug.Log("File loaded from " + jsonFile.text);
-            flashCard = JsonUtility.FromJson<FlashCard>(jsonFile.text);
-        }
-
-        foreach (Card card in flashCard.cards)
-        {
-            // If the cardType is not set, set it to NEW
-            // Default value for int is 0, so if the cardType is not set, it will be 0
-            //if (card.cardType == null) card.cardType = (int)CARD_TYPE.NEW;
-            Debug.Log(card.ToString());                        
-        }
-    }
-
-    public Card GetNextCard()
-    {
-        try {
-            Card nextCard = flashCard.cards.Where(card => DateTime.Parse(card.nextReviewDateStr) <= DateTime.UtcNow)
-                .OrderBy(card => DateTime.Parse(card.nextReviewDateStr))
-                .FirstOrDefault();
-            return nextCard;
-        } catch (ArgumentNullException e) {
-            Debug.LogError($"Caught ArgumentNullException: {e.Message}");
-            return null;
-        }        
+        flashCardFileName = _flashCardFileName;
+        flashCard = SaveData.LoadFlashCard(flashCardFileName);
+        Debug.Log("FlashCard loaded: " + flashCard.name);
     }
     
     public float GetCarNewInterval(Card card, int quality) 
@@ -196,11 +162,25 @@ public class CardManagerSM2
         //  Intervals will never be increased beyond the value of maximum interval (36500 by default).
         card.interval = Mathf.Min(card.interval, 36500f);
 
-        Debug.Log("Card interval: " + card.interval);
+        //Debug.Log("Card interval: " + card.interval);
         return card.interval;
     }
 
     public void UpdateCardToJson(Card card, int quality, float interval) {
+        // Update the flashcard newcount or reviewcount
+        // This has to be done before update the card info
+        if (card.cardType == (int)CARD_TYPE.NEW) {
+            flashCard.newCount -= 1;
+            
+            // Make sure the newCount is not negative
+            flashCard.newCount = Math.Max(flashCard.newCount, 0);
+        } else if (card.cardType == (int)CARD_TYPE.REVIEW) {
+            flashCard.reviewCount -= 1;
+
+            // Make sure the reviewCount is not negative
+            flashCard.reviewCount = Math.Max(flashCard.reviewCount, 0);
+        }
+
         // ########################## NEW CARD ##########################
         // If the card is new and get HARD or GOOD move the card to LEARNING
         // If the card is new and get EASY move the card to REVIEW
@@ -255,16 +235,24 @@ public class CardManagerSM2
                 card.cardType = (int)CARD_TYPE.LEARNING;
             }
         }        
+
+        // Updpate the card info
+        // 1. Update nextReviewDateStr
+        // 2. Increase repetitions                        
+
         card.nextReviewDateStr = DateTime.UtcNow.AddDays(interval).ToString("O"); // Use the ISO 8601 format for the string representation
         Debug.Log("Next card.interval: " + card.interval);
         Debug.Log("Next review date: " + card.nextReviewDateStr);
+        Debug.Log("flashCardFileName: " + flashCardFileName);
 
-        SaveIntoJson(flashCard, "flashcards_omasuomi_1_Finnish1_TESSSSSSSSSSSSTTTTTTTTT");
+        card.repetitions += 1;
+        
+        flashCard.updateCard(card);
+        SaveData.SaveIntoJson(flashCard, flashCardFileName);
     }
 
     public void SaveIntoJson(FlashCard flashCard, string fileName){
-        string jsonString = JsonUtility.ToJson(flashCard, true);
-        
+        string jsonString = JsonUtility.ToJson(flashCard, true);        
         System.IO.File.WriteAllText($"{Application.persistentDataPath}/{fileName}.json", jsonString);
         Debug.Log("File save as " + $"{Application.persistentDataPath}/{fileName}.json");
     }
@@ -275,6 +263,7 @@ public class CardManagerSM2
 [System.Serializable]
 public class Card
 {
+    public string id; // Unique Guid for each card
     public string frontText;
     public string backText;
     public int cardType; // 0: New, 1: Learning, 2: Review, 3: Relearning
@@ -295,6 +284,27 @@ public class Card
 public class FlashCard
 {
     public List<Card> cards;
+    public string name;
+    public string credit;
+    public int newCount;
+    public int reviewCount;
+    public int dueCount;
+    public int maxNewCard;
+    public int maxReviewCard;    
+    public string todayDateStr; // Use the ISO 8601 format for the string representation. To convert back use DateTime.Parse(todayDateStr);
+
+    public void updateCard(Card newCard) {
+        Card cardToUpdate = cards.Find(card => card.id == newCard.id);
+        cardToUpdate.frontText = newCard.frontText;
+        cardToUpdate.backText = newCard.backText;
+        cardToUpdate.cardType = newCard.cardType;
+        cardToUpdate.interval = newCard.interval;
+        cardToUpdate.easeFactor = newCard.easeFactor;
+        cardToUpdate.repetitions = newCard.repetitions;
+        cardToUpdate.nextReviewDateStr = newCard.nextReviewDateStr;
+        cardToUpdate.frontLanguage = newCard.frontLanguage;
+        cardToUpdate.backLanguage = newCard.backLanguage;        
+    }
 }
 
 public enum CARD_TYPE

@@ -139,7 +139,7 @@ public static class Const
     
     // ====================== VOCAB LIST ======================
     
-    // TODO make this one read only
+    // This one is less overhead than ImmutableList (and people recommend to not use ReadOnlyCollection)
     public static readonly string[] VOCABS_LIST =  {"a", "ä", "b", "d", "e", "f", "h", "i", "j", 
                                                     "k", "l", "m", "n", "o", "ö", "p", "r", "s", "t", 
                                                     "u", "v", "y", " ", "å", "c", "g", "q", "w", "x", };
@@ -155,14 +155,33 @@ public static class Const
 
     // Check if user open the game for the first time
     public const string PREF_FIRST_KEY = "IsFirstTime";
+
+    // Countdown to make sure users only learn 20 new cards per day
+    // and 200 review cards per day
+    public const string PREF_DATE_FLASHCARD = "Datetime_Flashcard_Start";
+
+    // The number of new and review cards for the current day
+    public const string PREF_NEW_COUNT = "flashcard_new_count";
+    public const string PREF_REVIEW_COUNT = "flashcard_review_count";
     // =======================================================
 
     // ===================== FLASH CARD CONST =====================
 
-    // Check if user open the game for the first time
+    // Name of flashcard deck available in the app
+    public static readonly string[] FLASK_CARD_FILES = {
+        "EN-FI_OmaSuomi_1_Finnish1_CaptainA",
+        "test_card_1",
+        "test_card_2",
+    };
+    
     public const int CARD_AGAIN = 0;
     public const int CARD_HARD = 3;
     public const int CARD_GOOD = 4;
-    public const int CARD_EASY = 5;
+    public const int CARD_EASY = 5;    
+
+    public const string ANKI_NEW_COLOUR = "#3B82F6";    
+    public const string ANKI_LEARN_COLOUR = "#DC2660";    
+    public const string ANKI_DUE_COLOUR = "#16A34F";    
+    public const string ANKI_GRAY_COLOUR = "#AFAFAF";    
     // =======================================================
 }

@@ -17,7 +17,7 @@ public class ProfilePanel : MonoBehaviour
     // Is called when SetActive(true)
     // The opposite is OnDisable() when SetActive(false)
     {
-        UserData userData = SaveData.LoadFromJson();
+        UserData userData = SaveData.LoadUserData();
         
         // Use Sort for sorting from small to large
         // Reverse() for large to small

@@ -5,6 +5,13 @@ using System.Text.RegularExpressions;
 
 public static class TextUtils
 {    
+    public static string FormatCardTypeNumber(int newCards, int learnCards, int dueCards) {
+        string newCardsStr = WrapTextColor(newCards.ToString(), newCards > 0 ? Const.ANKI_NEW_COLOUR : Const.ANKI_GRAY_COLOUR);
+        string learnCardsStr = WrapTextColor(learnCards.ToString(), learnCards > 0 ? Const.ANKI_LEARN_COLOUR : Const.ANKI_GRAY_COLOUR);
+        string dueCardsStr = WrapTextColor(dueCards.ToString(), dueCards > 0 ? Const.ANKI_DUE_COLOUR : Const.ANKI_GRAY_COLOUR);
+
+        return $"{newCardsStr} {learnCardsStr} {dueCardsStr}"; 
+    }
 	public static string FormatTextResult(string transcript, List<float> scoreList) 
     /*
     * The font used in the ResultText GO is already set as BOLD        

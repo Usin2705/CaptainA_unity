@@ -18,6 +18,9 @@ public class SuperMemoPanel : MonoBehaviour
     [SerializeField] GameObject recordButtonGO;     
     [SerializeField] GameObject progressBarGO; // Progress bar
     [SerializeField] GameObject errorTextGO;     
+
+    [SerializeField] GameObject superMemoPanel;     
+    [SerializeField] GameObject cardDeckPanel;     
     [SerializeField] TMPro.TextMeshProUGUI predictionDebugText;
     [SerializeField] DetailScorePanel detailScorePanel;
 
@@ -28,25 +31,40 @@ public class SuperMemoPanel : MonoBehaviour
     private float currentTime = 2.0f;
     private string transcript;
     AudioClip replayClip;
-    
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        cardManager = new CardManagerSM2();
-        ShowNextCard();
+    void OnEnable() {
+        cardManager = new CardManagerSM2(CardQueueManager.GetQueueManager.GetFlashCardFile());
+        ShowNextCard();           
     }
 
+    void OnDisable() {
+        // Clear the answer from previous card
+        clearAnswer();
+        // Clear the cardqueue
+        CardQueueManager.GetQueueManager.ClearQueue();      
+    }
+
+    public void FinnishFlashCard() {
+        // Clear the answer from previous card
+        clearAnswer();
+        // Clear the cardqueue
+        CardQueueManager.GetQueueManager.ClearQueue();      
+        superMemoPanel.SetActive(false);
+        cardDeckPanel.SetActive(true);  
+
+    }
+        
     
     public void ShowNextCard()
     {
         // First clear all the onClick events
         frontCardText.GetComponent<Button>().onClick.RemoveAllListeners();
         backCardText.GetComponent<Button>().onClick.RemoveAllListeners();
-        
-        currentCard = cardManager.GetNextCard();
-        if (currentCard != null)
+
+        if (CardQueueManager.GetQueueManager.GetCount() != 0)
         {
+            currentCard = CardQueueManager.GetQueueManager.Peek();
+
             frontCardText.text = currentCard.frontText;
             // If the front language is Finnish, use the front card text for CAPT
             // Otherwise use the back card text for CAPT
@@ -55,10 +73,12 @@ public class SuperMemoPanel : MonoBehaviour
         }
         else
         {
-            frontCardText.text = "No cards to review.";
-            backCardText.text = "";
-            showAnswerGO.SetActive(false);
-            recordButtonGO.SetActive(false);
+            // frontCardText.text = "No cards to review.";
+            // backCardText.text = "";
+            // showAnswerGO.SetActive(false);
+            // recordButtonGO.SetActive(false);
+            // qualityBarGO.SetActive(false);
+            FinnishFlashCard();
         }
     }
 
@@ -121,6 +141,8 @@ public class SuperMemoPanel : MonoBehaviour
     {
         float interval = cardManager.GetCarNewInterval(currentCard, quality);
         cardManager.UpdateCardToJson(currentCard, quality, interval);
+        
+        CardQueueManager.GetQueueManager.Dequeue(); // Need to dequeue to reduce the queue
         ShowNextCard();
         clearAnswer();
     }

@@ -30,5 +30,12 @@
             "frontLanguage": "EN",
             "backLanguage": "FI"
         }
-    ]
+    ],
+    "name": "Test1",
+    "credit": "CaptainA",
+    "newCount": 0,
+    "learnCount": 0,
+    "dueCount": 0,
+    "maxNewCard": 20,
+    "maxLearnCard": 200
 }

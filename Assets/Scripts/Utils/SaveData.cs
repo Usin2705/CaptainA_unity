@@ -7,13 +7,65 @@ using System.IO;
 //######################################## SAVE DATA ########################################
 public static class SaveData
 {
-    public static void SaveIntoJson(UserData userData){
-        string jsonString = JsonUtility.ToJson(userData);
-        System.IO.File.WriteAllText($"{Application.persistentDataPath}/UserData.json", jsonString);
-        Debug.Log("File save as " + $"{Application.persistentDataPath}/UserData.json");
+    public static void SaveIntoJson(object jsonOjb, string fileName){
+        /*
+        *   This function save a json object into a file
+        *   fileName should be without extension
+        */
+
+        string jsonString = JsonUtility.ToJson(jsonOjb, true);
+        string filePath = Path.Combine(Application.persistentDataPath, fileName + ".json");
+        System.IO.File.WriteAllText(filePath, jsonString);
+        Debug.Log("File save as " + filePath);
     }
 
-	public static UserData LoadFromJson(){
+    public static FlashCard LoadFlashCard(string flashCardFileName){
+        // Path.Combine combines strings into a file path
+        // Application.StreamingAssets points to Assets/StreamingAssets in the Editor, and the StreamingAssets folder in a build
+        string filePath = Path.Combine(Application.persistentDataPath, flashCardFileName + ".json");
+
+        FlashCard flashCard;
+
+		if(File.Exists(filePath)) {
+            // Since we can't save in Resources folder, we save the edited flashcard file in the persistentDataPath
+            // If filePath is exit, load the json file from the persistentDataPath            
+            //Debug.Log("File load from " + filePath);
+
+            // Read the json from the file into a string
+            string dataAsJson = File.ReadAllText(filePath);    
+            //Debug.Log("Json data " + dataAsJson);
+
+            // Pass the json to JsonUtility, and tell it to create a UserData object from it            
+			flashCard = JsonUtility.FromJson<FlashCard>(dataAsJson);
+            Debug.Log("File load from " + filePath);
+        } else {
+            // If the filePath is not exit, load the json file from Resources folder        
+            // Load the json file from Resources folder
+            // When load the json file from Resources folder as TextAsset, the file extension should be removed
+            TextAsset jsonFile = Resources.Load<TextAsset>(flashCardFileName); // Note: Do not include the file extension
+            //Debug.Log("Json data " + jsonFile.text);
+            flashCard = JsonUtility.FromJson<FlashCard>(jsonFile.text);
+            Debug.Log("FlashCard load from Resources folder");
+        }
+
+        foreach (Card card in flashCard.cards)
+        {
+            // Default value for int is 0, so if the cardType is not set, it will be 0 (NEW)           
+
+            // If the card id is not set, set it to a random string
+            // Card ID is needed to keep track of the card in the queue
+            if (card.id == ""){
+                
+                card.id = Guid.NewGuid().ToString();                                
+            }
+        }
+
+        SaveData.SaveIntoJson(flashCard, flashCardFileName);
+
+        return flashCard;
+    }
+
+	public static UserData LoadUserData(){
 		// Path.Combine combines strings into a file path
         // Application.StreamingAssets points to Assets/StreamingAssets in the Editor, and the StreamingAssets folder in a build
         string filePath = Path.Combine(Application.persistentDataPath, "UserData.json");
@@ -40,7 +92,7 @@ public static class SaveData
             }
 			
             UserData userData = new UserData("", 0, tempL);			
-            SaveIntoJson(userData);
+            SaveIntoJson(userData, "UserData");
 			return userData;
         }
     }
@@ -58,7 +110,7 @@ public static class SaveData
 			return;
 		}
 
-		UserData userData = LoadFromJson();
+		UserData userData = LoadUserData();
 
 		for (int i = 0; i < scoreList.Count; i++) 
 		{
@@ -106,7 +158,7 @@ public static class SaveData
 			}
 		}
 
-		SaveIntoJson(userData);
+		SaveIntoJson(userData, "UserData");
     }
 }
 
