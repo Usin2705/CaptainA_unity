@@ -16,12 +16,25 @@ public class CardDeckPanel : MonoBehaviour
     
     void OnEnable() 
     {
+        // Sort the deck by the last time user use the deck                
+        List<FlashCard> flashCards = new List<FlashCard>();
+        
+        // Create a list of card deck
         foreach(string deckName in Const.FLASK_CARD_FILES)        
+        {
+            FlashCard flashCard = SaveData.LoadFlashCard(deckName);
+            flashCards.Add(flashCard);            
+        }         
+
+        // Don't sort flashcard based on the last time user use the deck
+        // It could be confusing for user when card move up and down too much
+        //List<FlashCard> sortedFlashCards = flashCards.OrderByDescending(flashCard => DateTime.Parse(flashCard.todayDateStr)).ToList();
+
+        // Populate sorted deck into the Panel
+        foreach(FlashCard flashCard in flashCards)        
         {            
             GameObject cardDeckGO = Instantiate(deckListPrefab, new Vector3(0,0,0), Quaternion.identity);
             cardDeckGO.transform.SetParent(content.transform, false); // Register the big panel (CardDeckPanel --> Content) as parent 
-
-            FlashCard flashCard = SaveData.LoadFlashCard(deckName);
 
             cardDeckGO.transform.Find("DeckPanel").
                     transform.Find("CardNameText").GetComponent<TMPro.TextMeshProUGUI>().text = flashCard.name;
@@ -68,7 +81,7 @@ public class CardDeckPanel : MonoBehaviour
                 flashCard.todayDateStr = DateTime.UtcNow.ToString();
             }
 
-            SaveData.SaveIntoJson(flashCard, deckName);                
+            SaveData.SaveIntoJson(flashCard, flashCard.fileName);                
 
             newCards = Math.Min(newCards, flashCard.maxNewCard);
             dueCards = Math.Min(dueCards, flashCard.maxReviewCard);            
@@ -87,16 +100,16 @@ public class CardDeckPanel : MonoBehaviour
 
             // Only add the onClick function if there at last 1 new card or 1 due card or 1 learn card
             if (newCards + dueCards + learnCards > 0 ) {
-                deckButton.onClick.AddListener(() => StartStudyDeck(deckName, newCards, dueCards));
+                deckButton.onClick.AddListener(() => StartStudyDeck(flashCard.fileName, newCards, dueCards));
             }
             
         }
     }
 
-    public void StartStudyDeck(string deckName, int newCards, int dueCards) 
+    public void StartStudyDeck(string deckFileName, int newCards, int dueCards) 
     {
-        FlashCard flashCard = SaveData.LoadFlashCard(deckName);
-        CardQueueManager.GetQueueManager.MakeQueue(flashCard, deckName, newCards, dueCards);
+        FlashCard flashCard = SaveData.LoadFlashCard(deckFileName);
+        CardQueueManager.GetQueueManager.MakeQueue(flashCard, newCards, dueCards);        
         cardDeckPanelGO.SetActive(false);
         superMemoPanelGO.SetActive(true);
     }

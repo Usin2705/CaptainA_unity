@@ -285,6 +285,7 @@ public class FlashCard
 {
     public List<Card> cards;
     public string name;
+    public string fileName;
     public string credit;
     public int newCount;
     public int reviewCount;

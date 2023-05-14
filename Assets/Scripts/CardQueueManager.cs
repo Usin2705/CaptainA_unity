@@ -30,9 +30,9 @@ public class CardQueueManager : MonoBehaviour
 		}
 	}
 
-    public void MakeQueue(FlashCard _flashCard, string _flashCardFile, int newCount, int reviewCount) {
+    public void MakeQueue(FlashCard _flashCard, int newCount, int reviewCount) {
         flashCard = _flashCard;
-        flashCardFile = _flashCardFile;
+        flashCardFile = flashCard.fileName;
 		cardQueue = new Queue<Card>();
 
         // Where return the IEnumerable in the order of the original list
@@ -51,7 +51,7 @@ public class CardQueueManager : MonoBehaviour
             .Take(reviewCount);
         
         // Concatenate the card lists
-        List<Card> combinedCards = newCards.Concat(learnCards).Concat(reviewCards).ToList();
+        List<Card> combinedCards = learnCards.Concat(newCards).Concat(reviewCards).ToList();
         
         // Sort list by order of nextReviewDate
         List<Card> sortedCards = combinedCards.OrderBy(card => DateTime.Parse(card.nextReviewDateStr)).ToList();

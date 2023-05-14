@@ -82,14 +82,13 @@ public class SuperMemoPanel : MonoBehaviour
         }
     }
 
-    public void OnShowAnswerButtonClick()
-    {
-        backCardText.text = currentCard.backText;
-        displayAnswer();
-    }
 
     public void displayAnswer()
+    /*
+    *   This function also attached to ShowAnswer OnClick() in Unity
+    */
     {
+        backCardText.text = currentCard.backText;
         // Hide the show answer button
         showAnswerGO.SetActive(false);
 

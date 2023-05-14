@@ -170,8 +170,7 @@ public static class Const
     // Name of flashcard deck available in the app
     public static readonly string[] FLASK_CARD_FILES = {
         "EN-FI_OmaSuomi_1_Finnish1_CaptainA",
-        "test_card_1",
-        "test_card_2",
+        "FI-EN_OmaSuomi_1_Finnish1_CaptainA",
     };
     
     public const int CARD_AGAIN = 0;
