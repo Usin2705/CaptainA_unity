@@ -18,6 +18,8 @@ public class SuperMemoPanel : MonoBehaviour
     [SerializeField] GameObject recordButtonGO;     
     [SerializeField] GameObject progressBarGO; // Progress bar
     [SerializeField] GameObject errorTextGO;     
+    [SerializeField] GameObject sampleButtonGO; // Replay sample audio
+    [SerializeField] GameObject replayButtonGO; // Replay recorded audio
 
     [SerializeField] GameObject superMemoPanel;     
     [SerializeField] GameObject cardDeckPanel;     
@@ -31,22 +33,24 @@ public class SuperMemoPanel : MonoBehaviour
     private float currentTime = 2.0f;
     private string transcript;
     AudioClip replayClip;
+    AudioClip sampleClip;
 
     void OnEnable() {
+        clearOldCard();
         cardManager = new CardManagerSM2(CardQueueManager.GetQueueManager.GetFlashCardFile());
         ShowNextCard();           
     }
 
     void OnDisable() {
         // Clear the answer from previous card
-        clearAnswer();
+        clearOldCard();
         // Clear the cardqueue
         CardQueueManager.GetQueueManager.ClearQueue();      
     }
 
     public void FinnishFlashCard() {
         // Clear the answer from previous card
-        clearAnswer();
+        clearOldCard();
         // Clear the cardqueue
         CardQueueManager.GetQueueManager.ClearQueue();      
         superMemoPanel.SetActive(false);
@@ -70,6 +74,10 @@ public class SuperMemoPanel : MonoBehaviour
             // Otherwise use the back card text for CAPT
             finnishCardText = currentCard.frontLanguage == "FI"? frontCardText : backCardText;
             showAnswerGO.SetActive(true);
+
+            // If the front card is in Finnish, show the sample audio (if any)
+            if (currentCard.frontLanguage == "FI") ShowSampleAudio(currentCard.frontText);
+
         }
         else
         {
@@ -80,6 +88,7 @@ public class SuperMemoPanel : MonoBehaviour
             // qualityBarGO.SetActive(false);
             FinnishFlashCard();
         }
+
     }
 
 
@@ -107,6 +116,9 @@ public class SuperMemoPanel : MonoBehaviour
         
         // Show the quality bar
         qualityBarGO.SetActive(true);
+
+        // If the back card is in Finnish, show the sample audio (if any)
+        if (currentCard.backLanguage == "FI") ShowSampleAudio(currentCard.backText);
     }
 
     public string GetIntervalText(float interval) {
@@ -120,10 +132,41 @@ public class SuperMemoPanel : MonoBehaviour
         
     }
 
-    public void clearAnswer()
+    public void clearOldCard()
     {
         // Clear the answer from previous card
         backCardText.text = "";
+
+        // Clear the prediction debug text
+        predictionDebugText.text = "";
+
+        sampleClip = null;
+        replayClip = null;
+
+        // Only turn on the button if there's a replay samples
+        sampleButtonGO.SetActive(sampleClip!=null);     
+        replayButtonGO.SetActive(replayClip!=null);     
+    }
+
+    public void ShowSampleAudio(string word) {
+        // Audio file name is the santinized word
+        // with lower case
+        string audioFileName = TextUtils.SantinizeText(word).ToLower();
+
+        // Set up sample play button
+        sampleClip = Resources.Load<AudioClip>(Const.AUDIO_PATH + audioFileName);
+        
+        if (sampleClip != null) {
+            //Debug.Log("Sample audio update");
+            sampleButtonGO.SetActive(true);     
+
+            Button sampleButton = sampleButtonGO.transform.GetComponent<Button>();               
+            // Need to remove old OnClick Listeners, otherwise it will keep adding up
+            sampleButton.onClick.RemoveAllListeners();       
+            sampleButton.onClick.AddListener(() => AudioManager.GetManager().PlayAudioClip(sampleClip));            
+        } else{
+            sampleButtonGO.SetActive(false);
+        }
     }
 
     public void OnSubmitButtonClick(int quality)
@@ -142,8 +185,8 @@ public class SuperMemoPanel : MonoBehaviour
         cardManager.UpdateCardToJson(currentCard, quality, interval);
         
         CardQueueManager.GetQueueManager.Dequeue(); // Need to dequeue to reduce the queue
-        ShowNextCard();
-        clearAnswer();
+        clearOldCard();
+        ShowNextCard();        
     }
 
     public void OnRecordButtonClick() 
@@ -245,13 +288,23 @@ public class SuperMemoPanel : MonoBehaviour
             // so we RELOAD it back to clip again, which is a waste of processing
             // but at least we got some nice trimmed audioclip        
             yield return StartCoroutine(LoadAudioClip(Const.REPLAY_FILENAME));        
+            
+            Button replayButton = replayButtonGO.transform.GetComponent<Button>();     
+            // To be safe, remove all old listeners were add to this component
+            replayButton.onClick.RemoveAllListeners();    
+            if(replayClip!=null) {
+                replayButton.onClick.AddListener(()=> AudioManager.GetManager().PlayAudioClip(replayClip));            
+                replayButtonGO.SetActive(true);
+            } else {
+                replayButtonGO.SetActive(false);
+            }
 
             // Look for the ResultTextButton (which will pop up the DetailScorePanel onclick)
             Button resultTextButton = finnishCardText.transform.GetComponent<Button>();
             // To be safe, remove all old listeners were add to this component
             resultTextButton.onClick.RemoveAllListeners();
             // Add onclick to text result
-            resultTextButton.onClick.AddListener(() => detailScorePanel.ShowDetailScorePanel(transcript, null, replayClip));
+            resultTextButton.onClick.AddListener(() => detailScorePanel.ShowDetailScorePanel(transcript, sampleClip, replayClip));
         }
 
         displayAnswer();

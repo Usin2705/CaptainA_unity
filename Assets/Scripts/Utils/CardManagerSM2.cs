@@ -54,7 +54,7 @@ public class CardManagerSM2
         // https://docs.ankiweb.net/studying.html#learningrelearning-cards
         if (card.cardType == (int)CARD_TYPE.NEW) 
         {
-            if (quality < Const.CARD_HARD) 
+            if (quality == Const.CARD_AGAIN) 
             {
                 card.interval = 1f/24f/60f; // 1 minutes
             } else if (quality == Const.CARD_HARD) 
@@ -71,10 +71,10 @@ public class CardManagerSM2
         } else if (card.cardType == (int) CARD_TYPE.LEARNING) {
         // ########################## LEARNING CARD ##########################
         // The schedule for LEARNING card is 1 minute (first step), repeat, 10 m (next step) and 4 d (REVIEW)        
-            if (quality < Const.CARD_AGAIN) 
+            if (quality == Const.CARD_AGAIN) 
             {
                 card.interval = 1f/24f/60f; // 1 minutes
-            } else if (quality == Const.CARD_AGAIN) 
+            } else if (quality == Const.CARD_HARD) 
             {
                 // Repeat the current delay
                 card.interval = card.interval + fuzz_factor/20f;
@@ -89,10 +89,10 @@ public class CardManagerSM2
         } else if (card.cardType == (int) CARD_TYPE.RELEARNING) {
         // ########################## RELEARNING CARD ##########################
         // The schedule for LEARNING card is 1 minute (first step), repeat, 1 d (next step) and 4 d (REVIEW)        
-            if (quality < Const.CARD_AGAIN) 
+            if (quality == Const.CARD_AGAIN) 
             {
                 card.interval = 1f/24f/60f; // 1 minutes
-            } else if (quality == Const.CARD_AGAIN) 
+            } else if (quality == Const.CARD_HARD) 
             {
                 // Repeat the current delay
                 card.interval = card.interval + fuzz_factor/20f;
@@ -107,7 +107,7 @@ public class CardManagerSM2
         } else if (card.cardType == (int) CARD_TYPE.REVIEW) {
         // ########################## REVIEW CARD ##########################
         // The schedule for REVIEW card is - 0.2f, (move back) easeFactor, repeat (-0.15f), 0 , and 1.3* Ease + 0.15f
-            if (quality < Const.CARD_AGAIN) {
+            if (quality == Const.CARD_AGAIN) {
                 // The card is placed into relearning mode, the ease is decreased by 20 percentage points 
                 // (that is, 20 is subtracted from the ease value, which is in units of percentage points), 
                 // and the current interval is multiplied by the value of new interval 
@@ -293,6 +293,8 @@ public class FlashCard
     public int maxNewCard;
     public int maxReviewCard;    
     public string todayDateStr; // Use the ISO 8601 format for the string representation. To convert back use DateTime.Parse(todayDateStr);
+
+    public string version;
 
     public void updateCard(Card newCard) {
         Card cardToUpdate = cards.Find(card => card.id == newCard.id);

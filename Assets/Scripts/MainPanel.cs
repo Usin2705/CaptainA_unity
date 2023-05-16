@@ -90,6 +90,9 @@ public class MainPanel : MonoBehaviour
         // Hide the error text
         errorTextGO.SetActive(false);
 
+        // Clear the prediction text
+        predictionDebugText.text = "";
+
         // Get the text from the input field
         transcript = inputTransGO.GetComponent<TMP_InputField>().text;
 
@@ -132,7 +135,6 @@ public class MainPanel : MonoBehaviour
             // Send transcript to server
             // errorTextGO to update if server yield error
             // resultPanelGO to update result (by Enable the AudioClip and display text result)
-            predictionDebugText.text = "";
             AudioManager.GetManager().GetAudioAndPost(transcript, errorTextGO, resultPanelGO, recordButtonGO, predictionDebugText);
 
             // TODO Make this part more efficiency

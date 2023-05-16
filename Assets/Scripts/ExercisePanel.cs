@@ -61,6 +61,8 @@ public class ExercisePanel : MonoBehaviour
 
     void OnEnable() 
     {
+        ClearExercise();
+        
         // Just in case the queue have 0 samples
         // We called the queue in the TopicPanel so it 
         // should have at least 1 sample anyway    
@@ -92,7 +94,7 @@ public class ExercisePanel : MonoBehaviour
         // Set up sample play button
         sampleClip = word.sampleAudio;
         if (sampleClip != null) {
-            Debug.Log("Sample audio update");
+            //Debug.Log("Sample audio update");
             sampleButtonGO.SetActive(true);     
 
             Button sampleButton = sampleButtonGO.transform.GetComponent<Button>();               
@@ -113,8 +115,17 @@ public class ExercisePanel : MonoBehaviour
         creditTextGO.GetComponent<TMPro.TextMeshProUGUI>().text = string.IsNullOrEmpty(word.credit)?"":$"Credit: {word.credit}";
 
         // Only turn on the replay clip button if there's a replay sample
-        replayButtonGO.SetActive(replayClip!=null);
+        replayButtonGO.SetActive(replayClip!=null);        
+    }
 
+    void ClearExercise() 
+    /*
+    *   This function will clear the exercise panel
+    */
+    {
+        sampleClip = null;
+        replayClip = null;
+        resultPanelGO.SetActive(false);
         predictionDebugText.text = "";
     }
 
@@ -131,9 +142,7 @@ public class ExercisePanel : MonoBehaviour
         if (QueueManager.GetQueueManager.GetCount() == 0) 
             FinishExercise();
         else            
-            sampleClip = null;
-            replayClip = null;
-            resultPanelGO.SetActive(false);
+            ClearExercise();
             UpdateExercise();
     }
 
@@ -175,6 +184,9 @@ public class ExercisePanel : MonoBehaviour
         // Hide the error text
         errorTextGO.SetActive(false);
 
+        // Clear the prediction text
+        predictionDebugText.text = "";
+
         // Get the text from the input field
         transcript = sampleTextGO.GetComponent<TMPro.TextMeshProUGUI>().text;
 
@@ -213,7 +225,6 @@ public class ExercisePanel : MonoBehaviour
             // Send transcript to server
             // errorTextGO to update if server yield error
             // resultPanelGO to update result (by Enable the AudioClip and display text result)
-            predictionDebugText.text = "";
             AudioManager.GetManager().GetAudioAndPost(transcript, errorTextGO, resultPanelGO, recordButtonGO, predictionDebugText);
             
             // TODO Make this part more efficiency

@@ -1055,8 +1055,8 @@
         },
         {
             "id": "81fa0b77-fb7f-4c8f-9aeb-32caed11179e",
-            "frontText": "My address is Numerotie 12, 00500 Helsinki.",
-            "backText": "Minun osoite on Numerotie 12, 00500 Helsinki.",
+            "frontText": "My address is Numerotie 12, Helsinki.",
+            "backText": "Minun osoite on Numerotie kaksitoista, Helsinki.",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -1185,7 +1185,7 @@
         },
         {
             "id": "77428960-123e-4751-abdc-6843dee31c65",
-            "frontText": "How old is Jere?",
+            "frontText": "What age is Jere? (How old is Jere?)",
             "backText": "Mink\u00e4 ik\u00e4inen Jere on?",
             "cardtype": 0,
             "interval": 0.005,
@@ -1328,7 +1328,7 @@
         },
         {
             "id": "8317b0da-1e9a-43b2-8b4f-2e65718a5298",
-            "frontText": "What is their personal identification number?",
+            "frontText": "What is his/her personal identification number?",
             "backText": "Mik\u00e4 h\u00e4nen henkil\u00f6tunnus on?",
             "cardtype": 0,
             "interval": 0.005,
@@ -1470,21 +1470,8 @@
             "chapter": 2
         },
         {
-            "id": "70325136-ad3b-406e-b748-d62c2360419b",
-            "frontText": "Very good!",
-            "backText": "Oikein hyv\u00e4\u00e4!",
-            "cardtype": 0,
-            "interval": 0.005,
-            "easeFactor": 2.5,
-            "repetitions": 0,
-            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
-            "frontLanguage": "EN",
-            "backLanguage": "FI",
-            "chapter": 2
-        },
-        {
             "id": "f2b84fe2-24a4-4f7c-af81-b5da5bd62fb6",
-            "frontText": "Very good!",
+            "frontText": "Very good! (spoken, casual)",
             "backText": "Tosi hyv\u00e4\u00e4!",
             "cardtype": 0,
             "interval": 0.005,
@@ -1511,7 +1498,7 @@
         {
             "id": "563e6322-2751-4afe-b9d0-9bfc5c1a7c15",
             "frontText": "Quite good.",
-            "backText": "Ihan hyv\u00e4\u00e4",
+            "backText": "Ihan hyv\u00e4\u00e4.",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -1524,7 +1511,7 @@
         {
             "id": "1516471b-3672-434b-80ff-16d0acda9c51",
             "frontText": "Not good.",
-            "backText": "Ei hyv\u00e4\u00e4",
+            "backText": "Ei hyv\u00e4\u00e4.",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -1536,7 +1523,7 @@
         },
         {
             "id": "05f0f937-88f6-4ddd-8178-5e71facd7512",
-            "frontText": "I don't understand!",
+            "frontText": "(I) don't understand!",
             "backText": "En ymm\u00e4rr\u00e4!",
             "cardtype": 0,
             "interval": 0.005,
@@ -1589,7 +1576,7 @@
         {
             "id": "77148ef6-9103-4c8a-b39f-88a1bca2f0c1",
             "frontText": "Single parent",
-            "backText": "Ysinhuoltaja",
+            "backText": "Yksinhuoltaja",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -6742,5 +6729,6 @@
     "reviewCount": "0",
     "maxNewCard": "20",
     "maxReviewCard": "200",
-    "todayDateStr": "2000-01-02T00:00:00.0000000Z"
+    "todayDateStr": "2000-01-02T00:00:00.0000000Z",
+    "version": "1"
 }

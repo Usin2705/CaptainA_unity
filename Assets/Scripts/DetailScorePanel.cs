@@ -41,7 +41,7 @@ public class DetailScorePanel : MonoBehaviour
         sampleClip = _sampleClip;
 
         if (sampleClip != null) {
-            Debug.Log("Sample audio update");
+            //Debug.Log("Sample audio update");
             sampleButtonGO.SetActive(true);     
 
             Button sampleButton = sampleButtonGO.transform.GetComponent<Button>();               
@@ -198,8 +198,10 @@ public class DetailScorePanel : MonoBehaviour
         scrollRectWarning.verticalNormalizedPosition = 1.0f;
         scrollRectDetail.verticalNormalizedPosition = 1.0f;
         isScrolledUp=false;          
-        detailScorePanel.SetActive(false);                
-        
+        detailScorePanel.SetActive(false); 
+
+        // Need to Destroy all GO in the list to avoid create duplicate scorelist
+        DeleteListItems();
     }
 
     void OnDisable() 
@@ -207,10 +209,14 @@ public class DetailScorePanel : MonoBehaviour
     *   Need to Destroy all GO in the list to avoid create duplicate scorelist
     */
     {
+        DeleteListItems();
+    }    
+
+    void DeleteListItems() {
         foreach (GameObject go in listScrollItems) 
         {
             Destroy(go);        
-        }        
-    }    
+        }
+    }
 }
 

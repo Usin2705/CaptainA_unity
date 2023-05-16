@@ -65,7 +65,7 @@ public class CardDeckPanel : MonoBehaviour
                 {
                     flashCard.newCount = flashCard.maxNewCard;
                     flashCard.reviewCount = flashCard.maxReviewCard;
-                    flashCard.todayDateStr = DateTime.UtcNow.ToString();
+                    flashCard.todayDateStr = DateTime.UtcNow.ToString("O");
                 } else {
                     // If not, update the new and review cards counts
                     // The new and review cards counts are the minimum of the possible and
@@ -78,7 +78,7 @@ public class CardDeckPanel : MonoBehaviour
                 // If failed to read the date, reset the flashCard new and review count to max
                 flashCard.newCount = flashCard.maxNewCard;
                 flashCard.reviewCount = flashCard.maxReviewCard;
-                flashCard.todayDateStr = DateTime.UtcNow.ToString();
+                flashCard.todayDateStr = DateTime.UtcNow.ToString("O");
             }
 
             SaveData.SaveIntoJson(flashCard, flashCard.fileName);                
