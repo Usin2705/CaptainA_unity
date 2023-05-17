@@ -19,6 +19,60 @@ public static class SaveData
         Debug.Log("File save as " + filePath);
     }
 
+    public static void UpdateFlashCard(string flashCardFileName) {
+        /*
+        *   This function update the flashcard file in the persistentDataPath
+        *   with the flashcard file in the Resources folder
+        *
+        *   This function is used to update the flashcard file in the persistentDataPath
+        *   when the flashcard file in the Resources folder is updated           
+        *   
+        */
+
+        // Load the json file from Resources folder
+        // When load the json file from Resources folder as TextAsset, the file extension should be removed
+        TextAsset jsonFile = Resources.Load<TextAsset>(flashCardFileName); // Note: Do not include the file extension
+        //Debug.Log("Json data " + jsonFile.text);
+        FlashCard flashCardRes = JsonUtility.FromJson<FlashCard>(jsonFile.text);
+        //Debug.Log("FlashCard load from Resources folder");
+
+        // Path.Combine combines strings into a file path
+        // Application.StreamingAssets points to Assets/StreamingAssets in the Editor, and the StreamingAssets folder in a build
+        string filePath = Path.Combine(Application.persistentDataPath, flashCardFileName + ".json");
+
+        // If the file also exist in the persistentDataPath and the Restources folder
+        // It it time to check for update
+        if (File.Exists(filePath)) {
+            // Read the json from the file into a string
+            string dataAsJson = File.ReadAllText(filePath);    
+            //Debug.Log("Json data " + dataAsJson);
+
+            // Pass the json to JsonUtility, and tell it to create a flashcard object from it            
+            FlashCard flashCardLocal = JsonUtility.FromJson<FlashCard>(dataAsJson);
+            //Debug.Log("File load from " + filePath);
+
+            // If the flashcard in local have lower version than the one in Resources folder:
+            if (flashCardLocal.version < flashCardRes.version) {
+                
+                // Update the flashcard in in Resources folder with the data in the local flashcard
+                foreach (Card localCard in flashCardLocal.cards) {                
+                    // The updateCardMeta function will find the card with the same id and update it
+                    // The updateCardMeta function already handle the case when the card is not found
+                    // it only update the meta data (id, cardType, etc.) but not the frontText and backText
+                    flashCardRes.updateCardMeta(localCard);
+                }
+
+                // update the metadata of the flashcard in Resources folder
+                flashCardRes.todayDateStr = flashCardLocal.todayDateStr;
+                flashCardRes.newCount = flashCardLocal.newCount;
+                flashCardRes.reviewCount = flashCardLocal.reviewCount;
+
+                // Save the updated flashcard into the persistentDataPath
+                SaveIntoJson(flashCardRes, flashCardRes.fileName);
+            }
+        }
+    }
+
     public static FlashCard LoadFlashCard(string flashCardFileName){
         // Path.Combine combines strings into a file path
         // Application.StreamingAssets points to Assets/StreamingAssets in the Editor, and the StreamingAssets folder in a build
@@ -35,7 +89,7 @@ public static class SaveData
             string dataAsJson = File.ReadAllText(filePath);    
             //Debug.Log("Json data " + dataAsJson);
 
-            // Pass the json to JsonUtility, and tell it to create a UserData object from it            
+            // Pass the json to JsonUtility, and tell it to create a flashcard object from it            
 			flashCard = JsonUtility.FromJson<FlashCard>(dataAsJson);
             Debug.Log("File load from " + filePath);
         } else {

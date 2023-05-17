@@ -6725,10 +6725,10 @@
     "name": "Oma Suomi 1 1/2 EN-FI",
     "fileName": "EN-FI_OmaSuomi_1_Finnish1_CaptainA",
     "credit": "CaptainA",
-    "newCount": "0",
-    "reviewCount": "0",
-    "maxNewCard": "20",
-    "maxReviewCard": "200",
+    "newCount": 0,
+    "reviewCount": 0,
+    "maxNewCard": 20,
+    "maxReviewCard": 200,
     "todayDateStr": "2000-01-02T00:00:00.0000000Z",
-    "version": "1"
+    "version": 1
 }

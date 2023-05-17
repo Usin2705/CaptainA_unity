@@ -133,8 +133,7 @@ public static class Const
     // ==================== RESOURCES PATH ====================
     public const string PHONE_HELP_PATH = "ScriptableObjects/PhonemeHelpers/";
     public const string WORD_LIST_PATH = "ScriptableObjects/Words/";
-
-    public const string AUDIO_PATH = "ScriptableObjects/Samples/";
+    public const string AUDIO_PATH = "Audio/";
     // ========================================================
 
     

@@ -136,15 +136,13 @@ public class CardManagerSM2
                 // The current interval is multiplied by the value of hard interval (1.2 by default)
                 card.interval = card.interval * hard_multiplier + fuzz_factor; 
 
-            } else if (quality == Const.CARD_GOOD) 
-            {                            
+            } else if (quality == Const.CARD_GOOD) {                            
                 //The current interval is multiplied by the current ease. The ease is unchanged.                
                 float newEaseFactor = card.easeFactor;
                 card.easeFactor = Mathf.Max(newEaseFactor, 1.3f);    
                 card.interval = card.interval * card.easeFactor + fuzz_factor;                 
                 
-            } else if (quality == Const.CARD_EASY) 
-            {
+            } else if (quality == Const.CARD_EASY) {
                 // An extra multiplier applied to the interval when a review card is answered Easy. 
                 // With the default value of 1.30, Easy will give an interval that is 1.3 times the Good interval 
                 // (e.g. if the Good interval was 10 days, the Easy interval would be around 13 days).
@@ -170,11 +168,15 @@ public class CardManagerSM2
         // Update the flashcard newcount or reviewcount
         // This has to be done before update the card info
         if (card.cardType == (int)CARD_TYPE.NEW) {
-            flashCard.newCount -= 1;
+            
+            // only decrease the count if the card is learnt succesfully
+            if (quality != Const.CARD_AGAIN) flashCard.newCount -= 1;
             
             // Make sure the newCount is not negative
             flashCard.newCount = Math.Max(flashCard.newCount, 0);
+
         } else if (card.cardType == (int)CARD_TYPE.REVIEW) {
+            
             flashCard.reviewCount -= 1;
 
             // Make sure the reviewCount is not negative
@@ -289,24 +291,38 @@ public class FlashCard
     public string credit;
     public int newCount;
     public int reviewCount;
-    public int dueCount;
     public int maxNewCard;
     public int maxReviewCard;    
     public string todayDateStr; // Use the ISO 8601 format for the string representation. To convert back use DateTime.Parse(todayDateStr);
 
-    public string version;
+    public int version;
 
     public void updateCard(Card newCard) {
         Card cardToUpdate = cards.Find(card => card.id == newCard.id);
-        cardToUpdate.frontText = newCard.frontText;
-        cardToUpdate.backText = newCard.backText;
-        cardToUpdate.cardType = newCard.cardType;
-        cardToUpdate.interval = newCard.interval;
-        cardToUpdate.easeFactor = newCard.easeFactor;
-        cardToUpdate.repetitions = newCard.repetitions;
-        cardToUpdate.nextReviewDateStr = newCard.nextReviewDateStr;
-        cardToUpdate.frontLanguage = newCard.frontLanguage;
-        cardToUpdate.backLanguage = newCard.backLanguage;        
+        if (cardToUpdate != null) {
+            cardToUpdate.frontText = newCard.frontText;
+            cardToUpdate.backText = newCard.backText;
+            cardToUpdate.cardType = newCard.cardType;
+            cardToUpdate.interval = newCard.interval;
+            cardToUpdate.easeFactor = newCard.easeFactor;
+            cardToUpdate.repetitions = newCard.repetitions;
+            cardToUpdate.nextReviewDateStr = newCard.nextReviewDateStr;
+            cardToUpdate.frontLanguage = newCard.frontLanguage;
+            cardToUpdate.backLanguage = newCard.backLanguage;        
+        }
+    }
+
+    public void updateCardMeta(Card newCard) {
+        Card cardToUpdate = cards.Find(card => card.id == newCard.id);
+        if (cardToUpdate != null) {
+            cardToUpdate.cardType = newCard.cardType;
+            cardToUpdate.interval = newCard.interval;
+            cardToUpdate.easeFactor = newCard.easeFactor;
+            cardToUpdate.repetitions = newCard.repetitions;
+            cardToUpdate.nextReviewDateStr = newCard.nextReviewDateStr;
+            cardToUpdate.frontLanguage = newCard.frontLanguage;
+            cardToUpdate.backLanguage = newCard.backLanguage;        
+        }
     }
 }
 
