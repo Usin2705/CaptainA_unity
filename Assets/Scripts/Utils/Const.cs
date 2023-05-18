@@ -160,11 +160,15 @@ public static class Const
 
     // Countdown to make sure users only learn 20 new cards per day
     // and 200 review cards per day
-    public const string PREF_DATE_FLASHCARD = "Datetime_Flashcard_Start";
+    public const string PREF_RECORD_NUMBER = "pref_record_number";
+    public const int SURVEY_TRIGGER = 100;
+    public const string SURVEY_URL = "https://link.webropol.com/s/CaptainA";
 
     // The number of new and review cards for the current day
-    public const string PREF_NEW_COUNT = "flashcard_new_count";
-    public const string PREF_REVIEW_COUNT = "flashcard_review_count";
+    public const string PREF_SURVEY_V1_DONE = "pref_survey_v1_done";
+    public const string PREF_NO_SURVEY = "pref_no_survey";
+
+
     // =======================================================
 
     // ===================== FLASH CARD CONST =====================

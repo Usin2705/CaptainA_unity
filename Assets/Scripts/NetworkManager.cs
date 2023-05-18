@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 
 public class NetworkManager : MonoBehaviour
 {
+	[SerializeField] GameObject surveyPopUpPanelGO;    
 	static NetworkManager netWorkManager;
 
 	string url = Secret.URL;
@@ -108,6 +109,8 @@ public class NetworkManager : MonoBehaviour
 
 		debugText.text = asrResult.prediction;
 		resultPanelGO.SetActive(true);
+
+		checkSurVey();
     }
 
 	public IEnumerator ServerPost(string transcript, byte[] wavBuffer, GameObject textErrorGO, TMPro.TextMeshProUGUI flashCardText, GameObject recordButtonGO, TMPro.TextMeshProUGUI debugText)
@@ -184,5 +187,28 @@ public class NetworkManager : MonoBehaviour
 		int warningNo = asrResult.warning.Count;
 
 		debugText.text = asrResult.prediction;
+
+		checkSurVey();
     }
+
+	public void checkSurVey() {
+		int recordNumber = 1;
+		
+		// If this is not the first record, get the record number
+		if (PlayerPrefs.HasKey(Const.PREF_RECORD_NUMBER)) {
+			recordNumber = PlayerPrefs.GetInt(Const.PREF_RECORD_NUMBER) + 1;
+		}
+		//Debug.Log("Record number: " + recordNumber);
+		PlayerPrefs.SetInt(Const.PREF_RECORD_NUMBER, recordNumber);
+		PlayerPrefs.Save();
+
+		if (recordNumber % Const.SURVEY_TRIGGER == 0) {
+			// Only show survey if user has not refused to do survey
+			// and if user has not done survey v1
+			if (!PlayerPrefs.HasKey(Const.PREF_NO_SURVEY) & (!PlayerPrefs.HasKey(Const.PREF_SURVEY_V1_DONE)))  {
+				//Debug.Log("Show survey");
+				surveyPopUpPanelGO.SetActive(true);
+			}
+		}
+	}
 }

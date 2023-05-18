@@ -128,6 +128,7 @@ public class MainPanel : MonoBehaviour
         // Maybe this won't cut the recording abruptly
         // by delay the microphone end by 0.5sec            
         StartCoroutine(DelayPost());
+        
         IEnumerator DelayPost()
         {
             //yield return new WaitForSeconds(0.5f);
