@@ -77,6 +77,8 @@ public static class TextUtils
 
     {
         text = text.Replace("\n", " ");
+        text = text.Replace("-", " "); // Replace - with space, should be done before removing extra space
+
         text = text.Trim(); // Remove trailing white space
         text = Regex.Replace(text, "  +", " "); // Replace extra spaces with just 1 space
         
@@ -90,8 +92,8 @@ public static class TextUtils
 
         text = Regex.Replace(text, "[zZ]", "ts"); //Replace z with ts
         text = Regex.Replace(text, "[0-9]", ""); //Remove numbers        
-        text = Regex.Replace(text, "[-!$%^&*()_+|~=`{}\\[\\]:\";'<>?,.\\/@]", ""); //Remove symbols
-
+        text = Regex.Replace(text, "[!$%^&*()_+|~=`{}\\[\\]:\";'<>?,.\\/@]", ""); //Remove symbols (not -)
+ 
                 
         return text;
     }

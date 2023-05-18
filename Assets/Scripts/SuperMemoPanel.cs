@@ -154,7 +154,13 @@ public class SuperMemoPanel : MonoBehaviour
         string audioFileName = TextUtils.SantinizeText(word).ToLower();
 
         // Set up sample play button
-        sampleClip = Resources.Load<AudioClip>(Const.AUDIO_PATH + audioFileName);
+        sampleClip = Resources.Load<AudioClip>(Const.AUDIO_NATURAL_PATH + audioFileName);
+        
+        // If the sample clip is not found in the natural folder
+        // try to find it in the AI folder
+        if (sampleClip == null) {
+            sampleClip = Resources.Load<AudioClip>(Const.AUDIO_AI_PATH + audioFileName);            
+        }
         
         if (sampleClip != null) {
             //Debug.Log("Sample audio update");

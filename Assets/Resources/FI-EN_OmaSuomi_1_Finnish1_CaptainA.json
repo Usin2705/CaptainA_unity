@@ -11,7 +11,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "ed77663b-12f0-47d2-a54e-6af56ed30b0f",
@@ -24,7 +25,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "70ec3a49-2f7a-4f12-a1a8-79be715a8190",
@@ -37,7 +39,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "3fbf02fa-f71e-47a3-8780-0a776f560c3d",
@@ -50,7 +53,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "279d21c2-55a2-44d9-acab-c1a97be5d0fc",
@@ -63,7 +67,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "58826760-4e4d-41d5-bda2-075846480498",
@@ -76,7 +81,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "a2c883e0-a2f7-4e02-89f3-bf97e5e2f50f",
@@ -89,7 +95,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "fd001ddd-aaeb-4c02-81e5-e2d42a00ce4b",
@@ -102,7 +109,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "7df3f955-2746-4f5f-8072-f6b6e9e82934",
@@ -115,7 +123,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "39a73479-5087-4e3a-aa02-965de1e522c6",
@@ -128,7 +137,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "0d65ba45-382f-4621-b8d5-b5f14391b6ed",
@@ -141,7 +151,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "ad833236-ea56-46b2-a2b7-a1df7685ebea",
@@ -154,7 +165,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "2b8d8659-dc8b-48f1-b540-cbfe06fd6f41",
@@ -167,7 +179,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "81bd54c2-5930-480c-ae96-ed920c2c5942",
@@ -180,7 +193,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "8a23607e-8a73-40d2-8e22-70258fb74145",
@@ -193,7 +207,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "19693302-06bb-4e9f-8da6-56f099c130e1",
@@ -206,7 +221,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "63e9a33f-1a7d-4be3-bcde-4cd6033708b9",
@@ -219,7 +235,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "547046a9-d8d3-4118-b482-7bb03c6b1166",
@@ -232,7 +249,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "18eefc6a-3bf7-47da-8a83-8a2dc27a2d70",
@@ -245,7 +263,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "62e651d1-e60c-4862-937b-a3136b1ee2f5",
@@ -258,7 +277,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "c43ca531-388a-43b6-a982-67ce8ca23653",
@@ -271,7 +291,22 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
+        },
+        {
+            "id": "cc99a168-8079-45e6-9980-a5a871ad102e",
+            "frontText": "Tervetuloa!",
+            "backText": "Welcome!",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "971dd188-5192-46fa-8973-38c4538b8002",
@@ -284,7 +319,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "4db83948-ea30-46a5-a44e-7251a1983524",
@@ -297,7 +333,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "a41b182f-1055-4975-a7c4-8d0a51a29d53",
@@ -310,7 +347,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "28c7f1fd-5545-499f-a4d7-74c3750b8476",
@@ -323,7 +361,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "3051ecf6-c4e4-47c6-acec-17c35f784aad",
@@ -336,7 +375,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "be42e45b-210d-45f6-a0c8-9ca242191a75",
@@ -349,7 +389,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "f4192e7c-2656-4d01-9f80-de06262fdb6a",
@@ -362,7 +403,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "ef65eab8-53ee-46ba-a26d-a429e066d912",
@@ -375,7 +417,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "f1879eab-8cbe-4bbb-9c82-955189e1a321",
@@ -388,7 +431,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "8fa61cd7-22f2-4a05-a1e2-27cb542ef754",
@@ -401,7 +445,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "38753cba-8f33-47f0-802c-e5d0c1436d20",
@@ -414,7 +459,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "1c39182f-e75f-42d0-9922-e0e211529dcb",
@@ -427,7 +473,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "dd880c5f-754d-4975-b6c1-6bae5f46ea0e",
@@ -440,7 +487,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "688a153e-b967-4ce0-b71c-201760231adb",
@@ -453,7 +501,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "35c16943-aa8d-40d7-8aa4-76d9897829fe",
@@ -466,7 +515,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "88d08805-0c5a-460a-b63e-86bdd4480efc",
@@ -479,7 +529,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "d8d67f19-6a18-48f1-a981-1af1b7ce8099",
@@ -492,7 +543,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "a8152373-f735-435c-9f06-a617b1a19266",
@@ -505,7 +557,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "ca73a900-11ba-4b0c-8bea-a433dae471a8",
@@ -518,7 +571,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "f48b677d-7afd-425c-afc5-cc13ac61922d",
@@ -531,7 +585,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "34b1fb63-c312-4998-8e92-7f18c1b0a9f3",
@@ -544,7 +599,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "1a8524af-320a-4470-be63-77c7de880085",
@@ -557,7 +613,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "791e1d48-7118-45e7-aea3-057416f58a96",
@@ -570,7 +627,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "449d078c-e305-4edf-83a4-ed173cdb9836",
@@ -583,7 +641,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "0fd92e9b-9704-4bb7-bc9c-c92f22592c82",
@@ -596,7 +655,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "02aa6c90-2d47-4f26-94ba-228faa5c5c77",
@@ -609,7 +669,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "dda569fc-7355-40dd-bbc0-3dbcbd752122",
@@ -622,7 +683,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "3b29535a-ce89-443c-bcdd-80fafa25da36",
@@ -635,7 +697,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "922dfa3f-f6a9-4d2c-bfa0-f190aeb3d4d1",
@@ -648,7 +711,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "99328cb3-38d5-4985-9d19-fb7712ecb455",
@@ -661,7 +725,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "b04e94a3-0bab-416b-b389-92bd006e8424",
@@ -674,7 +739,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "9f7ede47-34c9-4eee-9c35-e7a6410de338",
@@ -687,7 +753,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "c45b48ee-20c2-4450-82b5-bcc1032473ee",
@@ -700,7 +767,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "59e38d72-e926-44b8-aaf5-71d651ebd150",
@@ -713,7 +781,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "07ceb0a7-6d34-4cde-8ba0-dda3360cf0e9",
@@ -726,7 +795,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "d3f6db00-2dd5-43a1-945d-6feb34753b5e",
@@ -739,7 +809,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "e6ca121c-36c5-46c9-8654-8ea859f908b5",
@@ -752,7 +823,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "672cd60b-8bb3-49e4-9581-23451c9b3660",
@@ -765,7 +837,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "44431a59-6c8d-4b08-98d4-e247a8c7de9f",
@@ -778,7 +851,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "d760f10e-477c-4abc-883c-f7460fb5c62d",
@@ -791,7 +865,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "4891d8ed-5e35-4d68-a733-b12cdaf85141",
@@ -804,7 +879,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "71058b69-ee78-45d8-b27b-e1197e29f11b",
@@ -817,7 +893,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "9cf286c7-f950-4131-80a0-07aba7997021",
@@ -830,7 +907,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "7919a2f6-2a04-45a3-9f79-4ade2a5dc55b",
@@ -843,7 +921,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "524905a4-c29d-437b-8576-250566b49e14",
@@ -856,7 +935,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "a11f7a22-e9e8-4f1c-a422-acdaf27ab0ec",
@@ -869,7 +949,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "f654510a-d56c-4d70-9aad-eb45151913d3",
@@ -882,7 +963,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "4e2b8c75-7eb3-4566-8794-449b55173eb1",
@@ -895,7 +977,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "748e2814-0167-4c99-9e8a-f9322adf2fc1",
@@ -908,7 +991,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "0c8ab849-6e98-4ae5-9c6e-1ac47db71751",
@@ -921,7 +1005,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "b49ed7a8-947c-4a5c-b4be-868ff39dd0f9",
@@ -934,7 +1019,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "faffdc3e-de4d-48fe-9928-79ce3cb8d70a",
@@ -947,7 +1033,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "792efb9e-360d-4d03-b636-8dba91670912",
@@ -960,7 +1047,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "92e34a95-f2cf-41b9-8df7-8e2fd0f81a9c",
@@ -973,7 +1061,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "e8d83bba-2d53-41d9-9275-f87349f45105",
@@ -986,7 +1075,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "0a9a34e8-2076-489e-988b-a46c9c64bf00",
@@ -999,7 +1089,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "84d8f3ce-f215-466b-8ae3-241769578439",
@@ -1012,7 +1103,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "930df8f5-8629-41c2-a5a3-99480c87a19c",
@@ -1025,7 +1117,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "0a28b914-7ac3-441b-aa12-9ebc07271eee",
@@ -1038,7 +1131,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "f85d247f-6401-467e-b4a0-cb65772ea564",
@@ -1051,7 +1145,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "81fa0b77-fb7f-4c8f-9aeb-32caed11179e",
@@ -1064,7 +1159,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "c499b85e-cd9f-494f-b5ce-013fac20f4d0",
@@ -1077,7 +1173,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "0fb913ae-207d-4bc8-9362-54584fe106eb",
@@ -1090,7 +1187,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "9851dd02-df1f-456d-a754-594778a9a87c",
@@ -1103,7 +1201,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "67f320ce-4b8d-4118-9d35-505576254099",
@@ -1116,7 +1215,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "71473541-5d53-4f8a-b472-7abb67f9dcde",
@@ -1129,7 +1229,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "756eb817-874a-427d-8da0-76f1a0d5598b",
@@ -1142,7 +1243,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "8e28721c-ef37-478d-90c2-ad44efbbd384",
@@ -1155,7 +1257,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "dd2af043-8ac9-4020-b20c-39f1d038e8da",
@@ -1168,7 +1271,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "9ac3cfa3-ae90-426f-97e5-6a3f1eb753d3",
@@ -1181,7 +1285,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "77428960-123e-4751-abdc-6843dee31c65",
@@ -1194,7 +1299,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "9077866e-5fd5-49c4-bc55-9325c75f91ed",
@@ -1207,7 +1313,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "9c2fcbb2-5d96-4aec-b335-28cbb9ed1495",
@@ -1220,7 +1327,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "1f97fd4b-9600-4a72-b3a6-d5f05c9a8c2c",
@@ -1233,7 +1341,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "f8ab1810-1c47-4c3b-9f29-a375496f28e3",
@@ -1246,7 +1355,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "d32946c7-57cd-4d6a-97d2-49979e9f2d55",
@@ -1259,7 +1369,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "61981b0b-2e21-4b0f-b50c-58e150cb2fcf",
@@ -1272,7 +1383,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "33f7c6f3-7b8e-44bc-ad1e-8143b1fea7ef",
@@ -1285,7 +1397,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "fffe3b84-b8e0-44bf-befe-bccc1dfd4c93",
@@ -1298,7 +1411,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "f17dacd2-8b13-4f1e-8c41-39cac355c2f7",
@@ -1311,7 +1425,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "ce69299d-270e-4f18-bc62-048f16caf7b5",
@@ -1324,7 +1439,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "8317b0da-1e9a-43b2-8b4f-2e65718a5298",
@@ -1337,7 +1453,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "15252d13-3501-4a06-afb9-f5a495cf07a3",
@@ -1350,7 +1467,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "98caf23a-e391-43fd-8c90-f9e7c51b053a",
@@ -1363,7 +1481,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "06e731d3-c04f-478f-8300-32b0c24ef2ab",
@@ -1376,7 +1495,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "35d9fa80-4315-49ec-a7bd-05f733c9aa0c",
@@ -1389,7 +1509,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "e5223ee5-95d7-4edf-95e0-5564ab488b25",
@@ -1402,7 +1523,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "04a0293b-2256-414f-88fe-cbd94e67bd33",
@@ -1415,7 +1537,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 1
+            "chapter": 1,
+            "audio": "Y"
         },
         {
             "id": "683c248c-c9e6-447d-9939-6dbe4a7a5550",
@@ -1428,12 +1551,13 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "36519927-fb1b-4bd1-9bcf-dd48d1788ccd",
             "frontText": "Mik\u00e4 sun nimi on?",
-            "backText": "What is your name (spoken, casual)",
+            "backText": "What is your name? (spoken, casual)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -1441,7 +1565,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "e67d11f3-107f-4158-b245-620588b765ba",
@@ -1454,7 +1579,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "701d02ad-dea4-4ab4-9549-cb906d675bbd",
@@ -1467,7 +1593,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "f2b84fe2-24a4-4f7c-af81-b5da5bd62fb6",
@@ -1480,7 +1607,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "b4861352-9826-4e7c-add6-e05de9a02ad2",
@@ -1493,7 +1621,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "563e6322-2751-4afe-b9d0-9bfc5c1a7c15",
@@ -1506,7 +1635,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "1516471b-3672-434b-80ff-16d0acda9c51",
@@ -1519,7 +1649,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "05f0f937-88f6-4ddd-8178-5e71facd7512",
@@ -1532,7 +1663,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "ca2110dd-4420-457f-b013-5e34242583e7",
@@ -1545,7 +1677,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "3408696b-a8d6-4abd-9027-a99990ee8c93",
@@ -1558,7 +1691,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "0acdcf90-21c7-494e-830a-fbe157444a02",
@@ -1571,7 +1705,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "77148ef6-9103-4c8a-b39f-88a1bca2f0c1",
@@ -1584,7 +1719,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "9b2ed8d2-9882-412e-80d3-44fbd9ce59d1",
@@ -1597,7 +1733,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "60236aac-eaad-4f45-b36a-18a51f48b2b4",
@@ -1610,7 +1747,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "0d818530-6034-445a-8f1f-4e382aa63d62",
@@ -1623,7 +1761,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "33392946-827a-4829-9437-3139088d2677",
@@ -1636,7 +1775,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "038c27be-ef1f-43ff-b511-ad9ced6a7f81",
@@ -1649,7 +1789,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "9353fbcc-ed56-4ff1-990d-1d803ac9cfc3",
@@ -1662,7 +1803,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "a74ef915-6c8a-4597-9529-c975b10b2398",
@@ -1675,7 +1817,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "65f9792f-6a6d-40f7-a6af-b11c859a9623",
@@ -1688,7 +1831,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "b9a87baf-6d4f-4693-9fee-3768f1059077",
@@ -1701,7 +1845,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "555b370f-c8a4-45d2-86db-f10ee6d60d80",
@@ -1714,7 +1859,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "8fe9d239-d74f-4472-ae73-624fe8d76459",
@@ -1727,7 +1873,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "b87abd5a-0982-46de-ad6b-f616c5a7d232",
@@ -1740,12 +1887,13 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "8982896d-8c43-4cc7-be01-d9f509454b1e",
             "frontText": "Asun nyt Helsinkiss\u00e4, koska opiskelen t\u00e4\u00e4ll\u00e4.",
-            "backText": "(I) now live in Helsinki, because I study here.",
+            "backText": "(I) now live in Helsinki, because (I) study here.",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -1753,7 +1901,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "c82bd02e-7829-463b-b145-5e9a79aa9ebe",
@@ -1766,7 +1915,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "f80cc99a-9b32-4a41-bf23-74df71be664f",
@@ -1779,7 +1929,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "d6e1e5cb-feec-48f8-8097-23b12fbfe09e",
@@ -1792,7 +1943,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "8c4cc1b8-5f24-4ea2-a1ae-c62f0cbcc3fd",
@@ -1805,7 +1957,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "f8f30f43-9d48-4201-b582-e21f1ea0fa01",
@@ -1818,7 +1971,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "623c1fea-d5e7-497b-983d-924f392c3e00",
@@ -1831,7 +1985,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "eb31b3e5-5d7a-4982-9c05-6d2b070e5754",
@@ -1844,7 +1999,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "7c6b3cf0-f496-413f-b25c-c837f23c0d89",
@@ -1857,7 +2013,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "376e2f8a-e277-43d7-af28-d6b8daf834f9",
@@ -1870,7 +2027,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "4fdfaa2a-4362-442f-af0f-7f49d88a54be",
@@ -1883,7 +2041,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "6861936c-e135-4e26-adb3-70f471806c15",
@@ -1896,7 +2055,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "8f534b19-c457-40aa-ac37-05abe3a2b0fb",
@@ -1909,7 +2069,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "2cdd62bc-e9f7-4dd6-8204-69ede2b65360",
@@ -1922,7 +2083,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "78b5c32f-51cd-4b41-98e6-f3c9a0c7e380",
@@ -1935,7 +2097,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "16ad5cb5-49ec-45fc-8b29-e303c02801e5",
@@ -1948,7 +2111,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "f8983f50-81d5-4fab-bc60-d41f9e47f315",
@@ -1961,7 +2125,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "1ed23762-e4a6-48b7-9fe1-1c7a718227f2",
@@ -1974,7 +2139,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "bcc4fd72-77e6-40f3-961c-9aeac047326e",
@@ -1987,7 +2153,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "a2ad3f99-2b5e-4bd5-890f-fbba27c93e02",
@@ -2000,7 +2167,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "96c56e07-8914-4e64-a391-e865b80fb00d",
@@ -2013,7 +2181,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "165f041e-b698-45fe-97c9-c6ee849388c4",
@@ -2026,7 +2195,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "68977e6f-a2b7-4748-8f5f-128b6b97c928",
@@ -2039,7 +2209,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "9839dad2-6bc4-42a4-a758-27b917703fc5",
@@ -2052,7 +2223,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "ba70b3f8-daab-4435-9a1e-38ace7f82b91",
@@ -2065,7 +2237,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "938ae553-b81b-4355-b572-794bcf6c0694",
@@ -2078,7 +2251,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "56bd3392-b60c-4d54-81b4-331af1593330",
@@ -2091,7 +2265,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "2de32ded-c6d7-47aa-afc1-0336eb266cbe",
@@ -2104,7 +2279,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "f6e84cbf-cb4c-4118-80aa-bf2b21c14b20",
@@ -2117,7 +2293,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "299ce3f7-776d-461d-8693-4e268e451bd9",
@@ -2130,7 +2307,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "f7661bf0-1ac4-4357-b84d-a2407321805d",
@@ -2143,7 +2321,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "68bcd2a6-537d-45bf-b753-275df22182a7",
@@ -2156,7 +2335,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "376f1cb6-a1d5-4547-ae99-4169b5f6c1b2",
@@ -2169,7 +2349,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "bb98b1ef-f0c3-4e93-9f71-5afffb50b295",
@@ -2182,7 +2363,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "edefdc30-331b-4c09-a7f6-f70a434c6ccf",
@@ -2195,7 +2377,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "d98fd2e2-2016-4036-9774-9806008fbda6",
@@ -2208,7 +2391,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "e12392d7-099d-42c8-8e35-6752f735b05c",
@@ -2221,7 +2405,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "9682f625-390e-4f8c-8da4-07fa05e42f32",
@@ -2234,7 +2419,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "958c6d21-8fe5-4ca7-8f19-7694bc366e74",
@@ -2247,7 +2433,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "d50fbb9c-d537-4c92-97c1-2fd5aa08186d",
@@ -2260,7 +2447,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "9cb3b3ed-73e9-4180-a2d8-261dd2e1b56f",
@@ -2273,7 +2461,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "1ad6980d-8e76-4586-852d-c7a729c1151d",
@@ -2286,7 +2475,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "5b1c76d9-ed41-402b-9f04-bb01270ead32",
@@ -2299,7 +2489,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "c8605223-892d-42e5-9c5f-0b1e3b6ccd81",
@@ -2312,7 +2503,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "b07eacb5-a4d7-44f3-bc7f-3c41aa193aa8",
@@ -2325,7 +2517,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "6fbc6458-c0f1-40d1-82d4-dc13fb231c2e",
@@ -2338,7 +2531,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "00e776c6-b54e-4a63-baba-6c2fe2e6d7b8",
@@ -2351,7 +2545,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "f3d70b13-3881-4764-8c37-0ff1f6154682",
@@ -2364,7 +2559,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "83418740-49ba-4f5d-976c-0778a450abf0",
@@ -2377,7 +2573,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "ffe9ecf5-c6e6-4f09-bac5-fed0b51d4510",
@@ -2390,7 +2587,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "074fb75c-8c16-44df-a924-24445d034d2f",
@@ -2403,7 +2601,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "83666aed-7f66-4ce6-8611-488b879b8272",
@@ -2416,7 +2615,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "cc2de9e8-f3fb-4a6c-be7d-1d28dd00eed4",
@@ -2429,7 +2629,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "2e52dd89-9175-423b-8c5d-ecf01cd32f96",
@@ -2442,7 +2643,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "046fad4e-2d54-4250-9c24-e9d5731dfab1",
@@ -2455,7 +2657,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "37143d3c-0bf9-4340-b561-50a02f6a9962",
@@ -2468,7 +2671,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "e8e12df6-3c66-45f0-a770-f46bb8a79a62",
@@ -2481,7 +2685,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "bdbaf676-4688-411e-86fe-5b538fcea2eb",
@@ -2494,7 +2699,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "2616bd3c-79f0-4f81-9280-4022fee900b5",
@@ -2507,7 +2713,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "4b177451-2102-4e68-968d-956fd90946ca",
@@ -2520,7 +2727,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "7a059b6e-ac70-41df-a790-741ee3fb4066",
@@ -2533,7 +2741,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "f675e0a0-be74-4b00-8ad1-4862a1193507",
@@ -2546,7 +2755,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "61f7b69c-2428-4849-9f75-011a1bc524ce",
@@ -2559,7 +2769,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "93a71602-0bcc-498d-b8d3-1caa1da078d1",
@@ -2572,7 +2783,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "620303f9-5803-408e-9fd7-6170fca7d8ca",
@@ -2585,7 +2797,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "923c4c6c-7c09-4012-8a35-d26d2195f513",
@@ -2598,7 +2811,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "bbc978b4-bc97-4db6-acaa-c049a5d225a0",
@@ -2611,7 +2825,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "590dc4db-59ce-4985-a272-0583bda7457c",
@@ -2624,7 +2839,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "96849165-1757-47f6-87ba-10dc3cea5b23",
@@ -2637,7 +2853,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "7295d0a6-bae1-437a-8fad-e39dd3f32fbc",
@@ -2650,7 +2867,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "f0933f84-1594-4e27-9d8d-298f267e36c0",
@@ -2663,7 +2881,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "f649f985-0200-4c6f-8a90-c1b0a35c827c",
@@ -2676,7 +2895,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "cfff80a7-4894-423b-9201-a821662924aa",
@@ -2689,7 +2909,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "358b7f9b-e3ec-47bb-8c5a-74048fc55582",
@@ -2702,7 +2923,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "dffae821-2cf5-49a5-81ec-8db7c3e98d6a",
@@ -2715,7 +2937,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "4dea4eca-2512-4b42-8951-2113b007eb25",
@@ -2728,7 +2951,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "d7c05f38-a815-47ee-9b0b-cfcd1d21d653",
@@ -2741,7 +2965,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "4343b4f0-d561-4284-ad86-e9b91370f482",
@@ -2754,7 +2979,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "6fa269f7-3121-4550-86fc-e88ba04ea87b",
@@ -2767,7 +2993,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "37bc9cb5-3665-41c4-856d-2e03102f2466",
@@ -2780,7 +3007,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "d6483be1-16da-4721-beaf-6c95edd0dfb5",
@@ -2793,7 +3021,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 2
+            "chapter": 2,
+            "audio": "Y"
         },
         {
             "id": "6cad3b32-9af2-4fc9-9165-236e4aaa6f63",
@@ -2806,7 +3035,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "12a40e36-5382-4913-b4fb-9833bbf6a01e",
@@ -2819,7 +3049,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "94c81047-0206-4eb9-a37e-f94e2bf9a06b",
@@ -2832,7 +3063,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "0d4eef46-89e3-4966-bb3e-42824676b255",
@@ -2845,7 +3077,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "eea53726-4bec-41f0-a043-306f93e89c0e",
@@ -2858,7 +3091,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "13f3b3aa-ad01-4289-a524-cc81f85b7e0a",
@@ -2871,7 +3105,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "3c2c56d3-e0c2-4b7d-b9bc-7372226ce204",
@@ -2884,7 +3119,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "f13f16fa-2b1d-44e5-9f38-d6b6cdfe5c4d",
@@ -2897,7 +3133,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "e009f71a-0dfd-42de-99ab-8cda04904206",
@@ -2910,7 +3147,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "78e6f329-263a-41da-b6e3-118f70b78e7c",
@@ -2923,7 +3161,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "b21bae3c-8ff7-4d04-95aa-fe46acae2bef",
@@ -2936,7 +3175,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "e10fc12d-71c9-4f15-870c-02dba93282c3",
@@ -2949,7 +3189,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "ece4ae01-005d-403e-b43f-8d7d76b8413e",
@@ -2962,7 +3203,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "923c69c9-7ba5-4a38-a060-0ab328f16fb9",
@@ -2975,7 +3217,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "da72018a-96e7-49cb-990c-34c90016bb9c",
@@ -2988,7 +3231,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "e290a791-bb6e-4ad0-b3be-dc52b3655979",
@@ -3001,7 +3245,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "dba7546f-b990-4c56-b8a9-c4a1fbf859ed",
@@ -3014,7 +3259,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "83341b7d-f87f-4ad3-8485-a59165a60c73",
@@ -3027,7 +3273,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "aa18cb9d-45bb-4814-a9df-4ff5d6d292e1",
@@ -3040,7 +3287,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "9f4f05ee-32f0-4321-a2e7-015dbc78bd6d",
@@ -3053,7 +3301,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "5c04d70e-8e5e-4ba7-90f2-ae0fdfbff9ac",
@@ -3066,7 +3315,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "4f346b02-a0de-4b3f-9074-85c19b01eee0",
@@ -3079,7 +3329,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "7a9868a8-aade-494d-b757-e5d3c4023472",
@@ -3092,7 +3343,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "3075e620-c373-49b7-a1a2-a959fe0085ff",
@@ -3105,7 +3357,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "542cee93-8f8f-4bb4-bed3-bfd837e1176e",
@@ -3118,7 +3371,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "ef9cdb91-cfb2-494e-9561-abe0570efcf0",
@@ -3131,7 +3385,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "434c1450-f18b-4019-87de-98e1e43aa51c",
@@ -3144,7 +3399,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "1956fe7d-d1bd-4a85-b411-625557ed60e9",
@@ -3157,7 +3413,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "033ddea1-4ece-4a13-bf35-7af8310a6ead",
@@ -3170,7 +3427,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "5e7f228e-fa9d-4798-b80e-d255a6fd5f4f",
@@ -3183,7 +3441,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "9612efb2-01b7-488c-961f-910993887bf5",
@@ -3196,7 +3455,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "b46294b2-563e-4bbc-b67e-7345f4a7e889",
@@ -3209,7 +3469,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "4ccf58a8-f7ed-437b-a649-2a1a89311949",
@@ -3222,7 +3483,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "97d2b597-f380-4d46-9fb9-1d693f770be5",
@@ -3235,7 +3497,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "4db49509-8962-4443-b2a8-3c3260ed65fd",
@@ -3248,7 +3511,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "f4cda415-ad9d-439d-8cc0-6f42bda5d6bc",
@@ -3261,7 +3525,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "c6c1076f-76cf-4d9d-8c69-61b08e80fd25",
@@ -3274,7 +3539,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "d9233406-34a2-4310-8b1d-1bd48e3f00c0",
@@ -3287,7 +3553,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "b3960cdf-ce44-47b6-a0ef-7ea9a15c2456",
@@ -3300,7 +3567,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "94f6a141-5d34-45e9-8a40-4810de41d0e5",
@@ -3313,7 +3581,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "90816501-9baa-4dd0-8fcf-0fbe5cd69656",
@@ -3326,7 +3595,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "b6d554da-8abf-439d-ad25-a2db8863abb5",
@@ -3339,7 +3609,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "da99f563-0f08-4fd8-81b3-0721ba7a4601",
@@ -3352,7 +3623,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "24b69629-61cd-4eb9-93aa-974b9d2d134e",
@@ -3365,7 +3637,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "a10a36a1-eb26-42a8-b3f8-78b868b84770",
@@ -3378,7 +3651,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "87b4fb72-3e2d-40f0-b8f4-eef3623a185a",
@@ -3391,7 +3665,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "c51213c4-1571-4269-8264-3b187240c9eb",
@@ -3404,7 +3679,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "82312d00-0cbb-4d11-a4d2-b04bcd648d1b",
@@ -3417,7 +3693,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "8cb4bf8b-f69a-48ca-832a-9a3d9e1c1bf9",
@@ -3430,7 +3707,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "b39ede23-b9a8-4674-b989-1c610b907cfc",
@@ -3443,7 +3721,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "050d453c-2967-44a1-b0a9-e3cf03e81453",
@@ -3456,7 +3735,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "01989a21-47df-49b0-981f-72c6259a28b1",
@@ -3469,7 +3749,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "4ec5ab43-2609-4c2e-8df8-b7fd7cdcdd00",
@@ -3482,7 +3763,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "c379740b-9580-4fe5-821a-e5b59d43ed02",
@@ -3495,7 +3777,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "80f1f358-077b-402d-a897-9ae717e03901",
@@ -3508,7 +3791,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "9923ce1b-1fb6-49da-9626-f57893e35b0e",
@@ -3521,7 +3805,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "c1812576-418e-498a-a84c-e84d32ec4f8f",
@@ -3534,7 +3819,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "55120527-d788-4c71-aac0-d3821f5fdbee",
@@ -3547,7 +3833,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "d623aa0e-a2aa-414e-b34d-282836236c8b",
@@ -3560,7 +3847,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "edbdd112-5a91-4fa9-bb79-877f9a4fd233",
@@ -3573,7 +3861,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "9ba0a7cb-eaaa-4ed6-9ef6-0113f28d52df",
@@ -3586,7 +3875,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "c30c1e30-647f-42a6-83e3-ce57a04d7003",
@@ -3599,7 +3889,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "c116a0df-0e67-40ae-a279-117e894f9948",
@@ -3612,7 +3903,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "7e447db0-22d5-4db1-a1d5-0a2681562b6c",
@@ -3625,7 +3917,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "3f786d49-16e3-4edc-becc-97015a3070e1",
@@ -3638,7 +3931,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "9ccb535f-7462-4e76-82ea-3b3b4c096eb5",
@@ -3651,7 +3945,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "81d87d23-da69-4af6-8b08-bd697ea25954",
@@ -3664,7 +3959,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "592c8e84-030b-469a-ae48-b7460be3a892",
@@ -3677,7 +3973,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "d50917ad-bfbd-435b-95c4-4f1a4db63a7b",
@@ -3690,7 +3987,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "839cc29c-0abd-4545-96c3-d4528dd98ffa",
@@ -3703,7 +4001,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "daba332d-a5b7-4a7d-b540-22898f8eb311",
@@ -3716,7 +4015,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "24e89052-422c-4839-aa29-d9ee507663cd",
@@ -3729,7 +4029,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "ae5df9d0-9fca-4a81-94d5-d1814fb56969",
@@ -3742,7 +4043,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "1c11f99a-0ff5-4562-8040-e56f7d12dbe4",
@@ -3755,7 +4057,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "de983921-5cab-4ef3-ad03-d735ce8b6b4c",
@@ -3768,7 +4071,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "d0b51da7-4285-4e8e-a9e0-18419c3525f8",
@@ -3781,7 +4085,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "10a2c414-9206-44c9-bd49-195ca5d9311b",
@@ -3794,7 +4099,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "f1ef2120-5021-44d2-a766-804f7ae007a6",
@@ -3807,7 +4113,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "cbff2fd7-9d46-4129-ab44-c4c6b84a60ec",
@@ -3820,7 +4127,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "2613329b-293e-463c-b4b1-0a30a3afee5b",
@@ -3833,7 +4141,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "8e93e0d2-03ce-4e35-8f7b-25d5b274bb4a",
@@ -3846,7 +4155,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "1eb3b3ac-55b2-4bca-ba99-fff0d80b6588",
@@ -3859,7 +4169,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "16fdeeec-ee32-47be-ab94-6e950c5e085e",
@@ -3872,7 +4183,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "d870fbdd-56f4-42c7-accf-ab4d17b7c1ef",
@@ -3885,7 +4197,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "d194a41b-be42-43f9-a02e-7a478b1ac249",
@@ -3898,7 +4211,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "ee9acb8f-0fe7-48b8-b641-ed8b6221f61d",
@@ -3911,7 +4225,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "971ede32-a9d4-4721-863b-2e8640fba4cd",
@@ -3924,7 +4239,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "4c46086f-4dc7-43f7-b704-b324a773e30e",
@@ -3937,7 +4253,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "300a335d-af48-4366-8317-316401d5614b",
@@ -3950,7 +4267,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "01cb2dff-8700-4261-989c-b7bcc979860a",
@@ -3963,7 +4281,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "ed22b978-ff50-4c00-997f-72e02f15faea",
@@ -3976,7 +4295,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "517861c8-66cf-4d06-a1d5-907fd1984770",
@@ -3989,7 +4309,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "b68caf53-f03d-4968-82a0-ab7a466801f4",
@@ -4002,7 +4323,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "a03e0d70-bb5b-4b9f-93dd-b307afeac42d",
@@ -4015,7 +4337,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "3732eb8d-5404-4a26-8f2c-0cce003d029b",
@@ -4028,7 +4351,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "91c5d0aa-670c-47df-96ef-410f7a62dba6",
@@ -4041,7 +4365,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "b0c00e61-fc5f-4f12-970b-c7d087479819",
@@ -4054,7 +4379,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "02d0b3fe-253e-4637-88e6-8138225c4b79",
@@ -4067,7 +4393,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "c318b737-4e21-4381-b9b5-1c3022784350",
@@ -4080,7 +4407,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "4b6bcba5-5b53-4917-a737-fd0ef0be9050",
@@ -4093,7 +4421,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "78fd465e-1027-4f4b-9456-0fdfd4722955",
@@ -4106,7 +4435,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "2496de3e-a3d7-4a08-a09a-a27f5fc123bc",
@@ -4119,7 +4449,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "45573a59-f3aa-415f-86e7-f85ba41070d8",
@@ -4132,7 +4463,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "c42b2911-3446-42e4-a097-55cdac101c98",
@@ -4145,7 +4477,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "a0d3f01a-11f1-43b0-84a0-c221e12da1f4",
@@ -4158,7 +4491,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "e1d29ca6-a361-428c-9781-8cb79d665966",
@@ -4171,7 +4505,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "9b8fec3e-d16e-4938-8323-47b28c90b976",
@@ -4184,7 +4519,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "c4c3a679-9152-4d82-8aab-c6c5d5d701ce",
@@ -4197,7 +4533,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "3741d5db-f8f4-4c59-9ad8-43a9528a4f44",
@@ -4210,7 +4547,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "eb16a083-232d-41c2-a0de-4ef6a8be18f1",
@@ -4223,7 +4561,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "edd2cce2-ca8e-4278-9c3c-f54b5979a628",
@@ -4236,7 +4575,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "0fe23319-6e57-40a5-ae6e-98e0bc89fa95",
@@ -4249,7 +4589,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "3aa6e99f-72eb-4606-8d3e-196c7d8c3d3f",
@@ -4262,7 +4603,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "6ed0e664-f14c-4d65-8a96-681b334e581f",
@@ -4275,7 +4617,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "ace1cd1a-5b0c-4c5b-a1aa-7dffa6d6fe64",
@@ -4288,7 +4631,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "853baf4f-cff3-4a0a-800d-712aac728cde",
@@ -4301,7 +4645,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "def60ed4-9d20-4fc8-9113-7e6275180f21",
@@ -4314,7 +4659,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "ae890a26-8531-4de5-a8ee-b71815be80cd",
@@ -4327,7 +4673,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "d448caba-0dd1-4bd2-bde1-efbcbfa34f4f",
@@ -4340,7 +4687,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "5d916fa9-999e-4590-b41f-8cc89708cc98",
@@ -4353,7 +4701,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "f1a368dd-94ec-480c-b8d3-7deb034cb3ad",
@@ -4366,7 +4715,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "1374c69f-bda7-4c31-a78e-5b2a870760fe",
@@ -4379,7 +4729,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "29891b21-d2b6-4337-853c-15eb034ec158",
@@ -4392,7 +4743,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "857341bb-1e72-48af-be95-dcd6d6c7d4e6",
@@ -4405,7 +4757,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "9dc11514-7b08-48b8-93f0-54a09a9f7b63",
@@ -4418,7 +4771,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "a950e5f2-7091-4dec-98c8-a6fc1da1e637",
@@ -4431,7 +4785,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "75b3bd87-abf6-49c5-b392-16b9a55fdc1a",
@@ -4444,7 +4799,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "8d15c287-42ff-4250-8d1e-400e494933cb",
@@ -4457,7 +4813,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "500e7807-5963-402d-83fa-7098021197a1",
@@ -4470,7 +4827,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "2b8d859e-4663-4427-9efb-9ac74faf7c5e",
@@ -4483,7 +4841,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "1cd3703f-5314-4c7d-841b-fb8a07071a07",
@@ -4496,7 +4855,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "98def2b4-415d-400e-a948-1d4f91fb952e",
@@ -4509,7 +4869,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "7e95df91-a191-4844-80ed-e8dd3a58ddeb",
@@ -4522,7 +4883,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "a6d94b07-b201-4a55-b01b-363a6716b520",
@@ -4535,7 +4897,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "4107c9b7-5de2-42b5-b305-c6a1b51c09e3",
@@ -4548,7 +4911,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "192720d1-a209-46c3-ad10-809fb76fecd3",
@@ -4561,7 +4925,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "8c86e7a6-2ba1-4376-bbf5-258ea2b305ab",
@@ -4574,7 +4939,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "4b7a03c6-a2ac-4b61-9b56-048d32b625aa",
@@ -4587,7 +4953,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "6eedd667-5520-4bd9-8380-56c653e459e2",
@@ -4600,7 +4967,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "eb0f7a27-9689-4e61-a19b-c24a3d44e5da",
@@ -4613,7 +4981,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "a8c95b86-e54b-4ef1-89bf-98aa7a4b87a7",
@@ -4626,7 +4995,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "e775069b-51d5-4d78-a955-e4315550d206",
@@ -4639,7 +5009,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "80394819-e210-423d-a934-7e624fa7fb87",
@@ -4652,7 +5023,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "e16e3619-f83d-47c6-835f-538754f72afa",
@@ -4665,7 +5037,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "a2493cdc-6e6b-43cc-9fbe-793b4f78752a",
@@ -4678,7 +5051,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "ffa9219c-d2c6-4824-a4c9-9a78619daa1d",
@@ -4691,7 +5065,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "4b5aad26-8188-4478-a50b-d31c128e9ac9",
@@ -4704,7 +5079,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "9a1945aa-c5e2-4fe4-abac-a081a1dd0262",
@@ -4717,7 +5093,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "12c0e2d0-8816-474e-a4ac-a0d9e371bb4c",
@@ -4730,7 +5107,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "2e39ec84-875c-47e8-8e14-6ac25ebf34b8",
@@ -4743,7 +5121,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "ae0dfe2f-bb5d-4f8b-aca7-5af17be0193b",
@@ -4756,7 +5135,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "4de245c4-b4ce-487e-8124-82dfa12e96b9",
@@ -4769,7 +5149,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "50c3e2e0-ba2a-4862-af64-ac6b831d2249",
@@ -4782,7 +5163,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "9a5598b8-bb5e-4e86-b19f-9996e9f4d191",
@@ -4795,7 +5177,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 3
+            "chapter": 3,
+            "audio": "Y"
         },
         {
             "id": "fc01547a-d9a3-4b50-a91f-4eb7a26b8ffb",
@@ -4808,7 +5191,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "5a7ffbf5-d031-41b9-beba-bb98a8f523ab",
@@ -4821,7 +5205,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "4e6c81aa-fbae-40bb-a442-ba9ff3f0e7cd",
@@ -4834,7 +5219,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "821509c4-dd1c-4379-9153-0040398d9df2",
@@ -4847,7 +5233,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "3bc1db2f-9dac-48f8-82c2-d81ac1a9f7d4",
@@ -4860,7 +5247,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "cd144a23-b3e9-4584-8089-c51fd4535b3d",
@@ -4873,7 +5261,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "4d572d87-5530-4348-8aa6-3caf98e169e5",
@@ -4886,7 +5275,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "a46c01ab-8ec0-48c9-a04a-8f16b2a20dd5",
@@ -4899,7 +5289,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "db913b4e-5242-4d9f-acc7-b4b71a8491d6",
@@ -4912,7 +5303,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "0e770e24-ae77-4cac-bf9e-22a1f01aef5b",
@@ -4925,7 +5317,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "3e8747cc-914b-4e5b-a081-643146a94103",
@@ -4938,7 +5331,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "31a3d397-a53f-4ce5-a427-06a17b2d66b1",
@@ -4951,7 +5345,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "30ebfafb-184f-4394-a71f-6ffea7949c9f",
@@ -4964,7 +5359,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "28757823-ed5b-4ee5-83dc-0912cf741211",
@@ -4977,7 +5373,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "234bf47a-e6b2-486d-b778-7920abee73d2",
@@ -4990,7 +5387,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "a71f6c8e-1bb2-49c7-b508-f6e1cda62588",
@@ -5003,7 +5401,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "ff588a7e-ed44-4b25-8c18-1d382d3567ed",
@@ -5016,7 +5415,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "8f5cb72d-1dc0-41df-8efd-daf53fa65466",
@@ -5029,7 +5429,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "36b79672-0cd8-469a-ab0c-b67cfa6b9941",
@@ -5042,7 +5443,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "fa353f96-edce-4243-985a-5c1b56f6e5aa",
@@ -5055,7 +5457,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "98276d59-2556-4c90-b438-90b3cc6cadb9",
@@ -5068,7 +5471,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "b04513bb-7124-47f7-b40d-9ff071ec1a45",
@@ -5081,7 +5485,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "a5ed4408-22a7-4029-81c1-9dc30cdca614",
@@ -5094,7 +5499,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "9950f75c-6c7b-4779-85a7-88bdd145f073",
@@ -5107,7 +5513,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "af811ebe-694e-4065-83fb-5ce492a3f4d6",
@@ -5120,7 +5527,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "9578b39f-c016-404c-8247-2353fb54e334",
@@ -5133,7 +5541,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "d48f96ad-83e9-45ba-b77c-bb0ff7f10511",
@@ -5146,7 +5555,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "985f462c-0161-4e5a-9b98-22652209647d",
@@ -5159,7 +5569,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "4a4f16ab-ac51-44aa-82a7-61ff9d564a76",
@@ -5172,7 +5583,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "cf13ecaf-a18c-4fb0-bc13-b6a31affa657",
@@ -5185,7 +5597,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "4a72981a-12f5-4ab9-a09a-c23ee87aea04",
@@ -5198,7 +5611,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "0183ee75-4748-498b-a793-f0152f7a8608",
@@ -5211,7 +5625,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "abb281d1-8ed4-4b9e-8c4f-0dcb37593fb4",
@@ -5224,7 +5639,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "407664d0-373e-4014-95a9-05629d14b3c8",
@@ -5237,7 +5653,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "c0591a67-df02-43d7-b08e-bc8d541844d0",
@@ -5250,7 +5667,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "641e9bc6-4210-4fec-91e0-2a8b830c92ef",
@@ -5263,7 +5681,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "e43112ae-f458-4bf8-ab41-5199c3c73653",
@@ -5276,7 +5695,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "b832ddd3-d9fd-488e-aa02-2d6437214371",
@@ -5289,7 +5709,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "c29e525b-43a4-46da-a3f3-44f665fba9b2",
@@ -5302,7 +5723,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "ef0b1b14-adaf-474f-b4b6-7366e264ce2c",
@@ -5315,7 +5737,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "ae1084d3-bc73-4caa-b92a-b33cf978f53b",
@@ -5328,7 +5751,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "cc865928-1246-43b0-b830-aa1022deecf7",
@@ -5341,7 +5765,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "c4e50e05-756e-40ca-82d9-4ab7e4f86073",
@@ -5354,7 +5779,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "2701aaf3-d009-4f45-bf10-b8266bbcd417",
@@ -5367,7 +5793,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "0ac95dc6-d65d-4492-bbcc-ffc26428ffda",
@@ -5380,7 +5807,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "bb86cd78-bf5f-4241-9814-3cc12a26fa04",
@@ -5393,7 +5821,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "a197d107-fbb8-4b8c-b874-cca95f0305fa",
@@ -5406,7 +5835,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "6628b1be-33dd-49cf-b989-9533ea137fe6",
@@ -5419,7 +5849,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "8b71666e-afc2-4dcf-aaa3-a70ab4d7f58f",
@@ -5432,7 +5863,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "850b2825-76e4-4a5d-a85d-18206a2c6da8",
@@ -5445,7 +5877,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "9b68156a-5d34-489d-80c3-9301d8463c55",
@@ -5458,7 +5891,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "a4411363-a182-485f-adda-4fae5718f72d",
@@ -5471,7 +5905,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "f78dbe66-4bec-45fb-9bee-1e920ef41777",
@@ -5484,7 +5919,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "e73e5897-8651-4f41-8e8e-aac5b503dec6",
@@ -5497,7 +5933,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "94053d03-c5cc-4ddc-90cd-6009d17ce243",
@@ -5510,7 +5947,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "fcc86b99-e3b1-4048-8af7-4ef4752c084a",
@@ -5523,7 +5961,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "65f9e26c-b205-41ba-9161-c643537983c5",
@@ -5536,7 +5975,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "03058a86-985c-43f2-88dd-824b804bdc8c",
@@ -5549,7 +5989,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "0975ea70-d8ad-4a45-a5c5-0f3779a8c00a",
@@ -5562,7 +6003,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "a52e1bc5-7b1e-4b90-aff1-b5d5bfe95a00",
@@ -5575,7 +6017,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "34d12756-e824-4476-9062-422d7941829d",
@@ -5588,7 +6031,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "4f492c98-92a1-4614-adbe-3bc885863a87",
@@ -5601,7 +6045,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "f346dd1b-7eab-486f-9ed3-b727ae7ab6f6",
@@ -5614,7 +6059,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "54bb0b65-79f8-471b-9995-562bae6864c0",
@@ -5627,7 +6073,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "f0e21f66-f811-42b5-9b50-c54eccfe24f7",
@@ -5640,7 +6087,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "042a2fc8-bfcf-47e1-a2f4-d746387b2aad",
@@ -5653,7 +6101,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "ba9b2445-53ff-4b10-be7d-fcaad3bc3bb8",
@@ -5666,7 +6115,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "71a93302-d6ab-4d5d-b4e1-59a0a5d57539",
@@ -5679,7 +6129,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "36699d47-2c26-44ba-b708-5ddd6a9b567b",
@@ -5692,7 +6143,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "a34c8d0d-801d-46f2-8359-6c807f324fc4",
@@ -5705,7 +6157,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "cdf17ec0-81b9-4535-8bc7-efffedea1b40",
@@ -5718,7 +6171,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "5d35e95d-1766-4e4d-ac19-58688971a0c3",
@@ -5731,7 +6185,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "563900cb-47b4-4cdc-a5fa-3f7e3968d438",
@@ -5744,7 +6199,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "471ab39e-8bc9-42ae-a00f-f1b4ff25b2d3",
@@ -5757,7 +6213,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "10d17238-be59-4778-834a-f5f65d8a1d08",
@@ -5770,7 +6227,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "bc3b443e-176a-4397-8b8f-84a47fc3c814",
@@ -5783,7 +6241,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "85055ab0-ced3-482c-8202-c1f46a94d8a8",
@@ -5796,7 +6255,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "29cd1c03-ebf7-4df0-ac04-83cdbe228c37",
@@ -5809,7 +6269,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "918d99e0-bdd8-49c3-a77f-e742d36b27c8",
@@ -5822,7 +6283,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "05b357f0-89b1-4388-8642-d6c869af735e",
@@ -5835,7 +6297,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "6c92b567-e59b-4779-a30f-45aabd239720",
@@ -5848,7 +6311,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "e1e63b7e-ce54-4e64-b101-c5b9e78824ed",
@@ -5861,7 +6325,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "995ced05-e285-45e8-b683-20c3fb0f05f8",
@@ -5874,7 +6339,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "c73968a5-5f1a-40c1-9ffe-ebebcaefe5fe",
@@ -5887,7 +6353,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "09afcb95-2d38-4fba-9a18-2d000a3723f9",
@@ -5900,7 +6367,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "48b1fff0-6f30-4d1b-8aa6-5038b8b3bba0",
@@ -5913,7 +6381,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "0cec5008-bab3-4fee-a148-08952fbd2ed9",
@@ -5926,7 +6395,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "9e7dc581-f619-4a37-9531-bf2fb46b9928",
@@ -5939,7 +6409,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "71c683f9-01ec-45d6-b54c-62e8b89fcaae",
@@ -5952,7 +6423,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "08f2084d-4735-4606-9b2e-42e6fe5e300f",
@@ -5965,7 +6437,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "b96149ee-0eaa-4380-9c73-9af1f845ec7f",
@@ -5978,7 +6451,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "1af9b294-d410-494d-836d-ac44e21b5c89",
@@ -5991,7 +6465,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "e4b7eac4-1911-40bd-99ea-4ac6ab2a97d9",
@@ -6004,7 +6479,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "782cb2dd-49ef-4c5c-88a7-b5d710ab59eb",
@@ -6017,7 +6493,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "03cc2bd6-9265-47cb-8b09-b7ebe6a88a24",
@@ -6030,7 +6507,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "b606689e-8dca-4f12-b883-28808efc20df",
@@ -6043,7 +6521,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "18c9277e-fa03-4b5e-af16-b34fd34eb702",
@@ -6056,7 +6535,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "21c36d6c-91b2-4766-9881-638e8649e515",
@@ -6069,7 +6549,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "38514a4e-7e63-4b37-a31d-268ee8c9d6f2",
@@ -6082,7 +6563,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "cdc36d20-a969-4fb3-85da-cc5f75f49425",
@@ -6095,7 +6577,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "01d12ad2-dced-4c90-8819-71fbf080ed8c",
@@ -6108,7 +6591,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "1bf3bcee-bbf3-4047-b0f8-86f5b1da5b48",
@@ -6121,7 +6605,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "fb02faeb-21a7-49b8-91c1-4a40e3461fa4",
@@ -6134,7 +6619,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "1fa3077a-d235-4ed6-b354-6da0612c21d2",
@@ -6147,7 +6633,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "0c1349e5-742d-42db-b83c-29729020984a",
@@ -6160,7 +6647,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "c8fbd08e-7e4c-4b12-bb8b-be961087306a",
@@ -6173,7 +6661,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "05498c13-acbe-4ea9-b62e-4242c5f6863e",
@@ -6186,7 +6675,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "3f31ce41-5e03-4d33-9e61-58cb212e6dcf",
@@ -6199,7 +6689,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "bcb2bb35-4dfa-4cf5-9490-ad92ce7b8279",
@@ -6212,7 +6703,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "a045b582-97e8-480e-b370-1efc41b63695",
@@ -6225,7 +6717,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "c72650f3-d219-4c6d-83aa-56340fac0f6e",
@@ -6238,7 +6731,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "1a7b48ff-5595-4720-8ec9-eacf687f718c",
@@ -6251,7 +6745,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "d19513ef-fea2-4486-99da-fbc8828e698f",
@@ -6264,7 +6759,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "f214c094-1f5d-4995-9cf4-d9ed2f87c74d",
@@ -6277,7 +6773,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "42f692ac-99e5-4831-891c-b1390f5ea732",
@@ -6290,7 +6787,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "dad7d8ed-2e5e-4711-883f-62a8ff1938a6",
@@ -6303,7 +6801,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "5b077aa8-8661-40a0-9bd0-45dea0f5cf16",
@@ -6316,7 +6815,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "aac2669e-e3ea-4059-a63d-9497f611114d",
@@ -6329,7 +6829,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "bbea6f1b-1b5d-4b72-a141-b3c73d501f01",
@@ -6342,7 +6843,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "65255225-cef5-4fa9-a25d-40aac395039a",
@@ -6355,11 +6857,12 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "3fbc8360-d529-4ae7-ae92-2255440e7ad3",
-            "frontText": "Ent\u00e4 mik\u00e4 painaa seittem\u00e4nsataa grammaa?",
+            "frontText": "Ent\u00e4 mik\u00e4 painaa seitsem\u00e4nsataa grammaa?",
             "backText": "And what weighs 700 grams?",
             "cardtype": 0,
             "interval": 0.005,
@@ -6368,7 +6871,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "aee4b39d-1451-4e62-b85a-eed148dd4539",
@@ -6381,7 +6885,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "35aebc0a-c35b-4180-8918-2e1a4852ebc5",
@@ -6394,7 +6899,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "854f30e2-90e4-41c4-8590-954fd1b9777a",
@@ -6407,7 +6913,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "6ad9117d-e3f1-42bb-beb2-cf3531ff22e3",
@@ -6420,7 +6927,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "dd344fb8-cbea-47af-95a1-e74fb534c69a",
@@ -6433,7 +6941,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "5f309590-f851-4f11-88f9-83c2a4e3262e",
@@ -6446,7 +6955,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "58f9aa25-0f10-4e08-83df-67965974c94f",
@@ -6459,7 +6969,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "08ca3ebb-02e4-4053-a748-55ba042df880",
@@ -6472,7 +6983,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "5aa83cf9-8e22-4b3e-9920-22330ecd266b",
@@ -6485,7 +6997,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "344176f9-d7c6-4128-a6cb-2e4372f77e73",
@@ -6498,7 +7011,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "2df76277-682e-4ef3-96ef-658eb0c479c6",
@@ -6511,7 +7025,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "eb236e70-e704-42d3-a1dc-9e085283c21f",
@@ -6524,7 +7039,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "8ea6d98c-59cb-48c7-babc-c780bae5e380",
@@ -6537,7 +7053,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "511d05dc-31eb-4fcb-94ea-0195ae4ecb04",
@@ -6550,7 +7067,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "2709e9a9-757f-4b41-90fc-179b00be1d0f",
@@ -6563,7 +7081,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "914745d2-96ff-4153-8998-a27427468acb",
@@ -6576,7 +7095,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "da01a097-3ce9-4d23-a1ff-3b8d85a1abed",
@@ -6589,7 +7109,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "30833243-f056-4a06-97a8-91d8b40d97e7",
@@ -6602,7 +7123,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "8d919e3a-9c5b-4575-953d-4d442a5addf2",
@@ -6615,7 +7137,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "7a72a7e2-e685-44d6-b1f2-169c73b2506c",
@@ -6628,7 +7151,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "83df7a0f-8b59-4a70-9b22-e584b2ce1712",
@@ -6641,7 +7165,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "495b69cd-7657-4aad-b418-bf814d88da04",
@@ -6654,7 +7179,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "0487db78-366a-404d-aa0d-d8d654a4fa54",
@@ -6667,7 +7193,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "1cb21511-fb2b-4ede-a323-275ba164d830",
@@ -6680,7 +7207,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "53dd7173-9895-46c7-a198-0e5545c77502",
@@ -6693,7 +7221,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "43dbacd6-ae3e-4696-8d1e-a706025c97f6",
@@ -6706,7 +7235,8 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         },
         {
             "id": "98f1dcf1-377d-439e-82fc-170345e53a24",
@@ -6719,16 +7249,17 @@
             "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
             "frontLanguage": "FI",
             "backLanguage": "EN",
-            "chapter": 4
+            "chapter": 4,
+            "audio": "Y"
         }
     ],
     "name": "Oma Suomi 1 1/2 FI-EN",
     "fileName": "FI-EN_OmaSuomi_1_Finnish1_CaptainA",
     "credit": "CaptainA",
-    "newCount": "0",
-    "reviewCount": "0",
-    "maxNewCard": "20",
-    "maxReviewCard": "200",
+    "newCount": 0,
+    "reviewCount": 0,
+    "maxNewCard": 20,
+    "maxReviewCard": 200,
     "todayDateStr": "2000-01-01T00:00:00.0000000Z",
-    "version": 1
+    "version": 2
 }
