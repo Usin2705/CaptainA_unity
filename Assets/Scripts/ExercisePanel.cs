@@ -225,7 +225,10 @@ public class ExercisePanel : MonoBehaviour
             // Send transcript to server
             // errorTextGO to update if server yield error
             // resultPanelGO to update result (by Enable the AudioClip and display text result)
-            AudioManager.GetManager().GetAudioAndPost(transcript, errorTextGO, resultPanelGO, recordButtonGO, predictionDebugText);
+            TMPro.TextMeshProUGUI resultTextTMP = resultPanelGO.transform.Find("ResultText").GetComponent<TMPro.TextMeshProUGUI>();
+            GameObject warningImageGO = resultPanelGO.transform.Find("WarningImage").gameObject;
+
+            AudioManager.GetManager().GetAudioAndPost(transcript, errorTextGO, resultTextTMP, warningImageGO, resultPanelGO, recordButtonGO, predictionDebugText);
             
             // TODO Make this part more efficiency
             // The whole block stink

@@ -65,7 +65,7 @@ public class DetailScorePanel : MonoBehaviour
         }
 
         warningNo = asrResult.warning.Count;
-        warningText.text = WarningDetail.GetWarning(asrResult.warning);
+        warningText.text = TextUtils.GetWarning(asrResult.warning);
 
         //################################### Initialize Detail Label prefab ################################### 
         List<float> scoreList = asrResult.score;

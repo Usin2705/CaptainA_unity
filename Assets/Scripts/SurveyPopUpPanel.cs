@@ -20,5 +20,15 @@ public class SurveyPopUpPanel : MonoBehaviour
         Application.OpenURL(Const.SURVEY_URL);
         PlayerPrefs.SetInt(Const.PREF_SURVEY_V1_DONE, 1);
 		PlayerPrefs.Save();
+        surveyPopUpPanelGO.SetActive(false);
+    }
+
+    void Update()
+    {
+        // Handle back button press on phone
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            surveyPopUpPanelGO.SetActive(false);
+        }
     }
 }

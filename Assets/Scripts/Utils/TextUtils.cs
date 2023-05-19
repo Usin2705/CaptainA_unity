@@ -97,4 +97,52 @@ public static class TextUtils
                 
         return text;
     }
+
+    public static string GetWarning(List<WARNINGS> warningList)
+    /*
+    *
+    *
+    *
+    *
+    */
+    {
+        string warn_text = "";
+        int count = 1;
+        //TODO try to sort from small to large to be safe
+        foreach (WARNINGS warn in warningList)
+        {
+            if (warn == WARNINGS.AAA)
+            {
+                warn_text += count + ". ";
+                count++;
+                warn_text += "The AI model is not designed for very short word like ää or syy. Try using longer word by combining with consonants. For example, instead of using <b>ää</b>, use s<b>ää</b>t<b>ää</b>";                
+            }
+            
+            if (warn == WARNINGS.NP)
+            {                
+                if (!warn_text.EndsWith("\n") && warn_text !="") warn_text += "\n";
+                warn_text += count + ". ";
+                count++;
+                warn_text += "In Finnish, <b>n</b> and <b>p</b> together is pronounced as <b>mp</b>. The AI model still mark you correctly if you use either \"np\" or \"mp\"";
+            }
+            
+            if (warn == WARNINGS.NGK)
+            {
+                if (!warn_text.EndsWith("\n") && warn_text !="") warn_text += "\n";
+                warn_text += count + ". ";
+                count++;
+                warn_text += "The <b>ng</b> is pronounced as /<b>ŋː</b>/, and <b>nk</b> is pronounced as /<b>ŋk</b>/. The current model can detect correct pronunciation but can't give the correct score for ŋ and ŋ:. We are developing a new model to address this problem.";
+            }
+
+            if (warn == WARNINGS.MENEP)
+            {
+                if (!warn_text.EndsWith("\n") && warn_text !="") warn_text += "\n";
+                warn_text += count + ". ";
+                count++;
+                warn_text += "We detect a possible case of <b>boundary gemination</b> (loppukahdennus). The most common example is \"mene pois\", which is pronounced as mene<b>p</b> <b>p</b>ois. This is an advanced spoken Finnish problem and you should consult your Finnish teacher.";                
+            }
+        }
+
+        return warn_text;
+    }
 }

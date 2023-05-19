@@ -55,27 +55,14 @@ public class AudioManager : MonoBehaviour
         if (audioSource.isPlaying == false) audioSource.PlayOneShot(audioClip);
     }
     
-    public void GetAudioAndPost(string transcript, GameObject textErrorGO, GameObject resultPanelGO, GameObject recordButtonGO, TMPro.TextMeshProUGUI debugText)
+    public void GetAudioAndPost(string transcript, GameObject textErrorGO, TMPro.TextMeshProUGUI resultTextTMP, GameObject warningImageGO, 
+                                GameObject resultPanelGO, GameObject recordButtonGO, TMPro.TextMeshProUGUI debugText)
     {
         Microphone.End("");        
         byte[] wavBuffer = SavWav.GetWav(audioSource.clip, out uint length, trim:true);
         SavWav.Save(Const.REPLAY_FILENAME, audioSource.clip, trim:true); // for debug purpose
 
-        StartCoroutine(NetworkManager.GetManager().ServerPost(transcript, wavBuffer, textErrorGO, resultPanelGO, recordButtonGO, debugText));
-    }
-
-    public void GetAudioAndPost(string transcript, GameObject textErrorGO, TMPro.TextMeshProUGUI flashCardText, GameObject recordButtonGO, TMPro.TextMeshProUGUI debugText)
-    {
-    /*
-    *   Different from the above function, this function will not update the result panel
-    *   Instead, it will update the flashCardText
-    *   This function is used in the SuperMemo Panel
-    */
-        Microphone.End("");        
-        byte[] wavBuffer = SavWav.GetWav(audioSource.clip, out uint length, trim:true);
-        SavWav.Save(Const.REPLAY_FILENAME, audioSource.clip, trim:true); // for debug purpose
-
-        StartCoroutine(NetworkManager.GetManager().ServerPost(transcript, wavBuffer, textErrorGO, flashCardText, recordButtonGO, debugText));
+        StartCoroutine(NetworkManager.GetManager().ServerPost(transcript, wavBuffer, textErrorGO, resultTextTMP, warningImageGO, resultPanelGO, recordButtonGO, debugText));
     }
 
     void ReplayRecordedSample()

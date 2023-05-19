@@ -100,7 +100,7 @@ public static class Const
     // Used to set the recording time for the audio clip
     // The length of the audio clip depend on the number of characters
     // of the text to be recorded
-    public const float SEC_PER_CHAR = 0.14f;
+    public const float SEC_PER_CHAR = 0.12f;
 
     // Always provide at least 1.5s extra time for recording
     // to avoid the speaker speak too slow and the recording stop

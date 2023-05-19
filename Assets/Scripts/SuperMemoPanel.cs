@@ -9,6 +9,10 @@ public class SuperMemoPanel : MonoBehaviour
 {
     [SerializeField] TMPro.TextMeshProUGUI frontCardText; // Front card
     [SerializeField] TMPro.TextMeshProUGUI backCardText; // Back card    
+    
+    [SerializeField] GameObject warningImageFrontGO; // Front card
+    [SerializeField] GameObject warningImageBackGO; // Back card    
+
     [SerializeField] TMPro.TextMeshProUGUI intervalText_again; // Interval text for AGAIN button
     [SerializeField] TMPro.TextMeshProUGUI intervalText_hard; // Interval text for HARD button
     [SerializeField] TMPro.TextMeshProUGUI intervalText_good; // Interval text for GOOD button
@@ -27,6 +31,7 @@ public class SuperMemoPanel : MonoBehaviour
     [SerializeField] DetailScorePanel detailScorePanel;
 
     TMPro.TextMeshProUGUI finnishCardText; // The text of the card that is in Finnish
+    GameObject finWarningImageGO; // The warningImage of the card that is in Finnish
     private CardManagerSM2 cardManager;
     private Card currentCard;
     private float countdownTime = 2.0f;
@@ -55,7 +60,6 @@ public class SuperMemoPanel : MonoBehaviour
         CardQueueManager.GetQueueManager.ClearQueue();      
         superMemoPanel.SetActive(false);
         cardDeckPanel.SetActive(true);  
-
     }
         
     
@@ -73,6 +77,7 @@ public class SuperMemoPanel : MonoBehaviour
             // If the front language is Finnish, use the front card text for CAPT
             // Otherwise use the back card text for CAPT
             finnishCardText = currentCard.frontLanguage == "FI"? frontCardText : backCardText;
+            finWarningImageGO = currentCard.frontLanguage == "FI"? warningImageFrontGO : warningImageBackGO;
             showAnswerGO.SetActive(true);
 
             // If the front card is in Finnish, show the sample audio (if any)
@@ -136,6 +141,8 @@ public class SuperMemoPanel : MonoBehaviour
     {
         // Clear the answer from previous card
         backCardText.text = "";
+        warningImageFrontGO.SetActive(false);
+        warningImageBackGO.SetActive(false);
 
         // Clear the prediction debug text
         predictionDebugText.text = "";
@@ -146,6 +153,7 @@ public class SuperMemoPanel : MonoBehaviour
         // Only turn on the button if there's a replay samples
         sampleButtonGO.SetActive(sampleClip!=null);     
         replayButtonGO.SetActive(replayClip!=null);     
+        
     }
 
     public void ShowSampleAudio(string word) {
@@ -285,7 +293,7 @@ public class SuperMemoPanel : MonoBehaviour
             // errorTextGO to update if server yield error
             // resultPanelGO to update result (by Enable the AudioClip and display text result)
             predictionDebugText.text = "";
-            AudioManager.GetManager().GetAudioAndPost(transcript, errorTextGO, finnishCardText, recordButtonGO, predictionDebugText);
+            AudioManager.GetManager().GetAudioAndPost(transcript, errorTextGO, finnishCardText, finWarningImageGO, null, recordButtonGO, predictionDebugText);
 
             // TODO Make this part more efficiency
             // The whole block stink

@@ -117,9 +117,13 @@ public class CardManagerSM2
                 // The default behaviour for lapsed reviews is to reset the interval to 1 (i.e. make it due tomorrow), 
                 // and put it in the learning queue for a refresher in 10 minutes. 
                 // This behaviour can be customized with the options listed below.
+                
+                // The check will be done in UpdateCardToJson
+                // to add the card to the relearning queue by 10 minutes
+
                 float newEaseFactor = card.easeFactor - 0.2f;
                 card.easeFactor = Mathf.Max(newEaseFactor, 1.3f);
-                card.interval = 10f/24f/60f; // 10 minutes
+                card.interval = 1.0f; // 1 day
             } 
             
             else if (quality == Const.CARD_HARD) {
@@ -165,6 +169,8 @@ public class CardManagerSM2
     }
 
     public void UpdateCardToJson(Card card, int quality, float interval) {
+        bool isLapsed = false;
+
         // Update the flashcard newcount or reviewcount
         // This has to be done before update the card info
         if (card.cardType == (int)CARD_TYPE.NEW) {
@@ -233,32 +239,43 @@ public class CardManagerSM2
             // AGAIN: Moves the card back to the first step setted in Learning/Relearning Steps (LEARNING)
             // When you press Good on the card the next day, it will leave learning 
             // (i.e. it will graduate), and become a review card
+
+            // When you forget a review card, it is said to have 'lapsed', and the card must be relearnt. 
+            // The default behaviour for lapsed reviews is to reset the interval to 1 (i.e. make it due tomorrow), 
+            // and put it in the learning queue for a refresher in 10 minutes. 
+            
+            // Interval reset is done in GetCarNewInterval
+            // but adding to 10m must be done here.
+
             if (quality == Const.CARD_AGAIN) {
                 card.cardType = (int)CARD_TYPE.LEARNING;
+
+
+                //
+                isLapsed = true;
             }
         }        
 
         // Updpate the card info
         // 1. Update nextReviewDateStr
         // 2. Increase repetitions                        
-
-        card.nextReviewDateStr = DateTime.UtcNow.AddDays(interval).ToString("O"); // Use the ISO 8601 format for the string representation
-        Debug.Log("Next card.interval: " + card.interval);
-        Debug.Log("Next review date: " + card.nextReviewDateStr);
-        Debug.Log("flashCardFileName: " + flashCardFileName);
+        
+        // If the card is lapsed only add 10m to the next review date
+        if (isLapsed) {
+            card.nextReviewDateStr = DateTime.UtcNow.AddDays(10f/24f/60f).ToString("O");
+        } else {
+            card.nextReviewDateStr = DateTime.UtcNow.AddDays(interval).ToString("O"); // Use the ISO 8601 format for the string representation
+        }
+        
+        //Debug.Log("Next card.interval: " + card.interval);
+        //Debug.Log("Next review date: " + card.nextReviewDateStr);
+        //Debug.Log("flashCardFileName: " + flashCardFileName);
 
         card.repetitions += 1;
         
         flashCard.updateCard(card);
         SaveData.SaveIntoJson(flashCard, flashCardFileName);
     }
-
-    public void SaveIntoJson(FlashCard flashCard, string fileName){
-        string jsonString = JsonUtility.ToJson(flashCard, true);        
-        System.IO.File.WriteAllText($"{Application.persistentDataPath}/{fileName}.json", jsonString);
-        Debug.Log("File save as " + $"{Application.persistentDataPath}/{fileName}.json");
-    }
-
 }
 
 

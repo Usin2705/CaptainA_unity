@@ -2900,7 +2900,7 @@
         },
         {
             "id": "cfff80a7-4894-423b-9201-a821662924aa",
-            "frontText": "Anything else?",
+            "frontText": "(Will there) anything else coming? Anything else?",
             "backText": "Tuleeko muuta?",
             "cardtype": 0,
             "interval": 0.005,
@@ -2942,7 +2942,7 @@
         },
         {
             "id": "4dea4eca-2512-4b42-8951-2113b007eb25",
-            "frontText": "With who(m) do you live?",
+            "frontText": "(With whom you live?) Who do you live with?",
             "backText": "Kenen kanssa sin\u00e4 asut?",
             "cardtype": 0,
             "interval": 0.005,
@@ -3054,7 +3054,7 @@
         },
         {
             "id": "94c81047-0206-4eb9-a37e-f94e2bf9a06b",
-            "frontText": "(adv)early",
+            "frontText": "(adv) early",
             "backText": "Aikaisin",
             "cardtype": 0,
             "interval": 0.005,
@@ -3194,7 +3194,7 @@
         },
         {
             "id": "ece4ae01-005d-403e-b43f-8d7d76b8413e",
-            "frontText": "Student",
+            "frontText": "Schoolkid, schoolgoer",
             "backText": "Koululainen",
             "cardtype": 0,
             "interval": 0.005,
@@ -3348,7 +3348,7 @@
         },
         {
             "id": "3075e620-c373-49b7-a1a2-a959fe0085ff",
-            "frontText": "Friend",
+            "frontText": "Friend, pal, buddy (spoken, casual and less close)",
             "backText": "Kaveri",
             "cardtype": 0,
             "interval": 0.005,
@@ -7261,5 +7261,5 @@
     "maxNewCard": 20,
     "maxReviewCard": 200,
     "todayDateStr": "2000-01-02T00:00:00.0000000Z",
-    "version": 2
+    "version": 4
 }
