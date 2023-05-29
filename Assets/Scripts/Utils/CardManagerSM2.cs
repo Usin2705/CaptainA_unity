@@ -274,6 +274,24 @@ public class CardManagerSM2
         flashCard.updateCard(card);
         SaveData.SaveIntoJson(flashCard, flashCardFileName);
     }
+
+    public void SetFlashCardAutoPlay(bool isAutoPlay) {
+        flashCard.isAutoPlay = isAutoPlay;
+        SaveData.SaveIntoJson(flashCard, flashCardFileName);
+    }
+
+    public void SetFlashCardHideText(bool isHideText) {
+        flashCard.isHideText = isHideText;
+        SaveData.SaveIntoJson(flashCard, flashCardFileName);
+    }
+
+    public bool GetFlashCardAutoPlay() {
+        return flashCard.isAutoPlay;
+    }
+
+    public bool GetFlashCardHideText() {
+        return flashCard.isHideText;
+    }
 }
 
 

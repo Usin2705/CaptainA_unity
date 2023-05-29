@@ -24,6 +24,8 @@ public class SuperMemoPanel : MonoBehaviour
     [SerializeField] GameObject errorTextGO;     
     [SerializeField] GameObject sampleButtonGO; // Replay sample audio
     [SerializeField] GameObject replayButtonGO; // Replay recorded audio
+    [SerializeField] Toggle autoPlayToggle ; // Auto play audio
+    [SerializeField] Toggle hideFinnishToggle; // Hide Finnish text
 
     [SerializeField] GameObject superMemoPanel;     
     [SerializeField] GameObject cardDeckPanel;     
@@ -40,9 +42,18 @@ public class SuperMemoPanel : MonoBehaviour
     AudioClip replayClip;
     AudioClip sampleClip;
 
-    void OnEnable() {
+    void OnEnable() {      
+        // Reset the status of the toggle buttons
+        // This must be done because the hideFinnishToggle button is disabled
+        // when the front card is not in Finnish
+        autoPlayToggle.gameObject.SetActive(true);
+        hideFinnishToggle.gameObject.SetActive(true);  
+
         clearOldCard();
         cardManager = new CardManagerSM2(CardQueueManager.GetQueueManager.GetFlashCardFile());
+        autoPlayToggle.isOn = cardManager.GetFlashCardAutoPlay();
+        hideFinnishToggle.isOn = cardManager.GetFlashCardHideText();
+
         ShowNextCard();           
     }
 
@@ -80,8 +91,28 @@ public class SuperMemoPanel : MonoBehaviour
             finWarningImageGO = currentCard.frontLanguage == "FI"? warningImageFrontGO : warningImageBackGO;
             showAnswerGO.SetActive(true);
 
-            // If the front card is in Finnish, show the sample audio (if any)
+            // If the front card is in Finnish, enable the SampleButton to play audio (if any)
             if (currentCard.frontLanguage == "FI") ShowSampleAudio(currentCard.frontText);
+            
+            // If the front card is not in Finnish, disable the hideFinnishToggle button
+            if (currentCard.frontLanguage != "FI") hideFinnishToggle.gameObject.SetActive(false);
+            
+
+            if (cardManager.GetFlashCardHideText() & currentCard.frontLanguage == "FI") {
+            // Only hide the text if the front card is in Finnish
+            // Hide the text by setting the alpha to 0
+            // instead of remove the text, because we will need the transcript for recording
+            // remember to set the alpha back to 1 when show answer AND clear old card                
+                frontCardText.faceColor = new Color32(0,0,0,0);
+            }           
+            
+            // If the card have Auto Play turn on, and front card is Finnish, 
+            // auto play the sample audio clip
+            // sampleClip is pre-loaded in ShowSampleAudio()
+            if (cardManager.GetFlashCardAutoPlay() & currentCard.frontLanguage == "FI") 
+            {
+                if (sampleClip != null) AudioManager.GetManager().PlayAudioClip(sampleClip);
+            }
 
         }
         else
@@ -102,6 +133,10 @@ public class SuperMemoPanel : MonoBehaviour
     *   This function also attached to ShowAnswer OnClick() in Unity
     */
     {
+        if (currentCard.frontLanguage == "FI") {
+            frontCardText.faceColor = new Color32(0,0,0,255);
+        }
+
         backCardText.text = currentCard.backText;
         // Hide the show answer button
         showAnswerGO.SetActive(false);
@@ -124,9 +159,24 @@ public class SuperMemoPanel : MonoBehaviour
 
         // If the back card is in Finnish, show the sample audio (if any)
         if (currentCard.backLanguage == "FI") ShowSampleAudio(currentCard.backText);
+
+        // if Auto Play is on, and the backcard is in Finnish, play the sample audio
+        if (cardManager.GetFlashCardAutoPlay() & currentCard.backLanguage == "FI") 
+        {
+            if (sampleClip != null) AudioManager.GetManager().PlayAudioClip(sampleClip);
+        }
     }
 
-    public string GetIntervalText(float interval) {
+    public string GetIntervalText(float interval) 
+    /*
+    *   This function will return the interval text
+    *   based on the interval value
+    *   The interval value is in day
+    *   If the interval is more than 1 day, return in day
+    *   If the interval is less than 1 day, return in hour
+    *   If the interval is less than 1.2 hour, return in minute
+    */
+    {
         if (interval >= 1.0f) {
             return interval.ToString("0") + " d";
         } else if (interval < 1.0f && interval >= 0.05f) {
@@ -153,23 +203,28 @@ public class SuperMemoPanel : MonoBehaviour
         // Only turn on the button if there's a replay samples
         sampleButtonGO.SetActive(sampleClip!=null);     
         replayButtonGO.SetActive(replayClip!=null);     
-        
+        frontCardText.faceColor = new Color32(0,0,0,255);     
     }
 
-    public void ShowSampleAudio(string word) {
+    public void GetSampleClip(string word)     
+    {
         // Audio file name is the santinized word
         // with lower case
         string audioFileName = TextUtils.SantinizeText(word).ToLower();
-
-        // Set up sample play button
-        sampleClip = Resources.Load<AudioClip>(Const.AUDIO_NATURAL_PATH + audioFileName);
         
+        // Load sample clip from the natural folder
+        sampleClip = Resources.Load<AudioClip>(Const.AUDIO_NATURAL_PATH + audioFileName);
+                
         // If the sample clip is not found in the natural folder
         // try to find it in the AI folder
         if (sampleClip == null) {
             sampleClip = Resources.Load<AudioClip>(Const.AUDIO_AI_PATH + audioFileName);            
-        }
-        
+        }        
+    }
+
+    public void ShowSampleAudio(string word) {
+        GetSampleClip(word);
+
         if (sampleClip != null) {
             //Debug.Log("Sample audio update");
             sampleButtonGO.SetActive(true);     
@@ -232,11 +287,27 @@ public class SuperMemoPanel : MonoBehaviour
         }
     }
 
+    public void OnAutoPlayToogle(bool isAutoPlay) 
+    /*
+    *   This function also attached to AutoPlay OnValueChanged in Unity
+    */    
+    {
+        cardManager.SetFlashCardAutoPlay(isAutoPlay);
+    }    
+
+    public void OnHideFinnishToogle(bool isHideText) 
+    /*
+    *   This function also attached to AutoPlay OnValueChanged in Unity
+    */    
+    {
+        cardManager.SetFlashCardHideText(isHideText);
+    }
+
     void StartTimer()
     /*
-    *   
-    */
-    {        
+    *   This function will start the timer for the recording
+    */ 
+    {       
         // The length of the audio clip depend on the number of characters
         // of the text to be recorded + EXTRA_TIME
         countdownTime = transcript.Length*Const.SEC_PER_CHAR + Const.EXTRA_TIME;

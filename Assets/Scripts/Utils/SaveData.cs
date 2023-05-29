@@ -16,7 +16,7 @@ public static class SaveData
         string jsonString = JsonUtility.ToJson(jsonOjb, true);
         string filePath = Path.Combine(Application.persistentDataPath, fileName + ".json");
         System.IO.File.WriteAllText(filePath, jsonString);
-        Debug.Log("File save as " + filePath);
+        //Debug.Log("File save as " + filePath);
     }
 
     public static void UpdateFlashCard(string flashCardFileName) {
@@ -83,7 +83,6 @@ public static class SaveData
 		if(File.Exists(filePath)) {
             // Since we can't save in Resources folder, we save the edited flashcard file in the persistentDataPath
             // If filePath is exit, load the json file from the persistentDataPath            
-            //Debug.Log("File load from " + filePath);
 
             // Read the json from the file into a string
             string dataAsJson = File.ReadAllText(filePath);    
@@ -91,7 +90,8 @@ public static class SaveData
 
             // Pass the json to JsonUtility, and tell it to create a flashcard object from it            
 			flashCard = JsonUtility.FromJson<FlashCard>(dataAsJson);
-            Debug.Log("File load from " + filePath);
+            //Debug.Log("File load from " + filePath);
+
         } else {
             // If the filePath is not exit, load the json file from Resources folder        
             // Load the json file from Resources folder
@@ -99,7 +99,7 @@ public static class SaveData
             TextAsset jsonFile = Resources.Load<TextAsset>(flashCardFileName); // Note: Do not include the file extension
             //Debug.Log("Json data " + jsonFile.text);
             flashCard = JsonUtility.FromJson<FlashCard>(jsonFile.text);
-            Debug.Log("FlashCard load from Resources folder");
+            //Debug.Log("FlashCard load from Resources folder");
         }
 
         foreach (Card card in flashCard.cards)
