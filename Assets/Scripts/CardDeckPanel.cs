@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class CardDeckPanel : MonoBehaviour
 {
@@ -12,7 +13,10 @@ public class CardDeckPanel : MonoBehaviour
     [SerializeField] GameObject cardDeckPanelGO;
     [SerializeField] GameObject superMemoPanelGO;
 
-    List<GameObject> listScrollItems = new List<GameObject>();        
+    List<GameObject> listScrollItems = new List<GameObject>();   
+
+    private bool pointerDown;
+    private float pointerDownTimer; 
     
     void OnEnable() 
     {
@@ -95,16 +99,57 @@ public class CardDeckPanel : MonoBehaviour
             
             // Find the Button to register OnClick Function
             Button deckButton = cardDeckGO.transform.GetComponent<Button>();                        
-            // Pass phoneme value to onClick function
-            // To be safe, remove all old listeners were add to this component
-            deckButton.onClick.RemoveAllListeners();    
+            // Pass phoneme value to EventTrigger function
+            // We need EventTrigger to detect long press and short press
+            // To be safe, remove all triggers were add to this component
+            EventTrigger existingTrigger  = cardDeckGO.gameObject.GetComponent<EventTrigger>();
+            if(existingTrigger  != null) Destroy(existingTrigger );
 
-            // Only add the onClick function if there at last 1 new card or 1 due card or 1 learn card
-            if (newCards + dueCards + learnCards > 0 ) {
-                deckButton.onClick.AddListener(() => StartStudyDeck(flashCard.fileName, newCards, dueCards));
-            }
+            EventTrigger trigger = cardDeckGO.gameObject.AddComponent<EventTrigger>();
+            EventTrigger.Entry pointerDownEntry = new EventTrigger.Entry();
+            pointerDownEntry.eventID = EventTriggerType.PointerDown;
+            pointerDownEntry.callback.AddListener((data) => { OnPointerDown((PointerEventData)data); });
+            trigger.triggers.Add(pointerDownEntry);
+
+            EventTrigger.Entry pointerUpEntry = new EventTrigger.Entry();
+            pointerUpEntry.eventID = EventTriggerType.PointerUp;
+            pointerUpEntry.callback.AddListener((data) => { OnPointerUp((PointerEventData)data, flashCard.fileName, newCards, dueCards, learnCards); });
+            trigger.triggers.Add(pointerUpEntry);
             
         }
+    }
+    private void Update() {
+        if(pointerDown) pointerDownTimer += Time.deltaTime;
+    }
+
+    public void OnPointerDown(PointerEventData data)
+    {
+        pointerDown = true;
+    }
+
+    public void OnPointerUp(PointerEventData data, string fileName, int newCards, int dueCards, int learnCards)
+    {
+        if (pointerDownTimer >= Const.REQUIRED_HOLD_TIME) {
+            // Long press
+            // Add Const.ADDITIONAL_NEW_CARD new cards to the deck
+            // Default is 5
+
+            StartStudyDeck(fileName, newCards + Const.ADDITIONAL_NEW_CARD, dueCards);
+            ResetTriggerPointer();
+        } else {
+            // Short press
+            // Only StartStudyDeck if there at last 1 new card or 1 due card or 1 learn card
+            if (newCards + dueCards + learnCards > 0 ) {
+                StartStudyDeck(fileName, newCards, dueCards);
+            }
+            ResetTriggerPointer();
+        }
+    }
+
+    private void ResetTriggerPointer()
+    {
+        pointerDown = false;
+        pointerDownTimer = 0;
     }
 
     public void StartStudyDeck(string deckFileName, int newCards, int dueCards) 

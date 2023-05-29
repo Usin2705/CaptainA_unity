@@ -178,6 +178,9 @@ public static class Const
         "EN-FI_OmaSuomi_1_Finnish1_CaptainA",
         "FI-EN_OmaSuomi_1_Finnish1_CaptainA",
     };
+
+    public const float REQUIRED_HOLD_TIME = 2.0f;
+    public const int ADDITIONAL_NEW_CARD = 5;
     
     public const int CARD_AGAIN = 0;
     public const int CARD_HARD = 3;

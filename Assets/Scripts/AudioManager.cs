@@ -27,18 +27,22 @@ public class AudioManager : MonoBehaviour
 
     public void StartRecording()
     {
+        /*
+        *   We can skip this block since we nolonger require a notification sound
+        */
+
         //Debug.Log("Play record notif");
-        audioSource.PlayOneShot(recordNotif, 0.5f);
+        //audioSource.PlayOneShot(recordNotif, 0.5f);
         //The notification sound cause some noise in the recording
         //So we need to delay it a little
         //The new notification sound is just 0.3f long
-        Invoke(nameof(RecordSound), 0.31f);
+        //Invoke(nameof(RecordSound), 0.31f);
         RecordSound();
     }
 
     void RecordSound() 
     {
-                // Debug.Log("Name: " + Microphone.devices[0]);        
+        // Debug.Log("Name: " + Microphone.devices[0]);        
 
         // if (Application.HasUserAuthorization(UserAuthorization.Microphone))
         // {

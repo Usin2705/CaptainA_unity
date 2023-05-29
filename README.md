@@ -4,9 +4,11 @@ This repo contain the code for the mobile app, but also for the back end [server
 
 The app can be downloaded at [Google Play](https://play.google.com/store/apps/details?id=com.Kielibuusti.CaptainA) or [Apple App Store](https://apps.apple.com/ph/app/captaina/id6444659467)
 
+The current version of the wav2vec 2.0 model used in the app can be downloaded in [HuggingFace](https://huggingface.co/Usin2705/CaptainA_v0)
 
+The demo paper of CaptainA app can be read [here](https://aclanthology.org/2023.nodalida-1.26)
 
-
+And the detailed analysis and documentation on the development of the CaptainA app can be read in the [Master's thesis](http://urn.fi/URN:NBN:fi:aalto-202305213302)
 
 
 # License

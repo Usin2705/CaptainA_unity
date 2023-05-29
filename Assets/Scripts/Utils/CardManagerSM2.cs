@@ -11,9 +11,7 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using System.IO;
 
 public class CardManagerSM2
 {
@@ -310,9 +308,11 @@ public class FlashCard
     public int reviewCount;
     public int maxNewCard;
     public int maxReviewCard;    
+    public bool isAutoPlay;    
+    public bool isHideText; 
     public string todayDateStr; // Use the ISO 8601 format for the string representation. To convert back use DateTime.Parse(todayDateStr);
-
     public int version;
+    
 
     public void updateCard(Card newCard) {
         Card cardToUpdate = cards.Find(card => card.id == newCard.id);
