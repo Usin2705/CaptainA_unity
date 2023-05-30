@@ -119,8 +119,7 @@ public class CardDeckPanel : MonoBehaviour
         if (!PlayerPrefs.HasKey(Const.PREF_INS_VOCABULARY)) {
             PopUpManager popUpPanel = GameObject.FindObjectOfType<PopUpManager>();
             popUpPanel.OpenPanel(Const.PREF_INS_VOCABULARY);
-            popUpPanel.SetText(Const.INSTRUCTION_VOCABULARY);
-            
+            popUpPanel.SetText(Const.INSTRUCTION_VOCABULARY);            
         }
 
     }

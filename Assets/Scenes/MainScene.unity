@@ -14612,7 +14612,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1342083647
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19375,7 +19375,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1492310d9a9bad142b82e8a81d6a046d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onboardingPanel: {fileID: 0}
   recordButtonGO: {fileID: 1877314752}
   inputTransGO: {fileID: 820579318}
   errorTextGO: {fileID: 430137483}

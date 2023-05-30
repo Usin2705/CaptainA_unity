@@ -29,14 +29,14 @@ public class MainPanel : MonoBehaviour
     {
         // Toggle fullscreen
         Screen.fullScreen = false;
+    }
 
-        // Check if first time open the app or not
-        // Otherwise show the Onboarding Panel
+    void OnEnable() {
         if (!PlayerPrefs.HasKey(Const.PREF_INS_MAIN)) {
             PopUpManager popUpPanel = GameObject.FindObjectOfType<PopUpManager>();        
             popUpPanel.OpenPanel(Const.PREF_INS_MAIN);
             popUpPanel.SetText(Const.INSTRUCTION_MAIN);
-        }
+        }        
     }
 
     void StartTimer()
