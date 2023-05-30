@@ -38,6 +38,12 @@ public class TopicPanel : MonoBehaviour
             
             listScrollItems.Add(topicGO);
         }
+
+        if (!PlayerPrefs.HasKey(Const.PREF_INS_TOPIC)) {
+            PopUpManager popUpPanel = GameObject.FindObjectOfType<PopUpManager>();
+            popUpPanel.OpenPanel(Const.PREF_INS_TOPIC);
+            popUpPanel.SetText(Const.INSTRUCTION_TOPIC);
+        }
     }
 
     public void StartExerciseWithTopic(Topics topic) 

@@ -114,9 +114,14 @@ public class CardDeckPanel : MonoBehaviour
             EventTrigger.Entry pointerUpEntry = new EventTrigger.Entry();
             pointerUpEntry.eventID = EventTriggerType.PointerUp;
             pointerUpEntry.callback.AddListener((data) => { OnPointerUp((PointerEventData)data, flashCard.fileName, newCards, dueCards, learnCards); });
-            trigger.triggers.Add(pointerUpEntry);
-            
+            trigger.triggers.Add(pointerUpEntry);            
         }
+        if (!PlayerPrefs.HasKey(Const.INSTRUCTION_VOCABULARY)) {
+            PopUpManager popUpPanel = GameObject.FindObjectOfType<PopUpManager>();
+            popUpPanel.SetText(Const.INSTRUCTION_VOCABULARY);
+            popUpPanel.OpenPanel(Const.PREF_INS_VOCABULARY);
+        }
+
     }
     private void Update() {
         if(pointerDown) pointerDownTimer += Time.deltaTime;

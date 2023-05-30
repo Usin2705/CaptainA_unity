@@ -50,6 +50,12 @@ public class PhonemePanel : MonoBehaviour
         phonemePanel.transform.GetComponent<Animation>().Play();
 
         creditText.text = "Top images: " + phonemeSO.front_credit + ".\nBottom images: " + phonemeSO.side_credit + ".";
+
+        if (!PlayerPrefs.HasKey(Const.PREF_INS_PHONE)) {
+            PopUpManager popUpPanel = GameObject.FindObjectOfType<PopUpManager>();        
+            popUpPanel.OpenPanel(Const.PREF_INS_PHONE);
+            popUpPanel.SetText(Const.INSTRUCTION_PHONE);
+        }
     }
     
     void OnDisable()

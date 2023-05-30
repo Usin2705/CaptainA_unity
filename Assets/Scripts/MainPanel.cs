@@ -6,8 +6,7 @@ using UnityEngine.Networking;
 using System;
 
 public class MainPanel : MonoBehaviour
-{
-    [SerializeField] GameObject onboardingPanel;     
+{       
     [SerializeField] GameObject recordButtonGO;     
     [SerializeField] GameObject inputTransGO;
     [SerializeField] GameObject errorTextGO;     
@@ -33,7 +32,11 @@ public class MainPanel : MonoBehaviour
 
         // Check if first time open the app or not
         // Otherwise show the Onboarding Panel
-        onboardingPanel.SetActive(!PlayerPrefs.HasKey(Const.PREF_FIRST_KEY));
+        if (!PlayerPrefs.HasKey(Const.PREF_INS_MAIN)) {
+            PopUpManager popUpPanel = GameObject.FindObjectOfType<PopUpManager>();        
+            popUpPanel.OpenPanel(Const.PREF_INS_MAIN);
+            popUpPanel.SetText(Const.INSTRUCTION_MAIN);
+        }
     }
 
     void StartTimer()
