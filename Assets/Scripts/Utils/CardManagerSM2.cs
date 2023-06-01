@@ -329,7 +329,9 @@ public class FlashCard
     public bool isAutoPlay;    
     public bool isHideText; 
     public string todayDateStr; // Use the ISO 8601 format for the string representation. To convert back use DateTime.Parse(todayDateStr);
+    public string languageCode;
     public int version;
+    
     
 
     public void updateCard(Card newCard) {
@@ -348,6 +350,10 @@ public class FlashCard
     }
 
     public void updateCardMeta(Card newCard) {
+    /*
+    *   Since the cardToUpdate already have the new fronttext and backtext
+    *   We only need to update other meta data so that user won't lose their progress
+    */    
         Card cardToUpdate = cards.Find(card => card.id == newCard.id);
         if (cardToUpdate != null) {
             cardToUpdate.cardType = newCard.cardType;
@@ -355,8 +361,6 @@ public class FlashCard
             cardToUpdate.easeFactor = newCard.easeFactor;
             cardToUpdate.repetitions = newCard.repetitions;
             cardToUpdate.nextReviewDateStr = newCard.nextReviewDateStr;
-            cardToUpdate.frontLanguage = newCard.frontLanguage;
-            cardToUpdate.backLanguage = newCard.backLanguage;        
         }
     }
 }

@@ -31,7 +31,13 @@ public class NavigationBar : MonoBehaviour
     *  both the panel (active/inactive) and tab buttons
     *  (change color to show active/inactive)    
     */
+
     {
+        // Disable the instruction panel first if it's active
+        // Other Panel can open the instruction panel if they need to
+        PopUpManager popUpPanel = GameObject.FindObjectOfType<PopUpManager>();
+        popUpPanel.DisablePanel();
+
         foreach (GameObject panel in panels) 
         {
             int index = System.Array.IndexOf(panels, panel);

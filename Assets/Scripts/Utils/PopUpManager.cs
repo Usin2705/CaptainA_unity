@@ -15,7 +15,13 @@ public class PopUpManager : MonoBehaviour
         prefsKey = _prefsKey;
     }
 
-    public void ClosePanel()
+    public void DisablePanel()
+    {
+        panel.SetActive(false);
+    }
+
+
+    public void FinnishPanel()
     {
         panel.SetActive(false);
         PlayerPrefs.SetInt(prefsKey, 1);
@@ -29,6 +35,6 @@ public class PopUpManager : MonoBehaviour
 
     public void OnOkButtonClick()
     {
-        ClosePanel();
+        FinnishPanel();
     }
 }

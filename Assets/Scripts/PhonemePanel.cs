@@ -61,6 +61,9 @@ public class PhonemePanel : MonoBehaviour
     void OnDisable()
     {
         phonemePanel.transform.GetComponent<Animation>().clip = null;
+        
+        PopUpManager popUpPanel = GameObject.FindObjectOfType<PopUpManager>();
+        popUpPanel.DisablePanel();
     }
 
     // Update is called once per frame
