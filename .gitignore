@@ -65,6 +65,7 @@ crashlytics-build.properties
 
 Assets/Scripts/Utils/Secret.cs
 Server/models/nhan_wav2vec2-xls-r-300m-finnish-ft-ent/
+Server/models/nhan_wav2vec2-xls-r-300m-finnish-ft-ent-10/
 
 CaptainA_Android_mapping.txt
 app_BackUpThisFolder_ButDontShipItWithYourGame

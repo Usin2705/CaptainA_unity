@@ -55,7 +55,7 @@ public class NetworkManager : MonoBehaviour
         if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
 			Debug.Log(www.error);
 			if (!string.IsNullOrEmpty(www.error)) {
-				textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text =  www.error;
+				textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text =  www.downloadHandler.text ?? www.error;
 			} else {
 				textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "Network error!";
 			}
@@ -64,6 +64,8 @@ public class NetworkManager : MonoBehaviour
 			throw new System.Exception(www.downloadHandler.text ?? www.error);
 		} else {
 			Debug.Log("Form upload complete!");
+
+			Debug.Log(www.downloadHandler.text);
 
 			if (www.downloadHandler.text == "invalid credentials") {
 				Debug.Log("invalid credentials");

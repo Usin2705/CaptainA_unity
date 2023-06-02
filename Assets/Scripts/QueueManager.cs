@@ -60,7 +60,7 @@ public class QueueManager : MonoBehaviour
         }
         
         // Randomize select from word list until we get it all
-        Debug.Log(selectedWordList.Count);
+        Debug.Log("QueueManager: all possible words: " + selectedWordList.Count);
         for (int count = 0; count < Const.MAX_QUEUE; count++) {            
             int index = Random.Range(0, selectedWordList.Count);
             wordQueue.Enqueue(selectedWordList[index]);

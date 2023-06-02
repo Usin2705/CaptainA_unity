@@ -131,7 +131,7 @@ class Point:
     all_score: float
     token_score: float
 
-def backtrack(trellis, emission, tokens, extra_frame=6, blank_id=0, space_id=0):
+def backtrack(trellis, emission, tokens, extra_frame=2, blank_id=0, space_id=0):
     # Note:
     # j and t are indices for trellis, which has extra dimensions
     # for time and tokens at the beginning.
