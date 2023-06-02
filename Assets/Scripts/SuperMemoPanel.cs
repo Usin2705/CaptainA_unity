@@ -102,8 +102,10 @@ public class SuperMemoPanel : MonoBehaviour
             // Only hide the text if the front card is in Finnish
             // Hide the text by setting the alpha to 0
             // instead of remove the text, because we will need the transcript for recording
-            // remember to set the alpha back to 1 when show answer AND clear old card                
-                frontCardText.faceColor = new Color32(0,0,0,0);
+            // remember to set the alpha back to 1 when show answer AND clear old card
+                Color32 currentColor = frontCardText.faceColor;
+                currentColor.a = 0;                            
+                frontCardText.faceColor = currentColor;
             }           
             
             // If the card have Auto Play turn on, and front card is Finnish, 
@@ -134,7 +136,9 @@ public class SuperMemoPanel : MonoBehaviour
     */
     {
         if (currentCard.frontLanguage == "FI") {
-            frontCardText.faceColor = new Color32(0,0,0,255);
+            Color32 currentColor = frontCardText.faceColor;
+            currentColor.a = 255;
+            frontCardText.faceColor = currentColor;
         }
 
         backCardText.text = currentCard.backText;
@@ -202,8 +206,11 @@ public class SuperMemoPanel : MonoBehaviour
 
         // Only turn on the button if there's a replay samples
         sampleButtonGO.SetActive(sampleClip!=null);     
-        replayButtonGO.SetActive(replayClip!=null);     
-        frontCardText.faceColor = new Color32(0,0,0,255);     
+        replayButtonGO.SetActive(replayClip!=null);
+        
+        Color32 currentColor = frontCardText.faceColor;
+        currentColor.a = 255;
+        frontCardText.faceColor = currentColor;     
     }
 
     public void GetSampleClip(string word)     
