@@ -4,15 +4,15 @@ This repo contain the code for the mobile app, but also for the back end [server
 The app can be downloaded at [Google Play](https://play.google.com/store/apps/details?id=com.Kielibuusti.CaptainA) or [Apple App Store](https://apps.apple.com/ph/app/captaina/id6444659467) \
 The current version of the wav2vec 2.0 model used in the app can be downloaded in [HuggingFace](https://huggingface.co/Usin2705/CaptainA_v0) \
 The demo paper of CaptainA app can be read [here](https://aclanthology.org/2023.nodalida-1.26) \
-And the detailed analysis and documentation on the development of the CaptainA app can be read in the [Master's thesis](http://urn.fi/URN:NBN:fi:aalto-202305213302)\
+And the detailed analysis and documentation on the development of the CaptainA app can be read in the [Master's thesis](http://urn.fi/URN:NBN:fi:aalto-202305213302)
 
 # How to run the server
 ## Setup
 The [server](https://github.com/Usin2705/CaptainA_unity/tree/main/Server) is running with Nginx. \
-You can download the model in [HuggingFace](https://huggingface.co/Usin2705/CaptainA_v0). Copy that model to the folder "nhan_wav2vec2-xls-r-300m-finnish-ent-10" \
+You can download the model in [HuggingFace](https://huggingface.co/Usin2705/CaptainA_v0). Copy that model to the folder "PATH_TO_SERVER_FOLDER/models/nhan_wav2vec2-xls-r-300m-finnish-ent-10" \
 You need to open a port for CaptainA. Let's call it PORT. You should update the new port number in the [Docker file](https://github.com/Usin2705/CaptainA_unity/blob/main/Server/Dockerfile) \
 The server comes with a Dockerfile, so you can run it without any extra installations (aside from Nginx and Podman/Docker) \
-You can use either Docker or Podman for the Dockerfile. The default command is for Podman, but you can replace it with Docker by simply changing the command from podman to docker. \
+You can use either Docker or Podman for the Dockerfile. The default command is for Podman, but you can replace it with Docker by simply changing the command from podman to docker.
 
 First, build the image from the docker file
 ```
