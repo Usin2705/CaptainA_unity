@@ -248,7 +248,6 @@ public class CardManagerSM2
             if (quality == Const.CARD_AGAIN) {
                 card.cardType = (int)CARD_TYPE.LEARNING;
 
-
                 //
                 isLapsed = true;
             }
@@ -271,7 +270,12 @@ public class CardManagerSM2
 
         card.repetitions += 1;
         
+        
         flashCard.updateCard(card);
+
+        // Update the useDateStr to keep track of the last time user use the deck
+        flashCard.useDateStr = DateTime.UtcNow.ToString("O");
+
         SaveData.SaveIntoJson(flashCard, flashCardFileName);
     }
 
@@ -329,11 +333,10 @@ public class FlashCard
     public bool isAutoPlay;    
     public bool isHideText; 
     public string todayDateStr; // Use the ISO 8601 format for the string representation. To convert back use DateTime.Parse(todayDateStr);
+    public string useDateStr; // This keep track of the last time the users use the deck
     public string languageCode;
     public int version;
     
-    
-
     public void updateCard(Card newCard) {
         Card cardToUpdate = cards.Find(card => card.id == newCard.id);
         if (cardToUpdate != null) {

@@ -1,5 +1,5 @@
 {
-    "name": "Oma Suomi 1, Finnish 1 (1-5) FI-EN",
+    "name": "Oma Suomi 1, Finnish 1. FI-EN",
     "fileName": "FI-EN_OmaSuomi_1_Finnish1_CaptainA",
     "credit": "CaptainA",
     "newCount": 0,
@@ -8,7 +8,8 @@
     "maxReviewCard": 200,
     "isAutoPlay": true,
     "isHideText": false,
-    "todayDateStr": "2000-01-31T00:00:00.0000000Z",
+    "todayDateStr": "2000-01-01T00:00:00.0000000Z",
+    "useDateStr": "2000-01-31T00:00:00.0000000Z",
     "languageCode": "EN",
     "version": 7,
     "cards": [

@@ -31,11 +31,15 @@ public class CardDeckPanel : MonoBehaviour
             flashCards.Add(flashCard);            
         }         
 
-        // Don't sort flashcard based on the last time user use the deck
-        // It could be confusing for user when card move up and down too much
-        //List<FlashCard> sortedFlashCards = flashCards.OrderByDescending(flashCard => DateTime.Parse(flashCard.todayDateStr)).ToList();
+        // Sort the list of card deck by the last time user use the deck
+        // Use try catch to avoid error when the date is not in the correct format
+        try {
+            flashCards = flashCards.OrderByDescending(flashCard => DateTime.Parse(flashCard.useDateStr)).ToList();
+        } catch (Exception e) {
+            Debug.Log("Error when sorting flashcards: " + e.Message);
+        }          
 
-        // Populate sorted deck into the Panel
+        // Populate sorted decks into the Panel
         foreach(FlashCard flashCard in flashCards)        
         {            
             GameObject cardDeckGO = Instantiate(deckListPrefab, new Vector3(0,0,0), Quaternion.identity);

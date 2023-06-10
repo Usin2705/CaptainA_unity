@@ -40,7 +40,7 @@ public static class SaveData
         // Application.StreamingAssets points to Assets/StreamingAssets in the Editor, and the StreamingAssets folder in a build
         string filePath = Path.Combine(Application.persistentDataPath, flashCardFileName + ".json");
 
-        // If the file also exist in the persistentDataPath and the Restources folder
+        // If the file also exist in the persistentDataPath and the Resources folder
         // It it time to check for update
         if (File.Exists(filePath)) {
             // Read the json from the file into a string
@@ -63,6 +63,11 @@ public static class SaveData
                 }
 
                 // update the metadata of the flashcard in Resources folder
+                
+                // if old flashcard have a useDateStr, use it
+                // else use the default value "2000-01-01T00:00:00.0000000Z"                
+                flashCardRes.useDateStr = flashCardLocal.useDateStr != ""? flashCardLocal.useDateStr : "2000-01-01T00:00:00.0000000Z";                
+
                 flashCardRes.todayDateStr = flashCardLocal.todayDateStr;
                 flashCardRes.newCount = flashCardLocal.newCount;
                 flashCardRes.reviewCount = flashCardLocal.reviewCount;
@@ -76,7 +81,7 @@ public static class SaveData
     public static FlashCard LoadFlashCard(string flashCardFileName){
         // Path.Combine combines strings into a file path
         // Application.StreamingAssets points to Assets/StreamingAssets in the Editor, and the StreamingAssets folder in a build
-        string filePath = Path.Combine(Application.persistentDataPath, Const.FLASH_CARDS_PATH + flashCardFileName + ".json");
+        string filePath = Path.Combine(Application.persistentDataPath, flashCardFileName + ".json");
 
         FlashCard flashCard;
 
@@ -112,6 +117,11 @@ public static class SaveData
                 
                 card.id = Guid.NewGuid().ToString();                                
             }
+        }
+
+        // If the flashcard is not used before, set the useDateStr to 2000-01-01T00:00:00.0000000Z
+        if (flashCard.useDateStr == "") {            
+            flashCard.useDateStr = "2000-01-01T00:00:00.0000000Z";
         }
 
         SaveData.SaveIntoJson(flashCard, flashCardFileName);
