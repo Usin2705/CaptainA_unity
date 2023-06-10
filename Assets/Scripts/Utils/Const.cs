@@ -173,13 +173,20 @@ public static class Const
     // ===================== FLASH CARD CONST =====================
 
     // Name of flashcard deck available in the app
-    public static readonly string[] FLASK_CARD_FILES = {
+    public static readonly string[] FLASH_CARD_FILES = {
         "FI-EN_OmaSuomi_1_Finnish1_CaptainA",
-        "EN-FI_OmaSuomi_1_Finnish1_CaptainA",        
+        "EN-FI_OmaSuomi_1_Finnish1_CaptainA",
+        "FI-EN_OmaSuomi_1_Finnish2_CaptainA",
+        "EN-FI_OmaSuomi_1_Finnish2_CaptainA",
+        "FI-EN_OmaSuomi_1_CaptainA",
+        "EN-FI_OmaSuomi_1_CaptainA"        
     };
 
+    // Folder contains flashcard decks in Resources folder
+    public const string FLASH_CARDS_PATH = "Flashcards/";
+
     public const float REQUIRED_HOLD_TIME = 2.0f;
-    public const int ADDITIONAL_NEW_CARD = 5;
+    public const int ADDITIONAL_NEW_CARD = 20;
     
     public const int CARD_AGAIN = 0;
     public const int CARD_HARD = 3;

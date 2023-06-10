@@ -24,7 +24,7 @@ public class CardDeckPanel : MonoBehaviour
         List<FlashCard> flashCards = new List<FlashCard>();
         
         // Create a list of card deck
-        foreach(string deckName in Const.FLASK_CARD_FILES)        
+        foreach(string deckName in Const.FLASH_CARD_FILES)        
         {
             SaveData.UpdateFlashCard(deckName); // Update the flashcard if needed
             FlashCard flashCard = SaveData.LoadFlashCard(deckName);            
