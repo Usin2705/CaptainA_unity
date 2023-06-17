@@ -11,7 +11,7 @@
     "todayDateStr": "2000-01-01T00:00:00.0000000Z",
     "useDateStr": "2000-01-31T00:00:00.0000000Z",
     "languageCode": "EN",
-    "version": 7,
+    "version": 8,
     "cards": [
         {
             "id": "588936e0-3686-424e-9584-ddc0bad52738",
@@ -142,7 +142,7 @@
         {
             "id": "44efb7d4-6902-4299-b3e8-aae5e114f74d",
             "frontText": "Ett\u00e4",
-            "backText": "That (as a conjuction, not this/that)",
+            "backText": "That (conjunction, not this/that)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -1359,7 +1359,7 @@
         },
         {
             "id": "fc943725-cda4-4dd7-bb83-31b7a6815c6b",
-            "frontText": "Ik\u00e4",
+            "frontText": "ik\u00e4",
             "backText": "Age",
             "cardtype": 0,
             "interval": 0.005,
@@ -1765,7 +1765,7 @@
         },
         {
             "id": "563e6322-2751-4afe-b9d0-9bfc5c1a7c15",
-            "frontText": "Ihan hyv\u00e4\u00e4.",
+            "frontText": "ihan hyv\u00e4\u00e4.",
             "backText": "Quite good.",
             "cardtype": 0,
             "interval": 0.005,
@@ -2297,7 +2297,7 @@
         },
         {
             "id": "623c1fea-d5e7-497b-983d-924f392c3e00",
-            "frontText": "Is\u00e4",
+            "frontText": "is\u00e4",
             "backText": "Father",
             "cardtype": 0,
             "interval": 0.005,
@@ -2409,7 +2409,7 @@
         },
         {
             "id": "78b5c32f-51cd-4b41-98e6-f3c9a0c7e380",
-            "frontText": "Insin\u00f6\u00f6ri",
+            "frontText": "insin\u00f6\u00f6ri",
             "backText": "Engineer",
             "cardtype": 0,
             "interval": 0.005,
@@ -2465,7 +2465,7 @@
         },
         {
             "id": "bcc4fd72-77e6-40f3-961c-9aeac047326e",
-            "frontText": "Iso",
+            "frontText": "iso",
             "backText": "Big. Large",
             "cardtype": 0,
             "interval": 0.005,
@@ -2480,7 +2480,7 @@
         {
             "id": "a2ad3f99-2b5e-4bd5-890f-fbba27c93e02",
             "frontText": "Kiva",
-            "backText": "Nice. Fun.",
+            "backText": "Nice. Fun. (informal, colloquial similar to cool, neat)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -2662,7 +2662,7 @@
         {
             "id": "efc94233-0c9b-4655-9f40-35a7f7fb98f4",
             "frontText": "Mukava",
-            "backText": "Comfortable. Nice, pleasant",
+            "backText": "Comfortable. Pleasant, nice (a sense of comfort or pleasantness)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -2675,7 +2675,7 @@
         },
         {
             "id": "166a0599-1e00-420f-8698-f25094e380d9",
-            "frontText": "He ovat muikavia.",
+            "frontText": "He ovat mukavia.",
             "backText": "They are nice.",
             "cardtype": 0,
             "interval": 0.005,
@@ -2829,7 +2829,7 @@
         },
         {
             "id": "d50fbb9c-d537-4c92-97c1-2fd5aa08186d",
-            "frontText": "Iso\u00e4iti",
+            "frontText": "iso\u00e4iti",
             "backText": "Grandmother",
             "cardtype": 0,
             "interval": 0.005,
@@ -2843,7 +2843,7 @@
         },
         {
             "id": "9cb3b3ed-73e9-4180-a2d8-261dd2e1b56f",
-            "frontText": "Isois\u00e4",
+            "frontText": "isois\u00e4",
             "backText": "Grandfather",
             "cardtype": 0,
             "interval": 0.005,
@@ -3864,6 +3864,20 @@
             "audio": "Y"
         },
         {
+            "id": "a1c692ba-86a3-4ff2-bd70-7eeffc2ea6f6",
+            "frontText": "Perheenj\u00e4sen",
+            "backText": "Family member",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 2,
+            "audio": "Y"
+        },
+        {
             "id": "d6483be1-16da-4721-beaf-6c95edd0dfb5",
             "frontText": "Mit\u00e4 kielt\u00e4 sun perheenj\u00e4senet puhuu?",
             "backText": "What language do your family members speak? (spoken)",
@@ -4426,7 +4440,7 @@
         {
             "id": "d54c1ed8-04c1-470c-af32-20ee44597d9a",
             "frontText": "Soitan sinulle illalla.",
-            "backText": "(I) call you tonight.",
+            "backText": "(I) call you in the evening.",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -4775,8 +4789,8 @@
         },
         {
             "id": "d2129e9c-bfb4-418c-9088-84077c16208d",
-            "frontText": "P\u00e4iv\u00e4ll\u00e4 h\u00e4n tapaa kaverinsa kaupungilla.",
-            "backText": "During the day, she meets with her buddy in the city.",
+            "frontText": "P\u00e4iv\u00e4ll\u00e4 h\u00e4n tapaa kavereita kaupungilla.",
+            "backText": "During the day she meets buddies in (within) the city.",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -4958,7 +4972,7 @@
         {
             "id": "b46294b2-563e-4bbc-b67e-7345f4a7e889",
             "frontText": "Pari",
-            "backText": "Couple, pair",
+            "backText": "Couple, pair. Partner (when working in pairs)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -4986,7 +5000,7 @@
         {
             "id": "47b68994-71fc-4309-91c5-01d2f96d521b",
             "frontText": "Min\u00e4 en polta tupakkaa.",
-            "backText": "I don't  smoke tobacco/cigarette.",
+            "backText": "I don't smoke tobacco/cigarette.",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -5279,7 +5293,7 @@
         },
         {
             "id": "c51213c4-1571-4269-8264-3b187240c9eb",
-            "frontText": "Istua",
+            "frontText": "istua",
             "backText": "to sit",
             "cardtype": 0,
             "interval": 0.005,
@@ -5658,7 +5672,7 @@
         {
             "id": "81d87d23-da69-4af6-8b08-bd697ea25954",
             "frontText": "Mit\u00e4 s\u00e4 yleens\u00e4 teet kotona?",
-            "backText": "What do you usually do at home? (spoken)",
+            "backText": "What do you typically do at home? (spoken)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -5994,7 +6008,7 @@
         {
             "id": "517861c8-66cf-4d06-a1d5-907fd1984770",
             "frontText": "Viisitoista vaille viisi",
-            "backText": "4:45 (15 minutes to\u2026)",
+            "backText": "4:45 (15 to \u2026)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -6008,7 +6022,7 @@
         {
             "id": "75df3b02-6974-4ea1-aaf1-38f6ea4a6770",
             "frontText": "Min\u00e4 nousen kello puoli kahdeksan.",
-            "backText": "I get up at 7:30. (half\u2026)",
+            "backText": "I get up at 7:30. (half \u2026)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -6134,7 +6148,7 @@
         {
             "id": "8ffe13c8-1d65-440f-8364-d708c1498bb6",
             "frontText": "Viisi vaille kuusi",
-            "backText": "5:55 (5 minutes to\u2026)",
+            "backText": "5:55 (5 to\u2026)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -6988,7 +7002,7 @@
         {
             "id": "d4568e06-ba89-467a-91ee-d3948020b6bd",
             "frontText": "Sin\u00e4 et voi n\u00e4hd\u00e4 minua.",
-            "backText": "You can't see me",
+            "backText": "You can't see me.",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -7338,7 +7352,21 @@
         {
             "id": "790128dd-a3ed-42f5-ae22-972e70c5b583",
             "frontText": "Tarvitsetko apua?",
-            "backText": "Do (you) need help?",
+            "backText": "(Do you) need help?",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 3,
+            "audio": "Y"
+        },
+        {
+            "id": "a3e2670e-9aa3-4952-81fd-5f6822ec6048",
+            "frontText": "Henkil\u00f6",
+            "backText": "Person. Figure",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -7954,7 +7982,7 @@
         {
             "id": "407664d0-373e-4014-95a9-05629d14b3c8",
             "frontText": "L\u00e4hell\u00e4",
-            "backText": "(adv) near, nearby. Genitive + : near, close to.",
+            "backText": "(adv) near, nearby. Genitive + ____:  near, close to.",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -9032,7 +9060,7 @@
         {
             "id": "03cc2bd6-9265-47cb-8b09-b7ebe6a88a24",
             "frontText": "S\u00e4mpyl\u00e4",
-            "backText": "Bun. Bread roll (general term, usuallt not sweet)",
+            "backText": "Bun. Bread roll (general term, usually not sweet)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -11286,7 +11314,7 @@
         {
             "id": "fb548da9-3b24-4134-b29e-fea2c8c31bce",
             "frontText": "Mist\u00e4 v\u00e4rist\u00e4 et tykk\u00e4\u00e4?",
-            "backText": "Of what colour do (you) not like? Which colour do you not like?",
+            "backText": "From which colour do (you) not like? Which colour do you not like?",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -11453,7 +11481,7 @@
         },
         {
             "id": "bcaa9b5f-f16e-4650-9832-32ff37a1e388",
-            "frontText": "Ikkuna",
+            "frontText": "ikkuna",
             "backText": "Window",
             "cardtype": 0,
             "interval": 0.005,
@@ -11901,7 +11929,7 @@
         },
         {
             "id": "bfae8932-d26c-4320-92b0-fd4a395b82e4",
-            "frontText": "Ikkunasta n\u00e4kyy iso tie.",
+            "frontText": "ikkunasta n\u00e4kyy iso tie.",
             "backText": "From the windows (one) can see a big road. (is visible, can be seen)",
             "cardtype": 0,
             "interval": 0.005,
