@@ -30,7 +30,7 @@ public class CardManagerSM2
         Debug.Log("FlashCard loaded: " + flashCard.name);
     }
     
-    public float GetCarNewInterval(Card card, int quality) 
+    public (float newInterval, float newEaseFactor) GetCarNewIntervalEase (Card card, int quality) 
     {       
         /*
         *   This calculate the interval for the next review date
@@ -46,6 +46,9 @@ public class CardManagerSM2
         // and always coming up for review on the same day.                
         float fuzz_factor = UnityEngine.Random.Range(0.0f/24f/60f, 5f/24f/60f); // 0 to 5 minutes
         
+        float newInterval = card.interval;
+        float newEaseFactor = card.easeFactor;
+
         // ########################## NEW CARD ##########################
         // The schedule for new card is 1minute, 5.5 minutes, 10m (next step) and 4 d (REVIEW)
         // https://docs.ankiweb.net/deck-options.html?#learning-steps
@@ -54,16 +57,16 @@ public class CardManagerSM2
         {
             if (quality == Const.CARD_AGAIN) 
             {
-                card.interval = 1f/24f/60f; // 1 minutes
+                newInterval = 1f/24f/60f; // 1 minutes
             } else if (quality == Const.CARD_HARD) 
             {
-                card.interval = 5.5f/24f/60f; // average of AGAIN and GOOD
+                newInterval = 5.5f/24f/60f; // average of AGAIN and GOOD
             } else if (quality == Const.CARD_GOOD) 
             {            
-                card.interval = 10f/24f/60f; // 10m
+                newInterval = 10f/24f/60f; // 10m
             } else if (quality == Const.CARD_EASY) 
             {                
-                card.interval = 4.0f; // 4 day
+                newInterval = 4.0f; // 4 day
             }
         
         } else if (card.cardType == (int) CARD_TYPE.LEARNING) {
@@ -71,17 +74,17 @@ public class CardManagerSM2
         // The schedule for LEARNING card is 1 minute (first step), repeat, 10 m (next step) and 4 d (REVIEW)        
             if (quality == Const.CARD_AGAIN) 
             {
-                card.interval = 1f/24f/60f; // 1 minutes
+                newInterval = 1f/24f/60f; // 1 minutes
             } else if (quality == Const.CARD_HARD) 
             {
                 // Repeat the current delay
-                card.interval = card.interval + fuzz_factor/20f;
+                newInterval = card.interval + fuzz_factor/20f;
             } else if (quality == Const.CARD_GOOD) 
             {            
-               card.interval = 10f/24f/60f + fuzz_factor/20f; // 10m
+               newInterval = 10f/24f/60f + fuzz_factor/20f; // 10m
             } else if (quality == Const.CARD_EASY) 
             {                
-                card.interval = 4.0f + fuzz_factor; // 4 day
+                newInterval = 4.0f + fuzz_factor; // 4 day
             }
         
         } else if (card.cardType == (int) CARD_TYPE.RELEARNING) {
@@ -89,17 +92,17 @@ public class CardManagerSM2
         // The schedule for LEARNING card is 1 minute (first step), repeat, 1 d (next step) and 4 d (REVIEW)        
             if (quality == Const.CARD_AGAIN) 
             {
-                card.interval = 1f/24f/60f; // 1 minutes
+                newInterval = 1f/24f/60f; // 1 minutes
             } else if (quality == Const.CARD_HARD) 
             {
                 // Repeat the current delay
-                card.interval = card.interval + fuzz_factor/20f;
+                newInterval = card.interval + fuzz_factor/20f;
             } else if (quality == Const.CARD_GOOD) 
             {            
-                card.interval = 1.0f + fuzz_factor; // 1 day
+                newInterval = 1.0f + fuzz_factor; // 1 day
             } else if (quality == Const.CARD_EASY) 
             {                
-                card.interval = 4.0f + fuzz_factor; // 4 day
+                newInterval = 4.0f + fuzz_factor; // 4 day
             }
     
         } else if (card.cardType == (int) CARD_TYPE.REVIEW) {
@@ -119,9 +122,25 @@ public class CardManagerSM2
                 // The check will be done in UpdateCardToJson
                 // to add the card to the relearning queue by 10 minutes
 
-                float newEaseFactor = card.easeFactor - 0.2f;
-                card.easeFactor = Mathf.Max(newEaseFactor, 1.3f);
-                card.interval = 1.0f; // 1 day
+                float tempEaseFactor = card.easeFactor - 0.2f;
+                newEaseFactor = Mathf.Max(tempEaseFactor, 1.3f);
+
+                // Reset the schedule to 1 (i.e. make it due tomorrow)
+                // is done in the UpdateCardToJson step, not here
+
+                
+                // We should not reset the interval to 1 ???
+                // As it may make users frustrated when they forget the card                 
+                // But doing so would require some modification to the algorithm
+                // Because when the card is Learning or Relearning, the interval is 
+                // calculated based on the fixed invertal of 1.0f or 4.0f, not the previous interval
+                // So we need to keep track of the previous interval to calculate the new interval
+                // when the card is moved to REVIEW again
+                
+                //newInterval = card.interval * newEaseFactor + fuzz_factor;   
+
+                // We set the interval to 1 day
+                newInterval = 1.0f;   
             } 
             
             else if (quality == Const.CARD_HARD) {
@@ -132,17 +151,17 @@ public class CardManagerSM2
 
                 // The card’s ease is decreased by 15 percentage points and the current interval 
                 // is multiplied by the value of hard interval (1.2 by default)
-                float newEaseFactor = card.easeFactor - 0.15f;
-                card.easeFactor = Mathf.Max(newEaseFactor, 1.3f);
+                float tempEaseFactor = card.easeFactor - 0.15f;
+                newEaseFactor = Mathf.Max(tempEaseFactor, 1.3f);
                 
                 // The current interval is multiplied by the value of hard interval (1.2 by default)
-                card.interval = card.interval * hard_multiplier + fuzz_factor; 
+                newInterval = card.interval * hard_multiplier + fuzz_factor; 
 
             } else if (quality == Const.CARD_GOOD) {                            
                 //The current interval is multiplied by the current ease. The ease is unchanged.                
-                float newEaseFactor = card.easeFactor;
-                card.easeFactor = Mathf.Max(newEaseFactor, 1.3f);    
-                card.interval = card.interval * card.easeFactor + fuzz_factor;                 
+                float tempEaseFactor = card.easeFactor;
+                newEaseFactor = Mathf.Max(tempEaseFactor, 1.3f);    
+                newInterval = card.interval * newEaseFactor + fuzz_factor;                 
                 
             } else if (quality == Const.CARD_EASY) {
                 // An extra multiplier applied to the interval when a review card is answered Easy. 
@@ -152,21 +171,20 @@ public class CardManagerSM2
 
                 // The current interval is multiplied by the current ease times the easy bonus 
                 // and the ease is increased by 15 percentage points.
-                float newEaseFactor = card.easeFactor + 0.15f;       
-
-                card.easeFactor = Mathf.Max(newEaseFactor, 1.3f);
-                card.interval = card.interval * card.easeFactor * easy_multiplier + fuzz_factor;                                                
+                float tempEaseFactor = card.easeFactor + 0.15f;       
+                newEaseFactor = Mathf.Max(tempEaseFactor, 1.3f);
+                newInterval = card.interval * newEaseFactor * easy_multiplier + fuzz_factor;                                      
             }
         }
         
         //  Intervals will never be increased beyond the value of maximum interval (36500 by default).
-        card.interval = Mathf.Min(card.interval, 36500f);
+        newInterval = Mathf.Min(newInterval, 36500f);
 
         //Debug.Log("Card interval: " + card.interval);
-        return card.interval;
+        return (newInterval, newEaseFactor);
     }
 
-    public void UpdateCardToJson(Card card, int quality, float interval) {
+    public void UpdateCardToJson(Card card, int quality, float newInterval, float newEaseFactor) {
         bool isLapsed = false;
 
         // Update the flashcard newcount or reviewcount
@@ -261,7 +279,7 @@ public class CardManagerSM2
         if (isLapsed) {
             card.nextReviewDateStr = DateTime.UtcNow.AddDays(10f/24f/60f).ToString("O");
         } else {
-            card.nextReviewDateStr = DateTime.UtcNow.AddDays(interval).ToString("O"); // Use the ISO 8601 format for the string representation
+            card.nextReviewDateStr = DateTime.UtcNow.AddDays(newInterval).ToString("O"); // Use the ISO 8601 format for the string representation
         }
         
         //Debug.Log("Next card.interval: " + card.interval);
@@ -269,7 +287,8 @@ public class CardManagerSM2
         //Debug.Log("flashCardFileName: " + flashCardFileName);
 
         card.repetitions += 1;
-        
+        card.interval = newInterval;
+        card.easeFactor = newEaseFactor;
         
         flashCard.updateCard(card);
 

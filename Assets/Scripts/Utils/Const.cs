@@ -186,7 +186,7 @@ public static class Const
     public const string FLASH_CARDS_PATH = "Flashcards/";
 
     public const float REQUIRED_HOLD_TIME = 1.0f;
-    public const int ADDITIONAL_NEW_CARD = 40;
+    public const int ADDITIONAL_NEW_CARD = 20;
     
     public const int CARD_AGAIN = 0;
     public const int CARD_HARD = 3;

@@ -67,7 +67,6 @@ public static class SaveData
                 // if old flashcard have a useDateStr, use it
                 // else use the default value "2000-01-01T00:00:00.0000000Z"                
                 flashCardRes.useDateStr = flashCardLocal.useDateStr != ""? flashCardLocal.useDateStr : "2000-01-01T00:00:00.0000000Z";                
-
                 flashCardRes.todayDateStr = flashCardLocal.todayDateStr;
                 flashCardRes.newCount = flashCardLocal.newCount;
                 flashCardRes.reviewCount = flashCardLocal.reviewCount;
@@ -170,7 +169,7 @@ public static class SaveData
 
 		// Make sure that stranscript length match with scoreList Length
 		if (transcript.Length != scoreList.Count) {	
-            Debug.LogError("transcript and score didn't match");
+            Debug.LogError("Transcript and score didn't match");
 			return;
 		}
 

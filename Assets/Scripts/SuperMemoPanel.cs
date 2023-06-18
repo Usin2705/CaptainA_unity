@@ -146,17 +146,17 @@ public class SuperMemoPanel : MonoBehaviour
         showAnswerGO.SetActive(false);
 
         // update the expected interval for 4 quality buttons
-        float interval = cardManager.GetCarNewInterval(currentCard, 0);
-        intervalText_again.text = GetIntervalText(interval);
+        (float newInterval, float newEaseFactor) = cardManager.GetCarNewIntervalEase(currentCard, 0);
+        intervalText_again.text = GetIntervalText(newInterval);
 
-        interval = cardManager.GetCarNewInterval(currentCard, 3);
-        intervalText_hard.text = GetIntervalText(interval);
+        (newInterval, newEaseFactor) = cardManager.GetCarNewIntervalEase(currentCard, 3);
+        intervalText_hard.text = GetIntervalText(newInterval);
 
-        interval = cardManager.GetCarNewInterval(currentCard, 4);
-        intervalText_good.text = GetIntervalText(interval);
+        (newInterval, newEaseFactor) = cardManager.GetCarNewIntervalEase(currentCard, 4);
+        intervalText_good.text = GetIntervalText(newInterval);
 
-        interval = cardManager.GetCarNewInterval(currentCard, 5);
-        intervalText_easy.text = GetIntervalText(interval);        
+        (newInterval, newEaseFactor) = cardManager.GetCarNewIntervalEase(currentCard, 5);
+        intervalText_easy.text = GetIntervalText(newInterval);        
         
         // Show the quality bar
         qualityBarGO.SetActive(true);
@@ -257,8 +257,8 @@ public class SuperMemoPanel : MonoBehaviour
     *   The quality is from the OnClick event of the button in the SuperMemoPanel.
     */
     {
-        float interval = cardManager.GetCarNewInterval(currentCard, quality);
-        cardManager.UpdateCardToJson(currentCard, quality, interval);
+        (float newInterval, float newEaseFactor) = cardManager.GetCarNewIntervalEase(currentCard, quality);
+        cardManager.UpdateCardToJson(currentCard, quality, newInterval, newEaseFactor);
         
         CardQueueManager.GetQueueManager.Dequeue(); // Need to dequeue to reduce the queue
         clearOldCard();
