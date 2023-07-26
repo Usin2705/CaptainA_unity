@@ -39,22 +39,30 @@ public class CardQueueManager : MonoBehaviour
         // For InterleaveCardLists see extra snippet from Chat GPT 4.0
 
         // Get all learn/relearning cards
-        IEnumerable<Card> learnCards = flashCard.cards.Where(
-            card => card.cardType == (int) CARD_TYPE.LEARNING || card.cardType == (int) CARD_TYPE.RELEARNING);
+        // And sorted by date of next review
+        IEnumerable<Card> learnCards = flashCard.cards
+            .Where(card => card.cardType == (int) CARD_TYPE.LEARNING || card.cardType == (int) CARD_TYPE.RELEARNING)
+            .OrderBy(card => DateTime.Parse(card.nextReviewDateStr));
         
         // Find new cards with maximum is newCount
-        IEnumerable<Card> newCards = flashCard.cards.Where(card => card.cardType == (int) CARD_TYPE.NEW).Take(newCount);
+        // NO NEED TO SORT
+        IEnumerable<Card> newCards = flashCard.cards
+            .Where(card => card.cardType == (int) CARD_TYPE.NEW)
+            .Take(newCount);
 
         // Find due cards with maximum is reviewCount  (nextReviewDate is earlier than DateTime.Now)
+        // And sorted by date of next review
         IEnumerable<Card> reviewCards = flashCard.cards
             .Where(card => card.cardType == (int) CARD_TYPE.REVIEW && DateTime.Parse(card.nextReviewDateStr) <= DateTime.Now)
+            .OrderBy(card => DateTime.Parse(card.nextReviewDateStr))
             .Take(reviewCount);
         
         // Concatenate the card lists
         List<Card> combinedCards = learnCards.Concat(newCards).Concat(reviewCards).ToList();
         
         // Sort list by order of nextReviewDate
-        List<Card> sortedCards = combinedCards.OrderBy(card => DateTime.Parse(card.nextReviewDateStr)).ToList();
+        // NO NEED TO SORT
+        // List<Card> sortedCards = combinedCards.OrderBy(card => DateTime.Parse(card.nextReviewDateStr)).ToList();
 
         foreach (Card card in combinedCards) {
             cardQueue.Enqueue(card);
