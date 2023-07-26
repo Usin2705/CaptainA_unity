@@ -45,9 +45,9 @@ public class CardQueueManager : MonoBehaviour
         // Find new cards with maximum is newCount
         IEnumerable<Card> newCards = flashCard.cards.Where(card => card.cardType == (int) CARD_TYPE.NEW).Take(newCount);
 
-        // Find due cards with maximum is reviewCount  (nextReviewDate is earlier than DateTime.UtcNow)
+        // Find due cards with maximum is reviewCount  (nextReviewDate is earlier than DateTime.Now)
         IEnumerable<Card> reviewCards = flashCard.cards
-            .Where(card => card.cardType == (int) CARD_TYPE.REVIEW && DateTime.Parse(card.nextReviewDateStr) <= DateTime.UtcNow)
+            .Where(card => card.cardType == (int) CARD_TYPE.REVIEW && DateTime.Parse(card.nextReviewDateStr) <= DateTime.Now)
             .Take(reviewCount);
         
         // Concatenate the card lists

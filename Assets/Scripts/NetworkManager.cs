@@ -9,7 +9,19 @@ public class NetworkManager : MonoBehaviour
 	[SerializeField] GameObject surveyPopUpPanelGO;    
 	static NetworkManager netWorkManager;
 
-	string url = Secret.URL;
+	// This is the URL to the ASR server
+	// AUDIO_URL should be in http and not https
+	// Because it would make the connection faster???
+	// You can set the URL in Secret.cs
+
+	// public static class Secret
+	// {
+	// 	public const string AUDIO_URL = "http://YOUR SERVER ADDRESS HERE"; //fill in this one
+	// }
+
+	string asrURL = Secret.AUDIO_URL; 
+
+	// However, other URL should be in https for encryption purpose
 
 	public ASRResult asrResult {get; private set;}
 
@@ -43,7 +55,7 @@ public class NetworkManager : MonoBehaviour
         form.AddField("transcript", transcript);
 		form.AddField("model_code", "1");
 
-        UnityWebRequest www = UnityWebRequest.Post(url, form);
+        UnityWebRequest www = UnityWebRequest.Post(asrURL, form);
 
 		www.timeout = Const.TIME_OUT_SECS;
 		yield return www.SendWebRequest();

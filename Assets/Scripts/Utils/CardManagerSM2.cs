@@ -18,6 +18,7 @@ public class CardManagerSM2
 
     public FlashCard flashCard;
     public string flashCardFileName;
+    System.Random random = new System.Random();
 
     public CardManagerSM2(string _flashCardFileName)
     {
@@ -29,6 +30,34 @@ public class CardManagerSM2
         flashCard = SaveData.LoadFlashCard(flashCardFileName);
         Debug.Log("FlashCard loaded: " + flashCard.name);
     }
+
+    /// <summary>
+    /// Generates a fuzz factor to add some randomness to interval scheduling in a spaced repetition system.
+    /// The purpose of the fuzz factor is to avoid having multiple cards becoming due on the same day.
+    /// </summary>
+    /// <param name="interval">The current interval of the card for which the fuzz factor is to be calculated.</param>
+    /// <returns>A fuzz factor calculated as a random value between -5% and +5% of the input interval, capped at -1 and +1.</returns>
+    /// <remarks>
+    /// The fuzz factor is calculated as follows:
+    /// - First, the range of the fuzz factor is determined as +/- 5% of the provided interval.
+    /// - A random number within this range is then generated.
+    /// - To prevent too much variance in the early stages of learning, the generated fuzz factor is capped at -1 day and +1 day.
+    /// - The capped fuzz factor is then returned.
+    /// </remarks>
+    public float GetFuzzFactor(float interval)
+    {
+        // Calculate the fuzz range (-5% to +5%)
+        float fuzzRange = interval * 0.05f;
+
+        // Generate a random number in the fuzz range
+        float fuzz = (float)(random.NextDouble() * 2f - 1f) * fuzzRange;
+
+        // Cap the fuzz at one day in either direction
+        fuzz = Mathf.Clamp(fuzz, -1f, 1f);
+
+        return fuzz;
+    }
+
     
     public (float newInterval, float newEaseFactor) GetCarNewIntervalEase (Card card, int quality) 
     {       
@@ -41,11 +70,11 @@ public class CardManagerSM2
         *   We need to calculate the interval in advance to show the next review date to the user
         */        
 
-        // When you select an ease button on a review card, Anki also applies a small amount of random “fuzz” 
-        // to prevent cards that were introduced at the same time and given the same ratings from sticking together 
-        // and always coming up for review on the same day.                
-        float fuzz_factor = UnityEngine.Random.Range(0.0f/24f/60f, 5f/24f/60f); // 0 to 5 minutes
-        
+        // Learning cards are also given up to 5 minutes of extra delay so that they don’t always appear in the same order, 
+        // but answer buttons won't reflect that. It is not possible to turn this feature off.             
+        // For CaptainA, the button WILL reflect that
+        float mini_fuzz = (float)(random.NextDouble() * (5f/24f/60f)); // 0 to 5 minutes        
+
         float newInterval = card.interval;
         float newEaseFactor = card.easeFactor;
 
@@ -74,17 +103,17 @@ public class CardManagerSM2
         // The schedule for LEARNING card is 1 minute (first step), repeat, 10 m (next step) and 4 d (REVIEW)        
             if (quality == Const.CARD_AGAIN) 
             {
-                newInterval = 1f/24f/60f; // 1 minutes
+                newInterval = 1f/24f/60f + mini_fuzz; // 1 minutes
             } else if (quality == Const.CARD_HARD) 
             {
                 // Repeat the current delay
-                newInterval = card.interval + fuzz_factor/20f;
+                newInterval = card.interval + mini_fuzz;
             } else if (quality == Const.CARD_GOOD) 
             {            
-               newInterval = 10f/24f/60f + fuzz_factor/20f; // 10m
+               newInterval = 10f/24f/60f + mini_fuzz; // 10m
             } else if (quality == Const.CARD_EASY) 
             {                
-                newInterval = 4.0f + fuzz_factor; // 4 day
+                newInterval = 4.0f + mini_fuzz; // 4 day
             }
         
         } else if (card.cardType == (int) CARD_TYPE.RELEARNING) {
@@ -92,17 +121,17 @@ public class CardManagerSM2
         // The schedule for LEARNING card is 1 minute (first step), repeat, 1 d (next step) and 4 d (REVIEW)        
             if (quality == Const.CARD_AGAIN) 
             {
-                newInterval = 1f/24f/60f; // 1 minutes
+                newInterval = 1f/24f/60f + mini_fuzz; // 1 minutes
             } else if (quality == Const.CARD_HARD) 
             {
                 // Repeat the current delay
-                newInterval = card.interval + fuzz_factor/20f;
+                newInterval = card.interval + mini_fuzz;
             } else if (quality == Const.CARD_GOOD) 
             {            
-                newInterval = 1.0f + fuzz_factor; // 1 day
+                newInterval = 1.0f + mini_fuzz; // 1 day
             } else if (quality == Const.CARD_EASY) 
             {                
-                newInterval = 4.0f + fuzz_factor; // 4 day
+                newInterval = 4.0f + mini_fuzz; // 4 day
             }
     
         } else if (card.cardType == (int) CARD_TYPE.REVIEW) {
@@ -155,13 +184,13 @@ public class CardManagerSM2
                 newEaseFactor = Mathf.Max(tempEaseFactor, 1.3f);
                 
                 // The current interval is multiplied by the value of hard interval (1.2 by default)
-                newInterval = card.interval * hard_multiplier + fuzz_factor; 
+                newInterval = card.interval * hard_multiplier + mini_fuzz; 
 
             } else if (quality == Const.CARD_GOOD) {                            
                 //The current interval is multiplied by the current ease. The ease is unchanged.                
                 float tempEaseFactor = card.easeFactor;
                 newEaseFactor = Mathf.Max(tempEaseFactor, 1.3f);    
-                newInterval = card.interval * newEaseFactor + fuzz_factor;                 
+                newInterval = card.interval * newEaseFactor + mini_fuzz;                 
                 
             } else if (quality == Const.CARD_EASY) {
                 // An extra multiplier applied to the interval when a review card is answered Easy. 
@@ -173,14 +202,18 @@ public class CardManagerSM2
                 // and the ease is increased by 15 percentage points.
                 float tempEaseFactor = card.easeFactor + 0.15f;       
                 newEaseFactor = Mathf.Max(tempEaseFactor, 1.3f);
-                newInterval = card.interval * newEaseFactor * easy_multiplier + fuzz_factor;                                      
+
+                // When you select an ease button on a review card, Anki also applies a small amount of random “fuzz” 
+                // to prevent cards that were introduced at the same time and given the same ratings from sticking together 
+                // and always coming up for review on the same day.   
+                float fuzz_factor = GetFuzzFactor(card.interval); // Add fuzz factor to avoid cards become due on the same order                
+                newInterval = card.interval * newEaseFactor * easy_multiplier + fuzz_factor;                
             }
         }
         
         //  Intervals will never be increased beyond the value of maximum interval (36500 by default).
-        newInterval = Mathf.Min(newInterval, 36500f);
+        newInterval = Mathf.Min(newInterval, 36500.0f);
 
-        //Debug.Log("Card interval: " + card.interval);
         return (newInterval, newEaseFactor);
     }
 
@@ -277,14 +310,10 @@ public class CardManagerSM2
         
         // If the card is lapsed only add 10m to the next review date
         if (isLapsed) {
-            card.nextReviewDateStr = DateTime.UtcNow.AddDays(10f/24f/60f).ToString("O");
-        } else {
-            card.nextReviewDateStr = DateTime.UtcNow.AddDays(newInterval).ToString("O"); // Use the ISO 8601 format for the string representation
+            card.nextReviewDateStr = DateTime.Now.AddDays(10f/24f/60f).ToString("O");
+        } else {            
+            card.nextReviewDateStr = DateTime.Now.AddDays(newInterval).ToString("O"); // Use the ISO 8601 format for the string representation            
         }
-        
-        //Debug.Log("Next card.interval: " + card.interval);
-        //Debug.Log("Next review date: " + card.nextReviewDateStr);
-        //Debug.Log("flashCardFileName: " + flashCardFileName);
 
         card.repetitions += 1;
         card.interval = newInterval;
@@ -293,7 +322,7 @@ public class CardManagerSM2
         flashCard.updateCard(card);
 
         // Update the useDateStr to keep track of the last time user use the deck
-        flashCard.useDateStr = DateTime.UtcNow.ToString("O");
+        flashCard.useDateStr = DateTime.Now.ToString("O");
 
         SaveData.SaveIntoJson(flashCard, flashCardFileName);
     }

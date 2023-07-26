@@ -257,8 +257,11 @@ public class SuperMemoPanel : MonoBehaviour
     *   The quality is from the OnClick event of the button in the SuperMemoPanel.
     */
     {
+        Debug.Log("Previous dateStr: " + currentCard.nextReviewDateStr);
         (float newInterval, float newEaseFactor) = cardManager.GetCarNewIntervalEase(currentCard, quality);
+        Debug.Log("New interval: " + newInterval);
         cardManager.UpdateCardToJson(currentCard, quality, newInterval, newEaseFactor);
+        Debug.Log("New dateStr: " + currentCard.nextReviewDateStr);
         
         CardQueueManager.GetQueueManager.Dequeue(); // Need to dequeue to reduce the queue
         clearOldCard();
