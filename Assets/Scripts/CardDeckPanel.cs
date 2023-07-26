@@ -60,7 +60,7 @@ public class CardDeckPanel : MonoBehaviour
             int newCards = flashCard.cards.Count(card => card.cardType == (int) CARD_TYPE.NEW);
             int learnCards = flashCard.cards.Count(card => card.cardType == (int) CARD_TYPE.LEARNING || card.cardType == (int) CARD_TYPE.RELEARNING);
             int dueCards = flashCard.cards.Count(
-                    card => card.cardType == (int) CARD_TYPE.REVIEW && DateTime.Parse(card.nextReviewDateStr) <= DateTime.UtcNow);
+                    card => card.cardType == (int) CARD_TYPE.REVIEW && DateTime.Parse(card.nextReviewDateStr) <= DateTime.Now);
             
             // Check if the date stored in the deck is at least yesterday or not
             // If yes, reset the flashCard new and review count to max
@@ -69,12 +69,12 @@ public class CardDeckPanel : MonoBehaviour
             // If we succesfully read the date
             if (DateTime.TryParse(flashCard.todayDateStr, out DateTime flashCardDate)) 
             {
-                if (flashCardDate.Date < DateTime.UtcNow.Date) 
+                if (flashCardDate.Date < DateTime.Now.Date) 
                 // If the last time user use the deck is yesterday or before
                 {
                     flashCard.newCount = flashCard.maxNewCard;
                     flashCard.reviewCount = flashCard.maxReviewCard;
-                    flashCard.todayDateStr = DateTime.UtcNow.ToString("O");
+                    flashCard.todayDateStr = DateTime.Now.ToString("O");
                 } else {
                     // If not, update the new and review cards counts
                     // The new and review cards counts are the minimum of the possible and
@@ -87,7 +87,7 @@ public class CardDeckPanel : MonoBehaviour
                 // If failed to read the date, reset the flashCard new and review count to max
                 flashCard.newCount = flashCard.maxNewCard;
                 flashCard.reviewCount = flashCard.maxReviewCard;
-                flashCard.todayDateStr = DateTime.UtcNow.ToString("O");
+                flashCard.todayDateStr = DateTime.Now.ToString("O");
             }
 
             SaveData.SaveIntoJson(flashCard, flashCard.fileName);                
