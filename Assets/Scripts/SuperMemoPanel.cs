@@ -26,6 +26,7 @@ public class SuperMemoPanel : MonoBehaviour
     [SerializeField] GameObject replayButtonGO; // Replay recorded audio
     [SerializeField] Toggle autoPlayToggle ; // Auto play audio
     [SerializeField] Toggle hideFinnishToggle; // Hide Finnish text
+    [SerializeField] GameObject illustrationGO; // Illustration
 
     [SerializeField] GameObject superMemoPanel;     
     [SerializeField] GameObject cardDeckPanel;     
@@ -129,7 +130,6 @@ public class SuperMemoPanel : MonoBehaviour
 
     }
 
-
     public void displayAnswer()
     /*
     *   This function also attached to ShowAnswer OnClick() in Unity
@@ -160,14 +160,29 @@ public class SuperMemoPanel : MonoBehaviour
         
         // Show the quality bar
         qualityBarGO.SetActive(true);
+        
+        string finnishText = currentCard.frontLanguage == "FI"? currentCard.frontText : currentCard.backText;
+        // Santinize the text
+        // Must santiize the text before try to find it in the resources folder
+        finnishText = TextUtils.SantinizeText(finnishText).ToLower();
 
         // If the back card is in Finnish, show the sample audio (if any)
-        if (currentCard.backLanguage == "FI") ShowSampleAudio(currentCard.backText);
+        if (currentCard.backLanguage == "FI") ShowSampleAudio(finnishText);
 
         // if Auto Play is on, and the backcard is in Finnish, play the sample audio
         if (cardManager.GetFlashCardAutoPlay() & currentCard.backLanguage == "FI") 
         {
             if (sampleClip != null) AudioManager.GetManager().PlayAudioClip(sampleClip);
+        }
+        
+        // Find the illustration and display it
+        Sprite newSprite = Resources.Load<Sprite>(Const.ILLUSTRATIONS_PATH + finnishText);
+        if (newSprite) {
+            illustrationGO.GetComponent<Image>().sprite = newSprite;
+            illustrationGO.SetActive(true);            
+        } else {
+            // If the illustration is not found, disable the illustration GO
+            illustrationGO.SetActive(false);
         }
     }
 
@@ -191,6 +206,23 @@ public class SuperMemoPanel : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Clears all attributes associated with the previously displayed card.
+    /// </summary>
+    /// <remarks>
+    /// This method ensures that any residual data from a previously displayed card is cleared, ensuring a fresh state 
+    /// before a new card is shown. The clearing process involves:
+    /// <list type="bullet">
+    /// <item><description>Resetting the card's back text to its default state.</description></item>
+    /// <item><description>Deactivating warning images associated with the front and back of the card.</description></item>
+    /// <item><description>Resetting the prediction debug text.</description></item>
+    /// <item><description>Nullifying any sample and recorded audio clips.</description></item>
+    /// <item><description>Set the sample and replay buttons to inactive.</description></item>
+    /// <item><description>Restoring the black text color of the front card text.</description></item>
+    /// <item><description>Hiding any previous card illustrations.</description></item>
+    /// </list>
+    /// It's crucial to call this method before initializing or displaying a new card to prevent any data overlap or visual inconsistencies.
+    /// </remarks>    
     public void clearOldCard()
     {
         // Clear the answer from previous card
@@ -211,6 +243,9 @@ public class SuperMemoPanel : MonoBehaviour
         Color32 currentColor = frontCardText.faceColor;
         currentColor.a = 255;
         frontCardText.faceColor = currentColor;     
+
+        // Hide the old illustration
+        illustrationGO.SetActive(false);
     }
 
     public void GetSampleClip(string word)     
@@ -256,12 +291,9 @@ public class SuperMemoPanel : MonoBehaviour
     *
     *   The quality is from the OnClick event of the button in the SuperMemoPanel.
     */
-    {
-        Debug.Log("Previous dateStr: " + currentCard.nextReviewDateStr);
-        (float newInterval, float newEaseFactor) = cardManager.GetCarNewIntervalEase(currentCard, quality);
-        Debug.Log("New interval: " + newInterval);
-        cardManager.UpdateCardToJson(currentCard, quality, newInterval, newEaseFactor);
-        Debug.Log("New dateStr: " + currentCard.nextReviewDateStr);
+    {        
+        (float newInterval, float newEaseFactor) = cardManager.GetCarNewIntervalEase(currentCard, quality);     
+        cardManager.UpdateCardToJson(currentCard, quality, newInterval, newEaseFactor);        
         
         CardQueueManager.GetQueueManager.Dequeue(); // Need to dequeue to reduce the queue
         clearOldCard();

@@ -15,5 +15,6 @@
         "**/Library": true,
         "**/ProjectSettings": true,
         "**/Temp": true
-    }
+    },
+    "dotnet.defaultSolution": "CaptainA_unity.sln"
 }

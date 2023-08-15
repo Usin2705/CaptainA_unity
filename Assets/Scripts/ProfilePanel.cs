@@ -77,7 +77,7 @@ public class ProfilePanel : MonoBehaviour
         //                                   prefabHeight*(userData.phonemeScores.Count+1) + 50.f);
 
         if (!PlayerPrefs.HasKey(Const.PREF_INS_PROFILE)) {
-            PopUpManager popUpPanel = GameObject.FindObjectOfType<PopUpManager>();        
+            PopUpManager popUpPanel = GameObject.FindAnyObjectByType<PopUpManager>();        
             popUpPanel.OpenPanel(Const.PREF_INS_PROFILE);
             popUpPanel.SetText(Const.INSTRUCTION_PROFILE);
         }

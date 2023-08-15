@@ -135,6 +135,7 @@ public static class Const
     public const string WORD_LIST_PATH = "ScriptableObjects/Words/";
     public const string AUDIO_AI_PATH = "AudioAI/";
     public const string AUDIO_NATURAL_PATH = "AudioNatural/";
+    public const string ILLUSTRATIONS_PATH = "Illustrations/";
     // ========================================================
 
     

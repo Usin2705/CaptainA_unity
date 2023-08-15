@@ -12,6 +12,8 @@ public class MainPanel : MonoBehaviour
     [SerializeField] GameObject errorTextGO;     
     [SerializeField] GameObject resultPanelGO;     
     [SerializeField] GameObject replayButtonGO;     
+    [SerializeField] GameObject sampleButtonGO; // Replay sample audio
+    [SerializeField] GameObject illustrationGO; // Illustration
 
     [SerializeField] DetailScorePanel detailScorePanel;
 
@@ -20,6 +22,7 @@ public class MainPanel : MonoBehaviour
     [SerializeField] GameObject progressBarGO;
 
     AudioClip replayClip;
+    AudioClip sampleClip;
 
     private float countdownTime = 2.0f;
     private float currentTime = 2.0f;
@@ -29,13 +32,62 @@ public class MainPanel : MonoBehaviour
     {
         // Toggle fullscreen
         Screen.fullScreen = false;
+        sampleButtonGO.SetActive(false);
+        illustrationGO.SetActive(false);
     }
 
     void OnEnable() {
         if (!PlayerPrefs.HasKey(Const.PREF_INS_MAIN)) {
-            PopUpManager popUpPanel = GameObject.FindObjectOfType<PopUpManager>();        
+            PopUpManager popUpPanel = GameObject.FindAnyObjectByType<PopUpManager>();        
             popUpPanel.OpenPanel(Const.PREF_INS_MAIN);
             popUpPanel.SetText(Const.INSTRUCTION_MAIN);
+        }        
+    }
+
+    public void OnEditTextFininshed(){
+        string finnishText = inputTransGO.GetComponent<TMP_InputField>().text;
+        finnishText = TextUtils.SantinizeText(finnishText).ToLower();
+        ShowSampleAudio(finnishText);
+
+        // Find the illustration and display it
+        Sprite newSprite = Resources.Load<Sprite>(Const.ILLUSTRATIONS_PATH + finnishText);
+        if (newSprite) {
+            illustrationGO.GetComponent<Image>().sprite = newSprite;
+            illustrationGO.SetActive(true);            
+        } else {
+            // If the illustration is not found, disable the illustration GO
+            illustrationGO.SetActive(false);
+        }
+    }
+
+    public void ShowSampleAudio(string word) {
+        GetSampleClip(word);
+
+        if (sampleClip != null) {
+            //Debug.Log("Sample audio update");
+            sampleButtonGO.SetActive(true);     
+
+            Button sampleButton = sampleButtonGO.transform.GetComponent<Button>();               
+            // Need to remove old OnClick Listeners, otherwise it will keep adding up
+            sampleButton.onClick.RemoveAllListeners();       
+            sampleButton.onClick.AddListener(() => AudioManager.GetManager().PlayAudioClip(sampleClip));            
+        } else{
+            sampleButtonGO.SetActive(false);
+        }
+    }
+    public void GetSampleClip(string word)     
+    {
+        // Audio file name is the santinized word
+        // with lower case
+        string audioFileName = TextUtils.SantinizeText(word).ToLower();
+        
+        // Load sample clip from the natural folder
+        sampleClip = Resources.Load<AudioClip>(Const.AUDIO_NATURAL_PATH + audioFileName);
+                
+        // If the sample clip is not found in the natural folder
+        // try to find it in the AI folder
+        if (sampleClip == null) {
+            sampleClip = Resources.Load<AudioClip>(Const.AUDIO_AI_PATH + audioFileName);            
         }        
     }
 
@@ -92,7 +144,7 @@ public class MainPanel : MonoBehaviour
     {
         // Hide the error text
         errorTextGO.SetActive(false);
-
+        
         // Clear the prediction text
         predictionDebugText.text = "";
 

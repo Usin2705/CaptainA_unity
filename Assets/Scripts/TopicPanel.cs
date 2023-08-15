@@ -40,7 +40,7 @@ public class TopicPanel : MonoBehaviour
         }
 
         if (!PlayerPrefs.HasKey(Const.PREF_INS_TOPIC)) {
-            PopUpManager popUpPanel = GameObject.FindObjectOfType<PopUpManager>();
+            PopUpManager popUpPanel = GameObject.FindAnyObjectByType<PopUpManager>();
             popUpPanel.OpenPanel(Const.PREF_INS_TOPIC);
             popUpPanel.SetText(Const.INSTRUCTION_TOPIC);
         }

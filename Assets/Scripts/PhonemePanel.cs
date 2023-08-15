@@ -52,7 +52,7 @@ public class PhonemePanel : MonoBehaviour
         creditText.text = "Top images: " + phonemeSO.front_credit + ".\nBottom images: " + phonemeSO.side_credit + ".";
 
         if (!PlayerPrefs.HasKey(Const.PREF_INS_PHONE)) {
-            PopUpManager popUpPanel = GameObject.FindObjectOfType<PopUpManager>();        
+            PopUpManager popUpPanel = GameObject.FindAnyObjectByType<PopUpManager>();        
             popUpPanel.OpenPanel(Const.PREF_INS_PHONE);
             popUpPanel.SetText(Const.INSTRUCTION_PHONE);
         }
@@ -62,7 +62,7 @@ public class PhonemePanel : MonoBehaviour
     {
         phonemePanel.transform.GetComponent<Animation>().clip = null;
         
-        PopUpManager popUpPanel = GameObject.FindObjectOfType<PopUpManager>();
+        PopUpManager popUpPanel = GameObject.FindAnyObjectByType<PopUpManager>();
         popUpPanel.DisablePanel();
     }
 

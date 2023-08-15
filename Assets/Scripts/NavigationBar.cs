@@ -35,7 +35,7 @@ public class NavigationBar : MonoBehaviour
     {
         // Disable the instruction panel first if it's active
         // Other Panel can open the instruction panel if they need to
-        PopUpManager popUpPanel = GameObject.FindObjectOfType<PopUpManager>();
+        PopUpManager popUpPanel = GameObject.FindAnyObjectByType<PopUpManager>();
         popUpPanel.DisablePanel();
 
         foreach (GameObject panel in panels) 

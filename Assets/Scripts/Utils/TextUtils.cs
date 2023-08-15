@@ -21,7 +21,7 @@ public static class TextUtils
 	{
 		// Make sure that stranscript length match with scoreList Length
 		if (transcript.Length != scoreList.Count) {	
-            Debug.LogError("transcript and score didn't match");
+            Debug.LogError("transcript and score didn't match: " + transcript + " vs " + scoreList.Count + " ");
 			return "";
 		}
 
@@ -68,6 +68,25 @@ public static class TextUtils
     // å
     // c,q,w,x, 
     // g alone
+
+    /// <summary>
+    /// Sanitizes the provided text to ensure it conforms to specific requirements.
+    /// </summary>
+    /// <remarks>
+    /// <para>The sanitization process involves:</para>
+    /// <list type="bullet">
+    /// <item><description>Replacing newline characters with spaces.</description></item>
+    /// <item><description>Replacing hyphens "-" with spaces.</description></item>
+    /// <item><description>Removing trailing white spaces.</description></item>
+    /// <item><description>Replacing multiple spaces with a single space.</description></item>
+    /// <item><description>Replacing Z or z with ts.</description></item>
+    /// <item><description>Removing numbers.</description></item>
+    /// <item><description>Removing symbols except for hyphens (which are removed earlier).</description></item>
+    /// </list>
+    /// <para>This sanitization process is essential when comparing the transcript with OPS operations.</para>
+    /// </remarks>
+    /// <param name="text">The input text string that needs to be sanitized.</param>
+    /// <returns>Returns the sanitized version of the input text.</returns>
     public static string SantinizeText(string text) 
     /*
     *
