@@ -156,7 +156,7 @@ public static class Const
 
     // ===================== PLAYER PREFS CONST =====================
     public const string PREF_RECORD_NUMBER = "pref_record_number";
-    public const int SURVEY_TRIGGER = 100;
+    public const int SURVEY_TRIGGER = 50;
     public const string SURVEY_URL = "https://link.webropol.com/s/CaptainA";
 
     public const string PREF_SURVEY_V1_DONE = "pref_survey_v1_done";
