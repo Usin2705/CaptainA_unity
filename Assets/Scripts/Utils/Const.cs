@@ -177,8 +177,6 @@ public static class Const
     public static readonly string[] FLASH_CARD_FILES = {
         "FI-EN_OmaSuomi_1_Finnish1_CaptainA",
         "EN-FI_OmaSuomi_1_Finnish1_CaptainA",
-        "FI-EN_OmaSuomi_1_Finnish2_CaptainA",
-        "EN-FI_OmaSuomi_1_Finnish2_CaptainA",
         "FI-EN_OmaSuomi_1_CaptainA",
         "EN-FI_OmaSuomi_1_CaptainA"        
     };

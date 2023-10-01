@@ -353,6 +353,7 @@ public class Card
     public string id; // Unique Guid for each card
     public string frontText;
     public string backText;
+    public string etymology; // This is the etymology of the word
     public int cardType; // 0: New, 1: Learning, 2: Review, 3: Relearning
     public float interval;
     public float easeFactor;

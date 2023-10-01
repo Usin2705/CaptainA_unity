@@ -64,6 +64,16 @@ Random example of ops list, the list was just the result from `Levenshtein.edito
 ]
 ```
 
+## Todo list
+
+**Grammar Function for CaptainA**: Develop a feature allowing users to review grammar rules and practice them:
+- Extract practice examples directly from flashcards. 
+- Users will be presented with English text to translate into Finnish.
+- Users can voice their answers.
+- Preferably, users can also type their answers. (Note: The learning benefit of typing might differ from traditional writing.)
+- **Vocabulary Limitation**: Vocabulary for practice should be restricted to the user's progress within the flashcards.
+- **Progress Update**: After each practice session, update the user's progress in the flashcard system.
+
 
 ## License
 

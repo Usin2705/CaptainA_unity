@@ -9,6 +9,8 @@ public class SuperMemoPanel : MonoBehaviour
 {
     [SerializeField] TMPro.TextMeshProUGUI frontCardText; // Front card
     [SerializeField] TMPro.TextMeshProUGUI backCardText; // Back card    
+
+    [SerializeField] TMPro.TextMeshProUGUI etymoText; // Etymology card
     
     [SerializeField] GameObject warningImageFrontGO; // Front card
     [SerializeField] GameObject warningImageBackGO; // Back card    
@@ -174,6 +176,12 @@ public class SuperMemoPanel : MonoBehaviour
         {
             if (sampleClip != null) AudioManager.GetManager().PlayAudioClip(sampleClip);
         }
+
+        // If there is etymology text, display it:
+        if (!string.IsNullOrEmpty(currentCard.etymology))
+        {
+           etymoText.text = TextUtils.FormatEtymology(currentCard.etymology);
+        }
         
         // Find the illustration and display it
         Sprite newSprite = Resources.Load<Sprite>(Const.ILLUSTRATIONS_PATH + finnishText);
@@ -226,6 +234,8 @@ public class SuperMemoPanel : MonoBehaviour
     public void clearOldCard()
     {
         // Clear the answer from previous card
+        etymoText.text = "";
+
         backCardText.text = "";
         warningImageFrontGO.SetActive(false);
         warningImageBackGO.SetActive(false);
