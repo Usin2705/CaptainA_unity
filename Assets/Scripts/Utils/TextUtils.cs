@@ -60,7 +60,7 @@ public static class TextUtils
 
     public static string FormatEtymology(string etymology)
     {
-    return Regex.Replace(etymology, @"\(([^)]+)\)", m => $"<i>{m.Groups[1].Value}</i>");
+    return Regex.Replace(etymology, @"\(([^)]+)\)", m => $"(<i>{m.Groups[1].Value}</i>)");
     }
 
     public static string WrapTextColor(string text, string colorStr, bool isBold = true) 

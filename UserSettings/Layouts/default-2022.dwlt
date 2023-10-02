@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1858
     height: 1037
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Inspector
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 141
+  controlID: 137
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 27
+  controlID: 20
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 95
+  controlID: 91
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -298,8 +298,8 @@ MonoBehaviour:
     y: 0
     width: 423
     height: 987
-  m_MinSize: {x: 275, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -414,21 +414,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 0a9effff549effff50a0ffff94a7ffffdea7ffff06aaffff8aecffff946c0000b4bd000028c10000
+      m_ExpandedIDs: 50e4ffff9ae4ffff96e6ffff60eeffffaaeeffff30f1ffff0efbffffa0670000e8690000366a00005c6d000056a40000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: RecordButton
+        m_OriginalName: RecordButton
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 27402
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 7}
       m_SearchString: 
@@ -483,7 +483,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Flashcards
+    - Assets/Scripts/Utils
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -491,16 +491,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Resources/Flashcards
+  - Assets/Scripts/Utils
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\AProjects\CaptainA_unity
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 90840000
-    m_LastClickedID: 33936
-    m_ExpandedIDs: 0000000056840000588400005a8400005c8400005e84000060840000628400007684000000ca9a3b
+    m_SelectedIDs: 76810000
+    m_LastClickedID: 33142
+    m_ExpandedIDs: 000000004481000046810000488100004a8100004c8100004e810000508100005281000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -528,7 +528,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000056840000588400005a8400005c8400005e8400006084000062840000
+    m_ExpandedIDs: 000000004481000046810000488100004a8100004c8100004e8100005081000052810000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1005,9 +1005,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1020.64874, y: 694.5064, z: 10.164886}
+    m_Target: {x: 848.1946, y: 1172.5923, z: -13.833067}
     speed: 2
-    m_Value: {x: 1020.64874, y: 694.5064, z: 10.164886}
+    m_Value: {x: 848.1946, y: 1172.5923, z: -13.833067}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1057,9 +1057,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 1174.1327
+    m_Target: 1525.93
     speed: 2
-    m_Value: 1174.1327
+    m_Value: 1525.93
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1195,7 +1195,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 3840, y: 2160}
+  m_TargetSize: {x: 353, y: 628}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
