@@ -120,8 +120,9 @@ public class NetworkManager : MonoBehaviour
 		int warningNo = asrResult.warning.Count;		
 		warningImageGO.SetActive(warningNo!=0);
 		
-
-		debugText.text = asrResult.prediction;
+		// Update the debug text
+		debugText.text = asrResult.prediction;		
+		
 		if (resultPanelGO != null) resultPanelGO.SetActive(true);
 
 		checkSurVey();
