@@ -140,9 +140,9 @@ public class NetworkManager : MonoBehaviour
 		PlayerPrefs.Save();
 
 		if (recordNumber % Const.SURVEY_TRIGGER == 0) {
-			// Only show survey if user has not refused to do survey
-			// and if user has not done survey v1
-			if (!PlayerPrefs.HasKey(Const.PREF_NO_SURVEY) & (!PlayerPrefs.HasKey(Const.PREF_SURVEY_V1_DONE)))  {
+			// Only show survey if user has not has not done survey v1
+			// No longer have option to refuse survey
+			if (!PlayerPrefs.HasKey(Const.PREF_SURVEY_V1_DONE))  {
 				//Debug.Log("Show survey");
 				surveyPopUpPanelGO.SetActive(true);
 			}

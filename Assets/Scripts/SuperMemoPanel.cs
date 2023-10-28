@@ -35,6 +35,8 @@ public class SuperMemoPanel : MonoBehaviour
     [SerializeField] TMPro.TextMeshProUGUI predictionDebugText;
     [SerializeField] DetailScorePanel detailScorePanel;
 
+    [SerializeField] GameObject surveyPopUpPanelGO;   
+
     TMPro.TextMeshProUGUI finnishCardText; // The text of the card that is in Finnish
     GameObject finWarningImageGO; // The warningImage of the card that is in Finnish
     private CardManagerSM2 cardManager;
@@ -307,8 +309,31 @@ public class SuperMemoPanel : MonoBehaviour
         
         CardQueueManager.GetQueueManager.Dequeue(); // Need to dequeue to reduce the queue
         clearOldCard();
-        ShowNextCard();        
+        ShowNextCard();
+
+        checkSurVey();         
     }
+    
+	public void checkSurVey() {
+		int recordNumber = 1;
+		
+		// If this is not the first record, get the record number
+		if (PlayerPrefs.HasKey(Const.PREF_FLASHCARD_NUMBER)) {
+			recordNumber = PlayerPrefs.GetInt(Const.PREF_FLASHCARD_NUMBER) + 1;
+		}
+		//Debug.Log("Record number: " + recordNumber);
+		PlayerPrefs.SetInt(Const.PREF_FLASHCARD_NUMBER, recordNumber);
+		PlayerPrefs.Save();
+
+		if (recordNumber % Const.SURVEY_TRIGGER_FLASH_CARD == 0) {
+			// Only show survey if user has not has not done survey v1
+			// No longer have option to refuse survey
+			if (!PlayerPrefs.HasKey(Const.PREF_SURVEY_V1_DONE))  {
+				//Debug.Log("Show survey");
+				surveyPopUpPanelGO.SetActive(true);
+			}
+		}
+	}
 
     public void OnRecordButtonClick() 
     /*

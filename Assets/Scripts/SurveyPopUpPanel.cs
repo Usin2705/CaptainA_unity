@@ -6,6 +6,7 @@ public class SurveyPopUpPanel : MonoBehaviour
 {
     [SerializeField] GameObject surveyPopUpPanelGO;    
 
+    // No longer have NO option :D
     public void OnNoButtonClick() {
         PlayerPrefs.SetInt(Const.PREF_NO_SURVEY, 1);
 		PlayerPrefs.Save();

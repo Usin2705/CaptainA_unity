@@ -157,10 +157,12 @@ public static class Const
     // ===================== PLAYER PREFS CONST =====================
     public const string PREF_RECORD_NUMBER = "pref_record_number";
     public const int SURVEY_TRIGGER = 50;
+    public const string PREF_FLASHCARD_NUMBER = "pref_flashcard_number";
+    public const int SURVEY_TRIGGER_FLASH_CARD = 200;
     public const string SURVEY_URL = "https://link.webropol.com/s/CaptainA";
 
     public const string PREF_SURVEY_V1_DONE = "pref_survey_v1_done";
-    public const string PREF_NO_SURVEY = "pref_no_survey";
+    public const string PREF_NO_SURVEY = "pref_no_survey"; // No longer have NO option :D
 
     public const string PREF_INS_MAIN = "pref_instruction_main";
     public const string PREF_INS_ADVANCE = "pref_instruction_advance";
