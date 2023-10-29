@@ -233,4 +233,32 @@ public static class Const
                                             "We will add more materials in the future if it is available.";
 
     // ====================================================================
+
+    public const string ROOM_DESCRIPTION = 
+    "The room appears to be a modern and cozy living room. The color palette is "
+    + "dominated by soft, pleasant hues of green, orange, and light brown. Walls: "
+    + "The walls are a light shade of green. On the left wall, there are several "
+    + "framed artworks: A simple illustration of a pine tree. An artwork depicting "
+    + "a fox's face. A shelf above the artworks holds: Two potted plants: one "
+    + "resembling a small tree and the other a round topiary. A framed symbol, perhaps "
+    + "a music note or a specific character. A standing white candle. An artwork of "
+    + "a mountain or a slice of pie. A white figurine of a house. On the right wall, "
+    + "there's a larger framed artwork with an illustration of the sun above hills or "
+    + "mountains and the time '03:12' displayed below the sun. Adjacently, there's a "
+    + "circular wall clock displaying a teal face with simple hour markers. Television "
+    + "Console: Positioned centrally in the room is a sizable flat-screen TV atop an "
+    + "orange wooden console. The console has two storage compartments and a central "
+    + "area housing what seems to be a DVD or Blu-ray player. Couch & Ottoman: On the "
+    + "left side, there's a teal sofa with an adjacent small wooden side table. On the "
+    + "table is a green apple and a green lamp with a curved neck. Opposite the couch, "
+    + "there's a teal ottoman, and atop it sits a white cat gazing towards the viewer. "
+    + "Coffee Table: In front of the TV console is a wooden coffee table with a simple, "
+    + "modern design. It has a single green remote control on it. Second Cat: A gray and "
+    + "white cat with a blue collar sits on the floor to the left of the coffee table, "
+    + "looking to its right. Door: On the far right, there's a wooden door with a small "
+    + "window. Next to the door, on the wall, are light switches or buttons. Floor: The "
+    + "flooring appears to be wooden with a checkered design. There's a white rug with "
+    + "teal borders under the coffee table. Plants: A potted plant is placed on the right "
+    + "side of the TV console. This plant has a green pot and looks like a small cactus "
+    + "or a similar succulent.";
 }

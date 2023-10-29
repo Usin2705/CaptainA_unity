@@ -223,6 +223,14 @@ public static class SaveData
 
 		SaveIntoJson(userData, "UserData");
     }
+
+    public static void SaveImageToFile(Texture2D texture, string filename)
+    {
+        byte[] bytes = texture.EncodeToPNG();
+        string path = Path.Combine(Application.persistentDataPath, filename);
+        File.WriteAllBytes(path, bytes);
+        Debug.Log("Saved image to " + path);
+    }
 }
 
 [System.Serializable]
@@ -337,11 +345,27 @@ public class OPS
 
 //##################################### CHAT-GPT ##########################################
 [System.Serializable]
-public class OpenAIResponse
+public class OpenAIASRResponse
 {
     public string text;
 }
+
+
+[System.Serializable]
+public class ImageInfo
+{
+    public string url;
+}
+
+[System.Serializable]
+public class OpenAIImageResponse
+{
+    public long created;
+    public ImageInfo[] data;
+}
 //##########################################################################################
+
+
 
 //######################################## WARNING ########################################
 public enum WARNINGS

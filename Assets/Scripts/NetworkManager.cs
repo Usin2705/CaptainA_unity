@@ -1,13 +1,16 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Diagnostics;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 
 public class NetworkManager : MonoBehaviour
 {
 	[SerializeField] GameObject surveyPopUpPanelGO;    
+	[SerializeField] Image imageComponent;    
+
 	static NetworkManager netWorkManager;
 	// This is the URL to the ASR server
 	// AUDIO_URL should be in http and not https
@@ -43,12 +46,77 @@ public class NetworkManager : MonoBehaviour
     void OnDestroy() {
 	}
 
+	public IEnumerator GPTImageGenerate(string prompt)
+    
+	{	
+		// OpenAI require Json format so this is the way to do it and not our normal webrequest
+		string jsonData = $@"
+		{{
+			""prompt"": ""{prompt.Replace("\"", "\\\"")}"",
+			""n"": 1,
+			""size"": ""1024x1024""
+		}}";
+
+        using (UnityWebRequest request = new UnityWebRequest("https://api.openai.com/v1/images/generations", "POST"))
+		{
+			// Convert JSON data to a byte array and set it as upload handler
+    		byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(jsonData);
+    		request.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
+			request.downloadHandler = new DownloadHandlerBuffer(); // Set the download handler
+
+		    // Set headers
+    		request.SetRequestHeader("Content-Type", "application/json");
+   			request.SetRequestHeader("Authorization", "Bearer " + gptToken);		
+
+			//Debug.Log(jsonData);
+			// Send the request and yield until it's done
+    		yield return request.SendWebRequest();
+
+			Debug.Log(request.result);
+			Debug.Log(request.downloadHandler.text);
+
+			// Handle the response
+			if (request.result != UnityWebRequest.Result.Success)
+			{
+				Debug.LogError("Error: " + request.error);
+				Debug.LogError("Error: " + request.result);
+				Debug.LogError("Error: " + request.downloadHandler.text);
+			}
+			else
+			{	
+				//Debug.Log(request.downloadHandler.text);
+				OpenAIImageResponse openAIImageResponse = JsonUtility.FromJson<OpenAIImageResponse>(request.downloadHandler.text);
+				if(openAIImageResponse.data.Length > 0)
+				{
+					StartCoroutine(DownloadAndDisplayImage(openAIImageResponse.data[0].url));
+				}
+			}
+		}
+    }
+
+	IEnumerator DownloadAndDisplayImage(string url)
+    {
+        UnityWebRequest request = UnityWebRequestTexture.GetTexture(url);
+        yield return request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("Error downloading image: " + request.error);
+        }
+        else
+        {
+            Texture2D texture = DownloadHandlerTexture.GetContent(request);
+            SaveData.SaveImageToFile(texture, "describeImage.png");			
+
+            // Display the image
+            Sprite sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, 1024, 1024), new Vector2(0.5f, 0.5f), 100.0f);
+            imageComponent.sprite = sprite;
+        }
+    }
+
     public IEnumerator GPTTranscribe(byte[] wavBuffer, GameObject transcriptGO, GameObject scoreButtonGO)
     
 	{		
-	    //IMultipartFormSection & MultipartFormFileSection  could be another solution,
-		// but apparent it also require raw byte data to upload
-
 		WWWForm form = new WWWForm();
         form.AddBinaryData("file", wavBuffer, fileName:"recorded_describe_speech.wav", mimeType: "audio/wav");
         form.AddField("model", "whisper-1");
@@ -65,50 +133,75 @@ public class NetworkManager : MonoBehaviour
 			Debug.LogError("Error: " + www.result);
 			Debug.LogError("Error: " + www.downloadHandler.text);
 		} else {
-			OpenAIResponse response = JsonUtility.FromJson<OpenAIResponse>(www.downloadHandler.text);			
+			OpenAIASRResponse response = JsonUtility.FromJson<OpenAIASRResponse>(www.downloadHandler.text);			
 			transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = response.text;
-			GPTRating(scoreButtonGO, response.text);	
-		}		
+			StartCoroutine(GPTRating(scoreButtonGO, response.text));	
+		}
+		// For testing purpose
+		//yield return GPTRating(scoreButtonGO, "Lattialla on sininen kissa, toinen kissa sohvatuolilla. Seinällä on kello oven yläpuolella.");			
+		//yield return PostRequest("https://api.openai.com/v1/chat/completions", "Lattialla on sininen kissa, toinen kissa sohvatuolilla. Seinällä on kello oven yläpuolella.");			
     }
 
-private IEnumerator GPTRating(GameObject scoreButtonGO, string transcript)
-    {
-		// Prepare the form
-		WWWForm form = new WWWForm();
-		form.AddField("model", "gpt-3.5-turbo");
+	private IEnumerator GPTRating(GameObject scoreButtonGO, string transcript)
+    {	
+		string gradingInstructions = 
+			"The primary task for the users is to speak in Finnish. However, if you detect another " +
+			"language, grade them based on that language. The users speak into the microphone, and " +
+			"what you're reading is the transcription of their speech. Considering that, anticipate " +
+			"potential typos or entirely incorrect words due to transcription errors. Each user has " +
+			"only 30 seconds to describe the room, so they don't need to cover every detail to score " +
+			"a full 5 points.\n\n" +
+			"Grade them on a scale of 1 to 5 based on the following criteria:\n" +
+			"- The pronunciation, as represented by the transcribed text.\n" +
+			"- Vocabulary: At a minimum, they should mention 2 to 3 items for a decent score. " +
+			"For a higher score, 4 to 5 items should be mentioned. To achieve a full score, they " +
+			"should also indicate color and position of the items.\n" +
+			"- Provide feedback on inaccuracies, such as wrong colors, items, or positions. " +
+			"Any inaccuracies should affect the grade, with a reduction of up to 1 point.\n\n" +			
+			"The following is the complete description of the room to use as a reference (consider this the ground truth):---\n" +
+			Const.ROOM_DESCRIPTION + 
+			"---Lastly, ensure that the final rating (a number from 1 to 5) is given at exactly 3 last letter of your response.";
+
+		gradingInstructions = gradingInstructions.Replace("\n", " ").Replace("\r", " ").Replace("\"", "\\\"");
 
 		// Create the messages JSON string using string formatting or interpolation
 		// the $ symbol before the string allows you to insert variables directly into 
 		// the string with {}. The transcript.Replace("\"", "\\\"") is used to escape 
 		// any double quotes that might be present in the transcript string, ensuring that 
 		// the JSON remains valid.
-		string messagesJson = $@"
-		[
-			{{
-				""role"": ""system"",
-				""content"": ""You are a helpful assistant.""
-			}},
-			{{
-				""role"": ""user"",
-				""content"": ""{transcript.Replace("\"", "\\\"")}""
-			}}
-		]";
-		form.AddField("messages", messagesJson);
+		string jsonData = $@"
+		{{
+			""model"": ""gpt-4"",
+			""messages"": [
+				{{""role"": ""system"", ""content"": ""{gradingInstructions}""}},
+				{{""role"": ""user"", ""content"": ""{transcript.Replace("\"", "\\\"")}""}}
+			]
+		}}";
 
-        UnityWebRequest request = UnityWebRequest.Post("https://api.openai.com/v1/chat/completions", form);
-        // Set headers
-        request.SetRequestHeader("Content-Type", "application/json");
-        request.SetRequestHeader("Authorization", "Bearer " + gptToken);
-
-        // Send the request and wait for response
-        yield return request.SendWebRequest();
+		Debug.Log(jsonData);
 		
-        if (request.result != UnityWebRequest.Result.Success) {
-			Debug.LogError("Error: " + request.error);
-			Debug.LogError("Error: " + request.result);
-			Debug.LogError("Error: " + request.downloadHandler.text);
-		} else {
-			OpenAIResponse response = JsonUtility.FromJson<OpenAIResponse>(request.downloadHandler.text);						
+		using (UnityWebRequest request = new UnityWebRequest("https://api.openai.com/v1/chat/completions", "POST"))
+		{        
+			// Convert JSON data to a byte array and set it as upload handler					
+    		byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(jsonData);
+    		request.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
+			request.downloadHandler = new DownloadHandlerBuffer(); // Set the download handler
+
+		    // Set headers
+    		request.SetRequestHeader("Content-Type", "application/json");
+   			request.SetRequestHeader("Authorization", "Bearer " + gptToken);	
+
+			// Send the request and wait for response
+			yield return request.SendWebRequest();
+
+			if (request.result != UnityWebRequest.Result.Success) {
+				Debug.LogError("Error: " + request.error);
+				Debug.LogError("Error: " + request.result);
+				Debug.LogError("Error: " + request.downloadHandler.text);
+			} else {
+				Debug.Log(request.downloadHandler.text);
+				OpenAIASRResponse response = JsonUtility.FromJson<OpenAIASRResponse>(request.downloadHandler.text);										
+			}
 		}
     }
 

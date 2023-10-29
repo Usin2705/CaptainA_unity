@@ -9,6 +9,7 @@ public class DescribePanel : MonoBehaviour
     [SerializeField] GameObject transcriptGO;
     [SerializeField] GameObject progressBarGO;
     [SerializeField] GameObject scoreButtonGO;
+    [SerializeField] GameObject PromptGeneratorGO;
     private float countdownTime = 30.0f;    
     private float currentTime = 30.0f;
     public void OnGenerateButtonClick() 
@@ -54,8 +55,15 @@ public class DescribePanel : MonoBehaviour
             OnFinnishTimer();
         }
     }
+    
+    public void OnGenerateButtonClicked()
+    {
+        // RandomPromptGenerator promptGenerator = PromptGeneratorGO.GetComponent<RandomPromptGenerator>();
+        // string prompt = promptGenerator.GeneratePrompt();        
+        // StartCoroutine(NetworkManager.GetManager().GPTImageGenerate(prompt));
+    }
 
-        public void OnRecordButtonClick() 
+    public void OnRecordButtonClicked() 
     /*
     *   This function also attached to RecordButton OnClick() in Unity
     */
@@ -79,7 +87,7 @@ public class DescribePanel : MonoBehaviour
         IEnumerator DelayPost()
         {
             AudioManager.GetManager().GetAudioAndASR(transcriptGO, scoreButtonGO);
-            yield return new WaitForSeconds(0.5f);;        
+            yield return new WaitForSeconds(0.2f);        
         }
     }    
 }
