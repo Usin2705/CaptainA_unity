@@ -8,6 +8,7 @@ public class DescribePanel : MonoBehaviour
     [SerializeField] GameObject recordButtonGO;
     [SerializeField] GameObject transcriptGO;
     [SerializeField] GameObject progressBarGO;
+    [SerializeField] GameObject scoreButtonGO;
     private float countdownTime = 30.0f;    
     private float currentTime = 30.0f;
     public void OnGenerateButtonClick() 
@@ -77,7 +78,7 @@ public class DescribePanel : MonoBehaviour
         
         IEnumerator DelayPost()
         {
-            AudioManager.GetManager().GetAudioAndASR(transcriptGO);
+            AudioManager.GetManager().GetAudioAndASR(transcriptGO, scoreButtonGO);
             yield return new WaitForSeconds(0.5f);;        
         }
     }    

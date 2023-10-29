@@ -13237,7 +13237,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1312077217
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13316,6 +13316,7 @@ MonoBehaviour:
   recordButtonGO: {fileID: 1632119042}
   transcriptGO: {fileID: 1534786217}
   progressBarGO: {fileID: 1126373524}
+  scoreButtonGO: {fileID: 0}
 --- !u!1 &1340387682
 GameObject:
   m_ObjectHideFlags: 0
@@ -15464,7 +15465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1587075460
 RectTransform:
   m_ObjectHideFlags: 0

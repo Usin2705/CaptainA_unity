@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,7 +43,7 @@ public class NetworkManager : MonoBehaviour
     void OnDestroy() {
 	}
 
-    public IEnumerator GPTTranscribe(byte[] wavBuffer, GameObject transcriptGO)
+    public IEnumerator GPTTranscribe(byte[] wavBuffer, GameObject transcriptGO, GameObject scoreButtonGO)
     
 	{		
 	    //IMultipartFormSection & MultipartFormFileSection  could be another solution,
@@ -65,10 +66,51 @@ public class NetworkManager : MonoBehaviour
 			Debug.LogError("Error: " + www.downloadHandler.text);
 		} else {
 			OpenAIResponse response = JsonUtility.FromJson<OpenAIResponse>(www.downloadHandler.text);			
-			transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = response.text;	
+			transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = response.text;
+			GPTRating(scoreButtonGO, response.text);	
 		}		
-    }		
+    }
 
+private IEnumerator GPTRating(GameObject scoreButtonGO, string transcript)
+    {
+		// Prepare the form
+		WWWForm form = new WWWForm();
+		form.AddField("model", "gpt-3.5-turbo");
+
+		// Create the messages JSON string using string formatting or interpolation
+		// the $ symbol before the string allows you to insert variables directly into 
+		// the string with {}. The transcript.Replace("\"", "\\\"") is used to escape 
+		// any double quotes that might be present in the transcript string, ensuring that 
+		// the JSON remains valid.
+		string messagesJson = $@"
+		[
+			{{
+				""role"": ""system"",
+				""content"": ""You are a helpful assistant.""
+			}},
+			{{
+				""role"": ""user"",
+				""content"": ""{transcript.Replace("\"", "\\\"")}""
+			}}
+		]";
+		form.AddField("messages", messagesJson);
+
+        UnityWebRequest request = UnityWebRequest.Post("https://api.openai.com/v1/chat/completions", form);
+        // Set headers
+        request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("Authorization", "Bearer " + gptToken);
+
+        // Send the request and wait for response
+        yield return request.SendWebRequest();
+		
+        if (request.result != UnityWebRequest.Result.Success) {
+			Debug.LogError("Error: " + request.error);
+			Debug.LogError("Error: " + request.result);
+			Debug.LogError("Error: " + request.downloadHandler.text);
+		} else {
+			OpenAIResponse response = JsonUtility.FromJson<OpenAIResponse>(request.downloadHandler.text);						
+		}
+    }
 
     public IEnumerator ServerPost(string transcript, byte[] wavBuffer, GameObject textErrorGO, TMPro.TextMeshProUGUI resultTextTMP, GameObject warningImageGO,
 								GameObject resultPanelGO, GameObject recordButtonGO, TMPro.TextMeshProUGUI debugText)
