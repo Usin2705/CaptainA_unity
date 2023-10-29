@@ -25,7 +25,7 @@ public class AudioManager : MonoBehaviour
         return audioManager;
     }
 
-    public void StartRecording()
+    public void StartRecording(int lengthSec)
     {
         /*
         *   We can skip this block since we nolonger require a notification sound
@@ -37,10 +37,10 @@ public class AudioManager : MonoBehaviour
         //So we need to delay it a little
         //The new notification sound is just 0.3f long
         //Invoke(nameof(RecordSound), 0.31f);
-        RecordSound();
+        RecordSound(lengthSec);
     }
 
-    void RecordSound() 
+    void RecordSound(int lengthSec) 
     {
         // Debug.Log("Name: " + Microphone.devices[0]);        
 
@@ -52,7 +52,7 @@ public class AudioManager : MonoBehaviour
         // {
         //     Debug.Log("Microphone not found");
         // }
-        audioSource.clip = Microphone.Start(Microphone.devices[0], false, Const.MAX_REC_TIME, Const.FREQUENCY);
+        audioSource.clip = Microphone.Start(Microphone.devices[0], false, lengthSec, Const.FREQUENCY);
     }
     public void PlayAudioClip(AudioClip audioClip) {
         // Adding an if statement so that user won't abuse the play audio
@@ -68,6 +68,15 @@ public class AudioManager : MonoBehaviour
         SavWav.Save(Const.REPLAY_FILENAME, audioSource.clip, trim:true); // for debug purpose
 
         StartCoroutine(NetworkManager.GetManager().ServerPost(transcript, wavBuffer, textErrorGO, resultTextTMP, warningImageGO, resultPanelGO, recordButtonGO, debugText));
+    }
+
+    public void GetAudioAndASR(GameObject transcriptGO)
+    {
+        Microphone.End("");        
+        byte[] wavBuffer = SavWav.GetWav(audioSource.clip, out uint length, trim:true);
+        SavWav.Save(Const.DESCRIBE_FILENAME, audioSource.clip, trim:true); // for debug purpose
+
+        StartCoroutine(NetworkManager.GetManager().GPTTranscribe(wavBuffer, transcriptGO));
     }
 
     void ReplayRecordedSample()

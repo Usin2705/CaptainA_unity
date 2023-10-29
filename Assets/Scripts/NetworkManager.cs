@@ -8,7 +8,6 @@ public class NetworkManager : MonoBehaviour
 {
 	[SerializeField] GameObject surveyPopUpPanelGO;    
 	static NetworkManager netWorkManager;
-
 	// This is the URL to the ASR server
 	// AUDIO_URL should be in http and not https
 	// Because it would make the connection faster???
@@ -20,6 +19,7 @@ public class NetworkManager : MonoBehaviour
 	// }
 
 	string asrURL = Secret.AUDIO_URL; 
+	string gptToken = Secret.CHATGPT_API; 
 
 	// However, other URL should be in https for encryption purpose
 
@@ -41,6 +41,33 @@ public class NetworkManager : MonoBehaviour
 
     void OnDestroy() {
 	}
+
+    public IEnumerator GPTTranscribe(byte[] wavBuffer, GameObject transcriptGO)
+    
+	{		
+	    //IMultipartFormSection & MultipartFormFileSection  could be another solution,
+		// but apparent it also require raw byte data to upload
+
+		WWWForm form = new WWWForm();
+        form.AddBinaryData("file", wavBuffer, fileName:"recorded_describe_speech.wav", mimeType: "audio/wav");
+        form.AddField("model", "whisper-1");
+		form.AddField("language", "fi");
+
+        UnityWebRequest www = UnityWebRequest.Post("https://api.openai.com/v1/audio/transcriptions", form);
+		www.SetRequestHeader("Authorization", "Bearer " + gptToken);
+
+        // Send the request and wait for response
+        yield return www.SendWebRequest();
+		
+        if (www.result != UnityWebRequest.Result.Success) {
+			Debug.LogError("Error: " + www.error);
+			Debug.LogError("Error: " + www.result);
+			Debug.LogError("Error: " + www.downloadHandler.text);
+		} else {
+			OpenAIResponse response = JsonUtility.FromJson<OpenAIResponse>(www.downloadHandler.text);			
+			transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = response.text;	
+		}		
+    }		
 
 
     public IEnumerator ServerPost(string transcript, byte[] wavBuffer, GameObject textErrorGO, TMPro.TextMeshProUGUI resultTextTMP, GameObject warningImageGO,

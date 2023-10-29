@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class AdvancePanel : MonoBehaviour
 {
     [SerializeField] GameObject advancePanelGO;
-    [SerializeField] GameObject exerPanelGO;
+    [SerializeField] GameObject describePanelGO;
 
     List<GameObject> listScrollItems = new List<GameObject>();        
     
@@ -19,6 +19,11 @@ public class AdvancePanel : MonoBehaviour
             popUpPanel.OpenPanel(Const.PREF_INS_ADVANCE);
             popUpPanel.SetText(Const.INSTRUCTION_ADVANCE);
         }
+    }
+
+    public void OnDescribeButtonClicked() 
+    {
+        describePanelGO.SetActive(true);
     }
 
     void OnDisable() 

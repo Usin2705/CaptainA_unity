@@ -317,7 +317,6 @@ public class ASRResult{
     public List<float> score;
     public List<WARNINGS> warning;
 }
-
 //##################################### LEVENSHTEIN #######################################
 [System.Serializable]
 public class OPS 
@@ -335,6 +334,14 @@ public class OPS
 }
 //#########################################################################################
 
+
+//##################################### CHAT-GPT ##########################################
+[System.Serializable]
+public class OpenAIResponse
+{
+    public string text;
+}
+//##########################################################################################
 
 //######################################## WARNING ########################################
 public enum WARNINGS

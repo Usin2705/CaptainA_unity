@@ -165,7 +165,7 @@ public class MainPanel : MonoBehaviour
         {   
             progressBarGO.SetActive(true);
             // Start recording
-            AudioManager.GetManager().StartRecording();
+            AudioManager.GetManager().StartRecording(Const.MAX_REC_TIME);
 
             // Start the timer
             // Should not use invoke or delay as it will cause the timer to be inaccurate

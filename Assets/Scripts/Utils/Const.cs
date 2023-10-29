@@ -96,6 +96,7 @@ public static class Const
     public const int MAX_REC_TIME = 8;
 
     public const string REPLAY_FILENAME = "recorded_speech";
+    public const string DESCRIBE_FILENAME = "recorded_describe_speech";
 
     // Used to set the recording time for the audio clip
     // The length of the audio clip depend on the number of characters
