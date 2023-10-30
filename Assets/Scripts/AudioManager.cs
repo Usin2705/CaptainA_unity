@@ -61,22 +61,22 @@ public class AudioManager : MonoBehaviour
     }
     
     public void GetAudioAndPost(string transcript, GameObject textErrorGO, TMPro.TextMeshProUGUI resultTextTMP, GameObject warningImageGO, 
-                                GameObject resultPanelGO, GameObject recordButtonGO, TMPro.TextMeshProUGUI debugText)
+                                GameObject resultPanelGO, TMPro.TextMeshProUGUI debugText)
     {
         Microphone.End("");        
         byte[] wavBuffer = SavWav.GetWav(audioSource.clip, out uint length, trim:true);
         SavWav.Save(Const.REPLAY_FILENAME, audioSource.clip, trim:true); // for debug purpose
 
-        StartCoroutine(NetworkManager.GetManager().ServerPost(transcript, wavBuffer, textErrorGO, resultTextTMP, warningImageGO, resultPanelGO, recordButtonGO, debugText));
+        StartCoroutine(NetworkManager.GetManager().ServerPost(transcript, wavBuffer, textErrorGO, resultTextTMP, warningImageGO, resultPanelGO, debugText));
     }
 
-    public void GetAudioAndASR(GameObject transcriptGO, GameObject scoreButtonGO)
+    public void GetAudioAndASR(GameObject transcriptGO, GameObject scoreButtonGO, bool isFinnish=true)
     {
         Microphone.End("");        
         byte[] wavBuffer = SavWav.GetWav(audioSource.clip, out uint length, trim:true);
         SavWav.Save(Const.DESCRIBE_FILENAME, audioSource.clip, trim:true); // for debug purpose
 
-        StartCoroutine(NetworkManager.GetManager().GPTTranscribe(wavBuffer, transcriptGO, scoreButtonGO));
+        StartCoroutine(NetworkManager.GetManager().GPTTranscribe(wavBuffer, transcriptGO, scoreButtonGO, isFinnish));
     }
 
     void ReplayRecordedSample()

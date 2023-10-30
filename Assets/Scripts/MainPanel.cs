@@ -194,7 +194,7 @@ public class MainPanel : MonoBehaviour
             TMPro.TextMeshProUGUI resultTextTMP = resultPanelGO.transform.Find("ResultText").GetComponent<TMPro.TextMeshProUGUI>();
             GameObject warningImageGO = resultPanelGO.transform.Find("WarningImage").gameObject;
 
-            AudioManager.GetManager().GetAudioAndPost(transcript, errorTextGO, resultTextTMP, warningImageGO, resultPanelGO, recordButtonGO, predictionDebugText);
+            AudioManager.GetManager().GetAudioAndPost(transcript, errorTextGO, resultTextTMP, warningImageGO, resultPanelGO, predictionDebugText);
 
             // TODO Make this part more efficiency
             // The whole block stink
@@ -203,6 +203,8 @@ public class MainPanel : MonoBehaviour
             // so we RELOAD it back to clip again, which is a waste of processing
             // but at least we got some nice trimmed audioclip        
             yield return StartCoroutine(LoadAudioClip(Const.REPLAY_FILENAME));        
+
+            recordButtonGO.SetActive(true);
 
             Button replayButton = replayButtonGO.transform.GetComponent<Button>();                       
             replayButton.onClick.RemoveAllListeners();    

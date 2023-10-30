@@ -28,6 +28,8 @@ public class NetworkManager : MonoBehaviour
 	// However, other URL should be in https for encryption purpose
 
 	public ASRResult asrResult {get; private set;}
+	public string chatGPTTranscript {get; private set;}
+	public string chatGPTGrading {get; private set;}
 
 
     void Awake() {
@@ -114,13 +116,13 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    public IEnumerator GPTTranscribe(byte[] wavBuffer, GameObject transcriptGO, GameObject scoreButtonGO)
+    public IEnumerator GPTTranscribe(byte[] wavBuffer, GameObject transcriptGO, GameObject scoreButtonGO, bool isFinnish=true)
     
 	{		
 		WWWForm form = new WWWForm();
         form.AddBinaryData("file", wavBuffer, fileName:"recorded_describe_speech.wav", mimeType: "audio/wav");
         form.AddField("model", "whisper-1");
-		form.AddField("language", "fi");
+		if (isFinnish) form.AddField("language", "fi");
 
         UnityWebRequest www = UnityWebRequest.Post("https://api.openai.com/v1/audio/transcriptions", form);
 		www.SetRequestHeader("Authorization", "Bearer " + gptToken);
@@ -135,6 +137,7 @@ public class NetworkManager : MonoBehaviour
 		} else {
 			OpenAIASRResponse response = JsonUtility.FromJson<OpenAIASRResponse>(www.downloadHandler.text);			
 			transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = response.text;
+			chatGPTTranscript = response.text;
 			StartCoroutine(GPTRating(scoreButtonGO, response.text));	
 		}
 		// For testing purpose
@@ -146,32 +149,42 @@ public class NetworkManager : MonoBehaviour
     {	
 		string gradingInstructions = 
 			"The primary task for the users is to speak in Finnish. However, if you detect another " +
-			"language, grade them based on that language. The users speak into the microphone, and " +
-			"what you're reading is the transcription of their speech. Considering that, anticipate " +
+			"language, you can grade them based on that language. The users speak into the microphone, and " +
+			"what you're reading is the transcription of their speech. Given this, be mindful of " +
 			"potential typos or entirely incorrect words due to transcription errors. Each user has " +
-			"only 30 seconds to describe the room, so they don't need to cover every detail to score " +
-			"a full 5 points.\n\n" +
-			"Grade them on a scale of 1 to 5 based on the following criteria:\n" +
-			"- The pronunciation, as represented by the transcribed text.\n" +
-			"- Vocabulary: At a minimum, they should mention 2 to 3 items for a decent score. " +
-			"For a higher score, 4 to 5 items should be mentioned. To achieve a full score, they " +
-			"should also indicate color and position of the items.\n" +
-			"- Provide feedback on inaccuracies, such as wrong colors, items, or positions. " +
-			"Any inaccuracies should affect the grade, with a reduction of up to 1 point.\n\n" +			
-			"The following is the complete description of the room to use as a reference (consider this the ground truth):---\n" +
+			"only 45 seconds to describe the room, so they don't need to cover every detail to score " +
+			"a full 5 points.\\n\\n" +
+			"Here's the grading template:\\n" +
+			"-----------------------------\\n" +
+			"Corrected/Suggested Description: [Your feedback on their description goes here. Please provide a corrected written in the transcript language and provide English explanation why and what you think they did wrong.]\\n\\n" +
+			"Accuracy of Description: [Feedback about how accurately they described the room based on the ground truth, such as wrong colors, items, or positions.]\\n" +
+			"Score: [1-5]\\n\\n" +
+			"Vocabulary: [Feedback on the items they mentioned and their use of specific terms. At a minimum, they should mention 2 to 3 items for a decent score. For a higher score, 4 to 5 items should be mentioned. To achieve a full score, they should also indicate color and position of the items.]\\n" +
+			"Score: [1-5]\\n\\n" +
+			"Pronunciation (as represented in the transcription): [Feedback on any strange word choices or inaccuracies that might indicate pronunciation issues]\\n" +
+			"Score: [1-5]\\n\\n" +
+			"Grammar: [Feedback on grammar, sentence structure, and tenses]\\n" +
+			"Score: [1-5]\\n\\n" +
+			"Overall grading: [A short summary of their performance]\\n" +
+			"Score: [1-5]\\n" +
+			"-----------------------------\\n\\n" +
+			"Remember to compare their description with the complete description of the room to use as a reference (consider this the ground truth):---\\n" +
 			Const.ROOM_DESCRIPTION + 
-			"---Lastly, ensure that the final rating (a number from 1 to 5) is given at exactly 3 last letter of your response.";
+			"---Ensure that the final rating (a number from 1.0 to 5.0) is given as the last three characters of your response." + 
+			"For example: [your response go here] Score: 3.5";
 
-		gradingInstructions = gradingInstructions.Replace("\n", " ").Replace("\r", " ").Replace("\"", "\\\"");
+		gradingInstructions = gradingInstructions.Replace("\r", " ").Replace("\"", "\\\""); // Escape double quotes
 
 		// Create the messages JSON string using string formatting or interpolation
 		// the $ symbol before the string allows you to insert variables directly into 
 		// the string with {}. The transcript.Replace("\"", "\\\"") is used to escape 
 		// any double quotes that might be present in the transcript string, ensuring that 
 		// the JSON remains valid.
+		//""model"": ""gpt-4"",
+		//""model"": ""gpt-3.5-turbo"",	
 		string jsonData = $@"
 		{{
-			""model"": ""gpt-4"",
+			""model"": ""gpt-3.5-turbo"",	
 			""messages"": [
 				{{""role"": ""system"", ""content"": ""{gradingInstructions}""}},
 				{{""role"": ""user"", ""content"": ""{transcript.Replace("\"", "\\\"")}""}}
@@ -200,13 +213,24 @@ public class NetworkManager : MonoBehaviour
 				Debug.LogError("Error: " + request.downloadHandler.text);
 			} else {
 				Debug.Log(request.downloadHandler.text);
-				OpenAIASRResponse response = JsonUtility.FromJson<OpenAIASRResponse>(request.downloadHandler.text);										
+				OpenAIChatResponse response = JsonUtility.FromJson<OpenAIChatResponse>(request.downloadHandler.text);
+				if (response != null && response.choices.Length > 0)
+					{
+						string assistantResponse = response.choices[0].message.content;
+						Debug.Log("Assistant says: " + assistantResponse);
+						scoreButtonGO.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = assistantResponse.Substring(assistantResponse.Length - 3);
+						chatGPTGrading = assistantResponse;
+					}
+					else
+					{
+						Debug.LogError("Invalid response or no choices available.");
+					}
 			}
 		}
     }
 
     public IEnumerator ServerPost(string transcript, byte[] wavBuffer, GameObject textErrorGO, TMPro.TextMeshProUGUI resultTextTMP, GameObject warningImageGO,
-								GameObject resultPanelGO, GameObject recordButtonGO, TMPro.TextMeshProUGUI debugText)
+								GameObject resultPanelGO, TMPro.TextMeshProUGUI debugText)
     
 	{		
 	    //IMultipartFormSection & MultipartFormFileSection  could be another solution,
@@ -221,8 +245,6 @@ public class NetworkManager : MonoBehaviour
 
 		www.timeout = Const.TIME_OUT_SECS;
 		yield return www.SendWebRequest();
-		
-		recordButtonGO.SetActive(true);
 
 		Debug.Log(www.result);
 

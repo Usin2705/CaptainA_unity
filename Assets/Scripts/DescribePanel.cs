@@ -10,8 +10,11 @@ public class DescribePanel : MonoBehaviour
     [SerializeField] GameObject progressBarGO;
     [SerializeField] GameObject scoreButtonGO;
     [SerializeField] GameObject PromptGeneratorGO;
-    private float countdownTime = 30.0f;    
-    private float currentTime = 30.0f;
+
+    [SerializeField] GPTGradingPanel gptGradingPanel;
+    private float recordingTime = 45.0f;    
+    private float currentTime = 45.0f;
+    private bool isFinnish = true;
     public void OnGenerateButtonClick() 
     {
         
@@ -23,7 +26,7 @@ public class DescribePanel : MonoBehaviour
     */
     {        
         // Start countdown so the user know how long the recording will be
-        currentTime = countdownTime;
+        currentTime = recordingTime;
 
         // Hide the record button
         recordButtonGO.SetActive(false);
@@ -45,7 +48,7 @@ public class DescribePanel : MonoBehaviour
         *   This function will update the progress bar
         */
         currentTime -= Time.deltaTime;        
-        progressBarGO.GetComponent<Image>().fillAmount = currentTime / countdownTime;
+        progressBarGO.GetComponent<Image>().fillAmount = currentTime / recordingTime;
 
         if (currentTime <= 0)
         {
@@ -63,18 +66,27 @@ public class DescribePanel : MonoBehaviour
         // StartCoroutine(NetworkManager.GetManager().GPTImageGenerate(prompt));
     }
 
+    public void OnScoreButtonClicked()
+    {
+        // RandomPromptGenerator promptGenerator = PromptGeneratorGO.GetComponent<RandomPromptGenerator>();
+        // string prompt = promptGenerator.GeneratePrompt();        
+        // StartCoroutine(NetworkManager.GetManager().GPTImageGenerate(prompt));
+        gptGradingPanel.ShowGPTGradingPanel();
+    }
+
     public void OnRecordButtonClicked() 
     /*
     *   This function also attached to RecordButton OnClick() in Unity
     */
     {
-       
+       isFinnish = true;
+
         // Clear the transcript text
         transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = "";        
 
         progressBarGO.SetActive(true);
         // Start recording
-        AudioManager.GetManager().StartRecording(30);
+        AudioManager.GetManager().StartRecording((int)recordingTime);
 
             // Start the timer
             // Should not use invoke or delay as it will cause the timer to be inaccurate
@@ -86,8 +98,10 @@ public class DescribePanel : MonoBehaviour
         
         IEnumerator DelayPost()
         {
-            AudioManager.GetManager().GetAudioAndASR(transcriptGO, scoreButtonGO);
-            yield return new WaitForSeconds(0.2f);        
+            AudioManager.GetManager().GetAudioAndASR(transcriptGO, scoreButtonGO, isFinnish);
+            yield return new WaitForSeconds(0.2f);  
+
+            recordButtonGO.SetActive(true);
         }
     }    
 }

@@ -441,7 +441,7 @@ public class SuperMemoPanel : MonoBehaviour
             // errorTextGO to update if server yield error
             // resultPanelGO to update result (by Enable the AudioClip and display text result)
             predictionDebugText.text = "";
-            AudioManager.GetManager().GetAudioAndPost(transcript, errorTextGO, finnishCardText, finWarningImageGO, null, recordButtonGO, predictionDebugText);
+            AudioManager.GetManager().GetAudioAndPost(transcript, errorTextGO, finnishCardText, finWarningImageGO, null, predictionDebugText);
 
             // TODO Make this part more efficiency
             // The whole block stink
@@ -451,6 +451,8 @@ public class SuperMemoPanel : MonoBehaviour
             // but at least we got some nice trimmed audioclip        
             yield return StartCoroutine(LoadAudioClip(Const.REPLAY_FILENAME));        
             
+            recordButtonGO.SetActive(true);
+
             Button replayButton = replayButtonGO.transform.GetComponent<Button>();     
             // To be safe, remove all old listeners were add to this component
             replayButton.onClick.RemoveAllListeners();    
