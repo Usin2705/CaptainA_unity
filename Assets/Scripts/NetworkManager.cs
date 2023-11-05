@@ -51,6 +51,7 @@ public class NetworkManager : MonoBehaviour
 	public IEnumerator GPTImageGenerate(string prompt)
     
 	{	
+
 		// OpenAI require Json format so this is the way to do it and not our normal webrequest
 		string jsonData = $@"
 		{{
@@ -138,32 +139,32 @@ public class NetworkManager : MonoBehaviour
 			OpenAIASRResponse response = JsonUtility.FromJson<OpenAIASRResponse>(www.downloadHandler.text);			
 			transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = response.text;
 			chatGPTTranscript = response.text;
-			StartCoroutine(GPTRating(scoreButtonGO, response.text));	
+			StartCoroutine(GPTRating(scoreButtonGO, response.text, isFinnish));	
 		}
 		// For testing purpose
 		//yield return GPTRating(scoreButtonGO, "Lattialla on sininen kissa, toinen kissa sohvatuolilla. Seinällä on kello oven yläpuolella.");			
 		//yield return PostRequest("https://api.openai.com/v1/chat/completions", "Lattialla on sininen kissa, toinen kissa sohvatuolilla. Seinällä on kello oven yläpuolella.");			
     }
 
-	private IEnumerator GPTRating(GameObject scoreButtonGO, string transcript)
+	private IEnumerator GPTRating(GameObject scoreButtonGO, string transcript, bool isFinnish=true)
     {	
-		string gradingInstructions = 
-			"The primary task for the users is to speak in Finnish. However, if you detect another " +
-			"language, you can grade them based on that language. The users speak into the microphone, and " +
-			"what you're reading is the transcription of their speech. Given this, be mindful of " +
-			"potential typos or entirely incorrect words due to transcription errors. Each user has " +
-			"only 45 seconds to describe the room, so they don't need to cover every detail to score " +
-			"a full 5 points.\\n\\n" +
+		string gradingInstructions;
+		if (isFinnish) gradingInstructions = "The primary task for the users is to speak in Finnish. ";
+		else gradingInstructions = "The primary task for the users is to speak in their secondary language. ";
+		
+		gradingInstructions += "The users speak into the microphone, and what you're reading is the transcription of their speech. Given this, be mindful of " +
+			"potential typos or entirely incorrect words due to transcription errors. Your task is to give feedback and grade their speech. Be generous in their pronunciation and grammar as they are not native speakers. The score is from 1.0 to 5.0, with 1 decimal number. Each user has " +
+			"only 45 seconds to describe the room, so they don't need to cover every detail to score a full 5 points.\\n\\n" +			
 			"Here's the grading template:\\n" +
 			"-----------------------------\\n" +
-			"Corrected/Suggested Description: [Your feedback on their description goes here. Please provide a corrected written in the transcript language and provide English explanation why and what you think they did wrong.]\\n\\n" +
+			"Corrected/Suggested Description: [Your feedback on their description goes here. Please based your feedback on the transcript the user gave you and suggest better/corrected description based on the actual picture described below. Put the wrong text in the color tag <color=#ff0000ff>wrong text here</color> and put the corrected or suggested text in bold tag <b>corrected text here</b>. For example, if user using 'valkoi matto' instead of the correct 'valkoinen matto', you would use: <color=#ff0000ff>valkoi</color> <b>valkoinen</b> matto]\\n\\n" +
 			"Accuracy of Description: [Feedback about how accurately they described the room based on the ground truth, such as wrong colors, items, or positions.]\\n" +
 			"Score: [1-5]\\n\\n" +
-			"Vocabulary: [Feedback on the items they mentioned and their use of specific terms. At a minimum, they should mention 2 to 3 items for a decent score. For a higher score, 4 to 5 items should be mentioned. To achieve a full score, they should also indicate color and position of the items.]\\n" +
+			"Vocabulary: [Feedback on the items they mentioned and their use of specific terms. At a minimum, they should mention 2 to 3 items for a decent score. For a higher score, 3 to 5 items and 2 to 3 colors, 2 to 3 position of items should be mentioned.5 score would have at least 5 items, 3 colors and 3 positions]\\n" +
 			"Score: [1-5]\\n\\n" +
 			"Pronunciation (as represented in the transcription): [Feedback on any strange word choices or inaccuracies that might indicate pronunciation issues]\\n" +
 			"Score: [1-5]\\n\\n" +
-			"Grammar: [Feedback on grammar, sentence structure, and tenses]\\n" +
+			"Grammar: [Feedback on grammar, sentence structure, and tenses. To get 4, users only make less than 3 minor mistakes every 4 sentences. To get 5, users can make maximum 1 minors mistakes every 4 sentences]\\n" +
 			"Score: [1-5]\\n\\n" +
 			"Overall grading: [A short summary of their performance]\\n" +
 			"Score: [1-5]\\n" +
@@ -184,7 +185,7 @@ public class NetworkManager : MonoBehaviour
 		//""model"": ""gpt-3.5-turbo"",	
 		string jsonData = $@"
 		{{
-			""model"": ""gpt-3.5-turbo"",	
+			""model"": ""gpt-4"",	
 			""messages"": [
 				{{""role"": ""system"", ""content"": ""{gradingInstructions}""}},
 				{{""role"": ""user"", ""content"": ""{transcript.Replace("\"", "\\\"")}""}}

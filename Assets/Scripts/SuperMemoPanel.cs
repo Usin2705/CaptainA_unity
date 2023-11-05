@@ -74,8 +74,8 @@ public class SuperMemoPanel : MonoBehaviour
         clearOldCard();
         // Clear the cardqueue
         CardQueueManager.GetQueueManager.ClearQueue();      
-        superMemoPanel.SetActive(false);
         cardDeckPanel.SetActive(true);  
+        superMemoPanel.SetActive(false);        
     }
         
     

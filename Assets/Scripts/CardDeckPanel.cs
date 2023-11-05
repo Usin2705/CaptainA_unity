@@ -20,6 +20,8 @@ public class CardDeckPanel : MonoBehaviour
     
     void OnEnable() 
     {
+        superMemoPanelGO.SetActive(false);
+
         // Sort the deck by the last time user use the deck                
         List<FlashCard> flashCards = new List<FlashCard>();
         
@@ -102,7 +104,9 @@ public class CardDeckPanel : MonoBehaviour
             listScrollItems.Add(cardDeckGO);
             
             // Find the Button to register OnClick Function
-            Button deckButton = cardDeckGO.transform.GetComponent<Button>();                        
+            // No longer need this one, we use EventTrigger instead
+            // Button deckButton = cardDeckGO.transform.GetComponent<Button>();        
+
             // Pass phoneme value to EventTrigger function
             // We need EventTrigger to detect long press and short press
             // To be safe, remove all triggers were add to this component
@@ -152,6 +156,10 @@ public class CardDeckPanel : MonoBehaviour
                 StartStudyDeck(fileName, newCards, dueCards);
             }
             ResetTriggerPointer();
+
+            // // Send notification
+            // NotificationManager notificationManager = GetComponent<NotificationManager>();
+            // notificationManager.ReScheduleNotifications();
         }
     }
 
@@ -164,8 +172,7 @@ public class CardDeckPanel : MonoBehaviour
     public void StartStudyDeck(string deckFileName, int newCards, int dueCards) 
     {
         FlashCard flashCard = SaveData.LoadFlashCard(deckFileName);
-        CardQueueManager.GetQueueManager.MakeQueue(flashCard, newCards, dueCards);        
-        cardDeckPanelGO.SetActive(false);
+        CardQueueManager.GetQueueManager.MakeQueue(flashCard, newCards, dueCards);                
         superMemoPanelGO.SetActive(true);
     }
 

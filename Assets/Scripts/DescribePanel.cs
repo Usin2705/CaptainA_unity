@@ -15,9 +15,11 @@ public class DescribePanel : MonoBehaviour
     private float recordingTime = 45.0f;    
     private float currentTime = 45.0f;
     private bool isFinnish = true;
-    public void OnGenerateButtonClick() 
+    
+    void OnEnable()
     {
-        
+        // Hide the progress bar
+        gptGradingPanel.ClosePanel();
     }
 
     void StartTimer()
@@ -61,8 +63,9 @@ public class DescribePanel : MonoBehaviour
     
     public void OnGenerateButtonClicked()
     {
-        // RandomPromptGenerator promptGenerator = PromptGeneratorGO.GetComponent<RandomPromptGenerator>();
-        // string prompt = promptGenerator.GeneratePrompt();        
+        RandomPromptGenerator promptGenerator = PromptGeneratorGO.GetComponent<RandomPromptGenerator>();
+        string prompt = promptGenerator.GeneratePrompt();        
+        Debug.Log(prompt);
         // StartCoroutine(NetworkManager.GetManager().GPTImageGenerate(prompt));
     }
 
@@ -92,6 +95,25 @@ public class DescribePanel : MonoBehaviour
             // Should not use invoke or delay as it will cause the timer to be inaccurate
         StartTimer();
     }
+
+    public void OnRecordButtonGlobalClicked() 
+    /*
+    *   This function also attached to RecordButton OnClick() in Unity
+    */
+    {
+       isFinnish = false;
+
+        // Clear the transcript text
+        transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = "";        
+
+        progressBarGO.SetActive(true);
+        // Start recording
+        AudioManager.GetManager().StartRecording((int)recordingTime);
+
+            // Start the timer
+            // Should not use invoke or delay as it will cause the timer to be inaccurate
+        StartTimer();
+    }    
 
     public void OnFinnishTimer() {
         StartCoroutine(DelayPost());

@@ -8,12 +8,13 @@ public class AdvancePanel : MonoBehaviour
     [SerializeField] GameObject advancePanelGO;
     [SerializeField] GameObject describePanelGO;
 
-    List<GameObject> listScrollItems = new List<GameObject>();        
-    
+    List<GameObject> listScrollItems = new List<GameObject>();            
 
-    // Start is called before the first frame update
     void OnEnable() 
     {
+        describePanelGO.SetActive(false);
+
+        // Check if the instruction panel has been shown before
         if (!PlayerPrefs.HasKey(Const.PREF_INS_ADVANCE)) {
             PopUpManager popUpPanel = GameObject.FindAnyObjectByType<PopUpManager>();
             popUpPanel.OpenPanel(Const.PREF_INS_ADVANCE);
