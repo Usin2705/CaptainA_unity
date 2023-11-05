@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class CardDeckPanel : MonoBehaviour
@@ -21,6 +20,19 @@ public class CardDeckPanel : MonoBehaviour
     void OnEnable() 
     {
         superMemoPanelGO.SetActive(false);
+        
+        LoadFlashCards();  
+
+        if (!PlayerPrefs.HasKey(Const.PREF_INS_VOCABULARY)) {
+            PopUpManager popUpPanel = GameObject.FindAnyObjectByType<PopUpManager>();
+            popUpPanel.OpenPanel(Const.PREF_INS_VOCABULARY);
+            popUpPanel.SetText(Const.INSTRUCTION_VOCABULARY);            
+        }
+    }
+
+    public void LoadFlashCards()
+    {
+        ClearFlashCards(); // Clear all the card deck in the panel
 
         // Sort the deck by the last time user use the deck                
         List<FlashCard> flashCards = new List<FlashCard>();
@@ -124,13 +136,20 @@ public class CardDeckPanel : MonoBehaviour
             pointerUpEntry.callback.AddListener((data) => { OnPointerUp((PointerEventData)data, flashCard.fileName, newCards, dueCards, learnCards); });
             trigger.triggers.Add(pointerUpEntry);            
         }
-        if (!PlayerPrefs.HasKey(Const.PREF_INS_VOCABULARY)) {
-            PopUpManager popUpPanel = GameObject.FindAnyObjectByType<PopUpManager>();
-            popUpPanel.OpenPanel(Const.PREF_INS_VOCABULARY);
-            popUpPanel.SetText(Const.INSTRUCTION_VOCABULARY);            
-        }
-
     }
+
+    private void ClearFlashCards() 
+    /*
+    *   Need to Destroy all GO in the list to avoid create duplicate scorelist
+    */
+    {
+        
+        foreach (GameObject go in listScrollItems) 
+        {
+            Destroy(go);
+        }
+    }
+
     private void Update() {
         if(pointerDown) pointerDownTimer += Time.deltaTime;
     }
@@ -156,10 +175,6 @@ public class CardDeckPanel : MonoBehaviour
                 StartStudyDeck(fileName, newCards, dueCards);
             }
             ResetTriggerPointer();
-
-            // // Send notification
-            // NotificationManager notificationManager = GetComponent<NotificationManager>();
-            // notificationManager.ReScheduleNotifications();
         }
     }
 
@@ -172,7 +187,7 @@ public class CardDeckPanel : MonoBehaviour
     public void StartStudyDeck(string deckFileName, int newCards, int dueCards) 
     {
         FlashCard flashCard = SaveData.LoadFlashCard(deckFileName);
-        CardQueueManager.GetQueueManager.MakeQueue(flashCard, newCards, dueCards);                
+        CardQueueManager.GetQueueManager.MakeQueue(flashCard, newCards, dueCards);
         superMemoPanelGO.SetActive(true);
     }
 
@@ -181,9 +196,6 @@ public class CardDeckPanel : MonoBehaviour
     *   Need to Destroy all GO in the list to avoid create duplicate scorelist
     */
     {
-        foreach (GameObject go in listScrollItems) 
-        {
-            Destroy(go);
-        }
+        ClearFlashCards();
     }
 }

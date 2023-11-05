@@ -74,7 +74,10 @@ public class SuperMemoPanel : MonoBehaviour
         clearOldCard();
         // Clear the cardqueue
         CardQueueManager.GetQueueManager.ClearQueue();      
-        cardDeckPanel.SetActive(true);  
+        
+        // toggle the panel to force update the flashcard info        
+        CardDeckPanel cardDeckPanel = GameObject.FindAnyObjectByType<CardDeckPanel>();
+        cardDeckPanel.LoadFlashCards();
         superMemoPanel.SetActive(false);        
     }
         
