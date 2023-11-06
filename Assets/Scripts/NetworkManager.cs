@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
-using UnityEngine.Diagnostics;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
@@ -53,12 +52,20 @@ public class NetworkManager : MonoBehaviour
 	{	
 
 		// OpenAI require Json format so this is the way to do it and not our normal webrequest
+		// ""style"": ""vivid"",
+		// ""style"": ""natural"",
 		string jsonData = $@"
 		{{
 			""prompt"": ""{prompt.Replace("\"", "\\\"")}"",
+			""model"": ""dall-e-3"",
 			""n"": 1,
-			""size"": ""1024x1024""
+			""size"": ""1024x1024"",			
+			""quality"": ""hd"",			
+			""style"": ""natural"",
+			""response_format"": ""url""
 		}}";
+
+		Debug.Log(jsonData);
 
         using (UnityWebRequest request = new UnityWebRequest("https://api.openai.com/v1/images/generations", "POST"))
 		{
@@ -122,7 +129,7 @@ public class NetworkManager : MonoBehaviour
 	{		
 		WWWForm form = new WWWForm();
         form.AddBinaryData("file", wavBuffer, fileName:"recorded_describe_speech.wav", mimeType: "audio/wav");
-        form.AddField("model", "whisper-1");
+		form.AddField("model", "whisper-1");
 		if (isFinnish) form.AddField("language", "fi");
 
         UnityWebRequest www = UnityWebRequest.Post("https://api.openai.com/v1/audio/transcriptions", form);
@@ -145,19 +152,37 @@ public class NetworkManager : MonoBehaviour
 		//yield return GPTRating(scoreButtonGO, "Lattialla on sininen kissa, toinen kissa sohvatuolilla. Seinällä on kello oven yläpuolella.");			
 		//yield return PostRequest("https://api.openai.com/v1/chat/completions", "Lattialla on sininen kissa, toinen kissa sohvatuolilla. Seinällä on kello oven yläpuolella.");			
     }
-
+    // Function to encode the image to base64
+    private string EncodeImageToBase64(string imagePath)
+    {
+        Debug.Log("Encoding image to base64");
+		byte[] imageBytes = File.ReadAllBytes(imagePath);
+        return System.Convert.ToBase64String(imageBytes);
+    }
+	
 	private IEnumerator GPTRating(GameObject scoreButtonGO, string transcript, bool isFinnish=true)
     {	
+		string imagePath = Path.Combine(Application.persistentDataPath, "describeImage.png");
+        if (!File.Exists(imagePath)) {
+			Debug.Log("Image not found, using default image");
+			Texture2D texture = Resources.Load<Texture2D>("GenAI/describeImage");
+			SaveData.SaveImageToFile(texture, "describeImage.png");
+			imagePath = Path.Combine(Application.persistentDataPath, "describeImage.png");
+		}
+
+		string base64Image = EncodeImageToBase64(imagePath);
+
 		string gradingInstructions;
 		if (isFinnish) gradingInstructions = "The primary task for the users is to speak in Finnish. ";
 		else gradingInstructions = "The primary task for the users is to speak in their secondary language. ";
 		
 		gradingInstructions += "The users speak into the microphone, and what you're reading is the transcription of their speech. Given this, be mindful of " +
-			"potential typos or entirely incorrect words due to transcription errors. Your task is to give feedback and grade their speech. Be generous in their pronunciation and grammar as they are not native speakers. The score is from 1.0 to 5.0, with 1 decimal number. Each user has " +
-			"only 45 seconds to describe the room, so they don't need to cover every detail to score a full 5 points.\\n\\n" +			
+			"potential typos or entirely incorrect words due to transcription errors. Your task is to give feedback and grade their speech. Be generous in grading pronunciation and grammar as they are not native speakers. The score is from 1.0 to 5.0, with 1 decimal number. Each user has " +
+			"only 45 seconds to describe the room, so they don't need to cover every detail to score a full 5 points. The task is transcribed so a few minor errors in the transcript should not reduce their scores. \\n\\n" +			
 			"Here's the grading template:\\n" +
 			"-----------------------------\\n" +
-			"Corrected/Suggested Description: [Your feedback on their description goes here. Please based your feedback on the transcript the user gave you and suggest better/corrected description based on the actual picture described below. Put the wrong text in the color tag <color=#ff0000ff>wrong text here</color> and put the corrected or suggested text in bold tag <b>corrected text here</b>. For example, if user using 'valkoi matto' instead of the correct 'valkoinen matto', you would use: <color=#ff0000ff>valkoi</color> <b>valkoinen</b> matto]\\n\\n" +
+			"Corrected/Suggested Description: [Your feedback on their description goes here. Please based your feedback on the transcript the user gave you and suggest better/corrected description based on the actual picture described below. Put the wrong text in the color tag <color=#ff0000ff>wrong text here</color> and put the corrected or suggested text in bold tag <b>corrected text here</b>. For example, if user using 'valkoi matto' instead of the correct 'valkoinen matto', you would use: <color=#ff0000ff>valkoi</color> <b>valkoinen</b> matto]\\n\\n" +			
+			"(Any feedback from this point to the end should use English as the main language.)\\n" +
 			"Accuracy of Description: [Feedback about how accurately they described the room based on the ground truth, such as wrong colors, items, or positions.]\\n" +
 			"Score: [1-5]\\n\\n" +
 			"Vocabulary: [Feedback on the items they mentioned and their use of specific terms. At a minimum, they should mention 2 to 3 items for a decent score. For a higher score, 3 to 5 items and 2 to 3 colors, 2 to 3 position of items should be mentioned.5 score would have at least 5 items, 3 colors and 3 positions]\\n" +
@@ -169,9 +194,8 @@ public class NetworkManager : MonoBehaviour
 			"Overall grading: [A short summary of their performance]\\n" +
 			"Score: [1-5]\\n" +
 			"-----------------------------\\n\\n" +
-			"Remember to compare their description with the complete description of the room to use as a reference (consider this the ground truth):---\\n" +
-			Const.ROOM_DESCRIPTION + 
-			"---Ensure that the final rating (a number from 1.0 to 5.0) is given as the last three characters of your response." + 
+			"Remember to compare their description with the image of the room to use as a reference (consider this the ground truth). \\n" +			 
+			"Ensure that the final rating (a number from 1.0 to 5.0) is given as the last three characters of your response." + 
 			"For example: [your response go here] Score: 3.5";
 
 		gradingInstructions = gradingInstructions.Replace("\r", " ").Replace("\"", "\\\""); // Escape double quotes
@@ -181,16 +205,29 @@ public class NetworkManager : MonoBehaviour
 		// the string with {}. The transcript.Replace("\"", "\\\"") is used to escape 
 		// any double quotes that might be present in the transcript string, ensuring that 
 		// the JSON remains valid.
+		//""model"": ""gpt-4-vision-preview"",   
 		//""model"": ""gpt-4"",
 		//""model"": ""gpt-3.5-turbo"",	
-		string jsonData = $@"
-		{{
-			""model"": ""gpt-4"",	
-			""messages"": [
-				{{""role"": ""system"", ""content"": ""{gradingInstructions}""}},
-				{{""role"": ""user"", ""content"": ""{transcript.Replace("\"", "\\\"")}""}}
-			]
-		}}";
+        string jsonData = $@"
+        {{
+            ""model"": ""gpt-4-vision-preview"",  
+            ""messages"": [
+                {{""role"": ""system"", ""content"": ""{gradingInstructions}""}},
+                {{""role"": ""user"", ""content"": [
+                    {{
+                        ""type"": ""text"",
+                        ""text"": ""{transcript.Replace("\"", "\\\"")}""
+                    }},
+                    {{
+                        ""type"": ""image_url"",
+                        ""image_url"": {{
+                            ""url"": ""data:image/jpeg;base64,{base64Image}""
+                        }}
+                    }}
+                ]}}
+            ],
+			""max_tokens"": 2500
+        }}";
 
 		Debug.Log(jsonData);
 		

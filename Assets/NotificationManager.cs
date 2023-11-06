@@ -1,21 +1,28 @@
 using System.Collections;
 using UnityEngine;
-using Unity.Notifications.Android;
 using System;
+
+#if UNITY_ANDROID 
+using Unity.Notifications.Android;
+#endif // UNITY_ANDROID
+
+#if UNITY_IOS 
+using Unity.Notifications.iOS;
+#endif // UNITY_IOS
 
 public class NotificationManager : MonoBehaviour
 {
     private const string ChannelId = "channel_id";
     private const int NotificationDayInterval = 1;
 
+#if UNITY_ANDROID 
     void Start()
     {
         RequestNotificationPermission();
-        CreateNotificationChannel();     
+        CreateNotificationChannel();    
         ReScheduleNotification();   
     }
 
-#if UNITY_ANDROID    
     void CreateNotificationChannel()
     {
         AndroidNotificationChannel channel = new AndroidNotificationChannel()
@@ -46,7 +53,7 @@ public class NotificationManager : MonoBehaviour
         AndroidNotification notification = new AndroidNotification()
         {
             Title = "Opiskellaan Suomea!",
-            Text = "Käytä 5 minuuttia suomen sanastoon CaptainA:lla. Voit aloittaa nyt.",
+            Text = "Käytä 10 minuuttia suomen sanastoon CaptainA:lla. Voit aloittaa nyt.",
             SmallIcon = "icon_nof_s",
             LargeIcon = "icon_nof_l",
             FireTime = System.DateTime.Now.ToLocalTime().AddDays(NotificationDayInterval),
@@ -71,87 +78,60 @@ public class NotificationManager : MonoBehaviour
 #endif // UNITY_ANDROID
 
 
-// #if UNITY_IOS
-// using Unity.Notifications.iOS;
-//
-//     /// <summary>
-//     /// Schedules a series of notifications intended to prompt the user at different intervals.
-//     /// This method queues notifications to be sent after 24, 72, and 144 hours respectively.
-//     /// Each notification carries a unique ID to distinguish it from others.<br/>
-//     /// 
-//     /// This method is called when the app is first launched, and also when the user
-//     /// press on a flashcard deck.
-//     /// </summary>
-//     /// <remarks>
-//     /// The method first ensures that any previously scheduled notifications with the same IDs
-//     /// are canceled to prevent duplicates. Then, it proceeds to schedule new notifications
-//     /// with specified delays.<br/>
-//     /// 
-//     /// The notifications are intended to encourage the user to spend time on a language learning
-//     /// activity. The text content of the notification is currently in Finnish, aiming to motivate
-//     /// the user to practice Finnish vocabulary on the CaptainA platform.
-//     /// </remarks>
-//     public void ReScheduleNotifications()
-//     {
-//         CancelScheduledNotifications();
+#if UNITY_IOS
+    void Start()
+    {
+        RequestNotificationPermission();
+        ReScheduleNotification();
+    }
 
-//         SendNotification(24, NotificationId24h);
-//         SendNotification(72, NotificationId72h);
-//         SendNotification(144, NotificationId144h);
-//     }
+    void ReScheduleNotification()
+    {
+        iOSNotificationCenter.RemoveAllDeliveredNotifications();
+        iOSNotificationCenter.RemoveAllScheduledNotifications();
 
-//     void SendNotification(int hours, int notificationId)
-//     {
-//         iOSNotificationTimeIntervalTrigger timeTrigger = new iOSNotificationTimeIntervalTrigger();
-//         {
-//             TimeInterval = new TimeSpan(0, minutes, seconds),
-//             Repeats = false
-//         };   
-        
-//         var notification = new iOSNotification()
-//         {
-//             // You can specify a custom identifier which can be used to manage the notification later.
-//             // If you don't provide one, a unique string will be generated automatically.
-//             Identifier = "_notification_01",
-//             Title = "Opiskellaan Suomea!",
-//             Body = "Käytä 5 minuuttia suomen sanastoon CaptainA:lla. Voit aloittaa nyt.",
-//             Subtitle = "Käytä 5 minuuttia suomen sanastoon CaptainA:lla. Voit aloittaa nyt.",
-//             ShowInForeground = true,
-//             ForegroundPresentationOption = (PresentationOption.Alert | PresentationOption.Sound),
-//             CategoryIdentifier = "category_a",
-//             ThreadIdentifier = "thread1",
-//             Trigger = timeTrigger,
-//         };
+        iOSNotificationTimeIntervalTrigger timeTrigger = new iOSNotificationTimeIntervalTrigger()
+        {
+            TimeInterval = new TimeSpan(24, 0, 0),
+            Repeats = true
+        };
 
-//         iOSNotificationCenter.ScheduleNotification(notification);
-//     }
+        iOSNotification notification = new iOSNotification()
+        {
+            // You can specify a custom identifier which can be used to manage the notification later.
+            // If you don't provide one, a unique string will be generated automatically.
+            Identifier = "_notification_01",
+            Title = "Opiskellaan Suomea!",
+            Subtitle = "Voit aloittaa nyt.",
+            Body = "Käytä 10 minuuttia suomen sanastoon CaptainA:lla.",            
+            ShowInForeground = true,
+            ForegroundPresentationOption = (PresentationOption.Alert | PresentationOption.Sound),
+            CategoryIdentifier = "category_a",
+            ThreadIdentifier = "thread1",
+            Trigger = timeTrigger,
+        };
 
-//     void CancelScheduledNotifications()
-//     {
-//         AndroidNotificationCenter.CancelNotification(NotificationId24h);
-//         AndroidNotificationCenter.CancelNotification(NotificationId72h);
-//         AndroidNotificationCenter.CancelNotification(NotificationId144h);
-//     }
+        iOSNotificationCenter.ScheduleNotification(notification);
+    }
 
-//     IEnumerator RequestNotificationPermission()
-//     {
-//         AuthorizationOption authorizationOption = AuthorizationOption.Alert | AuthorizationOption.Badge;
-//         using (AuthorizationRequest req = new AuthorizationRequest(authorizationOption, true))
-//         {
-//             while (!req.IsFinished)
-//             {
-//                 yield return null;
-//             };
+    IEnumerator RequestNotificationPermission()
+    {
+        AuthorizationOption authorizationOption = AuthorizationOption.Alert | AuthorizationOption.Badge;
+        using (AuthorizationRequest req = new AuthorizationRequest(authorizationOption, true))
+        {
+            while (!req.IsFinished)
+            {
+                yield return null;
+            };
 
-//             string res = "\n RequestAuthorization:";
-//             res += "\n finished: " + req.IsFinished;
-//             res += "\n granted :  " + req.Granted;
-//             res += "\n error:  " + req.Error;
-//             res += "\n deviceToken:  " + req.DeviceToken;
-//             Debug.Log(res);
-//         }
-//     }
+            string res = "\n RequestAuthorization:";
+            res += "\n finished: " + req.IsFinished;
+            res += "\n granted :  " + req.Granted;
+            res += "\n error:  " + req.Error;
+            res += "\n deviceToken:  " + req.DeviceToken;
+            Debug.Log(res);
+        }
+    }
 
-// #endif // UNITY_IOS
-
+#endif // UNITY_IOS
 }

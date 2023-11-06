@@ -1,7 +1,7 @@
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
 using System.Collections;
+using System.IO;
 
 public class DescribePanel : MonoBehaviour
 {
@@ -12,6 +12,9 @@ public class DescribePanel : MonoBehaviour
     [SerializeField] GameObject PromptGeneratorGO;
 
     [SerializeField] GPTGradingPanel gptGradingPanel;
+
+    [SerializeField] Image imageComponent;   
+    
     private float recordingTime = 45.0f;    
     private float currentTime = 45.0f;
     private bool isFinnish = true;
@@ -20,6 +23,21 @@ public class DescribePanel : MonoBehaviour
     {
         // Hide the progress bar
         gptGradingPanel.ClosePanel();
+        
+        string imagePath = Path.Combine(Application.persistentDataPath, "describeImage.png");
+
+        if (File.Exists(imagePath))
+        {   
+            Debug.Log("Image exists: " + imagePath);
+            byte[] fileData = File.ReadAllBytes(imagePath);
+            Texture2D texture = new Texture2D(2, 2);
+            if (texture.LoadImage(fileData)) // Loads the image into the Texture2D.
+            {
+                // Create a sprite and assign it to the image component.
+                Sprite sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, 1024, 1024), new Vector2(0.5f, 0.5f), 100.0f);
+                imageComponent.sprite = sprite;
+            }
+        }
     }
 
     void StartTimer()
@@ -65,15 +83,12 @@ public class DescribePanel : MonoBehaviour
     {
         RandomPromptGenerator promptGenerator = PromptGeneratorGO.GetComponent<RandomPromptGenerator>();
         string prompt = promptGenerator.GeneratePrompt();        
-        Debug.Log(prompt);
-        // StartCoroutine(NetworkManager.GetManager().GPTImageGenerate(prompt));
+        Debug.Log(prompt.Replace("\"", "\\\""));
+        StartCoroutine(NetworkManager.GetManager().GPTImageGenerate(prompt));
     }
 
     public void OnScoreButtonClicked()
     {
-        // RandomPromptGenerator promptGenerator = PromptGeneratorGO.GetComponent<RandomPromptGenerator>();
-        // string prompt = promptGenerator.GeneratePrompt();        
-        // StartCoroutine(NetworkManager.GetManager().GPTImageGenerate(prompt));
         gptGradingPanel.ShowGPTGradingPanel();
     }
 

@@ -4090,7 +4090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.09770352, g: 0.8666209, b: 0.7884642, a: 1}
+  m_Color: {r: 0.495283, g: 1, b: 0.9484983, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 20, y: 20, z: 20, w: 20}
   m_Maskable: 1
@@ -11901,7 +11901,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 80, y: 80}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1054705960
 MonoBehaviour:
@@ -11923,7 +11923,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ef6629fa47038e24cba57ea611031a5b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 15b2c3d9cc52d4a44b05ddb310020428, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14497,6 +14497,7 @@ MonoBehaviour:
   scoreButtonGO: {fileID: 265736514}
   PromptGeneratorGO: {fileID: 2105947776}
   gptGradingPanel: {fileID: 1783761894}
+  imageComponent: {fileID: 999932890}
 --- !u!1 &1340387682
 GameObject:
   m_ObjectHideFlags: 0
@@ -19253,7 +19254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1783761890
 RectTransform:
   m_ObjectHideFlags: 0

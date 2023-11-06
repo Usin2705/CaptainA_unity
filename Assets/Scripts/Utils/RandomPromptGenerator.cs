@@ -15,14 +15,14 @@ public class RandomPromptGenerator : MonoBehaviour
     {
         System.Random rnd = new System.Random();
 
-        string prompt = "Illustration of a spacious " + roomTypes[rnd.Next(roomTypes.Count)] + " with a focus on simplicity and clarity. ";
-        prompt += "On the " + positions[rnd.Next(positions.Count)] + ", there's a " + colors[rnd.Next(colors.Count)] + " " + furnitureItems[rnd.Next(furnitureItems.Count)] + ". ";
+        string prompt = "Illustration of a spacious " + roomTypes[rnd.Next(roomTypes.Count)] + " with a focus on simplicity and clarity. The room is filled with items of various distinct color.";
+        prompt += "On the left of the room, there's a " + colors[rnd.Next(colors.Count)] + " " + furnitureItems[rnd.Next(furnitureItems.Count)] + ". ";
         prompt += "Next to it stands a " + colors[rnd.Next(colors.Count)] + " " + furnitureItems[rnd.Next(furnitureItems.Count)] + ". ";
         prompt += "In front of the " + furnitureItems[rnd.Next(furnitureItems.Count)] + " is a " + colors[rnd.Next(colors.Count)] + " " + furnitureItems[rnd.Next(furnitureItems.Count)] + ". ";
-        prompt += "To the " + positions[rnd.Next(positions.Count)] + ", a " + colors[rnd.Next(colors.Count)] + " " + electronicOrDecorativeItems[rnd.Next(electronicOrDecorativeItems.Count)] + " is placed. ";
+        prompt += "On the right of the room, there's a " + colors[rnd.Next(colors.Count)] + " " + electronicOrDecorativeItems[rnd.Next(electronicOrDecorativeItems.Count)] + " is placed. ";
         prompt += "Beside it is a " + colors[rnd.Next(colors.Count)] + " " + furnitureItems[rnd.Next(furnitureItems.Count)] + ". ";
         prompt += "A " + colors[rnd.Next(colors.Count)] + " " + doorOrWindowItems[rnd.Next(doorOrWindowItems.Count)] + " is on the " + positions[rnd.Next(positions.Count)] + ". ";
-        prompt += "On the floor below the " + doorOrWindowItems[rnd.Next(doorOrWindowItems.Count)] + ", there's a " + colors[rnd.Next(colors.Count)] + " mattress. ";
+        prompt += "On the floor in the middle of the room, there's a " + colors[rnd.Next(colors.Count)] + " mattress. ";
 
         int numberOfWallItems = rnd.Next(2, 4); // Randomly choose either 2 or 3
         List<string> selectedWallItems = new List<string>();
