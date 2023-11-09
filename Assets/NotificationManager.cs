@@ -50,6 +50,9 @@ public class NotificationManager : MonoBehaviour
     /// </remarks>
     public void ReScheduleNotification()
     {    
+        // Need to cancel all notifications before scheduling new ones
+        AndroidNotificationCenter.CancelAllNotifications();
+        
         AndroidNotification notification = new AndroidNotification()
         {
             Title = "Opiskellaan Suomea!",
