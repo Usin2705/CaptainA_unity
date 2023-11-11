@@ -66,6 +66,7 @@ crashlytics-build.properties
 Assets/Scripts/Utils/Secret.cs
 Server/models/nhan_wav2vec2-xls-r-300m-finnish-ft-ent/
 Server/models/nhan_wav2vec2-xls-r-300m-finnish-ft-ent-10/
+UserSettings/Layouts/
 
 CaptainA_Android_mapping.txt
 app_BackUpThisFolder_ButDontShipItWithYourGame
@@ -74,3 +75,5 @@ CaptainA_Android_BackUpThisFolder_ButDontShipItWithYourGame
 CaptainA_Android_BurstDebugInformation_DoNotShip
 user.keystore
 .vscode/
+
+UserSettings/Layouts/default-2022.dwlt
