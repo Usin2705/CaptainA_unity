@@ -40,6 +40,7 @@ public class CardDeckPanel : MonoBehaviour
         // Create a list of card deck
         foreach(string deckName in Const.FLASH_CARD_FILES)        
         {
+            // Debug.Log("Load flashcard: " + deckName);
             SaveData.UpdateFlashCard(deckName); // Update the flashcard if needed
             FlashCard flashCard = SaveData.LoadFlashCard(deckName);            
             flashCards.Add(flashCard);            
@@ -186,6 +187,7 @@ public class CardDeckPanel : MonoBehaviour
 
     public void StartStudyDeck(string deckFileName, int newCards, int dueCards) 
     {
+        Debug.Log("Start study deck: " + deckFileName);
         FlashCard flashCard = SaveData.LoadFlashCard(deckFileName);
         CardQueueManager.GetQueueManager.MakeQueue(flashCard, newCards, dueCards);
         superMemoPanelGO.SetActive(true);

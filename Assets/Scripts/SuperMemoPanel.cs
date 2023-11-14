@@ -6,6 +6,8 @@ using UnityEngine.Networking;
 
 
 public class SuperMemoPanel : MonoBehaviour
+// Default state of the Panel is disabled
+
 {
     [SerializeField] TMPro.TextMeshProUGUI frontCardText; // Front card
     [SerializeField] TMPro.TextMeshProUGUI backCardText; // Back card    

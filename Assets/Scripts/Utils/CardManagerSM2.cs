@@ -25,7 +25,7 @@ public class CardManagerSM2
         /*
         *   FlashCard info update is done in CardDeckPanel
         */
-
+        // Debug.Log("CardManagerSM2: " + _flashCardFileName);
         flashCardFileName = _flashCardFileName;
         flashCard = SaveData.LoadFlashCard(flashCardFileName);
         Debug.Log("FlashCard loaded: " + flashCard.name);

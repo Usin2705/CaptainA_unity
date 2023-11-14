@@ -177,11 +177,11 @@ public static class Const
     // ===================== FLASH CARD CONST =====================
 
     // Name of flashcard deck available in the app
-    public static readonly string[] FLASH_CARD_FILES = {
-        "FI-EN_OmaSuomi_1_Finnish1_CaptainA",
-        "EN-FI_OmaSuomi_1_Finnish1_CaptainA",
+    public static readonly string[] FLASH_CARD_FILES = {        
         "FI-EN_OmaSuomi_1_CaptainA",
-        "EN-FI_OmaSuomi_1_CaptainA"        
+        "EN-FI_OmaSuomi_1_CaptainA",
+        "FI-EN_OmaSuomi_1_Finnish1_CaptainA",
+        "EN-FI_OmaSuomi_1_Finnish1_CaptainA"        
     };
 
     // Folder contains flashcard decks in Resources folder

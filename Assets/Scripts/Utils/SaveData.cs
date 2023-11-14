@@ -81,8 +81,11 @@ public static class SaveData
         // Path.Combine combines strings into a file path
         // Application.StreamingAssets points to Assets/StreamingAssets in the Editor, and the StreamingAssets folder in a build
         string filePath = Path.Combine(Application.persistentDataPath, flashCardFileName + ".json");
+        // Debug.Log("File path " + filePath);
 
         FlashCard flashCard;
+
+        // Debug.Log("File exist " + File.Exists(filePath));
 
 		if(File.Exists(filePath)) {
             // Since we can't save in Resources folder, we save the edited flashcard file in the persistentDataPath
@@ -90,20 +93,20 @@ public static class SaveData
 
             // Read the json from the file into a string
             string dataAsJson = File.ReadAllText(filePath);    
-            //Debug.Log("Json data " + dataAsJson);
+            // Debug.Log("Json data " + dataAsJson);
 
             // Pass the json to JsonUtility, and tell it to create a flashcard object from it            
 			flashCard = JsonUtility.FromJson<FlashCard>(dataAsJson);
-            //Debug.Log("File load from " + filePath);
+            // Debug.Log("File load from " + filePath);
 
         } else {
             // If the filePath is not exit, load the json file from Resources folder        
             // Load the json file from Resources folder
             // When load the json file from Resources folder as TextAsset, the file extension should be removed
             TextAsset jsonFile = Resources.Load<TextAsset>(Const.FLASH_CARDS_PATH + flashCardFileName); // Note: Do not include the file extension
-            //Debug.Log("Json data " + jsonFile.text);
+            // Debug.Log("Json data " + jsonFile.text);
             flashCard = JsonUtility.FromJson<FlashCard>(jsonFile.text);
-            //Debug.Log("FlashCard load from Resources folder");
+            // Debug.Log("FlashCard load from Resources folder");
         }
 
         foreach (Card card in flashCard.cards)
