@@ -143,13 +143,16 @@ public class NetworkManager : MonoBehaviour
 			Debug.LogError("Error: " + www.result);
 			Debug.LogError("Error: " + www.downloadHandler.text);
 		} else {
+			Debug.Log(www.downloadHandler.text);
 			OpenAIASRResponse response = JsonUtility.FromJson<OpenAIASRResponse>(www.downloadHandler.text);			
 			transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = response.text;
 			chatGPTTranscript = response.text;
-			StartCoroutine(GPTRating(scoreButtonGO, response.text, isFinnish));	
+			StartCoroutine(GPTRatingText(scoreButtonGO, response.text, isFinnish));	
 		}
+
 		// For testing purpose
-		//yield return GPTRating(scoreButtonGO, "Lattialla on sininen kissa, toinen kissa sohvatuolilla. Seinällä on kello oven yläpuolella.");			
+		// yield return GPTRatingText(scoreButtonGO, "Huoneessa on iso. Sininen sova on oikea. Sen alla on paljon keltainen kuva. Punainen nuoja tuoli ja musta hullu on vasemmalla. Iso matto on lattialla ja viiveä ovi");			
+		// yield return GPT_TTS("Huoneessa on iso. Sininen sova on oikea. Sen alla on paljon keltainen kuva. Punainen nuoja tuoli ja musta hullu on vasemmalla. Iso matto on lattialla ja viiveä ovi");			
 		//yield return PostRequest("https://api.openai.com/v1/chat/completions", "Lattialla on sininen kissa, toinen kissa sohvatuolilla. Seinällä on kello oven yläpuolella.");			
     }
     // Function to encode the image to base64
@@ -159,8 +162,143 @@ public class NetworkManager : MonoBehaviour
 		byte[] imageBytes = File.ReadAllBytes(imagePath);
         return System.Convert.ToBase64String(imageBytes);
     }
-	
-	private IEnumerator GPTRating(GameObject scoreButtonGO, string transcript, bool isFinnish=true)
+
+	public IEnumerator GPT_TTS(string transcript)
+	{
+		transcript = transcript.Replace("\r", " ").Replace("\"", "\\\""); // Escape double quotes
+		string jsonData = $@"
+		{{
+			""model"": ""tts-1"",	
+			""input"": ""{transcript}"",
+			""voice"": ""nova""
+		}}";
+
+		Debug.Log(jsonData);
+
+		using (UnityWebRequest request = new UnityWebRequest("https://api.openai.com/v1/audio/speech", "POST"))
+		{        
+			// Convert JSON data to a byte array and set it as upload handler					
+    		byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(jsonData);
+    		request.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
+			request.downloadHandler = new DownloadHandlerBuffer(); // Set the download handler
+
+		    // Set headers
+    		request.SetRequestHeader("Content-Type", "application/json");
+   			request.SetRequestHeader("Authorization", "Bearer " + gptToken);	
+
+			// Send the request and wait for response
+			yield return request.SendWebRequest();
+
+			if (request.result != UnityWebRequest.Result.Success) {
+				Debug.LogError("Error: " + request.error);
+				Debug.LogError("Error: " + request.result);
+				Debug.LogError("Error: " + request.downloadHandler.text);
+			} else {				
+				byte[] results = request.downloadHandler.data;
+				// For example, save the MP3 file locally
+            	string filePath = Path.Combine(Application.persistentDataPath, "speech.mp3");				
+            	File.WriteAllBytes(filePath, results);
+				Debug.Log("TTS done, saved to: " + filePath);
+			}
+		}
+	}
+
+	private IEnumerator GPTRatingText(GameObject scoreButtonGO, string transcript, bool isFinnish=true)
+    {	
+
+		string gradingInstructions;
+		if (isFinnish) gradingInstructions = "The primary task for the users is to speak in Finnish.\\n";
+		else gradingInstructions = "The primary task for the users is to speak in their secondary language.\\n";
+		
+		gradingInstructions += @" Task: Evaluate the speaker's ability to complete a given task based on a transcript of their speech. The grading should be assigned as 'Good', 'Average', 'Bad', or 'None', and it should only be based on the task completion assessment. The accuracy of the description provided by the speaker should not affect the grade. Furthermore, mistakes in pronunciation, fluency, vocabulary, and grammar errors are to be ignored and do not impact the grade. The text is a transcript and, as such, contains no punctuation.\\n" +
+								"Speakers are non-native, so you should expect a lot of mistake due to bad pronunciation. Try your best to guess what speakers trying to say based on the picture description and his transcript. His word may not be wrong, just baddly pronounced and was wrongly transcribed into text. Some common mistakes: missing or replace phone 'h' with other phones, confuse front phones (for example ä,ö,y) with back phone (a, o, u), pronounce 'r' as 'v' or 'd' or failed to pronounce 'r'.\\n" +
+								"Explain your grading in detail and then give the grade. Then, based on what the user has said, provide a version that you think would get a 'Good' grade. Provide your improved version in Finnish inside the '@' tag like this: @improved version in this tag@\\n" +								
+								"The task description:\\n" +
+								"Describe the room in the picture. You must mention key items or furniture and their colours. And describe their positions, either relative to the picture or in relation to other items. You don't need to talk about every single item. The more you describe, the higher your score will be. You have 45 seconds to speak.\\n" +
+								"Grading examples:\\n" +
+								"User: huoneessa on iso sininen sohva lattialla on suuri punainen matto vasemmalla on musta kirjahylly ja paljon kirjoja kirjahyllyn vieressä on pieni punainen nojatuoli\\n" +
+								"System:[Explanation]Good. @Improved version@\\n" +
+								"User: huoneessa on sohva ja matto musta hylly on ja siinä on kirjoja myös tuoli mutta ei muista televisio on huoneessa ja ovi on vihreä en näe pöytää\\n" +
+								"System:[Explanation]Average. @Improved version@\\n" +
+								"User: tässä huoneessa on paljon tilaa musta kirjahylly on seinää vasemmalla ja siinä on monia värejä keskellä huonetta on tumman siinen sohva ja sillä on keltainen tyyny huoneen oikealla puolella on keltaisia kuvat seinällä ja vihreä ovi vieressä on takki naulakossa.\\n" +
+								"System:[Explanation]Good. @Improved version@\\n" +
+								"User: on musta kirjahylly ja kirjoja  sininen sohva ja siinä on jotain keltaista lattialla on matto keltainen ja ovi on siellä.\\n" +
+								"System:[Explanation]Average. @Improved version@\\n" +
+								"The room description:\\n" +
+								"The room is warm and inviting. There is a big black bookshelf on the left with many books with colorful spines. The bookshelf is against the wall and does not reach the ceiling, leaving some windows and wall space above it. A blue (ior dark blue) sofa with yellow pillows is in the right (or in the middle) of the room. There is a big red (or dard red) rug on the floor. Next to the bookshelf, there is a small pink (or light pink) armchair. In front of the sofa, there is no coffee table visible, which gives the space an open feel. There is a black TV stand with a TV on it against the wall. On the wall above the TV, there are two framed pictures. On the wall on the right above the blue sofa, there are six (or many) square yellow decoratives (or abstract pictures). There is a green door on the far right corner. The door appears to be closed. Near the green door, there is a coat rack (in Finnish: naulakko) with 2 jackets (one black and one yellow jacket). The room has off-white walls (with a slightly yellow or grey) and a ceiling with some grey (or grey green).\\n" +
+								"Grading Criteria:\\n" +
+								"Good: Completes all aspects of the task, including both introduction and an attempt at describing the hoodie. There are no significant deficiencies in the response.\\n" +
+								"Average: Completes the task, but there are some significant deficiencies in the response.\\n" +
+								"Bad: Only partially answers the task, the response has many significant deficiencies.\\n" +
+								"None: The response does not relate to the task at all.\\n";
+
+		gradingInstructions = gradingInstructions.Replace("\r", " ").Replace("\"", "\\\""); // Escape double quotes
+
+		// Create the messages JSON string using string formatting or interpolation
+		// the $ symbol before the string allows you to insert variables directly into 
+		// the string with {}. The transcript.Replace("\"", "\\\"") is used to escape 
+		// any double quotes that might be present in the transcript string, ensuring that 
+		// the JSON remains valid.
+		//""model"": ""gpt-4-vision-preview"",   
+		//""model"": ""gpt-4-0613"",
+		//""model"": ""gpt-3.5-turbo-1106"",	
+		string jsonData = $@"
+		{{
+			""model"": ""gpt-4-0613"",	
+			""temperature"": 0.0,
+			""messages"": [
+				{{""role"": ""system"", ""content"": ""{gradingInstructions}""}},
+				{{""role"": ""user"", ""content"": ""{transcript.Replace("\"", "\\\"")}""}}
+			],
+			""max_tokens"": 2500
+		}}";
+
+		Debug.Log(jsonData);
+		
+		using (UnityWebRequest request = new UnityWebRequest("https://api.openai.com/v1/chat/completions", "POST"))
+		{        
+			// Convert JSON data to a byte array and set it as upload handler					
+    		byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(jsonData);
+    		request.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
+			request.downloadHandler = new DownloadHandlerBuffer(); // Set the download handler
+
+		    // Set headers
+    		request.SetRequestHeader("Content-Type", "application/json");
+   			request.SetRequestHeader("Authorization", "Bearer " + gptToken);	
+
+			// Send the request and wait for response
+			yield return request.SendWebRequest();
+
+			if (request.result != UnityWebRequest.Result.Success) {
+				Debug.LogError("Error: " + request.error);
+				Debug.LogError("Error: " + request.result);
+				Debug.LogError("Error: " + request.downloadHandler.text);
+			} else {
+				Debug.Log(request.downloadHandler.text);
+				OpenAIChatResponse response = JsonUtility.FromJson<OpenAIChatResponse>(request.downloadHandler.text);
+				if (response != null && response.choices.Length > 0)
+					{
+						string assistantResponse = response.choices[0].message.content;
+						Debug.Log("Assistant says: " + assistantResponse);
+
+						// Extract all text within "@" tags
+        				string finnishTTS = TextUtils.ExtractTextWithinAtTags(assistantResponse);
+                    	StartCoroutine(GPT_TTS(finnishTTS));
+
+                    	// Replace "@" in assistantResponse with a new line
+                    	assistantResponse = assistantResponse.Replace("@", "\n");
+						scoreButtonGO.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = assistantResponse.Substring(assistantResponse.Length - 3);
+						chatGPTGrading = assistantResponse;
+					}
+					else
+					{
+						Debug.LogError("Invalid response or no choices available.");
+					}
+			}
+		}
+    }
+
+	private IEnumerator GPTRatingVision(GameObject scoreButtonGO, string transcript, bool isFinnish=true)
     {	
 		string imagePath = Path.Combine(Application.persistentDataPath, "describeImage.png");
         if (!File.Exists(imagePath)) {
@@ -176,7 +314,7 @@ public class NetworkManager : MonoBehaviour
 		if (isFinnish) gradingInstructions = "The primary task for the users is to speak in Finnish. ";
 		else gradingInstructions = "The primary task for the users is to speak in their secondary language. ";
 		
-		gradingInstructions += "The users speak into the microphone, and what you're reading is the transcription of their speech. Given this, be mindful of " +
+		gradingInstructions += @"The users speak into the microphone, and what you're reading is the transcription of their speech. Given this, be mindful of " +
 			"potential typos or entirely incorrect words due to transcription errors. Your task is to give feedback and grade their speech. Be generous in grading pronunciation and grammar as they are not native speakers. The score is from 1.0 to 5.0, with 1 decimal number. Each user has " +
 			"only 45 seconds to describe the room, so they don't need to cover every detail to score a full 5 points. The task is transcribed so a few minor errors in the transcript should not reduce their scores. \\n\\n" +			
 			"Here's the grading template:\\n" +

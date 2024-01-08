@@ -12,6 +12,21 @@ public static class TextUtils
 
         return $"{newCardsStr} {learnCardsStr} {dueCardsStr}"; 
     }
+
+    public static string ExtractTextWithinAtTags(string text){
+        string pattern = "@(.*?)@";
+        MatchCollection matches = Regex.Matches(text, pattern);
+
+        string extractedText = "";
+        foreach (Match match in matches)
+        {
+            if (match.Success)
+            {
+                extractedText += match.Groups[1].Value + " "; // Add a space or newline if needed
+            }
+        }
+        return extractedText.Trim(); // Trim to remove any extra spaces at the ends
+    }
 	public static string FormatTextResult(string transcript, List<float> scoreList) 
     /*
     * The font used in the ResultText GO is already set as BOLD        
