@@ -4,19 +4,29 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
-
+/// <summary>
+/// The default state of the Panel is disabled, and it will be enabled when the user clicks the FlashCard button in the main menu.
+/// <para>
+/// Manages the SuperMemo 2 algorithm learning session within a language learning application, focusing on interactive flashcard activities. 
+/// This class also managing additional resources like etymology, word illustrations, and pronunciation practice with feedback. 
+/// </para>
+/// <para><b>Key Features:</b></para>
+/// <list type="bullet">
+/// <item><description>Flashcard interaction management, including question presentation and answer revelation.</description></item>
+/// <item><description>User recall quality rating for adjusting review schedules.</description></item>
+/// <item><description>Presentation of etymologies, illustrations, and AI pronunciation predictions.</description></item>
+/// <item><description>Audio playback control for pronunciation examples and pronunciation recording.</description></item>
+/// <item><description>Optimized review scheduling based on the SuperMemo 2 algorithm.</description></item>
+/// </list>
+/// </summary>
 public class SuperMemoPanel : MonoBehaviour
-// Default state of the Panel is disabled
 
 {
     [SerializeField] TMPro.TextMeshProUGUI frontCardText; // Front card
     [SerializeField] TMPro.TextMeshProUGUI backCardText; // Back card    
-
-    [SerializeField] TMPro.TextMeshProUGUI etymoText; // Etymology card
-    
+    [SerializeField] TMPro.TextMeshProUGUI etymoText; // Etymology card    
     [SerializeField] GameObject warningImageFrontGO; // Front card
     [SerializeField] GameObject warningImageBackGO; // Back card    
-
     [SerializeField] TMPro.TextMeshProUGUI intervalText_again; // Interval text for AGAIN button
     [SerializeField] TMPro.TextMeshProUGUI intervalText_hard; // Interval text for HARD button
     [SerializeField] TMPro.TextMeshProUGUI intervalText_good; // Interval text for GOOD button
@@ -31,12 +41,10 @@ public class SuperMemoPanel : MonoBehaviour
     [SerializeField] Toggle autoPlayToggle ; // Auto play audio
     [SerializeField] Toggle hideFinnishToggle; // Hide Finnish text
     [SerializeField] GameObject illustrationGO; // Illustration
-
     [SerializeField] GameObject superMemoPanel;     
     [SerializeField] GameObject cardDeckPanel;     
     [SerializeField] TMPro.TextMeshProUGUI predictionDebugText;
     [SerializeField] DetailScorePanel detailScorePanel;
-
     [SerializeField] GameObject surveyPopUpPanelGO;   
 
     TMPro.TextMeshProUGUI finnishCardText; // The text of the card that is in Finnish
@@ -136,10 +144,9 @@ public class SuperMemoPanel : MonoBehaviour
             // qualityBarGO.SetActive(false);
             FinnishFlashCard();
         }
-
     }
 
-    public void displayAnswer()
+    public void DisplayAnswer()
     /*
     *   This function also attached to ShowAnswer OnClick() in Unity
     */
@@ -191,7 +198,10 @@ public class SuperMemoPanel : MonoBehaviour
         }
         
         // Find the illustration and display it
-        Sprite newSprite = Resources.Load<Sprite>(Const.ILLUSTRATIONS_PATH + finnishText);
+        // New version would look up the filename stored in the card illustration field        
+        Sprite newSprite = Resources.Load<Sprite>(Const.ILLUSTRATIONS_PATH + currentCard.illustration.ToLower());
+        Debug.Log("Illustration: " + currentCard.illustration);
+
         if (newSprite) {
             illustrationGO.GetComponent<Image>().sprite = newSprite;
             illustrationGO.SetActive(true);            
@@ -217,8 +227,7 @@ public class SuperMemoPanel : MonoBehaviour
             return (interval*24).ToString("0") + " h";
         } else {
             return (interval*24*60).ToString("0") + " m";
-        }
-        
+        }        
     }
 
     /// <summary>
@@ -476,7 +485,7 @@ public class SuperMemoPanel : MonoBehaviour
             resultTextButton.onClick.AddListener(() => detailScorePanel.ShowDetailScorePanel(transcript, sampleClip, replayClip));
         }
 
-        displayAnswer();
+        DisplayAnswer();
     }
     IEnumerator LoadAudioClip(string filename) 
     /*

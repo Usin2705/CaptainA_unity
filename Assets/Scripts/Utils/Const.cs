@@ -28,9 +28,6 @@ using System.Collections.Generic;
 // Also see "hänellä ei ollut mitään opittavaa"
 // The aa at the end only get the highest score for 1 a (due to entropy)
 
-// TODO 
-// Add more Grocery, AudioBooks
-
 public static class Const
 {
 
@@ -179,16 +176,14 @@ public static class Const
     // Name of flashcard deck available in the app
     public static readonly string[] FLASH_CARD_FILES = {        
         "FI-EN_OmaSuomi_1_CaptainA",
-        "EN-FI_OmaSuomi_1_CaptainA",
-        "FI-EN_OmaSuomi_1_Finnish1_CaptainA",
-        "EN-FI_OmaSuomi_1_Finnish1_CaptainA"        
+        "EN-FI_OmaSuomi_1_CaptainA"        
     };
 
     // Folder contains flashcard decks in Resources folder
     public const string FLASH_CARDS_PATH = "Flashcards/";
 
     public const float REQUIRED_HOLD_TIME = 1.0f;
-    public const int ADDITIONAL_NEW_CARD = 20;
+    public const int ADDITIONAL_NEW_CARD = 50;
     
     public const int CARD_AGAIN = 0;
     public const int CARD_HARD = 3;

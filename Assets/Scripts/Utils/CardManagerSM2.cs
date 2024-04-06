@@ -361,10 +361,13 @@ public class Card
     public string nextReviewDateStr; // Use the ISO 8601 format for the string representation. To convert back use DateTime.Parse(nextReviewDateStr);
     public string frontLanguage;
     public string backLanguage;
+    public int chapter; // This is the chapter of the card
+    public string illustration; // This is the illustration file of the card, empty if there is nothing
+
 
     public override string ToString()
     {
-        return $"Front Text: {frontText}\nBack Text: {backText}\nCard Type: {cardType}\nInterval: {interval}\nEase Factor: {easeFactor}\nRepetitions: {repetitions}\nNext Review Date Str: {nextReviewDateStr}\nFront Language: {frontLanguage}\nBack Language: {backLanguage}";
+        return $"Front Text: {frontText}\nBack Text: {backText}\nCard Type: {cardType}\nInterval: {interval}\nEase Factor: {easeFactor}\nRepetitions: {repetitions}\nNext Review Date Str: {nextReviewDateStr}\nFront Language: {frontLanguage}\nBack Language: {backLanguage}\nChapter: {chapter}\nIllustration: {illustration}";
     }
 }
 
