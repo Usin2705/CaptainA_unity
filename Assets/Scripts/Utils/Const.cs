@@ -20,6 +20,11 @@ using System.Collections.Generic;
 
 // Current theme:
 // https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=fcefce&secondary.color=19ddc9
+// https://m3.material.io/theme-builder#/custom
+// Primary color: #fcefce
+// Secondary color: #19ddc9
+// Tertiary color: #ffffff
+// Neutral color: #f5f5f6
 
 // TODO check mitä kuuluu word audio example.
 // Extra frame (might be 6) is needed since entropy tend to yield weird result
@@ -173,10 +178,10 @@ public static class Const
 
     // ===================== FLASH CARD CONST =====================
 
-    // Name of flashcard deck available in the app
-    public static readonly string[] FLASH_CARD_FILES = {        
-        "FI-EN_OmaSuomi_1_CaptainA",
-        "EN-FI_OmaSuomi_1_CaptainA"        
+    // Create a const dictionary for the flashcard deck
+    public static readonly Dictionary<string, string> FLASH_CARD_DICT = new Dictionary<string, string> {
+        {"FlashCard_OS_FIN_ENG", "FI-EN_OmaSuomi_1_CaptainA"},
+        {"FlashCard_OS_ENG_FIN", "EN-FI_OmaSuomi_1_CaptainA"}
     };
 
     // Folder contains flashcard decks in Resources folder

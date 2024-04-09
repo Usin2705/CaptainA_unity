@@ -2,8 +2,17 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// This class is used to manage the Card Deck Panel
+/// The Card Deck Panel is the panel that contains all the card decks
+/// The card deck is the list of cards that the user want to study
+/// <para>
+/// Remember to update the variable FLASH_CARD_DICT in the Const.cs file when you add a new card deck
+/// </para>
+/// </summary>
 public class CardDeckPanel : MonoBehaviour
 {
 
@@ -12,7 +21,9 @@ public class CardDeckPanel : MonoBehaviour
     [SerializeField] GameObject cardDeckPanelGO;
     [SerializeField] GameObject superMemoPanelGO;
 
-    List<GameObject> listScrollItems = new List<GameObject>();   
+    //Create a list of GameObject to store all the card deck in the panel
+    //You need to assign this list manually in the Unity Editor
+    [SerializeField] List<GameObject> flashCardsGO = new List<GameObject>();       
 
     private bool pointerDown;
     private float pointerDownTimer; 
@@ -30,38 +41,17 @@ public class CardDeckPanel : MonoBehaviour
         }
     }
 
-    public void LoadFlashCards()
-    {
-        ClearFlashCards(); // Clear all the card deck in the panel
+    public void LoadFlashCards() {
 
-        // Sort the deck by the last time user use the deck                
-        List<FlashCard> flashCards = new List<FlashCard>();
-        
-        // Create a list of card deck
-        foreach(string deckName in Const.FLASH_CARD_FILES)        
-        {
-            // Debug.Log("Load flashcard: " + deckName);
+        // Populate the decks into the Panel
+        foreach(GameObject flashCardGO in flashCardsGO) 
+        {   
+            // Get the name of the component
+            string cardGOName = flashCardGO.name;            
+            string deckName = Const.FLASH_CARD_DICT[cardGOName];
             SaveData.UpdateFlashCard(deckName); // Update the flashcard if needed
             FlashCard flashCard = SaveData.LoadFlashCard(deckName);            
-            flashCards.Add(flashCard);            
-        }         
-
-        // Sort the list of card deck by the last time user use the deck
-        // Use try catch to avoid error when the date is not in the correct format
-        try {
-            flashCards = flashCards.OrderByDescending(flashCard => DateTime.Parse(flashCard.useDateStr)).ToList();
-        } catch (Exception e) {
-            Debug.Log("Error when sorting flashcards: " + e.Message);
-        }          
-
-        // Populate sorted decks into the Panel
-        foreach(FlashCard flashCard in flashCards)        
-        {            
-            GameObject cardDeckGO = Instantiate(deckListPrefab, new Vector3(0,0,0), Quaternion.identity);
-            cardDeckGO.transform.SetParent(content.transform, false); // Register the big panel (CardDeckPanel --> Content) as parent 
-
-            cardDeckGO.transform.Find("DeckPanel").
-                    transform.Find("CardNameText").GetComponent<TMPro.TextMeshProUGUI>().text = flashCard.name;
+            
 
             // Update flashcard info, including:
             // 1. Number of new cards to learn (new card)
@@ -105,28 +95,33 @@ public class CardDeckPanel : MonoBehaviour
                 flashCard.todayDateStr = DateTime.Now.ToString("O");
             }
 
+            // Update the progress value. The progress value is the number of cards that the user in CARD_TYPE.REVIEW
+            // round down instead of round up (int) is enough for rounding down
+            int reviewCards = flashCard.cards.Count(card => card.cardType == (int) CARD_TYPE.REVIEW);
+            flashCard.progress = (int) ((double) reviewCards / flashCard.cards.Count * 100);
+
             SaveData.SaveIntoJson(flashCard, flashCard.fileName);                
 
             newCards = Math.Min(newCards, flashCard.maxNewCard);
             dueCards = Math.Min(dueCards, flashCard.maxReviewCard);            
+
+            flashCardGO.transform.Find("ProgressPanel").
+                    transform.Find("ProgressBar").GetComponent<Image>().fillAmount = flashCard.progress / 100f;
+            flashCardGO.transform.Find("ProgressPanel").
+                    transform.Find("ProgressText").GetComponent<TMPro.TextMeshProUGUI>().text = flashCard.progress + "%";
+
             
-            cardDeckGO.transform.Find("DeckPanel").
+            flashCardGO.transform.Find("DeckPanel").
                     transform.Find("CardInfoText").GetComponent<TMPro.TextMeshProUGUI>().text = TextUtils.FormatCardTypeNumber(
                                                                                                             newCards, learnCards, dueCards);
             
-            listScrollItems.Add(cardDeckGO);
-            
-            // Find the Button to register OnClick Function
-            // No longer need this one, we use EventTrigger instead
-            // Button deckButton = cardDeckGO.transform.GetComponent<Button>();        
-
             // Pass phoneme value to EventTrigger function
             // We need EventTrigger to detect long press and short press
             // To be safe, remove all triggers were add to this component
-            EventTrigger existingTrigger  = cardDeckGO.gameObject.GetComponent<EventTrigger>();
+            EventTrigger existingTrigger  = flashCardGO.gameObject.GetComponent<EventTrigger>();
             if(existingTrigger  != null) Destroy(existingTrigger );
 
-            EventTrigger trigger = cardDeckGO.gameObject.AddComponent<EventTrigger>();
+            EventTrigger trigger = flashCardGO.gameObject.AddComponent<EventTrigger>();
             EventTrigger.Entry pointerDownEntry = new EventTrigger.Entry();
             pointerDownEntry.eventID = EventTriggerType.PointerDown;
             pointerDownEntry.callback.AddListener((data) => { OnPointerDown((PointerEventData)data); });
@@ -136,18 +131,6 @@ public class CardDeckPanel : MonoBehaviour
             pointerUpEntry.eventID = EventTriggerType.PointerUp;
             pointerUpEntry.callback.AddListener((data) => { OnPointerUp((PointerEventData)data, flashCard.fileName, newCards, dueCards, learnCards); });
             trigger.triggers.Add(pointerUpEntry);            
-        }
-    }
-
-    private void ClearFlashCards() 
-    /*
-    *   Need to Destroy all GO in the list to avoid create duplicate scorelist
-    */
-    {
-        
-        foreach (GameObject go in listScrollItems) 
-        {
-            Destroy(go);
         }
     }
 
@@ -191,13 +174,5 @@ public class CardDeckPanel : MonoBehaviour
         FlashCard flashCard = SaveData.LoadFlashCard(deckFileName);
         CardQueueManager.GetQueueManager.MakeQueue(flashCard, newCards, dueCards);
         superMemoPanelGO.SetActive(true);
-    }
-
-    void OnDisable() 
-    /*
-    *   Need to Destroy all GO in the list to avoid create duplicate scorelist
-    */
-    {
-        ClearFlashCards();
     }
 }

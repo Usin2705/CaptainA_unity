@@ -11,7 +11,8 @@
     "todayDateStr": "2000-01-01T00:00:00.0000000Z",
     "useDateStr": "2000-01-26T00:00:00.0000000Z",
     "languageCode": "EN",
-    "version": 7,
+    "version": 6,
+	"progress": 0,
     "cards": [
         {
             "id": "588936e0-3686-424e-9584-ddc0bad52738",

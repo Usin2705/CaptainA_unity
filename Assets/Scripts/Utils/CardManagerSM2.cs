@@ -28,7 +28,7 @@ public class CardManagerSM2
         // Debug.Log("CardManagerSM2: " + _flashCardFileName);
         flashCardFileName = _flashCardFileName;
         flashCard = SaveData.LoadFlashCard(flashCardFileName);
-        Debug.Log("FlashCard loaded: " + flashCard.name);
+        //Debug.Log("FlashCard loaded: " + flashCard.name);
     }
 
     /// <summary>
@@ -354,7 +354,7 @@ public class Card
     public string frontText;
     public string backText;
     public string etymology; // This is the etymology of the word
-    public int cardType; // 0: New, 1: Learning, 2: Review, 3: Relearning
+    public int cardType; // 0: New, 1: Learning, 2: Relearning, 3: Review
     public float interval;
     public float easeFactor;
     public int repetitions;
@@ -388,34 +388,45 @@ public class FlashCard
     public string useDateStr; // This keep track of the last time the users use the deck
     public string languageCode;
     public int version;
+    public int progress; // This is the progress of the deck
     
     public void updateCard(Card newCard) {
+        
+        // Update the card in the list, based on the id
+        // If the card is not found, do nothing
+
         Card cardToUpdate = cards.Find(card => card.id == newCard.id);
         if (cardToUpdate != null) {
             cardToUpdate.frontText = newCard.frontText;
             cardToUpdate.backText = newCard.backText;
-            cardToUpdate.cardType = newCard.cardType;
-            cardToUpdate.interval = newCard.interval;
-            cardToUpdate.easeFactor = newCard.easeFactor;
-            cardToUpdate.repetitions = newCard.repetitions;
-            cardToUpdate.nextReviewDateStr = newCard.nextReviewDateStr;
+            cardToUpdate.etymology = newCard.etymology;
+            cardToUpdate.cardType = newCard.cardType;                   // also updated in updateCardMeta
+            cardToUpdate.interval = newCard.interval;                   // also updated in updateCardMeta
+            cardToUpdate.easeFactor = newCard.easeFactor;               // also updated in updateCardMeta
+            cardToUpdate.repetitions = newCard.repetitions;             // also updated in updateCardMeta
+            cardToUpdate.nextReviewDateStr = newCard.nextReviewDateStr; // also updated in updateCardMeta
             cardToUpdate.frontLanguage = newCard.frontLanguage;
-            cardToUpdate.backLanguage = newCard.backLanguage;        
+            cardToUpdate.backLanguage = newCard.backLanguage;            
+            cardToUpdate.chapter = newCard.chapter;
+            cardToUpdate.illustration = newCard.illustration;
         }
     }
 
-    public void updateCardMeta(Card newCard) {
+    public void updateCardMeta(Card localCard) {
     /*
     *   Since the cardToUpdate already have the new fronttext and backtext
     *   We only need to update other meta data so that user won't lose their progress
+    *   
+    *   The info used to udpate is from the localFlashCard (with the progress)
+    *   The card is updated is the card with the same id, on the newFlashCard (with no progress)
     */    
-        Card cardToUpdate = cards.Find(card => card.id == newCard.id);
+        Card cardToUpdate = cards.Find(card => card.id == localCard.id);
         if (cardToUpdate != null) {
-            cardToUpdate.cardType = newCard.cardType;
-            cardToUpdate.interval = newCard.interval;
-            cardToUpdate.easeFactor = newCard.easeFactor;
-            cardToUpdate.repetitions = newCard.repetitions;
-            cardToUpdate.nextReviewDateStr = newCard.nextReviewDateStr;
+            cardToUpdate.cardType = localCard.cardType;
+            cardToUpdate.interval = localCard.interval;
+            cardToUpdate.easeFactor = localCard.easeFactor;
+            cardToUpdate.repetitions = localCard.repetitions;
+            cardToUpdate.nextReviewDateStr = localCard.nextReviewDateStr;
         }
     }
 }
@@ -426,8 +437,8 @@ public enum CARD_TYPE
     *   In Anki, there are 4 types of card:
     *   1. New
     *   2. Learning
-    *   3. Review
-    *   4. Relearning
+    *   3. Relearning
+    *   4. Review
     *   https://faqs.ankiweb.net/what-spaced-repetition-algorithm.html#what-are-the-different-card-types
     *   Each card type has different behavior in the algorithm   
     *
