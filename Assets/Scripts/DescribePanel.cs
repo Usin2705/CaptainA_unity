@@ -99,6 +99,7 @@ public class DescribePanel : MonoBehaviour
         taskNumber += 1;
         if (taskNumber > 3) taskNumber = 0;
         if (taskNumber < 0) taskNumber = 0;
+        
         switch (taskType) {
             case TaskType.A:
                 // Select the image to be displayed
