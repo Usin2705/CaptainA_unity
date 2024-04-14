@@ -97,6 +97,10 @@ public static class Const
     // The extra record time after the button release is trimmed
     public const int MAX_REC_TIME = 8;
 
+    public const int MAX_REC_TIME_A = 45;
+    public const int MAX_REC_TIME_B = 30;
+
+
     public const string REPLAY_FILENAME = "recorded_speech";
     public const string DESCRIBE_FILENAME = "recorded_describe_speech";
 
@@ -117,6 +121,7 @@ public static class Const
 
     // Maximum waiting time for Unity web request
     public const int TIME_OUT_SECS = 20;
+    public const int TIME_OUT_ADVANCE_SECS = 30;
     // =======================================================
 
 
@@ -234,6 +239,33 @@ public static class Const
 
     // ====================================================================
 
+    public const string ROOM_DESCRIPTION_A1 = @"Task: Based on the provided transcript (made by an automatic speech recognition model) of the user's description of a picture, assign a grade as 'Excellent', 'Good', 'Partially' or 'None' for the task completion/task achievement. This is the task question given to the user:\\n" +
+    "Explain your grading in detail and then give the grade. Then, based on what the user has said, provide a version that you think would get an 'Excellent' grade. Provide your improved version in Finnish inside the '@' tag like this: @improved version in this tag@\\n" +
+    "The task description:\\n" +
+    "Please describe the room and objects (colours, positions) in the picture above. You have 45 seconds.\\n" +
+    "Grading examples:\\n" +
+    "User: huoneessa on iso sininen sohva lattialla on suuri punainen matto vasemmalla on musta kirjahylly ja paljon kirjoja kirjahyllyn vieressä on pieni punainen nojatuoli\\n" +
+    "System:[Explanation] Excellent. @Improved version@\\n" +
+    "User: huoneessa on sohva ja matto musta hylly on ja siinä on kirjoja myös tuoli mutta ei muista televisio on huoneessa ja ovi on vihreä en näe pöytää\\n" +
+    "System:[Explanation] Good. @Improved version@\\n" +
+    "User: tässä huoneessa on paljon tilaa musta kirjahylly on seinää vasemmalla ja siinä on monia värejä keskellä huonetta on tumman siinen sohva ja sillä on keltainen tyyny huoneen oikealla puolella on keltaisia kuvat seinällä ja vihreä ovi vieressä on takki naulakossa.\\n" +
+    "System:[Explanation] Excellent. @Improved version@\\n" +
+    "User: on musta kirjahylly ja kirjoja sininen sohva ja siinä on jotain keltaista lattialla on matto keltainen ja ovi on siellä.\\n" +
+    "System:[Explanation] Good. @Improved version@\\n" +
+    "User: sininen sohva ja iso no ja punainen iso noja tuoli pun punainen noja tuoli ja musta kirja musta hylly kilja.\\n" +
+    "System:[Explanation] Partially. @Improved version@\\n" +
+    "The room description:\\n" +
+    "The room is warm and inviting. There is a big black bookshelf on the left with many colourful books. The bookshelf is against the wall and does not reach the ceiling, leaving some windows and wall space above it. A blue (or dark blue) sofa with yellow pillows is on the right of the room. The sofa is big and has an L shape, one can say that there are two 2 blue sofas instead of 1 big sofa. There is a big red (or dark red) rug on the floor. Next to the bookshelf, there is a pink (or light pink) armchair. In front of the sofa, there is no coffee table visible, which gives the space an open feel. There is a black television stand with a television (that also looks black) on it against the wall. On the wall above the television, there are two framed pictures. On the wall on the right, above the blue sofa, there are six (or many) square yellow decoratives (or abstract pictures). There is a green door in the far right corner. The door appears to be closed. Near the green door, there is a coat rack (in Finnish: naulakko) with 2 jackets (one black and one yellow jacket). The room has off-white walls (with a slightly yellow or grey) and a ceiling with some grey (or grey green).\\n\\n" +
+    "Grading Criteria:\\n" +
+    "Excellent: Completes all aspects of the task. There are no significant deficiencies in the response.\\n" +
+    "Good: Completes the task, but there are some significant deficiencies in the response.\\n" +
+    "Partially: Only partially answers the task, the response has many significant deficiencies.\\n";
+
+    public const string ROOM_DESCRIPTION_A2 = @"";
+    public const string ROOM_DESCRIPTION_A3 = @"";
+    public const string ROOM_DESCRIPTION_A4 = @"";
+
+
     public const string ROOM_DESCRIPTION = 
     "The room appears to be a modern and cozy living room. The color palette is "
     + "dominated by soft, pleasant hues of green, orange, and light brown. Walls: "
@@ -248,10 +280,10 @@ public static class Const
     + "circular wall clock displaying a teal face with simple hour markers. Television "
     + "Console: Positioned centrally in the room is a sizable flat-screen TV atop an "
     + "orange wooden console. The console has two storage compartments and a central "
-    + "area housing what seems to be a DVD or Blu-ray player. Couch & Ottoman: On the "
+    + "area housing what seems to be a DVD or Blu-ray player. Couch & Ottoman (in Finnish: rahi): On the "
     + "left side, there's a teal sofa with an adjacent small wooden side table. On the "
     + "table is a green apple and a green lamp with a curved neck. Opposite the couch, "
-    + "there's a teal ottoman, and atop it sits a white cat gazing towards the viewer. "
+    + "there's a teal ottoman (in Finnish: rahi), and atop it sits a white cat gazing towards the viewer. "
     + "Coffee Table: In front of the TV console is a wooden coffee table with a simple, "
     + "modern design. It has a single green remote control on it. Second Cat: A gray and "
     + "white cat with a blue collar sits on the floor to the left of the coffee table, "

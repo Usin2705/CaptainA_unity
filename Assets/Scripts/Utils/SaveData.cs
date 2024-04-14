@@ -328,6 +328,13 @@ public class ASRResult{
     public List<float> score;
     public List<WARNINGS> warning;
 }
+
+//##################################### GET TRANSCRIPT RESTFUL RESULT #####################################
+[System.Serializable]
+public class TranscriptResult{
+
+    public string prediction;
+}
 //##################################### LEVENSHTEIN #######################################
 [System.Serializable]
 public class OPS 

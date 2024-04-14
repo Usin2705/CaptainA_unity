@@ -6,13 +6,17 @@ using UnityEngine.UI;
 public class AdvancePanel : MonoBehaviour
 {
     [SerializeField] GameObject advancePanelGO;
-    [SerializeField] GameObject describePanelGO;
+    [SerializeField] GameObject describePanelAGO;
+    [SerializeField] GameObject describePanelBGO;
+    [SerializeField] GameObject describePanelCGO;
 
     List<GameObject> listScrollItems = new List<GameObject>();            
 
     void OnEnable() 
     {
-        describePanelGO.SetActive(false);
+        describePanelAGO.SetActive(false);
+        describePanelBGO.SetActive(false);
+        describePanelCGO.SetActive(false);
 
         // Check if the instruction panel has been shown before
         if (!PlayerPrefs.HasKey(Const.PREF_INS_ADVANCE)) {
@@ -22,10 +26,21 @@ public class AdvancePanel : MonoBehaviour
         }
     }
 
-    public void OnDescribeButtonClicked() 
+    public void OnDescribeAButtonClicked() 
     {
-        describePanelGO.SetActive(true);
+        describePanelAGO.SetActive(true);
     }
+
+    public void OnDescribeBButtonClicked() 
+    {
+        describePanelBGO.SetActive(true);
+    }
+
+    public void OnDescribeCButtonClicked() 
+    {
+        describePanelCGO.SetActive(true);
+    }
+
 
     void OnDisable() 
     /*

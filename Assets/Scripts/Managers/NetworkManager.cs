@@ -22,6 +22,7 @@ public class NetworkManager : MonoBehaviour
 	// }
 
 	string asrURL = Secret.AUDIO_URL; 
+	string advanceASRURL = Secret.ADVANCE_AUDIO_URL; 
 	string gptToken = Secret.CHATGPT_API; 
 
 	// However, other URL should be in https for encryption purpose
@@ -124,7 +125,110 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    public IEnumerator GPTTranscribe(byte[] wavBuffer, GameObject transcriptGO, GameObject scoreButtonGO, bool isFinnish=true)
+    public IEnumerator GPTTranscribe(byte[] wavBuffer, GameObject transcriptGO, GameObject scoreButtonGO,  DescribePanel.TaskType taskType, int taskNumber, 
+									 bool isFinnish=true)
+    {		
+		WWWForm form = new WWWForm();
+        form.AddBinaryData("file", wavBuffer, fileName:"recorded_describe_speech.wav", mimeType: "audio/wav");
+		form.AddField("language", "FI");
+
+        UnityWebRequest www = UnityWebRequest.Post(advanceASRURL, form);
+		www.timeout = Const.TIME_OUT_ADVANCE_SECS;
+		
+        // Send the request and wait for response
+        yield return www.SendWebRequest();
+		
+        if (www.result != UnityWebRequest.Result.Success) {
+			Debug.LogError("Error: " + www.error);
+			Debug.LogError("Error: " + www.result);
+			Debug.LogError("Error: " + www.downloadHandler.text);
+		} else {
+			Debug.Log(www.downloadHandler.text);
+			string asrtranscript = JsonUtility.FromJson<TranscriptResult>(www.downloadHandler.text).prediction;
+			transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = asrtranscript;
+			chatGPTTranscript = asrtranscript;
+			StartCoroutine(GPTRatingTextFi(scoreButtonGO, asrtranscript, taskType, taskNumber, isFinnish));	
+		}
+
+		// For testing purpose
+		// yield return GPTRatingText(scoreButtonGO, "Huoneessa on iso. Sininen sova on oikea. Sen alla on paljon keltainen kuva. Punainen nuoja tuoli ja musta hullu on vasemmalla. Iso matto on lattialla ja viiveä ovi");			
+		// yield return GPT_TTS("Huoneessa on iso. Sininen sova on oikea. Sen alla on paljon keltainen kuva. Punainen nuoja tuoli ja musta hullu on vasemmalla. Iso matto on lattialla ja viiveä ovi");			
+		//yield return PostRequest("https://api.openai.com/v1/chat/completions", "Lattialla on sininen kissa, toinen kissa sohvatuolilla. Seinällä on kello oven yläpuolella.");			
+    }
+
+		private IEnumerator GPTRatingTextFi(GameObject scoreButtonGO, string transcript, DescribePanel.TaskType taskType, int taskNumber, bool isFinnish=true)
+    {	
+
+		string gradingInstructions = TextUtils.GetGradingInstruction(taskType, taskNumber);
+		
+		gradingInstructions = gradingInstructions.Replace("\r", " ").Replace("\"", "\\\""); // Escape double quotes
+
+		// Create the messages JSON string using string formatting or interpolation
+		// the $ symbol before the string allows you to insert variables directly into 
+		// the string with {}. The transcript.Replace("\"", "\\\"") is used to escape 
+		// any double quotes that might be present in the transcript string, ensuring that 
+		// the JSON remains valid.
+		//""model"": ""gpt-4-vision-preview"",   
+		//""model"": ""gpt-4-0613"",
+		//""model"": ""gpt-3.5-turbo-1106"",	
+		string jsonData = $@"
+		{{
+			""model"": ""gpt-4-0613"",	
+			""temperature"": 0.0,
+			""messages"": [
+				{{""role"": ""system"", ""content"": ""{gradingInstructions}""}},
+				{{""role"": ""user"", ""content"": ""{transcript.Replace("\"", "\\\"")}""}}
+			],
+			""max_tokens"": 2500
+		}}";
+
+		Debug.Log(jsonData);
+		
+		using (UnityWebRequest request = new UnityWebRequest("https://api.openai.com/v1/chat/completions", "POST"))
+		{        
+			// Convert JSON data to a byte array and set it as upload handler					
+    		byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(jsonData);
+    		request.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
+			request.downloadHandler = new DownloadHandlerBuffer(); // Set the download handler
+
+		    // Set headers
+    		request.SetRequestHeader("Content-Type", "application/json");
+   			request.SetRequestHeader("Authorization", "Bearer " + gptToken);	
+
+			// Send the request and wait for response
+			yield return request.SendWebRequest();
+
+			if (request.result != UnityWebRequest.Result.Success) {
+				Debug.LogError("Error: " + request.error);
+				Debug.LogError("Error: " + request.result);
+				Debug.LogError("Error: " + request.downloadHandler.text);
+			} else {
+				Debug.Log(request.downloadHandler.text);
+				OpenAIChatResponse response = JsonUtility.FromJson<OpenAIChatResponse>(request.downloadHandler.text);
+				if (response != null && response.choices.Length > 0)
+					{
+						string assistantResponse = response.choices[0].message.content;
+						Debug.Log("Assistant says: " + assistantResponse);
+
+						// Extract all text within "@" tags
+        				string finnishTTS = TextUtils.ExtractTextWithinAtTags(assistantResponse);
+                    	StartCoroutine(GPT_TTS(finnishTTS));
+
+                    	// Replace "@" in assistantResponse with a new line
+                    	assistantResponse = assistantResponse.Replace("@", "\n");
+						scoreButtonGO.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Done";
+						scoreButtonGO.SetActive(true);
+						chatGPTGrading = assistantResponse;
+					}
+					else
+					{
+						Debug.LogError("Invalid response or no choices available.");
+					}
+			}
+		}
+    }
+
+    public IEnumerator GPTTranscribeOpenAI(byte[] wavBuffer, GameObject transcriptGO, GameObject scoreButtonGO, bool isFinnish=true)
     
 	{		
 		WWWForm form = new WWWForm();

@@ -184,4 +184,42 @@ public static class TextUtils
 
         return warn_text;
     }
+
+    public static string GetGradingInstruction(DescribePanel.TaskType taskType, int taskNumber)
+    {
+        if (taskNumber < 0 ) taskNumber = 0;
+        if (taskNumber > 3 ) taskNumber = 3;
+        
+        switch (taskType)
+        {
+            case DescribePanel.TaskType.A:
+                switch (taskNumber)
+                {
+                    case 0: return Const.ROOM_DESCRIPTION_A1;
+                    case 1: return Const.ROOM_DESCRIPTION_A2;
+                    case 2: return Const.ROOM_DESCRIPTION_A3;
+                    case 3: return Const.ROOM_DESCRIPTION_A4;
+                }
+                break;
+            case DescribePanel.TaskType.B:
+                switch (taskNumber)
+                {
+                    case 0: return "Description for TaskType1 Task1";
+                    case 1: return "Description for TaskType1 Task2";
+                    case 2: return "Description for TaskType1 Task3";
+                    case 3: return "Description for TaskType1 Task4";
+                }
+                break;
+            case DescribePanel.TaskType.C:
+                switch (taskNumber)
+                {
+                    case 0: return "Description for TaskType1 Task1";
+                    case 1: return "Description for TaskType1 Task2";
+                    case 2: return "Description for TaskType1 Task3";
+                    case 3: return "Description for TaskType1 Task4";
+                }
+                break;
+        }        
+        return Const.ROOM_DESCRIPTION_A1;
+    }
 }
