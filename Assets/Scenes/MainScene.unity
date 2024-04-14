@@ -11948,8 +11948,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -12016,8 +12016,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -220}
-  m_SizeDelta: {x: -40, y: 300}
+  m_AnchoredPosition: {x: 0, y: -270}
+  m_SizeDelta: {x: -40, y: 380}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &802317280
 GameObject:
@@ -20316,8 +20316,8 @@ MonoBehaviour:
   m_text: "Situation: You met with your friends at a caf\xE9 yesterday evening. At
     home, you notice your hoodie is missing. You call the caf\xE9 (max 30sec): Introduce
     yourself. Politely state your matter. Describe the hoodie (see the picture above).
-    <b>Note: Do not disclose your real name or personal matters.</b> Instead of your
-    own name, you can use the name Maija/Matti Meik\xE4l\xE4inen."
+    <b>Note: Do not disclose your real name or personal matters.</b> You can use
+    the name Maija/Matti Meik\xE4l\xE4inen."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cc8e115a5df151a409670fe1573abdee, type: 2}
   m_sharedMaterial: {fileID: -4676070619788108815, guid: cc8e115a5df151a409670fe1573abdee, type: 2}
@@ -20344,8 +20344,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -20412,8 +20412,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -220}
-  m_SizeDelta: {x: -40, y: 300}
+  m_AnchoredPosition: {x: 0, y: -270}
+  m_SizeDelta: {x: -40, y: 380}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1371536111
 GameObject:
@@ -21092,7 +21092,7 @@ MonoBehaviour:
   progressBarGO: {fileID: 450969886}
   scoreButtonGO: {fileID: 1986060063}
   PromptGeneratorGO: {fileID: 2105947776}
-  taskType: 0
+  taskType: 2
   taskNumber: 0
   gptGradingPanel: {fileID: 853599414}
   imageComponent: {fileID: 531386114}
@@ -22537,8 +22537,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -220}
-  m_SizeDelta: {x: -40, y: 300}
+  m_AnchoredPosition: {x: 0, y: -270}
+  m_SizeDelta: {x: -40, y: 380}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1534786219
 MonoBehaviour:
@@ -22588,8 +22588,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -24761,7 +24761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   surveyPopUpPanelGO: {fileID: 1990495844}
-  imageComponent: {fileID: 999932890}
+  imageComponent: {fileID: 531386114}
 --- !u!1 &1674173417
 GameObject:
   m_ObjectHideFlags: 0
@@ -31859,7 +31859,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10.000122, y: -320}
+  m_AnchoredPosition: {x: -10.000244, y: -320}
   m_SizeDelta: {x: -20, y: 180}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2130678400

@@ -55,6 +55,8 @@ public class NetworkManager : MonoBehaviour
 		// OpenAI require Json format so this is the way to do it and not our normal webrequest
 		// ""style"": ""vivid"",
 		// ""style"": ""natural"",
+		// ""quality"": ""standard"",			
+		// ""quality"": ""hd"",			
 		string jsonData = $@"
 		{{
 			""prompt"": ""{prompt.Replace("\"", "\\\"")}"",
