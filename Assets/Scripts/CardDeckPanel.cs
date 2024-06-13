@@ -24,6 +24,8 @@ public class CardDeckPanel : MonoBehaviour
     //Create a list of GameObject to store all the card deck in the panel
     //You need to assign this list manually in the Unity Editor
     [SerializeField] List<GameObject> flashCardsGO = new List<GameObject>();       
+    
+    [SerializeField] GameObject secretFlashCardGO; // Refer to SecretFlashCard
 
     private bool pointerDown;
     private float pointerDownTimer; 
@@ -31,6 +33,22 @@ public class CardDeckPanel : MonoBehaviour
     void OnEnable() 
     {
         superMemoPanelGO.SetActive(false);
+
+        // Check if the user has a secret flash card
+        string secretText = PlayerPrefs.GetString(Const.PREF_SECRET_TEXT);  
+        secretText = secretText.Replace("\r", "").Replace("\n", "").Trim();                
+        // Remove the last character if the could be a special character
+        if (secretText.Length == Secret.SECRET_TEXT.Length + 1) {
+           secretText = secretText[..^1]; 
+        }
+        
+        if (secretText == Secret.SECRET_TEXT) {                  
+            secretFlashCardGO.SetActive(true);
+        } else {
+            secretFlashCardGO.SetActive(false);
+            // If the user does not have a secret flash card, remove the secret flash card from the list
+            flashCardsGO.Remove(secretFlashCardGO);
+        }
         
         LoadFlashCards();  
 

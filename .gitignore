@@ -70,10 +70,7 @@ UserSettings/Layouts/
 UserSettings/Layouts/default-2022.dwlt
 
 CaptainA_Android_mapping.txt
-app_BackUpThisFolder_ButDontShipItWithYourGame
-app_BurstDebugInformation_DoNotShip
-CaptainA_Android_BackUpThisFolder_ButDontShipItWithYourGame
-CaptainA_Android_BurstDebugInformation_DoNotShip
+
 user.keystore
 .vscode/
 

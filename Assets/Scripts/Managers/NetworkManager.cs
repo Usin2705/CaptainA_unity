@@ -24,6 +24,7 @@ public class NetworkManager : MonoBehaviour
 	string asrURL = Secret.AUDIO_URL; 
 	string advanceASRURL = Secret.ADVANCE_AUDIO_URL; 
 	string gptToken = Secret.CHATGPT_API; 
+	string gptAzureToken = Secret.AZUREGPT_API; 
 
 	// However, other URL should be in https for encryption purpose
 
@@ -266,7 +267,9 @@ public class NetworkManager : MonoBehaviour
 
 		Debug.Log(jsonData);
 		
-		using (UnityWebRequest request = new UnityWebRequest("https://api.openai.com/v1/chat/completions", "POST"))
+		//using (UnityWebRequest request = new UnityWebRequest("https://api.openai.com/v1/chat/completions", "POST"))
+		// Azure API
+		using (UnityWebRequest request = new UnityWebRequest("https://aalto-openai-apigw.azure-api.net/v1/chat/gpt4-8k", "POST"))
 		{        
 			// Convert JSON data to a byte array and set it as upload handler					
     		byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(jsonData);
@@ -275,7 +278,9 @@ public class NetworkManager : MonoBehaviour
 
 		    // Set headers
     		request.SetRequestHeader("Content-Type", "application/json");
-   			request.SetRequestHeader("Authorization", "Bearer " + gptToken);	
+			//request.SetRequestHeader("Authorization", "Bearer " + gptToken);	
+			// Azure API
+   			request.SetRequestHeader("Ocp-Apim-Subscription-Key", gptAzureToken);	
 
 			// Send the request and wait for response
 			yield return request.SendWebRequest();
@@ -381,7 +386,8 @@ public class NetworkManager : MonoBehaviour
 
 		Debug.Log(jsonData);
 		
-		using (UnityWebRequest request = new UnityWebRequest("https://api.openai.com/v1/chat/completions", "POST"))
+		//using (UnityWebRequest request = new UnityWebRequest("https://api.openai.com/v1/chat/completions", "POST"))
+		using (UnityWebRequest request = new UnityWebRequest("https://aalto-openai-apigw.azure-api.net/v1/openai/gpt4-vision-preview/chat/completions", "POST"))
 		{        
 			// Convert JSON data to a byte array and set it as upload handler					
     		byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(jsonData);
@@ -390,7 +396,8 @@ public class NetworkManager : MonoBehaviour
 
 		    // Set headers
     		request.SetRequestHeader("Content-Type", "application/json");
-   			request.SetRequestHeader("Authorization", "Bearer " + gptToken);	
+   			//request.SetRequestHeader("Authorization", "Bearer " + gptToken);	
+			request.SetRequestHeader("Ocp-Apim-Subscription-Key", gptAzureToken);
 
 			// Send the request and wait for response
 			yield return request.SendWebRequest();

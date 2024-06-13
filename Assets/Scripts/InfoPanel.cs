@@ -6,6 +6,7 @@ public class InfoPanel : MonoBehaviour
 {
 
     [SerializeField] GameObject infoPanel;
+    [SerializeField] GameObject secretPanel;
 
     public void ShowInfoPanel(){
         infoPanel.SetActive(true);
@@ -26,5 +27,13 @@ public class InfoPanel : MonoBehaviour
     */
     {
         infoPanel.SetActive(false);
+    }
+
+    public void SecretButton()
+    /*
+    *   This function also attached to SecretButton OnClick() in Unity
+    */
+    {
+        secretPanel.SetActive(true);
     }
 }

@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class AdvancePanel : MonoBehaviour
 {
     [SerializeField] GameObject advancePanelGO;
+    [SerializeField] GameObject describeButtonAGO;
+    [SerializeField] GameObject describeButtonBGO;
+    [SerializeField] GameObject describeButtonCGO;
     [SerializeField] GameObject describePanelAGO;
     [SerializeField] GameObject describePanelBGO;
     [SerializeField] GameObject describePanelCGO;
@@ -14,6 +17,34 @@ public class AdvancePanel : MonoBehaviour
 
     void OnEnable() 
     {
+        // Check if the user has correct secret text      
+        string secretText = PlayerPrefs.GetString(Const.PREF_SECRET_TEXT);  
+        secretText = secretText.Replace("\r", "").Replace("\n", "").Trim();                
+        // Remove the last character if the could be a special character
+        if (secretText.Length == Secret.SECRET_TEXT.Length + 1) {
+           secretText = secretText[..^1]; 
+        }
+
+        if (secretText == Secret.SECRET_TEXT) {          
+            describeButtonAGO.GetComponent<Button>().onClick.AddListener(OnDescribeAButtonClicked);
+            describeButtonBGO.GetComponent<Button>().onClick.AddListener(OnDescribeBButtonClicked);
+            describeButtonCGO.GetComponent<Button>().onClick.AddListener(OnDescribeCButtonClicked);
+
+            describeButtonAGO.SetActive(true);
+            describeButtonBGO.SetActive(true);
+            describeButtonCGO.SetActive(true);
+
+        } else {
+            describeButtonAGO.GetComponent<Button>().onClick.RemoveAllListeners();
+            describeButtonBGO.GetComponent<Button>().onClick.RemoveAllListeners();
+            describeButtonCGO.GetComponent<Button>().onClick.RemoveAllListeners();
+
+            describeButtonAGO.SetActive(false);
+            describeButtonBGO.SetActive(false);
+            describeButtonCGO.SetActive(false);
+        }
+
+
         describePanelAGO.SetActive(false);
         describePanelBGO.SetActive(false);
         describePanelCGO.SetActive(false);

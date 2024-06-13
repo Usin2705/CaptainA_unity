@@ -172,6 +172,8 @@ public static class Const
     public const string PREF_SURVEY_V1_DONE = "pref_survey_v1_done";
     public const string PREF_NO_SURVEY = "pref_no_survey"; // No longer have NO option :D
 
+    public const string PREF_SECRET_TEXT = "pref_text_secret";
+
     public const string PREF_INS_MAIN = "pref_instruction_main";
     public const string PREF_INS_ADVANCE = "pref_instruction_advance";
     public const string PREF_INS_VOCABULARY = "pref_instruction_vocabulary";
@@ -186,7 +188,8 @@ public static class Const
     // Create a const dictionary for the flashcard deck
     public static readonly Dictionary<string, string> FLASH_CARD_DICT = new Dictionary<string, string> {
         {"FlashCard_OS_FIN_ENG", "FI-EN_OmaSuomi_1_CaptainA"},
-        {"FlashCard_OS_ENG_FIN", "EN-FI_OmaSuomi_1_CaptainA"}
+        {"FlashCard_OS_ENG_FIN", "EN-FI_OmaSuomi_1_CaptainA"},
+        {"FlashCard_HA_FIN_FIN", "FI-FI_HA_Hagaga"}
     };
 
     // Folder contains flashcard decks in Resources folder
@@ -255,7 +258,7 @@ public static class Const
     "User: sininen sohva ja iso no ja punainen iso noja tuoli pun punainen noja tuoli ja musta kirja musta hylly kilja.\\n" +
     "System:[Explanation] Partially. @Improved version@\\n" +
     "The room description:\\n" +
-    "The room is warm and inviting. There is a big black bookshelf on the left with many colourful books. The bookshelf is against the wall and does not reach the ceiling, leaving some windows and wall space above it. A blue (or dark blue) sofa with yellow pillows is on the right of the room. The sofa is big and have two parts (look like an L), one can say that there are two 2 blue sofas instead of 1 big sofa. There is a big red (or dark red) rug on the floor. Next to the bookshelf, also on the left of the room, there is a pink (or light pink) armchair. In front of the sofa, there is no coffee table visible, which gives the space an open feel. There is a black television stand with a television (that also looks black) on it against the wall. On the wall above the television, there are two framed pictures. On the wall on the right, above the blue sofa, there are six (or many) square yellow decoratives (or abstract pictures). There is a green door in the far right corner. The door appears to be closed. Near the green door, there is a coat rack (in Finnish: naulakko) with 2 jackets (one black and one yellow jacket). The room has off-white walls (with a slightly yellow or grey) and a ceiling with some grey (or grey green).\\n\\n" +
+    "The room is warm and inviting. There is a big black bookshelf on the left with many colourful books. The bookshelf is against the wall and does not reach the ceiling, leaving some windows and wall space above it. A blue (or dark blue) sofa is on the right of the room. The sofa is big and have two parts (look like an L), one can say that there are two 2 blue sofas instead of 1 big sofa. There is a yellow pillow on top of that sofa. There is a big red (or dark red) rug on the floor. Next to the bookshelf, also on the left of the room, there is a pink (or light pink) armchair. In front of the sofa, there is no coffee table visible, which gives the space an open feel. There is a black television stand with a television (that also looks black) on it against the wall. On the wall above the television, there are two framed pictures. On the wall on the right, above the blue sofa, there are six (or many) square yellow decoratives (or abstract pictures). There is a green door in the far right corner. The door appears to be closed. Near the green door, there is a coat rack (in Finnish: naulakko) with 2 jackets (one black and one yellow jacket). The room has off-white walls (with a slightly yellow or grey) and a ceiling with some grey (or grey green).\\n\\n" +
     "Grading Criteria:\\n" +
     "Excellent: Completes all aspects of the task. There are no significant deficiencies in the response.\\n" +
     "Good: Completes the task, but there are some significant deficiencies in the response.\\n" +
