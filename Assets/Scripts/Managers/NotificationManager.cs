@@ -18,9 +18,9 @@ public class NotificationManager : MonoBehaviour
 #if UNITY_ANDROID 
     void Start()
     {
-        RequestNotificationPermission();
-        CreateNotificationChannel();    
-        ReScheduleNotification();   
+        // RequestNotificationPermission();
+        // CreateNotificationChannel();    
+        // ReScheduleNotification();   
     }
 
     void CreateNotificationChannel()
@@ -85,7 +85,7 @@ public class NotificationManager : MonoBehaviour
     void Start()
     {
         RequestNotificationPermission();
-        ReScheduleNotification();
+        // ReScheduleNotification();
     }
 
     void ReScheduleNotification()

@@ -188,39 +188,34 @@ public static class TextUtils
     public static string GetGradingInstruction(DescribePanel.TaskType taskType, int taskNumber, bool isFinnish=true)
     {
         if (taskNumber < 0 ) taskNumber = 0;
-        if (taskNumber > 3 ) taskNumber = 3;
-        string language_instruction = isFinnish ? "The primary task for the users is to speak in Finnish.\\n" : "The primary task for the users is to speak in English\\n";
+        if (taskNumber > 1 ) taskNumber = 1;
+        //string language_instruction = isFinnish ? "The primary task for the users is to speak in Finnish.\\n" : "The primary task for the users is to speak in English\\n";
+        string language_instruction = "";
         
         switch (taskType)
         {
             case DescribePanel.TaskType.A:
+            case DescribePanel.TaskType.A2:
                 switch (taskNumber)
                 {
-                    case 0: return language_instruction + Const.ROOM_DESCRIPTION_A1;
-                    case 1: return language_instruction + Const.ROOM_DESCRIPTION_A2;
-                    case 2: return language_instruction + Const.ROOM_DESCRIPTION_A3;
-                    case 3: return language_instruction + Const.ROOM_DESCRIPTION_A4;
+                    case 0: return isFinnish ? language_instruction + Secret.ROOM_DESCRIPTION_A0 : language_instruction + Secret.ROOM_DESCRIPTION_A0_EN;
+                    case 1: return isFinnish ? language_instruction + Secret.ROOM_DESCRIPTION_A1 : language_instruction + Secret.ROOM_DESCRIPTION_A1_EN;
                 }
                 break;
             case DescribePanel.TaskType.B:
+            case DescribePanel.TaskType.B2:
                 switch (taskNumber)
                 {
-                    case 0: return language_instruction + Const.ROOM_DESCRIPTION_B1;
-                    case 1: return language_instruction + "Description for TaskType1 Task2";
-                    case 2: return language_instruction + "Description for TaskType1 Task3";
-                    case 3: return language_instruction + "Description for TaskType1 Task4";
+                    case 0: return isFinnish ? language_instruction + Secret.MISSING_ITEM_B0 : language_instruction + Secret.MISSING_ITEM_B0_EN;
+                    case 1: return isFinnish ? language_instruction + Secret.MISSING_ITEM_B1 : language_instruction + Secret.MISSING_ITEM_B1_EN;
                 }
                 break;
             case DescribePanel.TaskType.C:
-                switch (taskNumber)
-                {
-                    case 0: return language_instruction + "Description for TaskType1 Task1";
-                    case 1: return language_instruction + "Description for TaskType1 Task2";
-                    case 2: return language_instruction + "Description for TaskType1 Task3";
-                    case 3: return language_instruction + "Description for TaskType1 Task4";
-                }
-                break;
-        }        
-        return Const.ROOM_DESCRIPTION_A1;
+            case DescribePanel.TaskType.C2:
+                // only return 1 case
+                default: return isFinnish ? language_instruction + Secret.RANDOM_ROOM_DESCRIPTION_C : language_instruction + Secret.RANDOM_ROOM_DESCRIPTION_C_EN;
+        }
+
+        return Secret.ROOM_DESCRIPTION_A0;
     }
 }

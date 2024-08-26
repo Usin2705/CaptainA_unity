@@ -133,7 +133,17 @@ public class NetworkManager : MonoBehaviour
     {		
 		WWWForm form = new WWWForm();
         form.AddBinaryData("file", wavBuffer, fileName:"recorded_describe_speech.wav", mimeType: "audio/wav");
-		form.AddField("language", "FI");
+		
+		// If not Finnish, set the language to English
+		if (!isFinnish) 
+		{
+			form.AddField("language", "EN");
+		}
+		else 
+		// The default language is Finnish
+		{
+			form.AddField("language", "FI");
+		}
 
         UnityWebRequest www = UnityWebRequest.Post(advanceASRURL, form);
 		www.timeout = Const.TIME_OUT_ADVANCE_SECS;
@@ -166,7 +176,17 @@ public class NetworkManager : MonoBehaviour
 		WWWForm form = new WWWForm();
         form.AddBinaryData("file", wavBuffer, fileName:"recorded_describe_speech.wav", mimeType: "audio/wav");
 		form.AddField("model", "whisper-1");
-		if (isFinnish) form.AddField("language", "fi");
+		
+		// If not Finnish, set the language to English
+		if (!isFinnish) 
+		{
+			form.AddField("language", "EN");
+		}
+		else 
+		// The default language is Finnish
+		{
+			form.AddField("language", "FI");
+		}
 
         UnityWebRequest www = UnityWebRequest.Post("https://api.openai.com/v1/audio/transcriptions", form);
 		www.SetRequestHeader("Authorization", "Bearer " + gptToken);
@@ -219,9 +239,9 @@ public class NetworkManager : MonoBehaviour
     		request.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
 			request.downloadHandler = new DownloadHandlerBuffer(); // Set the download handler
 
-		    // Set headers
-    		request.SetRequestHeader("Content-Type", "application/json");
+		    // Set headers    		
    			request.SetRequestHeader("Authorization", "Bearer " + gptToken);	
+			request.SetRequestHeader("Content-Type", "application/json");
 
 			// Send the request and wait for response
 			yield return request.SendWebRequest();
@@ -253,23 +273,115 @@ public class NetworkManager : MonoBehaviour
 		//""model"": ""gpt-4-vision-preview"",   
 		//""model"": ""gpt-4-0613"",
 		//""model"": ""gpt-3.5-turbo-1106"",	
+
+		
+		// This setup is for GPT-4, GPT-4o use diffent setup
+		// string jsonData = $@"
+		// {{
+		// 	""model"": ""gpt-4-0613"",
+		// 	""temperature"": 0.0,
+		// 	""seed"": 1011,
+		// 	""messages"": [
+		// 		{{
+		// 			""role"": ""system"", 
+		// 			""content"": ""{gradingInstructions}""
+		// 		}},
+		// 		{{
+		// 			""role"": ""user"", 
+		// 			""content"": ""{transcript.Replace("\"", "\\\"")}""
+		// 		}}
+		// 	],
+		// 	""max_tokens"": 2500
+		// }}";
+
 		string jsonData = $@"
 		{{
-			""model"": ""gpt-4-0613"",	
-			""temperature"": 0.0,
-			""seed"": 1011,
+			""model"": ""gpt-4o-2024-05-13"",
 			""messages"": [
-				{{""role"": ""system"", ""content"": ""{gradingInstructions}""}},
-				{{""role"": ""user"", ""content"": ""{transcript.Replace("\"", "\\\"")}""}}
+				{{
+					""role"": ""system"",
+					""content"": [
+						{{
+							""type"": ""text"",
+							""text"": ""{gradingInstructions}""
+						}}
+					]
+				}},
+				{{
+					""role"": ""user"",
+					""content"": [
+						{{
+							""type"": ""text"",
+							""text"": ""{transcript.Replace("\"", "\\\"")}""
+						}}
+					]
+				}}
 			],
-			""max_tokens"": 2500
+			""temperature"": 0,
+			""max_tokens"": 2500,
+			""response_format"": {{
+				""type"": ""text""
+			}}
 		}}";
 
-		Debug.Log(jsonData);
+		if (taskType == DescribePanel.TaskType.C) {
+			// If the task is C, we need to include an image in the chat 
+			// since the prompt is not include the image description (random image generation)
+			
+			// Load the image from the Resources folder
+			string imagePath = Path.Combine(Application.persistentDataPath, "describeImage.png");
+			if (!File.Exists(imagePath)) {
+				Debug.Log("Image not found, using default image");
+				Texture2D texture = Resources.Load<Texture2D>("GenAI/describeImage");
+				SaveData.SaveImageToFile(texture, "describeImage.png");
+				imagePath = Path.Combine(Application.persistentDataPath, "describeImage.png");
+			}
+
+			string base64Image = EncodeImageToBase64(imagePath);
+
+			jsonData = $@"
+				{{
+					""model"": ""gpt-4o-2024-05-13"",
+					""messages"": [
+						{{
+							""role"": ""system"",
+							""content"": [
+								{{
+									""type"": ""text"",
+									""text"": ""{gradingInstructions}""
+								}}					
+							]
+						}},
+						{{
+							""role"": ""user"",
+							""content"": [
+								{{
+									""type"": ""text"",
+									""text"": ""{transcript.Replace("\"", "\\\"")}""
+								}},
+								{{
+									""type"": ""image_url"",
+									""image_url"": 
+										{{
+											""url"": ""data:image/jpeg;base64,{base64Image}""
+										}}	
+								}}	
+							]
+						}}
+					],
+					""temperature"": 0,
+					""max_tokens"": 3500,
+					""response_format"": {{
+						""type"": ""text""
+					}}
+				}}";
+		}
+
+		// Debug.Log(jsonData);
 		
-		//using (UnityWebRequest request = new UnityWebRequest("https://api.openai.com/v1/chat/completions", "POST"))
+		using (UnityWebRequest request = new UnityWebRequest("https://api.openai.com/v1/chat/completions", "POST"))
 		// Azure API
-		using (UnityWebRequest request = new UnityWebRequest("https://aalto-openai-apigw.azure-api.net/v1/chat/gpt4-8k", "POST"))
+		//using (UnityWebRequest request = new UnityWebRequest(Secret.AALTO_GPT4O_URL, "POST"))
 		{        
 			// Convert JSON data to a byte array and set it as upload handler					
     		byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(jsonData);
@@ -277,10 +389,11 @@ public class NetworkManager : MonoBehaviour
 			request.downloadHandler = new DownloadHandlerBuffer(); // Set the download handler
 
 		    // Set headers
-    		request.SetRequestHeader("Content-Type", "application/json");
-			//request.SetRequestHeader("Authorization", "Bearer " + gptToken);	
+    		request.SetRequestHeader("Authorization", "Bearer " + gptToken);	
 			// Azure API
-   			request.SetRequestHeader("Ocp-Apim-Subscription-Key", gptAzureToken);	
+   			//request.SetRequestHeader("Ocp-Apim-Subscription-Key", gptAzureToken);	
+
+			request.SetRequestHeader("Content-Type", "application/json");
 
 			// Send the request and wait for response
 			yield return request.SendWebRequest();
@@ -299,7 +412,7 @@ public class NetworkManager : MonoBehaviour
 
 						// Extract all text within "@" tags
         				string finnishTTS = TextUtils.ExtractTextWithinAtTags(assistantResponse);
-                    	StartCoroutine(GPT_TTS(finnishTTS));
+                    	// StartCoroutine(GPT_TTS(finnishTTS));
 
                     	// Replace "@" in assistantResponse with a new line
                     	assistantResponse = assistantResponse.Replace("@", "\n");
@@ -329,7 +442,7 @@ public class NetworkManager : MonoBehaviour
 
 		string gradingInstructions;
 		if (isFinnish) gradingInstructions = "The primary task for the users is to speak in Finnish. ";
-		else gradingInstructions = "The primary task for the users is to speak in their secondary language. ";
+		else gradingInstructions = "The primary task for the users is to speak in English. ";
 		
 		gradingInstructions += @"The users speak into the microphone, and what you're reading is the transcription of their speech. Given this, be mindful of " +
 			"potential typos or entirely incorrect words due to transcription errors. Your task is to give feedback and grade their speech. Be generous in grading pronunciation and grammar as they are not native speakers. The score is from 1.0 to 5.0, with 1 decimal number. Each user has " +
