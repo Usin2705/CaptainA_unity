@@ -324,8 +324,8 @@ public class NetworkManager : MonoBehaviour
 			}}
 		}}";
 
-		if (taskType == DescribePanel.TaskType.C) {
-			// If the task is C, we need to include an image in the chat 
+		if (taskType == DescribePanel.TaskType.C || taskType == DescribePanel.TaskType.C2) {
+			// If the task is C or C2, we need to include the image in the request
 			// since the prompt is not include the image description (random image generation)
 			
 			// Load the image from the Resources folder

@@ -33,10 +33,17 @@ public class DescribePanel : MonoBehaviour
 
         if (taskType == TaskType.A || taskType == TaskType.A2 || taskType == TaskType.C || taskType == TaskType.C2)
         {
+            transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = "Please describe the room and objects (colours, positions) in the picture above. You have 45 seconds to speak.";
             recordingTime = Const.MAX_REC_TIME_A;
         }
-        else if (taskType == TaskType.B || taskType == TaskType.B2)
+        else if (taskType == TaskType.B)
         {
+            transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = "Situation: You met with your friends at a café yesterday evening. At home, you notice your hoodie is missing. You call the café (max 30sec): Introduce yourself. Politely state your matter. Describe the hoodie (see the picture above). <b>Note: Do not disclose your real name or personal matters.</b> You can use the name Maija/Matti Meikäläinen.";
+            recordingTime = Const.MAX_REC_TIME_B;
+        }
+        else if (taskType == TaskType.B2)
+        {
+            transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = "Situation: You met with your friends at a café yesterday evening. At home, you notice your hoodie is missing. You call the café (max 30sec): Introduce yourself. Politely state your matter. Describe the hoodie (see the picture above). <b>Note: Do not disclose your real name or personal matters.</b> You can use the name Jane/John Doe.";
             recordingTime = Const.MAX_REC_TIME_B;
         }
         
@@ -117,6 +124,8 @@ public class DescribePanel : MonoBehaviour
         taskNumber += 1;
         if (taskNumber > 1) taskNumber = 0;
         if (taskNumber < 0) taskNumber = 0;
+
+        string taskText = "Situation: You met with your friends at a café yesterday evening. At home, you notice your hoodie is missing. You call the café (max 30sec): Introduce yourself. Politely state your matter. Describe the hoodie (see the picture above). <b>Note: Do not disclose your real name or personal matters.</b> You can use the name Maija/Matti Meikäläinen.";
         
         switch (taskType) {
             // case for TaskType.A or A2
@@ -132,7 +141,7 @@ public class DescribePanel : MonoBehaviour
                 // Select the image to be displayed
                 // The image is in the Resources folder
                 imageComponent.sprite = Resources.Load<Sprite>("GenAI/" + "taskB_" + taskNumber.ToString());
-                string taskText = "Situation: You met with your friends at a café yesterday evening. At home, you notice your hoodie is missing. You call the café (max 30sec): Introduce yourself. Politely state your matter. Describe the hoodie (see the picture above). <b>Note: Do not disclose your real name or personal matters.</b> You can use the name Maija/Matti Meikäläinen.";
+                taskText = "Situation: You met with your friends at a café yesterday evening. At home, you notice your hoodie is missing. You call the café (max 30sec): Introduce yourself. Politely state your matter. Describe the hoodie (see the picture above). <b>Note: Do not disclose your real name or personal matters.</b> You can use the name Maija/Matti Meikäläinen.";
                 if (taskNumber > 0)
                     taskText = "Situation: You met with your friends at a café yesterday evening. At home, you notice your jacket is missing. You call the café (max 30sec): Introduce yourself. Politely state your matter. Describe the jacket (see the picture above). <b>Note: Do not disclose your real name or personal matters.</b> You can use the name Maija/Matti Meikäläinen.";
                 
@@ -143,11 +152,11 @@ public class DescribePanel : MonoBehaviour
                 // Select the image to be displayed
                 // The image is in the Resources folder
                 imageComponent.sprite = Resources.Load<Sprite>("GenAI/" + "taskB_" + taskNumber.ToString());
-                string taskText2 = "Situation: You met with your friends at a café yesterday evening. At home, you notice your hoodie is missing. You call the café (max 30sec): Introduce yourself. Politely state your matter. Describe the hoodie (see the picture above). <b>Note: Do not disclose your real name or personal matters.</b> You can use the name Jane/John Doe.";
+                taskText = "Situation: You met with your friends at a café yesterday evening. At home, you notice your hoodie is missing. You call the café (max 30sec): Introduce yourself. Politely state your matter. Describe the hoodie (see the picture above). <b>Note: Do not disclose your real name or personal matters.</b> You can use the name Jane/John Doe.";
                 if (taskNumber > 0)
-                    taskText2 = "Situation: You met with your friends at a café yesterday evening. At home, you notice your jacket is missing. You call the café (max 30sec): Introduce yourself. Politely state your matter. Describe the jacket (see the picture above). <b>Note: Do not disclose your real name or personal matters.</b> You can use the name Jane/John Doe.";
+                    taskText = "Situation: You met with your friends at a café yesterday evening. At home, you notice your jacket is missing. You call the café (max 30sec): Introduce yourself. Politely state your matter. Describe the jacket (see the picture above). <b>Note: Do not disclose your real name or personal matters.</b> You can use the name Jane/John Doe.";
                 
-                transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = taskText2;
+                transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = taskText;
                 break;
 
             case TaskType.C:
