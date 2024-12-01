@@ -72,7 +72,8 @@ UserSettings/Layouts/default-2022.dwlt
 CaptainA_Android_mapping.txt
 
 user.keystore
-.vscode/
 
+# Ignore temp build files
+/.utmp/*
 
 CaptainA_BurstDebugInformation_DoNotShip/*
