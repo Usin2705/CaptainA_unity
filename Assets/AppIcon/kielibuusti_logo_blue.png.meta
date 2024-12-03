@@ -1,0 +1,871 @@
+fileFormatVersion: 2
+guid: d8b7bbfc9548cbc4d8f98fbf157c2699
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8783401380707127712
+    second: kielibuusti_logo_blue_0
+  - first:
+      213: -202539799232468942
+    second: kielibuusti_logo_blue_1
+  - first:
+      213: 8296628180367191869
+    second: kielibuusti_logo_blue_2
+  - first:
+      213: -1365211747479767446
+    second: kielibuusti_logo_blue_3
+  - first:
+      213: 690925981477367008
+    second: kielibuusti_logo_blue_4
+  - first:
+      213: -6473867969519327269
+    second: kielibuusti_logo_blue_5
+  - first:
+      213: 4205578450680029690
+    second: kielibuusti_logo_blue_6
+  - first:
+      213: 2823559256579469378
+    second: kielibuusti_logo_blue_7
+  - first:
+      213: -8351965038933156440
+    second: kielibuusti_logo_blue_8
+  - first:
+      213: -7139509009210083635
+    second: kielibuusti_logo_blue_9
+  - first:
+      213: 6883089994001974861
+    second: kielibuusti_logo_blue_10
+  - first:
+      213: 8414566712323883691
+    second: kielibuusti_logo_blue_11
+  - first:
+      213: -5544011885662953812
+    second: kielibuusti_logo_blue_12
+  - first:
+      213: 8702952491260513987
+    second: kielibuusti_logo_blue_13
+  - first:
+      213: 5195474981536573834
+    second: kielibuusti_logo_blue_14
+  - first:
+      213: -1986753298024956618
+    second: kielibuusti_logo_blue_15
+  - first:
+      213: -1560094651891138283
+    second: kielibuusti_logo_blue_16
+  - first:
+      213: 9146307561650499222
+    second: kielibuusti_logo_blue_17
+  - first:
+      213: -5013733988489653787
+    second: kielibuusti_logo_blue_18
+  - first:
+      213: -6849044993552262783
+    second: kielibuusti_logo_blue_19
+  - first:
+      213: -3501541274272152537
+    second: kielibuusti_logo_blue_20
+  - first:
+      213: -6399347746706888593
+    second: kielibuusti_logo_blue_21
+  - first:
+      213: -6111098174133428659
+    second: kielibuusti_logo_blue_22
+  - first:
+      213: 5023217490003384051
+    second: kielibuusti_logo_blue_23
+  - first:
+      213: 8752800434821651069
+    second: kielibuusti_logo_blue_24
+  - first:
+      213: 5976988312622693396
+    second: kielibuusti_logo_blue_25
+  - first:
+      213: 8127383836229704790
+    second: kielibuusti_logo_blue_26
+  - first:
+      213: -7075390637886716513
+    second: kielibuusti_logo_blue_27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_0
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 196
+        width: 84
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06ea64f0bf61b1680800000000000000
+      internalID: -8783401380707127712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_1
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 265
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 238aedd202f603df0800000000000000
+      internalID: -202539799232468942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_2
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 196
+        width: 22
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3f28446f5b832370800000000000000
+      internalID: 8296628180367191869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_3
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 264
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a66374c162bcd0de0800000000000000
+      internalID: -1365211747479767446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_4
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 195
+        width: 71
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0eceb0cf489a69900800000000000000
+      internalID: 690925981477367008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_5
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 195
+        width: 52
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd7650ab1633826a0800000000000000
+      internalID: -6473867969519327269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_6
+      rect:
+        serializedVersion: 2
+        x: 932
+        y: 264
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af122db91573d5a30800000000000000
+      internalID: 4205578450680029690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_7
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 188
+        width: 117
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2407faa1f2c4f2720800000000000000
+      internalID: 2823559256579469378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_8
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 114
+        width: 95
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ad58e53c0cd71c80800000000000000
+      internalID: -8351965038933156440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_9
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 196
+        width: 22
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc6f453026e5bec90800000000000000
+      internalID: -7139509009210083635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_10
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 193
+        width: 68
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d468881a1e5a58f50800000000000000
+      internalID: 6883089994001974861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_11
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 196
+        width: 22
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba244e2b7db86c470800000000000000
+      internalID: 8414566712323883691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_12
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 195
+        width: 64
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cae148c3096bf03b0800000000000000
+      internalID: -5544011885662953812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_13
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 195
+        width: 64
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ce0faa3e2917c870800000000000000
+      internalID: 8702952491260513987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_14
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 195
+        width: 61
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a89aae908f80a1840800000000000000
+      internalID: 5195474981536573834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_15
+      rect:
+        serializedVersion: 2
+        x: 933
+        y: 196
+        width: 22
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63df2e6d662ad64e0800000000000000
+      internalID: -1986753298024956618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_16
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 114
+        width: 117
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 511ca0a0e2e695ae0800000000000000
+      internalID: -1560094651891138283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_17
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 84
+        width: 64
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69ea5a2a4463eee70800000000000000
+      internalID: 9146307561650499222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_18
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 146
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e195c95083ab6ab0800000000000000
+      internalID: -5013733988489653787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_19
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 85
+        width: 53
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18956acbddd43f0a0800000000000000
+      internalID: -6849044993552262783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_20
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 84
+        width: 57
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 724c3a453c6086fc0800000000000000
+      internalID: -3501541274272152537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_21
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 84
+        width: 41
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f68e65b2123f037a0800000000000000
+      internalID: -6399347746706888593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_22
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 63
+        width: 57
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4e1d3fa694013ba0800000000000000
+      internalID: -6111098174133428659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_23
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 85
+        width: 34
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f65e2961bd06b540800000000000000
+      internalID: 5023217490003384051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_24
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 84
+        width: 49
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7add630f91387970800000000000000
+      internalID: 8752800434821651069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_25
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 84
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41c7980f33782f250800000000000000
+      internalID: 5976988312622693396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_26
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 84
+        width: 59
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65c19bfc9844ac070800000000000000
+      internalID: 8127383836229704790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kielibuusti_logo_blue_27
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 84
+        width: 48
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9543ada3b92fcd90800000000000000
+      internalID: -7075390637886716513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      kielibuusti_logo_blue_0: -8783401380707127712
+      kielibuusti_logo_blue_1: -202539799232468942
+      kielibuusti_logo_blue_10: 6883089994001974861
+      kielibuusti_logo_blue_11: 8414566712323883691
+      kielibuusti_logo_blue_12: -5544011885662953812
+      kielibuusti_logo_blue_13: 8702952491260513987
+      kielibuusti_logo_blue_14: 5195474981536573834
+      kielibuusti_logo_blue_15: -1986753298024956618
+      kielibuusti_logo_blue_16: -1560094651891138283
+      kielibuusti_logo_blue_17: 9146307561650499222
+      kielibuusti_logo_blue_18: -5013733988489653787
+      kielibuusti_logo_blue_19: -6849044993552262783
+      kielibuusti_logo_blue_2: 8296628180367191869
+      kielibuusti_logo_blue_20: -3501541274272152537
+      kielibuusti_logo_blue_21: -6399347746706888593
+      kielibuusti_logo_blue_22: -6111098174133428659
+      kielibuusti_logo_blue_23: 5023217490003384051
+      kielibuusti_logo_blue_24: 8752800434821651069
+      kielibuusti_logo_blue_25: 5976988312622693396
+      kielibuusti_logo_blue_26: 8127383836229704790
+      kielibuusti_logo_blue_27: -7075390637886716513
+      kielibuusti_logo_blue_3: -1365211747479767446
+      kielibuusti_logo_blue_4: 690925981477367008
+      kielibuusti_logo_blue_5: -6473867969519327269
+      kielibuusti_logo_blue_6: 4205578450680029690
+      kielibuusti_logo_blue_7: 2823559256579469378
+      kielibuusti_logo_blue_8: -8351965038933156440
+      kielibuusti_logo_blue_9: -7139509009210083635
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
