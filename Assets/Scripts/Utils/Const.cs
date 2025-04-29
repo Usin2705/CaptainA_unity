@@ -101,8 +101,18 @@ public static class Const
     public const int MAX_REC_TIME_B = 30; //30
 
 
+    public const int MAX_REC_NUMBERGAME_EASY = 8;
+    public const int MAX_REC_NUMBERGAME_MEDIUM = 6;
+    public const int MAX_REC_NUMBERGAME_HARD = 4;
+    public const int MAX_REC_NUMBERGAME_RANK = 4;
+
+    public const int NUMBERGAME_PREPARE_TIME = 2;
+
+
     public const string REPLAY_FILENAME = "recorded_speech";
     public const string DESCRIBE_FILENAME = "recorded_describe_speech";
+
+    public const string NUMBERGAME_FILENAME = "recorded_number_game";
 
     // Used to set the recording time for the audio clip
     // The length of the audio clip depend on the number of characters

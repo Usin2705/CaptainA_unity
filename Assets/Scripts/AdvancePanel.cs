@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class AdvancePanel : MonoBehaviour
 {
     [SerializeField] GameObject advancePanelGO;
+    [SerializeField] GameObject numberGameButtonGO;
+    [SerializeField] GameObject numberGamePanelGO;
     [SerializeField] GameObject describeButtonAGO;
     [SerializeField] GameObject describeButtonBGO;
     [SerializeField] GameObject describeButtonCGO;
@@ -26,7 +28,8 @@ public class AdvancePanel : MonoBehaviour
         // Remove the last character if there could be a special character
         if (secretText.Length == Secret.SECRET_TEXT.Length + 1) {
            secretText = secretText[..^1]; 
-        }
+        }        
+        numberGameButtonGO.GetComponent<Button>().onClick.AddListener(() => OnNumberGameButtonClicked());
 
         if (secretText == Secret.SECRET_TEXT) {          
             describeButtonAGO.GetComponent<Button>().onClick.AddListener(() => OnDescribeAButtonClicked());
@@ -65,7 +68,7 @@ public class AdvancePanel : MonoBehaviour
             describeButtonC2GO.SetActive(false);
         }
 
-
+        numberGamePanelGO.SetActive(false);
         describePanelAGO.SetActive(false);
         describePanelBGO.SetActive(false);
         describePanelCGO.SetActive(false);
@@ -75,6 +78,16 @@ public class AdvancePanel : MonoBehaviour
             PopUpManager popUpPanel = GameObject.FindAnyObjectByType<PopUpManager>();
             popUpPanel.OpenPanel(Const.PREF_INS_ADVANCE);
             popUpPanel.SetText(Const.INSTRUCTION_ADVANCE);
+        }
+    }
+
+    public void OnNumberGameButtonClicked(NGTaskType taskType = NGTaskType.EASY) 
+    {
+        numberGamePanelGO.SetActive(true);
+        NumberGamePanel numberGamePanel = numberGamePanelGO.GetComponent<NumberGamePanel>();
+        if (numberGamePanel != null)
+        {
+            numberGamePanel.SetTaskType(taskType);
         }
     }
 

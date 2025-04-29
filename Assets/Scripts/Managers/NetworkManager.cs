@@ -23,6 +23,7 @@ public class NetworkManager : MonoBehaviour
 
 	string asrURL = Secret.AUDIO_URL; 
 	string advanceASRURL = Secret.ADVANCE_AUDIO_URL; 
+	string numberGameURL = Secret.NUMBER_AUDIO_URL;
 	string gptToken = Secret.CHATGPT_API; 
 	string gptAzureToken = Secret.AZUREGPT_API; 
 
@@ -619,6 +620,91 @@ public class NetworkManager : MonoBehaviour
 
 		checkSurVey();
     }	
+
+    public IEnumerator NumberGamePost(string number, byte[] wavBuffer)
+    
+	{		
+	    //IMultipartFormSection & MultipartFormFileSection  could be another solution,
+		// but apparent it also require raw byte data to upload
+
+		// Wrap in a bracket to make it a list 
+		number = "[" + number + "]";
+
+		WWWForm form = new WWWForm();
+        form.AddBinaryData("file", wavBuffer, fileName:"speech_sample", mimeType: "audio/wav");
+        form.AddField("candidate_numbers", number);
+
+        UnityWebRequest www = UnityWebRequest.Post(numberGameURL + "/v1/numbers_matching", form);
+
+		www.timeout = Const.TIME_OUT_SECS;
+		yield return www.SendWebRequest();
+
+		Debug.Log(www.result);
+
+        if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
+			Debug.Log(www.error);
+			if (!string.IsNullOrEmpty(www.error)) {
+				textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text =  www.downloadHandler.text ?? www.error;
+			} else {
+				textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "Network error!";
+			}
+			textErrorGO.SetActive(true);
+
+			throw new System.Exception(www.downloadHandler.text ?? www.error);
+		} else {
+			Debug.Log("Form upload complete!");
+
+			Debug.Log(www.downloadHandler.text);
+
+			if (www.downloadHandler.text == "invalid credentials") {
+				Debug.Log("invalid credentials");
+				textErrorGO.SetActive(true);
+				textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "invalid credentials";
+
+				yield break;
+			}
+
+			if (www.downloadHandler.text == "this account uses auth0") {
+				Debug.Log("this account uses auth0");
+				textErrorGO.SetActive(true);
+				textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "this account uses auth0";
+				yield break;
+			}
+        }
+		
+		textErrorGO.SetActive(false);
+		asrResult = JsonUtility.FromJson<ASRResult>(www.downloadHandler.text);
+		// Debug.Log(www.downloadHandler.text);
+		// Debug.Log(transcript);
+		// Debug.Log(asrResult.prediction);
+		// Debug.Log(asrResult.score);
+		// Debug.Log(asrResult.warning);
+		// Debug.Log(asrResult.levenshtein);		
+
+		SaveData.UpdateUserScores(number, asrResult.score);
+
+		// Update text result
+		// This part only update the TextResult text		
+		// is updated (added onclick, show active) in their MainPanel (either MainPanel or ExercisePanel)
+
+		// After TextResult text is updated,
+		// it's safe to set onclick on result text on it's main panel
+		// that's why we can set the Panel to active		
+		string textResult = TextUtils.FormatTextResult(number, asrResult.score);		
+		resultTextTMP.text = textResult;
+		
+		// Show or now show the warning image
+		int warningNo = asrResult.warning.Count;		
+		warningImageGO.SetActive(warningNo!=0);
+		
+		// Update the debug text
+		debugText.text = asrResult.prediction;		
+		
+		if (resultPanelGO != null) resultPanelGO.SetActive(true);
+
+		checkSurVey();
+    }
+
 
 	public void checkSurVey() {
 		int recordNumber = 1;
