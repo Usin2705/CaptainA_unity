@@ -80,13 +80,13 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(NetworkManager.GetManager().GPTTranscribeWhisper(wavBuffer, transcriptGO, scoreButtonGO, taskType, taskNumber, isFinnish));
     }
 
-    public void GetAudioAndNG(string number)
+    public void GetAudioAndNG(string number, GameObject textErrorGO, TMPro.TextMeshProUGUI resultTextTMP)
     {
         Microphone.End("");        
         byte[] wavBuffer = SavWav.GetWav(audioSource.clip, out uint length, trim:true);
         SavWav.Save(Const.NUMBERGAME_FILENAME, audioSource.clip, trim:true); // for debug purpose
 
-        StartCoroutine(NetworkManager.GetManager().NumberGamePost(number, wavBuffer));
+        StartCoroutine(NetworkManager.GetManager().NumberGamePost(number, wavBuffer, textErrorGO, resultTextTMP));
     }
     void ReplayRecordedSample()
     {        

@@ -14,7 +14,9 @@ public class NumberGamePanel : MonoBehaviour
     [SerializeField] Toggle hardToggle;
     [SerializeField] Toggle rankToggle;
 
-    [SerializeField] GameObject NumberLabelGO;
+    [SerializeField] GameObject numberLabelGO;
+
+    [SerializeField] GameObject errorTextGO;
 
     private float recordingTime = Const.MAX_REC_NUMBERGAME_EASY;
     private float currentTime = Const.MAX_REC_NUMBERGAME_EASY;
@@ -29,6 +31,9 @@ public class NumberGamePanel : MonoBehaviour
         mediumToggle.onValueChanged.AddListener((isOn) => { if (isOn) SetTaskType(NGTaskType.MEDIUM); });
         hardToggle.onValueChanged.AddListener((isOn) => { if (isOn) SetTaskType(NGTaskType.HARD); });
         rankToggle.onValueChanged.AddListener((isOn) => { if (isOn) SetTaskType(NGTaskType.RANK); });
+        
+        // Add listener to record button
+        recordButtonGO.GetComponent<Button>().onClick.AddListener(OnRecordButtonClicked);
     }
 
     void OnEnable()
@@ -63,7 +68,7 @@ public class NumberGamePanel : MonoBehaviour
 
         // Get the text TMP component from the GameObject
         // The TMP is a child of the NumberLabelGO
-        NumberLabelGO.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = taskNumber.ToString();   
+        numberLabelGO.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = taskNumber.ToString();   
 
         // Set the countdown time based on the task type
         if (taskType == NGTaskType.EASY)
@@ -138,13 +143,15 @@ public class NumberGamePanel : MonoBehaviour
     }    
 
     public void OnFinnishTimer() {
-        number = NumberLabelGO.GetComponentInChildren<TMPro.TextMeshProUGUI>().text;
+        TMPro.TextMeshProUGUI resultTextTMP = numberLabelGO.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+        number = resultTextTMP.text;
 
         StartCoroutine(DelayPost());
         
         IEnumerator DelayPost()
         {
-            AudioManager.GetManager().GetAudioAndNG(number);
+
+            AudioManager.GetManager().GetAudioAndNG(number, errorTextGO, resultTextTMP);
             yield return new WaitForSeconds(0.2f);  
 
             recordButtonGO.SetActive(true);

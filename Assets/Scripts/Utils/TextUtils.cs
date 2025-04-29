@@ -27,7 +27,18 @@ public static class TextUtils
         }
         return extractedText.Trim(); // Trim to remove any extra spaces at the ends
     }
-	public static string FormatTextResult(string transcript, List<float> scoreList) 
+	
+    /// <summary>
+    /// Formats the text result by applying color tags based on the score list.
+    /// The color tags are used to indicate the quality of the phoneme pronunciation.
+    /// </summary>
+    /// <param name="transcript"></param>
+    /// <param name="scoreList"></param>
+    /// <returns>The colored format string</returns>
+    /// <remarks>
+    /// <para>The font used in the ResultText GO is already set as BOLD so no need to add BOLD tag <b> </b> in the tag</para>    
+    /// </remarks>
+    public static string FormatTextResult(string transcript, List<float> scoreList) 
     /*
     * The font used in the ResultText GO is already set as BOLD        
     * so no need to add BOLD tag <b> </b> in the tag
@@ -56,6 +67,28 @@ public static class TextUtils
 		return textResult;
 	}
 
+    /// <summary>
+    /// Removes color tags from the provided text. Also other HTML tags if they exist.
+    /// </summary>
+    /// <param name="text">The input text string that may contain color tags.</param>
+    /// <returns>The text without any color tags.</returns>
+    /// <remarks>
+    /// <para>This method is useful for cleaning up text that has been formatted with color tags.</para>
+    /// <para>It uses regular expressions to identify and remove the color tags, leaving the inner text intact.</para>
+    /// <para>Note: This method also remove other HTML tags, such as bold or italic formatting tags.</para>
+    /// </remarks>
+    public static string RemoveColorTag(string text) {
+        // Remove the color tags from the text
+        string pattern = @"<color=[^>]+>(.*?)<\/color>";
+        string result = Regex.Replace(text, pattern, "$1");
+        
+        // Remove any remaining HTML tags (like <b> and </b>)
+        result = Regex.Replace(result, @"<\/?b>", "");
+
+        return result;
+    }
+    
+
     public static string WrapPhonemeSO(SOPhonemeHelper phonemeSO, string colorStr, bool isBold = true) 
     /*
     *
@@ -73,6 +106,13 @@ public static class TextUtils
 		return text;
 	}
 
+    /// <summary>
+    /// Formats the etymology string by wrapping the content within parentheses in italics.
+    /// This is for the etymology string in the word card.
+    /// </summary>
+    /// <param name="etymology">The etymology string to format.</param>
+    /// <returns>The formatted etymology string.</returns>
+    
     public static string FormatEtymology(string etymology)
     {
     return Regex.Replace(etymology, @"\(([^)]+)\)", m => $"(<i>{m.Groups[1].Value}</i>)");

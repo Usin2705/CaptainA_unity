@@ -101,10 +101,10 @@ public static class Const
     public const int MAX_REC_TIME_B = 30; //30
 
 
-    public const int MAX_REC_NUMBERGAME_EASY = 8;
-    public const int MAX_REC_NUMBERGAME_MEDIUM = 6;
-    public const int MAX_REC_NUMBERGAME_HARD = 4;
-    public const int MAX_REC_NUMBERGAME_RANK = 4;
+    public const int MAX_REC_NUMBERGAME_EASY = 4;
+    public const int MAX_REC_NUMBERGAME_MEDIUM = 5;
+    public const int MAX_REC_NUMBERGAME_HARD = 6;
+    public const int MAX_REC_NUMBERGAME_RANK = 5;
 
     public const int NUMBERGAME_PREPARE_TIME = 2;
 

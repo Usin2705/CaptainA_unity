@@ -621,14 +621,11 @@ public class NetworkManager : MonoBehaviour
 		checkSurVey();
     }	
 
-    public IEnumerator NumberGamePost(string number, byte[] wavBuffer)
+    public IEnumerator NumberGamePost(string number, byte[] wavBuffer, GameObject textErrorGO, TMPro.TextMeshProUGUI resultTextTMP)
     
 	{		
 	    //IMultipartFormSection & MultipartFormFileSection  could be another solution,
 		// but apparent it also require raw byte data to upload
-
-		// Wrap in a bracket to make it a list 
-		number = "[" + number + "]";
 
 		WWWForm form = new WWWForm();
         form.AddBinaryData("file", wavBuffer, fileName:"speech_sample", mimeType: "audio/wav");
@@ -693,15 +690,6 @@ public class NetworkManager : MonoBehaviour
 		string textResult = TextUtils.FormatTextResult(number, asrResult.score);		
 		resultTextTMP.text = textResult;
 		
-		// Show or now show the warning image
-		int warningNo = asrResult.warning.Count;		
-		warningImageGO.SetActive(warningNo!=0);
-		
-		// Update the debug text
-		debugText.text = asrResult.prediction;		
-		
-		if (resultPanelGO != null) resultPanelGO.SetActive(true);
-
 		checkSurVey();
     }
 
