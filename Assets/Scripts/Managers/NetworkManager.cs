@@ -629,9 +629,9 @@ public class NetworkManager : MonoBehaviour
 
 		WWWForm form = new WWWForm();
         form.AddBinaryData("file", wavBuffer, fileName:"speech_sample", mimeType: "audio/wav");
-        form.AddField("candidate_numbers", number);
+        form.AddField("target_number", number); // Numbers to perform force alignment scoring, comma separated (e.g: '18,19')
 
-        UnityWebRequest www = UnityWebRequest.Post(numberGameURL + "/v1/numbers_matching", form);
+        UnityWebRequest www = UnityWebRequest.Post(numberGameURL, form);
 
 		www.timeout = Const.TIME_OUT_SECS;
 		yield return www.SendWebRequest();
@@ -677,6 +677,8 @@ public class NetworkManager : MonoBehaviour
 		// Debug.Log(asrResult.score);
 		// Debug.Log(asrResult.warning);
 		// Debug.Log(asrResult.levenshtein);		
+
+		Debug.Log("Text" + www.downloadHandler.text);
 
 		SaveData.UpdateUserScores(number, asrResult.score);
 

@@ -38,13 +38,18 @@ public static class TextUtils
     /// <remarks>
     /// <para>The font used in the ResultText GO is already set as BOLD so no need to add BOLD tag <b> </b> in the tag</para>    
     /// </remarks>
-    public static string FormatTextResult(string transcript, List<float> scoreList) 
+    public static string FormatTextResult(string transcript, List<float> scoreList, bool isNumberGame = false) 
     /*
     * The font used in the ResultText GO is already set as BOLD        
     * so no need to add BOLD tag <b> </b> in the tag
     *   
     */
 	{
+        // Lower threshod for number game
+        // For AVG_SCORE, we need to set it lower for number game
+        // since the number game is focus more on number and not pronunciation
+        float avg_adjust = isNumberGame ? Const.AVG_NUMBER_ADJ : 0.0f;
+
 		// Make sure that stranscript length match with scoreList Length
 		if (transcript.Length != scoreList.Count) {	
             Debug.LogError("transcript and score didn't match: " + transcript + " vs " + scoreList.Count + " ");
@@ -58,7 +63,7 @@ public static class TextUtils
             string phoneColor = Const.GOOD_COLOR;
 
             if (scoreList[i] < Const.BAD_SCORE)  phoneColor = Const.BAD_COLOR; 
-            else if (scoreList[i] < Const.AVG_SCORE) phoneColor = Const.AVG_COLOR;
+            else if (scoreList[i] < (Const.AVG_SCORE - avg_adjust)) phoneColor = Const.AVG_COLOR;
             
             textResult += "<color=" + phoneColor + ">" + transcript[i].ToString() + "</color>";
 

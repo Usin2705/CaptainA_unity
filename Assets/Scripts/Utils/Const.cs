@@ -81,6 +81,10 @@ public static class Const
     public const float AVG_SCORE = 0.80f;
     //public const float GOOD_SCORE = 0.92f;
 
+    // Adjustment value for the number game
+    // The number game is a bit different, since we focus on number and not pronunciation
+    public const float AVG_NUMBER_ADJ = 0.30f;
+
     // Weight % allow users to update score with more weight put on 
     // latest score and not the historical average
     // 0.7f mean 30% weight on average + 70% on new score

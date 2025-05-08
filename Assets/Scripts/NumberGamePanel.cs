@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.IO;
+using UnityEngine.Diagnostics;
 
 public class NumberGamePanel : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class NumberGamePanel : MonoBehaviour
     [SerializeField] Toggle mediumToggle;
     [SerializeField] Toggle hardToggle;
     [SerializeField] Toggle rankToggle;
+
+    [SerializeField] GameObject newButtonGO;
 
     [SerializeField] GameObject numberLabelGO;
 
@@ -32,8 +35,12 @@ public class NumberGamePanel : MonoBehaviour
         hardToggle.onValueChanged.AddListener((isOn) => { if (isOn) SetTaskType(NGTaskType.HARD); });
         rankToggle.onValueChanged.AddListener((isOn) => { if (isOn) SetTaskType(NGTaskType.RANK); });
         
+        
         // Add listener to record button
         recordButtonGO.GetComponent<Button>().onClick.AddListener(OnRecordButtonClicked);
+
+        // Add listener to new button
+        newButtonGO.GetComponent<Button>().onClick.AddListener(OnNewButtonClick);
     }
 
     void OnEnable()
@@ -144,17 +151,43 @@ public class NumberGamePanel : MonoBehaviour
 
     public void OnFinnishTimer() {
         TMPro.TextMeshProUGUI resultTextTMP = numberLabelGO.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-        number = resultTextTMP.text;
+        number = TextUtils.RemoveColorTag(resultTextTMP.text);
 
         StartCoroutine(DelayPost());
         
         IEnumerator DelayPost()
         {
 
+            Debug.Log("number: " + number);
             AudioManager.GetManager().GetAudioAndNG(number, errorTextGO, resultTextTMP);
             yield return new WaitForSeconds(0.2f);  
 
             recordButtonGO.SetActive(true);
         }
-    }    
+    }
+
+    private void OnNewButtonClick()
+    {
+        // Retrigger the current toggle to generate a new number
+        if (easyToggle.isOn)
+        {
+            easyToggle.isOn = false;
+            easyToggle.isOn = true;
+        }
+        else if (mediumToggle.isOn)
+        {
+            mediumToggle.isOn = false;
+            mediumToggle.isOn = true;
+        }
+        else if (hardToggle.isOn)
+        {
+            hardToggle.isOn = false;
+            hardToggle.isOn = true;
+        }
+        else if (rankToggle.isOn)
+        {
+            rankToggle.isOn = false;
+            rankToggle.isOn = true;
+        }
+    }
 }
