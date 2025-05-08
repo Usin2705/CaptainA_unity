@@ -17,8 +17,7 @@ public class AdvancePanel : MonoBehaviour
     [SerializeField] GameObject describePanelAGO;
     [SerializeField] GameObject describePanelBGO;
     [SerializeField] GameObject describePanelCGO;
-
-    List<GameObject> listScrollItems = new List<GameObject>();            
+    
 
     void OnEnable() 
     {
@@ -128,9 +127,9 @@ public class AdvancePanel : MonoBehaviour
     *   Need to Destroy all GO in the list to avoid create duplicate scorelist
     */
     {
-        foreach (GameObject go in listScrollItems) 
-        {
-            Destroy(go);
-        }
+        numberGamePanelGO.SetActive(false);
+        describePanelAGO.SetActive(false);
+        describePanelBGO.SetActive(false);
+        describePanelCGO.SetActive(false);
     }
 }

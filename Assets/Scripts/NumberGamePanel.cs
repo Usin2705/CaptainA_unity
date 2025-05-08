@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 using System.IO;
 using UnityEngine.Diagnostics;
+using System;
+using UnityEngine.Networking;
 
 public class NumberGamePanel : MonoBehaviour
 {
@@ -21,6 +23,10 @@ public class NumberGamePanel : MonoBehaviour
 
     [SerializeField] GameObject errorTextGO;
 
+    [SerializeField] GameObject replayButtonGO;
+
+    AudioClip replayClip;
+
     private float recordingTime = Const.MAX_REC_NUMBERGAME_EASY;
     private float currentTime = Const.MAX_REC_NUMBERGAME_EASY;
 
@@ -35,6 +41,8 @@ public class NumberGamePanel : MonoBehaviour
         hardToggle.onValueChanged.AddListener((isOn) => { if (isOn) SetTaskType(NGTaskType.HARD); });
         rankToggle.onValueChanged.AddListener((isOn) => { if (isOn) SetTaskType(NGTaskType.RANK); });
         
+        Debug.Log("NumberGamePanel Start()");
+        easyToggle.isOn = true;
         
         // Add listener to record button
         recordButtonGO.GetComponent<Button>().onClick.AddListener(OnRecordButtonClicked);
@@ -43,10 +51,13 @@ public class NumberGamePanel : MonoBehaviour
         newButtonGO.GetComponent<Button>().onClick.AddListener(OnNewButtonClick);
     }
 
+
+
     void OnEnable()
     {
-        // Hide the progress bar
+        Debug.Log("NumberGamePanel OnEnable()");
 
+        // Hide the progress bar
         if (taskType == NGTaskType.EASY)
         {
             recordingTime = Const.MAX_REC_NUMBERGAME_EASY;
@@ -63,10 +74,18 @@ public class NumberGamePanel : MonoBehaviour
         {
             recordingTime = Const.MAX_REC_NUMBERGAME_RANK;
         }        
-        
+    }
+
+    void OnDisable()
+    {
+        // Reset the toogles to the default state
+        easyToggle.isOn = true;
     }
 
     public void SetTaskType (NGTaskType _taskType) {
+        // Disable the replay button
+        replayButtonGO.SetActive(false);   
+
         taskType = _taskType;
         
         // Generate a new number
@@ -95,6 +114,34 @@ public class NumberGamePanel : MonoBehaviour
             recordingTime = Const.MAX_REC_NUMBERGAME_RANK;
         }     
     }  
+
+    private void OnNewButtonClick()
+    {
+        // Disable the replay button
+        replayButtonGO.SetActive(false);   
+
+        // Retrigger the current toggle to generate a new number
+        if (easyToggle.isOn)
+        {
+            easyToggle.isOn = false;
+            easyToggle.isOn = true;
+        }
+        else if (mediumToggle.isOn)
+        {
+            mediumToggle.isOn = false;
+            mediumToggle.isOn = true;
+        }
+        else if (hardToggle.isOn)
+        {
+            hardToggle.isOn = false;
+            hardToggle.isOn = true;
+        }
+        else if (rankToggle.isOn)
+        {
+            rankToggle.isOn = false;
+            rankToggle.isOn = true;
+        }
+    }    
 
     void StartTimer()
     /*
@@ -157,37 +204,64 @@ public class NumberGamePanel : MonoBehaviour
         
         IEnumerator DelayPost()
         {
-
             Debug.Log("number: " + number);
             AudioManager.GetManager().GetAudioAndNG(number, errorTextGO, resultTextTMP);
-            yield return new WaitForSeconds(0.2f);  
+            yield return new WaitForSeconds(0.2f);
 
+            yield return StartCoroutine(LoadAudioClip(Const.NUMBERGAME_FILENAME));        
             recordButtonGO.SetActive(true);
+
+            Button replayButton = replayButtonGO.transform.GetComponent<Button>();                       
+            replayButton.onClick.RemoveAllListeners();    
+            if(replayClip!=null) {
+                replayButton.onClick.AddListener(()=> AudioManager.GetManager().PlayAudioClip(replayClip));            
+                replayButtonGO.SetActive(true);
+            } else {
+                replayButtonGO.SetActive(false);
+            }
+
         }
     }
 
-    private void OnNewButtonClick()
+    IEnumerator LoadAudioClip(string filename) 
+    /*
+    *   This one should be called inside the Panel (not AudioManager)
+    *   as it will update the replay audio with current replay audio
+    *   Calling it inside AudioManager will lead to a few seconds
+    *   of empty audioclip (somehow those wasn't trimmed in AudioManager
+    *   but was trimmed from the wav file.
+    *   Not very efficiency to reload but at least it work for now
+    */
     {
-        // Retrigger the current toggle to generate a new number
-        if (easyToggle.isOn)
-        {
-            easyToggle.isOn = false;
-            easyToggle.isOn = true;
-        }
-        else if (mediumToggle.isOn)
-        {
-            mediumToggle.isOn = false;
-            mediumToggle.isOn = true;
-        }
-        else if (hardToggle.isOn)
-        {
-            hardToggle.isOn = false;
-            hardToggle.isOn = true;
-        }
-        else if (rankToggle.isOn)
-        {
-            rankToggle.isOn = false;
-            rankToggle.isOn = true;
+        if(!String.IsNullOrEmpty(filename)) {
+            string path = System.IO.Path.Combine(Application.persistentDataPath, filename.EndsWith(".wav") ? filename : filename + ".wav");
+            
+            // Need the file:// for GetAudioClip
+            // TODO check with iOS version does it need sth similar
+            using (var uwr = UnityWebRequestMultimedia.GetAudioClip("file://" + path, AudioType.WAV))
+            {
+                ((DownloadHandlerAudioClip)uwr.downloadHandler).streamAudio = true;
+        
+                yield return uwr.SendWebRequest();
+        
+                if (uwr.result==UnityWebRequest.Result.ConnectionError || uwr.result == UnityWebRequest.Result.ProtocolError)
+                {   
+                    Debug.LogError("Failed to reload replay audio clip");
+                    Debug.LogError(uwr.result);
+                    Debug.LogError(path);
+                    yield break;
+                }
+        
+                DownloadHandlerAudioClip dlHandler = (DownloadHandlerAudioClip)uwr.downloadHandler;
+        
+                if (dlHandler.isDone)
+                {
+                    Debug.Log("Replay audio clip is loaded");
+                    replayClip = dlHandler.audioClip;
+                }
+            }
+            
+            yield break;
         }
     }
 }

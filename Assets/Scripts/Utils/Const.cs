@@ -83,7 +83,7 @@ public static class Const
 
     // Adjustment value for the number game
     // The number game is a bit different, since we focus on number and not pronunciation
-    public const float AVG_NUMBER_ADJ = 0.30f;
+    public const float AVG_NUMBER_ADJ = 0.40f;
 
     // Weight % allow users to update score with more weight put on 
     // latest score and not the historical average
@@ -105,10 +105,10 @@ public static class Const
     public const int MAX_REC_TIME_B = 30; //30
 
 
-    public const int MAX_REC_NUMBERGAME_EASY = 4;
-    public const int MAX_REC_NUMBERGAME_MEDIUM = 5;
-    public const int MAX_REC_NUMBERGAME_HARD = 6;
-    public const int MAX_REC_NUMBERGAME_RANK = 5;
+    public const int MAX_REC_NUMBERGAME_EASY = 3;
+    public const int MAX_REC_NUMBERGAME_MEDIUM = 4;
+    public const int MAX_REC_NUMBERGAME_HARD = 5;
+    public const int MAX_REC_NUMBERGAME_RANK = 4;
 
     public const int NUMBERGAME_PREPARE_TIME = 2;
 

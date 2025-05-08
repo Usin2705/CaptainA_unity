@@ -57,7 +57,7 @@ public class AudioManager : MonoBehaviour
     public void PlayAudioClip(AudioClip audioClip) {
         // Adding an if statement so that user won't abuse the play audio
         audioSource.Stop();  // stop any audio that might be playing
-        audioSource.PlayOneShot(audioClip);
+        audioSource.PlayOneShot(audioClip, 1.0f);
     }
     
     public void GetAudioAndPost(string transcript, GameObject textErrorGO, TMPro.TextMeshProUGUI resultTextTMP, GameObject warningImageGO, 
