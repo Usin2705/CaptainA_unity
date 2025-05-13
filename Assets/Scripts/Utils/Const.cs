@@ -80,6 +80,7 @@ public static class Const
     public const float BAD_SCORE = 0.20f;
     public const float AVG_SCORE = 0.80f;
     //public const float GOOD_SCORE = 0.92f;
+    public const int MAX_CHAR_ALLOWED = 80;        
 
     // Adjustment value for the number game
     // The number game is a bit different, since we focus on number and not pronunciation
