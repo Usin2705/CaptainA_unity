@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1218d3016c944984b8df860b8bc6eede
+guid: 832413e9ccce7234f908c2427b84248c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1382396135861902383
-    second: top_bar_SMALL_0
+      213: 1807823703707142178
+    second: ic_okay_pressed_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: top_bar_SMALL_0
+      name: ic_okay_pressed_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 900
-        height: 250
+        width: 140
+        height: 88
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1d32417e90eb0dce0800000000000000
-      internalID: -1382396135861902383
+      spriteID: 228cefb841ea61910800000000000000
+      internalID: 1807823703707142178
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      top_bar_SMALL_0: -1382396135861902383
+      ic_okay_pressed_0: 1807823703707142178
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

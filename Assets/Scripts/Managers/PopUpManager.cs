@@ -9,6 +9,15 @@ public class PopUpManager : MonoBehaviour
 
     string prefsKey;
 
+    void Start()
+    {
+        // Set the panel to inactive at the start
+        panel.SetActive(false);
+
+        // Add listener to the OK button
+        okButton.onClick.AddListener(OnOkButtonClick);
+    }
+
     public void OpenPanel(string _prefsKey)
     {
         panel.SetActive(true);

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -48,17 +46,30 @@ public class NavigationBar : MonoBehaviour
     {
         // Disable the instruction panel first if it's active
         // Other Panel can open the instruction panel if they need to
-        PopUpManager popUpPanel = GameObject.FindAnyObjectByType<PopUpManager>();
+        PopUpManager popUpPanel = FindAnyObjectByType<PopUpManager>();
         popUpPanel.DisablePanel();
 
         foreach (GameObject panel in panels) 
         {
             int index = System.Array.IndexOf(panels, panel);
+            
+            panel.SetActive(panel == activePanel);             
 
-            GameObject activeBar = tabs[index].transform.Find("ActiveBar").gameObject;
-            activeBar.SetActive(panel == activePanel);
-            panel.SetActive(panel == activePanel); 
-
+            // Change the source image of the tab button to show active/inactive
+            // The name of the source image is ic_[name]_[active/inactive]
+            // [name] is the name of the tab button            
+            Image tabImage = tabs[index].GetComponent<Image>();
+            string tabName = tabs[index].name;
+            string sourceImageName = "ic_" + tabName + "_" + (panel == activePanel ? "active" : "inactive");
+            Sprite sourceImage = Resources.Load<Sprite>("app_icons/" + sourceImageName);
+            if (sourceImage != null)
+            {
+                tabImage.sprite = sourceImage;
+            }
+            else
+            {
+                Debug.LogError("Source image not found: " + sourceImageName);
+            }
         }
     }
 }

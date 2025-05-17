@@ -137,6 +137,8 @@ public static class Const
     // Maximum waiting time for Unity web request
     public const int TIME_OUT_SECS = 20;
     public const int TIME_OUT_ADVANCE_SECS = 30;
+
+    public const string FILE_NAME_POST= "speech_sample";
     // =======================================================
 
 
@@ -225,12 +227,11 @@ public static class Const
     // =======================================================
 
     // ===================== INSTRUCTION STRING CONST =====================
-    public const string INSTRUCTION_MAIN = "Practice your pronunciation by typing any words or sentences in the box. The model doesn't work well with short words or spoken Finnish.\n" +
-                                            "Press the microphone button to record your pronunciation. \n \n" + 
+    public const string INSTRUCTION_MAIN = "Practice your pronunciation by typing any words or sentences in the box. The model doesn't work well with short words or spoken Finnish.\n" +                                            
                                             "<b><color=#ff0000ff>Red </color></b>: flawed pronunciation. \n" +
-                                            "<b><color=#ffa500ff>Yellow</color></b>: almost correct, or there is heavy accent or dialect, or the AI model is not confident.\n" +
-                                            "<b><color=#0000ffff>Blue</color></b>: correct pronunciation. You sound like a native speaker.\n\n" + 
-                                            "You can click on the coloured result for more details. \n\n" + 
+                                            "<b><color=#ffa500ff>Yellow</color></b>: almost correct, or the AI model is not confident due to unfamiliar accents.\n" +
+                                            "<b><color=#0000ffff>Blue</color></b>: correct pronunciation. \n\n" + 
+                                            "You can click on the result for more details. \n\n" + 
                                             "Our current model is continually improving. If you consistently have flawed pronunciation, you should seek advice from a Finnish teacher. We will develope better models in the future.\n";
     public const string INSTRUCTION_VOCABULARY = "This mode has flashcards (similar to Anki) to help learn vocabulary. \n\n" +                                                                                                 
                                                  "You can also practice pronunciation with the <b>recording button</b> " +
@@ -238,9 +239,10 @@ public static class Const
                                                  "For each card, you can rate the difficulty from Again to Easy. " +
                                                  "The easier you remember the card, the longer it will be hidden. " +
                                                  "Your task is to learn 20 new cards a day. You can long press on the deck to learn more.\n\n" +
-                                                 "We will regularly update the flashcards, and welcome volunteers to help translate the cards " +
+                                                 "We welcome volunteers to help translate the cards " +
                                                  "into other languages. Please get in touch with us if you are interested.";
-    public const string INSTRUCTION_ADVANCE = "We will add more advance functions to help you learning Finnish in the future.";                                                 
+    public const string INSTRUCTION_ADVANCE = "You can practice speaking either writen number or spoken number with PuheNumero. Please note that this function has higher pronunciation requirement. \n\n" +
+                                               "We will add more advance functions to help you learning Finnish in the future.";                                                 
     public const string INSTRUCTION_PROFILE = "Your profile shows the average score you got for each phone. <b>Click</b> on the label " +
                                               "for instruction (text, photo, and video) on how to pronounce the phoneme correctly. \n\n" +
                                               "While our model does not always provide accurate results, the statistics here are reliable. " + 

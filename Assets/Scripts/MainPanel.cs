@@ -30,16 +30,14 @@ public class MainPanel : MonoBehaviour
     [SerializeField] GameObject errorTextGO;     
     [SerializeField] GameObject resultPanelGO;     
     [SerializeField] GameObject replayButtonGO;     
-    [SerializeField] GameObject sampleButtonGO; // Replay sample audio
+    [SerializeField] GameObject sampleButtonGO; // Play sample audio
+    [SerializeField] GameObject detailButtonGO; // Display detail feedback
+
+    
     [SerializeField] GameObject illustrationGO; // Illustration
 
     [SerializeField] DetailScorePanel detailScorePanel;
 
-    [SerializeField] TMPro.TextMeshProUGUI predictionDebugText;
-
-    [SerializeField] GameObject progressBarGO;
-
-    AudioClip replayClip;
     AudioClip sampleClip;
 
     private float countdownTime = 2.0f;
@@ -72,39 +70,102 @@ public class MainPanel : MonoBehaviour
     }
 
 
-
-
-
-
-
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // Toggle fullscreen
-        Screen.fullScreen = false;
-        sampleButtonGO.SetActive(false);
-        illustrationGO.SetActive(false);
+        // Set the start UI to be active
+        SetUpStartUI();
+
     }
 
     void OnEnable() {
-        if (!PlayerPrefs.HasKey(Const.PREF_INS_MAIN)) {
-            PopUpManager popUpPanel = GameObject.FindAnyObjectByType<PopUpManager>();        
+
+        // Check if the instruction for MainPanel is already shown        
+        if (!PlayerPrefs.HasKey(Const.PREF_INS_MAIN))
+        {
+            PopUpManager popUpPanel = FindAnyObjectByType<PopUpManager>();
             popUpPanel.OpenPanel(Const.PREF_INS_MAIN);
             popUpPanel.SetText(Const.INSTRUCTION_MAIN);
         }        
+    }    
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Only run this code if the stopButtonGO  is active        
+        if (stopButtonPanelGO.activeSelf == true) {
+            UpdateProgressCircle();            
+        }        
+
+        // Rotate the wait icon if it is active every frame        
+        // only less half 1 degree per 2 frames
+        if (waitIconGO.activeSelf == true) {
+            if (Time.frameCount % 2 == 0) {
+            waitIconGO.transform.Rotate(0, 0, -0.5f);
+            }
+        }
     }
 
+    /// <summary>
+    /// Updates the progress circle based on the remaining countdown time.
+    /// </summary>
+    /// <remarks>
+    /// This method calculates the current progress of a countdown timer and updates the source image
+    /// of the stop button to reflect the progress. The progress is divided into four stages, each represented
+    /// by a different image. When the progress reaches zero, the timer is stopped and the <c>StopTimer</c>
+    /// method is called.
+    /// 
+    /// Since this is run within the Update method, the progress circle is updated every frame.
+    /// The varoable <c>currentTime</c> is a global variable and need to be set on <c>StartTimer</c> method.
+    /// </remarks>
+    private void UpdateProgressCircle()
+    {
+        // Calculate the current time
+        currentTime -= Time.deltaTime;
 
-    void StartTimer()
-    /*
-    *   
-    */
-    {        
+        // Calculate the current progress
+        float currentProgress = currentTime / countdownTime;
+
+        // Change the StopButton source image to show the progress circle
+        
+        // If the progress is less than or equal to 0, stop the timer and call the StopTimer method
+        // Remember to reset the currentTime to 0 and set the stopButtonGO source image to default
+        // Most important, disable the stopButtonGO (it will disable the progress circle call in Update())
+        if (currentProgress <= 0) 
+        {
+            StopTimer();
+        }
+        else if (currentProgress <= 0.05)
+        {
+            stopButtonPanelGO.GetComponent<Image>().sprite = Resources.Load<Sprite>("app_icons/ic_timer_4");                                    
+        } else if (currentProgress < 0.25)
+        {
+            stopButtonPanelGO.GetComponent<Image>().sprite = Resources.Load<Sprite>("app_icons/ic_timer_3");                        
+        } else if (currentProgress < 0.5)
+        {
+            stopButtonPanelGO.GetComponent<Image>().sprite = Resources.Load<Sprite>("app_icons/ic_timer_2");            
+        } else if (currentProgress < 0.75)
+        {
+            stopButtonPanelGO.GetComponent<Image>().sprite = Resources.Load<Sprite>("app_icons/ic_timer_1");
+        } 
+    }
+
+    /// <summary>
+    /// Initializes and starts the recording timer based on the length of the transcript.
+    /// </summary>
+    /// <remarks>
+    /// The length of the audio clip depends on the number of characters in the text to be recorded plus an extra time.
+    /// The countdown time is capped at a maximum recording time.
+    /// The method hides the recordButton, shows the countdown progress circle and the stopButton, and registers the OnClick event for the stop button.
+    /// </remarks>
+    private void StartTimer() 
+    {
         // The length of the audio clip depend on the number of characters
         // of the text to be recorded + EXTRA_TIME
         countdownTime = transcript.Length*Const.SEC_PER_CHAR + Const.EXTRA_TIME;
 
         // Make sure the countdown time is not more than MAX_REC_TIME
-        if (countdownTime > Const.MAX_REC_TIME) countdownTime = Const.MAX_REC_TIME;        
+        if (countdownTime > Const.MAX_REC_TIME) countdownTime = Const.MAX_REC_TIME;   
 
         // Start countdown so the user know how long the recording will be
         currentTime = countdownTime;
@@ -112,171 +173,40 @@ public class MainPanel : MonoBehaviour
         // Hide the record button
         recordButtonGO.SetActive(false);
 
-        // Show the countdown progress bar
-        progressBarGO.SetActive(true);
-    }
+        // Show the countdown progress circle and the stop button
+        stopButtonPanelGO.SetActive(true);
+        // Register the OnClick event for the stop button
+        stopButtonGO.GetComponent<Button>().onClick.AddListener(delegate { OnStopRecordButtonClick(); });
+    }       
 
-    void Update()
+    private void OnStopRecordButtonClick()
     {
-        // Only run this code if the progress bar is active
-        if (progressBarGO.activeSelf == true) {
-            UpdateProgressBar();            
-        } 
-    }
+        StopTimer();
+    }    
 
-    void UpdateProgressBar() {
-        /*
-        *   This function will update the progress bar
-        */
-        currentTime -= Time.deltaTime;        
-        progressBarGO.GetComponent<Image>().fillAmount = currentTime / countdownTime;
-
-        if (currentTime <= 0)
-        {
-            
-            currentTime = 0;
-            progressBarGO.SetActive(false);
-            OnFinnishTimer();
-        }
-    }
-
-    public void OnRecordButtonClick() 
-    /*
-    *   This function also attached to RecordButton OnClick() in Unity
-    */
+    /// <summary>
+    /// Stops the recording timer and resets the UI elements associated with the timer.
+    /// </summary>
+    /// <remarks>
+    /// This method stops the countdown timer by setting the <c>currentTime</c> to 0 and disabling the <c>stopButtonGO</c>.
+    /// It also removes all listeners from the stop button and resets its source image to the default.
+    /// After stopping the timer, it calls the <c>StopRecordingAndProcessAudio</c> coroutine to handle the recording and processing of the audio.
+    /// </remarks>
+    private void StopTimer()
     {
-        // Hide the error text
-        errorTextGO.SetActive(false);
+        // Stop the timer
+        currentTime = 0;
         
-        // Clear the prediction text
-        predictionDebugText.text = "";
+        ResetStopButtonAnimation();
 
-        // Get the text from the input field
-        transcript = inputTransGO.GetComponent<TMPro.TMP_InputField>().text;
-
-        // Santinize the text
-        transcript = TextUtils.SantinizeText(transcript);
-
-        // Check if the text is empty or not
-        if (transcript=="") 
-        {
-            // Show the error text
-            errorTextGO.SetActive(true);
-            errorTextGO.GetComponent<TMPro.TextMeshProUGUI>().text = "Please enter a word or phrase";
-        }
-        else 
-        {   
-            progressBarGO.SetActive(true);
-            // Start recording
-            AudioManager.GetManager().StartRecording(Const.MAX_REC_TIME);
-
-            // Start the timer
-            // Should not use invoke or delay as it will cause the timer to be inaccurate
-            StartTimer();
-        }
+        // Once timer finish, call the external method to stop the recording
+        // and wait for the audio to be processed (coroutine) and then enable the replay button
+        StartCoroutine(StopRecordingAndProcessAudio());
     }
-
-    // TODO
-    // This code is 95% the same with ExercisePanel
-    // maybe consider to merge both code into 1
-    public void OnFinnishTimer() {
-        // NOTE that in MainPanel the text is get from TMP_InputField, not TMPro.TextMeshProUGUI
-        resultPanelGO.SetActive(false);
-
-        // Maybe this won't cut the recording abruptly
-        // by delay the microphone end by 0.5sec            
-        StartCoroutine(DelayPost());
-        
-        IEnumerator DelayPost()
-        {
-            //yield return new WaitForSeconds(0.5f);
-            
-            // Send transcript to server
-            // errorTextGO to update if server yield error
-            // resultPanelGO to update result (by Enable the AudioClip and display text result)
-            TMPro.TextMeshProUGUI resultTextTMP = resultPanelGO.transform.Find("ResultText").GetComponent<TMPro.TextMeshProUGUI>();
-            GameObject warningImageGO = resultPanelGO.transform.Find("WarningImage").gameObject;
-
-            AudioManager.GetManager().GetAudioAndPost(transcript, errorTextGO, resultTextTMP, warningImageGO, resultPanelGO, predictionDebugText);
-
-            // TODO Make this part more efficiency
-            // The whole block stink
-            // The idea is return the audioSource.clip
-            // But the clip was trimmed & convert to wav in the above code
-            // so we RELOAD it back to clip again, which is a waste of processing
-            // but at least we got some nice trimmed audioclip        
-            yield return StartCoroutine(LoadAudioClip(Const.REPLAY_FILENAME));        
-
-            recordButtonGO.SetActive(true);
-
-            Button replayButton = replayButtonGO.transform.GetComponent<Button>();                       
-            replayButton.onClick.RemoveAllListeners();    
-            if(replayClip!=null) {
-                replayButton.onClick.AddListener(()=> AudioManager.GetManager().PlayAudioClip(replayClip));            
-                replayButtonGO.SetActive(true);
-            } else {
-                replayButtonGO.SetActive(false);
-            }
-
-            // Look for the ResultTextButton (which will pop up the DetailScorePanel onclick)
-            Button resultTextButton = resultPanelGO.transform.Find("ResultText").transform.GetComponent<Button>();
-            // To be safe, remove all old listeners were add to this component
-            resultTextButton.onClick.RemoveAllListeners();
-            // Add onclick to text result
-            resultTextButton.onClick.AddListener(() => detailScorePanel.ShowDetailScorePanel(transcript, null, replayClip));
-        }
-    }
-
-    IEnumerator LoadAudioClip(string filename) 
-    /*
-    *   This one should be called inside the Panel (not AudioManager)
-    *   as it will update the replay audio with current replay audio
-    *   Calling it inside AudioManager will lead to a few seconds
-    *   of empty audioclip (somehow those wasn't trimmed in AudioManager
-    *   but was trimmed from the wav file.
-    *   Not very efficiency to reload but at least it work for now
-    */
-    {
-        if(!String.IsNullOrEmpty(filename)) {
-            string path = System.IO.Path.Combine(Application.persistentDataPath, filename.EndsWith(".wav") ? filename : filename + ".wav");
-            
-            // Need the file:// for GetAudioClip
-            // TODO check with iOS version does it need sth similar
-            using (var uwr = UnityWebRequestMultimedia.GetAudioClip("file://" + path, AudioType.WAV))
-            {
-                ((DownloadHandlerAudioClip)uwr.downloadHandler).streamAudio = true;
-        
-                yield return uwr.SendWebRequest();
-        
-                if (uwr.result==UnityWebRequest.Result.ConnectionError || uwr.result == UnityWebRequest.Result.ProtocolError)
-                {   
-                    Debug.LogError("Failed to reload replay audio clip");
-                    Debug.LogError(uwr.result);
-                    Debug.LogError(path);
-                    yield break;
-                }
-        
-                DownloadHandlerAudioClip dlHandler = (DownloadHandlerAudioClip)uwr.downloadHandler;
-        
-                if (dlHandler.isDone)
-                {
-                    Debug.Log("Replay audio clip is loaded");
-                    replayClip = dlHandler.audioClip;
-                }
-            }
-            
-            yield break;
-        }
-    }
-
-
-
-
-
 
     private void OnInputTextFocus(TMPro.TMP_InputField inputField)
     {
-        Debug.Log(inputField.name + " is focused.");
+        // Debug.Log(inputField.name + " is focused.");
         SetupFocusTextUI();
     }    
 
@@ -309,6 +239,11 @@ public class MainPanel : MonoBehaviour
         }
     }
 
+    private void OnInputTextUnfocus(TMPro.TMP_InputField inputField)
+    {
+        Debug.Log(inputField.name + " is unfocused.");
+    }    
+
     /// <summary>
     /// Handles two type of event depend on the scenario: 
     /// 1. The user focus on the EditText when the EditText is empty -> change to EditText focus layout
@@ -319,11 +254,11 @@ public class MainPanel : MonoBehaviour
         Debug.Log("Start button clicked to focus on EditText.");
         if (inputText.text.Length > 0)
         {
-            Debug.Log(inputText.name + " text finished: " + inputText.text);
+            // Debug.Log(inputText.name + " text finished: " + inputText.text);
             OnStartButtonClickDoneText();
         } else {
             inputText.Select();
-            Debug.Log(inputText.name + " text finished but there is nothing: " + inputText.text);
+            // Debug.Log(inputText.name + " text finished but there is nothing: " + inputText.text);
         }
     }
 
@@ -342,6 +277,31 @@ public class MainPanel : MonoBehaviour
         inputText.Select();
     }
 
+
+    private void OnRecordButtonClick() 
+    {
+        Debug.Log("Record button clicked.");
+        
+        // Get the text from the ReadAloudText and store it in the transcript variable
+        // Technically, this should be done in the OnStartButtonClickDoneText method, but it is done here 
+        // to ensure that the text is captured before the recording starts and to be consistent with the
+        // original code.
+        // Use GetParsedText(): This returns the plain text content with all rich text formatting removed.
+        // Since we are format result with richtext, this is the best method to use. (in case user record after the result is shown)
+        transcript = textInputPanelGO.transform.Find("ReadAloudText").GetComponent<TMPro.TextMeshProUGUI>().GetParsedText();
+        // Debug.Log("Transcript: " + transcript);
+
+        // Santinize the text
+        // We already did this in the OnStartButtonClickDoneText method, but it is done here
+        // to ensure that the text is properly captured before the recording starts.        
+        transcript = TextUtils.SantinizeText(transcript).ToLower();
+        Debug.Log("Sanitized Transcript: " + transcript);
+
+        // Start recording
+        AudioManager.GetManager().StartRecording(Const.MAX_REC_TIME);
+
+        StartTimer();
+    }    
 
     public void SetUpStartUI()
     {
@@ -378,8 +338,15 @@ public class MainPanel : MonoBehaviour
         recordButtonGO.SetActive(false);
         againButtonGO.SetActive(false);
         replayButtonGO.SetActive(false);
+        detailButtonGO.SetActive(false);
 
-        ResetStopButton();
+        // Disable the illustration
+        illustrationGO.SetActive(false);
+
+        // Disable the sample button
+        sampleButtonGO.SetActive(false);
+
+        ResetStopButtonAnimation();
 
         ResetWaitIcon();
     }    
@@ -429,6 +396,7 @@ public class MainPanel : MonoBehaviour
         // Disable the recording button        
         recordButtonGO.SetActive(false);
         againButtonGO.SetActive(false);
+        detailButtonGO.SetActive(false);
 
         // Disable the illustration
         illustrationGO.SetActive(false);
@@ -436,17 +404,17 @@ public class MainPanel : MonoBehaviour
         // Disable the sample button
         sampleButtonGO.SetActive(false);
 
-        ResetStopButton();
+        ResetStopButtonAnimation();
 
         ResetWaitIcon();
     }
 
-    private void ResetStopButton()
+    private void ResetStopButtonAnimation()
     {
         // Disable the stop button
         stopButtonPanelGO.SetActive(false);
         // Remove all listeners from the stop button
-        stopButtonGO.GetComponent<UnityEngine.UI.Button>().onClick.RemoveAllListeners();
+        stopButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         // Reset the stopButtonGO source image to the default
         stopButtonPanelGO.GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load<Sprite>("app_icons/ic_timer_0");
     }
@@ -545,6 +513,43 @@ public class MainPanel : MonoBehaviour
         if (sampleClip == null) {
             sampleClip = Resources.Load<AudioClip>(Const.AUDIO_AI_PATH + audioFileName);            
         }        
+    }
+
+    private IEnumerator StopRecordingAndProcessAudio()
+    {
+        GameObject textErrorGO = textInputPanelGO.transform.Find("PromptText").gameObject;
+        GameObject resultTextGO = textInputPanelGO.transform.Find("ReadAloudText").gameObject;            
+        
+        // Toggle the loading 
+        waitIconGO.SetActive(true);
+
+        // Turn off the replay button
+        // It will be a mess if the user click the replay button while the server is still processing
+        againButtonGO.SetActive(false);    
+
+        AudioManager.GetManager().GetAudioAndPost(POSTType.MDD_TASK, transcript, textErrorGO, resultTextGO, null, null, OnServerDone);
+
+        replayButtonGO.transform.GetComponent<Button>().onClick.RemoveAllListeners();
+        yield return AudioManager.GetManager().LoadAudioClip(Const.REPLAY_FILENAME, replayButtonGO);
+    }
+
+    private void OnServerDone()
+    {
+        ResetWaitIcon();
+        recordButtonGO.SetActive(true);
+        againButtonGO.SetActive(true);
+
+        // Enable the detail button
+        // TODO: add a check to see if the detail results are available        
+        AudioClip replayClip = AudioManager.GetManager().GetReplayClip();
+        if (replayClip != null) {
+            detailButtonGO.SetActive(true);
+        // To be safe, remove all old listeners were add to this component
+        detailButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
+        // Add onclick to text result
+        detailButtonGO.GetComponent<Button>().onClick.AddListener(
+            () => detailScorePanel.ShowDetailScorePanel(transcript, null, AudioManager.GetManager().GetReplayClip()));
+        }
     }
 
 }
