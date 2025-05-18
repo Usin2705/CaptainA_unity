@@ -126,16 +126,23 @@ public class NetworkManager : MonoBehaviour
 			textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "Here are your results:";
 			asrResult = JsonUtility.FromJson<ASRResult>(uwr.downloadHandler.text);
 
-			SaveData.UpdateUserScores(transcript, asrResult.score);
+			// Only save data if the transcript is text and not number
+			// as we also have the number game
+			if (postType != POSTType.PuheNumero_TASK)
+			{
+				// update the users score to the userdata
+				SaveData.UpdateUserScores(transcript, asrResult.score);
+			}
+			
 
 			// Update text result
-			// This part only update the TextResult text		
-			// is updated (added onclick, show active) in their MainPanel (either MainPanel or ExercisePanel)
+				// This part only update the TextResult text		
+				// is updated (added onclick, show active) in their MainPanel (either MainPanel or ExercisePanel)
 
-			// After TextResult text is updated,
-			// it's safe to set onclick on result text on it's main panel
-			// that's why we can set the Panel to active		
-			string textResult = TextUtils.FormatTextResult(transcript, asrResult.score);		
+				// After TextResult text is updated,
+				// it's safe to set onclick on result text on it's main panel
+				// that's why we can set the Panel to active		
+				string textResult = TextUtils.FormatTextResult(transcript, asrResult.score);		
 			resultTextGO.GetComponent<TMPro.TextMeshProUGUI>().text = textResult;
 			
 			// Set resultTextGO to bold following design guideline
@@ -752,7 +759,7 @@ public class NetworkManager : MonoBehaviour
 
 		Debug.Log("Text" + www.downloadHandler.text);
 
-		SaveData.UpdateUserScores(number, asrResult.score);
+		// SaveData.UpdateUserScores(number, asrResult.score);
 
 		// Update text result
 		// This part only update the TextResult text		

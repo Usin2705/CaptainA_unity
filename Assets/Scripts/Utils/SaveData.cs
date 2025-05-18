@@ -126,7 +126,7 @@ public static class SaveData
             flashCard.useDateStr = "2000-01-01T00:00:00.0000000Z";
         }
 
-        SaveData.SaveIntoJson(flashCard, flashCardFileName);
+        SaveIntoJson(flashCard, flashCardFileName);
 
         return flashCard;
     }
@@ -184,7 +184,7 @@ public static class SaveData
 			
 			int index = userData.IndexOf(phoneme);
 
-            // This record the currernt time in to Seconds Since 1970
+            // This record the current time in to Seconds Since 1970
             DateTime epochStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);//January 1, 1970 0 hours, 0 minutes, 0 seconds
             int secondsInUTC =  (int)(DateTime.UtcNow - epochStart).TotalSeconds;            
             ScoreWithUTC scoreWithUTC = new ScoreWithUTC(score: scoreList[i], secondsInUTC: secondsInUTC); 
@@ -224,7 +224,22 @@ public static class SaveData
 			}
 		}
 
-		SaveIntoJson(userData, "UserData");
+        // ONLY USE THIS ONE FOR THIS VERSION TO DELETE THE BUG
+        userData = DeleteNumberInUserData(userData);
+        SaveIntoJson(userData, "UserData");
+    }
+
+    // Delete the number in the userData
+    // Do not delete the whole UserData file
+    public static UserData DeleteNumberInUserData(UserData userData)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+
+            userData.DeletePhoneme(i.ToString());
+        }
+
+        return userData;
     }
 
     public static void SaveImageToFile(Texture2D texture, string filename)
@@ -237,31 +252,45 @@ public static class SaveData
 }
 
 [System.Serializable]
-public class UserData{
+public class UserData
+{
     public string placeHolderString;
     public int placeHolderInt;
     public List<PhonemeScore> phonemeScores; // Ideally we want a Dictionary here, but Dictionary is a pain when save and load in Unity with Json (not Seriablizable)
 
-    public UserData (string placeHolderString, int placeHolderInt,  List<PhonemeScore> phonemeScores) {
+    public UserData(string placeHolderString, int placeHolderInt, List<PhonemeScore> phonemeScores)
+    {
         this.placeHolderString = placeHolderString;
         this.placeHolderInt = placeHolderInt;
         this.phonemeScores = phonemeScores;
     }
 
-    public int IndexOf(string phoneme) {
+    public int IndexOf(string phoneme)
+    {
         /*
             Find the Index of a phoneme within the PhonemeScores list
             and return its index. If phoneme is not within the list 
             return -1.
         */
-        for (int i = 0; i < phonemeScores.Count; i++) 
+        for (int i = 0; i < phonemeScores.Count; i++)
         {
-            if(phonemeScores[i].phoneme==phoneme) {
+            if (phonemeScores[i].phoneme == phoneme)
+            {
                 return i;
             }
         }
 
         return -1;
+    }
+
+    // Delete the phoneme from the list
+    public void DeletePhoneme(string phoneme)
+    {
+        int index = IndexOf(phoneme);
+        if (index != -1)
+        {
+            phonemeScores.RemoveAt(index);
+        }
     }
 }
 

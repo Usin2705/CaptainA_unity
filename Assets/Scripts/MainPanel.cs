@@ -322,9 +322,9 @@ public class MainPanel : MonoBehaviour
 
         textInputPanelGO.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -904);
 
-        dropShadowLGO.GetComponent<RectTransform>().anchoredPosition = new Vector2(-384, -904);
+        dropShadowLGO.GetComponent<RectTransform>().anchoredPosition = new Vector2(-372, -904);
         dropShadowBGO.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -1188);
-        dropShadowRGO.GetComponent<RectTransform>().anchoredPosition = new Vector2(384, -904);
+        dropShadowRGO.GetComponent<RectTransform>().anchoredPosition = new Vector2(372, -904);
         
         // Enable the startButtonGO
         startButtonGO.SetActive(true);
@@ -370,9 +370,9 @@ public class MainPanel : MonoBehaviour
 
         textInputPanelGO.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -692);
 
-        dropShadowLGO.GetComponent<RectTransform>().anchoredPosition = new Vector2(-384, -692);
+        dropShadowLGO.GetComponent<RectTransform>().anchoredPosition = new Vector2(-372, -692);
         dropShadowBGO.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -976);
-        dropShadowRGO.GetComponent<RectTransform>().anchoredPosition = new Vector2(384, -692);
+        dropShadowRGO.GetComponent<RectTransform>().anchoredPosition = new Vector2(372, -692);
 
         // Enable the inputText
         inputText.gameObject.SetActive(true);
