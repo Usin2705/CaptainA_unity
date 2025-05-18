@@ -161,9 +161,16 @@ public class NumberGamePanel : MonoBehaviour
     void Update()
     {
         // Only run this code if the progress bar is active
-        if (progressBarGO.activeSelf == true) {
-            UpdateProgressBar();            
-        } 
+        if (progressBarGO.activeSelf == true)
+        {
+            UpdateProgressBar();
+        }
+
+        if (UnityEngine.InputSystem.Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            // Disable this panel
+            gameObject.SetActive(false);
+        }
     }
 
     void UpdateProgressBar() {

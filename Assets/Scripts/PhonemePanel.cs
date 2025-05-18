@@ -73,11 +73,11 @@ public class PhonemePanel : MonoBehaviour
         // so that the back button won't go back to the URL
         EventSystem.current.SetSelectedGameObject(phonemePanel, null);
 
-        // Handle back button press on phone
-        if (Input.GetKeyDown(KeyCode.Escape))
+        // Handle back button press on new Input System
+        if (UnityEngine.InputSystem.Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             ClosePanel();
-        }        
+        }
     }
 
     public void ClosePanel()

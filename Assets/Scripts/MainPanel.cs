@@ -1,9 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Networking;
-
-using System;
 
 public class MainPanel : MonoBehaviour
 {
@@ -44,7 +41,6 @@ public class MainPanel : MonoBehaviour
     private float currentTime = 2.0f;
     private string transcript;
 
-
     /// <summary>
     /// Awake is called when the script instance is being loaded. This is used to initialize any variables or game state 
     /// before the game starts. Awake is called only once during the lifetime of the script instance.
@@ -55,13 +51,14 @@ public class MainPanel : MonoBehaviour
     /// Awake is called before any Start methods, making it a good place to set up references and initialize variables 
     /// that other scripts might depend on during their Start method.
     /// </summary>
-    private void Awake() 
+    private void Awake()
     {
+        // Get the InputManager component
         SetUpStartUI();
         inputText.onSelect.AddListener(delegate { OnInputTextFocus(inputText); });
         // inputText.onDeselect.AddListener(delegate { OnInputTextUnfocus(inputText); });
         inputText.onValueChanged.AddListener(delegate { OnInputTextChange(inputText); });
-        
+
         // This is not working, as it trigger even when the text is unfocused
         // inputText.onEndEdit.AddListener(delegate { OnInputTextFinish(inputText); });
         startButtonGO.GetComponent<Button>().onClick.AddListener(delegate { OnStartButtonClick(); });
@@ -78,7 +75,8 @@ public class MainPanel : MonoBehaviour
 
     }
 
-    void OnEnable() {
+    void OnEnable()
+    {
 
         // Check if the instruction for MainPanel is already shown        
         if (!PlayerPrefs.HasKey(Const.PREF_INS_MAIN))
@@ -86,22 +84,36 @@ public class MainPanel : MonoBehaviour
             PopUpManager popUpPanel = FindAnyObjectByType<PopUpManager>();
             popUpPanel.OpenPanel(Const.PREF_INS_MAIN);
             popUpPanel.SetText(Const.INSTRUCTION_MAIN);
-        }        
-    }    
+        }
+
+        // Check if the version updates summary is already shown
+        // This only show if the instruction is already shown avoid showing the instruction twice
+        // Also, this will check if the version is different from the last time
+        else if (PlayerPrefs.GetInt(Const.PREF_INS_MAIN) < Const.APP_VERSION)
+        {
+            // Show the instruction if the version is different from the last time
+            PopUpManager popUpPanel = FindAnyObjectByType<PopUpManager>();
+            popUpPanel.OpenPanel(Const.PREF_INS_MAIN, Const.APP_VERSION);
+            popUpPanel.SetText(Const.NEW_VERSION_TEXT);
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
         // Only run this code if the stopButtonGO  is active        
-        if (stopButtonPanelGO.activeSelf == true) {
-            UpdateProgressCircle();            
-        }        
+        if (stopButtonPanelGO.activeSelf == true)
+        {
+            UpdateProgressCircle();
+        }
 
         // Rotate the wait icon if it is active every frame        
         // only less half 1 degree per 2 frames
-        if (waitIconGO.activeSelf == true) {
-            if (Time.frameCount % 2 == 0) {
-            waitIconGO.transform.Rotate(0, 0, -0.5f);
+        if (waitIconGO.activeSelf == true)
+        {
+            if (Time.frameCount % 2 == 0)
+            {
+                waitIconGO.transform.Rotate(0, 0, -0.5f);
             }
         }
     }

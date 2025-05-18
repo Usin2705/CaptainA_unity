@@ -9,6 +9,8 @@ public class PopUpManager : MonoBehaviour
 
     string prefsKey;
 
+    int saveInt = 1;
+
     void Start()
     {
         // Set the panel to inactive at the start
@@ -18,10 +20,11 @@ public class PopUpManager : MonoBehaviour
         okButton.onClick.AddListener(OnOkButtonClick);
     }
 
-    public void OpenPanel(string _prefsKey)
+    public void OpenPanel(string _prefsKey, int _saveInt = 1)
     {
         panel.SetActive(true);
         prefsKey = _prefsKey;
+        saveInt = _saveInt;
     }
 
     public void DisablePanel()
@@ -33,7 +36,7 @@ public class PopUpManager : MonoBehaviour
     public void FinnishPanel()
     {
         panel.SetActive(false);
-        PlayerPrefs.SetInt(prefsKey, 1);
+        PlayerPrefs.SetInt(prefsKey, saveInt);
         PlayerPrefs.Save();
     }
 

@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 /// <summary>
 /// Manages the navigation bar within the game, handling the activation and deactivation of panels and tabs.
@@ -35,7 +37,88 @@ public class NavigationBar : MonoBehaviour
     /// </summary>
     [SerializeField] GameObject[] tabs;
 
-    public void NavigationBarClick(GameObject activePanel) 
+    private float swipeThreshold = 100f; // Minimum swipe distance to be considered a swipe
+    private float thresholdFraction = 0.12f;
+    private Vector2 startPos;
+    private bool swipeHandled;
+    private int currentPanelIndex = 0;
+    private int previousPanelIndex = 0;
+
+
+    void Awake()
+    {
+        swipeThreshold = Mathf.Min(Screen.width, Screen.height) * thresholdFraction;
+    }
+
+    void Update()
+    {
+    // Check for swipe right to left gesture using 
+    // the new Input System
+    // This is only for touch devices, and not for UnityEditor
+    #if UNITY_ANDROID || UNITY_IOS
+        TouchControl touch = Touchscreen.current?.primaryTouch;
+        if (touch == null) return;
+
+        // Check if the touch is in the first phase (pressed)
+        if (touch.press.wasPressedThisFrame)
+        {
+            startPos = touch.position.ReadValue();
+            swipeHandled = false;
+        }
+        // Check if the touch is in the e2nd phase (pressed and moved)
+        // Finger is still down and hasn't triggered a swipe yet
+        else if (touch.press.isPressed && !swipeHandled)
+        {
+            // Check if the touch is moved
+            Vector2 delta = touch.position.ReadValue() - startPos;
+
+            /* -------------------------------------------------------------------
+            *  Dynamically pick the swipe threshold.
+            *  If we are on the LAST panel (scroll view) we make the gesture
+            *  harder to activate by doubling the normal threshold.
+            * ------------------------------------------------------------------*/
+            float effectiveThreshold = swipeThreshold;
+            if (currentPanelIndex == panels.Length - 1)   // last tab?
+            {
+                effectiveThreshold *= 3.5f; // double the threshold
+            }
+
+            // Big enough horizontal move?  If yes, treat as a swipe.
+            if (Mathf.Abs(delta.x) > effectiveThreshold)
+            {
+                swipeHandled = true;            // Avoid multi-fires
+                if (delta.x < 0)    GoRight();  // finger moved left  → next tab right
+                else                GoLeft();   // finger moved right → previous tab
+            }
+        }
+    #endif
+    }
+
+    /// <summary>
+    /// Handles the swipe left - go right gesture.
+    /// This method is called when the user swipes left on the screen.
+    /// It will navigate to the next panel in the array.
+    /// </summary>
+    void GoRight()
+    {
+        // Check if we are not on the last panel
+        int target = Mathf.Min(panels.Length - 1, currentPanelIndex + 1);
+        NavigationBarClick(panels[target]);
+    }
+
+    /// <summary>
+    /// Handles the swipe right - go left gesture.
+    /// This method is called when the user swipes right on the screen.
+    /// It will navigate to the previous panel in the array.    
+    /// </summary>
+    void GoLeft()
+    {
+        // Check if we are not on the first panel        
+        int target = Mathf.Max(0, currentPanelIndex - 1);
+        NavigationBarClick(panels[target]);
+    }
+
+    public void NavigationBarClick(GameObject activePanel)
     /*
     *  Can only be attached to OnClick with 1 variable,
     *  therefore we loop tabs and index to address
@@ -49,27 +132,41 @@ public class NavigationBar : MonoBehaviour
         PopUpManager popUpPanel = FindAnyObjectByType<PopUpManager>();
         popUpPanel.DisablePanel();
 
-        foreach (GameObject panel in panels) 
-        {
-            int index = System.Array.IndexOf(panels, panel);
-            
-            panel.SetActive(panel == activePanel);             
+        // We don't need to loop through all the panels
+        // just find the index of the active panel
+        // and set the previous panel to inactive, and active the current panel
+        int index = System.Array.IndexOf(panels, activePanel);
+        previousPanelIndex = currentPanelIndex;
+        currentPanelIndex = index;
 
-            // Change the source image of the tab button to show active/inactive
-            // The name of the source image is ic_[name]_[active/inactive]
-            // [name] is the name of the tab button            
-            Image tabImage = tabs[index].GetComponent<Image>();
-            string tabName = tabs[index].name;
-            string sourceImageName = "ic_" + tabName + "_" + (panel == activePanel ? "active" : "inactive");
-            Sprite sourceImage = Resources.Load<Sprite>("app_icons/" + sourceImageName);
-            if (sourceImage != null)
-            {
-                tabImage.sprite = sourceImage;
-            }
-            else
-            {
-                Debug.LogError("Source image not found: " + sourceImageName);
-            }
-        }
+        // Set the previous panel to inactive
+        panels[previousPanelIndex].SetActive(false);
+
+        // Change the source image of the tab button to show active/inactive
+        ChangeSourceImage(previousPanelIndex, false);
+
+        // Set the current panel to active
+        activePanel.SetActive(true);
+
+        ChangeSourceImage(currentPanelIndex, true);
     }
+
+    private void ChangeSourceImage(int index, bool isActive)
+    {
+        // Change the source image of the tab button to show active/inactive
+        // The name of the source image is ic_[name]_[active/inactive]
+        // [name] is the name of the tab button            
+        Image tabImage = tabs[index].GetComponent<Image>();
+        string tabName = tabs[index].name;
+        string sourceImageName = "ic_" + tabName + "_" + (isActive ? "active" : "inactive");
+        Sprite sourceImage = Resources.Load<Sprite>("app_icons/" + sourceImageName);
+        if (sourceImage != null)
+        {
+            tabImage.sprite = sourceImage;
+        }
+        else
+        {
+            Debug.LogError("Source image not found: " + sourceImageName);
+        }
+    }   
 }

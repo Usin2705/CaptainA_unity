@@ -31604,9 +31604,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Help us improve SaySuomi!  By completing a brief survey, which will take
-    less than 10 minutes, you'll help us enhance app performance and contribute to
-    important research in the field. We will upgrade the app accordingly to your
+  m_text: Help us improve SaySuomi!  By completing a <b>brief survey</b>, which will
+    take less than 10 minutes, you'll help us enhance app performance and contribute
+    to important research in the field. We will upgrade the app accordingly to your
     feedback. Your responses may be published (anonymously). Thank you for your participation!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}

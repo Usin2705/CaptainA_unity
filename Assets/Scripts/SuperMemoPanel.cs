@@ -79,16 +79,17 @@ public class SuperMemoPanel : MonoBehaviour
         CardQueueManager.GetQueueManager.ClearQueue();      
     }
 
-    public void FinnishFlashCard() {
+    public void FinnishFlashCard()
+    {
         // Clear the answer from previous card
         clearOldCard();
         // Clear the cardqueue
-        CardQueueManager.GetQueueManager.ClearQueue();      
-        
+        CardQueueManager.GetQueueManager.ClearQueue();
+
         // toggle the panel to force update the flashcard info        
         CardDeckPanel cardDeckPanel = GameObject.FindAnyObjectByType<CardDeckPanel>();
         cardDeckPanel.LoadFlashCards();
-        superMemoPanel.SetActive(false);        
+        superMemoPanel.SetActive(false);
     }
         
     
@@ -419,9 +420,17 @@ public class SuperMemoPanel : MonoBehaviour
     void Update()
     {
         // Only run this code if the progress bar is active
-        if (progressBarGO.activeSelf == true) {
-            UpdateProgressBar();            
+        if (progressBarGO.activeSelf == true)
+        {
+            UpdateProgressBar();
         } 
+
+        if (UnityEngine.InputSystem.Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            FinnishFlashCard();
+        }
+        
+
     }
 
     void UpdateProgressBar() {
