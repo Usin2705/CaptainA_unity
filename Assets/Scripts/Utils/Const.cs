@@ -262,7 +262,7 @@ public const string NEW_VERSION_TEXT =
     "Hi everyone! As you've probably noticed, the app now has a new name, icon, and user interface. " +
     "These changes are the result of excellent work by Aalo Kailu, Apollo Ailus, and Kia Raitanen last summer. " +
     "They are students from Aalto University who helped improve the app's UI/UX design as their ITP project.\n\n" +
-    "You also see a new feature - <b>PuheNumero</b> - in the <b>Advanced</b> tab. This feature is based on the thesis work of Sy Hoang Mai, " +
+    "You also see a demo of new feature - <b>PuheNumero</b> - in the <b>Advanced</b> tab. This demo is based on the thesis work of Sy Hoang Mai, " +
     "under the guidance of advisor Nhan Phan and supervisor Mikko Kurimo, with additional support from student Lauri Lappalainen.\n\n" +
     "These improvements are based on feedback from our users - so please keep sharing your suggestions! " +
     "While our resources are limited, we'll do our best to implement your ideas.";                                           

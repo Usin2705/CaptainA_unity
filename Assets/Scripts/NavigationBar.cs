@@ -38,7 +38,7 @@ public class NavigationBar : MonoBehaviour
     [SerializeField] GameObject[] tabs;
 
     private float swipeThreshold = 100f; // Minimum swipe distance to be considered a swipe
-    private float thresholdFraction = 0.12f;
+    private float thresholdFraction = 0.15f; // suggest 0.15f
     private Vector2 startPos;
     private bool swipeHandled;
     private int currentPanelIndex = 0;
@@ -55,43 +55,43 @@ public class NavigationBar : MonoBehaviour
     // Check for swipe right to left gesture using 
     // the new Input System
     // This is only for touch devices, and not for UnityEditor
-    #if UNITY_ANDROID || UNITY_IOS
-        TouchControl touch = Touchscreen.current?.primaryTouch;
-        if (touch == null) return;
+    // #if UNITY_ANDROID || UNITY_IOS
+    //     TouchControl touch = Touchscreen.current?.primaryTouch;
+    //     if (touch == null) return;
 
-        // Check if the touch is in the first phase (pressed)
-        if (touch.press.wasPressedThisFrame)
-        {
-            startPos = touch.position.ReadValue();
-            swipeHandled = false;
-        }
-        // Check if the touch is in the e2nd phase (pressed and moved)
-        // Finger is still down and hasn't triggered a swipe yet
-        else if (touch.press.isPressed && !swipeHandled)
-        {
-            // Check if the touch is moved
-            Vector2 delta = touch.position.ReadValue() - startPos;
+    //     // Check if the touch is in the first phase (pressed)
+    //     if (touch.press.wasPressedThisFrame)
+    //     {
+    //         startPos = touch.position.ReadValue();
+    //         swipeHandled = false;
+    //     }
+    //     // Check if the touch is in the e2nd phase (pressed and moved)
+    //     // Finger is still down and hasn't triggered a swipe yet
+    //     else if (touch.press.isPressed && !swipeHandled)
+    //     {
+    //         // Check if the touch is moved
+    //         Vector2 delta = touch.position.ReadValue() - startPos;
 
-            /* -------------------------------------------------------------------
-            *  Dynamically pick the swipe threshold.
-            *  If we are on the LAST panel (scroll view) we make the gesture
-            *  harder to activate by doubling the normal threshold.
-            * ------------------------------------------------------------------*/
-            float effectiveThreshold = swipeThreshold;
-            if (currentPanelIndex == panels.Length - 1)   // last tab?
-            {
-                effectiveThreshold *= 3.5f; // double the threshold
-            }
+    //         /* -------------------------------------------------------------------
+    //         *  Dynamically pick the swipe threshold.
+    //         *  If we are on the LAST panel (scroll view) we make the gesture
+    //         *  harder to activate by doubling the normal threshold.
+    //         * ------------------------------------------------------------------*/
+    //         float effectiveThreshold = swipeThreshold;
+    //         if (currentPanelIndex == panels.Length - 1)   // last tab?
+    //         {
+    //             effectiveThreshold *= 3.5f; // double the threshold
+    //         }
 
-            // Big enough horizontal move?  If yes, treat as a swipe.
-            if (Mathf.Abs(delta.x) > effectiveThreshold)
-            {
-                swipeHandled = true;            // Avoid multi-fires
-                if (delta.x < 0)    GoRight();  // finger moved left  → next tab right
-                else                GoLeft();   // finger moved right → previous tab
-            }
-        }
-    #endif
+    //         // Big enough horizontal move?  If yes, treat as a swipe.
+    //         if (Mathf.Abs(delta.x) > effectiveThreshold)
+    //         {
+    //             swipeHandled = true;            // Avoid multi-fires
+    //             if (delta.x < 0)    GoRight();  // finger moved left  → next tab right
+    //             else                GoLeft();   // finger moved right → previous tab
+    //         }
+    //     }
+    // #endif
     }
 
     /// <summary>

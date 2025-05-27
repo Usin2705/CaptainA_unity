@@ -22,7 +22,7 @@ public class AudioManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioManager = this;
     }
-
+    
     public static AudioManager GetManager()
     {
         return audioManager;

@@ -11,7 +11,7 @@
     "todayDateStr": "2000-01-01T00:00:00.0000000Z",
     "useDateStr": "2000-01-27T00:00:00.0000000Z",
     "languageCode": "EN",
-    "version": 7,
+    "version": 8,
     "cards": [
         {
             "id": "588936e0-3686-424e-9584-ddc0bad52738",
@@ -5920,7 +5920,7 @@
         {
             "id": "b46294b2-563e-4bbc-b67e-7345f4a7e889",
             "frontText": "Pari",
-            "backText": "Couple, pair. Partner (when working in pairs). ",
+            "backText": "Couple, pair. Partner (when working in pairs).",
             "etymology": "In puhekieli, pari \u2248 about two (noin kaksi)",
             "cardtype": 0,
             "interval": 0.005,
@@ -6138,7 +6138,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 3,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": "astia"
         },
         {
@@ -7457,7 +7457,7 @@
             "id": "eb16a083-232d-41c2-a0de-4ef6a8be18f1",
             "frontText": "Kirjasto",
             "backText": "Library",
-            "etymology": "\u223c (noun) book (kirja)",
+            "etymology": "~ (noun) book (kirja)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -12049,7 +12049,7 @@
             "id": "bb7ae67b-b363-4e42-9b8a-d5596f1d6ba0",
             "frontText": "Kirje",
             "backText": "Letter",
-            "etymology": "\u223c (noun) book, writing (kirja)",
+            "etymology": "~ (noun) book, writing (kirja)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -16081,7 +16081,7 @@
             "id": "9c10f867-430b-4bca-9942-231d2ce48784",
             "frontText": "Tutustua",
             "backText": "to meet (people), to get acquainted with (____ + Mihin)",
-            "etymology": "\u223c (noun) acquaintance, familiar (tuttu)",
+            "etymology": "~ (noun) acquaintance, familiar (tuttu)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -16145,7 +16145,7 @@
             "id": "a3d4a6fa-757c-4cf8-91a1-44b1bdc6e91a",
             "frontText": "Paras",
             "backText": "(a) Top. Best",
-            "etymology": "\u223c good (hyv\u00e4), better (parempi)",
+            "etymology": "~ good (hyv\u00e4), better (parempi)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -17488,7 +17488,7 @@
         {
             "id": "7e7b6663-222d-428e-8812-4bfa01af3f09",
             "frontText": "Juttu",
-            "backText": "Thing, business, matter",
+            "backText": "Thing, business, matter; talk, story",
             "etymology": "",
             "cardtype": 0,
             "interval": 0.005,
@@ -17903,9 +17903,9 @@
         },
         {
             "id": "12dea4e0-2162-4853-9119-f1f30dc86173",
-            "frontText": "Haalarit",
+            "frontText": "Haalari",
             "backText": "Overall (a one-piece garment that covers legs and upper body)",
-            "etymology": "",
+            "etymology": "usually in plural (haalarit)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -23633,7 +23633,7 @@
             "id": "985bb5d1-f407-4a7a-97eb-d04887364b32",
             "frontText": "H\u00e4nest\u00e4 tuntuu l\u00e4mpim\u00e4lt\u00e4.",
             "backText": "He feels warm. (passively feeling)",
-            "etymology": "",
+            "etymology": "= From him (H\u00e4nest\u00e4) feels warm (l\u00e4mmin + LT\u00c4). Use with tuntua to describe passive feel.",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -24929,7 +24929,7 @@
             "id": "409dad26-e09c-4191-9ee7-41ad973a2d92",
             "frontText": "Kuulla",
             "backText": "to hear",
-            "etymology": "\u223c to actively listen to (kuunnella)",
+            "etymology": "~ to actively listen to (kuunnella)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -28465,7 +28465,7 @@
             "id": "d4633601-05d7-4884-b408-5542e29bf1e4",
             "frontText": "Omistaja",
             "backText": "(n) owner",
-            "etymology": "\u223c (a) oma",
+            "etymology": "~ (a) oma",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -29537,7 +29537,7 @@
             "id": "f4790ab7-7428-473a-b709-7d3bcd585e99",
             "frontText": "Ennen",
             "backText": "(prep.) before, prior to (____ + Partitive), (adv) before",
-            "etymology": "\u223c next (ensi)",
+            "etymology": "~ next (ensi)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -32545,7 +32545,7 @@
             "id": "3c5335d8-f0f9-49ca-82bb-f789ccfb8e55",
             "frontText": "H\u00e4n luottaa siihen, ett\u00e4 kaikki menee hyvin.",
             "backText": "She trust that everything will go well.",
-            "etymology": "",
+            "etymology": "siihen = se + Mihin. Use because <b>luottaa</b> requires the <b>illative</b> case (+ Mihin).",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -32618,7 +32618,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 10,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -32897,7 +32897,7 @@
             "id": "301a314c-7e99-480f-bba4-6c102918e12b",
             "frontText": "Vierekk\u00e4in",
             "backText": "(adv) side by side",
-            "etymology": "\u223c (adv) beside, next to (vieress\u00e4)",
+            "etymology": "~ (adv) beside, next to (vieress\u00e4)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -33681,7 +33681,7 @@
             "id": "19744fef-2943-4e31-bd31-47eb9980d789",
             "frontText": "Parempi",
             "backText": "(a) Better, superior",
-            "etymology": "\u223c good (hyv\u00e4), best (paras)",
+            "etymology": "~ good (hyv\u00e4), best (paras)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -34481,7 +34481,7 @@
             "id": "2ecfb488-04de-47f0-b723-2b9fa7362665",
             "frontText": "Kiinnostunut",
             "backText": "(a) interested",
-            "etymology": "\u223c (v) interest (kiinnostaa)",
+            "etymology": "~ (v) interest (kiinnostaa)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -35153,7 +35153,7 @@
             "id": "a418d9aa-df1d-4ff6-80d7-e862a5f124cf",
             "frontText": "Synty\u00e4",
             "backText": "to be born",
-            "etymology": "\u223c birthday (syntym\u00e4p\u00e4iv\u00e4)",
+            "etymology": "~ birthday (syntym\u00e4p\u00e4iv\u00e4)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -35201,7 +35201,7 @@
             "id": "d5e48db2-7845-4512-bb0e-582e62250081",
             "frontText": "Erota",
             "backText": "to divorce, to break up (end a relationship), to separate, to resign",
-            "etymology": "\u223c (a) divorced (eronnut)",
+            "etymology": "~ (a) divorced (eronnut)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -35643,7 +35643,7 @@
             "backLanguage": "EN",
             "chapter": 11,
             "audio": "Y",
-            "illustration": ""
+            "illustration": "vartija"
         },
         {
             "id": "49437612-2b6c-42e1-ace6-9dd1928f46f7",
@@ -37482,7 +37482,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37498,23 +37498,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
-            "illustration": ""
-        },
-        {
-            "id": "db6d164e-5d65-4651-b3ac-a893557fe93b",
-            "frontText": "J\u00e4nnitt\u00e4\u00e4, minua j\u00e4nnitt\u00e4\u00e4",
-            "backText": "to feel excited",
-            "etymology": "",
-            "cardtype": 0,
-            "interval": 0.005,
-            "easeFactor": 2.5,
-            "repetitions": 0,
-            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
-            "frontLanguage": "FI",
-            "backLanguage": "EN",
-            "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37530,7 +37514,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 3,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37546,7 +37530,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37562,7 +37546,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37578,7 +37562,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37594,7 +37578,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37610,7 +37594,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37626,7 +37610,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37642,7 +37626,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 13,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37658,7 +37642,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37674,7 +37658,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37690,14 +37674,14 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
             "id": "b6763039-4feb-49b4-9565-756a4a7416b5",
             "frontText": "Aluksi",
             "backText": "(adv) in the beginning, first",
-            "etymology": "\u223c (n) start, beginning (alku)",
+            "etymology": "~ (n) start, beginning (alku)",
             "cardtype": 0,
             "interval": 0.005,
             "easeFactor": 2.5,
@@ -37706,7 +37690,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37722,7 +37706,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": "kaataa"
         },
         {
@@ -37738,7 +37722,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37754,7 +37738,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37770,7 +37754,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37786,7 +37770,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37802,7 +37786,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": "kivi"
         },
         {
@@ -37818,7 +37802,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": "sahata"
         },
         {
@@ -37834,7 +37818,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37850,7 +37834,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37866,7 +37850,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37882,7 +37866,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37898,7 +37882,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37914,7 +37898,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": "naula"
         },
         {
@@ -37930,7 +37914,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37946,7 +37930,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37962,7 +37946,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37978,7 +37962,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -37994,7 +37978,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38010,7 +37994,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38026,7 +38010,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38042,7 +38026,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38058,7 +38042,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": "lintu"
         },
         {
@@ -38074,7 +38058,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38090,7 +38074,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": "marja"
         },
         {
@@ -38106,7 +38090,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38122,7 +38106,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38138,7 +38122,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38154,7 +38138,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38170,7 +38154,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38186,7 +38170,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": "mustikka"
         },
         {
@@ -38202,7 +38186,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": "vadelma"
         },
         {
@@ -38218,7 +38202,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38234,7 +38218,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38250,7 +38234,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38266,7 +38250,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38282,7 +38266,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38298,7 +38282,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": "maja"
         },
         {
@@ -38314,13 +38298,13 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
             "id": "0e61e40d-e4aa-4ed2-9e64-6c84d1cb5029",
             "frontText": "Aika",
-            "backText": "(adv) = melko (puhekieli)",
+            "backText": "(adv) quite, somewhat, fairly = melko (puhekieli)",
             "etymology": "<b>Aika</b> as noun is <b>time</b>",
             "cardtype": 0,
             "interval": 0.005,
@@ -38330,7 +38314,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38346,7 +38330,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38362,7 +38346,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38378,7 +38362,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38394,7 +38378,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": "susi"
         },
         {
@@ -38410,7 +38394,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": "karhu"
         },
         {
@@ -38426,7 +38410,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38442,7 +38426,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38458,7 +38442,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": "hyttynen"
         },
         {
@@ -38474,7 +38458,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38490,7 +38474,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38506,7 +38490,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38522,7 +38506,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38538,7 +38522,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38554,7 +38538,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": "grillata"
         },
         {
@@ -38570,12 +38554,12 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
             "id": "c3c8edd0-d5da-4441-accc-9f07411d35e2",
-            "frontText": "Grillaa herkullisa herkullisia naudanpihvej\u00e4 rannalla.",
+            "frontText": "Grillaa herkullisia naudanpihvej\u00e4 rannalla.",
             "backText": "(He) grill delicious beef steaks in the beach.",
             "etymology": "Pihvej\u00e4 is partitive plural from of steak (pihvi), because there it's not specific amount.",
             "cardtype": 0,
@@ -38586,7 +38570,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38602,7 +38586,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38618,7 +38602,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38634,7 +38618,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38650,7 +38634,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38666,7 +38650,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38682,7 +38666,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38698,7 +38682,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38714,7 +38698,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38730,7 +38714,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38746,7 +38730,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": "hiiri"
         },
         {
@@ -38762,7 +38746,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": "orava"
         },
         {
@@ -38778,7 +38762,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38794,7 +38778,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38810,7 +38794,7 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
             "illustration": ""
         },
         {
@@ -38826,7 +38810,743 @@
             "frontLanguage": "FI",
             "backLanguage": "EN",
             "chapter": 12,
-            "audio": NaN,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "efda0868-48e8-4e8a-8c6a-97303503f9e4",
+            "frontText": "My\u00f6nt\u00e4\u00e4",
+            "backText": "to admit, to concede, to grant",
+            "etymology": "",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "9b660f23-a7a6-41cb-bf09-9758e7e45564",
+            "frontText": "Min\u00e4 my\u00f6nn\u00e4n, ett\u00e4 olin v\u00e4\u00e4r\u00e4ss\u00e4.",
+            "backText": "I admit that (I) was wrong.",
+            "etymology": "",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "338fa845-2d20-44f2-85e7-1fe7295211ff",
+            "frontText": "H\u00e4n my\u00f6nt\u00e4\u00e4 opiskelijalle apurahan.",
+            "backText": "She grants the student a grant money.",
+            "etymology": "She grants the student a scholarship.",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "e8466ea3-9098-4855-a8f5-cacab8cf0b75",
+            "frontText": "S\u00e4velt\u00e4\u00e4",
+            "backText": "to compose (music)",
+            "etymology": "= (n) melody, tune (s\u00e4vel) + T\u00c4\u00c4",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "23f4a16d-70cd-4890-8c70-62431e9d4c66",
+            "frontText": "Min\u00e4 s\u00e4vell\u00e4n laulun.",
+            "backText": "I compose a song.",
+            "etymology": "",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "f27ac00a-c501-4a9e-9c63-ede726b496d8",
+            "frontText": "H\u00e4n s\u00e4velt\u00e4\u00e4 musiikkia joka p\u00e4iv\u00e4.",
+            "backText": "He composes music every day.",
+            "etymology": "musiikki = music",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "d8df59b4-d4cc-4a89-8dc4-79fd4fb44e30",
+            "frontText": "Hippa",
+            "backText": "(n) Tag (a children's game)",
+            "etymology": "",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": "hippa"
+        },
+        {
+            "id": "c24a5252-bfb9-4711-bdaa-d4b749fa1b24",
+            "frontText": "Vesisota",
+            "backText": "(n) Water fight (a game)",
+            "etymology": "= water (vesi) + war (sota)",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": "vesisota"
+        },
+        {
+            "id": "595b6884-9b49-4c19-8a33-e8ad80f82768",
+            "frontText": "Kun oli l\u00e4mmint\u00e4, pojat leikkiv\u00e4t hippaa ja vesisotaa.",
+            "backText": "When (it) was warm, the boys played tag and water fight.",
+            "etymology": "<b>leikkiv\u00e4t</b> is past tense of pojat <b>leikkiv\u00e4t</b> because <b>oli</b> is past tense",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "30f5af61-14fe-4914-bf55-78737c2a6781",
+            "frontText": "Rosvo",
+            "backText": "(n) Robber, bandit",
+            "etymology": "",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": "rosvo"
+        },
+        {
+            "id": "5ca9123e-451b-495e-b1dd-611ec20f3784",
+            "frontText": "Jos mukana oli monta poikaa, he leikkiv\u00e4t rosvoa ja poliisia.",
+            "backText": "If along was many boys, they played robber and police.",
+            "etymology": "Jos mukana oli = If along was = If there was many boys...",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "1f08b424-f691-475f-85ea-2b010f95a8b6",
+            "frontText": "Piilo",
+            "backText": "(n) hideout, lair, hiding place",
+            "etymology": "",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "ab69478f-756b-4751-b3fb-2865a7ff7cd7",
+            "frontText": "Laskea",
+            "backText": "to count (number)",
+            "etymology": "Also: to lower, move down",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "72206bbc-b5c7-4e8f-b0a0-bd3f65e4822a",
+            "frontText": "Laske yhdest\u00e4 kymmeneen.",
+            "backText": "Count from one to ten.",
+            "etymology": "",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "3c9c49d1-cd47-4b2b-895f-ec8c2d26037d",
+            "frontText": "Leikki",
+            "backText": "(n) play, game",
+            "etymology": "to play: leikki\u00e4",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "7fe29444-102e-4065-b7a1-470d614720c3",
+            "frontText": "Silloin",
+            "backText": "(a) then, at that time",
+            "etymology": "Usually refers to a point in the past, but can also refer to the future.",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "a9e7d44d-5c5d-4077-ab9c-6c562de3adf6",
+            "frontText": "Silloin yksi laski sataan, muut meniv\u00e4t piiloon.",
+            "backText": "Then one (person) count to 100, the other went into hiding place.",
+            "etymology": "<b>laski</b>, <b>meniv\u00e4t </b> are past tense of <b>laskea</b>  and <b>menev\u00e4t</b>",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "081ac1eb-5138-48c8-8132-04b2a6603d63",
+            "frontText": "M\u00e4rk\u00e4",
+            "backText": "(a) wet",
+            "etymology": "",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": "m\u00e4rk\u00e4"
+        },
+        {
+            "id": "9ef60383-271c-4add-9b7e-b8af0f32c163",
+            "frontText": "Vene",
+            "backText": "(n) boat",
+            "etymology": "",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": "vene"
+        },
+        {
+            "id": "2111f612-5fc0-4c4c-a66b-e76e4fe45b8b",
+            "frontText": "Terassi",
+            "backText": "(n) Terrace",
+            "etymology": "",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": "terassi"
+        },
+        {
+            "id": "d453d590-9a8e-4242-9455-133c7c3cdf2b",
+            "frontText": "Toinen saapas on viel\u00e4 veneess\u00e4, toinen terassilla!",
+            "backText": "One boot is still in the boat, the other (second) on the terrace!",
+            "etymology": "Plural form of boot (saapas) is <b>saappaat</b>",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "cd3a59e9-3585-4095-a26f-519b20f7fc4b",
+            "frontText": "Veneill\u00e4",
+            "backText": "to boat, to go boating",
+            "etymology": "= (n) boat (vene) + ILL\u00c4",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "43ff493f-e0b2-4be1-8095-8031e54a062f",
+            "frontText": "Min\u00e4 veneilen kes\u00e4ll\u00e4 usein.",
+            "backText": "I go boating often in the summer.",
+            "etymology": "",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "33057dde-cfdd-4d23-9330-4a814fc6054a",
+            "frontText": "H\u00e4n veneilee j\u00e4rvell\u00e4 joka viikonloppu.",
+            "backText": "She goes boating on the lake every weekend.",
+            "etymology": "",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "6a9fff41-3a83-4038-9abb-081c320b042a",
+            "frontText": "Kangas",
+            "backText": "(n) cloth, fabric, textile",
+            "etymology": "",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": "kangas"
+        },
+        {
+            "id": "b0ead481-046b-4e0c-be3d-dcd9cc8e9794",
+            "frontText": "Luonto",
+            "backText": "(n) nature, environment",
+            "etymology": "",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "d24d634e-bd17-4263-8202-eacf8d466f42",
+            "frontText": "Rauha",
+            "backText": "(n) Peace, harmony, calm. Peace (free of war)",
+            "etymology": "\u2192 rauha + LLINEN = (a) peaceful (rauhallinen)",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "b18c75ce-1c83-42df-a72e-b42d1140be49",
+            "frontText": "Pid\u00e4n luonnon rauhasta ja puhtaasta ilmasta.",
+            "backText": "(I) like the peace of nature and clean air.",
+            "etymology": "pit\u00e4\u00e4 + mist\u00e4 = to like (tyk\u00e4t\u00e4)",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "b47927d9-7a9f-4332-ac24-84ad2a660973",
+            "frontText": "J\u00e4tt\u00e4\u00e4",
+            "backText": "to leave, to leave behind (thing, place, person...) + OBJ",
+            "etymology": "",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "47c7d283-31e9-41f5-9c39-6a040e925363",
+            "frontText": "Kantaa",
+            "backText": "to carry (thing) + OBJ",
+            "etymology": "",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "b086e4d7-3b17-42ea-8e69-a36483b67e5c",
+            "frontText": "Min\u00e4 kannan repun kouluun.",
+            "backText": "I carry the backpack to school.",
+            "etymology": "",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "c6a488e3-137a-466b-a00f-692fa934d537",
+            "frontText": "H\u00e4n kantoi lapsen autoon.",
+            "backText": "He carried the child to the car.",
+            "etymology": "<b>kantoi</b> is past tense of h\u00e4n <b>kantaa</b>",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "59986c81-ad1e-412f-a5b5-71214e31ef09",
+            "frontText": "J\u00e4te",
+            "backText": "(n) garbage, rubbish, waste",
+            "etymology": "= to leave behind (j\u00e4tt\u00e4\u00e4) - E",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": "j\u00e4te"
+        },
+        {
+            "id": "2b6827f0-01de-4899-a101-8e78c3d26b30",
+            "frontText": "En j\u00e4t\u00e4 mets\u00e4\u00e4n mit\u00e4\u00e4n.",
+            "backText": "(I) don't leave behing anything in the forest.",
+            "etymology": "",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "46c090f9-91a1-49fa-ab98-8d6f5b72200d",
+            "frontText": "Muistan aina kantaa omat j\u00e4tteeni takaisin.",
+            "backText": "(I) always remember to carry my own trash back.",
+            "etymology": "",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "50f3045c-75b7-47b6-8302-cadff1c25eaa",
+            "frontText": "Stressaava",
+            "backText": "(a) stressful",
+            "etymology": "= to stress (stressata) + VA",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "ec40f521-e942-479b-bd49-eb472718bc2d",
+            "frontText": "Ty\u00f6matka",
+            "backText": "(n) business trip, trip to work",
+            "etymology": "= work (ty\u00f6) + trip (matka)",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "74cddde6-6101-45d9-baab-3f1062b5e267",
+            "frontText": "Kreikka",
+            "backText": "(n) Greece (a country)",
+            "etymology": "",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "244cae8e-b489-4484-ba2e-aea011a23663",
+            "frontText": "Kone",
+            "backText": "(n) machine, appliance",
+            "etymology": "Can also be used as a short form of compound words like <b>lentokone</b> (airplane).",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "909c9cca-5882-4b84-93d9-29de8c574bd1",
+            "frontText": "Kertoa juttu",
+            "backText": "to tell a story / to tell a thing",
+            "etymology": "= to tell (kertoa) + thing, story (juttu)",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "ba940ff7-d2c6-4bd3-95b2-473192653209",
+            "frontText": "Mielest\u00e4",
+            "backText": "(postp.) in someone's opinion",
+            "etymology": "= mind,  mood (mieli) + ST\u00c4",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "82dd1518-dfdc-45a5-9083-bdeb2a869e69",
+            "frontText": "Mun mielest\u00e4 on mukavaa olla lomalla Suomessa.",
+            "backText": "In my opinion, it\u2019s nice to be on vacation in Finland. (puhekieli)",
+            "etymology": "<b>Minun mielest\u00e4</b> = <b>Mielest\u00e4ni</b> = <b>Minusta on</b>",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "8d056b32-e814-4d30-987d-005bb72b4894",
+            "frontText": "Minusta on kiva l\u00e4hte\u00e4 ulkomaille.",
+            "backText": "In my opinion, it's nice/fun to go abroad.",
+            "etymology": "<b>Minun mielest\u00e4</b> = <b>Mielest\u00e4ni</b> = <b>Minusta on</b>",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "31ff8eb2-20e9-4844-90c4-629539dc952c",
+            "frontText": "Mielest\u00e4ni bussi on parempi.",
+            "backText": "In my opinion, the bus is better. (formal/neutral)",
+            "etymology": "<b>Minun mielest\u00e4</b> = <b>Mielest\u00e4ni</b> = <b>Minusta on</b>",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "eddf3b12-116c-4c23-9d92-0544a95c1565",
+            "frontText": "Minun mielest\u00e4ni kes\u00e4 on paras vuodenaika.",
+            "backText": "In my opinion, summer is the best season. (most formal)",
+            "etymology": "<b>Minun mielest\u00e4ni</b> is used in very formal, written Finnish",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
+            "illustration": ""
+        },
+        {
+            "id": "3a0b7ca9-3054-4cf9-a507-9ed01eaf73cd",
+            "frontText": "Sanomalehti",
+            "backText": "(n) newspaper",
+            "etymology": "= message (sanoma) + leaf (lehti). Lehti can also mean newspaper, magazine in general.",
+            "cardtype": 0,
+            "interval": 0.005,
+            "easeFactor": 2.5,
+            "repetitions": 0,
+            "nextReviewDateStr": "2000-01-01T00:00:00.0000000Z",
+            "frontLanguage": "FI",
+            "backLanguage": "EN",
+            "chapter": 12,
+            "audio": "Y",
             "illustration": ""
         }
     ]

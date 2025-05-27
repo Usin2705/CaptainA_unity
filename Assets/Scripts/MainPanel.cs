@@ -25,7 +25,11 @@ public class MainPanel : MonoBehaviour
     [SerializeField] GameObject recordButtonGO;     
     [SerializeField] GameObject inputTransGO;
     [SerializeField] GameObject errorTextGO;     
-    [SerializeField] GameObject resultPanelGO;     
+    [SerializeField] GameObject resultPanelGO;
+
+    // There are two functions for hiding the buttons when user try new words
+    // 1. When users first open the app, the buttons are hidden: SetUpStartUI()
+    // 2. Hide the buttons when the user focus on the input text: SetupFocusTextUI()
     [SerializeField] GameObject replayButtonGO;     
     [SerializeField] GameObject sampleButtonGO; // Play sample audio
     [SerializeField] GameObject detailButtonGO; // Display detail feedback
@@ -72,7 +76,6 @@ public class MainPanel : MonoBehaviour
     {
         // Set the start UI to be active
         SetUpStartUI();
-
     }
 
     void OnEnable()
@@ -408,6 +411,7 @@ public class MainPanel : MonoBehaviour
         // Disable the recording button        
         recordButtonGO.SetActive(false);
         againButtonGO.SetActive(false);
+        replayButtonGO.SetActive(false);
         detailButtonGO.SetActive(false);
 
         // Disable the illustration

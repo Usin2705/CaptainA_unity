@@ -7653,7 +7653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &449531611
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7693,7 +7693,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ONLY FOR DEMO PURPOSE
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
   m_sharedMaterial: {fileID: -459825320126915412, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
@@ -11536,7 +11536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &645107174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11595,6 +11595,7 @@ RectTransform:
   - {fileID: 1301599786}
   - {fileID: 1657250944}
   - {fileID: 449531611}
+  - {fileID: 1918366999}
   - {fileID: 659432244}
   m_Father: {fileID: 1164813425}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17652,15 +17653,15 @@ RectTransform:
   m_GameObject: {fileID: 970776230}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000129, y: 1.0000129, z: 1.0000129}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1805948026}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -172, y: -30}
-  m_SizeDelta: {x: 280, y: 280}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 239, y: -844}
+  m_SizeDelta: {x: 260, y: 260}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &970776232
 MonoBehaviour:
@@ -33863,6 +33864,142 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915369122}
   m_CullTransparentMesh: 1
+--- !u!1 &1918366998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1918366999}
+  - component: {fileID: 1918367001}
+  - component: {fileID: 1918367000}
+  m_Layer: 5
+  m_Name: DemoErrorText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1918366999
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918366998}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 645107176}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -300}
+  m_SizeDelta: {x: 600, y: 120}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1918367000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918366998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: ONLY FOR DEMO PURPOSE
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
+  m_sharedMaterial: {fileID: -459825320126915412, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281874488
+  m_fontColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 40
+  m_fontSizeBase: 40
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1918367001
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918366998}
+  m_CullTransparentMesh: 1
 --- !u!1 &1926060216
 GameObject:
   m_ObjectHideFlags: 0
@@ -38361,10 +38498,11 @@ MonoBehaviour:
     Suomi 1 in the flashcard feature.\n\nWe also thank the authors of Suomen Mestari
     1 \u2013 <b>Sonja Gehring</b>, <b>Sanni Heinzmann</b>, and <b>Finn Lectura</b>
     \u2013 for granting us permission to use texts from Suomen Mestari 1 in the flashcard
-    feature.\n\nWe are grateful to <b>Aalo Kailu</b>, <b>Apollo Ailus</b>, and <b>Kia
-    Raitanen</b>, who designed the original UX/UI of the app.\n\nThe app was created
-    with the help of members from the Aalto ASR Research Group.\n\nThe models used
-    in this application were trained using computing resources from the Aalto University
+    feature.\n\nWe are grateful to<b>Apollo Ailus</b> and <b>Kia Raitanen</b> for
+    their contributions to to user research and engagement, and to <b>Aalo Kailu</b>,
+    who designed the original user interface of the app.\n\nThe app was created with
+    the help of members from the Aalto ASR Research Group.\n\nThe models used in
+    this application were trained using computing resources from the Aalto University
     School of Science \"Science-IT\" project.\n\nThe vocabulary learning is based
     on SuperMemo2 algorithm ( https://www.supermemo.com/), with implementation inspired
     by the Anki application (licensed under the GNU Affero General Public License).\n\nIcons
@@ -38372,18 +38510,19 @@ MonoBehaviour:
     photos and some video content were created with the assistance of Aija Elg and
     Noora Helki\xF6 from the Aalto University Language Centre.\n\nIllustration pictures
     were provided by Aino Huhtaniemi, used with permission. Some animations were
-    modified to include indicators of voiced sounds and tongue movement.\n\nImages
-    used in definition of Finnish words are created by Midjourney and ChatGPT.\n\nDescriptions
-    of Finnish phoneme and their International Phonetic Alphabet (IPA) transcriptions
-    are based on the following sources: \"Finnish sound structure: phonetics, phonology,
-    phonotactics and prosody\" by  Kari Suomi, Juhani Toivanen & Riikka Ylitalo.
-    \"Fonetiikkaa suomen kielen oppijoille\" (Phonetics for Finnish learners) by
-    Eija Aho, Aino Huhtaniemi & Mari Nikonen.\n\nMost definitions and etymologies
-    are from Wiktionary.\n\nMost of the audio samples are generated by AI models,
-    including: FinSyn TTS by Antti Suni from Helsinki University phonetics group,
-    Narakeet, and OpenAI text-to-speech.\n\nAdditional audio samples are from Aalto
-    University Language Centre, Common Voice 11.0, licensed under Creative Commons
-    Zero 1.0, LibriVox in the Public Domain.\n\nLink to licenses:\nhttps://www.apache.org/licenses/LICENSE-2.0.txt\nhttps://creativecommons.org/publicdomain/zero/1.0/\nhttps://creativecommons.org/licenses/by-sa/3.0/"
+    modified to include indicators of voiced sounds and tongue movement. Based on
+    the work of P\xE4ivi Virkkunen.\n\nImages used in definition of Finnish words
+    are created by Midjourney and ChatGPT.\n\nDescriptions of Finnish phoneme and
+    their International Phonetic Alphabet (IPA) transcriptions are based on the following
+    sources: \"Finnish sound structure: phonetics, phonology, phonotactics and prosody\"
+    by  Kari Suomi, Juhani Toivanen & Riikka Ylitalo. \"Fonetiikkaa suomen kielen
+    oppijoille\" (Phonetics for Finnish learners) by Eija Aho, Aino Huhtaniemi &
+    Mari Nikonen.\n\nMost definitions and etymologies are from Wiktionary.org and
+    Sanakirja.org\n\nMost of the audio samples are generated by AI models, including:
+    FinSyn TTS by Antti Suni from Helsinki University phonetics group, Narakeet,
+    and OpenAI text-to-speech.\n\nAdditional audio samples are from Aalto University
+    Language Centre, Common Voice 11.0, licensed under Creative Commons Zero 1.0,
+    LibriVox in the Public Domain.\n\nLink to licenses:\nhttps://www.apache.org/licenses/LICENSE-2.0.txt\nhttps://creativecommons.org/publicdomain/zero/1.0/\nhttps://creativecommons.org/licenses/by-sa/3.0/"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
   m_sharedMaterial: {fileID: -459825320126915412, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
