@@ -116,7 +116,7 @@ public class MainPanel : MonoBehaviour
         {
             if (Time.frameCount % 2 == 0)
             {
-                waitIconGO.transform.Rotate(0, 0, -0.5f);
+                waitIconGO.transform.Rotate(0, 0, -1.5f);
             }
         }
     }
