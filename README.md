@@ -12,6 +12,7 @@ Our main goals for front-end project is to develop a automatic speech asessment 
 - As a real mobile app, we also targeting user experience (**UX**) and user interface (**UI**). Therefore, we also need a nice front end.
   - A spider chart (as we discussed) could be a nice way to display the scores.
   - Unity's Animation System is also nice and surprisingly easy to implement, but not required.
+  - Obviously you will need to work closely with back end and also the design team. Some resources may not be available to you until the end of the project (for example, new icon design).
   - The processing time could be from 10~30s, we need to figure out a way to let's user know the server is processing. Some extra feature to collect feedback during waiting, or after getting the score is extremely useful.
   - Remember that the mobile app target both Android and iOS, so the UI must work fine in most smartphone with different screensize.
 - Other features that not directly related to ASA features but are also needed (for example, interface for text-to-speech system, we will handle the server). Obviously those extra is not priority and depend on the team and the progress of the main work.
