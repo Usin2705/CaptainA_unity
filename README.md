@@ -1,11 +1,36 @@
-# CaptainA - A Mobile App for Practicing Finnish Pronunciation
+# SaySuomi - A Mobile App for Practicing Finnish Pronunciation
 
-Welcome to the repository of CaptainA, a mobile application designed to help users practice their Finnish pronunciation. This repository contains the code for both the mobile application and the backend server.
+Welcome to the repository of SaySuomi (previous name CaptainA), a mobile application designed to help users practice their Finnish pronunciation. This repository contains the code for both the mobile application and the backend server.
+
+## Front end development project description:
+
+Our main goals for front-end project is to develop a automatic speech asessment (ASA) feature and implement new UI/UX design to the mobile app. Specifically:
+
+- A new **ASA feature** in the mobile app: an interface to display a speaking task (usually with picture and text description - with option for translation). User then speak and record their answer (about 30~60s). The mobile app will then send the speech data to the server. After the server finish, mobile app will receive 5 speech ratings scores: `fluency, pronunciation, range, accuracy, holistic` and display them to the user. Those data will be store on their mobile app, and user can later access them in a different interface to review their progress.
+    -  We will also need an interface/function to collect user's consent and some background information. Those will also be sent to the server (with consent).
+	-  Some functions (audio record, server connection) are already available, you can reuse them.
+- As a real mobile app, we also targeting user experience (**UX**) and user interface (**UI**). Therefore, we also need a nice front end.
+  - A spider chart (as we discussed) could be a nice way to display the scores.
+  - Unity's Animation System is also nice and surprisingly easy to implement, but not required.
+  - The processing time could be from 10~30s, we need to figure out a way to let's user know the server is processing. Some extra feature to collect feedback during waiting, or after getting the score is extremely useful.
+  - Remember that the mobile app target both Android and iOS, so the UI must work fine in most smartphone with different screensize.
+- Other features that not directly related to ASA features but are also needed (for example, interface for text-to-speech system, we will handle the server). Obviously those extra is not priority and depend on the team and the progress of the main work.
+
+
+For an example of user interface (we need to make a much better one in production), see: https://www.youtube.com/watch?v=cRskPKsSM3g
+
+See the function `ServerPost` or `NumberGamePost` (at the bottom of https://github.com/Usin2705/CaptainA_unity/blob/main/Assets/Scripts/Managers/NetworkManager.cs) on how to send/receive data to/from the server.
+
+For more information about how the backend would look like, you can look at SaySvenska server: https://github.com/Usin2705/SaySvenska/tree/main/Server
+
+You can look at an example of the API (a bit old now) from SaySuomi Readme file:
+https://github.com/Usin2705/CaptainA_unity/tree/main
+
+
 
 ## About the Project
 
-CaptainA is a mobile application that utilizes the wav2vec 2.0 model for Finnish pronunciation practice. The app is available for download on both [Google Play](https://play.google.com/store/apps/details?id=com.Kielibuusti.CaptainA) and the [Apple App Store](https://apps.apple.com/ph/app/captaina/id6444659467). The current version of the wav2vec 2.0 model used in the app can be downloaded from HuggingFace. The [demo paper](https://aclanthology.org/2023.nodalida-1.26) offers a short introduction. For more detailed analysis and documentation on the development of the CaptainA app, you can refer to [Master's thesis](http://urn.fi/URN:NBN:fi:aalto-202305213302).
-
+SaySuomi (previous name CaptainA) is a mobile application that utilizes the wav2vec 2.0 model for Finnish pronunciation practice. The app is available for download on both [Google Play](https://play.google.com/store/apps/details?id=com.Kielibuusti.CaptainA) and the [Apple App Store](https://apps.apple.com/ph/app/captaina/id6444659467). The current version of the wav2vec 2.0 model used in the app can be downloaded from HuggingFace. The [demo paper](https://aclanthology.org/2023.nodalida-1.26) offers a short introduction. For more detailed analysis and documentation on the development of the original app, you can refer to [Master's thesis](http://urn.fi/URN:NBN:fi:aalto-202305213302).
 
 ## Server Installation and Setup
 
@@ -66,27 +91,27 @@ Random example of ops list, the list was just the result from `Levenshtein.edito
 
 ## Todo list
 
-**Grammar Function for CaptainA**: Develop a feature allowing users to review grammar rules and practice them:
+**Text-to-speech system**: Develop a text-to-speech system so user can listen to example in Finnish.
+
+Grammar Function for SaySuomi (low priority): Develop a feature allowing users to review grammar rules and practice them:
 - Extract practice examples directly from flashcards. 
 - Users will be presented with English text to translate into Finnish.
 - Users can voice their answers.
 - Preferably, users can also type their answers. (Note: The learning benefit of typing might differ from traditional writing.)
-- **Vocabulary Limitation**: Vocabulary for practice should be restricted to the user's progress within the flashcards.
-- **Progress Update**: After each practice session, update the user's progress in the flashcard system.
-
 
 ## License
 
-The CaptainA is licensed under the [GNU Affero General Public License, version 3 or later](https://github.com/Usin2705/CaptainA_unity/blob/main/LICENSE). Other related work to CaptainA made by the authors (thesis work, journal articles, audio samples, pictures, videos ...) are licensed under a Creative Commons "Attribution-NonCommercial-ShareAlike 4.0 International" (BY-NC-SA 4.0) [license](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+The SaySuomi is licensed under the [GNU Affero General Public License, version 3 or later](https://github.com/Usin2705/CaptainA_unity/blob/main/LICENSE). Other related work to SaySuomi made by the authors (thesis work, journal articles, audio samples, pictures, videos ...) are licensed under a Creative Commons "Attribution-NonCommercial-ShareAlike 4.0 International" (BY-NC-SA 4.0) [license](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 Other works not made by the authors are licensed accordingly to their respective owners:
 
-- The authors of Oma Suomi 1: Kristiina Kuparinen, Terhi Tapaninen and Finn Lectura have given us permission to use the text in Oma Suomi 1 to create the flashcard for the CaptainA app.
+- The authors of Oma Suomi 1: Kristiina Kuparinen, Terhi Tapaninen and Finn Lectura have given us permission to use the text in Oma Suomi 1 to create the flashcard for the SaySuomi app.
 - Anki is licensed under AGPL3.
 - SuperMemo2 is open to the public: Algorithm SM-2, (C) Copyright SuperMemo World, 1991. [https://www.supermemo.com](https://www.supermemo.com).
-- The side picture illustrations are created by Aino Huhtaniemi ([https://ainohuhtaniemi.com/](https://ainohuhtaniemi.com/)), and she gave her permission to use and modify her original illustrations for the CaptainA app.
-- Icons used in the application are from Google under Apache License 2.0.
+- The side picture illustrations are created by Aino Huhtaniemi ([https://ainohuhtaniemi.com/](https://ainohuhtaniemi.com/)), and she gave her permission to use and modify her original illustrations for the SaySuomi app.
+- Some icons used in the application are from Google under Apache License 2.0.
 - Photo illustrations and some of the videos were made with the contribution of Aija Elg and Noora Heikiö from Aalto University Language Centre.
 - Some audio samples are from Aalto University Language Centre.
 - Some audio samples are from Common Voice 11.0, licensed under [Creative Commons Zero 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
 - Some audio samples and text examples are from LibriVox under Public Domain.
+- We are grateful to Apollo Ailus and Kia Raitanen for their contributions to user research and engagement, and to Aalo Kailu, who designed the original user interface of the app.
