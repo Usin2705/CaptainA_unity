@@ -8,6 +8,8 @@ public class AdvancePanel : MonoBehaviour
     [SerializeField] GameObject advancePanelGO;
     [SerializeField] GameObject numberGameButtonGO;
     [SerializeField] GameObject numberGamePanelGO;
+    [SerializeField] GameObject ASAButtonGO;
+    [SerializeField] GameObject ASAPanelGO;
     [SerializeField] GameObject describeButtonAGO;
     [SerializeField] GameObject describeButtonBGO;
     [SerializeField] GameObject describeButtonCGO;
@@ -29,6 +31,7 @@ public class AdvancePanel : MonoBehaviour
            secretText = secretText[..^1]; 
         }        
         numberGameButtonGO.GetComponent<Button>().onClick.AddListener(() => OnNumberGameButtonClicked());
+        ASAButtonGO.GetComponent<Button>().onClick.AddListener(() => OnASAButtonClicked());
 
         if (secretText == Secret.SECRET_TEXT) {          
             describeButtonAGO.GetComponent<Button>().onClick.AddListener(() => OnDescribeAButtonClicked());
@@ -68,6 +71,7 @@ public class AdvancePanel : MonoBehaviour
         }
 
         numberGamePanelGO.SetActive(false);
+        ASAPanelGO.SetActive(false);
         describePanelAGO.SetActive(false);
         describePanelBGO.SetActive(false);
         describePanelCGO.SetActive(false);
@@ -88,6 +92,12 @@ public class AdvancePanel : MonoBehaviour
         {
             numberGamePanel.SetTaskType(taskType);
         }
+    }
+
+    public void OnASAButtonClicked() 
+    {
+        ASAPanelGO.SetActive(true);
+        ASAPanel ASAPanel = ASAPanelGO.GetComponent<ASAPanel>();
     }
 
     public void OnDescribeAButtonClicked(DescribePanel.TaskType taskType = DescribePanel.TaskType.A) 
@@ -128,6 +138,7 @@ public class AdvancePanel : MonoBehaviour
     */
     {
         numberGamePanelGO.SetActive(false);
+        ASAPanelGO.SetActive(false);
         describePanelAGO.SetActive(false);
         describePanelBGO.SetActive(false);
         describePanelCGO.SetActive(false);
