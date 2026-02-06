@@ -86,7 +86,6 @@ public class ASAPanel : MonoBehaviour
 
     public void OnTimerFinished()
     {
-        
         {
             AudioManager
                 .GetManager()
@@ -102,7 +101,6 @@ public class ASAPanel : MonoBehaviour
             ASAPanelGO.SetActive(false);
 
             reviewPanelGO.SetActive(true);
-
         }
     }
 }
