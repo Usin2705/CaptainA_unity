@@ -1,5 +1,7 @@
 # SaySuomi - A Mobile App for Practicing Finnish Pronunciation
 
+[![CI](https://github.com/Usin2705/CaptainA_unity/actions/workflows/ci.yml/badge.svg)](https://github.com/Usin2705/CaptainA_unity/actions/workflows/ci.yml)
+
 Welcome to the repository of SaySuomi (previous name CaptainA), a mobile application designed to help users practice their Finnish pronunciation. This repository contains the code for both the mobile application and the backend server.
 
 ## Front end development project description:
