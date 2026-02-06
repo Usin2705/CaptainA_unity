@@ -23,4 +23,4 @@ jobs:
         run: dotnet tool install -g dotnet-format
 
       - name: Run dotnet format
-        run: dotnet format CaptainA_unity.sln --include Assets/Scripts --verify-no-changes --verbosity diagnostic
+        run: dotnet format --include "Assets/Scripts/**/*.cs" --verify-no-changes --verbosity diagnostic
