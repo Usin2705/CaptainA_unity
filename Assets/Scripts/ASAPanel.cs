@@ -81,15 +81,22 @@ public class ASAPanel : MonoBehaviour
         StartTimer();
     }
 
-    public void OnTimerFinished()
+     public void OnTimerFinished()
     {
         StartCoroutine(DelayPost());
 
         IEnumerator DelayPost()
         {
-            // AudioManager.GetManager().GetAudioAndASR(transcriptGO, scoreButtonGO, taskType, taskNumber, isFinnish);
-            yield return new WaitForSeconds(0.2f);
+            AudioManager.GetManager().GetAudioAndPost(
+                POSTType.OTHER,   // POST type = OTHER
+                transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text,               // transcript text
+                null,             // textErrorGO
+                null,             // resultTextGO
+                null,             // resultPanelGO
+                null              // debugTextGO
+            );
 
+            yield return new WaitForSeconds(0.2f);
             recordButtonGO.SetActive(true);
         }
     }
