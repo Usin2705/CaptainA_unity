@@ -1,14 +1,23 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class ASAPanel : MonoBehaviour
 {
-    [SerializeField] GameObject ASAButtonGO;
-    [SerializeField] GameObject ASAPanelGO;
-    [SerializeField] GameObject recordButtonGO;
-    [SerializeField] GameObject transcriptGO;
-    [SerializeField] GameObject progressBarGO;
+    [SerializeField]
+    GameObject ASAButtonGO;
+
+    [SerializeField]
+    GameObject ASAPanelGO;
+
+    [SerializeField]
+    GameObject recordButtonGO;
+
+    [SerializeField]
+    GameObject transcriptGO;
+
+    [SerializeField]
+    GameObject progressBarGO;
 
     private float recordingTime = Const.MAX_REC_TIME_A;
     private float currentTime = Const.MAX_REC_TIME_A;
@@ -18,7 +27,8 @@ public class ASAPanel : MonoBehaviour
         recordButtonGO.GetComponent<Button>().onClick.AddListener(() => OnRecordButtonClicked());
     }
 
-    void StartTimer() {
+    void StartTimer()
+    {
         // Start countdown so the user know how long the recording will be
         currentTime = recordingTime;
 
@@ -32,12 +42,14 @@ public class ASAPanel : MonoBehaviour
     void Update()
     {
         // Only run this code if the progress bar is active
-        if (progressBarGO.activeSelf == true) {
+        if (progressBarGO.activeSelf == true)
+        {
             UpdateProgressBar();
         }
     }
 
-    void UpdateProgressBar() {
+    void UpdateProgressBar()
+    {
         /*
         *   This function will update the progress bar
         */
@@ -58,18 +70,19 @@ public class ASAPanel : MonoBehaviour
     */
     {
         // Clear the transcript text
-        transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = "";    
+        transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = "";
 
         progressBarGO.SetActive(true);
         // Start recording
         AudioManager.GetManager().StartRecording((int)recordingTime);
 
-            // Start the timer
-            // Should not use invoke or delay as it will cause the timer to be inaccurate
+        // Start the timer
+        // Should not use invoke or delay as it will cause the timer to be inaccurate
         StartTimer();
     }
 
-    public void OnTimerFinished() {
+    public void OnTimerFinished()
+    {
         StartCoroutine(DelayPost());
 
         IEnumerator DelayPost()

@@ -1,11 +1,11 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.UI;
 
 /// <summary>
 /// Manages the navigation bar within the game, handling the activation and deactivation of panels and tabs.
-/// This class is responsible for the UI logic related to the navigation bar which includes changing the 
+/// This class is responsible for the UI logic related to the navigation bar which includes changing the
 /// appearance of tabs and managing different panels such as MainPanel, Vocab, Others, and Profile.
 /// <br/>
 /// To change the order or add new panels and tabs, you need to change the order of the panels and tabs
@@ -25,7 +25,8 @@ public class NavigationBar : MonoBehaviour
     /// 3. Others
     /// 4. Profile
     /// </summary>
-    [SerializeField] GameObject[] panels;
+    [SerializeField]
+    GameObject[] panels;
 
     /// <summary>
     /// Array of tab GameObjects in the UI.
@@ -35,7 +36,8 @@ public class NavigationBar : MonoBehaviour
     /// 3. Others
     /// 4. Profile
     /// </summary>
-    [SerializeField] GameObject[] tabs;
+    [SerializeField]
+    GameObject[] tabs;
 
     private float swipeThreshold = 100f; // Minimum swipe distance to be considered a swipe
     private float thresholdFraction = 0.15f; // suggest 0.15f
@@ -44,7 +46,6 @@ public class NavigationBar : MonoBehaviour
     private int currentPanelIndex = 0;
     private int previousPanelIndex = 0;
 
-
     void Awake()
     {
         swipeThreshold = Mathf.Min(Screen.width, Screen.height) * thresholdFraction;
@@ -52,46 +53,46 @@ public class NavigationBar : MonoBehaviour
 
     void Update()
     {
-    // Check for swipe right to left gesture using 
-    // the new Input System
-    // This is only for touch devices, and not for UnityEditor
-    // #if UNITY_ANDROID || UNITY_IOS
-    //     TouchControl touch = Touchscreen.current?.primaryTouch;
-    //     if (touch == null) return;
+        // Check for swipe right to left gesture using
+        // the new Input System
+        // This is only for touch devices, and not for UnityEditor
+        // #if UNITY_ANDROID || UNITY_IOS
+        //     TouchControl touch = Touchscreen.current?.primaryTouch;
+        //     if (touch == null) return;
 
-    //     // Check if the touch is in the first phase (pressed)
-    //     if (touch.press.wasPressedThisFrame)
-    //     {
-    //         startPos = touch.position.ReadValue();
-    //         swipeHandled = false;
-    //     }
-    //     // Check if the touch is in the e2nd phase (pressed and moved)
-    //     // Finger is still down and hasn't triggered a swipe yet
-    //     else if (touch.press.isPressed && !swipeHandled)
-    //     {
-    //         // Check if the touch is moved
-    //         Vector2 delta = touch.position.ReadValue() - startPos;
+        //     // Check if the touch is in the first phase (pressed)
+        //     if (touch.press.wasPressedThisFrame)
+        //     {
+        //         startPos = touch.position.ReadValue();
+        //         swipeHandled = false;
+        //     }
+        //     // Check if the touch is in the e2nd phase (pressed and moved)
+        //     // Finger is still down and hasn't triggered a swipe yet
+        //     else if (touch.press.isPressed && !swipeHandled)
+        //     {
+        //         // Check if the touch is moved
+        //         Vector2 delta = touch.position.ReadValue() - startPos;
 
-    //         /* -------------------------------------------------------------------
-    //         *  Dynamically pick the swipe threshold.
-    //         *  If we are on the LAST panel (scroll view) we make the gesture
-    //         *  harder to activate by doubling the normal threshold.
-    //         * ------------------------------------------------------------------*/
-    //         float effectiveThreshold = swipeThreshold;
-    //         if (currentPanelIndex == panels.Length - 1)   // last tab?
-    //         {
-    //             effectiveThreshold *= 3.5f; // double the threshold
-    //         }
+        //         /* -------------------------------------------------------------------
+        //         *  Dynamically pick the swipe threshold.
+        //         *  If we are on the LAST panel (scroll view) we make the gesture
+        //         *  harder to activate by doubling the normal threshold.
+        //         * ------------------------------------------------------------------*/
+        //         float effectiveThreshold = swipeThreshold;
+        //         if (currentPanelIndex == panels.Length - 1)   // last tab?
+        //         {
+        //             effectiveThreshold *= 3.5f; // double the threshold
+        //         }
 
-    //         // Big enough horizontal move?  If yes, treat as a swipe.
-    //         if (Mathf.Abs(delta.x) > effectiveThreshold)
-    //         {
-    //             swipeHandled = true;            // Avoid multi-fires
-    //             if (delta.x < 0)    GoRight();  // finger moved left  → next tab right
-    //             else                GoLeft();   // finger moved right → previous tab
-    //         }
-    //     }
-    // #endif
+        //         // Big enough horizontal move?  If yes, treat as a swipe.
+        //         if (Mathf.Abs(delta.x) > effectiveThreshold)
+        //         {
+        //             swipeHandled = true;            // Avoid multi-fires
+        //             if (delta.x < 0)    GoRight();  // finger moved left  → next tab right
+        //             else                GoLeft();   // finger moved right → previous tab
+        //         }
+        //     }
+        // #endif
     }
 
     /// <summary>
@@ -109,11 +110,11 @@ public class NavigationBar : MonoBehaviour
     /// <summary>
     /// Handles the swipe right - go left gesture.
     /// This method is called when the user swipes right on the screen.
-    /// It will navigate to the previous panel in the array.    
+    /// It will navigate to the previous panel in the array.
     /// </summary>
     void GoLeft()
     {
-        // Check if we are not on the first panel        
+        // Check if we are not on the first panel
         int target = Mathf.Max(0, currentPanelIndex - 1);
         NavigationBarClick(panels[target]);
     }
@@ -123,7 +124,7 @@ public class NavigationBar : MonoBehaviour
     *  Can only be attached to OnClick with 1 variable,
     *  therefore we loop tabs and index to address
     *  both the panel (active/inactive) and tab buttons
-    *  (change color to show active/inactive)    
+    *  (change color to show active/inactive)
     */
 
     {
@@ -155,7 +156,7 @@ public class NavigationBar : MonoBehaviour
     {
         // Change the source image of the tab button to show active/inactive
         // The name of the source image is ic_[name]_[active/inactive]
-        // [name] is the name of the tab button            
+        // [name] is the name of the tab button
         Image tabImage = tabs[index].GetComponent<Image>();
         string tabName = tabs[index].name;
         string sourceImageName = "ic_" + tabName + "_" + (isActive ? "active" : "inactive");
@@ -168,5 +169,5 @@ public class NavigationBar : MonoBehaviour
         {
             Debug.LogError("Source image not found: " + sourceImageName);
         }
-    }   
+    }
 }

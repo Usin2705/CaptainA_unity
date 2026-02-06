@@ -1,31 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PhonemePanel : MonoBehaviour
 {
-    [SerializeField] GameObject phonemePanel;
-        
-    [SerializeField] TextMeshProUGUI explainText;
-    [SerializeField] GameObject frontMouth1;
-    [SerializeField] GameObject frontMouth2;
-    [SerializeField] GameObject sideMouth1;
-    [SerializeField] GameObject sideMouth2;
-    [SerializeField] TextMeshProUGUI creditText;
-    
+    [SerializeField]
+    GameObject phonemePanel;
+
+    [SerializeField]
+    TextMeshProUGUI explainText;
+
+    [SerializeField]
+    GameObject frontMouth1;
+
+    [SerializeField]
+    GameObject frontMouth2;
+
+    [SerializeField]
+    GameObject sideMouth1;
+
+    [SerializeField]
+    GameObject sideMouth2;
+
+    [SerializeField]
+    TextMeshProUGUI creditText;
+
     SOPhonemeHelper phonemeSO;
+
     // Start is called before the first frame update
 
-    public void ShowPhonemePanel(string phoneme) {
+    public void ShowPhonemePanel(string phoneme)
+    {
         // Find the scriptable object related to the phoneme
         phonemeSO = Resources.Load<SOPhonemeHelper>(Const.PHONE_HELP_PATH + phoneme.ToLower());
         phonemePanel.SetActive(true);
     }
 
-    
     public void OnVideoButtonClick()
     /*
     *   This function also attached to VideoButton OnClick() in Unity
@@ -35,13 +48,14 @@ public class PhonemePanel : MonoBehaviour
     }
 
     void OnEnable()
-    {        
+    {
         // In case the SO is null
-        if (phonemeSO==null) phonemeSO = Resources.Load<SOPhonemeHelper>(Const.PHONE_HELP_PATH + "spacing");
+        if (phonemeSO == null)
+            phonemeSO = Resources.Load<SOPhonemeHelper>(Const.PHONE_HELP_PATH + "spacing");
 
-        string phonemeString = TextUtils.WrapPhonemeSO(phonemeSO, Const.GOOD_COLOR, isBold:false);
+        string phonemeString = TextUtils.WrapPhonemeSO(phonemeSO, Const.GOOD_COLOR, isBold: false);
 
-        explainText.text = phonemeString  + " " + phonemeSO.instruction;
+        explainText.text = phonemeString + " " + phonemeSO.instruction;
         frontMouth1.GetComponent<Image>().sprite = phonemeSO.front_1;
         frontMouth2.GetComponent<Image>().sprite = phonemeSO.front_2;
         sideMouth1.GetComponent<Image>().sprite = phonemeSO.side_1;
@@ -49,19 +63,25 @@ public class PhonemePanel : MonoBehaviour
         phonemePanel.transform.GetComponent<Animation>().clip = phonemeSO.animaClip;
         phonemePanel.transform.GetComponent<Animation>().Play();
 
-        creditText.text = "Top images: " + phonemeSO.front_credit + ".\nBottom images: " + phonemeSO.side_credit + ".";
+        creditText.text =
+            "Top images: "
+            + phonemeSO.front_credit
+            + ".\nBottom images: "
+            + phonemeSO.side_credit
+            + ".";
 
-        if (!PlayerPrefs.HasKey(Const.PREF_INS_PHONE)) {
-            PopUpManager popUpPanel = GameObject.FindAnyObjectByType<PopUpManager>();        
+        if (!PlayerPrefs.HasKey(Const.PREF_INS_PHONE))
+        {
+            PopUpManager popUpPanel = GameObject.FindAnyObjectByType<PopUpManager>();
             popUpPanel.OpenPanel(Const.PREF_INS_PHONE);
             popUpPanel.SetText(Const.INSTRUCTION_PHONE);
         }
     }
-    
+
     void OnDisable()
     {
         phonemePanel.transform.GetComponent<Animation>().clip = null;
-        
+
         PopUpManager popUpPanel = GameObject.FindAnyObjectByType<PopUpManager>();
         popUpPanel.DisablePanel();
     }
@@ -88,8 +108,4 @@ public class PhonemePanel : MonoBehaviour
     {
         phonemePanel.SetActive(false);
     }
-
-
-
-    
 }

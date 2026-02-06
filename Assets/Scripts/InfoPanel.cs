@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class InfoPanel : MonoBehaviour
 {
+    [SerializeField]
+    GameObject infoPanel;
 
-    [SerializeField] GameObject infoPanel;
-    [SerializeField] GameObject secretPanel;
+    [SerializeField]
+    GameObject secretPanel;
 
-    public void ShowInfoPanel(){
+    public void ShowInfoPanel()
+    {
         infoPanel.SetActive(true);
     }
 
