@@ -19,6 +19,9 @@ public class ASAPanel : MonoBehaviour
     [SerializeField]
     GameObject progressBarGO;
 
+    [SerializeField]
+    GameObject reviewPanelGO;
+
     private float recordingTime = Const.MAX_REC_TIME_A;
     private float currentTime = Const.MAX_REC_TIME_A;
 
@@ -83,9 +86,7 @@ public class ASAPanel : MonoBehaviour
 
     public void OnTimerFinished()
     {
-        StartCoroutine(DelayPost());
-
-        IEnumerator DelayPost()
+        
         {
             AudioManager
                 .GetManager()
@@ -98,8 +99,10 @@ public class ASAPanel : MonoBehaviour
                     null // debugTextGO
                 );
 
-            yield return new WaitForSeconds(0.2f);
-            recordButtonGO.SetActive(true);
+            ASAPanelGO.SetActive(false);
+
+            reviewPanelGO.SetActive(true);
+
         }
     }
 }
