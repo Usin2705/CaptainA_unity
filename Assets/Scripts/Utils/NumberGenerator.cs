@@ -2,7 +2,6 @@ using UnityEngine;
 
 public static class NumberGenerator
 {
-
     public static int GenerateNumber(NGTaskType taskType)
     {
         switch (taskType)
@@ -31,8 +30,7 @@ public static class NumberGenerator
         do
         {
             number = Random.Range(100, 1000); // [100, 999]
-        }
-        while (!IsValidHardNumber(number));
+        } while (!IsValidHardNumber(number));
         return number;
     }
 
@@ -42,8 +40,7 @@ public static class NumberGenerator
         do
         {
             number = Random.Range(11, 1000); // [11, 999]
-        }
-        while (!IsValidRankNumber(number));
+        } while (!IsValidRankNumber(number));
         return number;
     }
 
@@ -68,4 +65,3 @@ public static class NumberGenerator
         return true; // 2-digit numbers are always valid for RANK
     }
 }
-

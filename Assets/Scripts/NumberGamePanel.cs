@@ -1,29 +1,45 @@
-using UnityEngine;
-using UnityEngine.UI;
+using System;
 using System.Collections;
 using System.IO;
+using UnityEngine;
 using UnityEngine.Diagnostics;
-using System;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class NumberGamePanel : MonoBehaviour
 {
-    [SerializeField] GameObject recordButtonGO;
-    [SerializeField] GameObject progressBarGO;    
-    [SerializeField] NGTaskType taskType;
+    [SerializeField]
+    GameObject recordButtonGO;
 
-    [SerializeField] Toggle easyToggle;
-    [SerializeField] Toggle mediumToggle;
-    [SerializeField] Toggle hardToggle;
-    [SerializeField] Toggle rankToggle;
+    [SerializeField]
+    GameObject progressBarGO;
 
-    [SerializeField] GameObject newButtonGO;
+    [SerializeField]
+    NGTaskType taskType;
 
-    [SerializeField] GameObject numberLabelGO;
+    [SerializeField]
+    Toggle easyToggle;
 
-    [SerializeField] GameObject errorTextGO;
+    [SerializeField]
+    Toggle mediumToggle;
 
-    [SerializeField] GameObject replayButtonGO;
+    [SerializeField]
+    Toggle hardToggle;
+
+    [SerializeField]
+    Toggle rankToggle;
+
+    [SerializeField]
+    GameObject newButtonGO;
+
+    [SerializeField]
+    GameObject numberLabelGO;
+
+    [SerializeField]
+    GameObject errorTextGO;
+
+    [SerializeField]
+    GameObject replayButtonGO;
 
     AudioClip replayClip;
 
@@ -32,26 +48,47 @@ public class NumberGamePanel : MonoBehaviour
 
     private string number = "999";
 
-    
     private void Start()
     {
         // Add listeners
-        easyToggle.onValueChanged.AddListener((isOn) => { if (isOn) SetTaskType(NGTaskType.EASY); });
-        mediumToggle.onValueChanged.AddListener((isOn) => { if (isOn) SetTaskType(NGTaskType.MEDIUM); });
-        hardToggle.onValueChanged.AddListener((isOn) => { if (isOn) SetTaskType(NGTaskType.HARD); });
-        rankToggle.onValueChanged.AddListener((isOn) => { if (isOn) SetTaskType(NGTaskType.RANK); });
-        
+        easyToggle.onValueChanged.AddListener(
+            (isOn) =>
+            {
+                if (isOn)
+                    SetTaskType(NGTaskType.EASY);
+            }
+        );
+        mediumToggle.onValueChanged.AddListener(
+            (isOn) =>
+            {
+                if (isOn)
+                    SetTaskType(NGTaskType.MEDIUM);
+            }
+        );
+        hardToggle.onValueChanged.AddListener(
+            (isOn) =>
+            {
+                if (isOn)
+                    SetTaskType(NGTaskType.HARD);
+            }
+        );
+        rankToggle.onValueChanged.AddListener(
+            (isOn) =>
+            {
+                if (isOn)
+                    SetTaskType(NGTaskType.RANK);
+            }
+        );
+
         Debug.Log("NumberGamePanel Start()");
         easyToggle.isOn = true;
-        
+
         // Add listener to record button
         recordButtonGO.GetComponent<Button>().onClick.AddListener(OnRecordButtonClicked);
 
         // Add listener to new button
         newButtonGO.GetComponent<Button>().onClick.AddListener(OnNewButtonClick);
     }
-
-
 
     void OnEnable()
     {
@@ -73,7 +110,7 @@ public class NumberGamePanel : MonoBehaviour
         else if (taskType == NGTaskType.RANK)
         {
             recordingTime = Const.MAX_REC_NUMBERGAME_RANK;
-        }        
+        }
     }
 
     void OnDisable()
@@ -82,19 +119,20 @@ public class NumberGamePanel : MonoBehaviour
         easyToggle.isOn = true;
     }
 
-    public void SetTaskType (NGTaskType _taskType) {
+    public void SetTaskType(NGTaskType _taskType)
+    {
         // Disable the replay button
-        replayButtonGO.SetActive(false);   
+        replayButtonGO.SetActive(false);
 
         taskType = _taskType;
-        
+
         // Generate a new number
         int taskNumber = NumberGenerator.GenerateNumber(taskType);
         // Debug.Log("Task Number: " + taskNumber);
 
         // Get the text TMP component from the GameObject
         // The TMP is a child of the NumberLabelGO
-        numberLabelGO.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = taskNumber.ToString();   
+        numberLabelGO.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = taskNumber.ToString();
 
         // Set the countdown time based on the task type
         if (taskType == NGTaskType.EASY)
@@ -112,13 +150,13 @@ public class NumberGamePanel : MonoBehaviour
         else if (taskType == NGTaskType.RANK)
         {
             recordingTime = Const.MAX_REC_NUMBERGAME_RANK;
-        }     
-    }  
+        }
+    }
 
     private void OnNewButtonClick()
     {
         // Disable the replay button
-        replayButtonGO.SetActive(false);   
+        replayButtonGO.SetActive(false);
 
         // Retrigger the current toggle to generate a new number
         if (easyToggle.isOn)
@@ -141,13 +179,13 @@ public class NumberGamePanel : MonoBehaviour
             rankToggle.isOn = false;
             rankToggle.isOn = true;
         }
-    }    
+    }
 
     void StartTimer()
     /*
-    *   
+    *
     */
-    {        
+    {
         // Start countdown so the user know how long the recording will be
         currentTime = recordingTime;
 
@@ -173,23 +211,23 @@ public class NumberGamePanel : MonoBehaviour
         }
     }
 
-    void UpdateProgressBar() {
+    void UpdateProgressBar()
+    {
         /*
         *   This function will update the progress bar
         */
-        currentTime -= Time.deltaTime;        
+        currentTime -= Time.deltaTime;
         progressBarGO.GetComponent<Image>().fillAmount = currentTime / recordingTime;
 
         if (currentTime <= 0)
         {
-            
             currentTime = 0;
             progressBarGO.SetActive(false);
             OnFinnishTimer();
         }
-    }    
+    }
 
-    public void OnRecordButtonClicked() 
+    public void OnRecordButtonClicked()
     /*
     *   This function also attached to RecordButton OnClick() in Unity
     */
@@ -198,39 +236,45 @@ public class NumberGamePanel : MonoBehaviour
         // Start recording
         AudioManager.GetManager().StartRecording((int)recordingTime);
 
-            // Start the timer
-            // Should not use invoke or delay as it will cause the timer to be inaccurate
+        // Start the timer
+        // Should not use invoke or delay as it will cause the timer to be inaccurate
         StartTimer();
-    }    
+    }
 
-    public void OnFinnishTimer() {
-        TMPro.TextMeshProUGUI resultTextTMP = numberLabelGO.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+    public void OnFinnishTimer()
+    {
+        TMPro.TextMeshProUGUI resultTextTMP =
+            numberLabelGO.GetComponentInChildren<TMPro.TextMeshProUGUI>();
         number = TextUtils.RemoveColorTag(resultTextTMP.text);
 
         StartCoroutine(DelayPost());
-        
+
         IEnumerator DelayPost()
         {
             Debug.Log("number: " + number);
             AudioManager.GetManager().GetAudioAndNG(number, errorTextGO, resultTextTMP);
             yield return new WaitForSeconds(0.2f);
 
-            yield return StartCoroutine(LoadAudioClip(Const.NUMBERGAME_FILENAME));        
+            yield return StartCoroutine(LoadAudioClip(Const.NUMBERGAME_FILENAME));
             recordButtonGO.SetActive(true);
 
-            Button replayButton = replayButtonGO.transform.GetComponent<Button>();                       
-            replayButton.onClick.RemoveAllListeners();    
-            if(replayClip!=null) {
-                replayButton.onClick.AddListener(()=> AudioManager.GetManager().PlayAudioClip(replayClip));            
+            Button replayButton = replayButtonGO.transform.GetComponent<Button>();
+            replayButton.onClick.RemoveAllListeners();
+            if (replayClip != null)
+            {
+                replayButton.onClick.AddListener(() =>
+                    AudioManager.GetManager().PlayAudioClip(replayClip)
+                );
                 replayButtonGO.SetActive(true);
-            } else {
+            }
+            else
+            {
                 replayButtonGO.SetActive(false);
             }
-
         }
     }
 
-    IEnumerator LoadAudioClip(string filename) 
+    IEnumerator LoadAudioClip(string filename)
     /*
     *   This one should be called inside the Panel (not AudioManager)
     *   as it will update the replay audio with current replay audio
@@ -240,34 +284,43 @@ public class NumberGamePanel : MonoBehaviour
     *   Not very efficiency to reload but at least it work for now
     */
     {
-        if(!String.IsNullOrEmpty(filename)) {
-            string path = System.IO.Path.Combine(Application.persistentDataPath, filename.EndsWith(".wav") ? filename : filename + ".wav");
-            
+        if (!String.IsNullOrEmpty(filename))
+        {
+            string path = System.IO.Path.Combine(
+                Application.persistentDataPath,
+                filename.EndsWith(".wav") ? filename : filename + ".wav"
+            );
+
             // Need the file:// for GetAudioClip
             // TODO check with iOS version does it need sth similar
-            using (var uwr = UnityWebRequestMultimedia.GetAudioClip("file://" + path, AudioType.WAV))
+            using (
+                var uwr = UnityWebRequestMultimedia.GetAudioClip("file://" + path, AudioType.WAV)
+            )
             {
                 ((DownloadHandlerAudioClip)uwr.downloadHandler).streamAudio = true;
-        
+
                 yield return uwr.SendWebRequest();
-        
-                if (uwr.result==UnityWebRequest.Result.ConnectionError || uwr.result == UnityWebRequest.Result.ProtocolError)
-                {   
+
+                if (
+                    uwr.result == UnityWebRequest.Result.ConnectionError
+                    || uwr.result == UnityWebRequest.Result.ProtocolError
+                )
+                {
                     Debug.LogError("Failed to reload replay audio clip");
                     Debug.LogError(uwr.result);
                     Debug.LogError(path);
                     yield break;
                 }
-        
+
                 DownloadHandlerAudioClip dlHandler = (DownloadHandlerAudioClip)uwr.downloadHandler;
-        
+
                 if (dlHandler.isDone)
                 {
                     Debug.Log("Replay audio clip is loaded");
                     replayClip = dlHandler.audioClip;
                 }
             }
-            
+
             yield break;
         }
     }

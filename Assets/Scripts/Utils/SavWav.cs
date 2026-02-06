@@ -24,12 +24,12 @@
 //  derived from Gregorio Zanon's script
 //  http://forum.unity3d.com/threads/119295-Writing-AudioListener.GetOutputData-to-wav-problem?p=806734&viewfull=1#post806734
 
-// 
+//
 // Fork by R-WebsterNoble
 // Optimized! Now 20 times quicker
 // Easy to get byte[] instead of saving file
 
-// Note: GetWav() with trimming returns the full buffer with a load of zeros on the end. 
+// Note: GetWav() with trimming returns the full buffer with a load of zeros on the end.
 // Use the length out parameter to know where the data stops.
 //
 
@@ -66,7 +66,7 @@ public static class SavWav
             Debug.Log($"wav save file path: {filepath}");
         }
     }
-    
+
     public static byte[] GetWav(AudioClip clip, out uint length, bool trim = false)
     {
         var data = ConvertAndWrite(clip, out length, out var samples, trim);
@@ -76,7 +76,12 @@ public static class SavWav
         return data;
     }
 
-    private static byte[] ConvertAndWrite(AudioClip clip, out uint length, out uint samplesAfterTrimming, bool trim)
+    private static byte[] ConvertAndWrite(
+        AudioClip clip,
+        out uint length,
+        out uint samplesAfterTrimming,
+        bool trim
+    )
     {
         var samples = new float[clip.samples * clip.channels];
 
@@ -98,7 +103,7 @@ public static class SavWav
                 break;
             }
 
-            for (var i = sampleCount -1; i >= 0; i--)
+            for (var i = sampleCount - 1; i >= 0; i--)
             {
                 if ((short)(samples[i] * RescaleFactor) == 0)
                     continue;
@@ -113,13 +118,13 @@ public static class SavWav
         var p = HeaderSize;
         for (var i = start; i <= end; i++)
         {
-            var value = (short) (samples[i] * RescaleFactor);
-            buffer[p++] = (byte) (value >> 0);
-            buffer[p++] = (byte) (value >> 8);
+            var value = (short)(samples[i] * RescaleFactor);
+            buffer[p++] = (byte)(value >> 0);
+            buffer[p++] = (byte)(value >> 8);
         }
 
         length = p;
-        samplesAfterTrimming = (uint) (end - start + 1);
+        samplesAfterTrimming = (uint)(end - start + 1);
         return buffer;
     }
 

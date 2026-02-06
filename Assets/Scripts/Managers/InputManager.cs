@@ -54,6 +54,4 @@ public class InputManager : MonoBehaviour
             OnEndTouch(touchPosition, touchTime);
         }
     }
-
-
 }

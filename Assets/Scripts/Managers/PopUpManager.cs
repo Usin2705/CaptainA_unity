@@ -3,9 +3,14 @@ using UnityEngine.UI;
 
 public class PopUpManager : MonoBehaviour
 {
-    [SerializeField] GameObject panel; // Assign your panel GameObject in the Inspector
-    [SerializeField] TMPro.TextMeshProUGUI messageText; // Assign your Text component in the Inspector
-    [SerializeField] Button okButton; // Assign your Button component in the Inspector
+    [SerializeField]
+    GameObject panel; // Assign your panel GameObject in the Inspector
+
+    [SerializeField]
+    TMPro.TextMeshProUGUI messageText; // Assign your Text component in the Inspector
+
+    [SerializeField]
+    Button okButton; // Assign your Button component in the Inspector
 
     string prefsKey;
 
@@ -31,7 +36,6 @@ public class PopUpManager : MonoBehaviour
     {
         panel.SetActive(false);
     }
-
 
     public void FinnishPanel()
     {
