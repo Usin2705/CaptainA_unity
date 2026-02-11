@@ -48,6 +48,9 @@ public class AdvancePanel : MonoBehaviour
     [SerializeField]
     GameObject describePanelCGO;
 
+    [SerializeField]
+    GameObject reviewPanelGO;
+
     void OnEnable()
     {
         // Check if the user has correct secret text
@@ -119,6 +122,7 @@ public class AdvancePanel : MonoBehaviour
         describePanelAGO.SetActive(false);
         describePanelBGO.SetActive(false);
         describePanelCGO.SetActive(false);
+        reviewPanelGO.SetActive(false);
 
         // Check if the instruction panel has been shown before
         if (!PlayerPrefs.HasKey(Const.PREF_INS_ADVANCE))
@@ -186,5 +190,6 @@ public class AdvancePanel : MonoBehaviour
         describePanelAGO.SetActive(false);
         describePanelBGO.SetActive(false);
         describePanelCGO.SetActive(false);
+        reviewPanelGO.SetActive(false);
     }
 }
