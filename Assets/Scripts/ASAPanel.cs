@@ -27,7 +27,6 @@ public class ASAPanel : MonoBehaviour
 
     void OnEnable()
     {
-        recordButtonGO.SetActive(true);
         recordButtonGO.GetComponent<Button>().onClick.AddListener(() => OnRecordButtonClicked());
     }
 
