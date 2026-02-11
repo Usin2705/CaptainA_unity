@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ReviewPanel : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField] 
     StarRatingRow fluencyRatingRow;
 
     void OnEnable()
