@@ -75,9 +75,9 @@ public class AdvancePanel : MonoBehaviour
                 .GetComponent<Button>()
                 .onClick.AddListener(() => OnDescribeCButtonClicked());
 
-            describeButtonAGO.SetActive(true);
-            describeButtonBGO.SetActive(true);
-            describeButtonCGO.SetActive(true);
+            describeButtonAGO.SetActive(false);
+            describeButtonBGO.SetActive(false);
+            describeButtonCGO.SetActive(false);
 
             // English
             describeButtonA2GO
@@ -90,9 +90,9 @@ public class AdvancePanel : MonoBehaviour
                 .GetComponent<Button>()
                 .onClick.AddListener(() => OnDescribeCButtonClicked(DescribePanel.TaskType.C2));
 
-            describeButtonA2GO.SetActive(true);
-            describeButtonB2GO.SetActive(true);
-            describeButtonC2GO.SetActive(true);
+            describeButtonA2GO.SetActive(false);
+            describeButtonB2GO.SetActive(false);
+            describeButtonC2GO.SetActive(false);
         }
         else
         {
