@@ -178,6 +178,13 @@ public class AudioManager : MonoBehaviour
         );
     }
 
+    public void StopRecording()
+    {
+        Microphone.End("");
+        byte[] wavBuffer = SavWav.GetWav(audioSource.clip, out uint length, trim: true);
+        SavWav.Save(Const.NUMBERGAME_FILENAME, audioSource.clip, trim: true);
+    }
+
     public IEnumerator LoadAudioClip(string filename, GameObject replayButtonGO)
     {
         if (!string.IsNullOrEmpty(filename))

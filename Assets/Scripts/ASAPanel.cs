@@ -22,12 +22,35 @@ public class ASAPanel : MonoBehaviour
     [SerializeField]
     GameObject reviewPanelGO;
 
+    [SerializeField]
+    GameObject pauseButtonGO;
+
+    [SerializeField]
+    GameObject sendButtonGO;
+
+    [SerializeField]
+    GameObject replayButtonGO;
+
+    private bool isRecording = false;
+
     private float recordingTime = Const.MAX_REC_TIME_A;
     private float currentTime = Const.MAX_REC_TIME_A;
 
     void OnEnable()
     {
         recordButtonGO.GetComponent<Button>().onClick.AddListener(() => OnRecordButtonClicked());
+
+        pauseButtonGO.GetComponent<Button>().onClick.AddListener(OnPauseButtonClicked);
+
+        sendButtonGO.GetComponent<Button>().onClick.AddListener(() => OnSendButtonClicked());
+    }
+
+    void Start()
+    {
+        pauseButtonGO.SetActive(false);
+        recordButtonGO.SetActive(true);
+        sendButtonGO.SetActive(false);
+        replayButtonGO.SetActive(false);
     }
 
     void StartTimer()
@@ -37,15 +60,20 @@ public class ASAPanel : MonoBehaviour
 
         // Hide the record button
         recordButtonGO.SetActive(false);
+        pauseButtonGO.SetActive(true);
+        sendButtonGO.SetActive(false);
+        replayButtonGO.SetActive(false);
 
         // Show the countdown progress bar
         progressBarGO.SetActive(true);
+
+        isRecording = true;
     }
 
     void Update()
     {
         // Only run this code if the progress bar is active
-        if (progressBarGO.activeSelf == true)
+        if (isRecording)
         {
             UpdateProgressBar();
         }
@@ -73,9 +101,8 @@ public class ASAPanel : MonoBehaviour
     */
     {
         // Clear the transcript text
-        transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = "";
+        //transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = "";
 
-        progressBarGO.SetActive(true);
         // Start recording
         AudioManager.GetManager().StartRecording((int)recordingTime);
 
@@ -84,23 +111,59 @@ public class ASAPanel : MonoBehaviour
         StartTimer();
     }
 
+    public void OnPauseButtonClicked()
+    {
+        isRecording = false;
+        // Stop the progress bar
+        progressBarGO.SetActive(false);
+        // Stop recording and save the audio
+        AudioManager.GetManager().StopRecording();
+        // Hide the pause button and show the record button
+        AudioManager.GetManager().StopRecording();
+
+        pauseButtonGO.SetActive(false);
+        recordButtonGO.SetActive(true);
+        sendButtonGO.SetActive(true);
+        replayButtonGO.SetActive(true);
+
+        StartCoroutine(
+            AudioManager.GetManager().LoadAudioClip(Const.NUMBERGAME_FILENAME, replayButtonGO)
+        );
+    }
+
     public void OnTimerFinished()
     {
-        {
-            AudioManager
-                .GetManager()
-                .GetAudioAndPost(
-                    POSTType.OTHER, // POST type = OTHER
-                    transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text, // transcript text
-                    null, // textErrorGO
-                    null, // resultTextGO
-                    null, // resultPanelGO
-                    null // debugTextGO
-                );
+        isRecording = false;
 
-            ASAPanelGO.SetActive(false);
+        progressBarGO.SetActive(false);
+        // stop recording and save the audio
+        AudioManager.GetManager().StopRecording();
 
-            reviewPanelGO.SetActive(true);
-        }
+        pauseButtonGO.SetActive(false);
+        recordButtonGO.SetActive(false);
+        sendButtonGO.SetActive(true);
+        replayButtonGO.SetActive(true);
+
+        StartCoroutine(
+            AudioManager.GetManager().LoadAudioClip(Const.NUMBERGAME_FILENAME, replayButtonGO)
+        );
+    }
+
+    public void OnSendButtonClicked()
+    {
+        // send the audio to the server when clicked
+        AudioManager
+            .GetManager()
+            .GetAudioAndPost(
+                POSTType.OTHER, // POST type = OTHER
+                transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text, // transcript text
+                null, // textErrorGO
+                null, // resultTextGO
+                null, // resultPanelGO
+                null // debugTextGO
+            );
+
+        ASAPanelGO.SetActive(false);
+        reviewPanelGO.SetActive(true);
     }
 }
