@@ -134,9 +134,7 @@ public class ASAPanel : MonoBehaviour
         sendButtonGO.SetActive(true);
         replayButtonGO.SetActive(true);
 
-        StartCoroutine(
-            AudioManager.GetManager().LoadAudioClip(Const.ASA_FILENAME, replayButtonGO)
-        );
+        StartCoroutine(AudioManager.GetManager().LoadAudioClip(Const.ASA_FILENAME, replayButtonGO));
     }
 
     public void OnTimerFinished()
@@ -153,9 +151,7 @@ public class ASAPanel : MonoBehaviour
         sendButtonGO.SetActive(true);
         replayButtonGO.SetActive(true);
 
-        StartCoroutine(
-            AudioManager.GetManager().LoadAudioClip(Const.ASA_FILENAME, replayButtonGO)
-        );
+        StartCoroutine(AudioManager.GetManager().LoadAudioClip(Const.ASA_FILENAME, replayButtonGO));
     }
 
     public void OnSendButtonClicked()

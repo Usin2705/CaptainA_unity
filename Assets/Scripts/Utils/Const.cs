@@ -117,7 +117,6 @@ public static class Const
 
     public const string ASA_FILENAME = "recorded ASA speech";
 
-
     // Used to set the recording time for the audio clip
     // The length of the audio clip depend on the number of characters
     // of the text to be recorded
