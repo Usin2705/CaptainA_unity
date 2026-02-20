@@ -17,6 +17,9 @@ public class ASAPanel : MonoBehaviour
     GameObject transcriptGO;
 
     [SerializeField]
+    GameObject progressBarBackgroundGO;
+
+    [SerializeField]
     GameObject progressBarGO;
 
     [SerializeField]
@@ -43,6 +46,10 @@ public class ASAPanel : MonoBehaviour
         pauseButtonGO.GetComponent<Button>().onClick.AddListener(OnPauseButtonClicked);
 
         sendButtonGO.GetComponent<Button>().onClick.AddListener(() => OnSendButtonClicked());
+
+        progressBarBackgroundGO.SetActive(false);
+
+        progressBarGO.SetActive(false);
     }
 
     void Start()
@@ -65,6 +72,7 @@ public class ASAPanel : MonoBehaviour
         replayButtonGO.SetActive(false);
 
         // Show the countdown progress bar
+        progressBarBackgroundGO.SetActive(true);
         progressBarGO.SetActive(true);
 
         isRecording = true;
@@ -115,6 +123,7 @@ public class ASAPanel : MonoBehaviour
     {
         isRecording = false;
         // Stop the progress bar
+        progressBarBackgroundGO.SetActive(false);
         progressBarGO.SetActive(false);
         // Stop recording and save the audio
         AudioManager.GetManager().StopRecording();
@@ -135,12 +144,13 @@ public class ASAPanel : MonoBehaviour
     {
         isRecording = false;
 
+        progressBarBackgroundGO.SetActive(false);
         progressBarGO.SetActive(false);
         // stop recording and save the audio
         AudioManager.GetManager().StopRecording();
 
         pauseButtonGO.SetActive(false);
-        recordButtonGO.SetActive(false);
+        recordButtonGO.SetActive(true);
         sendButtonGO.SetActive(true);
         replayButtonGO.SetActive(true);
 
