@@ -5,6 +5,9 @@ using UnityEngine.UI;
 public class ASAPanel : MonoBehaviour
 {
     [SerializeField]
+    AudioManager audioManager;
+
+    [SerializeField]
     GameObject ASAButtonGO;
 
     [SerializeField]
@@ -15,6 +18,12 @@ public class ASAPanel : MonoBehaviour
 
     [SerializeField]
     GameObject transcriptGO;
+
+    [SerializeField]
+    GameObject replayBarBackgroundGO;
+
+    [SerializeField]
+    GameObject replayBarGO;
 
     [SerializeField]
     GameObject progressBarBackgroundGO;
@@ -35,20 +44,22 @@ public class ASAPanel : MonoBehaviour
     GameObject replayButtonGO;
 
     private bool isRecording = false;
+    private bool isReplaying = false;
 
     private float recordingTime = Const.MAX_REC_TIME_A;
     private float currentTime = Const.MAX_REC_TIME_A;
 
+    private AudioClip recording;
+
     void OnEnable()
     {
         recordButtonGO.GetComponent<Button>().onClick.AddListener(() => OnRecordButtonClicked());
-
         pauseButtonGO.GetComponent<Button>().onClick.AddListener(OnPauseButtonClicked);
-
         sendButtonGO.GetComponent<Button>().onClick.AddListener(() => OnSendButtonClicked());
-
+        replayButtonGO.GetComponent<Button>().onClick.AddListener(() => OnReplayButtonClicked());
+        replayBarBackgroundGO.SetActive(false);
+        replayBarGO.SetActive(false);
         progressBarBackgroundGO.SetActive(false);
-
         progressBarGO.SetActive(false);
     }
 
@@ -62,7 +73,7 @@ public class ASAPanel : MonoBehaviour
 
     void StartTimer()
     {
-        // Start countdown so the user know how long the recording will be
+        // Start countdown so the user knows how long the recording will be
         currentTime = recordingTime;
 
         // Hide the record button
@@ -85,6 +96,10 @@ public class ASAPanel : MonoBehaviour
         {
             UpdateProgressBar();
         }
+        if (isReplaying)
+        {
+            UpdateReplayBar();
+        }
     }
 
     void UpdateProgressBar()
@@ -101,6 +116,20 @@ public class ASAPanel : MonoBehaviour
             progressBarGO.SetActive(false);
             OnTimerFinished();
         }
+    }
+
+    void UpdateReplayBar()
+    {
+        currentTime -= Time.deltaTime;
+        replayBarGO.GetComponent<Image>().fillAmount = currentTime / recording.length;
+
+        if (currentTime <= 0)
+        {
+            currentTime = 0;
+            replayBarBackgroundGO.SetActive(false);
+            replayBarGO.SetActive(false);
+            isReplaying = false;
+        } 
     }
 
     public void OnRecordButtonClicked()
@@ -152,6 +181,15 @@ public class ASAPanel : MonoBehaviour
         replayButtonGO.SetActive(true);
 
         StartCoroutine(AudioManager.GetManager().LoadAudioClip(Const.ASA_FILENAME, replayButtonGO));
+    }
+
+    public void OnReplayButtonClicked()
+    {
+        recording = audioManager.GetReplayClip();
+        currentTime = recording.length; // to counter the small lag you can manually add "+ (float)0.4" or so at the end
+        replayBarBackgroundGO.SetActive(true);
+        replayBarGO.SetActive(true);
+        isReplaying = true;
     }
 
     public void OnSendButtonClicked()
