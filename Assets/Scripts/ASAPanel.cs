@@ -20,7 +20,7 @@ public class ASAPanel : MonoBehaviour
     GameObject progressBarGO;
 
     [SerializeField]
-    GameObject reviewPanelGO;
+    GameObject FeedbackPanelGO;
 
     [SerializeField]
     GameObject pauseButtonGO;
@@ -164,6 +164,6 @@ public class ASAPanel : MonoBehaviour
             );
 
         ASAPanelGO.SetActive(false);
-        reviewPanelGO.SetActive(true);
+        FeedbackPanelGO.SetActive(true);
     }
 }

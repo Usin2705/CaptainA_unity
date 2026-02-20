@@ -22,7 +22,7 @@ public class AdvancePanel : MonoBehaviour
     GameObject ASAPanelGO;
 
     [SerializeField]
-    GameObject reviewPanelGO;
+    GameObject FeedbackPanelGO;
 
     [SerializeField]
     GameObject describeButtonAGO;
@@ -122,7 +122,7 @@ public class AdvancePanel : MonoBehaviour
         describePanelAGO.SetActive(false);
         describePanelBGO.SetActive(false);
         describePanelCGO.SetActive(false);
-        reviewPanelGO.SetActive(false);
+        FeedbackPanelGO.SetActive(false);
 
         // Check if the instruction panel has been shown before
         if (!PlayerPrefs.HasKey(Const.PREF_INS_ADVANCE))
