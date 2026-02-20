@@ -129,7 +129,7 @@ public class ASAPanel : MonoBehaviour
             replayBarBackgroundGO.SetActive(false);
             replayBarGO.SetActive(false);
             isReplaying = false;
-        } 
+        }
     }
 
     public void OnRecordButtonClicked()
