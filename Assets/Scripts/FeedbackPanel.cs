@@ -30,7 +30,9 @@ public class FeedbackPanel : MonoBehaviour
     void OnEnable()
     {
         backButtonGO.GetComponent<Button>().onClick.AddListener(() => ASAPanelGO.SetActive(true));
-        backButtonGO.GetComponent<Button>().onClick.AddListener(() => feedbackPanelGO.SetActive(false));
+        backButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() => feedbackPanelGO.SetActive(false));
 
         float proficiencyRating = 2.9f;
         float pronunciationRating = 3.1f;
