@@ -1,9 +1,16 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FeedbackPanel : MonoBehaviour
 {
     [SerializeField]
-    GameObject FeedbackPanelGO;
+    GameObject feedbackPanelGO;
+
+    [SerializeField]
+    GameObject ASAPanelGO;
+
+    [SerializeField]
+    GameObject backButtonGO;
 
     [SerializeField]
     FeedbackRow proficiencyScore;
@@ -22,6 +29,9 @@ public class FeedbackPanel : MonoBehaviour
 
     void OnEnable()
     {
+        backButtonGO.GetComponent<Button>().onClick.AddListener(() => ASAPanelGO.SetActive(true));
+        backButtonGO.GetComponent<Button>().onClick.AddListener(() => feedbackPanelGO.SetActive(false));
+
         float proficiencyRating = 2.9f;
         float pronunciationRating = 3.1f;
         float rangeRating = 2.5f;
