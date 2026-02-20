@@ -128,7 +128,6 @@ public class ASAPanel : MonoBehaviour
         // Stop recording and save the audio
         AudioManager.GetManager().StopRecording();
         // Hide the pause button and show the record button
-        AudioManager.GetManager().StopRecording();
 
         pauseButtonGO.SetActive(false);
         recordButtonGO.SetActive(true);
@@ -136,7 +135,7 @@ public class ASAPanel : MonoBehaviour
         replayButtonGO.SetActive(true);
 
         StartCoroutine(
-            AudioManager.GetManager().LoadAudioClip(Const.NUMBERGAME_FILENAME, replayButtonGO)
+            AudioManager.GetManager().LoadAudioClip(Const.ASA_FILENAME, replayButtonGO)
         );
     }
 
@@ -155,7 +154,7 @@ public class ASAPanel : MonoBehaviour
         replayButtonGO.SetActive(true);
 
         StartCoroutine(
-            AudioManager.GetManager().LoadAudioClip(Const.NUMBERGAME_FILENAME, replayButtonGO)
+            AudioManager.GetManager().LoadAudioClip(Const.ASA_FILENAME, replayButtonGO)
         );
     }
 
