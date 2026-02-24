@@ -81,6 +81,8 @@ public class ASAPanel : MonoBehaviour
         pauseButtonGO.SetActive(true);
         sendButtonGO.SetActive(false);
         replayButtonGO.SetActive(false);
+        replayBarGO.SetActive(false);
+        replayBarBackgroundGO.SetActive(false);
 
         // Show the countdown progress bar
         progressBarBackgroundGO.SetActive(true);
