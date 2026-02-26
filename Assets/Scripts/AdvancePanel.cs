@@ -10,6 +10,9 @@ public class AdvancePanel : MonoBehaviour
     GameObject advancePanelGO;
 
     [SerializeField]
+    GameObject TaskPanelGO;
+
+    [SerializeField]
     GameObject numberGameButtonGO;
 
     [SerializeField]
@@ -145,8 +148,7 @@ public class AdvancePanel : MonoBehaviour
 
     public void OnASAButtonClicked()
     {
-        ASAPanelGO.SetActive(true);
-        ASAPanel ASAPanel = ASAPanelGO.GetComponent<ASAPanel>();
+        TaskPanelGO.SetActive(true);
     }
 
     public void OnDescribeAButtonClicked(DescribePanel.TaskType taskType = DescribePanel.TaskType.A)
