@@ -1,8 +1,13 @@
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Security.Authentication.ExtendedProtection;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class FeedbackPanel : MonoBehaviour
 {
+    NetworkManager networkManager;
+
     [SerializeField]
     GameObject feedbackPanelGO;
 
@@ -65,6 +70,8 @@ public class FeedbackPanel : MonoBehaviour
 
     void OnEnable()
     {
+        networkManager = FindObjectOfType<NetworkManager>();
+
         backButtonGO.GetComponent<Button>().onClick.AddListener(() => ASAPanelGO.SetActive(true));
         backButtonGO
             .GetComponent<Button>()
@@ -86,11 +93,17 @@ public class FeedbackPanel : MonoBehaviour
                 dimPanelGO.SetActive(false);
             });
 
-        float proficiencyRating = 2.9f;
-        float pronunciationRating = 3.1f;
-        float rangeRating = 2.5f;
-        float accuracyRating = 1.3f;
-        float fluencyRating = 1.0f;
+        float proficiencyRating = networkManager.asrResult2.scores.proficiency;
+        float pronunciationRating = networkManager.asrResult2.scores.pronunciation;
+        float rangeRating = networkManager.asrResult2.scores.range;
+        float accuracyRating = networkManager.asrResult2.scores.accuracy;
+        float fluencyRating = networkManager.asrResult2.scores.fluency;
+
+        //float proficiencyRating = 2.9f;
+        //float pronunciationRating = 3.1f;
+        //float rangeRating = 2.5f;
+        //float accuracyRating = 1.3f;
+        //float fluencyRating = 1.0f;
 
         proficiencyScore.SetValue(proficiencyRating, 1);
         pronunciationScore.SetValue(pronunciationRating, 2);

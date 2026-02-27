@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class ASAPanel : MonoBehaviour
 {
+    NetworkManager networkManager;
+
     [SerializeField]
     AudioManager audioManager;
 
@@ -200,7 +202,7 @@ public class ASAPanel : MonoBehaviour
         AudioManager
             .GetManager()
             .GetAudioAndPost(
-                POSTType.OTHER, // POST type = OTHER
+                POSTType.ASA_TASK, // POST type = OTHER
                 transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text, // transcript text
                 null, // textErrorGO
                 null, // resultTextGO
@@ -208,7 +210,12 @@ public class ASAPanel : MonoBehaviour
                 null // debugTextGO
             );
 
-        ASAPanelGO.SetActive(false);
+        //ASAPanelGO.SetActive(false);
+        //feedbackPanelGO.SetActive(true);
+    }
+
+    public void GoToFeedback()
+    {
         feedbackPanelGO.SetActive(true);
     }
 }

@@ -1,5 +1,8 @@
 using System.Collections;
 using System.IO;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using Microsoft.Win32.SafeHandles;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -8,6 +11,12 @@ public class NetworkManager : MonoBehaviour
 {
     [SerializeField]
     GameObject surveyPopUpPanelGO;
+
+    [SerializeField]
+    GameObject feedbackPanelGO;
+
+    [SerializeField]
+    GameObject ASAPanelGO;
 
     [SerializeField]
     Image imageComponent;
@@ -32,6 +41,8 @@ public class NetworkManager : MonoBehaviour
     // However, other URL should be in https for encryption purpose
 
     public ASRResult asrResult { get; private set; }
+
+    public ASRResult2 asrResult2 { get; private set; }
     public string chatGPTTranscript { get; private set; }
     public string chatGPTGrading { get; private set; }
 
@@ -64,6 +75,8 @@ public class NetworkManager : MonoBehaviour
                 return null;
             case POSTType.PuheNumero_TASK:
                 return Secret.NUMBER_AUDIO_URL;
+            case POSTType.ASA_TASK:
+                return Secret.ASA_URL;
             default:
                 return asrURL;
         }
@@ -73,14 +86,17 @@ public class NetworkManager : MonoBehaviour
     private WWWForm GetPOSTForm(POSTType postType, string transcript, byte[] wavBuffer)
     {
         WWWForm form = new WWWForm();
-        form.AddBinaryData(
-            "file",
-            wavBuffer,
-            fileName: Const.FILE_NAME_POST,
-            mimeType: "audio/wav"
-        );
+        form.AddBinaryData("file", wavBuffer, fileName: Const.ASA_FILENAME, mimeType: "audio/wav");
         form.AddField("transcript", transcript);
         form.AddField("model_code", "1");
+
+        return form;
+    }
+
+    private WWWForm GetPOSTForm_ASA(POSTType postType, string transcript, byte[] wavBuffer)
+    {
+        WWWForm form = new WWWForm();
+        form.AddBinaryData("file", wavBuffer, fileName: Const.ASA_FILENAME, mimeType: "audio/wav");
 
         return form;
     }
@@ -97,7 +113,8 @@ public class NetworkManager : MonoBehaviour
         GameObject warningImageGO = null
     )
     {
-        WWWForm form = GetPOSTForm(postType, transcript, wavBuffer);
+        WWWForm form = GetPOSTForm_ASA(postType, transcript, wavBuffer);
+
         string postURL = GetPOSTURL(postType);
 
         // Use a `using` statement for UnityWebRequest to handle resource cleanup
@@ -106,6 +123,8 @@ public class NetworkManager : MonoBehaviour
         {
             uwr.timeout = Const.TIME_OUT_SECS;
             yield return uwr.SendWebRequest();
+
+            //textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "Here are your results:";
 
             Debug.Log(uwr.result);
 
@@ -152,8 +171,15 @@ public class NetworkManager : MonoBehaviour
             }
 
             // textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "Here are your results. \n Great effort!";
-            textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "Here are your results:";
-            asrResult = JsonUtility.FromJson<ASRResult>(uwr.downloadHandler.text);
+
+            asrResult2 = JsonUtility.FromJson<ASRResult2>(uwr.downloadHandler.text);
+
+            if (postType == POSTType.ASA_TASK)
+            {
+                ASAPanelGO.SetActive(false);
+                feedbackPanelGO.SetActive(true);
+                Debug.Log("Here we are");
+            }
 
             // Only save data if the transcript is text and not number
             // as we also have the number game
@@ -952,5 +978,22 @@ public class NetworkManager : MonoBehaviour
                 surveyPopUpPanelGO.SetActive(true);
             }
         }
+    }
+
+    [System.Serializable]
+    public class ASRResult2
+    {
+        public string transcript;
+        public Scores scores;
+    }
+
+    [System.Serializable]
+    public class Scores
+    {
+        public float accuracy;
+        public float fluency;
+        public float proficiency;
+        public float pronunciation;
+        public float range;
     }
 }
