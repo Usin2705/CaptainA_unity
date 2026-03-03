@@ -197,9 +197,9 @@ public class ASAPanel : MonoBehaviour
         // send the audio to the server when clicked
         AudioManager
             .GetManager()
-            .GetAudioAndPost(
+            .GetAudioAndPost_ASA(
                 POSTType.ASA_TASK, // POST type = OTHER
-                transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text, // transcript text
+                null, // transcript text
                 null, // textErrorGO
                 null, // resultTextGO
                 null, // resultPanelGO

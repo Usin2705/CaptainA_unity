@@ -76,6 +76,36 @@ public class AudioManager : MonoBehaviour
         return replayClip;
     }
 
+    public void GetAudioAndPost_ASA(
+        POSTType postType,
+        string transcript,
+        GameObject textErrorGO,
+        GameObject resultTextGO,
+        GameObject resultPanelGO,
+        GameObject debugTextGO,
+        System.Action OnServerDone = null
+    )
+    {
+        Microphone.End("");
+        byte[] wavBuffer = SavWav.GetWav(audioSource.clip, out uint length, trim: true);
+        SavWav.Save(Const.REPLAY_FILENAME, audioSource.clip, trim: true); // for debug purpose
+
+        StartCoroutine(
+            NetworkManager
+                .GetManager()
+                .ServerPost_ASA(
+                    postType,
+                    transcript,
+                    wavBuffer,
+                    textErrorGO,
+                    resultTextGO,
+                    resultPanelGO,
+                    debugTextGO,
+                    OnServerDone
+                )
+        );
+    }
+
     public void GetAudioAndPost(
         POSTType postType,
         string transcript,
