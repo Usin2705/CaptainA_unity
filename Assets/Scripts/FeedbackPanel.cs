@@ -110,12 +110,6 @@ public class FeedbackPanel : MonoBehaviour
         float accuracyRating = networkManager.asrResult2.scores.accuracy;
         float fluencyRating = networkManager.asrResult2.scores.fluency;
 
-        //float proficiencyRating = 2.9f;
-        //float pronunciationRating = 3.1f;
-        //float rangeRating = 2.5f;
-        //float accuracyRating = 1.3f;
-        //float fluencyRating = 1.0f;
-
         proficiencyScore.SetValue(proficiencyRating, 1);
         pronunciationScore.SetValue(pronunciationRating, 2);
         rangeScore.SetValue(rangeRating, 3);

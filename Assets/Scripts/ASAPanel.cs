@@ -48,13 +48,49 @@ public class ASAPanel : MonoBehaviour
     [SerializeField]
     GameObject dimPanelASAGO;
 
+    [System.Serializable]
+    public class TaskAttributes
+    {
+        public string taskText;
+        public Sprite taskImage;
+        public float recordingTime = 0;
+    }
+
+    [SerializeField]
+    private TaskAttributes[] tasks;
+
+    [SerializeField]
+    private TMPro.TextMeshProUGUI taskTextGO;
+
+    [SerializeField]
+    private Image taskImageGO;
+
     private bool isRecording = false;
     private bool isReplaying = false;
 
-    private float recordingTime = Const.MAX_REC_TIME_A;
-    private float currentTime = Const.MAX_REC_TIME_A;
+    private float currentTime = 0;
+
+    private int currentTaskSelected = -1;
 
     private AudioClip recording;
+
+    public void DisplayTask(int taskSelected)
+    {
+        currentTaskSelected = taskSelected;
+        TaskAttributes task = tasks[taskSelected];
+
+        taskTextGO.text = task.taskText;
+
+        if (task.taskImage != null)
+        {
+            taskImageGO.gameObject.SetActive(true);
+            taskImageGO.sprite = task.taskImage;
+        }
+        else
+        {
+            taskImageGO.gameObject.SetActive(false);
+        }
+    }
 
     void OnEnable()
     {
@@ -62,10 +98,10 @@ public class ASAPanel : MonoBehaviour
         pauseButtonGO.GetComponent<Button>().onClick.AddListener(OnPauseButtonClicked);
         sendButtonGO.GetComponent<Button>().onClick.AddListener(() => OnSendButtonClicked());
         replayButtonGO.GetComponent<Button>().onClick.AddListener(() => OnReplayButtonClicked());
-
         replayBarGO.SetActive(false);
         progressBarBackgroundGO.SetActive(false);
         progressBarGO.SetActive(false);
+
         pauseButtonGO.SetActive(false);
         recordButtonGO.SetActive(true);
         sendButtonGO.SetActive(false);
@@ -75,7 +111,7 @@ public class ASAPanel : MonoBehaviour
     void StartTimer()
     {
         // Start countdown so the user knows how long the recording will be
-        currentTime = recordingTime;
+        currentTime = tasks[currentTaskSelected].recordingTime;
 
         // Hide the record button
         recordButtonGO.SetActive(false);
@@ -110,7 +146,8 @@ public class ASAPanel : MonoBehaviour
         *   This function will update the progress bar
         */
         currentTime -= Time.deltaTime;
-        progressBarGO.GetComponent<Image>().fillAmount = currentTime / recordingTime;
+        progressBarGO.GetComponent<Image>().fillAmount =
+            currentTime / tasks[currentTaskSelected].recordingTime;
 
         if (currentTime <= 0)
         {
@@ -142,7 +179,7 @@ public class ASAPanel : MonoBehaviour
         //transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = "";
 
         // Start recording
-        AudioManager.GetManager().StartRecording((int)recordingTime);
+        AudioManager.GetManager().StartRecording((int)tasks[currentTaskSelected].recordingTime);
 
         // Start the timer
         // Should not use invoke or delay as it will cause the timer to be inaccurate
@@ -208,8 +245,6 @@ public class ASAPanel : MonoBehaviour
 
         loadingPopUpGO.SetActive(true);
         dimPanelASAGO.SetActive(true);
-        //ASAPanelGO.SetActive(false);
-        //feedbackPanelGO.SetActive(true);
     }
 
     public void GoToFeedback()

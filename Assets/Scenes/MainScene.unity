@@ -9832,7 +9832,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &474211610
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9854,6 +9854,7 @@ RectTransform:
   - {fileID: 1186766481}
   - {fileID: 2075869467}
   - {fileID: 38652073}
+  - {fileID: 1280217758}
   - {fileID: 431676640}
   m_Father: {fileID: 1164813425}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9926,6 +9927,30 @@ MonoBehaviour:
   replayButtonGO: {fileID: 1154039599}
   loadingPopUpGO: {fileID: 1151699644}
   dimPanelASAGO: {fileID: 431676639}
+  tasks:
+  - taskText: Your friend doesn't have much money and asks you for 100 euros. What
+      do you say to them?
+    taskImage: {fileID: 21300000, guid: 01142ae4ef2661a498351d0900f28b17, type: 3}
+    recordingTime: 30
+  - taskText: You can't come to class/work today. You send a voice message to your
+      teacher/boss and tell them why you can't come. What do you say in the message?
+    taskImage: {fileID: 21300000, guid: 70e6137e7839a9249bff9769a855800e, type: 3}
+    recordingTime: 30
+  - taskText: Describe what you normally do at home.
+    taskImage: {fileID: 21300000, guid: 510f40ab499214748a5484e802bdc006, type: 3}
+    recordingTime: 60
+  - taskText: "Describe what languages \u200B\u200Byou use and where. What languages
+      \u200B\u200Bdo you speak at home, in the shop, at work...? Do you watch TV
+      or listen to music in another language?"
+    taskImage: {fileID: 21300000, guid: 3b40bfb9fe62e3c4ab9c4d4c95194286, type: 3}
+    recordingTime: 60
+  - taskText: In this task, you can either use the picture above or answer based
+      on your shopping habits. What do you normally buy at the store? What don't
+      you normally buy from the store? When do you normally go shopping?
+    taskImage: {fileID: 21300000, guid: 57369bc2321466341abcb8220a27a33a, type: 3}
+    recordingTime: 60
+  taskTextGO: {fileID: 1186766482}
+  taskImageGO: {fileID: 698106385}
 --- !u!1 &480785146
 GameObject:
   m_ObjectHideFlags: 0
@@ -15330,7 +15355,7 @@ GameObject:
   - component: {fileID: 698106386}
   - component: {fileID: 698106385}
   m_Layer: 5
-  m_Name: ImageDesc
+  m_Name: TaskImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15352,7 +15377,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -500}
+  m_AnchoredPosition: {x: 0, y: -488}
   m_SizeDelta: {x: 740, y: 740}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &698106385
@@ -20132,7 +20157,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &939675224
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25614,7 +25639,7 @@ GameObject:
   - component: {fileID: 1186766483}
   - component: {fileID: 1186766482}
   m_Layer: 5
-  m_Name: TranscriptText
+  m_Name: TaskText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25636,7 +25661,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -270}
+  m_AnchoredPosition: {x: 0, y: -266.27}
   m_SizeDelta: {x: -40, y: 380}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1186766482
@@ -27058,6 +27083,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267839147}
+  m_CullTransparentMesh: 1
+--- !u!1 &1280217757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1280217758}
+  - component: {fileID: 1280217760}
+  - component: {fileID: 1280217759}
+  m_Layer: 0
+  m_Name: TopPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1280217758
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280217757}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 474211610}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 33, y: 0}
+  m_SizeDelta: {x: 900, y: 250}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &1280217759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280217757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 390f8cfa54c24dc4f88c77c8c4ee9389, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1280217760
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280217757}
   m_CullTransparentMesh: 1
 --- !u!1 &1282054279
 GameObject:
@@ -42305,6 +42405,7 @@ MonoBehaviour:
   task3ButtonGO: {fileID: 1622108800}
   task4ButtonGO: {fileID: 2109203862}
   task5ButtonGO: {fileID: 378632007}
+  ASAPanel: {fileID: 474211613}
 --- !u!1 &1970130706
 GameObject:
   m_ObjectHideFlags: 0
@@ -42878,7 +42979,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1999144880
 RectTransform:
   m_ObjectHideFlags: 0
@@ -47224,7 +47325,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9205905358293252776, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8730728450107606026, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8818382074188071033, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}

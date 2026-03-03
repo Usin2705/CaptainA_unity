@@ -30,6 +30,9 @@ public class TaskPanel : MonoBehaviour
     [SerializeField]
     GameObject task5ButtonGO;
 
+    [SerializeField]
+    ASAPanel ASAPanel;
+
     void OnEnable()
     {
         backButtonGO
@@ -41,5 +44,46 @@ public class TaskPanel : MonoBehaviour
         task1ButtonGO
             .GetComponent<Button>()
             .onClick.AddListener(() => taskPanelGO.SetActive(false));
+
+        task1ButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                ASAPanel.DisplayTask(0);
+                ASAPanelGO.SetActive(true);
+                taskPanelGO.SetActive(false);
+            });
+        task2ButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                ASAPanel.DisplayTask(1);
+                ASAPanelGO.SetActive(true);
+                taskPanelGO.SetActive(false);
+            });
+        task3ButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                ASAPanel.DisplayTask(2);
+                ASAPanelGO.SetActive(true);
+                taskPanelGO.SetActive(false);
+            });
+        task4ButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                ASAPanel.DisplayTask(3);
+                ASAPanelGO.SetActive(true);
+                taskPanelGO.SetActive(false);
+            });
+        task5ButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                ASAPanel.DisplayTask(4);
+                ASAPanelGO.SetActive(true);
+                taskPanelGO.SetActive(false);
+            });
     }
 }
