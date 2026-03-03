@@ -45,6 +45,12 @@ public class ASAPanel : MonoBehaviour
     [SerializeField]
     GameObject replayButtonGO;
 
+    [SerializeField]
+    GameObject loadingPopUpGO;
+
+    [SerializeField]
+    GameObject dimPanelGO;
+
     private bool isRecording = false;
     private bool isReplaying = false;
 
@@ -210,6 +216,8 @@ public class ASAPanel : MonoBehaviour
                 null // debugTextGO
             );
 
+        loadingPopUpGO.SetActive(true);
+        dimPanelGO.SetActive(true);
         //ASAPanelGO.SetActive(false);
         //feedbackPanelGO.SetActive(true);
     }

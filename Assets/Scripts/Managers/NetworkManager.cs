@@ -21,6 +21,9 @@ public class NetworkManager : MonoBehaviour
     [SerializeField]
     Image imageComponent;
 
+    [SerializeField]
+    GameObject loadingPopUpGO;
+
     static NetworkManager netWorkManager;
 
     // This is the URL to the ASR server
@@ -176,7 +179,7 @@ public class NetworkManager : MonoBehaviour
 
             if (postType == POSTType.ASA_TASK)
             {
-                ASAPanelGO.SetActive(false);
+                loadingPopUpGO.SetActive(false);
                 feedbackPanelGO.SetActive(true);
                 Debug.Log("Here we are");
             }
