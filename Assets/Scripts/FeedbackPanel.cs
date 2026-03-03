@@ -68,6 +68,12 @@ public class FeedbackPanel : MonoBehaviour
     [SerializeField]
     FeedbackRow fluencyScore;
 
+    [SerializeField]
+    GameObject replayButtonGO;
+
+    [SerializeField]
+    GameObject sendButtonGO;
+
     void OnEnable()
     {
         networkManager = FindObjectOfType<NetworkManager>();
@@ -75,7 +81,12 @@ public class FeedbackPanel : MonoBehaviour
         backButtonGO.GetComponent<Button>().onClick.AddListener(() => ASAPanelGO.SetActive(true));
         backButtonGO
             .GetComponent<Button>()
-            .onClick.AddListener(() => feedbackPanelGO.SetActive(false));
+            .onClick.AddListener(() =>
+            {
+                feedbackPanelGO.SetActive(false);
+                replayButtonGO.SetActive(false);
+                sendButtonGO.SetActive(false);
+            });
 
         proficiencyButtonGO
             .GetComponent<Button>()

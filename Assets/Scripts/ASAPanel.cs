@@ -22,9 +22,6 @@ public class ASAPanel : MonoBehaviour
     GameObject transcriptGO;
 
     [SerializeField]
-    GameObject replayBarBackgroundGO;
-
-    [SerializeField]
     GameObject replayBarGO;
 
     [SerializeField]
@@ -49,7 +46,7 @@ public class ASAPanel : MonoBehaviour
     GameObject loadingPopUpGO;
 
     [SerializeField]
-    GameObject dimPanelGO;
+    GameObject dimPanelASAGO;
 
     private bool isRecording = false;
     private bool isReplaying = false;
@@ -65,14 +62,10 @@ public class ASAPanel : MonoBehaviour
         pauseButtonGO.GetComponent<Button>().onClick.AddListener(OnPauseButtonClicked);
         sendButtonGO.GetComponent<Button>().onClick.AddListener(() => OnSendButtonClicked());
         replayButtonGO.GetComponent<Button>().onClick.AddListener(() => OnReplayButtonClicked());
-        replayBarBackgroundGO.SetActive(false);
+
         replayBarGO.SetActive(false);
         progressBarBackgroundGO.SetActive(false);
         progressBarGO.SetActive(false);
-    }
-
-    void Start()
-    {
         pauseButtonGO.SetActive(false);
         recordButtonGO.SetActive(true);
         sendButtonGO.SetActive(false);
@@ -90,7 +83,6 @@ public class ASAPanel : MonoBehaviour
         sendButtonGO.SetActive(false);
         replayButtonGO.SetActive(false);
         replayBarGO.SetActive(false);
-        replayBarBackgroundGO.SetActive(false);
 
         // Show the countdown progress bar
         progressBarBackgroundGO.SetActive(true);
@@ -136,7 +128,6 @@ public class ASAPanel : MonoBehaviour
         if (currentTime <= 0)
         {
             currentTime = 0;
-            replayBarBackgroundGO.SetActive(false);
             replayBarGO.SetActive(false);
             isReplaying = false;
         }
@@ -197,7 +188,6 @@ public class ASAPanel : MonoBehaviour
     {
         recording = audioManager.GetReplayClip();
         currentTime = recording.length; // to counter the small lag you can manually add "+ (float)0.4" or so at the end
-        replayBarBackgroundGO.SetActive(true);
         replayBarGO.SetActive(true);
         isReplaying = true;
     }
@@ -217,7 +207,7 @@ public class ASAPanel : MonoBehaviour
             );
 
         loadingPopUpGO.SetActive(true);
-        dimPanelGO.SetActive(true);
+        dimPanelASAGO.SetActive(true);
         //ASAPanelGO.SetActive(false);
         //feedbackPanelGO.SetActive(true);
     }
