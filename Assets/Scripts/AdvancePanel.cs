@@ -10,7 +10,7 @@ public class AdvancePanel : MonoBehaviour
     GameObject advancePanelGO;
 
     [SerializeField]
-    GameObject TaskPanelGO;
+    GameObject taskPanelGO;
 
     [SerializeField]
     GameObject numberGameButtonGO;
@@ -126,6 +126,7 @@ public class AdvancePanel : MonoBehaviour
         describePanelBGO.SetActive(false);
         describePanelCGO.SetActive(false);
         feedbackPanelGO.SetActive(false);
+        taskPanelGO.SetActive(false);
 
         // Check if the instruction panel has been shown before
         if (!PlayerPrefs.HasKey(Const.PREF_INS_ADVANCE))
@@ -148,7 +149,7 @@ public class AdvancePanel : MonoBehaviour
 
     public void OnASAButtonClicked()
     {
-        TaskPanelGO.SetActive(true);
+        taskPanelGO.SetActive(true);
     }
 
     public void OnDescribeAButtonClicked(DescribePanel.TaskType taskType = DescribePanel.TaskType.A)

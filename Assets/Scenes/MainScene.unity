@@ -24909,7 +24909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   advancePanelGO: {fileID: 1164813424}
-  TaskPanelGO: {fileID: 1964757487}
+  taskPanelGO: {fileID: 1964757487}
   numberGameButtonGO: {fileID: 1399056235}
   numberGamePanelGO: {fileID: 645107172}
   ASAButtonGO: {fileID: 1670868348}
