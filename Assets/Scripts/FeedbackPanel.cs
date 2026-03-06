@@ -76,7 +76,7 @@ public class FeedbackPanel : MonoBehaviour
 
     void OnEnable()
     {
-        networkManager = FindObjectOfType<NetworkManager>();
+        networkManager = FindFirstObjectByType<NetworkManager>();
 
         backButtonGO.GetComponent<Button>().onClick.AddListener(() => ASAPanelGO.SetActive(true));
         backButtonGO

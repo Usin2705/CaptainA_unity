@@ -95,7 +95,7 @@ public class ASAPanel : MonoBehaviour
     void OnEnable()
     {
         recordButtonGO.GetComponent<Button>().onClick.AddListener(() => OnRecordButtonClicked());
-        pauseButtonGO.GetComponent<Button>().onClick.AddListener(OnPauseButtonClicked);
+        pauseButtonGO.GetComponent<Button>().onClick.AddListener(() => OnPauseButtonClicked());
         sendButtonGO.GetComponent<Button>().onClick.AddListener(() => OnSendButtonClicked());
         replayButtonGO.GetComponent<Button>().onClick.AddListener(() => OnReplayButtonClicked());
         replayBarGO.SetActive(false);
