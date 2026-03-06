@@ -33,19 +33,7 @@ public class FeedbackPanel : MonoBehaviour
     GameObject fluencyButtonGO;
 
     [SerializeField]
-    GameObject proficiencyPopupGO;
-
-    [SerializeField]
-    GameObject pronunciationPopupGO;
-
-    [SerializeField]
-    GameObject rangePopupGO;
-
-    [SerializeField]
-    GameObject accuracyPopupGO;
-
-    [SerializeField]
-    GameObject fluencyPopupGO;
+    GameObject popupPanelGO;
 
     [SerializeField]
     GameObject dimPanelGO;
@@ -74,8 +62,34 @@ public class FeedbackPanel : MonoBehaviour
     [SerializeField]
     GameObject sendButtonGO;
 
+    [SerializeField]
+    private TMPro.TextMeshProUGUI titleTextGO;
+
+    [SerializeField]
+    private TMPro.TextMeshProUGUI popupTextGO;
+
+    [System.Serializable]
+    public class PopupAttributes
+    {
+        public string TitleText;
+        public string PopupText;
+    }
+    [SerializeField]
+    private PopupAttributes[] panels;
+    private int currentPopupOpen = -1;
+
+    public void DisplayPopup(int popupOpen)
+    {
+        currentPopupOpen = popupOpen;
+        PopupAttributes popup = panels[popupOpen];
+
+        titleTextGO.text = popup.TitleText;
+        popupTextGO.text = popup.PopupText;
+    }
+
     void OnEnable()
     {
+
         networkManager = FindFirstObjectByType<NetworkManager>();
 
         backButtonGO.GetComponent<Button>().onClick.AddListener(() => ASAPanelGO.SetActive(true));
@@ -92,15 +106,55 @@ public class FeedbackPanel : MonoBehaviour
             .GetComponent<Button>()
             .onClick.AddListener(() =>
             {
-                proficiencyPopupGO.SetActive(true);
+                DisplayPopup(0);
+                popupPanelGO.SetActive(true);
                 dimPanelGO.SetActive(true);
             });
+
+        pronunciationButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                DisplayPopup(1);
+                popupPanelGO.SetActive(true);
+                dimPanelGO.SetActive(true);
+
+            });
+
+        rangeButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                DisplayPopup(2);
+                popupPanelGO.SetActive(true);
+                dimPanelGO.SetActive(true);
+            });
+
+        accuracyButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                DisplayPopup(3);
+                popupPanelGO.SetActive(true);
+                dimPanelGO.SetActive(true);
+            });
+
+        fluencyButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                DisplayPopup(4);
+                popupPanelGO.SetActive(true);
+                dimPanelGO.SetActive(true);
+            });
+
+
 
         popupBackButtonGO
             .GetComponent<Button>()
             .onClick.AddListener(() =>
             {
-                proficiencyPopupGO.SetActive(false);
+                popupPanelGO.SetActive(false);
                 dimPanelGO.SetActive(false);
             });
 
