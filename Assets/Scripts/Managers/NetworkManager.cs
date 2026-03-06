@@ -25,6 +25,9 @@ public class NetworkManager : MonoBehaviour
     GameObject loadingPopUpGO;
 
     [SerializeField]
+    GameObject loadingIconGO;
+
+    [SerializeField]
     GameObject dimPanelASAGO;
 
     static NetworkManager netWorkManager;

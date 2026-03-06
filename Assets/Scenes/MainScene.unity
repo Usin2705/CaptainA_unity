@@ -9927,6 +9927,7 @@ MonoBehaviour:
   replayButtonGO: {fileID: 1154039599}
   loadingPopUpGO: {fileID: 1151699644}
   dimPanelASAGO: {fileID: 431676639}
+  loadingIconGO: {fileID: 1414287680}
   tasks:
   - taskText: Your friend doesn't have much money and asks you for 100 euros. What
       do you say to them?
@@ -19310,7 +19311,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -34.99994}
+  m_AnchoredPosition: {x: 0, y: -35}
   m_SizeDelta: {x: -80, y: -570}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &903392931
@@ -29416,6 +29417,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406727099}
   m_CullTransparentMesh: 1
+--- !u!1 &1414287680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1414287683}
+  - component: {fileID: 1414287682}
+  - component: {fileID: 1414287681}
+  m_Layer: 5
+  m_Name: loadingIcon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1414287681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414287680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: a44c587300fa0f14a9b0ccc7c4001872, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1414287682
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414287680}
+  m_CullTransparentMesh: 1
+--- !u!224 &1414287683
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414287680}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1283573580294758924}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1425790576
 GameObject:
   m_ObjectHideFlags: 0
@@ -34899,6 +34975,7 @@ MonoBehaviour:
   ASAPanelGO: {fileID: 474211609}
   imageComponent: {fileID: 531386114}
   loadingPopUpGO: {fileID: 1151699644}
+  loadingIconGO: {fileID: 0}
   dimPanelASAGO: {fileID: 431676639}
 --- !u!1 &1661560087
 GameObject:
@@ -35597,7 +35674,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -49.99994}
+  m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 0, y: -400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1704925815
@@ -46984,7 +47061,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6247044282950875631, guid: 09ac1e30c1da1bf40bb4a6b0624980fc, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5128489674889389883, guid: 09ac1e30c1da1bf40bb4a6b0624980fc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1414287683}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09ac1e30c1da1bf40bb4a6b0624980fc, type: 3}
 --- !u!224 &1283573580294758924 stripped

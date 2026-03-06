@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Numerics;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -48,6 +50,9 @@ public class ASAPanel : MonoBehaviour
     [SerializeField]
     GameObject dimPanelASAGO;
 
+    [SerializeField]
+    GameObject loadingIconGO;
+
     [System.Serializable]
     public class TaskAttributes
     {
@@ -67,6 +72,7 @@ public class ASAPanel : MonoBehaviour
 
     private bool isRecording = false;
     private bool isReplaying = false;
+    private bool isLoading = false;
 
     private float currentTime = 0;
 
@@ -137,6 +143,10 @@ public class ASAPanel : MonoBehaviour
         if (isReplaying)
         {
             UpdateReplayBar();
+        }
+        if (isLoading)
+        {
+            animateLoading();
         }
     }
 
@@ -244,7 +254,13 @@ public class ASAPanel : MonoBehaviour
             );
 
         loadingPopUpGO.SetActive(true);
+        isLoading = true;
         dimPanelASAGO.SetActive(true);
+    }
+
+    public void animateLoading()
+    {
+        loadingIconGO.transform.Rotate(0, 0, -6.0f, Space.Self);
     }
 
     public void GoToFeedback()
