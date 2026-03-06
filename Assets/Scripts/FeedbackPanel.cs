@@ -74,6 +74,7 @@ public class FeedbackPanel : MonoBehaviour
         public string TitleText;
         public string PopupText;
     }
+
     [SerializeField]
     private PopupAttributes[] panels;
     private int currentPopupOpen = -1;
@@ -89,7 +90,6 @@ public class FeedbackPanel : MonoBehaviour
 
     void OnEnable()
     {
-
         networkManager = FindFirstObjectByType<NetworkManager>();
 
         backButtonGO.GetComponent<Button>().onClick.AddListener(() => ASAPanelGO.SetActive(true));
@@ -118,7 +118,6 @@ public class FeedbackPanel : MonoBehaviour
                 DisplayPopup(1);
                 popupPanelGO.SetActive(true);
                 dimPanelGO.SetActive(true);
-
             });
 
         rangeButtonGO
@@ -147,8 +146,6 @@ public class FeedbackPanel : MonoBehaviour
                 popupPanelGO.SetActive(true);
                 dimPanelGO.SetActive(true);
             });
-
-
 
         popupBackButtonGO
             .GetComponent<Button>()
