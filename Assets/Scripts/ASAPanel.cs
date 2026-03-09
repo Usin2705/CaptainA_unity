@@ -100,6 +100,11 @@ public class ASAPanel : MonoBehaviour
 
     void OnEnable()
     {
+        recordButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
+        pauseButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
+        sendButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
+        replayButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
+
         recordButtonGO.GetComponent<Button>().onClick.AddListener(() => OnRecordButtonClicked());
         pauseButtonGO.GetComponent<Button>().onClick.AddListener(() => OnPauseButtonClicked());
         sendButtonGO.GetComponent<Button>().onClick.AddListener(() => OnSendButtonClicked());
@@ -261,10 +266,5 @@ public class ASAPanel : MonoBehaviour
     public void animateLoading()
     {
         loadingIconGO.transform.Rotate(0, 0, -6.0f, Space.Self);
-    }
-
-    public void GoToFeedback()
-    {
-        feedbackPanelGO.SetActive(true);
     }
 }
