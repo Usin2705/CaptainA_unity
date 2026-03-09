@@ -8778,7 +8778,7 @@ MonoBehaviour:
   tasks:
   - taskText: Your friend doesn't have much money and asks you for 100 euros. What
       do you say to them?
-    taskImage: {fileID: 21300000, guid: 01142ae4ef2661a498351d0900f28b17, type: 3}
+    taskImage: {fileID: 21300000, guid: 920ea28da3ac4124c8324ec124336b33, type: 3}
     recordingTime: 30
   - taskText: You can't come to class/work today. You send a voice message to your
       teacher/boss and tell them why you can't come. What do you say in the message?
@@ -41661,6 +41661,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1164813425}
     m_Modifications:
+    - target: {fileID: 350584429170140408, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      propertyPath: m_fontSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 350584429170140408, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 470883114869159789, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      propertyPath: m_text
+      value: 3. Monologue A
+      objectReference: {fileID: 0}
+    - target: {fileID: 470883114869159789, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      propertyPath: m_fontSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 470883114869159789, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1660428506897804229, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -584.4532
+      objectReference: {fileID: 0}
     - target: {fileID: 2174870488219366312, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
       propertyPath: m_SizeDelta.x
       value: -40
@@ -41671,7 +41695,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2174870488219366312, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -442.63342
+      value: -442
+      objectReference: {fileID: 0}
+    - target: {fileID: 2548738602646034536, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      propertyPath: m_text
+      value: 4. Monologue B
+      objectReference: {fileID: 0}
+    - target: {fileID: 2548738602646034536, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      propertyPath: m_fontSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2548738602646034536, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 2704512300047406287, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
       propertyPath: m_AnchorMax.y
@@ -41733,9 +41769,41 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 125.2669
       objectReference: {fileID: 0}
+    - target: {fileID: 3995399887569492942, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -600
+      objectReference: {fileID: 0}
     - target: {fileID: 4579233865079169308, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
       propertyPath: m_SizeDelta.y
       value: 125.2669
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579233865079169308, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -916
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628088892804690315, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      propertyPath: m_text
+      value: 2. React to a situation B
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628088892804690315, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      propertyPath: m_fontSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628088892804690315, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665059116409553431, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      propertyPath: m_text
+      value: 1. React to a situation A
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665059116409553431, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      propertyPath: m_fontSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665059116409553431, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 4672596101975302154, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
       propertyPath: m_Pivot.x
@@ -41817,9 +41885,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6309735884387900550, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6536962970346363829, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
       propertyPath: m_SizeDelta.y
       value: 125.2669
+      objectReference: {fileID: 0}
+    - target: {fileID: 6536962970346363829, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -758
       objectReference: {fileID: 0}
     - target: {fileID: 6547060499186400849, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
       propertyPath: m_AnchorMax.y
@@ -41840,6 +41916,10 @@ PrefabInstance:
     - target: {fileID: 8010594102659275876, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
       propertyPath: m_SizeDelta.y
       value: 125.2669
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010594102659275876, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1074
       objectReference: {fileID: 0}
     - target: {fileID: 8366406336246783272, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
       propertyPath: m_AnchoredPosition.y
