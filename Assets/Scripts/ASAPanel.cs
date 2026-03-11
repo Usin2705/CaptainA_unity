@@ -98,8 +98,6 @@ public class ASAPanel : MonoBehaviour
         }
     }
 
-
-
     void OnEnable()
     {
         recordButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
