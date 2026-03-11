@@ -115,7 +115,7 @@ public static class Const
 
     public const string NUMBERGAME_FILENAME = "recorded_number_game";
 
-    public const string ASA_FILENAME = "recorded ASA speech";
+    public const string ASA_FILENAME = "recorded_ASA_speech";
 
     // Used to set the recording time for the audio clip
     // The length of the audio clip depend on the number of characters
@@ -131,7 +131,7 @@ public static class Const
     // ===================== NETWORK CONST =====================
 
     // Maximum waiting time for Unity web request
-    public const int TIME_OUT_SECS = 20;
+    public const int TIME_OUT_SECS = 40;
     public const int TIME_OUT_ADVANCE_SECS = 30;
 
     public const string FILE_NAME_POST = "speech_sample";

@@ -105,7 +105,7 @@ public class NetworkManager : MonoBehaviour
     private WWWForm GetPOSTForm_ASA(POSTType postType, string transcript, byte[] wavBuffer)
     {
         WWWForm form = new WWWForm();
-        form.AddBinaryData("file", wavBuffer, fileName: Const.ASA_FILENAME, mimeType: "audio/wav");
+        form.AddBinaryData("file", wavBuffer, fileName: Const.ASA_FILENAME + ".wav", mimeType: "audio/wav");
 
         return form;
     }
@@ -125,6 +125,7 @@ public class NetworkManager : MonoBehaviour
         WWWForm form = GetPOSTForm_ASA(postType, transcript, wavBuffer);
 
         string postURL = GetPOSTURL(postType);
+
 
         // Use a `using` statement for UnityWebRequest to handle resource cleanup
         // This is a good practice to avoid memory leaks
