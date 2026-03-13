@@ -1,6 +1,6 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -156,8 +156,6 @@ public class AdvancePanel : MonoBehaviour
         }
     }
 
-
-
     public void OnASAButtonClicked()
     {
         if (PlayerPrefs.GetInt("consent_given", 0) == 1)
@@ -171,10 +169,8 @@ public class AdvancePanel : MonoBehaviour
         }
     }
 
-
     public void AcceptConsent()
     {
-
         string guid = Guid.NewGuid().ToString();
         PlayerPrefs.SetString("user_guid", guid);
 
@@ -190,6 +186,7 @@ public class AdvancePanel : MonoBehaviour
     {
         consentPopUpGO.SetActive(false);
     }
+
     public void OnDescribeAButtonClicked(DescribePanel.TaskType taskType = DescribePanel.TaskType.A)
     {
         describePanelAGO.SetActive(true);
