@@ -14434,7 +14434,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &722582021
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27775,7 +27775,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1467892006}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -27799,7 +27799,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2361913039126676018, guid: 7efe3af914e14c71e9613ab0c9567fd7, type: 3}
+  m_Sprite: {fileID: 3164208960983441703, guid: 2d55a8cd26f8dcf16823f32f4e00555b, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -43670,7 +43670,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9121153323623101452, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
