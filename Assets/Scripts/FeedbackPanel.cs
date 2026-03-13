@@ -172,6 +172,19 @@ public class FeedbackPanel : MonoBehaviour
                 dimPanelGO.SetActive(true);
             });
 
+        if (PlayerPrefs.GetInt("InfoPopupSeen", 0) == 0)
+        {
+            infoPopupGO.SetActive(true);
+            dimPanelGO.SetActive(true);
+            PlayerPrefs.SetInt("InfoPopupSeen", 1);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            infoPopupGO.SetActive(false);
+            dimPanelGO.SetActive(false);
+        }
+
         infoBackButtonGO
             .GetComponent<Button>()
             .onClick.AddListener(() => ASAPanelGO.SetActive(true));
@@ -181,8 +194,6 @@ public class FeedbackPanel : MonoBehaviour
             {
                 infoPopupGO.SetActive(false);
                 dimPanelGO.SetActive(false);
-                PlayerPrefs.SetInt("InfoPopupSeen", 1);
-                PlayerPrefs.Save();
             });
 
         float proficiencyRating = networkManager.asrResult2.scores.proficiency;
