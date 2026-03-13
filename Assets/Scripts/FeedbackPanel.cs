@@ -68,6 +68,15 @@ public class FeedbackPanel : MonoBehaviour
     [SerializeField]
     private TMPro.TextMeshProUGUI popupTextGO;
 
+    [SerializeField]
+    GameObject infoButtonGO;
+
+    [SerializeField]
+    GameObject infoPopupGO;
+
+    [SerializeField]
+    GameObject infoBackButtonGO;
+
     [System.Serializable]
     public class PopupAttributes
     {
@@ -153,6 +162,27 @@ public class FeedbackPanel : MonoBehaviour
             {
                 popupPanelGO.SetActive(false);
                 dimPanelGO.SetActive(false);
+            });
+
+        infoButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                infoPopupGO.SetActive(true);
+                dimPanelGO.SetActive(true);
+            });
+
+        infoBackButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() => ASAPanelGO.SetActive(true));
+        infoBackButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                infoPopupGO.SetActive(false);
+                dimPanelGO.SetActive(false);
+                PlayerPrefs.SetInt("InfoPopupSeen", 1);
+                PlayerPrefs.Save();
             });
 
         float proficiencyRating = networkManager.asrResult2.scores.proficiency;
