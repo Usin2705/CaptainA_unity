@@ -63,6 +63,11 @@ public class AdvancePanel : MonoBehaviour
 
     void OnEnable()
     {
+        // This is for testing purposes
+        PlayerPrefs.SetInt("InfoPopupSeen", 0);
+        PlayerPrefs.SetInt("ConsentGiven", 0);
+        PlayerPrefs.Save();
+
         // Check if the user has correct secret text
         string secretText = PlayerPrefs.GetString(Const.PREF_SECRET_TEXT);
         secretText = secretText.Replace("\r", "").Replace("\n", "").Trim();
@@ -158,7 +163,7 @@ public class AdvancePanel : MonoBehaviour
 
     public void OnASAButtonClicked()
     {
-        if (PlayerPrefs.GetInt("consent_given", 0) == 1)
+        if (PlayerPrefs.GetInt("ConsentGiven", 0) == 1)
         {
             Debug.Log(PlayerPrefs.GetString("user_guid"));
             taskPanelGO.SetActive(true);
@@ -174,7 +179,7 @@ public class AdvancePanel : MonoBehaviour
         string guid = Guid.NewGuid().ToString();
         PlayerPrefs.SetString("user_guid", guid);
 
-        PlayerPrefs.SetInt("consent_given", 1);
+        PlayerPrefs.SetInt("ConsentGiven", 1);
         PlayerPrefs.Save();
 
         consentPopUpGO.SetActive(false);
