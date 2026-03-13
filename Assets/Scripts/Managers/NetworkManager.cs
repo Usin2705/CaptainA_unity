@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
+using System;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -105,12 +106,15 @@ public class NetworkManager : MonoBehaviour
     private WWWForm GetPOSTForm_ASA(POSTType postType, string transcript, byte[] wavBuffer)
     {
         WWWForm form = new WWWForm();
+        string process_id = Guid.NewGuid().ToString();
+        Debug.Log(process_id);
         form.AddBinaryData(
             "file",
             wavBuffer,
             fileName: Const.ASA_FILENAME + ".wav",
             mimeType: "audio/wav"
         );
+        form.AddField("process_id", process_id);
 
         return form;
     }

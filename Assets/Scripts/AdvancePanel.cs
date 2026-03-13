@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +24,12 @@ public class AdvancePanel : MonoBehaviour
 
     [SerializeField]
     GameObject ASAPanelGO;
+
+    [SerializeField]
+    GameObject consentPopUpGO;
+
+    [SerializeField]
+    GameObject acceptButtonGO;
 
     [SerializeField]
     GameObject feedbackPanelGO;
@@ -68,6 +75,8 @@ public class AdvancePanel : MonoBehaviour
             .GetComponent<Button>()
             .onClick.AddListener(() => OnNumberGameButtonClicked());
         ASAButtonGO.GetComponent<Button>().onClick.AddListener(() => OnASAButtonClicked());
+
+        acceptButtonGO.GetComponent<Button>().onClick.AddListener(() => AcceptConsent());
 
         if (secretText == Secret.SECRET_TEXT)
         {
@@ -147,11 +156,40 @@ public class AdvancePanel : MonoBehaviour
         }
     }
 
+
+
     public void OnASAButtonClicked()
     {
+        if (PlayerPrefs.GetInt("consent_given", 0) == 1)
+        {
+            Debug.Log(PlayerPrefs.GetString("user_guid"));
+            taskPanelGO.SetActive(true);
+        }
+        else
+        {
+            consentPopUpGO.SetActive(true);
+        }
+    }
+
+
+    public void AcceptConsent()
+    {
+
+        string guid = Guid.NewGuid().ToString();
+        PlayerPrefs.SetString("user_guid", guid);
+
+        PlayerPrefs.SetInt("consent_given", 1);
+        PlayerPrefs.Save();
+
+        consentPopUpGO.SetActive(false);
+
         taskPanelGO.SetActive(true);
     }
 
+    public void RejectConsent()
+    {
+        consentPopUpGO.SetActive(false);
+    }
     public void OnDescribeAButtonClicked(DescribePanel.TaskType taskType = DescribePanel.TaskType.A)
     {
         describePanelAGO.SetActive(true);
