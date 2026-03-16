@@ -80,6 +80,9 @@ public class AdvancePanel : MonoBehaviour
         PlayerPrefs.SetInt("ConsentGiven", 0);
         PlayerPrefs.Save();
 
+        refuseButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
+        acceptButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
+
         // Check if the user has correct secret text
         string secretText = PlayerPrefs.GetString(Const.PREF_SECRET_TEXT);
         secretText = secretText.Replace("\r", "").Replace("\n", "").Trim();
@@ -200,6 +203,8 @@ public class AdvancePanel : MonoBehaviour
 
         consentPopUpGO.SetActive(false);
         backgroundPopUpGO.SetActive(true);
+
+        StartCoroutine(NetworkManager.GetManager().ServerPost_guid(POSTType.ASA_CONSENT, null));
     }
 
     public void RefuseConsent()

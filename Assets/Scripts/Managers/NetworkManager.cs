@@ -87,6 +87,9 @@ public class NetworkManager : MonoBehaviour
                 return Secret.NUMBER_AUDIO_URL;
             case POSTType.ASA_TASK:
                 return Secret.ASA_URL;
+            case POSTType.ASA_CONSENT:
+                return Secret.ASA_CONSENT_URL;
+
             default:
                 return asrURL;
         }
@@ -103,6 +106,53 @@ public class NetworkManager : MonoBehaviour
         return form;
     }
 
+    private WWWForm GetPOSTForm_guid()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("guid", PlayerPrefs.GetString("user_guid"));
+        return form;
+    }
+
+    public IEnumerator ServerPost_guid(
+        POSTType postType,
+        GameObject textErrorGO,
+        System.Action OnServerDone = null
+    )
+    {
+        WWWForm form = GetPOSTForm_guid();
+        string postURL = GetPOSTURL(postType);
+
+        using (UnityWebRequest uwr = UnityWebRequest.Post(postURL, form))
+        {
+            uwr.timeout = Const.TIME_OUT_SECS;
+            yield return uwr.SendWebRequest();
+
+            if (
+                uwr.result == UnityWebRequest.Result.ConnectionError
+                || uwr.result == UnityWebRequest.Result.ProtocolError
+            )
+            {
+                Debug.Log(uwr.error);
+
+                textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = string.IsNullOrEmpty(
+                    uwr.error
+                )
+                    ? "Network error!"
+                    : "Server error!";
+
+                OnServerDone?.Invoke();
+                throw new System.Exception(uwr.downloadHandler.text ?? uwr.error);
+            }
+            else
+            {
+                Debug.Log("Form upload complete!");
+
+                Debug.Log(uwr.downloadHandler.text);
+            }
+            OnServerDone?.Invoke();
+        }
+    }
+
     private WWWForm GetPOSTForm_ASA(POSTType postType, string transcript, byte[] wavBuffer)
     {
         WWWForm form = new WWWForm();
@@ -115,6 +165,7 @@ public class NetworkManager : MonoBehaviour
             mimeType: "audio/wav"
         );
         form.AddField("process_id", process_id);
+        form.AddField("guid", PlayerPrefs.GetString("user_guid"));
 
         return form;
     }
