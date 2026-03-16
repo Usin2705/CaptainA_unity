@@ -251,11 +251,7 @@ public class ASAPanel : MonoBehaviour
             .GetManager()
             .GetAudioAndPost_ASA(
                 POSTType.ASA_TASK, // POST type = OTHER
-                null, // transcript text
-                null, // textErrorGO
-                null, // resultTextGO
-                null, // resultPanelGO
-                null // debugTextGO
+                null // transcript text
             );
 
         loadingPopUpGO.SetActive(true);

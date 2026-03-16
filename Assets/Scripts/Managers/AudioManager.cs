@@ -79,10 +79,6 @@ public class AudioManager : MonoBehaviour
     public void GetAudioAndPost_ASA(
         POSTType postType,
         string transcript,
-        GameObject textErrorGO,
-        GameObject resultTextGO,
-        GameObject resultPanelGO,
-        GameObject debugTextGO,
         System.Action OnServerDone = null
     )
     {
@@ -93,16 +89,7 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(
             NetworkManager
                 .GetManager()
-                .ServerPost_ASA(
-                    postType,
-                    transcript,
-                    wavBuffer,
-                    textErrorGO,
-                    resultTextGO,
-                    resultPanelGO,
-                    debugTextGO,
-                    OnServerDone
-                )
+                .ServerPost_ASA(postType, transcript, wavBuffer, OnServerDone)
         );
     }
 

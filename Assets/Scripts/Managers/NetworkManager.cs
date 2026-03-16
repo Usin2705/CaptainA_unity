@@ -89,7 +89,6 @@ public class NetworkManager : MonoBehaviour
                 return Secret.ASA_URL;
             case POSTType.ASA_CONSENT:
                 return Secret.ASA_CONSENT_URL;
-
             default:
                 return asrURL;
         }
@@ -134,12 +133,6 @@ public class NetworkManager : MonoBehaviour
             {
                 Debug.Log(uwr.error);
 
-                textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = string.IsNullOrEmpty(
-                    uwr.error
-                )
-                    ? "Network error!"
-                    : "Server error!";
-
                 OnServerDone?.Invoke();
                 throw new System.Exception(uwr.downloadHandler.text ?? uwr.error);
             }
@@ -174,10 +167,6 @@ public class NetworkManager : MonoBehaviour
         POSTType postType,
         string transcript,
         byte[] wavBuffer,
-        GameObject textErrorGO,
-        GameObject resultTextGO,
-        GameObject resultPanelGO,
-        GameObject debugTextGO = null,
         System.Action OnServerDone = null,
         GameObject warningImageGO = null
     )
@@ -193,8 +182,6 @@ public class NetworkManager : MonoBehaviour
             uwr.timeout = Const.TIME_OUT_SECS;
             yield return uwr.SendWebRequest();
 
-            //textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "Here are your results:";
-
             Debug.Log(uwr.result);
 
             if (
@@ -204,12 +191,6 @@ public class NetworkManager : MonoBehaviour
             {
                 Debug.Log(uwr.error);
 
-                textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = string.IsNullOrEmpty(
-                    uwr.error
-                )
-                    ? "Network error!"
-                    : "Server error!";
-
                 OnServerDone?.Invoke();
                 throw new System.Exception(uwr.downloadHandler.text ?? uwr.error);
             }
@@ -218,28 +199,7 @@ public class NetworkManager : MonoBehaviour
                 Debug.Log("Form upload complete!");
 
                 Debug.Log(uwr.downloadHandler.text);
-
-                if (uwr.downloadHandler.text == "invalid credentials")
-                {
-                    Debug.Log("invalid credentials");
-                    textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "invalid credentials";
-
-                    OnServerDone?.Invoke();
-                    yield break;
-                }
-
-                if (uwr.downloadHandler.text == "this account uses auth0")
-                {
-                    Debug.Log("this account uses auth0");
-                    textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text =
-                        "this account uses auth0";
-
-                    OnServerDone?.Invoke();
-                    yield break;
-                }
             }
-
-            // textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "Here are your results. \n Great effort!";
 
             asrResult2 = JsonUtility.FromJson<ASRResult2>(uwr.downloadHandler.text);
 
@@ -250,49 +210,6 @@ public class NetworkManager : MonoBehaviour
                 feedbackPanelGO.SetActive(true);
                 Debug.Log("Here we are");
             }
-
-            // Only save data if the transcript is text and not number
-            // as we also have the number game
-            if (postType != POSTType.PuheNumero_TASK)
-            {
-                // update the users score to the userdata
-                SaveData.UpdateUserScores(transcript, asrResult.score);
-            }
-
-            // Update text result
-            // This part only update the TextResult text
-            // is updated (added onclick, show active) in their MainPanel (either MainPanel or ExercisePanel)
-
-            // After TextResult text is updated,
-            // it's safe to set onclick on result text on it's main panel
-            // that's why we can set the Panel to active
-            string textResult = TextUtils.FormatTextResult(transcript, asrResult.score);
-            resultTextGO.GetComponent<TMPro.TextMeshProUGUI>().text = textResult;
-
-            // Set resultTextGO to bold following design guideline
-            resultTextGO.GetComponent<TMPro.TextMeshProUGUI>().fontStyle = TMPro.FontStyles.Bold;
-
-            // Show or now show the warning image
-            if (warningImageGO != null)
-            {
-                int warningNo = asrResult.warning.Count;
-                warningImageGO.SetActive(warningNo != 0);
-            }
-
-            // Update the debug text
-            if (debugTextGO != null)
-            {
-                // Set the debug text to show the prediction
-                // This is for testing purpose only
-                debugTextGO.SetActive(true);
-                debugTextGO.GetComponent<TMPro.TextMeshProUGUI>().text = asrResult.prediction;
-            }
-
-            // This function is not active in the current version
-            if (resultPanelGO != null)
-                resultPanelGO.SetActive(true);
-
-            checkSurVey();
         }
         OnServerDone?.Invoke();
     }
