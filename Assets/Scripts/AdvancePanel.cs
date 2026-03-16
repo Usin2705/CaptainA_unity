@@ -32,6 +32,18 @@ public class AdvancePanel : MonoBehaviour
     GameObject acceptButtonGO;
 
     [SerializeField]
+    GameObject refuseButtonGO;
+
+    [SerializeField]
+    GameObject backgroundPopUpGO;
+
+    [SerializeField]
+    GameObject sendButtonGO;
+
+    [SerializeField]
+    GameObject dimPanelGO;
+
+    [SerializeField]
     GameObject feedbackPanelGO;
 
     [SerializeField]
@@ -82,6 +94,9 @@ public class AdvancePanel : MonoBehaviour
         ASAButtonGO.GetComponent<Button>().onClick.AddListener(() => OnASAButtonClicked());
 
         acceptButtonGO.GetComponent<Button>().onClick.AddListener(() => AcceptConsent());
+        refuseButtonGO.GetComponent<Button>().onClick.AddListener(() => RefuseConsent());
+
+        sendButtonGO.GetComponent<Button>().onClick.AddListener(() => ValidateInformation());
 
         if (secretText == Secret.SECRET_TEXT)
         {
@@ -171,6 +186,7 @@ public class AdvancePanel : MonoBehaviour
         else
         {
             consentPopUpGO.SetActive(true);
+            dimPanelGO.SetActive(true);
         }
     }
 
@@ -183,15 +199,24 @@ public class AdvancePanel : MonoBehaviour
         PlayerPrefs.Save();
 
         consentPopUpGO.SetActive(false);
+        backgroundPopUpGO.SetActive(true);
+    }
+
+    public void RefuseConsent()
+    {
+        consentPopUpGO.SetActive(false);
+        dimPanelGO.SetActive(false);
+    }
+
+    public void ValidateInformation()
+    {
+        backgroundPopUpGO.SetActive(false);
+        dimPanelGO.SetActive(false);
 
         taskPanelGO.SetActive(true);
     }
 
-    public void RejectConsent()
-    {
-        consentPopUpGO.SetActive(false);
-    }
-
+    /* */
     public void OnDescribeAButtonClicked(DescribePanel.TaskType taskType = DescribePanel.TaskType.A)
     {
         describePanelAGO.SetActive(true);
