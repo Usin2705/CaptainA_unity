@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 094c2ca13958e6e69bd1f0c0342a7429
+guid: 6e225b6b4d86c000283b2fa21ef7c0d9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6749402662180664952
-    second: popup_panel_0
+      213: -7640700740569769389
+    second: Bottom Buttons (2)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: popup_panel
+      name: ic_refuse_button
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 772
-        height: 488
+        width: 978
+        height: 512
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 25, y: 25, z: 25, w: 25}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 876ba5d16f1baad50800000000000000
-      internalID: 6749402662180664952
+      spriteID: 35a564b9827c6f590800000000000000
+      internalID: -7640700740569769389
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 6a712515d9ad9d536a6139b228c57c38
+    spriteID: 3aafffc77b4de5f6b909f57120bee8e3
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      popup_panel: 6749402662180664952
+      ic_refuse_button: -7640700740569769389
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
