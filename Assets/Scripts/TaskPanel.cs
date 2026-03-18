@@ -33,8 +33,23 @@ public class TaskPanel : MonoBehaviour
     [SerializeField]
     ASAPanel ASAPanel;
 
+    [SerializeField]
+    GameObject settingsButtonGO;
+
+    [SerializeField]
+    GameObject settingsBackButtonGO;
+
+    [SerializeField]
+    GameObject settingsPopupGO;
+
+    [SerializeField]
+    GameObject dimPanelGO;
+
     void OnEnable()
     {
+        settingsPopupGO.SetActive(false);
+        dimPanelGO.SetActive(false);
+
         backButtonGO
             .GetComponent<Button>()
             .onClick.AddListener(() => advancePanelGO.SetActive(true));
@@ -84,6 +99,22 @@ public class TaskPanel : MonoBehaviour
                 ASAPanel.DisplayTask(4);
                 ASAPanelGO.SetActive(true);
                 taskPanelGO.SetActive(false);
+            });
+
+        settingsButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                settingsPopupGO.SetActive(true);
+                dimPanelGO.SetActive(true);
+            });
+
+        settingsBackButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                settingsPopupGO.SetActive(false);
+                dimPanelGO.SetActive(false);
             });
     }
 }
