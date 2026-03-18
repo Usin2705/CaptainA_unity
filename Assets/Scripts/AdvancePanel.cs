@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System.Linq;
 public class AdvancePanel : MonoBehaviour
 {
     [SerializeField]
@@ -72,6 +72,10 @@ public class AdvancePanel : MonoBehaviour
 
     [SerializeField]
     GameObject describePanelCGO;
+
+    public ToggleGroup ratingOptions;
+
+    string rating = null;
 
     void OnEnable()
     {
@@ -263,5 +267,12 @@ public class AdvancePanel : MonoBehaviour
         describePanelAGO.SetActive(false);
         describePanelBGO.SetActive(false);
         describePanelCGO.SetActive(false);
+    }
+
+    public void feedbackWhileLoading()
+    {
+        var selected = ratingOptions.ActiveToggles().FirstOrDefault();
+        rating = selected.name;
+        Debug.Log(rating);
     }
 }
