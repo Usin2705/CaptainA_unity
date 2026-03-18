@@ -35,6 +35,9 @@ public class MainPanel : MonoBehaviour
     GameObject stopButtonPanelGO;
 
     [SerializeField]
+    GameObject stopButtonPanelBackgroundGO;
+
+    [SerializeField]
     GameObject stopButtonGO;
 
     [SerializeField]
@@ -194,44 +197,16 @@ public class MainPanel : MonoBehaviour
     /// </remarks>
     private void UpdateProgressCircle()
     {
-        // Calculate the current time
         currentTime -= Time.deltaTime;
+        stopButtonPanelGO.GetComponent<Image>().fillAmount = currentTime / countdownTime;
 
-        // Calculate the current progress
-        float currentProgress = currentTime / countdownTime;
-
-        // Change the StopButton source image to show the progress circle
-
-        // If the progress is less than or equal to 0, stop the timer and call the StopTimer method
-        // Remember to reset the currentTime to 0 and set the stopButtonGO source image to default
-        // Most important, disable the stopButtonGO (it will disable the progress circle call in Update())
-        if (currentProgress <= 0)
+        if (currentTime <= 0)
         {
+            currentTime = 0;
+            stopButtonGO.SetActive(false);
+            stopButtonPanelGO.SetActive(false);
+            stopButtonPanelBackgroundGO.SetActive(false);
             StopTimer();
-        }
-        else if (currentProgress <= 0.05)
-        {
-            stopButtonPanelGO.GetComponent<Image>().sprite = Resources.Load<Sprite>(
-                "app_icons/ic_timer_4"
-            );
-        }
-        else if (currentProgress < 0.25)
-        {
-            stopButtonPanelGO.GetComponent<Image>().sprite = Resources.Load<Sprite>(
-                "app_icons/ic_timer_3"
-            );
-        }
-        else if (currentProgress < 0.5)
-        {
-            stopButtonPanelGO.GetComponent<Image>().sprite = Resources.Load<Sprite>(
-                "app_icons/ic_timer_2"
-            );
-        }
-        else if (currentProgress < 0.75)
-        {
-            stopButtonPanelGO.GetComponent<Image>().sprite = Resources.Load<Sprite>(
-                "app_icons/ic_timer_1"
-            );
         }
     }
 
@@ -260,7 +235,9 @@ public class MainPanel : MonoBehaviour
         recordButtonGO.SetActive(false);
 
         // Show the countdown progress circle and the stop button
+        stopButtonGO.SetActive(true);
         stopButtonPanelGO.SetActive(true);
+        stopButtonPanelBackgroundGO.SetActive(true);
         // Register the OnClick event for the stop button
         stopButtonGO
             .GetComponent<Button>()
@@ -516,6 +493,7 @@ public class MainPanel : MonoBehaviour
     {
         // Disable the stop button
         stopButtonPanelGO.SetActive(false);
+        stopButtonPanelBackgroundGO.SetActive(false);
         // Remove all listeners from the stop button
         stopButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         // Reset the stopButtonGO source image to the default
