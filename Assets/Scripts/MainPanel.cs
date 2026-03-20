@@ -257,6 +257,9 @@ public class MainPanel : MonoBehaviour
 
     private void OnStopRecordButtonClick()
     {
+        stopButtonGO.SetActive(false);
+        stopButtonPanelGO.SetActive(false);
+        stopButtonPanelBackgroundGO.SetActive(false);
         StopTimer();
     }
 
