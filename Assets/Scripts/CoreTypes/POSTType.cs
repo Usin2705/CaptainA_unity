@@ -5,5 +5,6 @@ public enum POSTType
     PuheNumero_TASK,
     ASA_CONSENT,
     ASA_TASK,
+    ASA_FEEDBACK,
     OTHER,
 }

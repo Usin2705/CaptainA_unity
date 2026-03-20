@@ -76,7 +76,7 @@ public class AdvancePanel : MonoBehaviour
 
     public ToggleGroup ratingOptions;
 
-    string rating = null;
+    public string self_rating = null;
 
     void OnEnable()
     {
@@ -273,7 +273,7 @@ public class AdvancePanel : MonoBehaviour
     public void feedbackWhileLoading()
     {
         var selected = ratingOptions.ActiveToggles().FirstOrDefault();
-        rating = selected.name;
-        Debug.Log(rating);
+        self_rating = selected.name;
+        Debug.Log(self_rating);
     }
 }

@@ -59,6 +59,9 @@ public class NetworkManager : MonoBehaviour
     public string chatGPTTranscript { get; private set; }
     public string chatGPTGrading { get; private set; }
 
+    [SerializeField]
+    AdvancePanel AdvancePanel;
+
     void Awake()
     {
         if (netWorkManager != null)
@@ -92,6 +95,8 @@ public class NetworkManager : MonoBehaviour
                 return Secret.ASA_URL;
             case POSTType.ASA_CONSENT:
                 return Secret.ASA_CONSENT_URL;
+            case POSTType.ASA_FEEDBACK:
+                return Secret.ASA_FEEDBACK_URL;
             default:
                 return asrURL;
         }
@@ -111,7 +116,9 @@ public class NetworkManager : MonoBehaviour
     private WWWForm GetPOSTForm_guid()
     {
         WWWForm form = new WWWForm();
+        form.AddField("app_version", Application.version);
         form.AddField("guid", PlayerPrefs.GetString("user_guid"));
+        form.AddField("background_fields", "");
         return form;
     }
 
@@ -152,15 +159,12 @@ public class NetworkManager : MonoBehaviour
     private WWWForm GetPOSTForm_ASA(POSTType postType, string transcript, byte[] wavBuffer)
     {
         WWWForm form = new WWWForm();
-        string process_id = Guid.NewGuid().ToString();
-        Debug.Log(process_id);
         form.AddBinaryData(
             "file",
             wavBuffer,
             fileName: Const.ASA_FILENAME + ".wav",
             mimeType: "audio/wav"
         );
-        form.AddField("process_id", process_id);
         form.AddField("guid", PlayerPrefs.GetString("user_guid"));
 
         return form;
@@ -210,8 +214,62 @@ public class NetworkManager : MonoBehaviour
             {
                 loadingIconGO.SetActive(false);
                 resultsButtonGO.SetActive(true);
+                StartCoroutine(ServerPost_feedback(POSTType.ASA_FEEDBACK));
                 Debug.Log("Here we are");
             }
+        }
+        OnServerDone?.Invoke();
+    }
+
+    private WWWForm GetPOSTForm_feedback(POSTType postType)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("guid", PlayerPrefs.GetString("user_guid"));
+        form.AddField("grade", AdvancePanel.self_rating);
+        Debug.Log(AdvancePanel.self_rating);
+
+        return form;
+    }
+
+    public IEnumerator ServerPost_feedback(
+        POSTType postType,
+        System.Action OnServerDone = null,
+        GameObject warningImageGO = null
+    )
+    {
+        WWWForm form = GetPOSTForm_feedback(postType);
+
+        string postURL = GetPOSTURL(postType);
+
+        // Use a `using` statement for UnityWebRequest to handle resource cleanup
+        // This is a good practice to avoid memory leaks
+        using (UnityWebRequest uwr = UnityWebRequest.Post(postURL, form))
+        {
+            uwr.timeout = Const.TIME_OUT_SECS;
+            yield return uwr.SendWebRequest();
+
+            Debug.Log(uwr.result);
+
+            if (
+                uwr.result == UnityWebRequest.Result.ConnectionError
+                || uwr.result == UnityWebRequest.Result.ProtocolError
+            )
+            {
+                Debug.Log(uwr.error);
+
+                OnServerDone?.Invoke();
+                throw new System.Exception(uwr.downloadHandler.text ?? uwr.error);
+            }
+            else
+            {
+                Debug.Log("Form upload complete!");
+
+                Debug.Log(uwr.downloadHandler.text);
+            }
+
+            asrResult2 = JsonUtility.FromJson<ASRResult2>(uwr.downloadHandler.text);
+
+            Debug.Log("Here we are (feedback edition)");
         }
         OnServerDone?.Invoke();
     }
