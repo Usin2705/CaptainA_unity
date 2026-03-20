@@ -8,6 +8,12 @@ public class MainPanel : MonoBehaviour
     GameObject topPanelGO;
 
     [SerializeField]
+    GameObject topPanelBigGO;
+
+    [SerializeField]
+    GameObject topPanelSmallGO;
+
+    [SerializeField]
     GameObject dropShadowLGO;
 
     [SerializeField]
@@ -380,7 +386,9 @@ public class MainPanel : MonoBehaviour
     public void SetUpStartUI()
     {
         // Set up the default image for the top panel. This image is a sprite that is loaded from the Resources folder.
-        topPanelGO.GetComponent<Image>().sprite = Resources.Load<Sprite>("app_icons/top_bar_BIG");
+        //topPanelGO.GetComponent<Image>().sprite = Resources.Load<Sprite>("app_icons/top_bar_BIG");
+        topPanelSmallGO.SetActive(false);
+        topPanelBigGO.SetActive(true);
 
         // Move the top panel to the top of the screen
         topPanelGO.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
@@ -429,9 +437,11 @@ public class MainPanel : MonoBehaviour
     public void SetupFocusTextUI()
     {
         // Set up the smaller image for the top panel. This image is a sprite that is loaded from the Resources folder.
-        topPanelGO.GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load<Sprite>(
-            "app_icons/top_bar_SMALL"
-        );
+        //topPanelGO.GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load<Sprite>(
+        //    "app_icons/top_bar_SMALL"
+        //);
+        topPanelBigGO.SetActive(false);
+        topPanelSmallGO.SetActive(true);
 
         // Move the top panel to the top of the screen
         topPanelGO.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);

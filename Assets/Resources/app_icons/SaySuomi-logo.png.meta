@@ -1,0 +1,455 @@
+fileFormatVersion: 2
+guid: 41d52b5a50d91fb5eba4f90d8dea9275
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3673762643392664260
+    second: SaySuomi-logo_0
+  - first:
+      213: -5624052860428900122
+    second: SaySuomi-logo_1
+  - first:
+      213: 450157117072841482
+    second: SaySuomi-logo_2
+  - first:
+      213: 885339111559641541
+    second: SaySuomi-logo_3
+  - first:
+      213: -835618286986200774
+    second: SaySuomi-logo_4
+  - first:
+      213: 8968832019755357953
+    second: SaySuomi-logo_5
+  - first:
+      213: 184565702963570934
+    second: SaySuomi-logo_6
+  - first:
+      213: -8075225906663120783
+    second: SaySuomi-logo_7
+  - first:
+      213: -1173354549592210653
+    second: SaySuomi-logo_8
+  - first:
+      213: 8130303169885050431
+    second: SaySuomi-logo_9
+  - first:
+      213: 5806682571237791005
+    second: SaySuomi-logo_10
+  - first:
+      213: 1250861256704515563
+    second: SaySuomi-logo_11
+  - first:
+      213: 8036508868074569894
+    second: SaySuomi-logo_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SaySuomi-logo_0
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 227
+        width: 71
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3dea7b175c240dc0800000000000000
+      internalID: -3673762643392664260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SaySuomi-logo_1
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 294
+        width: 71
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e8ad1098b953f1b0800000000000000
+      internalID: -5624052860428900122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SaySuomi-logo_2
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 159
+        width: 71
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0b9d3053874f3600800000000000000
+      internalID: 450157117072841482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SaySuomi-logo_3
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 159
+        width: 71
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c9b5423b3b594c00800000000000000
+      internalID: 885339111559641541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SaySuomi-logo_4
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 63
+        width: 37
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a39fd5468994764f0800000000000000
+      internalID: -835618286986200774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SaySuomi-logo_5
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 63
+        width: 37
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 107daabf331b77c70800000000000000
+      internalID: 8968832019755357953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SaySuomi-logo_6
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 100
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f82dda6785bf8200800000000000000
+      internalID: 184565702963570934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SaySuomi-logo_7
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 63
+        width: 38
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 170205082d80fef80800000000000000
+      internalID: -8075225906663120783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SaySuomi-logo_8
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 49
+        width: 36
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 323c7fbf04867bfe0800000000000000
+      internalID: -1173354549592210653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SaySuomi-logo_9
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 62
+        width: 34
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f361b3528a3a4d070800000000000000
+      internalID: 8130303169885050431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SaySuomi-logo_10
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 63
+        width: 38
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d15941e880b759050800000000000000
+      internalID: 5806682571237791005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SaySuomi-logo_11
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 64
+        width: 54
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: beddb258fa3fb5110800000000000000
+      internalID: 1250861256704515563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SaySuomi-logo_12
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 64
+        width: 13
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a08cdb7c3a678f60800000000000000
+      internalID: 8036508868074569894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SaySuomi-logo_0: -3673762643392664260
+      SaySuomi-logo_1: -5624052860428900122
+      SaySuomi-logo_10: 5806682571237791005
+      SaySuomi-logo_11: 1250861256704515563
+      SaySuomi-logo_12: 8036508868074569894
+      SaySuomi-logo_2: 450157117072841482
+      SaySuomi-logo_3: 885339111559641541
+      SaySuomi-logo_4: -835618286986200774
+      SaySuomi-logo_5: 8968832019755357953
+      SaySuomi-logo_6: 184565702963570934
+      SaySuomi-logo_7: -8075225906663120783
+      SaySuomi-logo_8: -1173354549592210653
+      SaySuomi-logo_9: 8130303169885050431
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -53,6 +53,9 @@ public class ASAPanel : MonoBehaviour
     [SerializeField]
     GameObject loadingIconGO;
 
+    [SerializeField]
+    GameObject resultsButtonGO;
+
     [System.Serializable]
     public class TaskAttributes
     {
@@ -109,6 +112,8 @@ public class ASAPanel : MonoBehaviour
         pauseButtonGO.GetComponent<Button>().onClick.AddListener(() => OnPauseButtonClicked());
         sendButtonGO.GetComponent<Button>().onClick.AddListener(() => OnSendButtonClicked());
         replayButtonGO.GetComponent<Button>().onClick.AddListener(() => OnReplayButtonClicked());
+        resultsButtonGO.GetComponent<Button>().onClick.AddListener(() => OnResultsButtonClicked());
+
         replayBarGO.SetActive(false);
         progressBarBackgroundGO.SetActive(false);
         progressBarGO.SetActive(false);
@@ -117,6 +122,7 @@ public class ASAPanel : MonoBehaviour
         recordButtonGO.SetActive(true);
         sendButtonGO.SetActive(false);
         replayButtonGO.SetActive(false);
+        resultsButtonGO.SetActive(false);
     }
 
     void StartTimer()
@@ -255,6 +261,8 @@ public class ASAPanel : MonoBehaviour
             );
 
         loadingPopUpGO.SetActive(true);
+        resultsButtonGO.SetActive(false);
+        loadingIconGO.SetActive(true);
         isLoading = true;
         dimPanelASAGO.SetActive(true);
     }
@@ -262,5 +270,12 @@ public class ASAPanel : MonoBehaviour
     public void animateLoading()
     {
         loadingIconGO.transform.Rotate(0, 0, -6.0f, Space.Self);
+    }
+
+    public void OnResultsButtonClicked()
+    {
+        loadingPopUpGO.SetActive(false);
+        dimPanelASAGO.SetActive(false);
+        feedbackPanelGO.SetActive(true);
     }
 }
