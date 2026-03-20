@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -45,10 +46,21 @@ public class TaskPanel : MonoBehaviour
     [SerializeField]
     GameObject dimPanelGO;
 
+    [SerializeField]
+    public TMP_Text guidTextGO;
+
+    [SerializeField]
+    GameObject copyGuidButtonGO;
+
+    public string guid;
+
     void OnEnable()
     {
         settingsPopupGO.SetActive(false);
         dimPanelGO.SetActive(false);
+
+        guid = PlayerPrefs.GetString("user_guid");
+        guidTextGO.text = guid;
 
         backButtonGO
             .GetComponent<Button>()
@@ -115,6 +127,13 @@ public class TaskPanel : MonoBehaviour
             {
                 settingsPopupGO.SetActive(false);
                 dimPanelGO.SetActive(false);
+            });
+
+        copyGuidButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                GUIUtility.systemCopyBuffer = guid;
             });
     }
 }
