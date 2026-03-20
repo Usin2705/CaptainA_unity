@@ -224,8 +224,12 @@ public class NetworkManager : MonoBehaviour
     private WWWForm GetPOSTForm_feedback(POSTType postType)
     {
         WWWForm form = new WWWForm();
+        string input = AdvancePanel.self_rating.ToLower();
+        int value = int.Parse(input.Replace("rating", ""));
         form.AddField("guid", PlayerPrefs.GetString("user_guid"));
-        form.AddField("grade", AdvancePanel.self_rating);
+        form.AddField("reaction_value", value);
+        form.AddField("target_type", "assessment");
+
         Debug.Log(AdvancePanel.self_rating);
 
         return form;
