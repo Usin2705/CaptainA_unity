@@ -268,7 +268,11 @@ public class AdvancePanel : MonoBehaviour
         {
             if (!string.IsNullOrWhiteSpace(motherTongueOptions.text))
             {
-                if (languageOther.isOn && !string.IsNullOrWhiteSpace(languageOtherField.text))
+                if (languageOther.isOn && string.IsNullOrWhiteSpace(languageOtherField.text))
+                {
+                    errorMessage.enabled = true;
+                }
+                else
                 {
                     backgroundPopUpGO.SetActive(false);
                     dimPanelGO.SetActive(false);
@@ -281,10 +285,7 @@ public class AdvancePanel : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            errorMessage.enabled = true;
-        }
+        errorMessage.enabled = true;
     }
 
     /* */
