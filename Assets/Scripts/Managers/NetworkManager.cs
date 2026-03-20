@@ -113,22 +113,23 @@ public class NetworkManager : MonoBehaviour
         return form;
     }
 
-    private WWWForm GetPOSTForm_guid()
+    private WWWForm GetPOSTForm_guid(string timestamp)
     {
         WWWForm form = new WWWForm();
         form.AddField("app_version", Application.version);
         form.AddField("guid", PlayerPrefs.GetString("user_guid"));
         form.AddField("background_fields", "");
+        form.AddField("consent_timestamp", timestamp);
         return form;
     }
 
     public IEnumerator ServerPost_guid(
         POSTType postType,
-        GameObject textErrorGO,
+        string timestamp,
         System.Action OnServerDone = null
     )
     {
-        WWWForm form = GetPOSTForm_guid();
+        WWWForm form = GetPOSTForm_guid(timestamp);
         string postURL = GetPOSTURL(postType);
 
         using (UnityWebRequest uwr = UnityWebRequest.Post(postURL, form))
@@ -214,11 +215,11 @@ public class NetworkManager : MonoBehaviour
             {
                 loadingIconGO.SetActive(false);
                 resultsButtonGO.SetActive(true);
-                StartCoroutine(ServerPost_feedback(POSTType.ASA_FEEDBACK));
                 Debug.Log("Here we are");
             }
         }
         OnServerDone?.Invoke();
+
     }
 
     private WWWForm GetPOSTForm_feedback(POSTType postType)

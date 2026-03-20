@@ -106,6 +106,8 @@ public class AdvancePanel : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI errorMessage;
 
+    public string timestamp;
+
     void OnEnable()
     {
         // This is for testing purposes
@@ -242,6 +244,8 @@ public class AdvancePanel : MonoBehaviour
         PlayerPrefs.SetInt("ConsentGiven", 1);
         PlayerPrefs.Save();
 
+        timestamp = System.DateTime.UtcNow.ToString("o");
+
         consentPopUpGO.SetActive(false);
         backgroundPopUpGO.SetActive(true);
     }
@@ -272,7 +276,7 @@ public class AdvancePanel : MonoBehaviour
                     taskPanelGO.SetActive(true);
 
                     StartCoroutine(
-                        NetworkManager.GetManager().ServerPost_guid(POSTType.ASA_CONSENT)
+                        NetworkManager.GetManager().ServerPost_guid(POSTType.ASA_CONSENT, timestamp)
                     );
                 }
             }
