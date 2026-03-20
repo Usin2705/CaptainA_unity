@@ -277,9 +277,6 @@ public class ASAPanel : MonoBehaviour
         loadingPopUpGO.SetActive(false);
         dimPanelASAGO.SetActive(false);
         feedbackPanelGO.SetActive(true);
-        StartCoroutine(
-            NetworkManager
-                .GetManager()
-                .ServerPost_feedback(POSTType.ASA_FEEDBACK));
+        StartCoroutine(NetworkManager.GetManager().ServerPost_feedback(POSTType.ASA_FEEDBACK));
     }
 }

@@ -219,7 +219,6 @@ public class NetworkManager : MonoBehaviour
             }
         }
         OnServerDone?.Invoke();
-
     }
 
     private WWWForm GetPOSTForm_feedback(POSTType postType)
