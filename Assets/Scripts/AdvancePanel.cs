@@ -78,12 +78,40 @@ public class AdvancePanel : MonoBehaviour
 
     public string self_rating = null;
 
+    public ToggleGroup genderOptions;
+
+    public ToggleGroup ageOptions;
+
+    [SerializeField]
+    private TMP_InputField motherTongueOptions;
+
+    [SerializeField]
+    private List<Toggle> otherLanguageOptions;
+
+    [SerializeField]
+    private Toggle languageOther;
+
+    [SerializeField]
+    private GameObject languageOtherFieldGO;
+
+    [SerializeField]
+    private TMP_InputField languageOtherField;
+
+    public ToggleGroup movedToFinlandOptions;
+
+    public ToggleGroup learnedFinnishOptions;
+
+    public ToggleGroup selfAssessmentOptions;
+
+    [SerializeField]
+    private TextMeshProUGUI errorMessage;
+
     void OnEnable()
     {
         // This is for testing purposes
-        PlayerPrefs.SetInt("InfoPopupSeen", 0);
-        PlayerPrefs.SetInt("ConsentGiven", 0);
-        PlayerPrefs.Save();
+        // PlayerPrefs.SetInt("InfoPopupSeen", 0);
+        // PlayerPrefs.SetInt("ConsentGiven", 0);
+        // PlayerPrefs.Save();
 
         refuseButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         acceptButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
@@ -105,6 +133,14 @@ public class AdvancePanel : MonoBehaviour
         refuseButtonGO.GetComponent<Button>().onClick.AddListener(() => RefuseConsent());
 
         sendButtonGO.GetComponent<Button>().onClick.AddListener(() => ValidateInformation());
+
+        languageOtherFieldGO.SetActive(false);
+        languageOther.onValueChanged.AddListener(isOn =>
+        {
+            languageOtherFieldGO.SetActive(isOn);
+        });
+
+        errorMessage.enabled = false;
 
         if (secretText == Secret.SECRET_TEXT)
         {
@@ -208,8 +244,6 @@ public class AdvancePanel : MonoBehaviour
 
         consentPopUpGO.SetActive(false);
         backgroundPopUpGO.SetActive(true);
-
-        StartCoroutine(NetworkManager.GetManager().ServerPost_guid(POSTType.ASA_CONSENT, null));
     }
 
     public void RefuseConsent()
@@ -220,10 +254,33 @@ public class AdvancePanel : MonoBehaviour
 
     public void ValidateInformation()
     {
-        backgroundPopUpGO.SetActive(false);
-        dimPanelGO.SetActive(false);
+        if (
+            genderOptions.AnyTogglesOn()
+            && ageOptions.AnyTogglesOn()
+            && movedToFinlandOptions.AnyTogglesOn()
+            && learnedFinnishOptions.AnyTogglesOn()
+            && selfAssessmentOptions.AnyTogglesOn()
+        )
+        {
+            if (!string.IsNullOrWhiteSpace(motherTongueOptions.text))
+            {
+                if (languageOther.isOn && !string.IsNullOrWhiteSpace(languageOtherField.text))
+                {
+                    backgroundPopUpGO.SetActive(false);
+                    dimPanelGO.SetActive(false);
 
-        taskPanelGO.SetActive(true);
+                    taskPanelGO.SetActive(true);
+
+                    StartCoroutine(
+                        NetworkManager.GetManager().ServerPost_guid(POSTType.ASA_CONSENT)
+                    );
+                }
+            }
+        }
+        else
+        {
+            errorMessage.enabled = true;
+        }
     }
 
     /* */
