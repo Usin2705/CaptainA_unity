@@ -7,6 +7,9 @@ using Microsoft.Win32.SafeHandles;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using TMPro;
+
+
 
 public class NetworkManager : MonoBehaviour
 {
@@ -34,6 +37,12 @@ public class NetworkManager : MonoBehaviour
     [SerializeField]
     GameObject resultsButtonGO;
 
+    [SerializeField]
+    TMP_InputField feedbackTextGO;
+
+    [SerializeField]
+    GameObject errorTextGO;
+
     static NetworkManager netWorkManager;
 
     // This is the URL to the ASR server
@@ -58,6 +67,7 @@ public class NetworkManager : MonoBehaviour
     public ASRResult2 asrResult2 { get; private set; }
     public string chatGPTTranscript { get; private set; }
     public string chatGPTGrading { get; private set; }
+
 
     [SerializeField]
     AdvancePanel AdvancePanel;
@@ -196,7 +206,8 @@ public class NetworkManager : MonoBehaviour
             )
             {
                 Debug.Log(uwr.error);
-
+                loadingIconGO.SetActive(false);
+                errorTextGO.SetActive(true);
                 OnServerDone?.Invoke();
                 throw new System.Exception(uwr.downloadHandler.text ?? uwr.error);
             }
@@ -222,13 +233,17 @@ public class NetworkManager : MonoBehaviour
     private WWWForm GetPOSTForm_feedback(POSTType postType)
     {
         WWWForm form = new WWWForm();
-        string input = AdvancePanel.self_rating.ToLower();
-        int value = int.Parse(input.Replace("rating", ""));
-        form.AddField("guid", PlayerPrefs.GetString("UserGuid"));
+
+        string input = AdvancePanel.self_rating;
+        int value = input[^1] - '0';
+        string comment = feedbackTextGO.text;
+        form.AddField("guid", PlayerPrefs.GetString("user_guid"));
         form.AddField("reaction_value", value);
         form.AddField("target_type", "assessment");
+        form.AddField("comment", comment);
 
-        Debug.Log(AdvancePanel.self_rating);
+        Debug.Log(value);
+        Debug.Log(comment);
 
         return form;
     }

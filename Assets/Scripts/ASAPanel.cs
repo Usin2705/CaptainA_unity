@@ -56,6 +56,9 @@ public class ASAPanel : MonoBehaviour
     [SerializeField]
     GameObject resultsButtonGO;
 
+    [SerializeField]
+    GameObject errorTextGO;
+
     [System.Serializable]
     public class TaskAttributes
     {
@@ -262,6 +265,7 @@ public class ASAPanel : MonoBehaviour
 
         loadingPopUpGO.SetActive(true);
         resultsButtonGO.SetActive(false);
+        errorTextGO.SetActive(false);
         loadingIconGO.SetActive(true);
         isLoading = true;
         dimPanelASAGO.SetActive(true);
