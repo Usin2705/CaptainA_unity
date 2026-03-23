@@ -8111,7 +8111,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 4. What other languages can you speak and use? *
+  m_text: 4. What other languages can you speak and use?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
   m_sharedMaterial: {fileID: -459825320126915412, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
@@ -38300,7 +38300,6 @@ MonoBehaviour:
   learnedFinnishOptions: {fileID: 149456313}
   selfAssessmentOptions: {fileID: 857957623}
   errorMessage: {fileID: 1225000242}
-  timestamp: 
 --- !u!1 &1165680312
 GameObject:
   m_ObjectHideFlags: 0

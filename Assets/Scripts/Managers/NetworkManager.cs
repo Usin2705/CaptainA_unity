@@ -113,23 +113,21 @@ public class NetworkManager : MonoBehaviour
         return form;
     }
 
-    private WWWForm GetPOSTForm_guid(string timestamp)
+    private WWWForm GetPOSTForm_guid()
     {
         WWWForm form = new WWWForm();
         form.AddField("app_version", Application.version);
-        form.AddField("guid", PlayerPrefs.GetString("user_guid"));
-        form.AddField("background_fields", "");
-        form.AddField("consent_timestamp", timestamp);
+        form.AddField("guid", PlayerPrefs.GetString("UserGuid"));
+        form.AddField("consent_timestamp", PlayerPrefs.GetString("ConsentTimestamp"));
+        form.AddField("background_form_timestamp", PlayerPrefs.GetString("BackgroundTimestamp"));
+        form.AddField("consent_accepted", PlayerPrefs.GetInt("ConsentGiven"));
+        form.AddField("background_form_completed", 1);
         return form;
     }
 
-    public IEnumerator ServerPost_guid(
-        POSTType postType,
-        string timestamp,
-        System.Action OnServerDone = null
-    )
+    public IEnumerator ServerPost_guid(POSTType postType, System.Action OnServerDone = null)
     {
-        WWWForm form = GetPOSTForm_guid(timestamp);
+        WWWForm form = GetPOSTForm_guid();
         string postURL = GetPOSTURL(postType);
 
         using (UnityWebRequest uwr = UnityWebRequest.Post(postURL, form))
@@ -166,7 +164,7 @@ public class NetworkManager : MonoBehaviour
             fileName: Const.ASA_FILENAME + ".wav",
             mimeType: "audio/wav"
         );
-        form.AddField("guid", PlayerPrefs.GetString("user_guid"));
+        form.AddField("guid", PlayerPrefs.GetString("UserGuid"));
 
         return form;
     }
@@ -226,7 +224,7 @@ public class NetworkManager : MonoBehaviour
         WWWForm form = new WWWForm();
         string input = AdvancePanel.self_rating.ToLower();
         int value = int.Parse(input.Replace("rating", ""));
-        form.AddField("guid", PlayerPrefs.GetString("user_guid"));
+        form.AddField("guid", PlayerPrefs.GetString("UserGuid"));
         form.AddField("reaction_value", value);
         form.AddField("target_type", "assessment");
 

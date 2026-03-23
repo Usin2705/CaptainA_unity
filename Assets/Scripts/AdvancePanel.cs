@@ -106,14 +106,12 @@ public class AdvancePanel : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI errorMessage;
 
-    public string timestamp;
-
     void OnEnable()
     {
         // This is for testing purposes
-        // PlayerPrefs.SetInt("InfoPopupSeen", 0);
-        // PlayerPrefs.SetInt("ConsentGiven", 0);
-        // PlayerPrefs.Save();
+        PlayerPrefs.SetInt("BackgroundFormCompleted", 0);
+        PlayerPrefs.SetInt("ConsentGiven", 0);
+        PlayerPrefs.Save();
 
         refuseButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         acceptButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
@@ -134,7 +132,7 @@ public class AdvancePanel : MonoBehaviour
         acceptButtonGO.GetComponent<Button>().onClick.AddListener(() => AcceptConsent());
         refuseButtonGO.GetComponent<Button>().onClick.AddListener(() => RefuseConsent());
 
-        sendButtonGO.GetComponent<Button>().onClick.AddListener(() => ValidateInformation());
+        sendButtonGO.GetComponent<Button>().onClick.AddListener(() => GetUserInput());
 
         languageOtherFieldGO.SetActive(false);
         languageOther.onValueChanged.AddListener(isOn =>
@@ -224,9 +222,12 @@ public class AdvancePanel : MonoBehaviour
 
     public void OnASAButtonClicked()
     {
-        if (PlayerPrefs.GetInt("ConsentGiven", 0) == 1)
+        if (
+            PlayerPrefs.GetInt("ConsentGiven", 0) == 1
+            && PlayerPrefs.GetInt("BackgroundFormCompleted", 0) == 1
+        )
         {
-            Debug.Log(PlayerPrefs.GetString("user_guid"));
+            Debug.Log(PlayerPrefs.GetString("UserGuid"));
             taskPanelGO.SetActive(true);
         }
         else
@@ -239,12 +240,13 @@ public class AdvancePanel : MonoBehaviour
     public void AcceptConsent()
     {
         string guid = Guid.NewGuid().ToString();
-        PlayerPrefs.SetString("user_guid", guid);
+        PlayerPrefs.SetString("UserGuid", guid);
 
         PlayerPrefs.SetInt("ConsentGiven", 1);
-        PlayerPrefs.Save();
 
-        timestamp = System.DateTime.UtcNow.ToString("o");
+        string timestamp = System.DateTime.UtcNow.ToString("o");
+        PlayerPrefs.SetString("ConsentTimestamp", timestamp);
+        PlayerPrefs.Save();
 
         consentPopUpGO.SetActive(false);
         backgroundPopUpGO.SetActive(true);
@@ -256,7 +258,53 @@ public class AdvancePanel : MonoBehaviour
         dimPanelGO.SetActive(false);
     }
 
-    public void ValidateInformation()
+    public void GetUserInput()
+    {
+        bool isValid = ValidateInformation();
+        if (!isValid)
+        {
+            return;
+        }
+
+        var gender = genderOptions
+            .ActiveToggles()
+            .FirstOrDefault()
+            .gameObject.GetComponent<OptionValue>()
+            .value;
+        var age = ageOptions
+            .ActiveToggles()
+            .FirstOrDefault()
+            .gameObject.GetComponent<OptionValue>()
+            .value;
+        // var motherTongue =
+        // var otherLanguages =
+        // var movedToFinland =
+        var learnedFinnish = learnedFinnishOptions
+            .ActiveToggles()
+            .FirstOrDefault()
+            .gameObject.GetComponent<OptionValue>()
+            .value;
+        var selfAssessment = selfAssessmentOptions
+            .ActiveToggles()
+            .FirstOrDefault()
+            .gameObject.GetComponent<OptionValue>()
+            .value;
+
+        string timestamp = System.DateTime.UtcNow.ToString("o");
+        PlayerPrefs.SetString("BackgroundTimestamp", timestamp);
+        PlayerPrefs.Save();
+
+        StartCoroutine(NetworkManager.GetManager().ServerPost_guid(POSTType.ASA_CONSENT));
+
+        PlayerPrefs.SetInt("BackgroundFormCompleted", 1);
+        PlayerPrefs.Save();
+
+        backgroundPopUpGO.SetActive(false);
+        dimPanelGO.SetActive(false);
+        taskPanelGO.SetActive(true);
+    }
+
+    public bool ValidateInformation()
     {
         if (
             genderOptions.AnyTogglesOn()
@@ -264,28 +312,19 @@ public class AdvancePanel : MonoBehaviour
             && movedToFinlandOptions.AnyTogglesOn()
             && learnedFinnishOptions.AnyTogglesOn()
             && selfAssessmentOptions.AnyTogglesOn()
+            && !string.IsNullOrWhiteSpace(motherTongueOptions.text)
         )
         {
-            if (!string.IsNullOrWhiteSpace(motherTongueOptions.text))
+            if (languageOther.isOn && string.IsNullOrWhiteSpace(languageOtherField.text))
             {
-                if (languageOther.isOn && string.IsNullOrWhiteSpace(languageOtherField.text))
-                {
-                    errorMessage.enabled = true;
-                }
-                else
-                {
-                    backgroundPopUpGO.SetActive(false);
-                    dimPanelGO.SetActive(false);
-
-                    taskPanelGO.SetActive(true);
-
-                    StartCoroutine(
-                        NetworkManager.GetManager().ServerPost_guid(POSTType.ASA_CONSENT, timestamp)
-                    );
-                }
+                errorMessage.enabled = true;
+                return false;
             }
+
+            return true;
         }
         errorMessage.enabled = true;
+        return false;
     }
 
     /* */
