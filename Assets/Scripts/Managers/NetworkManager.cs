@@ -4,12 +4,10 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
-using TMPro;
-
-
 
 public class NetworkManager : MonoBehaviour
 {
@@ -67,7 +65,6 @@ public class NetworkManager : MonoBehaviour
     public ASRResult2 asrResult2 { get; private set; }
     public string chatGPTTranscript { get; private set; }
     public string chatGPTGrading { get; private set; }
-
 
     [SerializeField]
     AdvancePanel AdvancePanel;
