@@ -6,6 +6,18 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class BackgroundFormData
+{
+    public string gender;
+    public string age;
+    public List<string> motherTongue;
+    public List<string> otherLanguages;
+    public string movedToFinland;
+    public string learnedFinnish;
+    public string selfAssessment;
+}
+
 public class AdvancePanel : MonoBehaviour
 {
     [SerializeField]
@@ -86,7 +98,7 @@ public class AdvancePanel : MonoBehaviour
     private TMP_InputField motherTongueOptions;
 
     [SerializeField]
-    private List<Toggle> otherLanguageOptions;
+    private GameObject otherLanguageOptionsGO;
 
     [SerializeField]
     private Toggle languageOther;
@@ -109,9 +121,9 @@ public class AdvancePanel : MonoBehaviour
     void OnEnable()
     {
         // This is for testing purposes
-        PlayerPrefs.SetInt("BackgroundFormCompleted", 0);
-        PlayerPrefs.SetInt("ConsentGiven", 0);
-        PlayerPrefs.Save();
+        // PlayerPrefs.SetInt("BackgroundFormCompleted", 0);
+        // PlayerPrefs.SetInt("ConsentGiven", 0);
+        // PlayerPrefs.Save();
 
         refuseButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         acceptButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
@@ -271,19 +283,39 @@ public class AdvancePanel : MonoBehaviour
             .FirstOrDefault()
             .gameObject.GetComponent<OptionValue>()
             .value;
+
         var age = ageOptions
             .ActiveToggles()
             .FirstOrDefault()
             .gameObject.GetComponent<OptionValue>()
             .value;
-        // var motherTongue =
-        // var otherLanguages =
-        // var movedToFinland =
+
+        var motherTongue = new List<string> { motherTongueOptions.text };
+
+        List<string> otherLanguages = new();
+        foreach (var toggle in otherLanguageOptionsGO.GetComponentsInChildren<Toggle>())
+        {
+            if (toggle.isOn)
+            {
+                otherLanguages.Add(toggle.gameObject.GetComponent<OptionValue>().value);
+            }
+        }
+
+        var otherLanguagesTextField = languageOtherField.text;
+        otherLanguages.Add(otherLanguagesTextField);
+
+        var movedToFinland = movedToFinlandOptions
+            .ActiveToggles()
+            .FirstOrDefault()
+            .gameObject.GetComponent<OptionValue>()
+            .value;
+
         var learnedFinnish = learnedFinnishOptions
             .ActiveToggles()
             .FirstOrDefault()
             .gameObject.GetComponent<OptionValue>()
             .value;
+
         var selfAssessment = selfAssessmentOptions
             .ActiveToggles()
             .FirstOrDefault()
@@ -294,7 +326,21 @@ public class AdvancePanel : MonoBehaviour
         PlayerPrefs.SetString("BackgroundTimestamp", timestamp);
         PlayerPrefs.Save();
 
-        StartCoroutine(NetworkManager.GetManager().ServerPost_guid(POSTType.ASA_CONSENT));
+        var data = new BackgroundFormData
+        {
+            gender = gender,
+            age = age,
+            motherTongue = motherTongue,
+            otherLanguages = otherLanguages,
+            movedToFinland = movedToFinland,
+            learnedFinnish = learnedFinnish,
+            selfAssessment = selfAssessment,
+        };
+
+        var jsonData = JsonUtility.ToJson(data);
+        Debug.Log(jsonData);
+
+        StartCoroutine(NetworkManager.GetManager().ServerPost_guid(POSTType.ASA_CONSENT, jsonData));
 
         PlayerPrefs.SetInt("BackgroundFormCompleted", 1);
         PlayerPrefs.Save();

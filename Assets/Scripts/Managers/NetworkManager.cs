@@ -1,13 +1,9 @@
-using System;
 using System.Collections;
 using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using Microsoft.Win32.SafeHandles;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class NetworkManager : MonoBehaviour
 {
@@ -120,46 +116,50 @@ public class NetworkManager : MonoBehaviour
         return form;
     }
 
-    private WWWForm GetPOSTForm_guid()
+    private WWWForm GetPOSTForm_guid(string data)
     {
         WWWForm form = new WWWForm();
         form.AddField("app_version", Application.version);
         form.AddField("guid", PlayerPrefs.GetString("UserGuid"));
         form.AddField("consent_timestamp", PlayerPrefs.GetString("ConsentTimestamp"));
+        form.AddField("background_fields", data);
         form.AddField("background_form_timestamp", PlayerPrefs.GetString("BackgroundTimestamp"));
         form.AddField("consent_accepted", PlayerPrefs.GetInt("ConsentGiven"));
         form.AddField("background_form_completed", 1);
+
         return form;
     }
 
-    public IEnumerator ServerPost_guid(POSTType postType, System.Action OnServerDone = null)
+    public IEnumerator ServerPost_guid(
+        POSTType postType,
+        string data,
+        System.Action OnServerDone = null
+    )
     {
-        WWWForm form = GetPOSTForm_guid();
+        WWWForm form = GetPOSTForm_guid(data);
         string postURL = GetPOSTURL(postType);
 
-        using (UnityWebRequest uwr = UnityWebRequest.Post(postURL, form))
+        using UnityWebRequest uwr = UnityWebRequest.Post(postURL, form);
+        uwr.timeout = Const.TIME_OUT_SECS;
+        yield return uwr.SendWebRequest();
+
+        if (
+            uwr.result == UnityWebRequest.Result.ConnectionError
+            || uwr.result == UnityWebRequest.Result.ProtocolError
+        )
         {
-            uwr.timeout = Const.TIME_OUT_SECS;
-            yield return uwr.SendWebRequest();
+            Debug.Log(uwr.error);
 
-            if (
-                uwr.result == UnityWebRequest.Result.ConnectionError
-                || uwr.result == UnityWebRequest.Result.ProtocolError
-            )
-            {
-                Debug.Log(uwr.error);
-
-                OnServerDone?.Invoke();
-                throw new System.Exception(uwr.downloadHandler.text ?? uwr.error);
-            }
-            else
-            {
-                Debug.Log("Form upload complete!");
-
-                Debug.Log(uwr.downloadHandler.text);
-            }
             OnServerDone?.Invoke();
+            throw new System.Exception(uwr.downloadHandler.text ?? uwr.error);
         }
+        else
+        {
+            Debug.Log("Form upload complete!");
+
+            Debug.Log(uwr.downloadHandler.text);
+        }
+        OnServerDone?.Invoke();
     }
 
     private WWWForm GetPOSTForm_ASA(POSTType postType, string transcript, byte[] wavBuffer)
@@ -229,14 +229,15 @@ public class NetworkManager : MonoBehaviour
 
     private WWWForm GetPOSTForm_feedback(POSTType postType)
     {
-        WWWForm form = new WWWForm();
+        WWWForm form = new();
 
         string input = AdvancePanel.self_rating;
         int value = input[^1] - '0';
         string comment = feedbackTextGO.text;
         form.AddField("guid", PlayerPrefs.GetString("user_guid"));
         form.AddField("reaction_value", value);
-        form.AddField("target_type", "assessment");
+        form.AddField("type", "self_assessment");
+        form.AddField("assessment_id", 1);
         form.AddField("comment", comment);
 
         Debug.Log(value);
