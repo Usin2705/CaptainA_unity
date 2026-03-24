@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -108,6 +107,18 @@ public class AdvancePanel : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI errorMessage;
+
+    [System.Serializable]
+    public class BackgroundFormData
+    {
+        public (string, string) gender;
+        public (string, string) age;
+        public (string, string) motherTongue;
+        public (string, string) otherLanguages;
+        public (string, string) movedToFinland;
+        public (string, string) learnedFinnish;
+        public (string, string) selfAssessment;
+    }
 
     void OnEnable()
     {
@@ -341,15 +352,18 @@ public class AdvancePanel : MonoBehaviour
         PlayerPrefs.SetString("BackgroundTimestamp", timestamp);
         PlayerPrefs.Save();
 
-        Dictionary<string, string> backgroundFormData = new Dictionary<string, string>
+        string motherWrapped = string.Join("\n", motherTongue);
+        string otherWrapped = string.Join("\n", otherLanguages);
+
+        BackgroundFormData backgroundFormData = new()
         {
-            ["gender"] = gender,
-            ["age_group"] = age,
-            ["native_languages"] = motherTongue,
-            ["other_languages"] = otherLanguages,
-            ["moved_to_finland"] = movedToFinland,
-            ["finnish_learning_duration"] = learnedFinnish,
-            ["finnish_self_assessment"] = selfAssessment,
+            gender = ("gender", gender),
+            age = ("age_group", age),
+            motherTongue = ("native_languages", motherWrapped),
+            otherLanguages = ("other_languages", otherWrapped),
+            movedToFinland = ("moved_to_finland", movedToFinland),
+            learnedFinnish = ("finnish_learning_duration", learnedFinnish),
+            selfAssessment = ("finnish_self_assessment", selfAssessment),
         };
 
         StartCoroutine(

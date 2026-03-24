@@ -119,17 +119,20 @@ public class NetworkManager : MonoBehaviour
         return form;
     }
 
-    private WWWForm GetPOSTForm_guid(Dictionary<string, string> backgroundFields)
+    private WWWForm GetPOSTForm_guid(AdvancePanel.BackgroundFormData backgroundFields)
     {
         WWWForm form = new WWWForm();
         form.AddField("app_version", PlayerPrefs.GetString("AppVersion"));
         form.AddField("guid", PlayerPrefs.GetString("UserGuid"));
         form.AddField("consent_timestamp", PlayerPrefs.GetString("ConsentTimestamp"));
 
-        foreach (var key in backgroundFields)
-        {
-            form.AddField(key, backgroundFields[key]);
-        }
+        form.AddField(backgroundFields.gender.Item1, backgroundFields.gender.Item2);
+        form.AddField(backgroundFields.age.Item1, backgroundFields.age.Item2);
+        form.AddField(backgroundFields.motherTongue.Item1, backgroundFields.motherTongue.Item2);
+        form.AddField(backgroundFields.otherLanguages.Item1, backgroundFields.otherLanguages.Item2);
+        form.AddField(backgroundFields.movedToFinland.Item1, backgroundFields.movedToFinland.Item2);
+        form.AddField(backgroundFields.learnedFinnish.Item1, backgroundFields.learnedFinnish.Item2);
+        form.AddField(backgroundFields.selfAssessment.Item1, backgroundFields.selfAssessment.Item2);
 
         form.AddField("background_form_timestamp", PlayerPrefs.GetString("BackgroundTimestamp"));
         form.AddField("consent_accepted", PlayerPrefs.GetInt("ConsentGiven"));
@@ -140,11 +143,11 @@ public class NetworkManager : MonoBehaviour
 
     public IEnumerator ServerPost_guid(
         POSTType postType,
-        string data,
+        AdvancePanel.BackgroundFormData backgroundFields,
         System.Action OnServerDone = null
     )
     {
-        WWWForm form = GetPOSTForm_guid(data);
+        WWWForm form = GetPOSTForm_guid(backgroundFields);
         string postURL = GetPOSTURL(postType);
 
         using UnityWebRequest uwr = UnityWebRequest.Post(postURL, form);
