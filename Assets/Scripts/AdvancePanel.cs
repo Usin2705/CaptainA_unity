@@ -216,6 +216,9 @@ public class AdvancePanel : MonoBehaviour
         feedbackPanelGO.SetActive(false);
         taskPanelGO.SetActive(false);
         loadingPopUpGO.SetActive(false);
+        dimPanelGO.SetActive(false);
+        consentPopUpGO.SetActive(false);
+        backgroundPopUpGO.SetActive(false);
 
         // Check if the instruction panel has been shown before
         if (!PlayerPrefs.HasKey(Const.PREF_INS_ADVANCE))
@@ -246,7 +249,20 @@ public class AdvancePanel : MonoBehaviour
             Debug.Log(PlayerPrefs.GetString("UserGuid"));
             taskPanelGO.SetActive(true);
         }
-        else
+
+        if (
+            PlayerPrefs.GetInt("ConsentGiven", 0) == 1
+            && PlayerPrefs.GetInt("BackgroundFormCompleted", 0) == 0
+        )
+        {
+            backgroundPopUpGO.SetActive(true);
+            dimPanelGO.SetActive(true);
+        }
+
+        if (
+            PlayerPrefs.GetInt("ConsentGiven", 0) == 0
+            && PlayerPrefs.GetInt("BackgroundFormCompleted", 0) == 0
+        )
         {
             consentPopUpGO.SetActive(true);
             dimPanelGO.SetActive(true);

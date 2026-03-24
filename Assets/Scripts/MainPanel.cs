@@ -150,6 +150,11 @@ public class MainPanel : MonoBehaviour
 
     void OnEnable()
     {
+        // This is for testing purposes
+        // PlayerPrefs.SetInt("BackgroundFormCompleted", 0);
+        // PlayerPrefs.SetInt("ConsentGiven", 0);
+        // PlayerPrefs.Save();
+
         // Check if the instruction for MainPanel is already shown
         if (!PlayerPrefs.HasKey(Const.PREF_INS_MAIN))
         {
