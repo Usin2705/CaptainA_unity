@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Security.Authentication.ExtendedProtection;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -76,6 +77,28 @@ public class FeedbackPanel : MonoBehaviour
 
     [SerializeField]
     GameObject infoBackButtonGO;
+
+    [SerializeField]
+    GameObject feedbackButtonGO;
+
+    [SerializeField]
+    GameObject feedbackPopUpGO;
+
+    [SerializeField]
+    GameObject feedbackBackButtonGO;
+
+    [SerializeField]
+    GameObject feedbackSendButtonGO;
+
+    public ToggleGroup accuracyRatingOptions;
+
+    public ToggleGroup understandingRatingOptions;
+
+    [SerializeField]
+    TMP_InputField accuracyFeedbackTextGO;
+
+    [SerializeField]
+    TMP_InputField understandingFeedbackTextGO;
 
     [System.Serializable]
     public class PopupAttributes
@@ -170,6 +193,33 @@ public class FeedbackPanel : MonoBehaviour
             {
                 infoPopupGO.SetActive(true);
                 dimPanelGO.SetActive(true);
+            });
+
+        feedbackButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                feedbackPopUpGO.SetActive(true);
+                dimPanelGO.SetActive(true);
+            });
+
+        feedbackBackButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                accuracyRatingOptions.SetAllTogglesOff();
+                accuracyFeedbackTextGO.text = "";
+                understandingRatingOptions.SetAllTogglesOff();
+                understandingFeedbackTextGO.text = "";
+                feedbackPopUpGO.SetActive(false);
+                dimPanelGO.SetActive(false);
+            });
+
+        feedbackSendButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                Debug.Log("TODO");
             });
 
         if (PlayerPrefs.GetInt("InfoPopupSeen", 0) == 0)
