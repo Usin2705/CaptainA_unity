@@ -119,6 +119,7 @@ public class ASAPanel : MonoBehaviour
         pauseButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         sendButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         replayButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
+        resultsButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
 
         recordButtonGO.GetComponent<Button>().onClick.AddListener(() => OnRecordButtonClicked());
         pauseButtonGO.GetComponent<Button>().onClick.AddListener(() => OnPauseButtonClicked());
@@ -295,10 +296,18 @@ public class ASAPanel : MonoBehaviour
 
         dimPanelASAGO.SetActive(false);
         feedbackPanelGO.SetActive(true);
-        StartCoroutine(
+        if (AdvancePanel.self_rating != null)
+        {
+            Debug.Log("Test");
+            StartCoroutine(
             NetworkManager
                 .GetManager()
                 .ServerPost_feedback(POSTType.ASA_FEEDBACK, "self_assessment")
-        );
+        );}
+        else
+        {
+            return;
+        }
+        
     }
 }
