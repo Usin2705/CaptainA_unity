@@ -89,7 +89,6 @@ public class AdvancePanel : MonoBehaviour
     [SerializeField]
     GameObject loadingPopUpGO;
 
-
     public ToggleGroup ratingOptions;
 
     public string self_rating = null;
