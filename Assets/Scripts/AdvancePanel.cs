@@ -86,6 +86,10 @@ public class AdvancePanel : MonoBehaviour
     [SerializeField]
     GameObject describePanelCGO;
 
+    [SerializeField]
+    GameObject loadingPopUpGO;
+
+
     public ToggleGroup ratingOptions;
 
     public string self_rating = null;
@@ -212,6 +216,7 @@ public class AdvancePanel : MonoBehaviour
         describePanelCGO.SetActive(false);
         feedbackPanelGO.SetActive(false);
         taskPanelGO.SetActive(false);
+        loadingPopUpGO.SetActive(false);
 
         // Check if the instruction panel has been shown before
         if (!PlayerPrefs.HasKey(Const.PREF_INS_ADVANCE))
@@ -255,6 +260,8 @@ public class AdvancePanel : MonoBehaviour
         PlayerPrefs.SetString("UserGuid", guid);
 
         PlayerPrefs.SetInt("ConsentGiven", 1);
+
+        PlayerPrefs.SetString("AppVersion", Application.version);
 
         string timestamp = System.DateTime.UtcNow.ToString("o");
         PlayerPrefs.SetString("ConsentTimestamp", timestamp);

@@ -39707,6 +39707,7 @@ MonoBehaviour:
   describePanelAGO: {fileID: 1312077216}
   describePanelBGO: {fileID: 1139878583}
   describePanelCGO: {fileID: 1450252337}
+  loadingPopUpGO: {fileID: 1012582868}
   ratingOptions: {fileID: 949766071}
   self_rating: 
   genderOptions: {fileID: 1767757977}
@@ -65351,7 +65352,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: You have to fill the background form to get GUID
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
   m_sharedMaterial: {fileID: -459825320126915412, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}

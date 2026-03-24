@@ -119,7 +119,7 @@ public class NetworkManager : MonoBehaviour
     private WWWForm GetPOSTForm_guid(string data)
     {
         WWWForm form = new WWWForm();
-        form.AddField("app_version", Application.version);
+        form.AddField("app_version", PlayerPrefs.GetString("AppVersion"));
         form.AddField("guid", PlayerPrefs.GetString("UserGuid"));
         form.AddField("consent_timestamp", PlayerPrefs.GetString("ConsentTimestamp"));
         form.AddField("background_fields", data);
@@ -227,7 +227,7 @@ public class NetworkManager : MonoBehaviour
         OnServerDone?.Invoke();
     }
 
-    private WWWForm GetPOSTForm_feedback(POSTType postType)
+    private WWWForm GetPOSTForm_feedback(POSTType postType, string feedback_type)
     {
         WWWForm form = new();
 
@@ -236,7 +236,7 @@ public class NetworkManager : MonoBehaviour
         string comment = feedbackTextGO.text;
         form.AddField("guid", PlayerPrefs.GetString("user_guid"));
         form.AddField("reaction_value", value);
-        form.AddField("type", "self_assessment");
+        form.AddField("type", feedback_type);
         form.AddField("assessment_id", 1);
         form.AddField("comment", comment);
 
@@ -248,11 +248,12 @@ public class NetworkManager : MonoBehaviour
 
     public IEnumerator ServerPost_feedback(
         POSTType postType,
+        string feedback_type,
         System.Action OnServerDone = null,
         GameObject warningImageGO = null
     )
     {
-        WWWForm form = GetPOSTForm_feedback(postType);
+        WWWForm form = GetPOSTForm_feedback(postType, feedback_type);
 
         string postURL = GetPOSTURL(postType);
 
