@@ -6,18 +6,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public class BackgroundFormData
-{
-    public string gender;
-    public string age;
-    public List<string> motherTongue;
-    public List<string> otherLanguages;
-    public string movedToFinland;
-    public string learnedFinnish;
-    public string selfAssessment;
-}
-
 public class AdvancePanel : MonoBehaviour
 {
     [SerializeField]
@@ -353,21 +341,18 @@ public class AdvancePanel : MonoBehaviour
         PlayerPrefs.SetString("BackgroundTimestamp", timestamp);
         PlayerPrefs.Save();
 
-        var data = new BackgroundFormData
+        Dictionary<string, string> backgroundFormData = new Dictionary<string, string>
         {
-            gender = gender,
-            age = age,
-            motherTongue = motherTongue,
-            otherLanguages = otherLanguages,
-            movedToFinland = movedToFinland,
-            learnedFinnish = learnedFinnish,
-            selfAssessment = selfAssessment,
+            ["gender"] = gender,
+            ["age"] = age,
+            ["motherTongue"] = string.Join(",", motherTongue),
+            ["otherLanguages"] = string.Join(",", otherLanguages),
+            ["movedToFinland"] = movedToFinland,
+            ["learnedFinnish"] = learnedFinnish,
+            ["selfAssessment"] = selfAssessment
         };
 
-        var jsonData = JsonUtility.ToJson(data);
-        Debug.Log(jsonData);
-
-        StartCoroutine(NetworkManager.GetManager().ServerPost_guid(POSTType.ASA_CONSENT, jsonData));
+        StartCoroutine(NetworkManager.GetManager().ServerPost_guid(POSTType.ASA_CONSENT, backgroundFormData));
 
         PlayerPrefs.SetInt("BackgroundFormCompleted", 1);
         PlayerPrefs.Save();

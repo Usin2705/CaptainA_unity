@@ -119,13 +119,18 @@ public class NetworkManager : MonoBehaviour
         return form;
     }
 
-    private WWWForm GetPOSTForm_guid(string data)
+    private WWWForm GetPOSTForm_guid(Dictionary<string, string> backgroundFields)
     {
         WWWForm form = new WWWForm();
         form.AddField("app_version", PlayerPrefs.GetString("AppVersion"));
         form.AddField("guid", PlayerPrefs.GetString("UserGuid"));
         form.AddField("consent_timestamp", PlayerPrefs.GetString("ConsentTimestamp"));
-        form.AddField("background_fields", data);
+
+        foreach (var key in backgroundFields)
+        {
+            form.AddField(key, backgroundFields[key]);
+        }
+
         form.AddField("background_form_timestamp", PlayerPrefs.GetString("BackgroundTimestamp"));
         form.AddField("consent_accepted", PlayerPrefs.GetInt("ConsentGiven"));
         form.AddField("background_form_completed", 1);
@@ -427,8 +432,8 @@ public class NetworkManager : MonoBehaviour
 			""prompt"": ""{prompt.Replace("\"", "\\\"")}"",
 			""model"": ""dall-e-3"",
 			""n"": 1,
-			""size"": ""1024x1024"",			
-			""quality"": ""hd"",			
+			""size"": ""1024x1024"",
+			""quality"": ""hd"",
 			""style"": ""natural"",
 			""response_format"": ""url""
 		}}";
@@ -582,7 +587,7 @@ public class NetworkManager : MonoBehaviour
         string jsonData =
             $@"
 		{{
-			""model"": ""tts-1"",	
+			""model"": ""tts-1"",
 			""input"": ""{transcript}"",
 			""voice"": ""nova""
 		}}";
@@ -727,7 +732,7 @@ public class NetworkManager : MonoBehaviour
 								{{
 									""type"": ""text"",
 									""text"": ""{gradingInstructions}""
-								}}					
+								}}
 							]
 						}},
 						{{
@@ -739,11 +744,11 @@ public class NetworkManager : MonoBehaviour
 								}},
 								{{
 									""type"": ""image_url"",
-									""image_url"": 
+									""image_url"":
 										{{
 											""url"": ""data:image/jpeg;base64,{base64Image}""
-										}}	
-								}}	
+										}}
+								}}
 							]
 						}}
 					],
@@ -875,7 +880,7 @@ public class NetworkManager : MonoBehaviour
         string jsonData =
             $@"
         {{
-            ""model"": ""gpt-4-vision-preview"",  
+            ""model"": ""gpt-4-vision-preview"",
             ""messages"": [
                 {{""role"": ""system"", ""content"": ""{gradingInstructions}""}},
                 {{""role"": ""user"", ""content"": [
