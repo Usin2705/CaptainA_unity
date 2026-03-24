@@ -352,7 +352,9 @@ public class AdvancePanel : MonoBehaviour
             ["finnish_self_assessment"] = selfAssessment,
         };
 
-        StartCoroutine(NetworkManager.GetManager().ServerPost_guid(POSTType.ASA_CONSENT, backgroundFormData));
+        StartCoroutine(
+            NetworkManager.GetManager().ServerPost_guid(POSTType.ASA_CONSENT, backgroundFormData)
+        );
 
         PlayerPrefs.SetInt("BackgroundFormCompleted", 1);
         PlayerPrefs.Save();
