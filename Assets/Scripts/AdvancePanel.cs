@@ -344,12 +344,12 @@ public class AdvancePanel : MonoBehaviour
         Dictionary<string, string> backgroundFormData = new Dictionary<string, string>
         {
             ["gender"] = gender,
-            ["age"] = age,
-            ["motherTongue"] = string.Join(",", motherTongue),
-            ["otherLanguages"] = string.Join(",", otherLanguages),
-            ["movedToFinland"] = movedToFinland,
-            ["learnedFinnish"] = learnedFinnish,
-            ["selfAssessment"] = selfAssessment
+            ["age_group"] = age,
+            ["native_languages"] = motherTongue,
+            ["other_languages"] = otherLanguages,
+            ["moved_to_finland"] = movedToFinland,
+            ["finnish_learning_duration"] = learnedFinnish,
+            ["finnish_self_assessment"] = selfAssessment,
         };
 
         StartCoroutine(NetworkManager.GetManager().ServerPost_guid(POSTType.ASA_CONSENT, backgroundFormData));
