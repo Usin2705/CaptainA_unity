@@ -269,6 +269,11 @@ public class AdvancePanel : MonoBehaviour
         }
     }
 
+    public void LinkButtonPressed()
+    {
+        Application.OpenURL("https://aalto-speech.github.io/privacy-notices/saysuomi-privacy.html");
+    }
+
     public void AcceptConsent()
     {
         string guid = Guid.NewGuid().ToString();
@@ -441,8 +446,11 @@ public class AdvancePanel : MonoBehaviour
 
     public void feedbackWhileLoading()
     {
-        var selected = ratingOptions.ActiveToggles().FirstOrDefault();
-        self_rating = selected.name;
-        Debug.Log(self_rating);
+        if (ratingOptions.AnyTogglesOn())
+        {
+            var selected = ratingOptions.ActiveToggles().FirstOrDefault();
+            self_rating = selected.name;
+            Debug.Log(self_rating);
+        }
     }
 }

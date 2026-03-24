@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Numerics;
 using System.Xml;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -58,6 +59,14 @@ public class ASAPanel : MonoBehaviour
 
     [SerializeField]
     GameObject errorTextGO;
+
+    public ToggleGroup ratingOptions;
+
+    [SerializeField]
+    AdvancePanel AdvancePanel;
+
+    [SerializeField]
+    TMP_InputField feedbackTextGO;
 
     [System.Serializable]
     public class TaskAttributes
@@ -265,6 +274,9 @@ public class ASAPanel : MonoBehaviour
             );
 
         loadingPopUpGO.SetActive(true);
+        ratingOptions.SetAllTogglesOff();
+        AdvancePanel.self_rating = null;
+        feedbackTextGO.text = "";
         resultsButtonGO.SetActive(false);
         errorTextGO.SetActive(false);
         loadingIconGO.SetActive(true);
@@ -280,6 +292,7 @@ public class ASAPanel : MonoBehaviour
     public void OnResultsButtonClicked()
     {
         loadingPopUpGO.SetActive(false);
+
         dimPanelASAGO.SetActive(false);
         feedbackPanelGO.SetActive(true);
         StartCoroutine(
