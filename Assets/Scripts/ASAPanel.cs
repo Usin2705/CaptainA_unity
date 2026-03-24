@@ -275,7 +275,7 @@ public class ASAPanel : MonoBehaviour
             );
 
         loadingPopUpGO.SetActive(true);
-        ratingOptions.SetAllTogglesOff();
+
         AdvancePanel.self_rating = null;
         feedbackTextGO.text = "";
         resultsButtonGO.SetActive(false);
@@ -292,6 +292,7 @@ public class ASAPanel : MonoBehaviour
 
     public void OnResultsButtonClicked()
     {
+        ratingOptions.SetAllTogglesOff();
         loadingPopUpGO.SetActive(false);
 
         dimPanelASAGO.SetActive(false);

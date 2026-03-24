@@ -244,8 +244,9 @@ public class NetworkManager : MonoBehaviour
         form.AddField("assessment_id", currentTask);
         form.AddField("comment", comment);
 
-        Debug.Log(currentTask);
-
+        Debug.Log("Current task: " + currentTask);
+        Debug.Log("Rating value: " + value);
+        Debug.Log("Comment: " + comment);
         return form;
     }
 
