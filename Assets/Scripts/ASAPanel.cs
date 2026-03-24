@@ -300,14 +300,14 @@ public class ASAPanel : MonoBehaviour
         {
             Debug.Log("Test");
             StartCoroutine(
-            NetworkManager
-                .GetManager()
-                .ServerPost_feedback(POSTType.ASA_FEEDBACK, "self_assessment")
-        );}
+                NetworkManager
+                    .GetManager()
+                    .ServerPost_feedback(POSTType.ASA_FEEDBACK, "self_assessment")
+            );
+        }
         else
         {
             return;
         }
-        
     }
 }
