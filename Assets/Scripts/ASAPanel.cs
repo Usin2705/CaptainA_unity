@@ -91,7 +91,7 @@ public class ASAPanel : MonoBehaviour
 
     private float currentTime = 0;
 
-    private int currentTaskSelected = -1;
+    public int currentTaskSelected = -1;
 
     private AudioClip recording;
 

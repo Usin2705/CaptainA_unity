@@ -65,6 +65,9 @@ public class NetworkManager : MonoBehaviour
     [SerializeField]
     AdvancePanel AdvancePanel;
 
+    [SerializeField]
+    ASAPanel ASAPanel;
+
     void Awake()
     {
         if (netWorkManager != null)
@@ -237,11 +240,11 @@ public class NetworkManager : MonoBehaviour
         form.AddField("guid", PlayerPrefs.GetString("user_guid"));
         form.AddField("reaction_value", value);
         form.AddField("type", feedback_type);
-        form.AddField("assessment_id", 1);
+        int currentTask = ASAPanel.currentTaskSelected;
+        form.AddField("assessment_id", currentTask);
         form.AddField("comment", comment);
 
-        Debug.Log(value);
-        Debug.Log(comment);
+        Debug.Log(currentTask);
 
         return form;
     }

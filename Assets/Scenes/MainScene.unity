@@ -16273,6 +16273,7 @@ MonoBehaviour:
     recordingTime: 60
   taskTextGO: {fileID: 1186766482}
   taskImageGO: {fileID: 698106385}
+  currentTaskSelected: -1
 --- !u!1 &478204620
 GameObject:
   m_ObjectHideFlags: 0
@@ -55232,6 +55233,7 @@ MonoBehaviour:
   feedbackTextGO: {fileID: 1039887686}
   errorTextGO: {fileID: 1523942761}
   AdvancePanel: {fileID: 1164813428}
+  ASAPanel: {fileID: 474211613}
 --- !u!1 &1661560087
 GameObject:
   m_ObjectHideFlags: 0
