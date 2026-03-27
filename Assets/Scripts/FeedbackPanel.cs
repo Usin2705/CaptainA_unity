@@ -4,6 +4,7 @@ using System.Security.Authentication.ExtendedProtection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class FeedbackPanel : MonoBehaviour
 {
@@ -219,8 +220,13 @@ public class FeedbackPanel : MonoBehaviour
             .GetComponent<Button>()
             .onClick.AddListener(() =>
             {
+                var accuracy = accuracyRatingOptions.ActiveToggles().FirstOrDefault();
+                
+                //var label = accuracy.GetComponentInChildren<Text>().text;
+                var understanding = understandingRatingOptions.ActiveToggles().FirstOrDefault();
+                Debug.Log(accuracy.name);
                 StartCoroutine(
-                    NetworkManager.GetManager().ServerPost_feedback(POSTType.ASA_FEEDBACK, "RESULT")
+                    NetworkManager.GetManager().ServerPost_feedback(POSTType.ASA_FEEDBACK, "result")
                 );
                 feedbackPopUpGO.SetActive(false);
                 dimPanelGO.SetActive(false);

@@ -76,6 +76,9 @@ public class AdvancePanel : MonoBehaviour
     [SerializeField]
     GameObject loadingPopUpGO;
 
+    [SerializeField]
+    GameObject profilePanelGO;
+
     public ToggleGroup ratingOptions;
 
     public string self_rating = null;
@@ -218,6 +221,7 @@ public class AdvancePanel : MonoBehaviour
         dimPanelGO.SetActive(false);
         consentPopUpGO.SetActive(false);
         backgroundPopUpGO.SetActive(false);
+        profilePanelGO.SetActive(false);
 
         // Check if the instruction panel has been shown before
         if (!PlayerPrefs.HasKey(Const.PREF_INS_ADVANCE))
