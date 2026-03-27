@@ -219,7 +219,11 @@ public class FeedbackPanel : MonoBehaviour
             .GetComponent<Button>()
             .onClick.AddListener(() =>
             {
-                Debug.Log("TODO");
+                StartCoroutine(
+                    NetworkManager.GetManager().ServerPost_feedback(POSTType.ASA_FEEDBACK, "RESULT")
+                );
+                feedbackPopUpGO.SetActive(false);
+                dimPanelGO.SetActive(false);
             });
 
         if (PlayerPrefs.GetInt("InfoPopupSeen", 0) == 0)
