@@ -1,10 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Authentication.ExtendedProtection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
 
 public class FeedbackPanel : MonoBehaviour
 {
@@ -221,7 +221,7 @@ public class FeedbackPanel : MonoBehaviour
             .onClick.AddListener(() =>
             {
                 var accuracy = accuracyRatingOptions.ActiveToggles().FirstOrDefault();
-                
+
                 //var label = accuracy.GetComponentInChildren<Text>().text;
                 var understanding = understandingRatingOptions.ActiveToggles().FirstOrDefault();
                 Debug.Log(accuracy.name);
