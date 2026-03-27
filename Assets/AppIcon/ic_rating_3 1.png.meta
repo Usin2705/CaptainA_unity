@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 669824fa2674dffe0b3e474cc9ec1eea
+guid: 00e71f661d65a5fa2a4e4c153e5ec636
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1086861158708971333
-    second: 033-idea(1)_0
+      213: -2295118721306921570
+    second: sentiment_calm_60dp_F19E39_FILL1_wght400_GRAD0_opsz48_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 033-idea(1)_0
+      name: ic_rating_3
       rect:
         serializedVersion: 2
-        x: 7
-        y: 7
-        width: 498
-        height: 498
+        x: 4
+        y: 4
+        width: 52
+        height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bb87bfad881bae0f0800000000000000
-      internalID: -1086861158708971333
+      spriteID: e95f62bdea91620e0800000000000000
+      internalID: -2295118721306921570
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 241d99d46c8696e62ba8d33bf69448ed
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      033-idea(1)_0: -1086861158708971333
+      ic_rating_3: -2295118721306921570
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

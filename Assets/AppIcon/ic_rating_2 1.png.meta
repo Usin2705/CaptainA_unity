@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 167c5b3e63384aebd935e06c179d48fe
+guid: be5287b06615eb578ab6875ee0fa5bc4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7466254506361012559
-    second: 003-smiley_0
+      213: -1870938657904610269
+    second: sentiment_neutral_60dp_F56250_FILL1_wght400_GRAD0_opsz48_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 003-smiley_0
+      name: ic_rating_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 16
-        width: 512
-        height: 480
+        x: 4
+        y: 4
+        width: 52
+        height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1be31b99519826890800000000000000
-      internalID: -7466254506361012559
+      spriteID: 324bc0b04371906e0800000000000000
+      internalID: -1870938657904610269
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b22313dbc6ffe353aad68fb8b5f467da
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      003-smiley_0: -7466254506361012559
+      ic_rating_2: -1870938657904610269
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

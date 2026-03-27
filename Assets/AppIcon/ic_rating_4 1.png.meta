@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 24f18814057c53deda27afa3c959a3a4
+guid: e0c88268cc8ca910cb2cd972ed4d1b6c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3994756667790502205
-    second: 017-stars_0
+      213: 5505413694562554673
+    second: sentiment_satisfied_60dp_C2F811_FILL1_wght400_GRAD0_opsz48_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 017-stars_0
+      name: ic_rating_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 16
-        width: 512
-        height: 480
+        x: 4
+        y: 4
+        width: 52
+        height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3c6593cc9f5cf88c0800000000000000
-      internalID: -3994756667790502205
+      spriteID: 133d8f51698276c40800000000000000
+      internalID: 5505413694562554673
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a5d88c4095c900275a47b7a50bb2ea4c
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      017-stars_0: -3994756667790502205
+      ic_rating_4: 5505413694562554673
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
