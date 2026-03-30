@@ -52,6 +52,12 @@ public class TaskPanel : MonoBehaviour
     [SerializeField]
     GameObject copyGuidButtonGO;
 
+    [SerializeField]
+    GameObject profileButtonGO;
+
+    [SerializeField]
+    GameObject profilePanelGO;
+
     public string guid;
 
     void OnEnable()
@@ -135,5 +141,12 @@ public class TaskPanel : MonoBehaviour
             {
                 GUIUtility.systemCopyBuffer = guid;
             });
-    }
+
+        profileButtonGO.GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                profilePanelGO.SetActive(true);
+            });
+
+        }
 }
