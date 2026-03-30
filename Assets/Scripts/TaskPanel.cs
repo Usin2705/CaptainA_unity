@@ -58,6 +58,12 @@ public class TaskPanel : MonoBehaviour
     [SerializeField]
     GameObject profilePanelGO;
 
+    [SerializeField]
+    GameObject loadingIconGO;
+
+    [SerializeField]
+    GameObject loadingPanelGO;
+
     public string guid;
 
     void OnEnable()
@@ -148,5 +154,10 @@ public class TaskPanel : MonoBehaviour
             {
                 profilePanelGO.SetActive(true);
             });
+    }
+
+    public void animateLoading_profile()
+    {
+        loadingIconGO.transform.Rotate(0, 0, -6.0f, Space.Self);
     }
 }
