@@ -7,6 +7,9 @@ public class ASAPRofilePanel : MonoBehaviour
     [SerializeField]
     GameObject levelBarGO;
 
+    [SerializeField]
+    GameObject levelTextGO;
+
     void OnEnable()
     {
         UpdateLevelBar();

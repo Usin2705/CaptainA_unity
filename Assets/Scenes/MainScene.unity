@@ -58837,6 +58837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ASAPRofilePanel
   levelBarGO: {fileID: 1370295920}
+  levelTextGO: {fileID: 0}
 --- !u!1 &1626960010
 GameObject:
   m_ObjectHideFlags: 0
@@ -72081,8 +72082,8 @@ MonoBehaviour:
   copyGuidButtonGO: {fileID: 746877954}
   profileButtonGO: {fileID: 29141840}
   profilePanelGO: {fileID: 1625667663}
-  loadingIconGO: {fileID: 0}
-  loadingPanelGO: {fileID: 0}
+  loadingIconGO: {fileID: 1939039073}
+  loadingPopUpGO: {fileID: 1890237395}
   guid: 
 --- !u!1 &1967997967
 GameObject:

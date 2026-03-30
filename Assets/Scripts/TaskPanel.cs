@@ -62,9 +62,11 @@ public class TaskPanel : MonoBehaviour
     GameObject loadingIconGO;
 
     [SerializeField]
-    GameObject loadingPanelGO;
+    GameObject loadingPopUpGO;
 
     public string guid;
+
+    private bool isLoading = false;
 
     void OnEnable()
     {
@@ -153,7 +155,17 @@ public class TaskPanel : MonoBehaviour
             .onClick.AddListener(() =>
             {
                 profilePanelGO.SetActive(true);
+                //loadingPopUpGO.SetActive(true);
+                // isLoading = true;
             });
+    }
+
+    void Update()
+    {
+        if (isLoading)
+        {
+            animateLoading_profile();
+        }
     }
 
     public void animateLoading_profile()
