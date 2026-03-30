@@ -297,13 +297,16 @@ public class ASAPanel : MonoBehaviour
 
         dimPanelASAGO.SetActive(false);
         feedbackPanelGO.SetActive(true);
+        string input = AdvancePanel.self_rating;
+        int value = input[^1] - '0';
+
         if (AdvancePanel.self_rating != null)
         {
             Debug.Log("Test");
             StartCoroutine(
                 NetworkManager
                     .GetManager()
-                    .ServerPost_feedback(POSTType.ASA_FEEDBACK, "self_assessment")
+                    .ServerPost_feedback(POSTType.ASA_FEEDBACK, "self_assessment", value)
             );
         }
         else

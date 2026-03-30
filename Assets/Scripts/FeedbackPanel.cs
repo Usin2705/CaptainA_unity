@@ -221,12 +221,9 @@ public class FeedbackPanel : MonoBehaviour
             .onClick.AddListener(() =>
             {
                 var accuracy = accuracyRatingOptions.ActiveToggles().FirstOrDefault();
-
-                //var label = accuracy.GetComponentInChildren<Text>().text;
                 var understanding = understandingRatingOptions.ActiveToggles().FirstOrDefault();
-                Debug.Log(accuracy.name);
                 StartCoroutine(
-                    NetworkManager.GetManager().ServerPost_feedback(POSTType.ASA_FEEDBACK, "result")
+                    NetworkManager.GetManager().ServerPost_feedback(POSTType.ASA_FEEDBACK, "result", 2)
                 );
                 feedbackPopUpGO.SetActive(false);
                 dimPanelGO.SetActive(false);
