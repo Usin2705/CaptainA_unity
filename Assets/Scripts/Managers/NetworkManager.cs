@@ -238,14 +238,20 @@ public class NetworkManager : MonoBehaviour
         OnServerDone?.Invoke();
     }
 
-    private WWWForm GetPOSTForm_feedback(POSTType postType, string feedback_type, int grade)
+    private WWWForm GetPOSTForm_feedback(
+        POSTType postType,
+        string feedback_type,
+        string grade,
+        string comment
+    )
     {
         WWWForm form = new();
 
-        string comment = feedbackTextGO.text;
+        //string comment = feedbackTextGO.text;
+        int value = grade[^1] - '0';
         form.AddField("guid", PlayerPrefs.GetString("user_guid"));
-        form.AddField("reaction_value", grade);
-        form.AddField("type", feedback_type);
+        form.AddField("reaction_value", value);
+        form.AddField("feedback_classification", feedback_type);
         int currentTask = ASAPanel.currentTaskSelected;
         form.AddField("assessment_id", currentTask);
         form.AddField("comment", comment);
@@ -259,12 +265,13 @@ public class NetworkManager : MonoBehaviour
     public IEnumerator ServerPost_feedback(
         POSTType postType,
         string feedback_type,
-        int grade,
+        string grade,
+        string comment,
         System.Action OnServerDone = null,
         GameObject warningImageGO = null
     )
     {
-        WWWForm form = GetPOSTForm_feedback(postType, feedback_type, grade);
+        WWWForm form = GetPOSTForm_feedback(postType, feedback_type, grade, comment);
 
         string postURL = GetPOSTURL(postType);
 

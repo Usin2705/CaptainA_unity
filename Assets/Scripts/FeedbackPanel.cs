@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Authentication.ExtendedProtection;
+using System.Transactions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -222,11 +223,34 @@ public class FeedbackPanel : MonoBehaviour
             {
                 var accuracy = accuracyRatingOptions.ActiveToggles().FirstOrDefault();
                 var understanding = understandingRatingOptions.ActiveToggles().FirstOrDefault();
-                StartCoroutine(
-                    NetworkManager
-                        .GetManager()
-                        .ServerPost_feedback(POSTType.ASA_FEEDBACK, "result", 2)
-                );
+                string comment_accuracy = accuracyFeedbackTextGO.text;
+                string comment_understanding = understandingFeedbackTextGO.text;
+                if (accuracy != null)
+                {
+                    StartCoroutine(
+                        NetworkManager
+                            .GetManager()
+                            .ServerPost_feedback(
+                                POSTType.ASA_FEEDBACK,
+                                "result_accuracy",
+                                accuracy.name,
+                                comment_accuracy
+                            )
+                    );
+                }
+                if (understanding != null)
+                {
+                    StartCoroutine(
+                        NetworkManager
+                            .GetManager()
+                            .ServerPost_feedback(
+                                POSTType.ASA_FEEDBACK,
+                                "result_understanding",
+                                understanding.name,
+                                comment_understanding
+                            )
+                    );
+                }
                 feedbackPopUpGO.SetActive(false);
                 dimPanelGO.SetActive(false);
             });

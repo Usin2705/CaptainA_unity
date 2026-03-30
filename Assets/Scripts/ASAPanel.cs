@@ -297,8 +297,8 @@ public class ASAPanel : MonoBehaviour
 
         dimPanelASAGO.SetActive(false);
         feedbackPanelGO.SetActive(true);
-        string input = AdvancePanel.self_rating;
-        int value = input[^1] - '0';
+        string grade = AdvancePanel.self_rating;
+        string comment = feedbackTextGO.text;
 
         if (AdvancePanel.self_rating != null)
         {
@@ -306,7 +306,7 @@ public class ASAPanel : MonoBehaviour
             StartCoroutine(
                 NetworkManager
                     .GetManager()
-                    .ServerPost_feedback(POSTType.ASA_FEEDBACK, "self_assessment", value)
+                    .ServerPost_feedback(POSTType.ASA_FEEDBACK, "self_assessment", grade, comment)
             );
         }
         else

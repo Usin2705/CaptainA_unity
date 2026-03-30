@@ -69323,7 +69323,7 @@ GameObject:
   - component: {fileID: 1890237398}
   - component: {fileID: 1890237397}
   m_Layer: 5
-  m_Name: LoadingPopUp
+  m_Name: LoadingPopUpProfile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
