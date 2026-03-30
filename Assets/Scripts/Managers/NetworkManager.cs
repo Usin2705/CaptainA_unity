@@ -242,7 +242,6 @@ public class NetworkManager : MonoBehaviour
     {
         WWWForm form = new();
 
-        
         string comment = feedbackTextGO.text;
         form.AddField("guid", PlayerPrefs.GetString("user_guid"));
         form.AddField("reaction_value", grade);

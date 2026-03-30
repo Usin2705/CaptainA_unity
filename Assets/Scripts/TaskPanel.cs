@@ -142,11 +142,11 @@ public class TaskPanel : MonoBehaviour
                 GUIUtility.systemCopyBuffer = guid;
             });
 
-        profileButtonGO.GetComponent<Button>()
+        profileButtonGO
+            .GetComponent<Button>()
             .onClick.AddListener(() =>
             {
                 profilePanelGO.SetActive(true);
             });
-
-        }
+    }
 }
