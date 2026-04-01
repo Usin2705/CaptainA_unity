@@ -249,7 +249,7 @@ public class NetworkManager : MonoBehaviour
 
         //string comment = feedbackTextGO.text;
         int value = grade[^1] - '0';
-        form.AddField("guid", PlayerPrefs.GetString("user_guid"));
+        form.AddField("guid", PlayerPrefs.GetString("UserGuid"));
         form.AddField("reaction_value", value);
         form.AddField("feedback_classification", feedback_type);
         int currentTask = ASAPanel.currentTaskSelected;

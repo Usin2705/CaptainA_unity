@@ -73,7 +73,7 @@ public class TaskPanel : MonoBehaviour
         settingsPopupGO.SetActive(false);
         dimPanelGO.SetActive(false);
 
-        guid = PlayerPrefs.GetString("user_guid");
+        guid = PlayerPrefs.GetString("UserGuid");
         guidTextGO.text = guid;
 
         backButtonGO
