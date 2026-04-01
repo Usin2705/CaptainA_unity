@@ -251,6 +251,10 @@ public class FeedbackPanel : MonoBehaviour
                             )
                     );
                 }
+                accuracyRatingOptions.SetAllTogglesOff();
+                accuracyFeedbackTextGO.text = "";
+                understandingRatingOptions.SetAllTogglesOff();
+                understandingFeedbackTextGO.text = "";
                 feedbackPopUpGO.SetActive(false);
                 dimPanelGO.SetActive(false);
             });
