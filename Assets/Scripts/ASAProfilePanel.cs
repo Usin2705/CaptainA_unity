@@ -2,22 +2,22 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ASAPRofilePanel : MonoBehaviour
+public class ASAProfilePanel : MonoBehaviour
 {
     [SerializeField]
     GameObject levelBarGO;
 
     [SerializeField]
-    private TextMeshProUGUI levelTextGO;
+    private TextMeshProUGUI levelText;
 
     [SerializeField]
-    private TextMeshProUGUI performanceTextGO;
+    private TextMeshProUGUI performanceText;
 
     [SerializeField]
-    private TextMeshProUGUI rankTextGO;
+    private TextMeshProUGUI rankText;
 
     [SerializeField]
-    private TextMeshProUGUI positionTextGO;
+    private TextMeshProUGUI positionText;
 
     void OnEnable()
     {
@@ -34,12 +34,12 @@ public class ASAPRofilePanel : MonoBehaviour
     {
         string performance_text =
             $"You are performing better than {100 * user.percentage}% of {user.level} learners";
-        performanceTextGO.text = performance_text;
-        levelTextGO.text = user.level;
+        performanceText.text = performance_text;
+        levelText.text = user.level;
         string rank_text = $"Global rank ({user.level})";
-        rankTextGO.text = rank_text;
+        rankText.text = rank_text;
         string position_text = $"{user.global_rank}#";
-        positionTextGO.text = position_text;
+        positionText.text = position_text;
     }
 
     [System.Serializable]
