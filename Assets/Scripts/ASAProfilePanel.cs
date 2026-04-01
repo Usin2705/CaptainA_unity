@@ -42,12 +42,12 @@ public class ASAProfilePanel : MonoBehaviour
     public void UpdateText()
     {
         string performance_text =
-            $"You are performing better than {100 * user.percentage}% of {user.level} learners";
+            $"You are performing better than {100 * user.percentage}% of {user.level} users";
         performanceText.text = performance_text;
         levelText.text = user.level;
-        string rank_text = $"Global rank ({user.level})";
+        string rank_text = $"Your rank within other {user.level} level users";
         rankText.text = rank_text;
-        string position_text = $"{user.global_rank}#";
+        string position_text = $"#{user.global_rank}";
         positionText.text = position_text;
     }
 
