@@ -126,9 +126,9 @@ public class AdvancePanel : MonoBehaviour
     void OnEnable()
     {
         // This is for testing purposes
-        // PlayerPrefs.SetInt("BackgroundFormCompleted", 0);
-        // PlayerPrefs.SetInt("ConsentGiven", 0);
-        // PlayerPrefs.Save();
+        PlayerPrefs.SetInt("BackgroundFormCompleted", 0);
+        PlayerPrefs.SetInt("ConsentGiven", 0);
+        PlayerPrefs.Save();
 
         refuseButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         acceptButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
