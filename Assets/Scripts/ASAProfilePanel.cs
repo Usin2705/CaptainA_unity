@@ -29,7 +29,9 @@ public class ASAProfilePanel : MonoBehaviour
     {
         UpdateLevelBar();
         UpdateText();
-        profileBackButtonGO.GetComponent<Button>().onClick.AddListener(() => profilePanelGO.SetActive(false));
+        profileBackButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() => profilePanelGO.SetActive(false));
     }
 
     public void UpdateLevelBar()
