@@ -19,10 +19,17 @@ public class ASAProfilePanel : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI positionText;
 
+    [SerializeField]
+    GameObject profileBackButtonGO;
+
+    [SerializeField]
+    GameObject profilePanelGO;
+
     void OnEnable()
     {
         UpdateLevelBar();
         UpdateText();
+        profileBackButtonGO.GetComponent<Button>().onClick.AddListener(() => profilePanelGO.SetActive(false));
     }
 
     public void UpdateLevelBar()
