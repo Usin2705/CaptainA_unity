@@ -6,5 +6,6 @@ public enum POSTType
     ASA_CONSENT,
     ASA_TASK,
     ASA_FEEDBACK,
+    ASA_PROFILE,
     OTHER,
 }

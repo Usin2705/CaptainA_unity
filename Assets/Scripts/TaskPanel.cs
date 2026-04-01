@@ -155,8 +155,14 @@ public class TaskPanel : MonoBehaviour
             .onClick.AddListener(() =>
             {
                 profilePanelGO.SetActive(true);
-                //loadingPopUpGO.SetActive(true);
+                // Uncomment when backend is ready
+                // loadingPopUpGO.SetActive(true);
                 // isLoading = true;
+                // StartCoroutine(
+                //     NetworkManager
+                //         .GetManager()
+                //         .ServerPost_profile(POSTType.ASA_PROFILE)
+                // );
             });
     }
 

@@ -37,6 +37,9 @@ public class NetworkManager : MonoBehaviour
     [SerializeField]
     GameObject errorTextGO;
 
+    [SerializeField]
+    GameObject profilePanelGO;
+
     static NetworkManager netWorkManager;
 
     // This is the URL to the ASR server
@@ -103,6 +106,8 @@ public class NetworkManager : MonoBehaviour
                 return Secret.ASA_CONSENT_URL;
             case POSTType.ASA_FEEDBACK:
                 return Secret.ASA_FEEDBACK_URL;
+            case POSTType.ASA_PROFILE:
+                return Secret.ASA_PROFILE_URL;
             default:
                 return asrURL;
         }
@@ -170,6 +175,44 @@ public class NetworkManager : MonoBehaviour
 
             Debug.Log(uwr.downloadHandler.text);
         }
+        OnServerDone?.Invoke();
+    }
+
+    private WWWForm GetPOSTForm_profile()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("guid", PlayerPrefs.GetString("UserGuid"));
+
+        return form;
+    }
+
+    public IEnumerator ServerPost_profile(POSTType postType, System.Action OnServerDone = null)
+    {
+        WWWForm form = GetPOSTForm_profile();
+        string postURL = GetPOSTURL(postType);
+
+        using UnityWebRequest uwr = UnityWebRequest.Post(postURL, form);
+        uwr.timeout = Const.TIME_OUT_SECS;
+        yield return uwr.SendWebRequest();
+
+        if (
+            uwr.result == UnityWebRequest.Result.ConnectionError
+            || uwr.result == UnityWebRequest.Result.ProtocolError
+        )
+        {
+            Debug.Log(uwr.error);
+
+            OnServerDone?.Invoke();
+            throw new System.Exception(uwr.downloadHandler.text ?? uwr.error);
+        }
+        else
+        {
+            Debug.Log("Form upload complete!");
+            Debug.Log(uwr.downloadHandler.text);
+            loadingPopUpGO.SetActive(false);
+            profilePanelGO.SetActive(true);
+        }
+
         OnServerDone?.Invoke();
     }
 
