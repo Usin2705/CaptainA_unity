@@ -61,7 +61,7 @@ public class ASAProfilePanel : MonoBehaviour
     [SerializeField]
     TMP_InputField comparisonFeedbackTextGO;
 
-  public string guid;
+    public string guid;
 
     void OnEnable()
     {
@@ -78,21 +78,20 @@ public class ASAProfilePanel : MonoBehaviour
         guidTextGO.text = guid;
 
         settingsButtonGO
-                .GetComponent<Button>()
-                .onClick.AddListener(() =>
-                {
-                    settingsPopupGO.SetActive(true);
-                    dimPanelGO.SetActive(true);
-                });
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                settingsPopupGO.SetActive(true);
+                dimPanelGO.SetActive(true);
+            });
 
         settingsBackButtonGO
-                .GetComponent<Button>()
-                .onClick.AddListener(() =>
-                {
-                    settingsPopupGO.SetActive(false);
-                    dimPanelGO.SetActive(false);
-                });
-
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                settingsPopupGO.SetActive(false);
+                dimPanelGO.SetActive(false);
+            });
 
         copyGuidButtonGO
             .GetComponent<Button>()
@@ -100,7 +99,6 @@ public class ASAProfilePanel : MonoBehaviour
             {
                 GUIUtility.systemCopyBuffer = guid;
             });
-
 
         feedbackButtonGO
             .GetComponent<Button>()

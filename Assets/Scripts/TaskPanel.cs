@@ -37,8 +37,6 @@ public class TaskPanel : MonoBehaviour
     [SerializeField]
     GameObject dimPanelGO;
 
-
-
     [SerializeField]
     GameObject profileButtonGO;
 
@@ -54,7 +52,6 @@ public class TaskPanel : MonoBehaviour
 
     void OnEnable()
     {
-
         backButtonGO
             .GetComponent<Button>()
             .onClick.AddListener(() => advancePanelGO.SetActive(true));
