@@ -27,7 +27,22 @@ public class ASAProfilePanel : MonoBehaviour
     GameObject profilePanelGO;
 
     [SerializeField]
+    GameObject settingsButtonGO;
+
+    [SerializeField]
+    GameObject settingsBackButtonGO;
+
+    [SerializeField]
+    GameObject settingsPopupGO;
+
+    [SerializeField]
     GameObject dimPanelGO;
+
+    [SerializeField]
+    public TMP_Text guidTextGO;
+
+    [SerializeField]
+    GameObject copyGuidButtonGO;
 
     [SerializeField]
     GameObject feedbackButtonGO;
@@ -46,6 +61,8 @@ public class ASAProfilePanel : MonoBehaviour
     [SerializeField]
     TMP_InputField comparisonFeedbackTextGO;
 
+  public string guid;
+
     void OnEnable()
     {
         UpdateLevelBar();
@@ -53,6 +70,37 @@ public class ASAProfilePanel : MonoBehaviour
         profileBackButtonGO
             .GetComponent<Button>()
             .onClick.AddListener(() => profilePanelGO.SetActive(false));
+
+        settingsPopupGO.SetActive(false);
+        dimPanelGO.SetActive(false);
+
+        guid = PlayerPrefs.GetString("UserGuid");
+        guidTextGO.text = guid;
+
+        settingsButtonGO
+                .GetComponent<Button>()
+                .onClick.AddListener(() =>
+                {
+                    settingsPopupGO.SetActive(true);
+                    dimPanelGO.SetActive(true);
+                });
+
+        settingsBackButtonGO
+                .GetComponent<Button>()
+                .onClick.AddListener(() =>
+                {
+                    settingsPopupGO.SetActive(false);
+                    dimPanelGO.SetActive(false);
+                });
+
+
+        copyGuidButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                GUIUtility.systemCopyBuffer = guid;
+            });
+
 
         feedbackButtonGO
             .GetComponent<Button>()

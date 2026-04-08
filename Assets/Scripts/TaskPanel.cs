@@ -35,22 +35,9 @@ public class TaskPanel : MonoBehaviour
     ASAPanel ASAPanel;
 
     [SerializeField]
-    GameObject settingsButtonGO;
-
-    [SerializeField]
-    GameObject settingsBackButtonGO;
-
-    [SerializeField]
-    GameObject settingsPopupGO;
-
-    [SerializeField]
     GameObject dimPanelGO;
 
-    [SerializeField]
-    public TMP_Text guidTextGO;
 
-    [SerializeField]
-    GameObject copyGuidButtonGO;
 
     [SerializeField]
     GameObject profileButtonGO;
@@ -63,18 +50,10 @@ public class TaskPanel : MonoBehaviour
 
     [SerializeField]
     GameObject loadingPopUpGO;
-
-    public string guid;
-
     private bool isLoading = false;
 
     void OnEnable()
     {
-        settingsPopupGO.SetActive(false);
-        dimPanelGO.SetActive(false);
-
-        guid = PlayerPrefs.GetString("UserGuid");
-        guidTextGO.text = guid;
 
         backButtonGO
             .GetComponent<Button>()
@@ -125,29 +104,6 @@ public class TaskPanel : MonoBehaviour
                 ASAPanel.DisplayTask(4);
                 ASAPanelGO.SetActive(true);
                 taskPanelGO.SetActive(false);
-            });
-
-        settingsButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
-            {
-                settingsPopupGO.SetActive(true);
-                dimPanelGO.SetActive(true);
-            });
-
-        settingsBackButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
-            {
-                settingsPopupGO.SetActive(false);
-                dimPanelGO.SetActive(false);
-            });
-
-        copyGuidButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
-            {
-                GUIUtility.systemCopyBuffer = guid;
             });
 
         profileButtonGO
