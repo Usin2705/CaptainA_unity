@@ -71,6 +71,12 @@ public class NetworkManager : MonoBehaviour
     [SerializeField]
     ASAPanel ASAPanel;
 
+    [SerializeField]
+    ASAProfilePanel ASAProfilePanel;
+
+    [SerializeField]
+    TaskPanel taskPanel;
+
     void Awake()
     {
         if (netWorkManager != null)
@@ -192,25 +198,35 @@ public class NetworkManager : MonoBehaviour
         string postURL = GetPOSTURL(postType);
 
         using UnityWebRequest uwr = UnityWebRequest.Post(postURL, form);
-        uwr.timeout = Const.TIME_OUT_SECS;
-        yield return uwr.SendWebRequest();
-
-        if (
-            uwr.result == UnityWebRequest.Result.ConnectionError
-            || uwr.result == UnityWebRequest.Result.ProtocolError
-        )
         {
-            Debug.Log(uwr.error);
+            uwr.timeout = Const.TIME_OUT_SECS;
+            yield return uwr.SendWebRequest();
 
-            OnServerDone?.Invoke();
-            throw new System.Exception(uwr.downloadHandler.text ?? uwr.error);
-        }
-        else
-        {
-            Debug.Log("Form upload complete!");
-            Debug.Log(uwr.downloadHandler.text);
-            loadingPopUpGO.SetActive(false);
-            profilePanelGO.SetActive(true);
+            if (
+                uwr.result == UnityWebRequest.Result.ConnectionError
+                || uwr.result == UnityWebRequest.Result.ProtocolError
+            )
+            {
+                Debug.Log(uwr.error);
+
+                OnServerDone?.Invoke();
+                throw new System.Exception(uwr.downloadHandler.text ?? uwr.error);
+            }
+            else
+            {
+                Debug.Log("Form upload complete!");
+                Debug.Log(uwr.downloadHandler.text);
+                loadingPopUpGO.SetActive(false);
+                profilePanelGO.SetActive(true);
+
+                ASAProfilePanel.Stats Stats = JsonUtility.FromJson<ASAProfilePanel.Stats>(
+                    uwr.downloadHandler.text
+                );
+                if (Stats.cefr_level == null)
+                {
+                    //ASAProfilePanel.CohortTooSmall();
+                }
+            }
         }
 
         OnServerDone?.Invoke();

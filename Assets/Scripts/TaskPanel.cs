@@ -52,6 +52,8 @@ public class TaskPanel : MonoBehaviour
 
     void OnEnable()
     {
+        isLoading = false;
+
         backButtonGO
             .GetComponent<Button>()
             .onClick.AddListener(() => advancePanelGO.SetActive(true));
@@ -107,14 +109,20 @@ public class TaskPanel : MonoBehaviour
             .GetComponent<Button>()
             .onClick.AddListener(() =>
             {
-                profilePanelGO.SetActive(true);
+                // profilePanelGO.SetActive(true);
                 // Uncomment when backend is ready
-                // loadingPopUpGO.SetActive(true);
-                // isLoading = true;
+                loadingPopUpGO.SetActive(true);
+                isLoading = true;
                 StartCoroutine(
                     NetworkManager.GetManager().ServerPost_profile(POSTType.ASA_PROFILE)
                 );
             });
+    }
+
+    public void returnToTaskPanel()
+    {
+        isLoading = false;
+        loadingPopUpGO.SetActive(true);
     }
 
     void Update()

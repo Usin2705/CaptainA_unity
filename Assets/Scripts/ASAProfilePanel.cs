@@ -56,6 +56,9 @@ public class ASAProfilePanel : MonoBehaviour
     [SerializeField]
     GameObject feedbackSendButtonGO;
 
+    [SerializeField]
+    GameObject loadingPopUpProfile;
+
     public ToggleGroup comparisonRatingOptions;
 
     [SerializeField]
@@ -69,7 +72,11 @@ public class ASAProfilePanel : MonoBehaviour
         UpdateText();
         profileBackButtonGO
             .GetComponent<Button>()
-            .onClick.AddListener(() => profilePanelGO.SetActive(false));
+            .onClick.AddListener(() =>
+            {
+                profilePanelGO.SetActive(false);
+                loadingPopUpProfile.SetActive(false);
+            });
 
         settingsPopupGO.SetActive(false);
         dimPanelGO.SetActive(false);
@@ -143,35 +150,40 @@ public class ASAProfilePanel : MonoBehaviour
 
     public void UpdateLevelBar()
     {
-        levelBarGO.GetComponent<Image>().fillAmount = user.percentage;
+        levelBarGO.GetComponent<Image>().fillAmount = user.percentile;
     }
 
     public void UpdateText()
     {
         string performance_text =
-            $"You are performing better than {100 * user.percentage}% of {user.level} users";
+            $"You are performing better than {100 * user.percentile}% of {user.cefr_level} users";
         performanceText.text = performance_text;
-        levelText.text = user.level;
-        string rank_text = $"Your rank within other {user.level} level users";
+        levelText.text = user.cefr_level;
+        string rank_text = $"Your rank within other {user.cefr_level} level users";
         rankText.text = rank_text;
-        string position_text = $"#{user.global_rank}";
+        string position_text = $"#{user.rank}";
         positionText.text = position_text;
+    }
+
+    public void CohortTooSmall()
+    {
+        // levelBarGO.SetActive(false);
     }
 
     [System.Serializable]
     public class Stats
     {
-        public float percentage;
-        public string level;
+        public float percentile;
+        public string cefr_level;
         public int cohort_size;
-        public int global_rank;
+        public int rank;
     }
 
     Stats user = new Stats
     {
-        percentage = 0.7f,
-        level = "A2",
+        percentile = 0.7f,
+        cefr_level = "A2",
         cohort_size = 50,
-        global_rank = 17,
+        rank = 17,
     };
 }

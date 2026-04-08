@@ -43748,7 +43748,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1109305273
@@ -62695,6 +62695,7 @@ MonoBehaviour:
   feedbackPopUpGO: {fileID: 1428438768}
   feedbackBackButtonGO: {fileID: 1856570282}
   feedbackSendButtonGO: {fileID: 236179134}
+  loadingPopUpProfile: {fileID: 1837294515}
   comparisonRatingOptions: {fileID: 1202523372}
   comparisonFeedbackTextGO: {fileID: 217988256}
   guid: 
@@ -64105,9 +64106,11 @@ MonoBehaviour:
   resultsButtonGO: {fileID: 1091579096}
   feedbackTextGO: {fileID: 1039887686}
   errorTextGO: {fileID: 1523942761}
-  profilePanelGO: {fileID: 0}
+  profilePanelGO: {fileID: 1625667663}
   AdvancePanel: {fileID: 1164813428}
   ASAPanel: {fileID: 474211613}
+  ASAProfilePanel: {fileID: 1625667668}
+  taskPanel: {fileID: 0}
 --- !u!1 &1661505803
 GameObject:
   m_ObjectHideFlags: 0
