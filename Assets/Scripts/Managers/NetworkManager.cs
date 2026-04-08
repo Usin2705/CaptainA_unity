@@ -296,7 +296,10 @@ public class NetworkManager : MonoBehaviour
         form.AddField("reaction_value", value);
         form.AddField("feedback_classification", feedback_type);
         int currentTask = ASAPanel.currentTaskSelected;
-        form.AddField("assessment_id", currentTask);
+        if (currentTask != -1)
+        {
+            form.AddField("assessment_id", currentTask);
+        }
         form.AddField("comment", comment);
 
         Debug.Log("Current task: " + currentTask);

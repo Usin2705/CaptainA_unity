@@ -158,11 +158,9 @@ public class TaskPanel : MonoBehaviour
                 // Uncomment when backend is ready
                 // loadingPopUpGO.SetActive(true);
                 // isLoading = true;
-                // StartCoroutine(
-                //     NetworkManager
-                //         .GetManager()
-                //         .ServerPost_profile(POSTType.ASA_PROFILE)
-                // );
+                StartCoroutine(
+                    NetworkManager.GetManager().ServerPost_profile(POSTType.ASA_PROFILE)
+                );
             });
     }
 

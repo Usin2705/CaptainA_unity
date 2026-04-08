@@ -1,3 +1,4 @@
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,6 +26,26 @@ public class ASAProfilePanel : MonoBehaviour
     [SerializeField]
     GameObject profilePanelGO;
 
+    [SerializeField]
+    GameObject dimPanelGO;
+
+    [SerializeField]
+    GameObject feedbackButtonGO;
+
+    [SerializeField]
+    GameObject feedbackPopUpGO;
+
+    [SerializeField]
+    GameObject feedbackBackButtonGO;
+
+    [SerializeField]
+    GameObject feedbackSendButtonGO;
+
+    public ToggleGroup comparisonRatingOptions;
+
+    [SerializeField]
+    TMP_InputField comparisonFeedbackTextGO;
+
     void OnEnable()
     {
         UpdateLevelBar();
@@ -32,6 +53,46 @@ public class ASAProfilePanel : MonoBehaviour
         profileBackButtonGO
             .GetComponent<Button>()
             .onClick.AddListener(() => profilePanelGO.SetActive(false));
+
+        feedbackButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                feedbackPopUpGO.SetActive(true);
+                dimPanelGO.SetActive(true);
+            });
+
+        feedbackBackButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                comparisonRatingOptions.SetAllTogglesOff();
+                comparisonFeedbackTextGO.text = "";
+                feedbackPopUpGO.SetActive(false);
+                dimPanelGO.SetActive(false);
+            });
+
+        feedbackSendButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                var helpful = comparisonRatingOptions.ActiveToggles().FirstOrDefault();
+                string comment_helpful = comparisonFeedbackTextGO.text;
+                StartCoroutine(
+                    NetworkManager
+                        .GetManager()
+                        .ServerPost_feedback(
+                            POSTType.ASA_FEEDBACK,
+                            "comparison_ui",
+                            helpful.name,
+                            comment_helpful
+                        )
+                );
+                comparisonRatingOptions.SetAllTogglesOff();
+                comparisonFeedbackTextGO.text = "";
+                feedbackPopUpGO.SetActive(false);
+                dimPanelGO.SetActive(false);
+            });
     }
 
     public void UpdateLevelBar()
