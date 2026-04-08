@@ -59,6 +59,18 @@ public class ASAProfilePanel : MonoBehaviour
     [SerializeField]
     GameObject loadingPopUpProfile;
 
+    [SerializeField]
+    GameObject performanceInfo;
+
+    [SerializeField]
+    GameObject rankInfo;
+
+    [SerializeField]
+    GameObject revertLevelButtonGO;
+
+    [SerializeField]
+    GameObject advanceLevelButtonGO;
+
     public ToggleGroup comparisonRatingOptions;
 
     [SerializeField]
@@ -167,7 +179,11 @@ public class ASAProfilePanel : MonoBehaviour
 
     public void CohortTooSmall()
     {
-        // levelBarGO.SetActive(false);
+        levelBarGO.SetActive(false);
+        revertLevelButtonGO.SetActive(false);
+        advanceLevelButtonGO.SetActive(false);
+        performanceInfo.SetActive(false);
+        rankInfo.SetActive(false);
     }
 
     [System.Serializable]

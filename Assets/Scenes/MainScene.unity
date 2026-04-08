@@ -62696,6 +62696,10 @@ MonoBehaviour:
   feedbackBackButtonGO: {fileID: 1856570282}
   feedbackSendButtonGO: {fileID: 236179134}
   loadingPopUpProfile: {fileID: 1837294515}
+  performanceInfo: {fileID: 735852519}
+  rankInfo: {fileID: 799576051}
+  revertLevelButtonGO: {fileID: 1994942384}
+  advanceLevelButtonGO: {fileID: 841020695}
   comparisonRatingOptions: {fileID: 1202523372}
   comparisonFeedbackTextGO: {fileID: 217988256}
   guid: 
