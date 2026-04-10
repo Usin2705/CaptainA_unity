@@ -1,10 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Mono.Cecil.Cil;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Windows.Speech;
 
 public class ASAProfilePanel : MonoBehaviour
 {
@@ -88,9 +87,6 @@ public class ASAProfilePanel : MonoBehaviour
 
     void OnEnable()
     {
-        //UpdateLevelBar();
-        //UpdateText();
-
         profileBackButtonGO
             .GetComponent<Button>()
             .onClick.AddListener(() =>
@@ -171,7 +167,20 @@ public class ASAProfilePanel : MonoBehaviour
 
     public void UpdateLevelBar(Stats user)
     {
-        levelBarGO.GetComponent<Image>().fillAmount = user.percentile;
+        StartCoroutine(AnimateLevelBar(user));
+    }
+
+    private IEnumerator AnimateLevelBar(Stats user)
+    {
+        float filled = 0f;
+
+        while (filled < user.percentile)
+        {
+            levelBarGO.GetComponent<Image>().fillAmount = filled;
+            filled += 0.01f;
+
+            yield return null;
+        }
     }
 
     public void UpdateText(Stats user)
@@ -225,15 +234,4 @@ public class ASAProfilePanel : MonoBehaviour
     // cohort_size = 50,
     // rank = 17,
     // };
-
-    public void SetStats(Stats serverStats)
-    {
-        Stats user = new Stats
-        {
-            percentile = serverStats.percentile,
-            cefr_level = serverStats.cefr_level,
-            cohort_size = serverStats.cohort_size,
-            rank = serverStats.rank,
-        };
-    }
 }
