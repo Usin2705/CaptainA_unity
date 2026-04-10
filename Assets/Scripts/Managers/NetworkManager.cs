@@ -222,6 +222,8 @@ public class NetworkManager : MonoBehaviour
                 ASAProfilePanel.Stats Stats = JsonUtility.FromJson<ASAProfilePanel.Stats>(
                     uwr.downloadHandler.text
                 );
+                ASAProfilePanel.UpdateText(Stats);
+                ASAProfilePanel.UpdateLevelBar(Stats);
                 if (Stats.cefr_level == null)
                 {
                     //ASAProfilePanel.CohortTooSmall();

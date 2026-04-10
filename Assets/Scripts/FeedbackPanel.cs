@@ -113,21 +113,6 @@ public class FeedbackPanel : MonoBehaviour
     private PopupAttributes[] panels;
     private int currentPopupOpen = -1;
 
-    [SerializeField]
-    GameObject proficiencyTitleGO;
-
-    [SerializeField]
-    GameObject pronunciationTitleGO;
-
-    [SerializeField]
-    GameObject rangeTitleGO;
-
-    [SerializeField]
-    GameObject accuracyTitleGO;
-
-    [SerializeField]
-    GameObject fluencyTitleGO;
-
     public void DisplayPopup(int popupOpen)
     {
         currentPopupOpen = popupOpen;
@@ -309,90 +294,5 @@ public class FeedbackPanel : MonoBehaviour
         rangeScore.SetValue(rangeRating, 3);
         accuracyScore.SetValue(accuracyRating, 4);
         fluencyScore.SetValue(fluencyRating, 5);
-
-        float minRating = Mathf.Min(
-            proficiencyRating,
-            pronunciationRating,
-            rangeRating,
-            accuracyRating,
-            fluencyRating
-        );
-
-        if (minRating < 3)
-        {
-            if (proficiencyRating == minRating)
-            {
-                Animator anim = proficiencyTitleGO.GetComponent<Animator>();
-
-                anim.enabled = true;
-
-                anim.Play("ProficiencyText");
-            }
-            else if (pronunciationRating == minRating)
-            {
-                Animator anim = pronunciationTitleGO.GetComponent<Animator>();
-
-                anim.enabled = true;
-
-                anim.Play("PronunciationText");
-            }
-            else if (rangeRating == minRating)
-            {
-                Animator anim = rangeTitleGO.GetComponent<Animator>();
-
-                anim.enabled = true;
-
-                anim.Play("RangeText");
-            }
-            else if (accuracyRating == minRating)
-            {
-                Animator anim = accuracyTitleGO.GetComponent<Animator>();
-
-                anim.enabled = true;
-
-                anim.Play("AccuracyText");
-            }
-            else if (fluencyRating == minRating)
-            {
-                Animator anim = fluencyTitleGO.GetComponent<Animator>();
-
-                anim.enabled = true;
-
-                anim.Play("FluencyText");
-            }
-        }
-    }
-
-    void OnDisable()
-    {
-        backButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
-        proficiencyButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
-        pronunciationButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
-        rangeButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
-        accuracyButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
-        fluencyButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
-        popupBackButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
-        infoButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
-        infoBackButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
-        feedbackButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
-        feedbackBackButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
-        feedbackSendButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
-
-        Animator anim;
-
-        anim = proficiencyTitleGO.GetComponent<Animator>();
-        anim.enabled = false;
-
-        anim = pronunciationTitleGO.GetComponent<Animator>();
-        anim.enabled = false;
-
-        anim = rangeTitleGO.GetComponent<Animator>();
-        anim.enabled = false;
-
-        anim = accuracyTitleGO.GetComponent<Animator>();
-        anim.enabled = false;
-
-        anim = fluencyTitleGO.GetComponent<Animator>();
-        anim.enabled = false;
     }
 }

@@ -1,7 +1,11 @@
 using System.Linq;
+using Mono.Cecil.Cil;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Windows.Speech;
+using System.Collections.Generic;
+
 
 public class ASAProfilePanel : MonoBehaviour
 {
@@ -76,12 +80,23 @@ public class ASAProfilePanel : MonoBehaviour
     [SerializeField]
     TMP_InputField comparisonFeedbackTextGO;
 
+
+    string description = "";
+
+    [SerializeField]
+    public TMP_Text descriptionText;
+
+    
+
+    
+
     public string guid;
 
     void OnEnable()
     {
-        UpdateLevelBar();
-        UpdateText();
+        //UpdateLevelBar();
+        //UpdateText();
+        
         profileBackButtonGO
             .GetComponent<Button>()
             .onClick.AddListener(() =>
@@ -95,6 +110,8 @@ public class ASAProfilePanel : MonoBehaviour
 
         guid = PlayerPrefs.GetString("UserGuid");
         guidTextGO.text = guid;
+
+             
 
         settingsButtonGO
             .GetComponent<Button>()
@@ -160,21 +177,35 @@ public class ASAProfilePanel : MonoBehaviour
             });
     }
 
-    public void UpdateLevelBar()
+    public void UpdateLevelBar(Stats user)
     {
         levelBarGO.GetComponent<Image>().fillAmount = user.percentile;
     }
 
-    public void UpdateText()
+    public void UpdateText(Stats user)
     {
         string performance_text =
-            $"You are performing better than {100 * user.percentile}% of {user.cefr_level} users";
+            $"You are performing better than {100 * user.percentile}% of {user.cefr_level.Replace("_plus", "+")} users";
         performanceText.text = performance_text;
-        levelText.text = user.cefr_level;
-        string rank_text = $"Your rank within other {user.cefr_level} level users";
+        levelText.text = user.cefr_level.Replace("_plus", "+");
+        string rank_text = $"Your rank within other {user.cefr_level.Replace("_plus", "+")} level users";
         rankText.text = rank_text;
         string position_text = $"#{user.rank}";
         positionText.text = position_text;
+        var leveDescriptions = new Dictionary<string, string>
+        {
+            ["A1"] = "Beginner",
+            ["A2"] = "Elementary",
+            ["B1"] = "Intermediate",
+            ["B2"] = "Upper Intermediate",
+            ["C1_plus"] = "Advanced/\nFluent"
+        };
+        if (leveDescriptions.TryGetValue(user.cefr_level, out description))
+        {
+            descriptionText.text = description;
+        };
+   
+        
     }
 
     public void CohortTooSmall()
@@ -186,6 +217,8 @@ public class ASAProfilePanel : MonoBehaviour
         rankInfo.SetActive(false);
     }
 
+
+
     [System.Serializable]
     public class Stats
     {
@@ -195,11 +228,23 @@ public class ASAProfilePanel : MonoBehaviour
         public int rank;
     }
 
-    Stats user = new Stats
+    // Stats user = new Stats
+    // {
+        // percentile = 0.7f,
+        // cefr_level = "C1_plus",
+        // cohort_size = 50,
+        // rank = 17,
+    // };
+
+
+    public void SetStats(Stats serverStats)
     {
-        percentile = 0.7f,
-        cefr_level = "A2",
-        cohort_size = 50,
-        rank = 17,
-    };
+        Stats user = new Stats
+        {
+            percentile = serverStats.percentile,
+            cefr_level = serverStats.cefr_level,
+            cohort_size = serverStats.cohort_size,
+            rank = serverStats.rank,
+        };
+    }
 }
