@@ -290,6 +290,11 @@ public class NetworkManager : MonoBehaviour
                 Debug.Log("Form upload complete!");
 
                 Debug.Log(uwr.downloadHandler.text);
+                int value = PlayerPrefs.GetInt("TasksSent", 0);
+                value++;
+                PlayerPrefs.SetInt("TasksSent", value);
+                PlayerPrefs.Save();
+                Debug.Log(PlayerPrefs.GetInt("TasksSent"));
             }
 
             asrResultASA = JsonUtility.FromJson<ASRResultASA>(uwr.downloadHandler.text);
