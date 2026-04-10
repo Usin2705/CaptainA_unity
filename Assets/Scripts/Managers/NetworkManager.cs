@@ -20,7 +20,7 @@ public class NetworkManager : MonoBehaviour
     Image imageComponent;
 
     [SerializeField]
-    GameObject loadingPopUpGO;
+    GameObject loadingPopUpProfileGO;
 
     [SerializeField]
     GameObject loadingIconGO;
@@ -197,6 +197,7 @@ public class NetworkManager : MonoBehaviour
         WWWForm form = GetPOSTForm_profile();
         string postURL = GetPOSTURL(postType);
 
+
         using UnityWebRequest uwr = UnityWebRequest.Post(postURL, form);
         {
             uwr.timeout = Const.TIME_OUT_SECS;
@@ -216,17 +217,22 @@ public class NetworkManager : MonoBehaviour
             {
                 Debug.Log("Form upload complete!");
                 Debug.Log(uwr.downloadHandler.text);
-                loadingPopUpGO.SetActive(false);
+                loadingPopUpProfileGO.SetActive(false);
                 profilePanelGO.SetActive(true);
 
                 ASAProfilePanel.Stats Stats = JsonUtility.FromJson<ASAProfilePanel.Stats>(
                     uwr.downloadHandler.text
                 );
-                ASAProfilePanel.UpdateText(Stats);
-                ASAProfilePanel.UpdateLevelBar(Stats);
+                
+                Debug.Log("here");
                 if (Stats.cefr_level == null)
                 {
-                    //ASAProfilePanel.CohortTooSmall();
+                    ASAProfilePanel.CohortTooSmall();
+                }
+                else
+                {
+                    ASAProfilePanel.UpdateText(Stats);
+                    ASAProfilePanel.UpdateLevelBar(Stats);
                 }
             }
         }
