@@ -61,7 +61,7 @@ public class NetworkManager : MonoBehaviour
 
     public ASRResult asrResult { get; private set; }
 
-    public ASRResult2 asrResult2 { get; private set; }
+    public ASRResultASA asrResultASA { get; private set; }
     public string chatGPTTranscript { get; private set; }
     public string chatGPTGrading { get; private set; }
 
@@ -287,7 +287,7 @@ public class NetworkManager : MonoBehaviour
                 Debug.Log(uwr.downloadHandler.text);
             }
 
-            asrResult2 = JsonUtility.FromJson<ASRResult2>(uwr.downloadHandler.text);
+            asrResultASA = JsonUtility.FromJson<ASRResultASA>(uwr.downloadHandler.text);
 
             if (postType == POSTType.ASA_TASK)
             {
@@ -365,7 +365,7 @@ public class NetworkManager : MonoBehaviour
                 Debug.Log(uwr.downloadHandler.text);
             }
 
-            asrResult2 = JsonUtility.FromJson<ASRResult2>(uwr.downloadHandler.text);
+            asrResultASA = JsonUtility.FromJson<ASRResultASA>(uwr.downloadHandler.text);
 
             Debug.Log("Here we are (feedback edition)");
         }
@@ -1246,7 +1246,7 @@ public class NetworkManager : MonoBehaviour
     }
 
     [System.Serializable]
-    public class ASRResult2
+    public class ASRResultASA
     {
         public string transcript;
         public Scores scores;

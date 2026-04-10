@@ -283,11 +283,11 @@ public class FeedbackPanel : MonoBehaviour
                 dimPanelGO.SetActive(false);
             });
 
-        float proficiencyRating = networkManager.asrResult2.scores.proficiency;
-        float pronunciationRating = networkManager.asrResult2.scores.pronunciation;
-        float rangeRating = networkManager.asrResult2.scores.range;
-        float accuracyRating = networkManager.asrResult2.scores.accuracy;
-        float fluencyRating = networkManager.asrResult2.scores.fluency;
+        float proficiencyRating = networkManager.asrResultASA.scores.proficiency;
+        float pronunciationRating = networkManager.asrResultASA.scores.pronunciation;
+        float rangeRating = networkManager.asrResultASA.scores.range;
+        float accuracyRating = networkManager.asrResultASA.scores.accuracy;
+        float fluencyRating = networkManager.asrResultASA.scores.fluency;
 
         proficiencyScore.SetValue(proficiencyRating, 1);
         pronunciationScore.SetValue(pronunciationRating, 2);
