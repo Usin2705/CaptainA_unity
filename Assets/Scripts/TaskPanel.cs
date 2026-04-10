@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -109,8 +108,6 @@ public class TaskPanel : MonoBehaviour
             .GetComponent<Button>()
             .onClick.AddListener(() =>
             {
-                // profilePanelGO.SetActive(true);
-                // Uncomment when backend is ready
                 loadingPopUpGO.SetActive(true);
                 isLoading = true;
                 StartCoroutine(
@@ -119,7 +116,7 @@ public class TaskPanel : MonoBehaviour
             });
     }
 
-    public void returnToTaskPanel()
+    public void ReturnToTaskPanel()
     {
         isLoading = false;
         loadingPopUpGO.SetActive(true);
@@ -129,11 +126,11 @@ public class TaskPanel : MonoBehaviour
     {
         if (isLoading)
         {
-            animateLoading_profile();
+            AnimateLoadingProfile();
         }
     }
 
-    public void animateLoading_profile()
+    public void AnimateLoadingProfile()
     {
         loadingIconGO.transform.Rotate(0, 0, -6.0f, Space.Self);
     }

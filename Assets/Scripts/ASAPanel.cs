@@ -1,14 +1,9 @@
-using System.Collections;
-using System.Numerics;
-using System.Xml;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ASAPanel : MonoBehaviour
 {
-    NetworkManager networkManager;
-
     [SerializeField]
     AudioManager audioManager;
 
@@ -171,7 +166,7 @@ public class ASAPanel : MonoBehaviour
         }
         if (isLoading)
         {
-            animateLoading();
+            AnimateLoading();
         }
     }
 
@@ -285,7 +280,7 @@ public class ASAPanel : MonoBehaviour
         dimPanelASAGO.SetActive(true);
     }
 
-    public void animateLoading()
+    public void AnimateLoading()
     {
         loadingIconGO.transform.Rotate(0, 0, -6.0f, Space.Self);
     }

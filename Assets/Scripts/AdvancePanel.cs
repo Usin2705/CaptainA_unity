@@ -450,7 +450,7 @@ public class AdvancePanel : MonoBehaviour
         describePanelCGO.SetActive(false);
     }
 
-    public void feedbackWhileLoading()
+    public void FeedbackWhileLoading()
     {
         if (ratingOptions.AnyTogglesOn())
         {
