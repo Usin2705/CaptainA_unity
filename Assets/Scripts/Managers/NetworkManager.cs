@@ -197,7 +197,6 @@ public class NetworkManager : MonoBehaviour
         WWWForm form = GetPOSTForm_profile();
         string postURL = GetPOSTURL(postType);
 
-
         using UnityWebRequest uwr = UnityWebRequest.Post(postURL, form);
         {
             uwr.timeout = Const.TIME_OUT_SECS;
@@ -223,7 +222,7 @@ public class NetworkManager : MonoBehaviour
                 ASAProfilePanel.Stats Stats = JsonUtility.FromJson<ASAProfilePanel.Stats>(
                     uwr.downloadHandler.text
                 );
-                
+
                 Debug.Log("here");
                 if (Stats.cefr_level == null)
                 {
