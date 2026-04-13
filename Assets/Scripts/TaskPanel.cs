@@ -49,7 +49,7 @@ public class TaskPanel : MonoBehaviour
 
     [SerializeField]
     GameObject loadingPopUpGO;
-    private bool isLoading = false;
+    public bool isLoading = false;
 
     public ToggleGroup overallRatingOptions;
 

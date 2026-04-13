@@ -82,7 +82,7 @@ public class ASAPanel : MonoBehaviour
 
     private bool isRecording = false;
     private bool isReplaying = false;
-    private bool isLoading = false;
+    public bool isLoading = false;
 
     private float currentTime = 0;
 
@@ -110,6 +110,7 @@ public class ASAPanel : MonoBehaviour
 
     void OnEnable()
     {
+
         recordButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         pauseButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         sendButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();

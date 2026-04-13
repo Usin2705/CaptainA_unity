@@ -223,6 +223,7 @@ public class NetworkManager : MonoBehaviour
                 loadingPopUpProfileGO.SetActive(false);
                 profilePanelGO.SetActive(true);
                 dimPanelGO.SetActive(false);
+                taskPanel.isLoading = false;
 
                 ASAProfilePanel.Stats Stats = JsonUtility.FromJson<ASAProfilePanel.Stats>(
                     uwr.downloadHandler.text
@@ -308,6 +309,8 @@ public class NetworkManager : MonoBehaviour
             asrResultASA = JsonUtility.FromJson<ASRResultASA>(uwr.downloadHandler.text);
 
             PlayerPrefs.SetInt("AssessmentId", asrResultASA.assessment_id);
+
+            ASAPanel.isLoading = false;
 
             if (postType == POSTType.ASA_TASK)
             {
