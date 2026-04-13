@@ -209,6 +209,19 @@ public class ASAProfilePanel : MonoBehaviour
         ;
     }
 
+    public void ShowButtons(Stats user)
+    {
+        if (user.cefr_level == "A1")
+        {
+            revertLevelButtonGO.SetActive(false);
+        }
+
+        if (user.percentile < 0.9f)
+        {
+            advanceLevelButtonGO.SetActive(false);
+        }
+    }
+
     public void CohortTooSmall()
     {
         levelBarGO.SetActive(false);

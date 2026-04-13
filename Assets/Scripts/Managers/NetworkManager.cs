@@ -232,6 +232,7 @@ public class NetworkManager : MonoBehaviour
                 {
                     ASAProfilePanel.UpdateText(Stats);
                     ASAProfilePanel.UpdateLevelBar(Stats);
+                    ASAProfilePanel.ShowButtons(Stats);
                 }
             }
         }
