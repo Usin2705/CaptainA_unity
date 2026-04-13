@@ -322,7 +322,7 @@ public class FeedbackPanel : MonoBehaviour
 
                 anim.enabled = true;
 
-                anim.Play("ProficiencyText");
+                anim.Play("Proficiency Title Animation");
             }
             else if (pronunciationRating == minRating)
             {
@@ -330,7 +330,7 @@ public class FeedbackPanel : MonoBehaviour
 
                 anim.enabled = true;
 
-                anim.Play("PronunciationText");
+                anim.Play("Pronounciation Title Animation");
             }
             else if (rangeRating == minRating)
             {
@@ -338,7 +338,7 @@ public class FeedbackPanel : MonoBehaviour
 
                 anim.enabled = true;
 
-                anim.Play("RangeText");
+                anim.Play("Range Title Animation");
             }
             else if (accuracyRating == minRating)
             {
@@ -346,7 +346,7 @@ public class FeedbackPanel : MonoBehaviour
 
                 anim.enabled = true;
 
-                anim.Play("AccuracyText");
+                anim.Play("Accuracy Title Animation");
             }
             else if (fluencyRating == minRating)
             {
@@ -354,7 +354,7 @@ public class FeedbackPanel : MonoBehaviour
 
                 anim.enabled = true;
 
-                anim.Play("FluencyText");
+                anim.Play("Fluency Title Animation");
             }
         }
     }
