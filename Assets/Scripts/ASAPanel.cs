@@ -110,7 +110,6 @@ public class ASAPanel : MonoBehaviour
 
     void OnEnable()
     {
-
         recordButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         pauseButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         sendButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
