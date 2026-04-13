@@ -252,7 +252,7 @@ public class NetworkManager : MonoBehaviour
         );
         form.AddField("guid", PlayerPrefs.GetString("UserGuid"));
         int currentTask = ASAPanel.currentTaskSelected;
-        form.AddField("task_id", currentTask.ToString());
+        form.AddField("task_id", currentTask);
 
         return form;
     }
@@ -303,6 +303,8 @@ public class NetworkManager : MonoBehaviour
 
             asrResultASA = JsonUtility.FromJson<ASRResultASA>(uwr.downloadHandler.text);
 
+            PlayerPrefs.SetInt("AssessmentId", asrResultASA.assessment_id);
+
             if (postType == POSTType.ASA_TASK)
             {
                 loadingIconGO.SetActive(false);
@@ -328,10 +330,10 @@ public class NetworkManager : MonoBehaviour
         form.AddField("reaction_value", value);
         form.AddField("feedback_classification", feedback_type);
         int currentTask = ASAPanel.currentTaskSelected;
-        if (currentTask != -1)
-        {
-            form.AddField("assessment_id", currentTask);
-        }
+
+        form.AddField("assessment_id", PlayerPrefs.GetInt("AssessmentId", -1));
+        Debug.Log(PlayerPrefs.GetInt("AssessmentId"));
+
         form.AddField("comment", comment);
 
         Debug.Log("Current task: " + currentTask);
@@ -1264,6 +1266,7 @@ public class NetworkManager : MonoBehaviour
     {
         public string transcript;
         public Scores scores;
+        public int assessment_id;
     }
 
     [System.Serializable]
