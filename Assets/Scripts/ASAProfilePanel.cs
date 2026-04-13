@@ -73,6 +73,9 @@ public class ASAProfilePanel : MonoBehaviour
     [SerializeField]
     GameObject advanceLevelButtonGO;
 
+    [SerializeField]
+    GameObject insufficientDataNoticeGO;
+
     public ToggleGroup comparisonRatingOptions;
 
     [SerializeField]
@@ -230,6 +233,7 @@ public class ASAProfilePanel : MonoBehaviour
         performanceInfo.SetActive(false);
         rankInfo.SetActive(false);
         feedbackBackButtonGO.SetActive(false);
+        insufficientDataNoticeGO.SetActive(true);
     }
 
     [System.Serializable]
