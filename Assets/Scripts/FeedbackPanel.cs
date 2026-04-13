@@ -140,7 +140,9 @@ public class FeedbackPanel : MonoBehaviour
     {
         networkManager = FindFirstObjectByType<NetworkManager>();
 
-        newTaskButtonGO.GetComponent<Button>().onClick.AddListener(() => TaskPanelGO.SetActive(true));
+        newTaskButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() => TaskPanelGO.SetActive(true));
         newTaskButtonGO
             .GetComponent<Button>()
             .onClick.AddListener(() =>
