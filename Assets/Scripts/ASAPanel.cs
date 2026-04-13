@@ -295,6 +295,8 @@ public class ASAPanel : MonoBehaviour
         string grade = AdvancePanel.self_rating;
         string comment = feedbackTextGO.text;
 
+        Debug.Log(grade);
+
         if (AdvancePanel.self_rating != null)
         {
             Debug.Log("Test");

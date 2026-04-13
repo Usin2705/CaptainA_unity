@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.IO;
 using TMPro;
@@ -250,6 +251,8 @@ public class NetworkManager : MonoBehaviour
             mimeType: "audio/wav"
         );
         form.AddField("guid", PlayerPrefs.GetString("UserGuid"));
+        int currentTask = ASAPanel.currentTaskSelected;
+        form.AddField("task_id", currentTask.ToString());
 
         return form;
     }

@@ -1,3 +1,5 @@
+using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -49,9 +51,26 @@ public class TaskPanel : MonoBehaviour
     GameObject loadingPopUpGO;
     private bool isLoading = false;
 
+    public ToggleGroup overallRatingOptions;
+
+    [SerializeField]
+    GameObject overallFeedbackPopUpGO;
+
+    [SerializeField]
+    GameObject feedbackSendButtonGO;
+
+    [SerializeField]
+    public TMP_InputField overallFeedbackTextGO;
+
+    [SerializeField]
+    GameObject feedbackBackButtonGO;
+
     void OnEnable()
     {
         isLoading = false;
+        Debug.Log(PlayerPrefs.GetInt("TasksSent"));
+        // PlayerPrefs.SetInt("TasksSent", 5);
+        OverallFeedback();
 
         backButtonGO
             .GetComponent<Button>()
@@ -114,6 +133,44 @@ public class TaskPanel : MonoBehaviour
                     NetworkManager.GetManager().ServerPost_profile(POSTType.ASA_PROFILE)
                 );
             });
+
+        feedbackSendButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                var overallRating = overallRatingOptions.ActiveToggles().FirstOrDefault();
+                string comment_overall = overallFeedbackTextGO.text;
+                StartCoroutine(
+                    NetworkManager
+                        .GetManager()
+                        .ServerPost_feedback(
+                            POSTType.ASA_FEEDBACK,
+                            "overall_experience",
+                            overallRating.name,
+                            comment_overall
+                        )
+                );
+                overallRatingOptions.SetAllTogglesOff();
+                overallFeedbackTextGO.text = "";
+                overallFeedbackPopUpGO.SetActive(false);
+            });
+
+        feedbackBackButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                overallRatingOptions.SetAllTogglesOff();
+                overallFeedbackTextGO.text = "";
+                overallFeedbackPopUpGO.SetActive(false);
+            });
+    }
+
+    public void OverallFeedback()
+    {
+        if (PlayerPrefs.GetInt("TasksSent", 0) % 5 == 0 && PlayerPrefs.GetInt("TasksSent", 0) > 0)
+        {
+            overallFeedbackPopUpGO.SetActive(true);
+        }
     }
 
     public void ReturnToTaskPanel()

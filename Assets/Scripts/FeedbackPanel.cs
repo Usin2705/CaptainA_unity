@@ -113,6 +113,9 @@ public class FeedbackPanel : MonoBehaviour
     [SerializeField]
     GameObject fluencyTitleGO;
 
+    [SerializeField]
+    GameObject TaskPanelGO;
+
     [System.Serializable]
     public class PopupAttributes
     {
@@ -137,7 +140,7 @@ public class FeedbackPanel : MonoBehaviour
     {
         networkManager = FindFirstObjectByType<NetworkManager>();
 
-        backButtonGO.GetComponent<Button>().onClick.AddListener(() => ASAPanelGO.SetActive(true));
+        backButtonGO.GetComponent<Button>().onClick.AddListener(() => TaskPanelGO.SetActive(true));
         backButtonGO
             .GetComponent<Button>()
             .onClick.AddListener(() =>
