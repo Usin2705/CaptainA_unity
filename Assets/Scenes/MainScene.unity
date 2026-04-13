@@ -17835,6 +17835,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 1
+--- !u!1 &437655332 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4687329965885655850, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
+  m_PrefabInstance: {fileID: 7943467296828800039}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &439886465
 GameObject:
   m_ObjectHideFlags: 0
@@ -43865,7 +43870,6 @@ RectTransform:
   - {fileID: 1994942385}
   - {fileID: 841020696}
   - {fileID: 869523217}
-  - {fileID: 2049974557}
   m_Father: {fileID: 168680337}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -64667,13 +64671,16 @@ PrefabInstance:
       addedObject: {fileID: 168680337}
     - targetCorrespondingSourceObject: {fileID: 4672596101975302154, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 65379042}
+    - targetCorrespondingSourceObject: {fileID: 4672596101975302154, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 829384488}
     - targetCorrespondingSourceObject: {fileID: 4672596101975302154, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1109305272}
     - targetCorrespondingSourceObject: {fileID: 4672596101975302154, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 65379042}
+      addedObject: {fileID: 2049974557}
     - targetCorrespondingSourceObject: {fileID: 4672596101975302154, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 914154203}
@@ -64747,7 +64754,7 @@ MonoBehaviour:
   settingsButtonGO: {fileID: 65379038}
   settingsBackButtonGO: {fileID: 1044202598}
   settingsPopupGO: {fileID: 914154202}
-  dimPanelGO: {fileID: 1659378336}
+  dimPanelGO: {fileID: 1109305271}
   guidTextGO: {fileID: 621128077}
   copyGuidButtonGO: {fileID: 729080778}
   feedbackButtonGO: {fileID: 869523216}
@@ -66366,11 +66373,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1659072413}
   m_CullTransparentMesh: 1
---- !u!1 &1659378336 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9121153323623101452, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
-  m_PrefabInstance: {fileID: 7943467296828800039}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1660497272
 GameObject:
   m_ObjectHideFlags: 0
@@ -66425,10 +66427,11 @@ MonoBehaviour:
   feedbackTextGO: {fileID: 1039887686}
   errorTextGO: {fileID: 1523942761}
   profilePanelGO: {fileID: 1625667663}
+  dimPanelGO: {fileID: 22630210}
   AdvancePanel: {fileID: 1164813428}
   ASAPanel: {fileID: 474211613}
   ASAProfilePanel: {fileID: 1625667668}
-  taskPanel: {fileID: 0}
+  taskPanel: {fileID: 1964757491}
 --- !u!1 &1661505803
 GameObject:
   m_ObjectHideFlags: 0
@@ -83008,7 +83011,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1083296507}
+    m_TransformParent: {fileID: 1625667662}
     m_Modifications:
     - target: {fileID: 1206766737475275816, guid: 09ac1e30c1da1bf40bb4a6b0624980fc, type: 3}
       propertyPath: m_text
@@ -83112,11 +83115,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5128489674889389883, guid: 09ac1e30c1da1bf40bb4a6b0624980fc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.12780762
+      value: -12.988703
       objectReference: {fileID: 0}
     - target: {fileID: 5128489674889389883, guid: 09ac1e30c1da1bf40bb4a6b0624980fc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1916.28
+      value: -0.00012207031
       objectReference: {fileID: 0}
     - target: {fileID: 5128489674889389883, guid: 09ac1e30c1da1bf40bb4a6b0624980fc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -87917,6 +87920,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -252
       objectReference: {fileID: 0}
+    - target: {fileID: 1240304939080584323, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1374870777273957214, guid: 628e7537a87b6c09fa6b2c05d3dc9bc2, type: 3}
     - target: {fileID: 1668999574938477571, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -88125,6 +88132,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -28.24135
       objectReference: {fileID: 0}
+    - target: {fileID: 4687329965885655850, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
+      propertyPath: m_Name
+      value: NewTaskButton
+      objectReference: {fileID: 0}
     - target: {fileID: 4939315912069782670, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -88209,6 +88220,10 @@ PrefabInstance:
       propertyPath: feedbackPopUpGO
       value: 
       objectReference: {fileID: 312739210}
+    - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
+      propertyPath: newTaskButtonGO
+      value: 
+      objectReference: {fileID: 437655332}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: feedbackButtonGO
       value: 
@@ -88313,6 +88328,22 @@ PrefabInstance:
     - target: {fileID: 6215668392303397108, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -754.1722
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709687802291578879, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 199.8341
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709687802291578879, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 116.7993
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709687802291578879, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 196.58943
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709687802291578879, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -584.21
       objectReference: {fileID: 0}
     - target: {fileID: 7178574005969739771, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: m_AnchorMax.y

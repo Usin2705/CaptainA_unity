@@ -41,6 +41,9 @@ public class NetworkManager : MonoBehaviour
     [SerializeField]
     GameObject profilePanelGO;
 
+    [SerializeField]
+    GameObject dimPanelGO;
+
     static NetworkManager netWorkManager;
 
     // This is the URL to the ASR server
@@ -219,6 +222,7 @@ public class NetworkManager : MonoBehaviour
                 Debug.Log(uwr.downloadHandler.text);
                 loadingPopUpProfileGO.SetActive(false);
                 profilePanelGO.SetActive(true);
+                dimPanelGO.SetActive(false);
 
                 ASAProfilePanel.Stats Stats = JsonUtility.FromJson<ASAProfilePanel.Stats>(
                     uwr.downloadHandler.text

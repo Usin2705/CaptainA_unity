@@ -14,7 +14,7 @@ public class FeedbackPanel : MonoBehaviour
     GameObject ASAPanelGO;
 
     [SerializeField]
-    GameObject backButtonGO;
+    GameObject newTaskButtonGO;
 
     [SerializeField]
     GameObject proficiencyButtonGO;
@@ -140,8 +140,8 @@ public class FeedbackPanel : MonoBehaviour
     {
         networkManager = FindFirstObjectByType<NetworkManager>();
 
-        backButtonGO.GetComponent<Button>().onClick.AddListener(() => TaskPanelGO.SetActive(true));
-        backButtonGO
+        newTaskButtonGO.GetComponent<Button>().onClick.AddListener(() => TaskPanelGO.SetActive(true));
+        newTaskButtonGO
             .GetComponent<Button>()
             .onClick.AddListener(() =>
             {
@@ -364,7 +364,7 @@ public class FeedbackPanel : MonoBehaviour
 
     void OnDisable()
     {
-        backButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
+        newTaskButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         proficiencyButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         pronunciationButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         rangeButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();

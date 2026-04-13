@@ -128,6 +128,7 @@ public class TaskPanel : MonoBehaviour
             .onClick.AddListener(() =>
             {
                 loadingPopUpGO.SetActive(true);
+                dimPanelGO.SetActive(true);
                 isLoading = true;
                 StartCoroutine(
                     NetworkManager.GetManager().ServerPost_profile(POSTType.ASA_PROFILE)
@@ -162,6 +163,7 @@ public class TaskPanel : MonoBehaviour
                 overallRatingOptions.SetAllTogglesOff();
                 overallFeedbackTextGO.text = "";
                 overallFeedbackPopUpGO.SetActive(false);
+                dimPanelGO.SetActive(false);
             });
     }
 
@@ -170,6 +172,7 @@ public class TaskPanel : MonoBehaviour
         if (PlayerPrefs.GetInt("TasksSent", 0) % 5 == 0 && PlayerPrefs.GetInt("TasksSent", 0) > 0)
         {
             overallFeedbackPopUpGO.SetActive(true);
+            dimPanelGO.SetActive(true);
         }
     }
 
