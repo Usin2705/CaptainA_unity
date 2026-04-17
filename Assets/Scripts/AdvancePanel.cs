@@ -79,6 +79,9 @@ public class AdvancePanel : MonoBehaviour
     [SerializeField]
     GameObject profilePanelGO;
 
+    [SerializeField]
+    ASAPanel ASAPanel;
+
     public ToggleGroup ratingOptions;
 
     public string self_rating = null;
@@ -213,6 +216,7 @@ public class AdvancePanel : MonoBehaviour
 
         numberGamePanelGO.SetActive(false);
         ASAPanelGO.SetActive(false);
+        ASAPanel.ratingOptions.SetAllTogglesOff();
         describePanelAGO.SetActive(false);
         describePanelBGO.SetActive(false);
         describePanelCGO.SetActive(false);

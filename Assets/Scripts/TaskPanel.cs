@@ -154,6 +154,7 @@ public class TaskPanel : MonoBehaviour
                 overallRatingOptions.SetAllTogglesOff();
                 overallFeedbackTextGO.text = "";
                 overallFeedbackPopUpGO.SetActive(false);
+                dimPanelGO.SetActive(false);
             });
 
         feedbackBackButtonGO
