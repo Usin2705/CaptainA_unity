@@ -33,6 +33,9 @@ public class NetworkManager : MonoBehaviour
     GameObject resultsButtonGO;
 
     [SerializeField]
+    GameObject backButtonGO;
+
+    [SerializeField]
     TMP_InputField feedbackTextGO;
 
     [SerializeField]
@@ -291,6 +294,8 @@ public class NetworkManager : MonoBehaviour
                 Debug.Log(uwr.error);
                 loadingIconGO.SetActive(false);
                 errorTextGO.SetActive(true);
+                backButtonGO.SetActive(true);
+
                 OnServerDone?.Invoke();
                 throw new System.Exception(uwr.downloadHandler.text ?? uwr.error);
             }

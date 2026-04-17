@@ -49,6 +49,9 @@ public class ASAPanel : MonoBehaviour
     [SerializeField]
     GameObject errorTextGO;
 
+    [SerializeField]
+    GameObject backButtonGO;
+
     public ToggleGroup ratingOptions;
 
     [SerializeField]
@@ -106,12 +109,14 @@ public class ASAPanel : MonoBehaviour
         sendButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         replayButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         resultsButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
+        backButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
 
         recordButtonGO.GetComponent<Button>().onClick.AddListener(() => OnRecordButtonClicked());
         pauseButtonGO.GetComponent<Button>().onClick.AddListener(() => StopRecord());
         sendButtonGO.GetComponent<Button>().onClick.AddListener(() => OnSendButtonClicked());
         replayButtonGO.GetComponent<Button>().onClick.AddListener(() => OnReplayButtonClicked());
         resultsButtonGO.GetComponent<Button>().onClick.AddListener(() => OnResultsButtonClicked());
+        backButtonGO.GetComponent<Button>().onClick.AddListener(() => OnBackButtonClicked());
 
         replayBarGO.SetActive(false);
         progressBarBackgroundGO.SetActive(false);
@@ -283,5 +288,13 @@ public class ASAPanel : MonoBehaviour
         {
             return;
         }
+    }
+
+    public void OnBackButtonClicked()
+    {
+        ratingOptions.SetAllTogglesOff();
+        feedbackTextGO.text = "";
+        loadingPopUpGO.SetActive(false);
+        dimPanelASAGO.SetActive(false);
     }
 }
