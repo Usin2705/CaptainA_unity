@@ -5,19 +5,22 @@ using UnityEngine.UI;
 public class ASAPanel : MonoBehaviour
 {
     [SerializeField]
-    AudioManager audioManager;
+    private AudioManager audioManager;
 
     [SerializeField]
-    GameObject ASAButtonGO;
-
-    [SerializeField]
-    GameObject ASAPanelGO;
+    private AdvancePanel AdvancePanel;
 
     [SerializeField]
     GameObject recordButtonGO;
 
     [SerializeField]
-    GameObject transcriptGO;
+    GameObject pauseButtonGO;
+
+    [SerializeField]
+    GameObject sendButtonGO;
+
+    [SerializeField]
+    GameObject replayButtonGO;
 
     [SerializeField]
     GameObject replayBarGO;
@@ -30,15 +33,6 @@ public class ASAPanel : MonoBehaviour
 
     [SerializeField]
     GameObject feedbackPanelGO;
-
-    [SerializeField]
-    GameObject pauseButtonGO;
-
-    [SerializeField]
-    GameObject sendButtonGO;
-
-    [SerializeField]
-    GameObject replayButtonGO;
 
     [SerializeField]
     GameObject loadingPopUpGO;
@@ -56,9 +50,6 @@ public class ASAPanel : MonoBehaviour
     GameObject errorTextGO;
 
     public ToggleGroup ratingOptions;
-
-    [SerializeField]
-    AdvancePanel AdvancePanel;
 
     [SerializeField]
     TMP_InputField feedbackTextGO;
@@ -117,7 +108,7 @@ public class ASAPanel : MonoBehaviour
         resultsButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
 
         recordButtonGO.GetComponent<Button>().onClick.AddListener(() => OnRecordButtonClicked());
-        pauseButtonGO.GetComponent<Button>().onClick.AddListener(() => OnPauseButtonClicked());
+        pauseButtonGO.GetComponent<Button>().onClick.AddListener(() => StopRecord());
         sendButtonGO.GetComponent<Button>().onClick.AddListener(() => OnSendButtonClicked());
         replayButtonGO.GetComponent<Button>().onClick.AddListener(() => OnReplayButtonClicked());
         resultsButtonGO.GetComponent<Button>().onClick.AddListener(() => OnResultsButtonClicked());
@@ -183,7 +174,7 @@ public class ASAPanel : MonoBehaviour
         {
             currentTime = 0;
             progressBarGO.SetActive(false);
-            OnTimerFinished();
+            StopRecord();
         }
     }
 
@@ -216,25 +207,7 @@ public class ASAPanel : MonoBehaviour
         StartTimer();
     }
 
-    public void OnPauseButtonClicked()
-    {
-        isRecording = false;
-        // Stop the progress bar
-        progressBarBackgroundGO.SetActive(false);
-        progressBarGO.SetActive(false);
-        // Stop recording and save the audio
-        AudioManager.GetManager().StopRecording();
-        // Hide the pause button and show the record button
-
-        pauseButtonGO.SetActive(false);
-        recordButtonGO.SetActive(true);
-        sendButtonGO.SetActive(true);
-        replayButtonGO.SetActive(true);
-
-        StartCoroutine(AudioManager.GetManager().LoadAudioClip(Const.ASA_FILENAME, replayButtonGO));
-    }
-
-    public void OnTimerFinished()
+    public void StopRecord()
     {
         isRecording = false;
 

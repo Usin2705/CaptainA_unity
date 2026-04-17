@@ -19396,6 +19396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   audioManager: {fileID: 822940822}
+  AdvancePanel: {fileID: 1164813428}
   ASAButtonGO: {fileID: 1670868348}
   ASAPanelGO: {fileID: 474211609}
   recordButtonGO: {fileID: 1922058836}
@@ -19413,7 +19414,6 @@ MonoBehaviour:
   resultsButtonGO: {fileID: 1091579096}
   errorTextGO: {fileID: 1523942761}
   ratingOptions: {fileID: 949766071}
-  AdvancePanel: {fileID: 1164813428}
   feedbackTextGO: {fileID: 1039887686}
   tasks:
   - taskText: Your friend doesn't have much money and asks you for 100 euros. What
@@ -19439,6 +19439,7 @@ MonoBehaviour:
     recordingTime: 60
   taskTextGO: {fileID: 1186766482}
   taskImageGO: {fileID: 698106385}
+  isLoading: 0
   currentTaskSelected: -1
 --- !u!1 &478204620
 GameObject:
@@ -47865,6 +47866,7 @@ MonoBehaviour:
   describePanelCGO: {fileID: 1450252337}
   loadingPopUpGO: {fileID: 1012582868}
   profilePanelGO: {fileID: 1625667663}
+  ASAPanel: {fileID: 474211613}
   ratingOptions: {fileID: 949766071}
   self_rating: 
   genderOptions: {fileID: 1767757977}
@@ -79220,6 +79222,7 @@ MonoBehaviour:
   profilePanelGO: {fileID: 1625667663}
   loadingIconGO: {fileID: 1760811886}
   loadingPopUpGO: {fileID: 1837294515}
+  isLoading: 0
   overallRatingOptions: {fileID: 607544762}
   overallFeedbackPopUpGO: {fileID: 127011790}
   feedbackSendButtonGO: {fileID: 1020554282}
