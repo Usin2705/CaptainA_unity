@@ -90,6 +90,14 @@ public class ASAProfilePanel : MonoBehaviour
 
     void OnEnable()
     {
+        levelBarGO.SetActive(true);
+        revertLevelButtonGO.SetActive(true);
+        advanceLevelButtonGO.SetActive(true);
+        performanceInfo.SetActive(true);
+        rankInfo.SetActive(true);
+        feedbackButtonGO.SetActive(true);
+        insufficientDataNoticeGO.SetActive(false);
+
         profileBackButtonGO
             .GetComponent<Button>()
             .onClick.AddListener(() =>
