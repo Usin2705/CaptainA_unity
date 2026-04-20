@@ -256,6 +256,7 @@ public class ASAPanel : MonoBehaviour
         loadingIconGO.SetActive(true);
         isLoading = true;
         dimPanelASAGO.SetActive(true);
+        backButtonGO.SetActive(false);
     }
 
     public void AnimateLoading()
