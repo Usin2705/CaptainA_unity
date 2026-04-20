@@ -66280,6 +66280,7 @@ MonoBehaviour:
   ASAPanel: {fileID: 474211613}
   ASAProfilePanel: {fileID: 1625667668}
   taskPanel: {fileID: 1964757491}
+  errorText: {fileID: 1523942763}
 --- !u!1 &1661505803
 GameObject:
   m_ObjectHideFlags: 0
@@ -87441,7 +87442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8818382074188071033, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9033046472532129275, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

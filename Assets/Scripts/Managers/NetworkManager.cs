@@ -84,6 +84,9 @@ public class NetworkManager : MonoBehaviour
     [SerializeField]
     TaskPanel taskPanel;
 
+    [SerializeField]
+    private TMPro.TextMeshProUGUI errorText;
+
     void Awake()
     {
         if (netWorkManager != null)
@@ -232,7 +235,7 @@ public class NetworkManager : MonoBehaviour
                     uwr.downloadHandler.text
                 );
 
-                Debug.Log("here");
+                Debug.Log(Stats.cefr_level);
                 if (Stats.cefr_level == null)
                 {
                     ASAProfilePanel.CohortTooSmall();
@@ -295,6 +298,8 @@ public class NetworkManager : MonoBehaviour
                 loadingIconGO.SetActive(false);
                 errorTextGO.SetActive(true);
                 backButtonGO.SetActive(true);
+
+                ErrorHandling(uwr);
 
                 OnServerDone?.Invoke();
                 throw new System.Exception(uwr.downloadHandler.text ?? uwr.error);
@@ -1289,5 +1294,23 @@ public class NetworkManager : MonoBehaviour
         public float proficiency;
         public float pronunciation;
         public float range;
+    }
+
+    public void ErrorHandling(UnityWebRequest uwr)
+    {
+        switch (uwr.result)
+        {
+            case UnityWebRequest.Result.ConnectionError:
+                errorText.text = "Connection error";
+                break;
+
+            case UnityWebRequest.Result.ProtocolError:
+                errorText.text = "Protocol error";
+                break;
+
+            case UnityWebRequest.Result.DataProcessingError:
+                errorText.text = "Data processing error";
+                break;
+        }
     }
 }
