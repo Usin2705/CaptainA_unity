@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.IO;
 using TMPro;
@@ -24,7 +23,10 @@ public class NetworkManager : MonoBehaviour
     GameObject loadingPopUpProfileGO;
 
     [SerializeField]
-    GameObject loadingIconGO;
+    GameObject feedbackLoadingIconGO;
+
+    [SerializeField]
+    GameObject profileLoadingIconGO;
 
     [SerializeField]
     GameObject dimPanelASAGO;
@@ -33,13 +35,19 @@ public class NetworkManager : MonoBehaviour
     GameObject resultsButtonGO;
 
     [SerializeField]
-    GameObject backButtonGO;
+    GameObject feedbackLoadingBackButtonGO;
+
+    [SerializeField]
+    GameObject profileLoadingBackButtonGO;
 
     [SerializeField]
     TMP_InputField feedbackTextGO;
 
     [SerializeField]
-    GameObject errorTextGO;
+    GameObject feedbackLoadingErrorTextGO;
+
+    [SerializeField]
+    GameObject profileLoadingErrorTextGO;
 
     [SerializeField]
     GameObject profilePanelGO;
@@ -218,6 +226,11 @@ public class NetworkManager : MonoBehaviour
             )
             {
                 Debug.Log(uwr.error);
+                profileLoadingIconGO.SetActive(false);
+                profileLoadingErrorTextGO.SetActive(true);
+                profileLoadingBackButtonGO.SetActive(true);
+
+                ErrorHandling(uwr);
 
                 OnServerDone?.Invoke();
                 throw new System.Exception(uwr.downloadHandler.text ?? uwr.error);
@@ -295,9 +308,9 @@ public class NetworkManager : MonoBehaviour
             )
             {
                 Debug.Log(uwr.error);
-                loadingIconGO.SetActive(false);
-                errorTextGO.SetActive(true);
-                backButtonGO.SetActive(true);
+                feedbackLoadingIconGO.SetActive(false);
+                feedbackLoadingErrorTextGO.SetActive(true);
+                feedbackLoadingBackButtonGO.SetActive(true);
 
                 ErrorHandling(uwr);
 
@@ -324,7 +337,7 @@ public class NetworkManager : MonoBehaviour
 
             if (postType == POSTType.ASA_TASK)
             {
-                loadingIconGO.SetActive(false);
+                feedbackLoadingIconGO.SetActive(false);
                 resultsButtonGO.SetActive(true);
                 Debug.Log("Here we are");
             }

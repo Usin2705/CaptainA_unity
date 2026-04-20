@@ -48,7 +48,14 @@ public class TaskPanel : MonoBehaviour
     GameObject loadingIconGO;
 
     [SerializeField]
+    GameObject profileLoadingBackButtonGO;
+
+    [SerializeField]
+    GameObject profileLoadingErrorTextGO;
+
+    [SerializeField]
     GameObject loadingPopUpGO;
+
     public bool isLoading = false;
 
     public ToggleGroup overallRatingOptions;
@@ -73,7 +80,6 @@ public class TaskPanel : MonoBehaviour
 
         isLoading = false;
         Debug.Log(PlayerPrefs.GetInt("TasksSent"));
-        // PlayerPrefs.SetInt("TasksSent", 5);
         OverallFeedback();
 
         backButtonGO
@@ -133,11 +139,17 @@ public class TaskPanel : MonoBehaviour
             {
                 loadingPopUpGO.SetActive(true);
                 dimPanelGO.SetActive(true);
+                profileLoadingErrorTextGO.SetActive(false);
+
                 isLoading = true;
                 StartCoroutine(
                     NetworkManager.GetManager().ServerPost_profile(POSTType.ASA_PROFILE)
                 );
             });
+
+        profileLoadingBackButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() => OnProfileLoadingBackButtonClicked());
 
         feedbackSendButtonGO
             .GetComponent<Button>()
@@ -170,6 +182,12 @@ public class TaskPanel : MonoBehaviour
                 overallFeedbackPopUpGO.SetActive(false);
                 dimPanelGO.SetActive(false);
             });
+    }
+
+    public void OnProfileLoadingBackButtonClicked()
+    {
+        loadingPopUpGO.SetActive(false);
+        dimPanelGO.SetActive(false);
     }
 
     public void OverallFeedback()
