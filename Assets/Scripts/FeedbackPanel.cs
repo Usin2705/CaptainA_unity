@@ -408,6 +408,5 @@ public class FeedbackPanel : MonoBehaviour
         feedbackButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         feedbackBackButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         feedbackSendButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
-
     }
 }
