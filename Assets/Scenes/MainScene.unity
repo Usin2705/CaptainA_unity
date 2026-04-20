@@ -87365,11 +87365,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4672596101975302154, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000061035156
+      value: -0.00012207031
       objectReference: {fileID: 0}
     - target: {fileID: 4672596101975302154, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.4666138
+      value: -1.4667969
       objectReference: {fileID: 0}
     - target: {fileID: 4672596101975302154, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -87441,7 +87441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8818382074188071033, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9033046472532129275, guid: 74dd4586fe062f1209313f689c1624b5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

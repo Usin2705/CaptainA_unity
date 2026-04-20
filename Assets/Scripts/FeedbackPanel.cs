@@ -136,13 +136,42 @@ public class FeedbackPanel : MonoBehaviour
         popupTextGO.text = popup.PopupText;
     }
 
+    void ResetTextSizeInAnimation()
+    {
+        proficiencyTitleGO.transform.localScale = Vector3.one;
+        pronunciationTitleGO.transform.localScale = Vector3.one;
+        rangeTitleGO.transform.localScale = Vector3.one;
+        accuracyTitleGO.transform.localScale = Vector3.one;
+        fluencyTitleGO.transform.localScale = Vector3.one;
+    }
+
+    void StopAnimation()
+    {
+        Animator anim;
+
+        anim = proficiencyTitleGO.GetComponent<Animator>();
+        anim.enabled = false;
+
+        anim = pronunciationTitleGO.GetComponent<Animator>();
+        anim.enabled = false;
+
+        anim = rangeTitleGO.GetComponent<Animator>();
+        anim.enabled = false;
+
+        anim = accuracyTitleGO.GetComponent<Animator>();
+        anim.enabled = false;
+
+        anim = fluencyTitleGO.GetComponent<Animator>();
+        anim.enabled = false;
+    }
+
     void OnEnable()
     {
         networkManager = FindFirstObjectByType<NetworkManager>();
 
-        newTaskButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() => TaskPanelGO.SetActive(true));
+        ResetTextSizeInAnimation();
+        StopAnimation();
+
         newTaskButtonGO
             .GetComponent<Button>()
             .onClick.AddListener(() =>
@@ -150,6 +179,7 @@ public class FeedbackPanel : MonoBehaviour
                 feedbackPanelGO.SetActive(false);
                 replayButtonGO.SetActive(false);
                 sendButtonGO.SetActive(false);
+                TaskPanelGO.SetActive(true);
             });
 
         proficiencyButtonGO
@@ -379,21 +409,5 @@ public class FeedbackPanel : MonoBehaviour
         feedbackBackButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         feedbackSendButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
 
-        Animator anim;
-
-        anim = proficiencyTitleGO.GetComponent<Animator>();
-        anim.enabled = false;
-
-        anim = pronunciationTitleGO.GetComponent<Animator>();
-        anim.enabled = false;
-
-        anim = rangeTitleGO.GetComponent<Animator>();
-        anim.enabled = false;
-
-        anim = accuracyTitleGO.GetComponent<Animator>();
-        anim.enabled = false;
-
-        anim = fluencyTitleGO.GetComponent<Animator>();
-        anim.enabled = false;
     }
 }
