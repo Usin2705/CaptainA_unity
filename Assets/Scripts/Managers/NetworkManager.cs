@@ -93,7 +93,10 @@ public class NetworkManager : MonoBehaviour
     TaskPanel taskPanel;
 
     [SerializeField]
-    private TMPro.TextMeshProUGUI errorText;
+    private TMPro.TextMeshProUGUI feedbackErrorText;
+
+    [SerializeField]
+    private TMPro.TextMeshProUGUI profileErrorText;
 
     void Awake()
     {
@@ -230,7 +233,7 @@ public class NetworkManager : MonoBehaviour
                 profileLoadingErrorTextGO.SetActive(true);
                 profileLoadingBackButtonGO.SetActive(true);
 
-                ErrorHandling(uwr);
+                ErrorHandling(uwr, profileErrorText);
 
                 OnServerDone?.Invoke();
                 throw new System.Exception(uwr.downloadHandler.text ?? uwr.error);
@@ -312,7 +315,7 @@ public class NetworkManager : MonoBehaviour
                 feedbackLoadingErrorTextGO.SetActive(true);
                 feedbackLoadingBackButtonGO.SetActive(true);
 
-                ErrorHandling(uwr);
+                ErrorHandling(uwr, feedbackErrorText);
 
                 OnServerDone?.Invoke();
                 throw new System.Exception(uwr.downloadHandler.text ?? uwr.error);
@@ -1309,7 +1312,7 @@ public class NetworkManager : MonoBehaviour
         public float range;
     }
 
-    public void ErrorHandling(UnityWebRequest uwr)
+    public void ErrorHandling(UnityWebRequest uwr, TextMeshProUGUI errorText)
     {
         switch (uwr.result)
         {

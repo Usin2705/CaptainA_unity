@@ -66539,7 +66539,8 @@ MonoBehaviour:
   ASAPanel: {fileID: 474211613}
   ASAProfilePanel: {fileID: 1625667668}
   taskPanel: {fileID: 1964757491}
-  errorText: {fileID: 1523942763}
+  feedbackErrorText: {fileID: 1523942763}
+  profileErrorText: {fileID: 1147529917}
 --- !u!1 &1661505803
 GameObject:
   m_ObjectHideFlags: 0
