@@ -67,6 +67,10 @@ public class TaskPanel : MonoBehaviour
 
     void OnEnable()
     {
+        profileButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
+        feedbackSendButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
+        feedbackBackButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
+
         isLoading = false;
         Debug.Log(PlayerPrefs.GetInt("TasksSent"));
         // PlayerPrefs.SetInt("TasksSent", 5);

@@ -232,7 +232,7 @@ public class ASAProfilePanel : MonoBehaviour
         advanceLevelButtonGO.SetActive(false);
         performanceInfo.SetActive(false);
         rankInfo.SetActive(false);
-        feedbackBackButtonGO.SetActive(false);
+        feedbackButtonGO.SetActive(false);
         insufficientDataNoticeGO.SetActive(true);
     }
 
