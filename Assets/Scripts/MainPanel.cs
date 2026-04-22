@@ -99,6 +99,7 @@ public class MainPanel : MonoBehaviour
     {
         PlayerPrefs.SetInt("BackgroundFormCompleted", 0);
         PlayerPrefs.SetInt("ConsentGiven", 0);
+        PlayerPrefs.SetInt("InfoPopupSeen", 0);
         PlayerPrefs.Save();
         // Get the InputManager component
         SetUpStartUI();

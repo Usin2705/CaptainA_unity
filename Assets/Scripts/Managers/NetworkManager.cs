@@ -251,7 +251,7 @@ public class NetworkManager : MonoBehaviour
                     uwr.downloadHandler.text
                 );
 
-                if (Stats.cefr_level == null)
+                if (Stats.percentile == -1f)
                 {
                     ASAProfilePanel.InsufficientStats InsufficientStats = JsonUtility.FromJson<ASAProfilePanel.InsufficientStats>(
                     uwr.downloadHandler.text
@@ -316,7 +316,7 @@ public class NetworkManager : MonoBehaviour
                 feedbackLoadingIconGO.SetActive(false);
                 feedbackLoadingErrorTextGO.SetActive(true);
                 feedbackLoadingBackButtonGO.SetActive(true);
-
+                
                 ErrorHandling(uwr, feedbackErrorText);
 
                 OnServerDone?.Invoke();
@@ -1319,15 +1319,15 @@ public class NetworkManager : MonoBehaviour
         switch (uwr.result)
         {
             case UnityWebRequest.Result.ConnectionError:
-                errorText.text = "Connection error";
+                errorText.text = uwr.error;
                 break;
 
             case UnityWebRequest.Result.ProtocolError:
-                errorText.text = "Protocol error";
+                errorText.text = uwr.error;
                 break;
 
             case UnityWebRequest.Result.DataProcessingError:
-                errorText.text = "Data processing error";
+                errorText.text = uwr.error;
                 break;
         }
     }

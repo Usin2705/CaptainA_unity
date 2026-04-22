@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,6 +76,12 @@ public class ASAProfilePanel : MonoBehaviour
 
     [SerializeField]
     GameObject insufficientDataNoticeGO;
+
+    [SerializeField]
+    GameObject levelTextGO;
+
+    [SerializeField]
+    GameObject levelDescriptionTextGO;
 
     public ToggleGroup comparisonRatingOptions;
 
@@ -208,6 +215,12 @@ public class ASAProfilePanel : MonoBehaviour
         rankText.text = rank_text;
         string position_text = $"#{user.rank}";
         positionText.text = position_text;
+        GiveLevelDescriptions(user.cefr_level);
+        
+    }
+
+    public void GiveLevelDescriptions(String cefr_level)
+    {
         var leveDescriptions = new Dictionary<string, string>
         {
             ["A1"] = "Beginner",
@@ -216,7 +229,7 @@ public class ASAProfilePanel : MonoBehaviour
             ["B2"] = "Upper Intermediate",
             ["C1_plus"] = "Advanced/\nFluent",
         };
-        if (leveDescriptions.TryGetValue(user.cefr_level, out description))
+        if (leveDescriptions.TryGetValue(cefr_level, out description))
         {
             descriptionText.text = description;
         }
@@ -238,8 +251,12 @@ public class ASAProfilePanel : MonoBehaviour
 
     public void CohortTooSmall(InsufficientStats user)
     {
-        insufficientDataNotice.text = $"Please complete at least three tasks to see your ranking. You have completed {user.current_assesments} out of 3 tasks so far";
+        insufficientDataNotice.text = $"Please complete at least three tasks to see your ranking. You have completed {user.current_assessments} out of 3 tasks so far";
         levelBarGO.SetActive(false);
+        levelText.text = user.cefr_level.Replace("_plus", "+");
+        GiveLevelDescriptions(user.cefr_level);
+        levelTextGO.SetActive(true);
+        levelDescriptionTextGO.SetActive(true);
         revertLevelButtonGO.SetActive(false);
         advanceLevelButtonGO.SetActive(false);
         performanceInfo.SetActive(false);
@@ -251,7 +268,7 @@ public class ASAProfilePanel : MonoBehaviour
     [System.Serializable]
     public class Stats
     {
-        public float percentile;
+        public float percentile = -1f;
         public string cefr_level;
         public int cohort_size;
         public int rank;
@@ -261,14 +278,7 @@ public class ASAProfilePanel : MonoBehaviour
     public class InsufficientStats
     {
         public string cefr_level;
-        public int current_assesments;
+        public int current_assessments;
     }
 
-    // Stats user = new Stats
-    // {
-    // percentile = 0.7f,
-    // cefr_level = "C1_plus",
-    // cohort_size = 50,
-    // rank = 17,
-    // };
 }
