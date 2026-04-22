@@ -86,6 +86,7 @@ public class ASAPanel : MonoBehaviour
 
     public void DisplayTask(int taskSelected)
     {
+        // Determines graphic and text for selected task if applicable
         currentTaskSelected = taskSelected;
         TaskAttributes task = tasks[taskSelected];
 
@@ -135,7 +136,7 @@ public class ASAPanel : MonoBehaviour
         // Start countdown so the user knows how long the recording will be
         currentTime = tasks[currentTaskSelected].recordingTime;
 
-        // Hide the record button
+        // Hide the record button and replace it with the pause button
         recordButtonGO.SetActive(false);
         pauseButtonGO.SetActive(true);
         sendButtonGO.SetActive(false);
@@ -151,7 +152,7 @@ public class ASAPanel : MonoBehaviour
 
     void Update()
     {
-        // Only run this code if the progress bar is active
+        // Show relevant animations depending on state
         if (isRecording)
         {
             UpdateProgressBar();
@@ -168,13 +169,12 @@ public class ASAPanel : MonoBehaviour
 
     void UpdateProgressBar()
     {
-        /*
-        *   This function will update the progress bar
-        */
+        // Start decreasing currentTime with deltaTime and compare the ratio to given recordingTime
         currentTime -= Time.deltaTime;
         progressBarGO.GetComponent<Image>().fillAmount =
             currentTime / tasks[currentTaskSelected].recordingTime;
 
+        // When currentTime reaches zero, the time has run out and recording is stopped
         if (currentTime <= 0)
         {
             currentTime = 0;
@@ -185,6 +185,7 @@ public class ASAPanel : MonoBehaviour
 
     void UpdateReplayBar()
     {
+        // Same principle as with UpdateProgressBar(), but this time comparing with the length of the recording
         currentTime -= Time.deltaTime;
         replayBarGO.GetComponent<Image>().fillAmount = currentTime / recording.length;
 
@@ -197,18 +198,9 @@ public class ASAPanel : MonoBehaviour
     }
 
     public void OnRecordButtonClicked()
-    /*
-    *   This function also attached to RecordButton OnClick() in Unity
-    */
     {
-        // Clear the transcript text
-        //transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = "";
-
         // Start recording
         AudioManager.GetManager().StartRecording((int)tasks[currentTaskSelected].recordingTime);
-
-        // Start the timer
-        // Should not use invoke or delay as it will cause the timer to be inaccurate
         StartTimer();
     }
 
@@ -218,7 +210,8 @@ public class ASAPanel : MonoBehaviour
 
         progressBarBackgroundGO.SetActive(false);
         progressBarGO.SetActive(false);
-        // stop recording and save the audio
+
+        // Stop recording and save the audio
         AudioManager.GetManager().StopRecording();
 
         pauseButtonGO.SetActive(false);
@@ -226,20 +219,22 @@ public class ASAPanel : MonoBehaviour
         sendButtonGO.SetActive(true);
         replayButtonGO.SetActive(true);
 
+        // Retrieve audio for replaying
         StartCoroutine(AudioManager.GetManager().LoadAudioClip(Const.ASA_FILENAME, replayButtonGO));
     }
 
     public void OnReplayButtonClicked()
     {
+        // Retrieve audio and set the relevant variables for playing the animation
         recording = audioManager.GetReplayClip();
-        currentTime = recording.length; // to counter the small lag you can manually add "+ (float)0.4" or so at the end
+        currentTime = recording.length;
         replayBarGO.SetActive(true);
         isReplaying = true;
     }
 
     public void OnSendButtonClicked()
     {
-        // send the audio to the server when clicked
+        // Send the audio to the server when clicked
         AudioManager
             .GetManager()
             .GetAudioAndPost_ASA(
@@ -261,11 +256,13 @@ public class ASAPanel : MonoBehaviour
 
     public void AnimateLoading()
     {
+        // Change value -6.0f to change rotation speed
         loadingIconGO.transform.Rotate(0, 0, -6.0f, Space.Self);
     }
 
     public void OnResultsButtonClicked()
     {
+        // Reset feedback forms and go to feedback panel
         ratingOptions.SetAllTogglesOff();
         loadingPopUpGO.SetActive(false);
 
@@ -276,6 +273,7 @@ public class ASAPanel : MonoBehaviour
 
         Debug.Log(grade);
 
+        // Send feedback if given
         if (AdvancePanel.self_rating != null)
         {
             Debug.Log("Test");
@@ -293,6 +291,7 @@ public class ASAPanel : MonoBehaviour
 
     public void OnBackButtonClicked()
     {
+        // Go back to redo current task
         ratingOptions.SetAllTogglesOff();
         feedbackTextGO.text = "";
         loadingPopUpGO.SetActive(false);
