@@ -81,6 +81,9 @@ public class ASAProfilePanel : MonoBehaviour
     [SerializeField]
     TMP_InputField comparisonFeedbackTextGO;
 
+    [SerializeField]
+    TMP_Text insufficientDataNotice;
+
     string description = "";
 
     [SerializeField]
@@ -233,8 +236,9 @@ public class ASAProfilePanel : MonoBehaviour
         }
     }
 
-    public void CohortTooSmall()
+    public void CohortTooSmall(InsufficientStats user)
     {
+        insufficientDataNotice.text = $"Please complete at least three tasks to see your ranking. You have completed {user.current_assesments} out of 3 tasks so far";
         levelBarGO.SetActive(false);
         revertLevelButtonGO.SetActive(false);
         advanceLevelButtonGO.SetActive(false);
@@ -251,6 +255,13 @@ public class ASAProfilePanel : MonoBehaviour
         public string cefr_level;
         public int cohort_size;
         public int rank;
+    }
+
+    [System.Serializable]
+    public class InsufficientStats
+    {
+        public string cefr_level;
+        public int current_assesments;
     }
 
     // Stats user = new Stats

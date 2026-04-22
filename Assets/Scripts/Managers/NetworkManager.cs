@@ -251,10 +251,12 @@ public class NetworkManager : MonoBehaviour
                     uwr.downloadHandler.text
                 );
 
-                Debug.Log(Stats.cefr_level);
                 if (Stats.cefr_level == null)
                 {
-                    ASAProfilePanel.CohortTooSmall();
+                    ASAProfilePanel.InsufficientStats InsufficientStats = JsonUtility.FromJson<ASAProfilePanel.InsufficientStats>(
+                    uwr.downloadHandler.text
+                    );
+                    ASAProfilePanel.CohortTooSmall(InsufficientStats);
                 }
                 else
                 {

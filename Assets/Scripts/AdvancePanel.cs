@@ -132,7 +132,7 @@ public class AdvancePanel : MonoBehaviour
         // PlayerPrefs.SetInt("BackgroundFormCompleted", 0);
         // PlayerPrefs.SetInt("ConsentGiven", 0);
         // PlayerPrefs.Save();
-        PlayerPrefs.SetString("UserGuid", "00000000-0000-0000-0000-000000000001");
+        // PlayerPrefs.SetString("UserGuid", "00000000-0000-0000-0000-000000000001");
 
         refuseButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         acceptButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
