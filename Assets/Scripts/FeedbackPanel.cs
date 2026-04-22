@@ -118,7 +118,6 @@ public class FeedbackPanel : MonoBehaviour
     GameObject TaskPanelGO;
 
     [SerializeField]
-
     GameObject errorPopupGO;
 
     [System.Serializable]
@@ -290,9 +289,10 @@ public class FeedbackPanel : MonoBehaviour
                 bool hasCommentAccuracy = !string.IsNullOrEmpty(comment_accuracy);
                 bool hasCommentUnderstanding = !string.IsNullOrEmpty(comment_understanding);
 
-                bool isValid = (hasAccuracy && hasUnderstanding) ||
-                               (hasAccuracy && !hasCommentUnderstanding) ||
-                               (hasUnderstanding && !hasCommentAccuracy);
+                bool isValid =
+                    (hasAccuracy && hasUnderstanding)
+                    || (hasAccuracy && !hasCommentUnderstanding)
+                    || (hasUnderstanding && !hasCommentAccuracy);
 
                 if (!isValid)
                 {
