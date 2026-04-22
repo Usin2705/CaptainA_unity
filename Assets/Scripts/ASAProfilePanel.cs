@@ -216,7 +216,6 @@ public class ASAProfilePanel : MonoBehaviour
         string position_text = $"#{user.rank}";
         positionText.text = position_text;
         GiveLevelDescriptions(user.cefr_level);
-        
     }
 
     public void GiveLevelDescriptions(String cefr_level)
@@ -251,7 +250,8 @@ public class ASAProfilePanel : MonoBehaviour
 
     public void CohortTooSmall(InsufficientStats user)
     {
-        insufficientDataNotice.text = $"Please complete at least three tasks to see your ranking. You have completed {user.current_assessments} out of 3 tasks so far";
+        insufficientDataNotice.text =
+            $"Please complete at least three tasks to see your ranking. You have completed {user.current_assessments} out of 3 tasks so far";
         levelBarGO.SetActive(false);
         levelText.text = user.cefr_level.Replace("_plus", "+");
         GiveLevelDescriptions(user.cefr_level);
@@ -280,5 +280,4 @@ public class ASAProfilePanel : MonoBehaviour
         public string cefr_level;
         public int current_assessments;
     }
-
 }

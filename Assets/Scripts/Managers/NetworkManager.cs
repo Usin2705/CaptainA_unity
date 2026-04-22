@@ -253,9 +253,10 @@ public class NetworkManager : MonoBehaviour
 
                 if (Stats.percentile == -1f)
                 {
-                    ASAProfilePanel.InsufficientStats InsufficientStats = JsonUtility.FromJson<ASAProfilePanel.InsufficientStats>(
-                    uwr.downloadHandler.text
-                    );
+                    ASAProfilePanel.InsufficientStats InsufficientStats =
+                        JsonUtility.FromJson<ASAProfilePanel.InsufficientStats>(
+                            uwr.downloadHandler.text
+                        );
                     ASAProfilePanel.CohortTooSmall(InsufficientStats);
                 }
                 else
@@ -316,7 +317,7 @@ public class NetworkManager : MonoBehaviour
                 feedbackLoadingIconGO.SetActive(false);
                 feedbackLoadingErrorTextGO.SetActive(true);
                 feedbackLoadingBackButtonGO.SetActive(true);
-                
+
                 ErrorHandling(uwr, feedbackErrorText);
 
                 OnServerDone?.Invoke();
