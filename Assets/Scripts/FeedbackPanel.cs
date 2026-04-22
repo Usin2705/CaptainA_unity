@@ -1,6 +1,7 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.UI;
 
 public class FeedbackPanel : MonoBehaviour
@@ -116,6 +117,10 @@ public class FeedbackPanel : MonoBehaviour
     [SerializeField]
     GameObject TaskPanelGO;
 
+    [SerializeField]
+
+    GameObject errorPopupGO;
+
     [System.Serializable]
     public class PopupAttributes
     {
@@ -136,7 +141,7 @@ public class FeedbackPanel : MonoBehaviour
         popupTextGO.text = popup.PopupText;
     }
 
-    void ResetTextSizeInAnimation()
+    void ResetTextSizeInTitleAnimation()
     {
         proficiencyTitleGO.transform.localScale = Vector3.one;
         pronunciationTitleGO.transform.localScale = Vector3.one;
@@ -145,7 +150,7 @@ public class FeedbackPanel : MonoBehaviour
         fluencyTitleGO.transform.localScale = Vector3.one;
     }
 
-    void StopAnimation()
+    void StopTitleAnimation()
     {
         Animator anim;
 
@@ -165,12 +170,19 @@ public class FeedbackPanel : MonoBehaviour
         anim.enabled = false;
     }
 
+    void StopErrorAnimation()
+    {
+        Animator anim = errorPopupGO.GetComponent<Animator>();
+        anim.enabled = false;
+        errorPopupGO.SetActive(false);
+    }
+
     void OnEnable()
     {
         networkManager = FindFirstObjectByType<NetworkManager>();
 
-        ResetTextSizeInAnimation();
-        StopAnimation();
+        ResetTextSizeInTitleAnimation();
+        StopTitleAnimation();
 
         newTaskButtonGO
             .GetComponent<Button>()
@@ -249,6 +261,7 @@ public class FeedbackPanel : MonoBehaviour
             {
                 feedbackPopUpGO.SetActive(true);
                 dimPanelGO.SetActive(true);
+                StopErrorAnimation();
             });
 
         feedbackBackButtonGO
@@ -271,6 +284,29 @@ public class FeedbackPanel : MonoBehaviour
                 var understanding = understandingRatingOptions.ActiveToggles().FirstOrDefault();
                 string comment_accuracy = accuracyFeedbackTextGO.text;
                 string comment_understanding = understandingFeedbackTextGO.text;
+
+                bool hasAccuracy = accuracy != null;
+                bool hasUnderstanding = understanding != null;
+                bool hasCommentAccuracy = !string.IsNullOrEmpty(comment_accuracy);
+                bool hasCommentUnderstanding = !string.IsNullOrEmpty(comment_understanding);
+
+                bool isValid = (hasAccuracy && hasUnderstanding) ||
+                               (hasAccuracy && !hasCommentUnderstanding) ||
+                               (hasUnderstanding && !hasCommentAccuracy);
+
+                if (!isValid)
+                {
+                    Animator anim = errorPopupGO.GetComponent<Animator>();
+
+                    errorPopupGO.SetActive(true);
+
+                    anim.enabled = true;
+
+                    anim.Play("Error Popup Animation");
+
+                    return;
+                }
+
                 if (accuracy != null)
                 {
                     StartCoroutine(

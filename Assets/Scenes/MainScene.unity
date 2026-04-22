@@ -64319,7 +64319,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Error!
+  m_text: Please select an expression
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
   m_sharedMaterial: {fileID: -459825320126915412, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
@@ -88407,6 +88407,10 @@ PrefabInstance:
       propertyPath: titleTextGO
       value: 
       objectReference: {fileID: 169237808}
+    - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
+      propertyPath: errorPopupGO
+      value: 
+      objectReference: {fileID: 484278565}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: infoButtonGO
       value: 
