@@ -169,7 +169,7 @@ public class FeedbackPanel : MonoBehaviour
         anim.enabled = false;
     }
 
-    void StopErrorAnimation()
+    public void StopErrorAnimation()
     {
         Animator anim = errorPopupGO.GetComponent<Animator>();
         anim.enabled = false;

@@ -56,6 +56,9 @@ public class TaskPanel : MonoBehaviour
     [SerializeField]
     GameObject loadingPopUpGO;
 
+    [SerializeField]
+    GameObject errorPopupGO;
+
     public bool isLoading = false;
 
     public ToggleGroup overallRatingOptions;
@@ -72,8 +75,16 @@ public class TaskPanel : MonoBehaviour
     [SerializeField]
     GameObject feedbackBackButtonGO;
 
+    public void StopErrorAnimation()
+    {
+        Animator anim = errorPopupGO.GetComponent<Animator>();
+        anim.enabled = false;
+        errorPopupGO.SetActive(false);
+    }
+
     void OnEnable()
     {
+        StopErrorAnimation();
         profileButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         feedbackSendButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         feedbackBackButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
@@ -157,6 +168,18 @@ public class TaskPanel : MonoBehaviour
             {
                 var overallRating = overallRatingOptions.ActiveToggles().FirstOrDefault();
                 string comment_overall = overallFeedbackTextGO.text;
+                if (overallRating == null)
+                {
+                    Animator anim = errorPopupGO.GetComponent<Animator>();
+
+                    errorPopupGO.SetActive(true);
+
+                    anim.enabled = true;
+
+                    anim.Play("Error Popup Animation");
+
+                    return;
+                }
                 StartCoroutine(
                     NetworkManager
                         .GetManager()
@@ -171,6 +194,7 @@ public class TaskPanel : MonoBehaviour
                 overallFeedbackTextGO.text = "";
                 overallFeedbackPopUpGO.SetActive(false);
                 dimPanelGO.SetActive(false);
+                errorPopupGO.SetActive(false);
             });
 
         feedbackBackButtonGO
@@ -181,6 +205,7 @@ public class TaskPanel : MonoBehaviour
                 overallFeedbackTextGO.text = "";
                 overallFeedbackPopUpGO.SetActive(false);
                 dimPanelGO.SetActive(false);
+                errorPopupGO.SetActive(false);
             });
     }
 

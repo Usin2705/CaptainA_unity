@@ -83,6 +83,9 @@ public class ASAProfilePanel : MonoBehaviour
     [SerializeField]
     GameObject levelDescriptionTextGO;
 
+    [SerializeField]
+    GameObject errorPopupGO;
+
     public ToggleGroup comparisonRatingOptions;
 
     [SerializeField]
@@ -98,8 +101,19 @@ public class ASAProfilePanel : MonoBehaviour
 
     public string guid;
 
+    [SerializeField]
+    private FeedbackPanel FeedbackPanel;
+
+    public void StopErrorAnimation()
+    {
+        Animator anim = errorPopupGO.GetComponent<Animator>();
+        anim.enabled = false;
+        errorPopupGO.SetActive(false);
+    }
+
     void OnEnable()
     {
+        StopErrorAnimation();
         levelBarGO.SetActive(true);
         revertLevelButtonGO.SetActive(true);
         advanceLevelButtonGO.SetActive(true);
@@ -161,6 +175,7 @@ public class ASAProfilePanel : MonoBehaviour
                 comparisonFeedbackTextGO.text = "";
                 feedbackPopUpGO.SetActive(false);
                 dimPanelGO.SetActive(false);
+                errorPopupGO.SetActive(false);
             });
 
         feedbackSendButtonGO
@@ -169,6 +184,19 @@ public class ASAProfilePanel : MonoBehaviour
             {
                 var helpful = comparisonRatingOptions.ActiveToggles().FirstOrDefault();
                 string comment_helpful = comparisonFeedbackTextGO.text;
+
+                if (helpful == null)
+                {
+                    Animator anim = errorPopupGO.GetComponent<Animator>();
+
+                    errorPopupGO.SetActive(true);
+
+                    anim.enabled = true;
+
+                    anim.Play("Error Popup Animation");
+
+                    return;
+                }
                 StartCoroutine(
                     NetworkManager
                         .GetManager()
@@ -183,6 +211,7 @@ public class ASAProfilePanel : MonoBehaviour
                 comparisonFeedbackTextGO.text = "";
                 feedbackPopUpGO.SetActive(false);
                 dimPanelGO.SetActive(false);
+                errorPopupGO.SetActive(false);
             });
     }
 
@@ -261,7 +290,7 @@ public class ASAProfilePanel : MonoBehaviour
         advanceLevelButtonGO.SetActive(false);
         performanceInfo.SetActive(false);
         rankInfo.SetActive(false);
-        feedbackButtonGO.SetActive(false);
+        // feedbackButtonGO.SetActive(false);
         insufficientDataNoticeGO.SetActive(true);
     }
 
