@@ -41,7 +41,6 @@ public class ASAProfilePanel : MonoBehaviour
     [SerializeField]
     GameObject dimPanelGO;
 
-    [SerializeField]
     public TMP_Text guidTextGO;
 
     [SerializeField]
@@ -96,20 +95,12 @@ public class ASAProfilePanel : MonoBehaviour
 
     string description = "";
 
-    [SerializeField]
     public TMP_Text descriptionText;
 
     public string guid;
 
     [SerializeField]
     private FeedbackPanel FeedbackPanel;
-
-    public void StopErrorAnimation()
-    {
-        Animator anim = errorPopupGO.GetComponent<Animator>();
-        anim.enabled = false;
-        errorPopupGO.SetActive(false);
-    }
 
     void OnEnable()
     {
@@ -213,6 +204,13 @@ public class ASAProfilePanel : MonoBehaviour
                 dimPanelGO.SetActive(false);
                 errorPopupGO.SetActive(false);
             });
+    }
+
+    public void StopErrorAnimation()
+    {
+        Animator anim = errorPopupGO.GetComponent<Animator>();
+        anim.enabled = false;
+        errorPopupGO.SetActive(false);
     }
 
     public void UpdateLevelBar(Stats user)

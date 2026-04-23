@@ -82,10 +82,6 @@ public class AdvancePanel : MonoBehaviour
     [SerializeField]
     ASAPanel ASAPanel;
 
-    public ToggleGroup ratingOptions;
-
-    public string self_rating = null;
-
     public ToggleGroup genderOptions;
 
     public ToggleGroup ageOptions;
@@ -216,7 +212,6 @@ public class AdvancePanel : MonoBehaviour
 
         numberGamePanelGO.SetActive(false);
         ASAPanelGO.SetActive(false);
-        ASAPanel.ratingOptions.SetAllTogglesOff();
         describePanelAGO.SetActive(false);
         describePanelBGO.SetActive(false);
         describePanelCGO.SetActive(false);
@@ -452,15 +447,5 @@ public class AdvancePanel : MonoBehaviour
         describePanelAGO.SetActive(false);
         describePanelBGO.SetActive(false);
         describePanelCGO.SetActive(false);
-    }
-
-    public void FeedbackWhileLoading()
-    {
-        if (ratingOptions.AnyTogglesOn())
-        {
-            var selected = ratingOptions.ActiveToggles().FirstOrDefault();
-            self_rating = selected.name;
-            Debug.Log(self_rating);
-        }
     }
 }

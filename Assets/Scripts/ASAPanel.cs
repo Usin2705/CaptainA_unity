@@ -1,3 +1,4 @@
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -75,7 +76,9 @@ public class ASAPanel : MonoBehaviour
     private Image taskImageGO;
 
     private bool isRecording = false;
+
     private bool isReplaying = false;
+
     public bool isLoading = false;
 
     private float currentTime = 0;
@@ -83,6 +86,9 @@ public class ASAPanel : MonoBehaviour
     public int currentTaskSelected = -1;
 
     private AudioClip recording;
+
+    [SerializeField]
+    GameObject errorPopupGO;
 
     public void DisplayTask(int taskSelected)
     {
@@ -243,8 +249,8 @@ public class ASAPanel : MonoBehaviour
             );
 
         loadingPopUpGO.SetActive(true);
-
-        AdvancePanel.self_rating = null;
+        StopErrorAnimation();
+        ratingOptions.SetAllTogglesOff();
         feedbackTextGO.text = "";
         resultsButtonGO.SetActive(false);
         errorTextGO.SetActive(false);
@@ -260,38 +266,54 @@ public class ASAPanel : MonoBehaviour
         loadingIconGO.transform.Rotate(0, 0, -6.0f, Space.Self);
     }
 
+    public void StopErrorAnimation()
+    {
+        Animator anim = errorPopupGO.GetComponent<Animator>();
+        anim.enabled = false;
+        errorPopupGO.SetActive(false);
+    }
+
     public void OnResultsButtonClicked()
     {
+        var self_rating = ratingOptions.ActiveToggles().FirstOrDefault();
+        string comment_self_rating = feedbackTextGO.text;
+
+        // Send feedback if given
+        if (self_rating == null && comment_self_rating != "")
+        {
+            Animator anim = errorPopupGO.GetComponent<Animator>();
+
+            errorPopupGO.SetActive(true);
+
+            anim.enabled = true;
+
+            anim.Play("Error Popup Animation");
+
+            return;
+        }
+
         // Reset feedback forms and go to feedback panel
         ratingOptions.SetAllTogglesOff();
         loadingPopUpGO.SetActive(false);
-
         dimPanelASAGO.SetActive(false);
         feedbackPanelGO.SetActive(true);
-        string grade = AdvancePanel.self_rating;
-        string comment = feedbackTextGO.text;
 
-        Debug.Log(grade);
-
-        // Send feedback if given
-        if (AdvancePanel.self_rating != null)
-        {
-            Debug.Log("Test");
-            StartCoroutine(
-                NetworkManager
-                    .GetManager()
-                    .ServerPost_feedback(POSTType.ASA_FEEDBACK, "self_assessment", grade, comment)
-            );
-        }
-        else
-        {
-            return;
-        }
+        StartCoroutine(
+            NetworkManager
+                .GetManager()
+                .ServerPost_feedback(
+                    POSTType.ASA_FEEDBACK,
+                    "self_assessment",
+                    self_rating.name,
+                    comment_self_rating
+                )
+        );
     }
 
     public void OnBackButtonClicked()
     {
         // Go back to redo current task
+        errorPopupGO.SetActive(false);
         ratingOptions.SetAllTogglesOff();
         feedbackTextGO.text = "";
         loadingPopUpGO.SetActive(false);
