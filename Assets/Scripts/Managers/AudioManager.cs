@@ -41,6 +41,7 @@ public class AudioManager : MonoBehaviour
         //So we need to delay it a little
         //The new notification sound is just 0.3f long
         //Invoke(nameof(RecordSound), 0.31f);
+        audioSource.Stop();
         RecordSound(lengthSec);
     }
 
