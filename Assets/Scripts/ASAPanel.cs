@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -208,6 +209,17 @@ public class ASAPanel : MonoBehaviour
         // Start recording
         AudioManager.GetManager().StartRecording((int)tasks[currentTaskSelected].recordingTime);
         StartTimer();
+
+        var btn = pauseButtonGO.GetComponent<Button>();
+        btn.interactable = false;
+
+        StartCoroutine(EnableAfterDelay(btn, 0.3f));
+    }
+
+    IEnumerator EnableAfterDelay(Button btn, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        btn.interactable = true;
     }
 
     public void StopRecord()
