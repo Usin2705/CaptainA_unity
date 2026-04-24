@@ -186,7 +186,7 @@ public class FeedbackPanel : MonoBehaviour
         // Reset all title animations at enable
         ResetTextSizeInTitleAnimation();
         StopTitleAnimation();
-        
+
         // Set proper game objects active and establish button behavior
         newTaskButtonGO
             .GetComponent<Button>()
@@ -294,7 +294,7 @@ public class FeedbackPanel : MonoBehaviour
                 bool hasUnderstanding = understanding != null;
                 bool hasCommentAccuracy = !string.IsNullOrEmpty(comment_accuracy);
                 bool hasCommentUnderstanding = !string.IsNullOrEmpty(comment_understanding);
-                
+
                 // Only send proceed if correct fields are filled, error drop-down otherwise
                 bool isValid =
                     (hasAccuracy && hasUnderstanding)

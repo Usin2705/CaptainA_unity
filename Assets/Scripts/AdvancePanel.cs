@@ -142,7 +142,9 @@ public class AdvancePanel : MonoBehaviour
         {
             secretText = secretText[..^1];
         }
-        numberGameButtonGO.GetComponent<Button>().onClick.AddListener(() => OnNumberGameButtonClicked());
+        numberGameButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() => OnNumberGameButtonClicked());
         ASAButtonGO.GetComponent<Button>().onClick.AddListener(() => OnASAButtonClicked());
 
         acceptButtonGO.GetComponent<Button>().onClick.AddListener(() => AcceptConsent());
