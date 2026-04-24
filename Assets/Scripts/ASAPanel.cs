@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Linq;
+using System.Runtime.Serialization.Formatters;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -195,7 +196,6 @@ public class ASAPanel : MonoBehaviour
         // Same principle as with UpdateProgressBar(), but this time comparing with the length of the recording
         currentTime -= Time.deltaTime;
         replayBarGO.GetComponent<Image>().fillAmount = currentTime / recording.length;
-
         if (currentTime <= 0)
         {
             currentTime = 0;
@@ -252,6 +252,11 @@ public class ASAPanel : MonoBehaviour
 
     public void OnSendButtonClicked()
     {
+        audioManager.StopReplaying();
+        isReplaying = false;
+        replayButtonGO.SetActive(false);
+        replayBarGO.SetActive(false);
+
         // Send the audio to the server when clicked
         AudioManager
             .GetManager()
@@ -310,16 +315,19 @@ public class ASAPanel : MonoBehaviour
         dimPanelASAGO.SetActive(false);
         feedbackPanelGO.SetActive(true);
 
-        StartCoroutine(
-            NetworkManager
-                .GetManager()
-                .ServerPost_feedback(
-                    POSTType.ASA_FEEDBACK,
-                    "self_assessment",
-                    self_rating.name,
-                    comment_self_rating
-                )
-        );
+        if (self_rating != null)
+        {
+            StartCoroutine(
+                NetworkManager
+                    .GetManager()
+                    .ServerPost_feedback(
+                        POSTType.ASA_FEEDBACK,
+                        "self_assessment",
+                        self_rating.name,
+                        comment_self_rating
+                    )
+            );
+        }
     }
 
     public void OnBackButtonClicked()
@@ -330,5 +338,10 @@ public class ASAPanel : MonoBehaviour
         feedbackTextGO.text = "";
         loadingPopUpGO.SetActive(false);
         dimPanelASAGO.SetActive(false);
+    }
+
+    void OnDisable()
+    {
+        audioManager.StopReplaying();
     }
 }
