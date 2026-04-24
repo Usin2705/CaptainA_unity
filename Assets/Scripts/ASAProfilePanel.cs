@@ -116,13 +116,13 @@ public class ASAProfilePanel : MonoBehaviour
 
     public string guid;
 
-    string description = "";    
+    string description = "";
 
     void OnEnable()
     {
         // Stops animated dropdown error message from appearing
         StopErrorAnimation();
-        
+
         // Set proper game objects active and establish button behavior
         levelBarGO.SetActive(true);
         revertLevelButtonGO.SetActive(true);
