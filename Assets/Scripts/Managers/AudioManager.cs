@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour
 
     private AudioClip replayClip;
 
+    public bool isPlaying = false;
+
     void Awake()
     {
         if (audioManager != null)
@@ -41,7 +43,16 @@ public class AudioManager : MonoBehaviour
         //So we need to delay it a little
         //The new notification sound is just 0.3f long
         //Invoke(nameof(RecordSound), 0.31f);
+
+        StartCoroutine(StartRecordingSafe(lengthSec));
+    }
+
+    IEnumerator StartRecordingSafe(int lengthSec)
+    {
         audioSource.Stop();
+
+        yield return new WaitForSeconds(0.3f);
+
         RecordSound(lengthSec);
     }
 
