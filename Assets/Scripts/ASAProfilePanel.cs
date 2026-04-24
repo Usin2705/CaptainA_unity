@@ -41,8 +41,6 @@ public class ASAProfilePanel : MonoBehaviour
     [SerializeField]
     GameObject dimPanelGO;
 
-    public TMP_Text guidTextGO;
-
     [SerializeField]
     GameObject copyGuidButtonGO;
 
@@ -85,26 +83,47 @@ public class ASAProfilePanel : MonoBehaviour
     [SerializeField]
     GameObject errorPopupGO;
 
-    public ToggleGroup comparisonRatingOptions;
-
     [SerializeField]
     TMP_InputField comparisonFeedbackTextGO;
 
     [SerializeField]
     TMP_Text insufficientDataNotice;
 
-    string description = "";
-
-    public TMP_Text descriptionText;
-
-    public string guid;
-
     [SerializeField]
     private FeedbackPanel FeedbackPanel;
 
+    [System.Serializable]
+    public class Stats
+    {
+        public float percentile = -1f;
+        public string cefr_level;
+        public int cohort_size;
+        public int rank;
+    }
+
+    [System.Serializable]
+    public class InsufficientStats
+    {
+        public string cefr_level;
+        public int current_assessments;
+    }
+
+    public TMP_Text guidTextGO;
+
+    public TMP_Text descriptionText;
+
+    public ToggleGroup comparisonRatingOptions;
+
+    public string guid;
+
+    string description = "";    
+
     void OnEnable()
     {
+        // Stops animated dropdown error message from appearing
         StopErrorAnimation();
+        
+        // Set proper game objects active and establish button behavior
         levelBarGO.SetActive(true);
         revertLevelButtonGO.SetActive(true);
         advanceLevelButtonGO.SetActive(true);
@@ -176,6 +195,7 @@ public class ASAProfilePanel : MonoBehaviour
                 var helpful = comparisonRatingOptions.ActiveToggles().FirstOrDefault();
                 string comment_helpful = comparisonFeedbackTextGO.text;
 
+                // Show and error popup if user tries to send feeback without choosing any of the emojis
                 if (helpful == null)
                 {
                     Animator anim = errorPopupGO.GetComponent<Animator>();
@@ -188,6 +208,7 @@ public class ASAProfilePanel : MonoBehaviour
 
                     return;
                 }
+                // Send feedback to server
                 StartCoroutine(
                     NetworkManager
                         .GetManager()
@@ -198,6 +219,7 @@ public class ASAProfilePanel : MonoBehaviour
                             comment_helpful
                         )
                 );
+                // Reset feedback form when done
                 comparisonRatingOptions.SetAllTogglesOff();
                 comparisonFeedbackTextGO.text = "";
                 feedbackPopUpGO.SetActive(false);
@@ -208,6 +230,7 @@ public class ASAProfilePanel : MonoBehaviour
 
     public void StopErrorAnimation()
     {
+        // Stops the drop-down error message animation
         Animator anim = errorPopupGO.GetComponent<Animator>();
         anim.enabled = false;
         errorPopupGO.SetActive(false);
@@ -215,11 +238,13 @@ public class ASAProfilePanel : MonoBehaviour
 
     public void UpdateLevelBar(Stats user)
     {
+        // Refers to the circular level bar around the grade letter + number in the profile panel
         StartCoroutine(AnimateLevelBar(user));
     }
 
     private IEnumerator AnimateLevelBar(Stats user)
     {
+        // Sets level bar to user's position in their level with regards to others
         float filled = 0f;
 
         while (filled < user.percentile)
@@ -233,6 +258,7 @@ public class ASAProfilePanel : MonoBehaviour
 
     public void UpdateText(Stats user)
     {
+        // Updates profile panel text descriptions based on user level and other relevant data
         string performance_text =
             $"You are performing better than {100 * user.percentile}% of {user.cefr_level.Replace("_plus", "+")} users";
         performanceText.text = performance_text;
@@ -247,7 +273,8 @@ public class ASAProfilePanel : MonoBehaviour
 
     public void GiveLevelDescriptions(String cefr_level)
     {
-        var leveDescriptions = new Dictionary<string, string>
+        // Gives the CEFR level descriptions in words
+        var levelDescriptions = new Dictionary<string, string>
         {
             ["A1"] = "Beginner",
             ["A2"] = "Elementary",
@@ -255,7 +282,7 @@ public class ASAProfilePanel : MonoBehaviour
             ["B2"] = "Upper Intermediate",
             ["C1_plus"] = "Advanced/\nFluent",
         };
-        if (leveDescriptions.TryGetValue(cefr_level, out description))
+        if (levelDescriptions.TryGetValue(cefr_level, out description))
         {
             descriptionText.text = description;
         }
@@ -264,19 +291,22 @@ public class ASAProfilePanel : MonoBehaviour
 
     public void ShowButtons(Stats user)
     {
+        // Can't go down a level if already at the lowest level
         if (user.cefr_level == "A1")
         {
             revertLevelButtonGO.SetActive(false);
         }
 
+        // Can't advance level unless in the 90th percentile
         if (user.percentile < 0.9f)
         {
             advanceLevelButtonGO.SetActive(false);
         }
     }
 
-    public void CohortTooSmall(InsufficientStats user)
+    public void NotEnoughTasks(InsufficientStats user)
     {
+        // Percentile can be calculated only after user has completed enough tasks (currently 3)
         insufficientDataNotice.text =
             $"Please complete at least three tasks to see your ranking. You have completed {user.current_assessments} out of 3 tasks so far";
         levelBarGO.SetActive(false);
@@ -288,23 +318,7 @@ public class ASAProfilePanel : MonoBehaviour
         advanceLevelButtonGO.SetActive(false);
         performanceInfo.SetActive(false);
         rankInfo.SetActive(false);
-        // feedbackButtonGO.SetActive(false);
+        feedbackButtonGO.SetActive(false);
         insufficientDataNoticeGO.SetActive(true);
-    }
-
-    [System.Serializable]
-    public class Stats
-    {
-        public float percentile = -1f;
-        public string cefr_level;
-        public int cohort_size;
-        public int rank;
-    }
-
-    [System.Serializable]
-    public class InsufficientStats
-    {
-        public string cefr_level;
-        public int current_assessments;
     }
 }

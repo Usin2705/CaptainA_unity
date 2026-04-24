@@ -59,10 +59,6 @@ public class TaskPanel : MonoBehaviour
     [SerializeField]
     GameObject errorPopupGO;
 
-    public bool isLoading = false;
-
-    public ToggleGroup overallRatingOptions;
-
     [SerializeField]
     GameObject overallFeedbackPopUpGO;
 
@@ -75,6 +71,10 @@ public class TaskPanel : MonoBehaviour
     [SerializeField]
     GameObject feedbackBackButtonGO;
 
+    public bool isLoading = false;
+
+    public ToggleGroup overallRatingOptions;
+
     public void StopErrorAnimation()
     {
         Animator anim = errorPopupGO.GetComponent<Animator>();
@@ -84,24 +84,23 @@ public class TaskPanel : MonoBehaviour
 
     void OnEnable()
     {
+        // Stops animated dropdown error message from appearing
         StopErrorAnimation();
+        // Reset listeners so that they won't get duplicated later
         profileButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         feedbackSendButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         feedbackBackButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
 
         isLoading = false;
         Debug.Log(PlayerPrefs.GetInt("TasksSent"));
+        // Ask general feedback if number of completed tasks so far is a multiple of 5
         OverallFeedback();
 
+        // Set proper game objects active and establish button behavior
         backButtonGO
             .GetComponent<Button>()
             .onClick.AddListener(() => advancePanelGO.SetActive(true));
         backButtonGO.GetComponent<Button>().onClick.AddListener(() => taskPanelGO.SetActive(false));
-
-        task1ButtonGO.GetComponent<Button>().onClick.AddListener(() => ASAPanelGO.SetActive(true));
-        task1ButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() => taskPanelGO.SetActive(false));
 
         task1ButtonGO
             .GetComponent<Button>()
@@ -153,6 +152,7 @@ public class TaskPanel : MonoBehaviour
                 profileLoadingErrorTextGO.SetActive(false);
 
                 isLoading = true;
+                // Get profile data from server
                 StartCoroutine(
                     NetworkManager.GetManager().ServerPost_profile(POSTType.ASA_PROFILE)
                 );
@@ -168,6 +168,7 @@ public class TaskPanel : MonoBehaviour
             {
                 var overallRating = overallRatingOptions.ActiveToggles().FirstOrDefault();
                 string comment_overall = overallFeedbackTextGO.text;
+                // Show drop-down error animation if attempting to send feedback without selecting an emoji
                 if (overallRating == null)
                 {
                     Animator anim = errorPopupGO.GetComponent<Animator>();
@@ -180,6 +181,7 @@ public class TaskPanel : MonoBehaviour
 
                     return;
                 }
+                // Send feedback to server
                 StartCoroutine(
                     NetworkManager
                         .GetManager()
@@ -190,6 +192,7 @@ public class TaskPanel : MonoBehaviour
                             comment_overall
                         )
                 );
+                // Reset feedback form when done
                 overallRatingOptions.SetAllTogglesOff();
                 overallFeedbackTextGO.text = "";
                 overallFeedbackPopUpGO.SetActive(false);
@@ -217,6 +220,7 @@ public class TaskPanel : MonoBehaviour
 
     public void OverallFeedback()
     {
+        // Ask overall feedback after every 5 completed tasks
         if (PlayerPrefs.GetInt("TasksSent", 0) % 5 == 0 && PlayerPrefs.GetInt("TasksSent", 0) > 0)
         {
             overallFeedbackPopUpGO.SetActive(true);
@@ -232,6 +236,7 @@ public class TaskPanel : MonoBehaviour
 
     void Update()
     {
+        // For updating different animations depending on state
         if (isLoading)
         {
             AnimateLoadingProfile();
@@ -240,6 +245,7 @@ public class TaskPanel : MonoBehaviour
 
     public void AnimateLoadingProfile()
     {
+        // Change value -6.0f to change rotation speed
         loadingIconGO.transform.Rotate(0, 0, -6.0f, Space.Self);
     }
 }

@@ -257,7 +257,7 @@ public class NetworkManager : MonoBehaviour
                         JsonUtility.FromJson<ASAProfilePanel.InsufficientStats>(
                             uwr.downloadHandler.text
                         );
-                    ASAProfilePanel.CohortTooSmall(InsufficientStats);
+                    ASAProfilePanel.NotEnoughTasks(InsufficientStats);
                 }
                 else
                 {
