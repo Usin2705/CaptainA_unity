@@ -124,7 +124,7 @@ public class AdvancePanel : MonoBehaviour
 
     void OnEnable()
     {
-        // This is for testing purposes
+        // This is for testing purposes, uncomment for creating new user
         // PlayerPrefs.SetInt("BackgroundFormCompleted", 0);
         // PlayerPrefs.SetInt("ConsentGiven", 0);
         // PlayerPrefs.Save();
@@ -136,14 +136,13 @@ public class AdvancePanel : MonoBehaviour
         // Check if the user has correct secret text
         string secretText = PlayerPrefs.GetString(Const.PREF_SECRET_TEXT);
         secretText = secretText.Replace("\r", "").Replace("\n", "").Trim();
+
         // Remove the last character if there could be a special character
         if (secretText.Length == Secret.SECRET_TEXT.Length + 1)
         {
             secretText = secretText[..^1];
         }
-        numberGameButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() => OnNumberGameButtonClicked());
+        numberGameButtonGO.GetComponent<Button>().onClick.AddListener(() => OnNumberGameButtonClicked());
         ASAButtonGO.GetComponent<Button>().onClick.AddListener(() => OnASAButtonClicked());
 
         acceptButtonGO.GetComponent<Button>().onClick.AddListener(() => AcceptConsent());

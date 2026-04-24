@@ -133,6 +133,7 @@ public class FeedbackPanel : MonoBehaviour
 
     public void DisplayPopup(int popupOpen)
     {
+        // Show popup for chosen category in the feedback panel
         currentPopupOpen = popupOpen;
         PopupAttributes popup = panels[popupOpen];
 
@@ -142,6 +143,7 @@ public class FeedbackPanel : MonoBehaviour
 
     void ResetTextSizeInTitleAnimation()
     {
+        // Resets the animation for the different evaluation category titles in the feedback panel
         proficiencyTitleGO.transform.localScale = Vector3.one;
         pronunciationTitleGO.transform.localScale = Vector3.one;
         rangeTitleGO.transform.localScale = Vector3.one;
@@ -151,6 +153,7 @@ public class FeedbackPanel : MonoBehaviour
 
     void StopTitleAnimation()
     {
+        // Reset all category title animations
         Animator anim;
 
         anim = proficiencyTitleGO.GetComponent<Animator>();
@@ -180,9 +183,11 @@ public class FeedbackPanel : MonoBehaviour
     {
         networkManager = FindFirstObjectByType<NetworkManager>();
 
+        // Reset all title animations at enable
         ResetTextSizeInTitleAnimation();
         StopTitleAnimation();
-
+        
+        // Set proper game objects active and establish button behavior
         newTaskButtonGO
             .GetComponent<Button>()
             .onClick.AddListener(() =>
@@ -267,6 +272,7 @@ public class FeedbackPanel : MonoBehaviour
             .GetComponent<Button>()
             .onClick.AddListener(() =>
             {
+                // Reset feedback form and go back
                 accuracyRatingOptions.SetAllTogglesOff();
                 accuracyFeedbackTextGO.text = "";
                 understandingRatingOptions.SetAllTogglesOff();
@@ -288,7 +294,8 @@ public class FeedbackPanel : MonoBehaviour
                 bool hasUnderstanding = understanding != null;
                 bool hasCommentAccuracy = !string.IsNullOrEmpty(comment_accuracy);
                 bool hasCommentUnderstanding = !string.IsNullOrEmpty(comment_understanding);
-
+                
+                // Only send proceed if correct fields are filled, error drop-down otherwise
                 bool isValid =
                     (hasAccuracy && hasUnderstanding)
                     || (hasAccuracy && !hasCommentUnderstanding)
@@ -307,6 +314,7 @@ public class FeedbackPanel : MonoBehaviour
                     return;
                 }
 
+                // Send given feedbacks to server
                 if (accuracy != null)
                 {
                     StartCoroutine(
@@ -333,6 +341,8 @@ public class FeedbackPanel : MonoBehaviour
                             )
                     );
                 }
+
+                //Reset feedback forms when done
                 accuracyRatingOptions.SetAllTogglesOff();
                 accuracyFeedbackTextGO.text = "";
                 understandingRatingOptions.SetAllTogglesOff();
@@ -343,6 +353,7 @@ public class FeedbackPanel : MonoBehaviour
 
         if (PlayerPrefs.GetInt("InfoPopupSeen", 0) == 0)
         {
+            // Show good to know -pop up if not seen before
             infoPopupGO.SetActive(true);
             dimPanelGO.SetActive(true);
             PlayerPrefs.SetInt("InfoPopupSeen", 1);
@@ -365,6 +376,7 @@ public class FeedbackPanel : MonoBehaviour
                 dimPanelGO.SetActive(false);
             });
 
+        // Get scores from the server
         float proficiencyRating = networkManager.asrResultASA.scores.proficiency;
         float pronunciationRating = networkManager.asrResultASA.scores.pronunciation;
         float rangeRating = networkManager.asrResultASA.scores.range;
@@ -385,6 +397,7 @@ public class FeedbackPanel : MonoBehaviour
             fluencyRating
         );
 
+        // Play animation for lowest rated category title if min rating is low
         if (minRating < 3)
         {
             if (proficiencyRating == minRating)
@@ -432,6 +445,7 @@ public class FeedbackPanel : MonoBehaviour
 
     void OnDisable()
     {
+        // Clear up listeners
         newTaskButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         proficiencyButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         pronunciationButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
