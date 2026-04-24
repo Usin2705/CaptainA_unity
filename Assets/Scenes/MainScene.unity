@@ -65647,7 +65647,6 @@ MonoBehaviour:
   settingsBackButtonGO: {fileID: 1044202598}
   settingsPopupGO: {fileID: 914154202}
   dimPanelGO: {fileID: 1109305271}
-  guidTextGO: {fileID: 621128077}
   copyGuidButtonGO: {fileID: 729080778}
   feedbackButtonGO: {fileID: 869523216}
   feedbackPopUpGO: {fileID: 1428438768}
@@ -65662,12 +65661,13 @@ MonoBehaviour:
   levelTextGO: {fileID: 2093427569}
   levelDescriptionTextGO: {fileID: 1168930710}
   errorPopupGO: {fileID: 1376894215}
-  comparisonRatingOptions: {fileID: 1202523372}
   comparisonFeedbackTextGO: {fileID: 217988256}
   insufficientDataNotice: {fileID: 1324659955}
-  descriptionText: {fileID: 1168930711}
-  guid: 
   FeedbackPanel: {fileID: 0}
+  guidTextGO: {fileID: 621128077}
+  descriptionText: {fileID: 1168930711}
+  comparisonRatingOptions: {fileID: 1202523372}
+  guid: 
 --- !u!1 &1626174519
 GameObject:
   m_ObjectHideFlags: 0
@@ -80227,12 +80227,12 @@ MonoBehaviour:
   profileLoadingErrorTextGO: {fileID: 1147529915}
   loadingPopUpGO: {fileID: 1837294515}
   errorPopupGO: {fileID: 749168139}
-  isLoading: 0
-  overallRatingOptions: {fileID: 607544762}
   overallFeedbackPopUpGO: {fileID: 127011790}
   feedbackSendButtonGO: {fileID: 1020554282}
   overallFeedbackTextGO: {fileID: 1626174521}
   feedbackBackButtonGO: {fileID: 1118737820}
+  isLoading: 0
+  overallRatingOptions: {fileID: 607544762}
 --- !u!1 &1967997967
 GameObject:
   m_ObjectHideFlags: 0
@@ -84709,8 +84709,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -89168,8 +89168,7 @@ PrefabInstance:
       objectReference: {fileID: 43997811}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[0].PopupText
-      value: "The proficiency level according to the Common European Framework of
-        Reference for Languages \u200B\u200B(A1, A2, B1, B2, C1, C2)."
+      value: Measures the overall speech ability.
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[0].TitleText
@@ -89177,7 +89176,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[1].PopupText
-      value: How well the AI model understands your speech
+      value: Checks whether you pronounced the words correctly. Measures how well
+        the machine understands your speech.
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[1].TitleText
@@ -89185,7 +89185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[2].PopupText
-      value: Versatility of the words used
+      value: Measures the versatility of the language used.
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[2].TitleText
@@ -89193,7 +89193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[3].PopupText
-      value: Grammar
+      value: Measures precision, correctness, and how well you followed grammar rules.
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[3].TitleText
@@ -89201,7 +89201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[4].PopupText
-      value: Pauses, stuttering, natural flow of words
+      value: Measures the speed, pauses and hesitations in your speech.
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[4].TitleText
