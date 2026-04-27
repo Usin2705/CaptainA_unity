@@ -48019,17 +48019,17 @@ MonoBehaviour:
   loadingPopUpGO: {fileID: 1012582868}
   profilePanelGO: {fileID: 1625667663}
   ASAPanel: {fileID: 474211613}
-  genderOptions: {fileID: 1767757977}
-  ageOptions: {fileID: 854305225}
-  motherTongueOptions: {fileID: 405094356}
-  otherLanguageOptionsGO: {fileID: 1110811716}
+  languageOtherField: {fileID: 1583324431}
   languageOther: {fileID: 1409430049}
   languageOtherFieldGO: {fileID: 1583324429}
-  languageOtherField: {fileID: 1583324431}
+  motherTongueOptions: {fileID: 405094356}
+  otherLanguageOptionsGO: {fileID: 1110811716}
+  errorMessage: {fileID: 1225000242}
+  genderOptions: {fileID: 1767757977}
+  ageOptions: {fileID: 854305225}
   movedToFinlandOptions: {fileID: 1756977451}
   learnedFinnishOptions: {fileID: 149456313}
   selfAssessmentOptions: {fileID: 857957623}
-  errorMessage: {fileID: 1225000242}
 --- !u!1 &1165680312
 GameObject:
   m_ObjectHideFlags: 0
@@ -84709,8 +84709,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -89168,7 +89168,8 @@ PrefabInstance:
       objectReference: {fileID: 43997811}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[0].PopupText
-      value: Measures the overall speech ability.
+      value: "The proficiency level according to the Common European Framework of
+        Reference for Languages \u200B\u200B(A1, A2, B1, B2, C1, C2)."
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[0].TitleText
@@ -89176,8 +89177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[1].PopupText
-      value: Checks whether you pronounced the words correctly. Measures how well
-        the machine understands your speech.
+      value: How well the AI model understands your speech
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[1].TitleText
@@ -89185,7 +89185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[2].PopupText
-      value: Measures the versatility of the language used.
+      value: Versatility of the words used
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[2].TitleText
@@ -89193,7 +89193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[3].PopupText
-      value: Measures precision, correctness, and how well you followed grammar rules.
+      value: Grammar
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[3].TitleText
@@ -89201,7 +89201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[4].PopupText
-      value: Measures the speed, pauses and hesitations in your speech.
+      value: Pauses, stuttering, natural flow of words
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[4].TitleText
