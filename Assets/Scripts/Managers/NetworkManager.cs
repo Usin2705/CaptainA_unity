@@ -100,6 +100,7 @@ public class NetworkManager : MonoBehaviour
 
     void Awake()
     {
+        // Destroy existing NetWorkManager(s) to avoid duplicates
         if (netWorkManager != null)
         {
             Debug.LogError("Multiple NetWorkManagers");
@@ -151,6 +152,7 @@ public class NetworkManager : MonoBehaviour
         return form;
     }
 
+    // Get the form for creating a new user
     private WWWForm GetPOSTForm_guid(AdvancePanel.BackgroundFormData backgroundFields)
     {
         WWWForm form = new WWWForm();
@@ -173,6 +175,7 @@ public class NetworkManager : MonoBehaviour
         return form;
     }
 
+    // Send form and reate a new user
     public IEnumerator ServerPost_guid(
         POSTType postType,
         AdvancePanel.BackgroundFormData backgroundFields,
@@ -205,6 +208,7 @@ public class NetworkManager : MonoBehaviour
         OnServerDone?.Invoke();
     }
 
+    // Get the form for creating the profile panel
     private WWWForm GetPOSTForm_profile()
     {
         WWWForm form = new WWWForm();
@@ -271,6 +275,7 @@ public class NetworkManager : MonoBehaviour
         OnServerDone?.Invoke();
     }
 
+    // Get the form for ASA audio recording
     private WWWForm GetPOSTForm_ASA(POSTType postType, string transcript, byte[] wavBuffer)
     {
         WWWForm form = new WWWForm();
@@ -287,6 +292,7 @@ public class NetworkManager : MonoBehaviour
         return form;
     }
 
+    // Send ASA audio recording to server and get evaluation
     public IEnumerator ServerPost_ASA(
         POSTType postType,
         string transcript,
@@ -351,6 +357,7 @@ public class NetworkManager : MonoBehaviour
         OnServerDone?.Invoke();
     }
 
+    // Get form for feedback (grade and optional comment)
     private WWWForm GetPOSTForm_feedback(
         POSTType postType,
         string feedback_type,
@@ -378,6 +385,7 @@ public class NetworkManager : MonoBehaviour
         return form;
     }
 
+    // Send feedback to server
     public IEnumerator ServerPost_feedback(
         POSTType postType,
         string feedback_type,

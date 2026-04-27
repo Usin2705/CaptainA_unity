@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
+        // Destroy existing AudioManager(s) to avoid duplicates
         if (audioManager != null)
         {
             Debug.LogError("Multiple AudioManagers");
@@ -32,7 +33,7 @@ public class AudioManager : MonoBehaviour
     public void StartRecording(int lengthSec)
     {
         /*
-        *   We can skip this block since we nolonger require a notification sound
+        *   We can skip this block since we no longer require a notification sound
         */
 
         //Debug.Log("Play record notif");
@@ -91,6 +92,8 @@ public class AudioManager : MonoBehaviour
         return replayClip;
     }
 
+    // Record ASA audio and send it to server
+    // This is the one we have been using so far
     public void GetAudioAndPost_ASA(
         POSTType postType,
         string transcript,
@@ -108,6 +111,9 @@ public class AudioManager : MonoBehaviour
         );
     }
 
+    // These two GetAudioAndPost functions were here before us, so we're not entirely sure why there are two of them
+    // They might or might not be used somewhere, so don't just delete them carelessly
+    // But really, we don't really know
     public void GetAudioAndPost(
         POSTType postType,
         string transcript,
@@ -120,7 +126,7 @@ public class AudioManager : MonoBehaviour
     {
         Microphone.End("");
         byte[] wavBuffer = SavWav.GetWav(audioSource.clip, out uint length, trim: true);
-        SavWav.Save(Const.REPLAY_FILENAME, audioSource.clip, trim: true); // for debug purpose
+        SavWav.Save(Const.REPLAY_FILENAME, audioSource.clip, trim: true); // for debug purposes
 
         StartCoroutine(
             NetworkManager
