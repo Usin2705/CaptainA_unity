@@ -88980,7 +88980,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3647871488460471125, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3793915942669548577, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: m_IsActive
@@ -89168,8 +89168,7 @@ PrefabInstance:
       objectReference: {fileID: 43997811}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[0].PopupText
-      value: "The proficiency level according to the Common European Framework of
-        Reference for Languages \u200B\u200B(A1, A2, B1, B2, C1, C2)."
+      value: Measures the overall speech ability.
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[0].TitleText
@@ -89177,7 +89176,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[1].PopupText
-      value: How well the AI model understands your speech
+      value: Checks whether you pronounced the words correctly. Measures how well
+        the machine understands your speech.
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[1].TitleText
@@ -89185,7 +89185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[2].PopupText
-      value: Versatility of the words used
+      value: Measures the versatility of the language used.
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[2].TitleText
@@ -89193,7 +89193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[3].PopupText
-      value: Grammar
+      value: Measures precision, correctness, and how well you followed grammar rules.
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[3].TitleText
@@ -89201,7 +89201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[4].PopupText
-      value: Pauses, stuttering, natural flow of words
+      value: Measures the speed, pauses and hesitations in your speech.
       objectReference: {fileID: 0}
     - target: {fileID: 6161178912647840506, guid: c8ba5963f4495fd24bc882500d3e364b, type: 3}
       propertyPath: panels.Array.data[4].TitleText

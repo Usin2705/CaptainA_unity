@@ -124,12 +124,6 @@ public class AdvancePanel : MonoBehaviour
 
     void OnEnable()
     {
-        // This is for testing purposes, uncomment for creating a new user
-        // PlayerPrefs.SetInt("BackgroundFormCompleted", 0);
-        // PlayerPrefs.SetInt("ConsentGiven", 0);
-        // PlayerPrefs.Save();
-        // PlayerPrefs.SetString("UserGuid", "00000000-0000-0000-0000-000000000001");
-
         // Check if the user has correct secret text
         string secretText = PlayerPrefs.GetString(Const.PREF_SECRET_TEXT);
         secretText = secretText.Replace("\r", "").Replace("\n", "").Trim();

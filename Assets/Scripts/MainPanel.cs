@@ -97,10 +97,11 @@ public class MainPanel : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        PlayerPrefs.SetInt("BackgroundFormCompleted", 0);
-        PlayerPrefs.SetInt("ConsentGiven", 0);
-        PlayerPrefs.SetInt("InfoPopupSeen", 0);
-        PlayerPrefs.Save();
+        // This is for testing purposes
+        // PlayerPrefs.SetInt("BackgroundFormCompleted", 0);
+        // PlayerPrefs.SetInt("ConsentGiven", 0);
+        // PlayerPrefs.SetInt("InfoPopupSeen", 0);
+        // PlayerPrefs.Save();
 
         // Get the InputManager component
         SetUpStartUI();
