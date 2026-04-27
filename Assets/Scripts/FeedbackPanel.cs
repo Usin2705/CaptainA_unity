@@ -133,7 +133,7 @@ public class FeedbackPanel : MonoBehaviour
 
     public void DisplayPopup(int popupOpen)
     {
-        // Show popup for chosen category in the feedback panel
+        // Show info popup for chosen category in the feedback panel
         currentPopupOpen = popupOpen;
         PopupAttributes popup = panels[popupOpen];
 
@@ -174,6 +174,7 @@ public class FeedbackPanel : MonoBehaviour
 
     public void StopErrorAnimation()
     {
+        // Stop the drop-down error message animation
         Animator anim = errorPopupGO.GetComponent<Animator>();
         anim.enabled = false;
         errorPopupGO.SetActive(false);
@@ -285,6 +286,7 @@ public class FeedbackPanel : MonoBehaviour
             .GetComponent<Button>()
             .onClick.AddListener(() =>
             {
+                // Get values from feedback form
                 var accuracy = accuracyRatingOptions.ActiveToggles().FirstOrDefault();
                 var understanding = understandingRatingOptions.ActiveToggles().FirstOrDefault();
                 string comment_accuracy = accuracyFeedbackTextGO.text;
@@ -295,7 +297,7 @@ public class FeedbackPanel : MonoBehaviour
                 bool hasCommentAccuracy = !string.IsNullOrEmpty(comment_accuracy);
                 bool hasCommentUnderstanding = !string.IsNullOrEmpty(comment_understanding);
 
-                // Only send proceed if correct fields are filled, error drop-down otherwise
+                // Only proceed if correct fields are filled, error drop-down otherwise
                 bool isValid =
                     (hasAccuracy && hasUnderstanding)
                     || (hasAccuracy && !hasCommentUnderstanding)
@@ -342,7 +344,7 @@ public class FeedbackPanel : MonoBehaviour
                     );
                 }
 
-                //Reset feedback forms when done
+                // Reset feedback forms when done
                 accuracyRatingOptions.SetAllTogglesOff();
                 accuracyFeedbackTextGO.text = "";
                 understandingRatingOptions.SetAllTogglesOff();
@@ -367,11 +369,9 @@ public class FeedbackPanel : MonoBehaviour
 
         infoBackButtonGO
             .GetComponent<Button>()
-            .onClick.AddListener(() => ASAPanelGO.SetActive(true));
-        infoBackButtonGO
-            .GetComponent<Button>()
             .onClick.AddListener(() =>
             {
+                ASAPanelGO.SetActive(true);
                 infoPopupGO.SetActive(false);
                 dimPanelGO.SetActive(false);
             });
@@ -389,6 +389,7 @@ public class FeedbackPanel : MonoBehaviour
         accuracyScore.SetValue(accuracyRating, 4);
         fluencyScore.SetValue(fluencyRating, 5);
 
+        // Get the category with the lowest score
         float minRating = Mathf.Min(
             proficiencyRating,
             pronunciationRating,
@@ -397,7 +398,7 @@ public class FeedbackPanel : MonoBehaviour
             fluencyRating
         );
 
-        // Play animation for lowest rated category title if min rating is low
+        // Play animation for lowest rated category title if min rating is low enough
         if (minRating < 3)
         {
             if (proficiencyRating == minRating)

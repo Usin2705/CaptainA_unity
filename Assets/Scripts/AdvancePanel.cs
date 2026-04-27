@@ -82,15 +82,8 @@ public class AdvancePanel : MonoBehaviour
     [SerializeField]
     ASAPanel ASAPanel;
 
-    public ToggleGroup genderOptions;
-
-    public ToggleGroup ageOptions;
-
     [SerializeField]
-    private TMP_InputField motherTongueOptions;
-
-    [SerializeField]
-    private GameObject otherLanguageOptionsGO;
+    private TMP_InputField languageOtherField;
 
     [SerializeField]
     private Toggle languageOther;
@@ -99,16 +92,23 @@ public class AdvancePanel : MonoBehaviour
     private GameObject languageOtherFieldGO;
 
     [SerializeField]
-    private TMP_InputField languageOtherField;
+    private TMP_InputField motherTongueOptions;
+
+    [SerializeField]
+    private GameObject otherLanguageOptionsGO;
+
+    [SerializeField]
+    private TextMeshProUGUI errorMessage;
+
+    public ToggleGroup genderOptions;
+
+    public ToggleGroup ageOptions;
 
     public ToggleGroup movedToFinlandOptions;
 
     public ToggleGroup learnedFinnishOptions;
 
     public ToggleGroup selfAssessmentOptions;
-
-    [SerializeField]
-    private TextMeshProUGUI errorMessage;
 
     [System.Serializable]
     public class BackgroundFormData
@@ -124,24 +124,25 @@ public class AdvancePanel : MonoBehaviour
 
     void OnEnable()
     {
-        // This is for testing purposes, uncomment for creating new user
+        // This is for testing purposes, uncomment for creating a new user
         // PlayerPrefs.SetInt("BackgroundFormCompleted", 0);
         // PlayerPrefs.SetInt("ConsentGiven", 0);
         // PlayerPrefs.Save();
         // PlayerPrefs.SetString("UserGuid", "00000000-0000-0000-0000-000000000001");
 
-        refuseButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
-        acceptButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
-
         // Check if the user has correct secret text
         string secretText = PlayerPrefs.GetString(Const.PREF_SECRET_TEXT);
         secretText = secretText.Replace("\r", "").Replace("\n", "").Trim();
 
-        // Remove the last character if there could be a special character
+        // Remove the last character if there is a special character at the end
         if (secretText.Length == Secret.SECRET_TEXT.Length + 1)
         {
             secretText = secretText[..^1];
         }
+
+        refuseButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
+        acceptButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
+
         numberGameButtonGO
             .GetComponent<Button>()
             .onClick.AddListener(() => OnNumberGameButtonClicked());
@@ -160,6 +161,7 @@ public class AdvancePanel : MonoBehaviour
 
         errorMessage.enabled = false;
 
+        // This part is legacy code and these describeButton game objects are not currently active / in use
         if (secretText == Secret.SECRET_TEXT)
         {
             describeButtonAGO
@@ -211,6 +213,7 @@ public class AdvancePanel : MonoBehaviour
             describeButtonC2GO.SetActive(false);
         }
 
+        // Set the proper panels and game objects as inactive at first
         numberGamePanelGO.SetActive(false);
         ASAPanelGO.SetActive(false);
         describePanelAGO.SetActive(false);
@@ -235,6 +238,7 @@ public class AdvancePanel : MonoBehaviour
 
     public void OnNumberGameButtonClicked(NGTaskType taskType = NGTaskType.EASY)
     {
+        // Go to number game (not very polished or functional for now)
         numberGamePanelGO.SetActive(true);
         NumberGamePanel numberGamePanel = numberGamePanelGO.GetComponent<NumberGamePanel>();
         if (numberGamePanel != null)
@@ -245,6 +249,8 @@ public class AdvancePanel : MonoBehaviour
 
     public void OnASAButtonClicked()
     {
+        // Go to ASA task selection if consent has been given and the background form has been filled
+        // Open relevant pop-ups otherwise
         if (
             PlayerPrefs.GetInt("ConsentGiven", 0) == 1
             && PlayerPrefs.GetInt("BackgroundFormCompleted", 0) == 1
@@ -280,6 +286,7 @@ public class AdvancePanel : MonoBehaviour
 
     public void AcceptConsent()
     {
+        // Create new user after consent has been given
         string guid = Guid.NewGuid().ToString();
         PlayerPrefs.SetString("UserGuid", guid);
 
@@ -303,6 +310,7 @@ public class AdvancePanel : MonoBehaviour
 
     public void GetUserInput()
     {
+        // Set all relevant values for the user based on filled background form
         bool isValid = ValidateInformation();
         if (!isValid)
         {
@@ -360,6 +368,7 @@ public class AdvancePanel : MonoBehaviour
         string motherWrapped = string.Join("\n", motherTongue);
         string otherWrapped = string.Join("\n", otherLanguages);
 
+        // Prepare the form to be sent to the server
         BackgroundFormData backgroundFormData = new()
         {
             gender = ("gender", gender),
@@ -371,6 +380,7 @@ public class AdvancePanel : MonoBehaviour
             selfAssessment = ("finnish_self_assessment", selfAssessment),
         };
 
+        // Send consent and background form to server
         StartCoroutine(
             NetworkManager.GetManager().ServerPost_guid(POSTType.ASA_CONSENT, backgroundFormData)
         );
@@ -385,6 +395,7 @@ public class AdvancePanel : MonoBehaviour
 
     public bool ValidateInformation()
     {
+        // Make sure that background form is filled properly and no fields are empty, error message otherwise
         if (
             genderOptions.AnyTogglesOn()
             && ageOptions.AnyTogglesOn()
@@ -406,7 +417,8 @@ public class AdvancePanel : MonoBehaviour
         return false;
     }
 
-    /* */
+    // These describePanels are again legacy code and not currently in use / active
+    // They can't be seen because their respective describeButtons are currently never visible
     public void OnDescribeAButtonClicked(DescribePanel.TaskType taskType = DescribePanel.TaskType.A)
     {
         describePanelAGO.SetActive(true);
@@ -419,7 +431,6 @@ public class AdvancePanel : MonoBehaviour
 
     public void OnDescribeBButtonClicked(DescribePanel.TaskType taskType = DescribePanel.TaskType.B)
     {
-        Debug.Log("OnDescribeBButtonClicked");
         describePanelBGO.SetActive(true);
         DescribePanel describePanel = describePanelBGO.GetComponent<DescribePanel>();
         if (describePanel != null)
@@ -439,9 +450,7 @@ public class AdvancePanel : MonoBehaviour
     }
 
     void OnDisable()
-    /*
-    *   Need to Destroy all GO in the list to avoid create duplicate scorelist
-    */
+    // Need to destroy all game objects in the list to avoid creating a duplicate scorelist
     {
         numberGamePanelGO.SetActive(false);
         ASAPanelGO.SetActive(false);
