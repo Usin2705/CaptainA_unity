@@ -349,11 +349,9 @@ public class NetworkManager : MonoBehaviour
 
             ASAPanel.isLoading = false;
 
-
             feedbackLoadingIconGO.SetActive(false);
             resultsButtonGO.SetActive(true);
             Debug.Log("Here we are");
-
         }
         OnServerDone?.Invoke();
     }
@@ -424,7 +422,6 @@ public class NetworkManager : MonoBehaviour
 
                 Debug.Log(uwr.downloadHandler.text);
             }
-
 
             Debug.Log("Here we are (feedback edition)");
         }
@@ -1321,7 +1318,6 @@ public class NetworkManager : MonoBehaviour
         public float pronunciation;
         public float range;
     }
-
 
     public void ErrorHandling(UnityWebRequest uwr, TextMeshProUGUI errorText)
     {
