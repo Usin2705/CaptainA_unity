@@ -254,7 +254,7 @@ public class NetworkManager : MonoBehaviour
                 ASAProfilePanel.Stats Stats = JsonUtility.FromJson<ASAProfilePanel.Stats>(
                     uwr.downloadHandler.text
                 );
-
+                // If cohort size is too small or not enough tasks sent, perfcentile will be -1f
                 if (Stats.percentile == -1f)
                 {
                     ASAProfilePanel.InsufficientStats InsufficientStats =
@@ -334,6 +334,8 @@ public class NetworkManager : MonoBehaviour
                 Debug.Log("Form upload complete!");
 
                 Debug.Log(uwr.downloadHandler.text);
+
+                // Update the sent tasks count
                 int value = PlayerPrefs.GetInt("TasksSent", 0);
                 value++;
                 PlayerPrefs.SetInt("TasksSent", value);
@@ -342,17 +344,16 @@ public class NetworkManager : MonoBehaviour
             }
 
             asrResultASA = JsonUtility.FromJson<ASRResultASA>(uwr.downloadHandler.text);
-
+            // Save the assessment id got from the server. It will be sent to the server in feedback serverposts.
             PlayerPrefs.SetInt("AssessmentId", asrResultASA.assessment_id);
 
             ASAPanel.isLoading = false;
 
-            if (postType == POSTType.ASA_TASK)
-            {
-                feedbackLoadingIconGO.SetActive(false);
-                resultsButtonGO.SetActive(true);
-                Debug.Log("Here we are");
-            }
+
+            feedbackLoadingIconGO.SetActive(false);
+            resultsButtonGO.SetActive(true);
+            Debug.Log("Here we are");
+
         }
         OnServerDone?.Invoke();
     }
@@ -367,7 +368,6 @@ public class NetworkManager : MonoBehaviour
     {
         WWWForm form = new();
 
-        //string comment = feedbackTextGO.text;
         int value = grade[^1] - '0';
         form.AddField("guid", PlayerPrefs.GetString("UserGuid"));
         form.AddField("reaction_value", value);
@@ -375,13 +375,13 @@ public class NetworkManager : MonoBehaviour
         int currentTask = ASAPanel.currentTaskSelected;
 
         form.AddField("assessment_id", PlayerPrefs.GetInt("AssessmentId", -1));
-        Debug.Log(PlayerPrefs.GetInt("AssessmentId"));
+        // Debug.Log(PlayerPrefs.GetInt("AssessmentId"));
 
         form.AddField("comment", comment);
 
-        Debug.Log("Current task: " + currentTask);
-        Debug.Log("Rating value: " + grade);
-        Debug.Log("Comment: " + comment);
+        // Debug.Log("Current task: " + currentTask);
+        // Debug.Log("Rating value: " + grade);
+        //Debug.Log("Comment: " + comment);
         return form;
     }
 
@@ -425,7 +425,6 @@ public class NetworkManager : MonoBehaviour
                 Debug.Log(uwr.downloadHandler.text);
             }
 
-            asrResultASA = JsonUtility.FromJson<ASRResultASA>(uwr.downloadHandler.text);
 
             Debug.Log("Here we are (feedback edition)");
         }
@@ -1323,8 +1322,10 @@ public class NetworkManager : MonoBehaviour
         public float range;
     }
 
+
     public void ErrorHandling(UnityWebRequest uwr, TextMeshProUGUI errorText)
     {
+        // Handle the errors for server posts
         switch (uwr.result)
         {
             case UnityWebRequest.Result.ConnectionError:
