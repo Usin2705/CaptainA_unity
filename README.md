@@ -102,6 +102,11 @@ Grammar Function for SaySuomi (low priority): Develop a feature allowing users t
 - Users can voice their answers.
 - Preferably, users can also type their answers. (Note: The learning benefit of typing might differ from traditional writing.)
 
+# Contributors
+
+<!-- readme: contributors -start -->
+<!-- readme: contributors -end -->
+
 ## License
 
 The SaySuomi is licensed under the [GNU Affero General Public License, version 3 or later](https://github.com/Usin2705/CaptainA_unity/blob/main/LICENSE). Other related work to SaySuomi made by the authors (thesis work, journal articles, audio samples, pictures, videos ...) are licensed under a Creative Commons "Attribution-NonCommercial-ShareAlike 4.0 International" (BY-NC-SA 4.0) [license](https://creativecommons.org/licenses/by-nc-sa/4.0/).
