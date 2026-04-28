@@ -193,6 +193,7 @@ public class TaskPanel : MonoBehaviour
                         )
                 );
                 // Reset feedback form when done
+                PlayerPrefs.SetInt("OverallFeedbackSent", 1);
                 overallRatingOptions.SetAllTogglesOff();
                 overallFeedbackTextGO.text = "";
                 overallFeedbackPopUpGO.SetActive(false);
@@ -221,7 +222,11 @@ public class TaskPanel : MonoBehaviour
     public void OverallFeedback()
     {
         // Ask overall feedback after every 5 completed tasks
-        if (PlayerPrefs.GetInt("TasksSent", 0) % 5 == 0 && PlayerPrefs.GetInt("TasksSent", 0) > 0)
+        if (
+            PlayerPrefs.GetInt("TasksSent", 0) % 5 == 0
+            && PlayerPrefs.GetInt("TasksSent", 0) > 0
+            && PlayerPrefs.GetInt("OverallFeedbackSent", 0) == 0
+        )
         {
             overallFeedbackPopUpGO.SetActive(true);
             dimPanelGO.SetActive(true);

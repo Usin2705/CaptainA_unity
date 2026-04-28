@@ -339,7 +339,9 @@ public class NetworkManager : MonoBehaviour
                 int value = PlayerPrefs.GetInt("TasksSent", 0);
                 value++;
                 PlayerPrefs.SetInt("TasksSent", value);
+                PlayerPrefs.SetInt("OverallFeedbackSent", 0);
                 PlayerPrefs.Save();
+
                 Debug.Log(PlayerPrefs.GetInt("TasksSent"));
             }
 
@@ -422,6 +424,8 @@ public class NetworkManager : MonoBehaviour
 
                 Debug.Log(uwr.downloadHandler.text);
             }
+
+            // asrResultASA = JsonUtility.FromJson<ASRResultASA>(uwr.downloadHandler.text);
 
             Debug.Log("Here we are (feedback edition)");
         }
