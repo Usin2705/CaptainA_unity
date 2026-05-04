@@ -34,6 +34,7 @@ ExportedObj/
 *.csproj
 *.unityproj
 *.sln
+*.slnx
 *.suo
 *.tmp
 *.user
@@ -53,6 +54,8 @@ ExportedObj/
 
 # Unity3D generated file on crash reports
 sysinfo.txt
+_Recovery/
+_Recovery.meta
 
 # Builds
 *.apk
@@ -62,12 +65,10 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-
 Assets/Scripts/Utils/Secret.cs
 Server/models/nhan_wav2vec2-xls-r-300m-finnish-ft-ent/
 Server/models/nhan_wav2vec2-xls-r-300m-finnish-ft-ent-10/
-UserSettings/Layouts/
-UserSettings/Layouts/default-2022.dwlt
+UserSettings/
 
 CaptainA_Android_mapping.txt
 

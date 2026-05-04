@@ -1,13 +1,14 @@
-using System.Collections;
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
+using UnityEngine;
 
 //######################################## SAVE DATA ########################################
 public static class SaveData
 {
-    public static void SaveIntoJson(object jsonOjb, string fileName){
+    public static void SaveIntoJson(object jsonOjb, string fileName)
+    {
         /*
         *   This function save a json object into a file
         *   fileName should be without extension
@@ -19,14 +20,15 @@ public static class SaveData
         //Debug.Log("File save as " + filePath);
     }
 
-    public static void UpdateFlashCard(string flashCardFileName) {
+    public static void UpdateFlashCard(string flashCardFileName)
+    {
         /*
         *   This function update the flashcard file in the persistentDataPath
         *   with the flashcard file in the Resources folder
         *
         *   This function is used to update the flashcard file in the persistentDataPath
-        *   when the flashcard file in the Resources folder is updated           
-        *   
+        *   when the flashcard file in the Resources folder is updated
+        *
         */
 
         // Load the json file from Resources folder
@@ -42,20 +44,22 @@ public static class SaveData
 
         // If the file also exist in the persistentDataPath and the Resources folder
         // It it time to check for update
-        if (File.Exists(filePath)) {
+        if (File.Exists(filePath))
+        {
             // Read the json from the file into a string
-            string dataAsJson = File.ReadAllText(filePath);    
+            string dataAsJson = File.ReadAllText(filePath);
             //Debug.Log("Json data " + dataAsJson);
 
-            // Pass the json to JsonUtility, and tell it to create a flashcard object from it            
+            // Pass the json to JsonUtility, and tell it to create a flashcard object from it
             FlashCard flashCardLocal = JsonUtility.FromJson<FlashCard>(dataAsJson);
             //Debug.Log("File load from " + filePath);
 
             // If the flashcard in local have lower version than the one in Resources folder:
-            if (flashCardLocal.version < flashCardRes.version) {
-                
+            if (flashCardLocal.version < flashCardRes.version)
+            {
                 // Update the flashcard in in Resources folder with the data in the local flashcard
-                foreach (Card localCard in flashCardLocal.cards) {                
+                foreach (Card localCard in flashCardLocal.cards)
+                {
                     // The updateCardMeta function will find the card with the same id and update it
                     // The updateCardMeta function already handle the case when the card is not found
                     // it only update the meta data (id, cardType, etc.) but not the frontText and backText
@@ -63,10 +67,13 @@ public static class SaveData
                 }
 
                 // update the metadata of the flashcard in Resources folder
-                
+
                 // if old flashcard have a useDateStr, use it
-                // else use the default value "2000-01-01T00:00:00.0000000Z"                
-                flashCardRes.useDateStr = flashCardLocal.useDateStr != ""? flashCardLocal.useDateStr : "2000-01-01T00:00:00.0000000Z";                
+                // else use the default value "2000-01-01T00:00:00.0000000Z"
+                flashCardRes.useDateStr =
+                    flashCardLocal.useDateStr != ""
+                        ? flashCardLocal.useDateStr
+                        : "2000-01-01T00:00:00.0000000Z";
                 flashCardRes.todayDateStr = flashCardLocal.todayDateStr;
                 flashCardRes.newCount = flashCardLocal.newCount;
                 flashCardRes.reviewCount = flashCardLocal.reviewCount;
@@ -77,7 +84,8 @@ public static class SaveData
         }
     }
 
-    public static FlashCard LoadFlashCard(string flashCardFileName){
+    public static FlashCard LoadFlashCard(string flashCardFileName)
+    {
         // Path.Combine combines strings into a file path
         // Application.StreamingAssets points to Assets/StreamingAssets in the Editor, and the StreamingAssets folder in a build
         string filePath = Path.Combine(Application.persistentDataPath, flashCardFileName + ".json");
@@ -87,23 +95,27 @@ public static class SaveData
 
         // Debug.Log("File exist " + File.Exists(filePath));
 
-		if(File.Exists(filePath)) {
+        if (File.Exists(filePath))
+        {
             // Since we can't save in Resources folder, we save the edited flashcard file in the persistentDataPath
-            // If filePath is exit, load the json file from the persistentDataPath            
+            // If filePath is exit, load the json file from the persistentDataPath
 
             // Read the json from the file into a string
-            string dataAsJson = File.ReadAllText(filePath);    
+            string dataAsJson = File.ReadAllText(filePath);
             // Debug.Log("Json data " + dataAsJson);
 
-            // Pass the json to JsonUtility, and tell it to create a flashcard object from it            
-			flashCard = JsonUtility.FromJson<FlashCard>(dataAsJson);
+            // Pass the json to JsonUtility, and tell it to create a flashcard object from it
+            flashCard = JsonUtility.FromJson<FlashCard>(dataAsJson);
             // Debug.Log("File load from " + filePath);
-
-        } else {
-            // If the filePath is not exit, load the json file from Resources folder        
+        }
+        else
+        {
+            // If the filePath is not exit, load the json file from Resources folder
             // Load the json file from Resources folder
             // When load the json file from Resources folder as TextAsset, the file extension should be removed
-            TextAsset jsonFile = Resources.Load<TextAsset>(Const.FLASH_CARDS_PATH + flashCardFileName); // Note: Do not include the file extension
+            TextAsset jsonFile = Resources.Load<TextAsset>(
+                Const.FLASH_CARDS_PATH + flashCardFileName
+            ); // Note: Do not include the file extension
             // Debug.Log("Json data " + jsonFile.text);
             flashCard = JsonUtility.FromJson<FlashCard>(jsonFile.text);
             // Debug.Log("FlashCard load from Resources folder");
@@ -111,18 +123,19 @@ public static class SaveData
 
         foreach (Card card in flashCard.cards)
         {
-            // Default value for int is 0, so if the cardType is not set, it will be 0 (NEW)           
+            // Default value for int is 0, so if the cardType is not set, it will be 0 (NEW)
 
             // If the card id is not set, set it to a random string
             // Card ID is needed to keep track of the card in the queue
-            if (card.id == ""){
-                
-                card.id = Guid.NewGuid().ToString();                                
+            if (card.id == "")
+            {
+                card.id = Guid.NewGuid().ToString();
             }
         }
 
         // If the flashcard is not used before, set the useDateStr to 2000-01-01T00:00:00.0000000Z
-        if (flashCard.useDateStr == "") {            
+        if (flashCard.useDateStr == "")
+        {
             flashCard.useDateStr = "2000-01-01T00:00:00.0000000Z";
         }
 
@@ -131,98 +144,113 @@ public static class SaveData
         return flashCard;
     }
 
-	public static UserData LoadUserData(){
-		// Path.Combine combines strings into a file path
+    public static UserData LoadUserData()
+    {
+        // Path.Combine combines strings into a file path
         // Application.StreamingAssets points to Assets/StreamingAssets in the Editor, and the StreamingAssets folder in a build
         string filePath = Path.Combine(Application.persistentDataPath, "UserData.json");
 
-		if(File.Exists(filePath))
+        if (File.Exists(filePath))
         {
             // Read the json from the file into a string
-            string dataAsJson = File.ReadAllText(filePath);    
-            // Pass the json to JsonUtility, and tell it to create a UserData object from it            
-			UserData userData = JsonUtility.FromJson<UserData>(dataAsJson);
-			return userData;
+            string dataAsJson = File.ReadAllText(filePath);
+            // Pass the json to JsonUtility, and tell it to create a UserData object from it
+            UserData userData = JsonUtility.FromJson<UserData>(dataAsJson);
+            return userData;
         }
         else
         {
-			// If no UserData file is created, create an empty UserData file
-            // with all posible vocab in VOCABS_LIST            
+            // If no UserData file is created, create an empty UserData file
+            // with all posible vocab in VOCABS_LIST
             List<PhonemeScore> tempL = new List<PhonemeScore>();
 
             foreach (string vocab in Const.VOCABS_LIST)
             {
                 List<ScoreWithUTC> tempHistoryScore = new List<ScoreWithUTC>();
-                PhonemeScore tempScore = new PhonemeScore(phoneme: vocab, average_score: 1.0f, no_tries: 0, historyScore: tempHistoryScore);
-                tempL.Add(tempScore);                
+                PhonemeScore tempScore = new PhonemeScore(
+                    phoneme: vocab,
+                    average_score: 1.0f,
+                    no_tries: 0,
+                    historyScore: tempHistoryScore
+                );
+                tempL.Add(tempScore);
             }
-			
-            UserData userData = new UserData("", 0, tempL);			
+
+            UserData userData = new UserData("", 0, tempL);
             SaveIntoJson(userData, "UserData");
-			return userData;
+            return userData;
         }
     }
-    
-    public static void UpdateUserScores(string transcript, List<float> scoreList) {
+
+    public static void UpdateUserScores(string transcript, List<float> scoreList)
+    {
         /*
         * Remember to turn transcript to lowercase, as there's different between upper and lowercase
         */
 
-        transcript = transcript.ToLower();        
+        transcript = transcript.ToLower();
 
-		// Make sure that stranscript length match with scoreList Length
-		if (transcript.Length != scoreList.Count) {	
+        // Make sure that stranscript length match with scoreList Length
+        if (transcript.Length != scoreList.Count)
+        {
             Debug.LogError("Transcript and score didn't match");
-			return;
-		}
+            return;
+        }
 
-		UserData userData = LoadUserData();
+        UserData userData = LoadUserData();
 
-		for (int i = 0; i < scoreList.Count; i++) 
-		{
-			string phoneme = transcript[i].ToString();		
-			
-			int index = userData.IndexOf(phoneme);
+        for (int i = 0; i < scoreList.Count; i++)
+        {
+            string phoneme = transcript[i].ToString();
+
+            int index = userData.IndexOf(phoneme);
 
             // This record the current time in to Seconds Since 1970
-            DateTime epochStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);//January 1, 1970 0 hours, 0 minutes, 0 seconds
-            int secondsInUTC =  (int)(DateTime.UtcNow - epochStart).TotalSeconds;            
-            ScoreWithUTC scoreWithUTC = new ScoreWithUTC(score: scoreList[i], secondsInUTC: secondsInUTC); 
+            DateTime epochStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc); //January 1, 1970 0 hours, 0 minutes, 0 seconds
+            int secondsInUTC = (int)(DateTime.UtcNow - epochStart).TotalSeconds;
+            ScoreWithUTC scoreWithUTC = new ScoreWithUTC(
+                score: scoreList[i],
+                secondsInUTC: secondsInUTC
+            );
 
-			// Find phoneme within the list
-			// Ideally, Dictionary work better but Dictionary is not Serializable and 
-			// therefore can't be Save or Load easily with JSON			
-			if (index!=-1)
-            
-            // If phone is in the list, we can just update the 
+            // Find phoneme within the list
+            // Ideally, Dictionary work better but Dictionary is not Serializable and
+            // therefore can't be Save or Load easily with JSON
+            if (index != -1)
+            // If phone is in the list, we can just update the
             // Maybe using a constructor here would work as well?
-			{
-				PhonemeScore phonemeScore = userData.phonemeScores[index];
-				userData.phonemeScores[index].average_score = (phonemeScore.average_score * phonemeScore.no_tries + scoreList[i])
-                                                              /(phonemeScore.no_tries + 1);
-				userData.phonemeScores[index].no_tries++;   
-                
-                if (userData.phonemeScores[index].historyScore == null) {
-                // If there weren't a list to store historical score we will create one
-                // This function is important for backward compatible (old version don't have the historical score)
-                    List<ScoreWithUTC> tempHistoryScore = new List<ScoreWithUTC>();            
+            {
+                PhonemeScore phonemeScore = userData.phonemeScores[index];
+                userData.phonemeScores[index].average_score =
+                    (phonemeScore.average_score * phonemeScore.no_tries + scoreList[i])
+                    / (phonemeScore.no_tries + 1);
+                userData.phonemeScores[index].no_tries++;
+
+                if (userData.phonemeScores[index].historyScore == null)
+                {
+                    // If there weren't a list to store historical score we will create one
+                    // This function is important for backward compatible (old version don't have the historical score)
+                    List<ScoreWithUTC> tempHistoryScore = new List<ScoreWithUTC>();
                     tempHistoryScore.Add(scoreWithUTC);
                     userData.phonemeScores[index].historyScore = tempHistoryScore;
-                    
-                } else userData.phonemeScores[index].historyScore.Add(scoreWithUTC);    
-
-                
-
-			} else 			
-            // If phoneme is not in the list, create that phoneme with current score            
-			{
-                List<ScoreWithUTC> tempHistoryScore = new List<ScoreWithUTC>();                
+                }
+                else
+                    userData.phonemeScores[index].historyScore.Add(scoreWithUTC);
+            }
+            else
+            // If phoneme is not in the list, create that phoneme with current score
+            {
+                List<ScoreWithUTC> tempHistoryScore = new List<ScoreWithUTC>();
                 tempHistoryScore.Add(scoreWithUTC);
-                PhonemeScore tempScore = new PhonemeScore(phoneme: phoneme, average_score: scoreList[i], no_tries: 1, 
-                                                          historyScore: tempHistoryScore);
-				userData.phonemeScores.Add(tempScore);
-			}
-		}
+                PhonemeScore tempScore = new PhonemeScore(
+                    phoneme: phoneme,
+                    average_score: scoreList[i],
+                    no_tries: 1,
+                    historyScore: tempHistoryScore
+                );
+                userData.phonemeScores.Add(tempScore);
+            }
+        }
 
         // ONLY USE THIS ONE FOR THIS VERSION TO DELETE THE BUG
         userData = DeleteNumberInUserData(userData);
@@ -235,7 +263,6 @@ public static class SaveData
     {
         for (int i = 0; i < 10; i++)
         {
-
             userData.DeletePhoneme(i.ToString());
         }
 
@@ -269,7 +296,7 @@ public class UserData
     {
         /*
             Find the Index of a phoneme within the PhonemeScores list
-            and return its index. If phoneme is not within the list 
+            and return its index. If phoneme is not within the list
             return -1.
         */
         for (int i = 0; i < phonemeScores.Count; i++)
@@ -294,25 +321,30 @@ public class UserData
     }
 }
 
-
 [System.Serializable]
-public class PhonemeScore: IComparable<PhonemeScore>{
+public class PhonemeScore : IComparable<PhonemeScore>
+{
     public string phoneme;
     public float average_score;
     public int no_tries;
     public List<ScoreWithUTC> historyScore;
 
-    public PhonemeScore(string phoneme, float average_score, int no_tries, List<ScoreWithUTC> historyScore) 
-    {        
+    public PhonemeScore(
+        string phoneme,
+        float average_score,
+        int no_tries,
+        List<ScoreWithUTC> historyScore
+    )
+    {
         this.phoneme = phoneme;
         this.average_score = average_score;
-        this.no_tries = no_tries;        
+        this.no_tries = no_tries;
         this.historyScore = historyScore;
     }
 
     public int CompareTo(PhonemeScore other)
     {
-        if(other == null)
+        if (other == null)
         {
             return 1; //greater than
         }
@@ -320,36 +352,40 @@ public class PhonemeScore: IComparable<PhonemeScore>{
         //Return the rank in average score
         //1 mean greater than other
         //-1 mean less than other
-        if (other.average_score > average_score) return -1;
-        else if (other.average_score == average_score) return 0;
-        else return 1;
+        if (other.average_score > average_score)
+            return -1;
+        else if (other.average_score == average_score)
+            return 0;
+        else
+            return 1;
     }
 }
 
 [System.Serializable]
-public class ScoreWithUTC {
+public class ScoreWithUTC
+{
     public float score;
     public int secondsInUTC;
 
-    public ScoreWithUTC(float score, int secondsInUTC) 
-    {        
+    public ScoreWithUTC(float score, int secondsInUTC)
+    {
         this.score = score;
-        this.secondsInUTC = secondsInUTC;        
+        this.secondsInUTC = secondsInUTC;
     }
 }
 
 //#########################################################################################
 
-
 //##################################### GET RESTFUL RESULT #####################################
 [System.Serializable]
-public class ASRResult{
+public class ASRResult
+{
     /*
-    *  
+    *
     *
     */
-    // TODO Add special cases 
-    // (double vowel, double consonant)        
+    // TODO Add special cases
+    // (double vowel, double consonant)
     // TODO Add "ng" and "nk" as they have different IPA
 
     public List<OPS> levenshtein;
@@ -360,14 +396,15 @@ public class ASRResult{
 
 //##################################### GET TRANSCRIPT RESTFUL RESULT #####################################
 [System.Serializable]
-public class TranscriptResult{
-
+public class TranscriptResult
+{
     public string prediction;
 }
+
 //##################################### LEVENSHTEIN #######################################
 [System.Serializable]
-public class OPS 
-{   
+public class OPS
+{
     /*
     *
     *   There's 3 code in ops: replace, insert, delete
@@ -379,8 +416,8 @@ public class OPS
     public int tran_index;
     public int pred_index;
 }
-//#########################################################################################
 
+//#########################################################################################
 
 //##################################### CHAT-GPT ##########################################
 [System.Serializable]
@@ -388,7 +425,6 @@ public class OpenAIASRResponse
 {
     public string text;
 }
-
 
 [System.Serializable]
 public class ImageInfo
@@ -406,7 +442,7 @@ public class OpenAIImageResponse
 [System.Serializable]
 public class OpenAIChatResponse
 {
-    public string id;       
+    public string id;
     public string @object; // Using @ symbol
     public long created;
     public string model;
@@ -436,9 +472,8 @@ public class Usage
     public int completion_tokens;
     public int total_tokens;
 }
+
 //##########################################################################################
-
-
 
 //######################################## WARNING ########################################
 public enum WARNINGS

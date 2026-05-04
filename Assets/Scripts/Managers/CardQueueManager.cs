@@ -1,12 +1,12 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CardQueueManager : MonoBehaviour
 /*
 *   QueueManager don't need to be created everytime
-*   Do we on Awake() or not?    
+*   Do we on Awake() or not?
 *
 */
 {
@@ -17,75 +17,91 @@ public class CardQueueManager : MonoBehaviour
 
     string flashCardFile;
 
-	public static CardQueueManager GetQueueManager {
-		get {
-			if (queueManager == null) {
-				queueManager = new GameObject("QueueManager").AddComponent<CardQueueManager>();
+    public static CardQueueManager GetQueueManager
+    {
+        get
+        {
+            if (queueManager == null)
+            {
+                queueManager = new GameObject("QueueManager").AddComponent<CardQueueManager>();
 
                 // Find always come with huge resources, so best not do it
-                // queueManager.transform.SetParent(GameObject.Find("Manager").transform); // Register the Manager as parent 
-			}
+                // queueManager.transform.SetParent(GameObject.Find("Manager").transform); // Register the Manager as parent
+            }
 
-			return queueManager;
-		}
-	}
+            return queueManager;
+        }
+    }
 
-    public void MakeQueue(FlashCard _flashCard, int newCount, int reviewCount) {
+    public void MakeQueue(FlashCard _flashCard, int newCount, int reviewCount)
+    {
         flashCard = _flashCard;
         flashCardFile = flashCard.fileName;
-		cardQueue = new Queue<Card>();
+        cardQueue = new Queue<Card>();
 
         // Where return the IEnumerable in the order of the original list
         // For InterleaveCardLists see extra snippet from Chat GPT 4.0
 
         // Get all learn/relearning cards
         // And sorted by date of next review
-        IEnumerable<Card> learnCards = flashCard.cards
-            .Where(card => card.cardType == (int) CARD_TYPE.LEARNING || card.cardType == (int) CARD_TYPE.RELEARNING)
+        IEnumerable<Card> learnCards = flashCard
+            .cards.Where(card =>
+                card.cardType == (int)CARD_TYPE.LEARNING
+                || card.cardType == (int)CARD_TYPE.RELEARNING
+            )
             .OrderBy(card => DateTime.Parse(card.nextReviewDateStr));
-        
+
         // Find new cards with maximum is newCount
         // NO NEED TO SORT
-        IEnumerable<Card> newCards = flashCard.cards
-            .Where(card => card.cardType == (int) CARD_TYPE.NEW)
+        IEnumerable<Card> newCards = flashCard
+            .cards.Where(card => card.cardType == (int)CARD_TYPE.NEW)
             .Take(newCount);
 
         // Find due cards with maximum is reviewCount  (nextReviewDate is earlier than DateTime.Now)
         // And sorted by date of next review
-        IEnumerable<Card> reviewCards = flashCard.cards
-            .Where(card => card.cardType == (int) CARD_TYPE.REVIEW && DateTime.Parse(card.nextReviewDateStr) <= DateTime.Now)
+        IEnumerable<Card> reviewCards = flashCard
+            .cards.Where(card =>
+                card.cardType == (int)CARD_TYPE.REVIEW
+                && DateTime.Parse(card.nextReviewDateStr) <= DateTime.Now
+            )
             .OrderBy(card => DateTime.Parse(card.nextReviewDateStr))
             .Take(reviewCount);
-        
+
         // Concatenate the card lists
         List<Card> combinedCards = learnCards.Concat(newCards).Concat(reviewCards).ToList();
-        
+
         // Sort list by order of nextReviewDate
         // NO NEED TO SORT
         // List<Card> sortedCards = combinedCards.OrderBy(card => DateTime.Parse(card.nextReviewDateStr)).ToList();
 
-        foreach (Card card in combinedCards) {
+        foreach (Card card in combinedCards)
+        {
             cardQueue.Enqueue(card);
         }
     }
 
-    public void ClearQueue() {        
-		cardQueue.Clear();
+    public void ClearQueue()
+    {
+        cardQueue.Clear();
     }
 
-    public void Dequeue() {        
-		cardQueue.Dequeue();         
+    public void Dequeue()
+    {
+        cardQueue.Dequeue();
     }
 
-    public Card Peek() {
-        return cardQueue.Peek();         
+    public Card Peek()
+    {
+        return cardQueue.Peek();
     }
 
-    public int GetCount() {
+    public int GetCount()
+    {
         return cardQueue.Count;
     }
 
-    public string GetFlashCardFile() {
+    public string GetFlashCardFile()
+    {
         return flashCardFile;
     }
 }

@@ -15,9 +15,9 @@ public enum Topics
 
 public static class TopicDetail
 {
-    public static string GetDetail (Topics topic) 
+    public static string GetDetail(Topics topic)
     {
-        switch (topic) 
+        switch (topic)
         {
             case Topics.Easy:
                 return "Short words/sentence. There're almost no difficult alphabets in the samples.";
@@ -28,19 +28,19 @@ public static class TopicDetail
             case Topics.Sentences:
                 return "One or (maximum) two Finnish sentences. Often have audio samples.";
             case Topics.Greetings:
-                return "Common Finnish greetings.";                
+                return "Common Finnish greetings.";
             case Topics.Grocery:
                 return "A list of words you should know when buying grocery in Finland";
             case Topics.Business:
                 return "A list of words you should know if you want to work or start business in Finland";
-            case Topics.Pair: 
+            case Topics.Pair:
                 return "A pair of words with similar pronunciation. For example: a - ä, o - ö";
             case Topics.Vocabulary:
-                return "All single, simple words. Useful to learn new vocabulary while practice pronunciation";                                                                                                
+                return "All single, simple words. Useful to learn new vocabulary while practice pronunciation";
             case Topics.AudioBooks:
-                return "Contain samples from Finnish book in Public Domain. Always have audio samples from LibriVox.";                                                                                               
+                return "Contain samples from Finnish book in Public Domain. Always have audio samples from LibriVox.";
             case Topics.All:
-                return "Contain all samples in the app.";                                                                                               
+                return "Contain all samples in the app.";
             default:
                 return "";
         }

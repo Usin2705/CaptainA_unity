@@ -1,6 +1,8 @@
 # SaySuomi - A Mobile App for Practicing Finnish Pronunciation
 
-Welcome to the repository of SaySuomi (previous name CaptainA), a mobile application designed to help users practice their Finnish pronunciation. This repository contains the code for both the mobile application and the backend server.
+[![CI](https://github.com/Usin2705/CaptainA_unity/actions/workflows/ci.yml/badge.svg)](https://github.com/Usin2705/CaptainA_unity/actions/workflows/ci.yml)
+
+Welcome to the repository of SaySuomi (previous name CaptainA), a mobile application designed to help users practice their Finnish pronunciation. This repository contains the code for the mobile application. The server-side code can be found [here](https://github.com/aalto-speech/dta-server/tree/dev).
 
 ## Front end development project description:
 
@@ -99,6 +101,11 @@ Grammar Function for SaySuomi (low priority): Develop a feature allowing users t
 - Users will be presented with English text to translate into Finnish.
 - Users can voice their answers.
 - Preferably, users can also type their answers. (Note: The learning benefit of typing might differ from traditional writing.)
+
+# Contributors
+
+<!-- readme: contributors -start -->
+<!-- readme: contributors -end -->
 
 ## License
 

@@ -5,23 +5,29 @@ using UnityEngine;
 
 public class SecretPopUpPanel : MonoBehaviour
 {
-    [SerializeField] GameObject secretPopUpPanelGO;    
-    [SerializeField] TMPro.TextMeshProUGUI secretTextTMP;
+    [SerializeField]
+    GameObject secretPopUpPanelGO;
+
+    [SerializeField]
+    TMPro.TextMeshProUGUI secretTextTMP;
 
     // No longer have NO option :D
-    public void OnNoButtonClick() {
+    public void OnNoButtonClick()
+    {
         secretPopUpPanelGO.SetActive(false);
     }
 
-    public void OnLaterButtonClick() {
+    public void OnLaterButtonClick()
+    {
         secretPopUpPanelGO.SetActive(false);
     }
 
-    public void OnYesButtonClick() {
+    public void OnYesButtonClick()
+    {
         string secretText = secretTextTMP.text;
         secretText = secretText.Replace("\r", "").Replace("\n", "").Trim();
         PlayerPrefs.SetString(Const.PREF_SECRET_TEXT, secretText);
-		PlayerPrefs.Save();
+        PlayerPrefs.Save();
         secretPopUpPanelGO.SetActive(false);
     }
 
