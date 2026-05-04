@@ -15,7 +15,7 @@ The ASA module supports speaking tasks, audio recording, server-based scoring, a
 
 A frozen version of the student contribution is archived as release [v1.0.0](https://github.com/Usin2705/CaptainA_unity/releases/tag/v1.0.0) and on [Zenodo](https://zenodo.org/records/20021230). Further development continued after this release.
 
-For more information about the ASA implementation and release context, see [SaySuomi-ASA doc.pdf](Automated_Speaking_Assessment_doc/SaySuomi-ASA%20doc.pdf).
+For more information about the ASA implementation and release context, see [SaySuomi-ASA doc.pdf](docs/asa_release/SaySuomi-ASA%20doc.pdf).
 
 ## Citation
 
@@ -47,13 +47,12 @@ All authors contributed equally.
 
 - `Assets/`: Unity app source files.
 - `Packages/` and `ProjectSettings/`: Unity package and project configuration.
-- `Automated_Speaking_Assessment_doc/`: ASA release documentation.
-- `docs/`: historical plans, legacy server notes, and development notes.
+- `docs/`: ASA release documentation, historical plans, legacy server notes, and development notes.
 - `MDD_Server/`: legacy/server-side project files kept for project context.
 
 ## Documentation
 
-- [ASA release documentation](Automated_Speaking_Assessment_doc/SaySuomi-ASA%20doc.pdf)
+- [ASA release documentation](docs/asa_release/SaySuomi-ASA%20doc.pdf)
 - [ASA front-end development plan](docs/ASA_frontend_plan.md)
 - [Legacy CaptainA pronunciation server and API notes](docs/legacy_pronunciation_server.md)
 - [Future development notes](docs/development_notes.md)
@@ -67,6 +66,54 @@ All authors contributed equally.
 ## Contributors
 
 <!-- readme: contributors -start -->
+<table>
+	<tbody>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/Usin2705">
+                    <img src="https://avatars.githubusercontent.com/u/8575412?v=4" width="100;" alt="Usin2705"/>
+                    <br />
+                    <sub><b>Chi Nhan, Phan</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/AaroMKS">
+                    <img src="https://avatars.githubusercontent.com/u/183390925?v=4" width="100;" alt="AaroMKS"/>
+                    <br />
+                    <sub><b>AaroMKS</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/choerubi">
+                    <img src="https://avatars.githubusercontent.com/u/156372096?v=4" width="100;" alt="choerubi"/>
+                    <br />
+                    <sub><b>Iida Porola</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/ratilmii">
+                    <img src="https://avatars.githubusercontent.com/u/32961917?v=4" width="100;" alt="ratilmii"/>
+                    <br />
+                    <sub><b>ratilmii</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/LauraImmonen">
+                    <img src="https://avatars.githubusercontent.com/u/180306768?v=4" width="100;" alt="LauraImmonen"/>
+                    <br />
+                    <sub><b>Laura</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/kahkaar">
+                    <img src="https://avatars.githubusercontent.com/u/119842456?v=4" width="100;" alt="kahkaar"/>
+                    <br />
+                    <sub><b>Aaron</b></sub>
+                </a>
+            </td>
+		</tr>
+	<tbody>
+</table>
 <!-- readme: contributors -end -->
 
 ## License
