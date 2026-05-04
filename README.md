@@ -1,108 +1,70 @@
-# SaySuomi - A Mobile App for Practicing Finnish Pronunciation
+# SaySuomi - Mobile App for Finnish Pronunciation Practice
 
 [![CI](https://github.com/Usin2705/CaptainA_unity/actions/workflows/ci.yml/badge.svg)](https://github.com/Usin2705/CaptainA_unity/actions/workflows/ci.yml)
 
-Welcome to the repository of SaySuomi (previous name CaptainA), a mobile application designed to help users practice their Finnish pronunciation. This repository contains the code for the mobile application. The server-side code can be found [here](https://github.com/aalto-speech/dta-server/tree/dev).
+SaySuomi, previously named CaptainA, is a mobile application designed to help users practice Finnish pronunciation. This repository contains the Unity mobile app code for Android and iOS.
 
-## Front end development project description:
+The app is available on [Google Play](https://play.google.com/store/apps/details?id=com.Kielibuusti.CaptainA) and the [Apple App Store](https://apps.apple.com/ph/app/captaina/id6444659467). The [demo paper](https://aclanthology.org/2023.nodalida-1.26) gives a short introduction, and the original app development is described in this [Master's thesis](http://urn.fi/URN:NBN:fi:aalto-202305213302).
 
-Our main goals for front-end project is to develop a automatic speech asessment (ASA) feature and implement new UI/UX design to the mobile app. Specifically:
+## Student ASA Release (2026)
 
-- A new **ASA feature** in the mobile app: an interface to display a speaking task (usually with picture and text description - with option for translation). User then speak and record their answer (about 30~60s). The mobile app will then send the speech data to the server. After the server finish, mobile app will receive 5 speech ratings scores: `fluency, pronunciation, range, accuracy, holistic` and display them to the user. Those data will be store on their mobile app, and user can later access them in a different interface to review their progress.
-    -  We will also need an interface/function to collect user's consent and some background information. Those will also be sent to the server (with consent).
-	-  Some functions (audio record, server connection) are already available, you can reuse them.
-- As a real mobile app, we also targeting user experience (**UX**) and user interface (**UI**). Therefore, we also need a nice front end.
-  - A spider chart (as we discussed) could be a nice way to display the scores.
-  - Unity's Animation System is also nice and surprisingly easy to implement, but not required.
-  - Obviously you will need to work closely with back end and also the design team. Some resources may not be available to you until the end of the project (for example, new icon design).
-  - The processing time could be from 10~30s, we need to figure out a way to let's user know the server is processing. Some extra feature to collect feedback during waiting, or after getting the score is extremely useful.
-  - Remember that the mobile app target both Android and iOS, so the UI must work fine in most smartphone with different screensize.
-- Other features that not directly related to ASA features but are also needed (for example, interface for text-to-speech system, we will handle the server). Obviously those extra is not priority and depend on the team and the progress of the main work.
+[![ASA DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20021230.svg)](https://doi.org/10.5281/zenodo.20021230)
 
+This repository includes the initial implementation of the Automatic Speaking Assessment (ASA) module developed by the 2026 student team.
 
-For an example of user interface (we need to make a much better one in production), see: https://www.youtube.com/watch?v=cRskPKsSM3g
+The ASA module supports speaking tasks, audio recording, server-based scoring, and score review in the mobile app. The ASA server is maintained separately in the [aalto-speech/dta-server](https://github.com/aalto-speech/dta-server) repository.
 
-See the function `ServerPost` or `NumberGamePost` (at the bottom of https://github.com/Usin2705/CaptainA_unity/blob/main/Assets/Scripts/Managers/NetworkManager.cs) on how to send/receive data to/from the server.
+A frozen version of the student contribution is archived as release [v1.0.0](https://github.com/Usin2705/CaptainA_unity/releases/tag/v1.0.0) and on [Zenodo](https://zenodo.org/records/20021230). Further development continued after this release.
 
-For more information about how the backend would look like, you can look at SaySvenska server: https://github.com/Usin2705/SaySvenska/tree/main/Server
+For more information about the ASA implementation and release context, see [SaySuomi-ASA doc.pdf](docs/asa_release/SaySuomi-ASA%20doc.pdf).
 
-You can look at an example of the API (a bit old now) from SaySuomi Readme file:
-https://github.com/Usin2705/CaptainA_unity/tree/main
+## Citation
 
+If you use or refer to the ASA student release, please cite it as follows.
 
+**APA 7th**
 
-## About the Project
+Immonen, L., Kähkönen, A., Porola, I., Ratilainen, M., Savolainen, A., Takala, K., Tonteri, M., Immonen, R., Phan, N., & von Zansen, A. (2026). *SaySuomi: Automatic Speaking Assessment Student Release v1.0.0* (Version v1.0.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.20021230
 
-SaySuomi (previous name CaptainA) is a mobile application that utilizes the wav2vec 2.0 model for Finnish pronunciation practice. The app is available for download on both [Google Play](https://play.google.com/store/apps/details?id=com.Kielibuusti.CaptainA) and the [Apple App Store](https://apps.apple.com/ph/app/captaina/id6444659467). The current version of the wav2vec 2.0 model used in the app can be downloaded from HuggingFace. The [demo paper](https://aclanthology.org/2023.nodalida-1.26) offers a short introduction. For more detailed analysis and documentation on the development of the original app, you can refer to [Master's thesis](http://urn.fi/URN:NBN:fi:aalto-202305213302).
+All authors contributed equally.
 
-## Server Installation and Setup
+**BibTeX**
 
-The [server](https://github.com/Usin2705/CaptainA_unity/tree/main/Server) for CaptainA runs on Nginx and comes with a Dockerfile, allowing it to run without any extra installations (aside from Nginx and Docker/Podman). Here are the steps to set up and run the server:
-
-1. **Model Download**: Download the model from [HuggingFace](https://huggingface.co/Usin2705/CaptainA_v0) and copy it to the folder "PATH_TO_SERVER_FOLDER/models/nhan_wav2vec2-xls-r-300m-finnish-ent-10".
-
-2. **Port Setup**: Open a port for CaptainA (let's call it PORT) and update the new port number in the Docker file.
-
-3. **Docker/Podman Setup**: You can use either Docker or Podman for the [Dockerfile](https://github.com/Usin2705/CaptainA_unity/blob/main/Server/Dockerfile). The default command is for Podman, but you can replace it with Docker by simply changing the command from `podman` to `docker`.
-
-4. **Build the Image**: First, build the image from the docker file using the command: `podman build --pull --rm -f "Dockerfile" -t captaina:latest "."`
-
-5. **Run the Server**: To ensure the server will automatically restart even if the backend reboots, use the following command (choose between docker or podman):
-
-   For Docker: `docker run --restart=unless-stopped -d -p PORT:PORT --name captaina_server captaina`
-
-   For Podman: `podman run --restart=always -d -p PORT:PORT --name captaina_server captaina`
-
-6. **Reboot the Server**: Reboot the server to check if the docker container automatically restarts.
-
-You can set up more workers or threads in the Dockerfile. The default is 2 workers with 1 thread, but this is because the server we use only has 4 Intel X5670 @ 2.93GHz.
-
-## API Usage
-
-The CaptainA server expects a Rest API POST with the following keys:
-
-- **file**: wav file
-- **transcript**: the target text (that users are expected to read)
-
-The server responds with a JSON in the following format:
-
-```json
-{
- "levenshtein": [OPS List],
- "prediction": "mustikka",
- "score": [0.10, 0.75, 0.88, 0.90, 0.99, 0.95, 0.66, 0.01],
- "warning": [0, 1, 2, 3]
+```bibtex
+@software{saysuomi_asa_student_2026,
+  author  = {Immonen, Laura and K{\"a}hk{\"o}nen, Aaron and Porola, Iida and
+             Ratilainen, Miika and Savolainen, Aaro and Takala, Kim and
+             Tonteri, Miika and Immonen, Riina and Phan, Nhan and
+             von Zansen, Anna},
+  title   = {{SaySuomi}: Automatic Speaking Assessment Student Release v1.0.0},
+  year    = {2026},
+  doi     = {10.5281/zenodo.20021230},
+  version = {v1.0.0},
+  note    = {Initial ASA module developed by the student team; later development continued in the main project. All authors contributed equally.}
 }
 ```
 
-Where:
+## Project Structure
 
-- **levenshtein**: OPS List (see example below)
-- **prediction**: string prediction of ASR model
-- **score**: list of pronunciation scores for each phoneme (for "mustikka" it would be [0.10, 0.75, 0.88, 0.90, 0.99, 0.95, 0.66, 0.01], indicating the first and last letter/phone (m and a) were mispronounced)
-- **warning**: list of warning (int): [0, 1, 2, 3]. There are currently 4 warnings: word too short, NP should be pronounced as MP, NK and NG sound, Boundary gemination - Mene pois!
+- `Assets/`: Unity app source files.
+- `Packages/` and `ProjectSettings/`: Unity package and project configuration.
+- `docs/`: ASA release documentation, historical plans, legacy server notes, and development notes.
+- `MDD_Server/`: legacy/server-side project files kept for project context.
 
-Random example of ops list, the list was just the result from `Levenshtein.editops(transcript, prediction)` converted into a dictionary for straightforward usage in Unity.
+## Documentation
 
-```json
-[
-  {"ops": "insert", "tran_index": 0, "pred_index": 2},
-  {"ops": "delete", "tran_index": 3, "pred_index": 4},
-  {"ops": "replace", "tran_index": 5, "pred_index": 6}
-]
-```
+- [ASA release documentation](docs/asa_release/SaySuomi-ASA%20doc.pdf)
+- [ASA front-end development plan](docs/ASA_frontend_plan.md)
+- [Legacy CaptainA pronunciation server and API notes](docs/legacy_pronunciation_server.md)
+- [Future development notes](docs/development_notes.md)
 
-## Todo list
+## Related Resources
 
-**Text-to-speech system**: Develop a text-to-speech system so user can listen to example in Finnish.
+- [ASA server: aalto-speech/dta-server](https://github.com/aalto-speech/dta-server)
+- [Original pronunciation model on HuggingFace](https://huggingface.co/Usin2705/CaptainA_v0)
+- [Legacy SaySvenska server example](https://github.com/Usin2705/SaySvenska/tree/main/Server)
 
-Grammar Function for SaySuomi (low priority): Develop a feature allowing users to review grammar rules and practice them:
-- Extract practice examples directly from flashcards. 
-- Users will be presented with English text to translate into Finnish.
-- Users can voice their answers.
-- Preferably, users can also type their answers. (Note: The learning benefit of typing might differ from traditional writing.)
-
-# Contributors
+## Contributors
 
 <!-- readme: contributors -start -->
 <table>
@@ -171,3 +133,4 @@ Other works not made by the authors are licensed accordingly to their respective
 - Some audio samples are from Common Voice 11.0, licensed under [Creative Commons Zero 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
 - Some audio samples and text examples are from LibriVox under Public Domain.
 - We are grateful to Apollo Ailus and Kia Raitanen for their contributions to user research and engagement, and to Aalo Kailu, who designed the original user interface of the app.
+- We are grateful to the 2026 ASA student team, Laura Immonen, Aaron Kähkönen, Iida Porola, Miika Ratilainen, Aaro Savolainen, Kim Takala, and Miika Tonteri, for developing the initial Automatic Speaking Assessment module v1.0.0.
