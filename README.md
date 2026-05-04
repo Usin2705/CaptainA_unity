@@ -1,13 +1,14 @@
 # SaySuomi - Mobile App for Finnish Pronunciation Practice
 
 [![CI](https://github.com/Usin2705/CaptainA_unity/actions/workflows/ci.yml/badge.svg)](https://github.com/Usin2705/CaptainA_unity/actions/workflows/ci.yml)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20021230.svg)](https://doi.org/10.5281/zenodo.20021230)
 
 SaySuomi, previously named CaptainA, is a mobile application designed to help users practice Finnish pronunciation. This repository contains the Unity mobile app code for Android and iOS.
 
 The app is available on [Google Play](https://play.google.com/store/apps/details?id=com.Kielibuusti.CaptainA) and the [Apple App Store](https://apps.apple.com/ph/app/captaina/id6444659467). The [demo paper](https://aclanthology.org/2023.nodalida-1.26) gives a short introduction, and the original app development is described in this [Master's thesis](http://urn.fi/URN:NBN:fi:aalto-202305213302).
 
 ## Student ASA Release (2026)
+
+[![ASA DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20021230.svg)](https://doi.org/10.5281/zenodo.20021230)
 
 This repository includes the initial implementation of the Automatic Speaking Assessment (ASA) module developed by the 2026 student team.
 
