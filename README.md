@@ -105,6 +105,54 @@ Grammar Function for SaySuomi (low priority): Develop a feature allowing users t
 # Contributors
 
 <!-- readme: contributors -start -->
+<table>
+	<tbody>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/Usin2705">
+                    <img src="https://avatars.githubusercontent.com/u/8575412?v=4" width="100;" alt="Usin2705"/>
+                    <br />
+                    <sub><b>Chi Nhan, Phan</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/AaroMKS">
+                    <img src="https://avatars.githubusercontent.com/u/183390925?v=4" width="100;" alt="AaroMKS"/>
+                    <br />
+                    <sub><b>AaroMKS</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/choerubi">
+                    <img src="https://avatars.githubusercontent.com/u/156372096?v=4" width="100;" alt="choerubi"/>
+                    <br />
+                    <sub><b>Iida Porola</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/ratilmii">
+                    <img src="https://avatars.githubusercontent.com/u/32961917?v=4" width="100;" alt="ratilmii"/>
+                    <br />
+                    <sub><b>ratilmii</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/LauraImmonen">
+                    <img src="https://avatars.githubusercontent.com/u/180306768?v=4" width="100;" alt="LauraImmonen"/>
+                    <br />
+                    <sub><b>Laura</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/kahkaar">
+                    <img src="https://avatars.githubusercontent.com/u/119842456?v=4" width="100;" alt="kahkaar"/>
+                    <br />
+                    <sub><b>Aaron</b></sub>
+                </a>
+            </td>
+		</tr>
+	<tbody>
+</table>
 <!-- readme: contributors -end -->
 
 ## License
