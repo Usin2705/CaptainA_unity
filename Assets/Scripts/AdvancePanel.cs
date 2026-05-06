@@ -83,6 +83,9 @@ public class AdvancePanel : MonoBehaviour
     ASAPanel ASAPanel;
 
     [SerializeField]
+    GameObject asaSecretCodePopUp;
+
+    [SerializeField]
     private TMP_InputField languageOtherField;
 
     [SerializeField]
@@ -242,6 +245,22 @@ public class AdvancePanel : MonoBehaviour
     }
 
     public void OnASAButtonClicked()
+    {
+        // Check if secret code has been verified first
+        if (!ASASecretCodePopUp.IsASASecretVerified())
+        {
+            ASASecretCodePopUp secretCodePopUp = asaSecretCodePopUp.GetComponent<ASASecretCodePopUp>();
+            if (secretCodePopUp != null)
+            {
+                secretCodePopUp.ShowSecretCodePopUp(() => ProceedToASA());
+            }
+            return;
+        }
+
+        ProceedToASA();
+    }
+
+    private void ProceedToASA()
     {
         // Go to ASA task selection if consent has been given and the background form has been filled
         // Open relevant pop-ups otherwise
