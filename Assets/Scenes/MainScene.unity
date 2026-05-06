@@ -19392,24 +19392,26 @@ MonoBehaviour:
   tasks:
   - taskText: Your friend doesn't have much money and asks you for 100 euros. What
       do you say to them?
-    taskImage: {fileID: 21300000, guid: 920ea28da3ac4124c8324ec124336b33, type: 3}
+    taskImage: {fileID: 21300000, guid: 860ca05cf77de784ab06a67436dc880d, type: 3}
     recordingTime: 30
-  - taskText: You can't come to class/work today. You send a voice message to your
-      teacher/boss and tell them why you can't come. What do you say in the message?
-    taskImage: {fileID: 21300000, guid: 70e6137e7839a9249bff9769a855800e, type: 3}
+  - taskText: 'You can''t come to class/work today. You send a voice message to your
+      teacher/boss and tell them why you can''t come. What do you say in the message?\nYou
+      have 30 seconds. '
+    taskImage: {fileID: 21300000, guid: eb10ebaeb763ab141a6b77d1ace0d5e8, type: 3}
     recordingTime: 30
-  - taskText: Describe what you normally do at home.
-    taskImage: {fileID: 21300000, guid: 510f40ab499214748a5484e802bdc006, type: 3}
+  - taskText: '<b>Describe what you normally do at home.</b>\n You have 1 minute. '
+    taskImage: {fileID: 21300000, guid: 54863f96f74ba97428c5b66cab2d8b49, type: 3}
     recordingTime: 60
-  - taskText: "Describe what languages \u200B\u200Byou use and where. What languages
-      \u200B\u200Bdo you speak at home, in the shop, at work...? Do you watch TV
-      or listen to music in another language?"
-    taskImage: {fileID: 21300000, guid: 3b40bfb9fe62e3c4ab9c4d4c95194286, type: 3}
+  - taskText: "<b>Describe what languages you use and where.</b>\\n You have 1 minute.\\n\u25CF
+      What languages do you speak at home, in the shop, at work...?\\n\u25CF Do you
+      watch TV or listen to music in another language? "
+    taskImage: {fileID: 21300000, guid: 287bffc133d95004db73f967a7866032, type: 3}
     recordingTime: 60
-  - taskText: In this task, you can either use the picture above or answer based
-      on your shopping habits. What do you normally buy at the store? What don't
-      you normally buy from the store? When do you normally go shopping?
-    taskImage: {fileID: 21300000, guid: 57369bc2321466341abcb8220a27a33a, type: 3}
+  - taskText: "<b>In this task, you have 1 minute to answer based on your shopping
+      habits or the picture above.</b>\\n\u25CF What do you normally buy at the store?\\n\u25CF
+      What don't you normally buy from the store?\\n\u25CF When do you normally go
+      shopping? "
+    taskImage: {fileID: 21300000, guid: b3bc2904e4b5deb45be6fcab6e50ebcc, type: 3}
     recordingTime: 60
   taskTextGO: {fileID: 1186766482}
   taskImageGO: {fileID: 698106385}
@@ -29103,8 +29105,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 1.4812, y: -450}
-  m_SizeDelta: {x: 606.65, y: 644.5684}
+  m_AnchoredPosition: {x: 0, y: -480}
+  m_SizeDelta: {x: 660, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &698106385
 MonoBehaviour:
@@ -36719,7 +36721,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SaySuomi v1.5.0
+  m_text: SaySuomi v2.0.0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
   m_sharedMaterial: {fileID: -459825320126915412, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
@@ -45006,6 +45008,7 @@ RectTransform:
   - {fileID: 1232556852}
   - {fileID: 1320935744}
   - {fileID: 1613941832}
+  - {fileID: 727594063}
   - {fileID: 1960245520}
   - {fileID: 1801898078}
   - {fileID: 2040742576}
@@ -45024,7 +45027,6 @@ RectTransform:
   - {fileID: 1800785036}
   - {fileID: 2054831440}
   - {fileID: 1292448619}
-  - {fileID: 727594063}
   - {fileID: 1409430048}
   - {fileID: 1583324430}
   m_Father: {fileID: 1474571318}
@@ -71653,8 +71655,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -490.13672}
-  m_SizeDelta: {x: -57.0375, y: 770.2429}
+  m_AnchoredPosition: {x: 0, y: -480}
+  m_SizeDelta: {x: -57.0375, y: 750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1761431390
 MonoBehaviour:
@@ -87816,11 +87818,14 @@ MonoBehaviour:
     Suomi 1 in the flashcard feature.\n\nWe also thank the authors of Suomen Mestari
     1 \u2013 <b>Sonja Gehring</b>, <b>Sanni Heinzmann</b>, and <b>Finn Lectura</b>
     \u2013 for granting us permission to use texts from Suomen Mestari 1 in the flashcard
-    feature.\n\nWe are grateful to<b>Apollo Ailus</b> and <b>Kia Raitanen</b> for
+    feature.\n\nWe are grateful to <b>Apollo Ailus</b> and <b>Kia Raitanen</b> for
     their contributions to to user research and engagement, and to <b>Aalo Kailu</b>,
-    who designed the original user interface of the app.\n\nThe app was created with
-    the help of members from the Aalto ASR Research Group.\n\nThe models used in
-    this application were trained using computing resources from the Aalto University
+    who designed the original user interface of the app.\n\nThe Automated Speaking
+    Assessment v1.0.0, which equivalent to the mobile app v2.0.0) was made by Laura
+    Immonen, Aaron K\xE4hk\xF6nen, Iida Porola, Miika Ratilainen, Aaro Savolainen,
+    Kim Takala, Miika Tonteri. DOI 10.5281/zenodo.20021230\n\nThe app was created
+    with the help of members from the Aalto ASR Research Group.\n\nThe models used
+    in this application were trained using computing resources from the Aalto University
     School of Science \"Science-IT\" project.\n\nThe vocabulary learning is based
     on SuperMemo2 algorithm ( https://www.supermemo.com/), with implementation inspired
     by the Anki application (licensed under the GNU Affero General Public License).\n\nIcons
