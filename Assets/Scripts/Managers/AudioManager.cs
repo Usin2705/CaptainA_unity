@@ -111,17 +111,20 @@ public class AudioManager : MonoBehaviour
         );
     }
 
-    // These two GetAudioAndPost functions were here before us, so we're not entirely sure why there are two of them
-    // They might or might not be used somewhere, so don't just delete them carelessly
-    // But really, we don't really know
+    // Stop recording and post the audio to the legacy pronunciation server.
+    // Used by the sentence exercise (MainPanel) and flashcard practice (SuperMemoPanel).
+    // There used to be two overloads of this, one per panel, differing only in how they
+    // passed their text fields around; they are merged - see NetworkManager.ServerPost
+    // for what was reconciled. The panel owns its own error label and reads
+    // NetworkManager.lastError when OnServerDone reports false.
     public void GetAudioAndPost(
         POSTType postType,
         string transcript,
-        GameObject textErrorGO,
-        GameObject resultTextGO,
-        GameObject resultPanelGO,
-        GameObject debugTextGO,
-        System.Action OnServerDone = null
+        TMPro.TextMeshProUGUI resultText,
+        TMPro.TextMeshProUGUI debugText = null,
+        GameObject warningImageGO = null,
+        GameObject resultPanelGO = null,
+        System.Action<bool> OnServerDone = null
     )
     {
         Microphone.End("");
@@ -135,39 +138,11 @@ public class AudioManager : MonoBehaviour
                     postType,
                     transcript,
                     wavBuffer,
-                    textErrorGO,
-                    resultTextGO,
-                    resultPanelGO,
-                    debugTextGO,
-                    OnServerDone
-                )
-        );
-    }
-
-    public void GetAudioAndPost(
-        string transcript,
-        GameObject textErrorGO,
-        TMPro.TextMeshProUGUI resultTextTMP,
-        GameObject warningImageGO,
-        GameObject resultPanelGO,
-        TMPro.TextMeshProUGUI debugText
-    )
-    {
-        Microphone.End("");
-        byte[] wavBuffer = SavWav.GetWav(audioSource.clip, out uint length, trim: true);
-        SavWav.Save(Const.REPLAY_FILENAME, audioSource.clip, trim: true); // for debug purpose
-
-        StartCoroutine(
-            NetworkManager
-                .GetManager()
-                .ServerPost(
-                    transcript,
-                    wavBuffer,
-                    textErrorGO,
-                    resultTextTMP,
+                    resultText,
+                    debugText,
                     warningImageGO,
                     resultPanelGO,
-                    debugText
+                    OnServerDone
                 )
         );
     }

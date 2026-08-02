@@ -134,6 +134,14 @@ public static class Const
     public const int TIME_OUT_SECS = 40;
     public const int TIME_OUT_ADVANCE_SECS = 30;
 
+    // Timeout for POST /speech/assess on the DTA server.
+    // The server abandons the scorer at 60s and answers with a retryable 503, so the
+    // client has to stay connected longer than that or it aborts first and the user
+    // sees a generic transport error instead of the 503 we can retry.
+    // 60s server budget + margin for upload and response on mobile data.
+    // This number is shared with the backend - see docs/TO_BACKEND.md item 5.
+    public const int TIME_OUT_ASA_SECS = 90;
+
     public const string FILE_NAME_POST = "speech_sample";
 
     // =======================================================

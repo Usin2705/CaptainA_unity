@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.IO;
 using TMPro;
 using UnityEngine;
@@ -46,6 +46,12 @@ public class NetworkManager : MonoBehaviour
     [SerializeField]
     GameObject feedbackLoadingErrorTextGO;
 
+    // The "Title" label on the ASA loading popup. It starts out reading "Sending the
+    // audio..." and has to be moved on once the upload finishes, otherwise the popup
+    // still claims to be sending while the results button is sitting there waiting.
+    [SerializeField]
+    TMPro.TextMeshProUGUI feedbackLoadingTitleText;
+
     [SerializeField]
     GameObject profileLoadingErrorTextGO;
 
@@ -70,11 +76,15 @@ public class NetworkManager : MonoBehaviour
     string asrURL = Secret.AUDIO_URL;
     string numberGameURL = Secret.NUMBER_AUDIO_URL;
     string gptToken = Secret.CHATGPT_API;
-    string gptAzureToken = Secret.AZUREGPT_API;
 
     // However, other URL should be in https for encryption purpose
 
     public ASRResult asrResult { get; private set; }
+
+    // Short message describing the last ServerPost failure, safe to show the user.
+    // Null after a successful post. The server's own wording goes to the console
+    // instead - it is meant for us, not for the learner.
+    public string lastError { get; private set; }
 
     public ASRResultASA asrResultASA { get; private set; }
     public string chatGPTTranscript { get; private set; }
@@ -145,7 +155,15 @@ public class NetworkManager : MonoBehaviour
     private WWWForm GetPOSTForm(POSTType postType, string transcript, byte[] wavBuffer)
     {
         WWWForm form = new WWWForm();
-        form.AddBinaryData("file", wavBuffer, fileName: Const.ASA_FILENAME, mimeType: "audio/wav");
+        // FILE_NAME_POST, not ASA_FILENAME: this form goes to the legacy pronunciation
+        // server, the same one NumberGamePost uses. ASA_FILENAME belongs to the DTA
+        // server and was almost certainly copy-paste.
+        form.AddBinaryData(
+            "file",
+            wavBuffer,
+            fileName: Const.FILE_NAME_POST,
+            mimeType: "audio/wav"
+        );
         form.AddField("transcript", transcript);
         form.AddField("model_code", "1");
 
@@ -194,17 +212,26 @@ public class NetworkManager : MonoBehaviour
             || uwr.result == UnityWebRequest.Result.ProtocolError
         )
         {
-            Debug.Log(uwr.error);
+            if (uwr.responseCode == 409)
+            {
+                // The server already knows this guid. That is not a failure: the user is
+                // onboarded, so let them through instead of blocking them at the door.
+                Debug.LogWarning("Onboarding: this guid is already registered, continuing.");
+                lastError = null;
+            }
+            else
+            {
+                lastError = DescribeError(uwr);
+            }
 
             OnServerDone?.Invoke();
-            throw new System.Exception(uwr.downloadHandler.text ?? uwr.error);
+            yield break;
         }
-        else
-        {
-            Debug.Log("Form upload complete!");
 
-            Debug.Log(uwr.downloadHandler.text);
-        }
+        Debug.Log("Form upload complete!");
+        Debug.Log(uwr.downloadHandler.text);
+
+        lastError = null;
         OnServerDone?.Invoke();
     }
 
@@ -232,15 +259,16 @@ public class NetworkManager : MonoBehaviour
                 || uwr.result == UnityWebRequest.Result.ProtocolError
             )
             {
-                Debug.Log(uwr.error);
                 profileLoadingIconGO.SetActive(false);
                 profileLoadingErrorTextGO.SetActive(true);
                 profileLoadingBackButtonGO.SetActive(true);
 
+                // Shows a readable message and logs the server's own detail.type.
                 ErrorHandling(uwr, profileErrorText);
+                lastError = profileErrorText.text;
 
                 OnServerDone?.Invoke();
-                throw new System.Exception(uwr.downloadHandler.text ?? uwr.error);
+                yield break;
             }
             else
             {
@@ -282,6 +310,9 @@ public class NetworkManager : MonoBehaviour
         form.AddBinaryData(
             "file",
             wavBuffer,
+            // Same recording the user just listened to, hence the same constant.
+            // The ".wav" is required by the DTA server: it rejects a filename that does
+            // not end in .wav with 400 BAD_REQUEST, even though the bytes are fine.
             fileName: Const.ASA_FILENAME + ".wav",
             mimeType: "audio/wav"
         );
@@ -305,11 +336,18 @@ public class NetworkManager : MonoBehaviour
 
         string postURL = GetPOSTURL(postType);
 
+        // The popup is reused for every recording, so put the title back to its sending
+        // state here rather than at the call site. Otherwise the second recording spins
+        // underneath whatever the first one finished with.
+        SetLoadingTitle("Sending the audio...");
+
         // Use a `using` statement for UnityWebRequest to handle resource cleanup
         // This is a good practice to avoid memory leaks
         using (UnityWebRequest uwr = UnityWebRequest.Post(postURL, form))
         {
-            uwr.timeout = Const.TIME_OUT_SECS;
+            // Scoring needs longer than the other posts: the server itself waits up to
+            // 60s before giving up and returning a 503 we can retry.
+            uwr.timeout = Const.TIME_OUT_ASA_SECS;
             yield return uwr.SendWebRequest();
 
             Debug.Log(uwr.result);
@@ -319,15 +357,17 @@ public class NetworkManager : MonoBehaviour
                 || uwr.result == UnityWebRequest.Result.ProtocolError
             )
             {
-                Debug.Log(uwr.error);
                 feedbackLoadingIconGO.SetActive(false);
                 feedbackLoadingErrorTextGO.SetActive(true);
                 feedbackLoadingBackButtonGO.SetActive(true);
+                SetLoadingTitle("Could not send the audio");
 
+                // Shows a readable message and logs the server's own detail.type.
                 ErrorHandling(uwr, feedbackErrorText);
+                lastError = feedbackErrorText.text;
 
                 OnServerDone?.Invoke();
-                throw new System.Exception(uwr.downloadHandler.text ?? uwr.error);
+                yield break;
             }
             else
             {
@@ -353,9 +393,20 @@ public class NetworkManager : MonoBehaviour
 
             feedbackLoadingIconGO.SetActive(false);
             resultsButtonGO.SetActive(true);
-            Debug.Log("Here we are");
+            SetLoadingTitle("Your results are ready. Tap below to see them.");
         }
         OnServerDone?.Invoke();
+    }
+
+    // The ASA loading popup is a shared prefab instance, so its title is whatever the
+    // last request left behind. Every caller goes through here so the null check for an
+    // unassigned reference lives in one place.
+    private void SetLoadingTitle(string message)
+    {
+        if (feedbackLoadingTitleText != null)
+        {
+            feedbackLoadingTitleText.text = message;
+        }
     }
 
     // Get form for feedback (grade and optional comment)
@@ -372,17 +423,38 @@ public class NetworkManager : MonoBehaviour
         form.AddField("guid", PlayerPrefs.GetString("UserGuid"));
         form.AddField("reaction_value", value);
         form.AddField("feedback_classification", feedback_type);
-        int currentTask = ASAPanel.currentTaskSelected;
 
-        form.AddField("assessment_id", PlayerPrefs.GetInt("AssessmentId", -1));
-        // Debug.Log(PlayerPrefs.GetInt("AssessmentId"));
+        // Only feedback about a specific recording carries an assessment_id.
+        // Feedback about a screen or about the app as a whole must not send the field
+        // at all - the server answers 422 if it is present. See docs/TO_BACKEND.md item 1.
+        if (RequiresAssessmentId(feedback_type))
+        {
+            int assessmentId = PlayerPrefs.GetInt("AssessmentId", -1);
+            if (assessmentId < 0)
+            {
+                Debug.LogError(
+                    $"Feedback '{feedback_type}' needs an assessment_id but none is stored. "
+                        + "The server will reject this with 422."
+                );
+            }
+            form.AddField("assessment_id", assessmentId);
+        }
 
         form.AddField("comment", comment);
 
-        // Debug.Log("Current task: " + currentTask);
         // Debug.Log("Rating value: " + grade);
         //Debug.Log("Comment: " + comment);
         return form;
+    }
+
+    // Which feedback types are about one scored recording, and so must reference the
+    // assessment they are about. The other two (comparison_ui, overall_experience) are
+    // about the UI and the app, so there is no assessment for them to point at.
+    private static bool RequiresAssessmentId(string feedback_type)
+    {
+        return feedback_type == "self_assessment"
+            || feedback_type == "result_accuracy"
+            || feedback_type == "result_understanding";
     }
 
     // Send feedback to server
@@ -413,10 +485,12 @@ public class NetworkManager : MonoBehaviour
                 || uwr.result == UnityWebRequest.Result.ProtocolError
             )
             {
-                Debug.Log(uwr.error);
+                // Feedback is fire-and-forget from the user's point of view: there is no
+                // error UI for it, so record why it failed and let them carry on.
+                lastError = DescribeError(uwr);
 
                 OnServerDone?.Invoke();
-                throw new System.Exception(uwr.downloadHandler.text ?? uwr.error);
+                yield break;
             }
             else
             {
@@ -432,16 +506,43 @@ public class NetworkManager : MonoBehaviour
         OnServerDone?.Invoke();
     }
 
+    /// <summary>
+    /// Uploads a recording to the legacy pronunciation server and shows the score.
+    /// Used by the sentence exercise (MainPanel) and by flashcard practice
+    /// (SuperMemoPanel).
+    ///
+    /// This replaces two near-identical overloads that had drifted apart, one per panel.
+    /// Notes on what changed, in case a panel looks wrong after the merge:
+    ///
+    /// - There is no error-label parameter any more. The two panels used theirs very
+    ///   differently: MainPanel passed its always-visible PromptText, SuperMemoPanel
+    ///   passed a hidden label it toggles. Serving both from in here is what made the
+    ///   two copies diverge. Success is now reported through OnServerDone and the
+    ///   wording and show/hide belong to the panel, which is the only place that knows
+    ///   what its own label is for. On failure the panel reads lastError.
+    /// - Failures no longer throw. A throw inside a coroutine cannot be caught by the
+    ///   caller - Unity just logs it and kills the coroutine - so it was an unhandleable
+    ///   error dressed up as a handleable one. OnServerDone(false) instead.
+    /// - Every optional argument is null-checked. The SuperMemoPanel copy assumed
+    ///   warningImageGO and debugText were always supplied.
+    /// - Scores are always saved. The old "skip when PuheNumero_TASK" guard was dead:
+    ///   the number game posts through NumberGamePost and never reaches this method.
+    /// - The result text is no longer forced to bold here. That is a style decision, so
+    ///   MainPanel now applies it; the flashcards never wanted it.
+    /// </summary>
+    /// <param name="OnServerDone">
+    /// Called exactly once: true if the score was applied, false on any failure. After a
+    /// failure, <see cref="lastError"/> holds a short message safe to show the user.
+    /// </param>
     public IEnumerator ServerPost(
         POSTType postType,
         string transcript,
         byte[] wavBuffer,
-        GameObject textErrorGO,
-        GameObject resultTextGO,
-        GameObject resultPanelGO,
-        GameObject debugTextGO = null,
-        System.Action OnServerDone = null,
-        GameObject warningImageGO = null
+        TMPro.TextMeshProUGUI resultText,
+        TMPro.TextMeshProUGUI debugText = null,
+        GameObject warningImageGO = null,
+        GameObject resultPanelGO = null,
+        System.Action<bool> OnServerDone = null
     )
     {
         WWWForm form = GetPOSTForm(postType, transcript, wavBuffer);
@@ -455,64 +556,42 @@ public class NetworkManager : MonoBehaviour
             uwr.timeout = Const.TIME_OUT_SECS;
             yield return uwr.SendWebRequest();
 
-            textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "Here are your results:";
-
-            Debug.Log(uwr.result);
-
             if (
                 uwr.result == UnityWebRequest.Result.ConnectionError
                 || uwr.result == UnityWebRequest.Result.ProtocolError
             )
             {
-                Debug.Log(uwr.error);
+                // The server's own words are for us, not for the learner.
+                Debug.LogError(
+                    $"{postType} failed: {uwr.error} | {uwr.downloadHandler.text}"
+                );
+                lastError = string.IsNullOrEmpty(uwr.error) ? "Network error!" : "Server error!";
 
-                textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = string.IsNullOrEmpty(
-                    uwr.error
-                )
-                    ? "Network error!"
-                    : "Server error!";
-
-                OnServerDone?.Invoke();
-                throw new System.Exception(uwr.downloadHandler.text ?? uwr.error);
+                OnServerDone?.Invoke(false);
+                yield break;
             }
-            else
+
+            Debug.Log("Form upload complete!");
+            Debug.Log(uwr.downloadHandler.text);
+
+            // Plain-text replies from an older auth-enabled backend. They are not JSON,
+            // so parsing below would fail. Kept because the legacy server may still
+            // produce them - drop this once that is confirmed dead.
+            string body = uwr.downloadHandler.text;
+            if (body == "invalid credentials" || body == "this account uses auth0")
             {
-                Debug.Log("Form upload complete!");
+                Debug.LogWarning("Server returned: " + body);
+                lastError = body;
 
-                Debug.Log(uwr.downloadHandler.text);
-
-                if (uwr.downloadHandler.text == "invalid credentials")
-                {
-                    Debug.Log("invalid credentials");
-                    textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "invalid credentials";
-
-                    OnServerDone?.Invoke();
-                    yield break;
-                }
-
-                if (uwr.downloadHandler.text == "this account uses auth0")
-                {
-                    Debug.Log("this account uses auth0");
-                    textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text =
-                        "this account uses auth0";
-
-                    OnServerDone?.Invoke();
-                    yield break;
-                }
+                OnServerDone?.Invoke(false);
+                yield break;
             }
 
-            textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text =
-                "Here are your results. \n Great effort!";
+            lastError = null;
+            asrResult = JsonUtility.FromJson<ASRResult>(body);
 
-            asrResult = JsonUtility.FromJson<ASRResult>(uwr.downloadHandler.text);
-
-            // Only save data if the transcript is text and not number
-            // as we also have the number game
-            if (postType != POSTType.PuheNumero_TASK)
-            {
-                // update the users score to the userdata
-                SaveData.UpdateUserScores(transcript, asrResult.score);
-            }
+            // update the users score to the userdata
+            SaveData.UpdateUserScores(transcript, asrResult.score);
 
             // Update text result
             // This part only update the TextResult text
@@ -521,26 +600,20 @@ public class NetworkManager : MonoBehaviour
             // After TextResult text is updated,
             // it's safe to set onclick on result text on it's main panel
             // that's why we can set the Panel to active
-            string textResult = TextUtils.FormatTextResult(transcript, asrResult.score);
-            resultTextGO.GetComponent<TMPro.TextMeshProUGUI>().text = textResult;
-
-            // Set resultTextGO to bold following design guideline
-            resultTextGO.GetComponent<TMPro.TextMeshProUGUI>().fontStyle = TMPro.FontStyles.Bold;
+            resultText.text = TextUtils.FormatTextResult(transcript, asrResult.score);
 
             // Show or now show the warning image
             if (warningImageGO != null)
             {
-                int warningNo = asrResult.warning.Count;
-                warningImageGO.SetActive(warningNo != 0);
+                warningImageGO.SetActive(asrResult.warning.Count != 0);
             }
 
-            // Update the debug text
-            if (debugTextGO != null)
+            // Set the debug text to show the prediction
+            // This is for testing purpose only
+            if (debugText != null)
             {
-                // Set the debug text to show the prediction
-                // This is for testing purpose only
-                debugTextGO.SetActive(true);
-                debugTextGO.GetComponent<TMPro.TextMeshProUGUI>().text = asrResult.prediction;
+                debugText.gameObject.SetActive(true);
+                debugText.text = asrResult.prediction;
             }
 
             // This function is not active in the current version
@@ -549,7 +622,7 @@ public class NetworkManager : MonoBehaviour
 
             checkSurVey();
         }
-        OnServerDone?.Invoke();
+        OnServerDone?.Invoke(true);
     }
 
     public IEnumerator GPTImageGenerate(string prompt)
@@ -701,9 +774,9 @@ public class NetworkManager : MonoBehaviour
         }
 
         // For testing purpose
-        // yield return GPTRatingText(scoreButtonGO, "Huoneessa on iso. Sininen sova on oikea. Sen alla on paljon keltainen kuva. Punainen nuoja tuoli ja musta hullu on vasemmalla. Iso matto on lattialla ja viiveä ovi");
-        // yield return GPT_TTS("Huoneessa on iso. Sininen sova on oikea. Sen alla on paljon keltainen kuva. Punainen nuoja tuoli ja musta hullu on vasemmalla. Iso matto on lattialla ja viiveä ovi");
-        //yield return PostRequest("https://api.openai.com/v1/chat/completions", "Lattialla on sininen kissa, toinen kissa sohvatuolilla. Seinällä on kello oven yläpuolella.");
+        // yield return GPTRatingText(scoreButtonGO, "Huoneessa on iso. Sininen sova on oikea. Sen alla on paljon keltainen kuva. Punainen nuoja tuoli ja musta hullu on vasemmalla. Iso matto on lattialla ja viiveÃ¤ ovi");
+        // yield return GPT_TTS("Huoneessa on iso. Sininen sova on oikea. Sen alla on paljon keltainen kuva. Punainen nuoja tuoli ja musta hullu on vasemmalla. Iso matto on lattialla ja viiveÃ¤ ovi");
+        //yield return PostRequest("https://api.openai.com/v1/chat/completions", "Lattialla on sininen kissa, toinen kissa sohvatuolilla. SeinÃ¤llÃ¤ on kello oven ylÃ¤puolella.");
     }
 
     // Function to encode the image to base64
@@ -901,8 +974,6 @@ public class NetworkManager : MonoBehaviour
                 "POST"
             )
         )
-        // Azure API
-        //using (UnityWebRequest request = new UnityWebRequest(Secret.AALTO_GPT4O_URL, "POST"))
         {
             // Convert JSON data to a byte array and set it as upload handler
             byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(jsonData);
@@ -911,9 +982,6 @@ public class NetworkManager : MonoBehaviour
 
             // Set headers
             request.SetRequestHeader("Authorization", "Bearer " + gptToken);
-            // Azure API
-            //request.SetRequestHeader("Ocp-Apim-Subscription-Key", gptAzureToken);
-
             request.SetRequestHeader("Content-Type", "application/json");
 
             // Send the request and wait for response
@@ -952,242 +1020,6 @@ public class NetworkManager : MonoBehaviour
                 }
             }
         }
-    }
-
-    private IEnumerator GPTRatingVision(
-        GameObject scoreButtonGO,
-        string transcript,
-        bool isFinnish = true
-    )
-    {
-        string imagePath = Path.Combine(Application.persistentDataPath, "describeImage.png");
-        if (!File.Exists(imagePath))
-        {
-            Debug.Log("Image not found, using default image");
-            Texture2D texture = Resources.Load<Texture2D>("GenAI/describeImage");
-            SaveData.SaveImageToFile(texture, "describeImage.png");
-            imagePath = Path.Combine(Application.persistentDataPath, "describeImage.png");
-        }
-
-        string base64Image = EncodeImageToBase64(imagePath);
-
-        string gradingInstructions;
-        if (isFinnish)
-            gradingInstructions = "The primary task for the users is to speak in Finnish. ";
-        else
-            gradingInstructions = "The primary task for the users is to speak in English. ";
-
-        gradingInstructions +=
-            @"The users speak into the microphone, and what you're reading is the transcription of their speech. Given this, be mindful of "
-            + "potential typos or entirely incorrect words due to transcription errors. Your task is to give feedback and grade their speech. Be generous in grading pronunciation and grammar as they are not native speakers. The score is from 1.0 to 5.0, with 1 decimal number. Each user has "
-            + "only 45 seconds to describe the room, so they don't need to cover every detail to score a full 5 points. The task is transcribed so a few minor errors in the transcript should not reduce their scores. \\n\\n"
-            + "Here's the grading template:\\n"
-            + "-----------------------------\\n"
-            + "Corrected/Suggested Description: [Your feedback on their description goes here. Please based your feedback on the transcript the user gave you and suggest better/corrected description based on the actual picture described below. Put the wrong text in the color tag <color=#ff0000ff>wrong text here</color> and put the corrected or suggested text in bold tag <b>corrected text here</b>. For example, if user using 'valkoi matto' instead of the correct 'valkoinen matto', you would use: <color=#ff0000ff>valkoi</color> <b>valkoinen</b> matto]\\n\\n"
-            + "(Any feedback from this point to the end should use English as the main language.)\\n"
-            + "Accuracy of Description: [Feedback about how accurately they described the room based on the ground truth, such as wrong colors, items, or positions.]\\n"
-            + "Score: [1-5]\\n\\n"
-            + "Vocabulary: [Feedback on the items they mentioned and their use of specific terms. At a minimum, they should mention 2 to 3 items for a decent score. For a higher score, 3 to 5 items and 2 to 3 colors, 2 to 3 position of items should be mentioned.5 score would have at least 5 items, 3 colors and 3 positions]\\n"
-            + "Score: [1-5]\\n\\n"
-            + "Pronunciation (as represented in the transcription): [Feedback on any strange word choices or inaccuracies that might indicate pronunciation issues]\\n"
-            + "Score: [1-5]\\n\\n"
-            + "Grammar: [Feedback on grammar, sentence structure, and tenses. To get 4, users only make less than 3 minor mistakes every 4 sentences. To get 5, users can make maximum 1 minors mistakes every 4 sentences]\\n"
-            + "Score: [1-5]\\n\\n"
-            + "Overall grading: [A short summary of their performance]\\n"
-            + "Score: [1-5]\\n"
-            + "-----------------------------\\n\\n"
-            + "Remember to compare their description with the image of the room to use as a reference (consider this the ground truth). \\n"
-            + "Ensure that the final rating (a number from 1.0 to 5.0) is given as the last three characters of your response."
-            + "For example: [your response go here] Score: 3.5";
-
-        gradingInstructions = gradingInstructions.Replace("\r", " ").Replace("\"", "\\\""); // Escape double quotes
-
-        // Create the messages JSON string using string formatting or interpolation
-        // the $ symbol before the string allows you to insert variables directly into
-        // the string with {}. The transcript.Replace("\"", "\\\"") is used to escape
-        // any double quotes that might be present in the transcript string, ensuring that
-        // the JSON remains valid.
-        //""model"": ""gpt-4-vision-preview"",
-        //""model"": ""gpt-4"",
-        //""model"": ""gpt-3.5-turbo"",
-        string jsonData =
-            $@"
-        {{
-            ""model"": ""gpt-4-vision-preview"",
-            ""messages"": [
-                {{""role"": ""system"", ""content"": ""{gradingInstructions}""}},
-                {{""role"": ""user"", ""content"": [
-                    {{
-                        ""type"": ""text"",
-                        ""text"": ""{transcript.Replace("\"", "\\\"")}""
-                    }},
-                    {{
-                        ""type"": ""image_url"",
-                        ""image_url"": {{
-                            ""url"": ""data:image/jpeg;base64,{base64Image}""
-                        }}
-                    }}
-                ]}}
-            ],
-			""max_tokens"": 2500
-        }}";
-
-        Debug.Log(jsonData);
-
-        //using (UnityWebRequest request = new UnityWebRequest("https://api.openai.com/v1/chat/completions", "POST"))
-        using (
-            UnityWebRequest request = new UnityWebRequest(
-                "https://aalto-openai-apigw.azure-api.net/v1/openai/gpt4-vision-preview/chat/completions",
-                "POST"
-            )
-        )
-        {
-            // Convert JSON data to a byte array and set it as upload handler
-            byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(jsonData);
-            request.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
-            request.downloadHandler = new DownloadHandlerBuffer(); // Set the download handler
-
-            // Set headers
-            request.SetRequestHeader("Content-Type", "application/json");
-            //request.SetRequestHeader("Authorization", "Bearer " + gptToken);
-            request.SetRequestHeader("Ocp-Apim-Subscription-Key", gptAzureToken);
-
-            // Send the request and wait for response
-            yield return request.SendWebRequest();
-
-            if (request.result != UnityWebRequest.Result.Success)
-            {
-                Debug.LogError("Error: " + request.error);
-                Debug.LogError("Error: " + request.result);
-                Debug.LogError("Error: " + request.downloadHandler.text);
-            }
-            else
-            {
-                Debug.Log(request.downloadHandler.text);
-                OpenAIChatResponse response = JsonUtility.FromJson<OpenAIChatResponse>(
-                    request.downloadHandler.text
-                );
-                if (response != null && response.choices.Length > 0)
-                {
-                    string assistantResponse = response.choices[0].message.content;
-                    Debug.Log("Assistant says: " + assistantResponse);
-                    scoreButtonGO.GetComponentInChildren<TMPro.TextMeshProUGUI>().text =
-                        assistantResponse.Substring(assistantResponse.Length - 3);
-                    chatGPTGrading = assistantResponse;
-                }
-                else
-                {
-                    Debug.LogError("Invalid response or no choices available.");
-                }
-            }
-        }
-    }
-
-    public IEnumerator ServerPost(
-        string transcript,
-        byte[] wavBuffer,
-        GameObject textErrorGO,
-        TMPro.TextMeshProUGUI resultTextTMP,
-        GameObject warningImageGO,
-        GameObject resultPanelGO,
-        TMPro.TextMeshProUGUI debugText
-    )
-    {
-        //IMultipartFormSection & MultipartFormFileSection  could be another solution,
-        // but apparent it also require raw byte data to upload
-
-        WWWForm form = new WWWForm();
-        form.AddBinaryData(
-            "file",
-            wavBuffer,
-            fileName: Const.FILE_NAME_POST,
-            mimeType: "audio/wav"
-        );
-        form.AddField("transcript", transcript);
-        form.AddField("model_code", "1");
-
-        UnityWebRequest www = UnityWebRequest.Post(asrURL, form);
-
-        www.timeout = Const.TIME_OUT_SECS;
-        yield return www.SendWebRequest();
-
-        Debug.Log(www.result);
-
-        if (
-            www.result == UnityWebRequest.Result.ConnectionError
-            || www.result == UnityWebRequest.Result.ProtocolError
-        )
-        {
-            Debug.Log(www.error);
-            if (!string.IsNullOrEmpty(www.error))
-            {
-                textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text =
-                    www.downloadHandler.text ?? www.error;
-            }
-            else
-            {
-                textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "Network error!";
-            }
-            textErrorGO.SetActive(true);
-
-            throw new System.Exception(www.downloadHandler.text ?? www.error);
-        }
-        else
-        {
-            Debug.Log("Form upload complete!");
-
-            Debug.Log(www.downloadHandler.text);
-
-            if (www.downloadHandler.text == "invalid credentials")
-            {
-                Debug.Log("invalid credentials");
-                textErrorGO.SetActive(true);
-                textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "invalid credentials";
-
-                yield break;
-            }
-
-            if (www.downloadHandler.text == "this account uses auth0")
-            {
-                Debug.Log("this account uses auth0");
-                textErrorGO.SetActive(true);
-                textErrorGO.GetComponent<TMPro.TextMeshProUGUI>().text = "this account uses auth0";
-                yield break;
-            }
-        }
-
-        textErrorGO.SetActive(false);
-        asrResult = JsonUtility.FromJson<ASRResult>(www.downloadHandler.text);
-        // Debug.Log(www.downloadHandler.text);
-        // Debug.Log(transcript);
-        // Debug.Log(asrResult.prediction);
-        // Debug.Log(asrResult.score);
-        // Debug.Log(asrResult.warning);
-        // Debug.Log(asrResult.levenshtein);
-
-        SaveData.UpdateUserScores(transcript, asrResult.score);
-
-        // Update text result
-        // This part only update the TextResult text
-        // is updated (added onclick, show active) in their MainPanel (either MainPanel or ExercisePanel)
-
-        // After TextResult text is updated,
-        // it's safe to set onclick on result text on it's main panel
-        // that's why we can set the Panel to active
-        string textResult = TextUtils.FormatTextResult(transcript, asrResult.score);
-        resultTextTMP.text = textResult;
-
-        // Show or now show the warning image
-        int warningNo = asrResult.warning.Count;
-        warningImageGO.SetActive(warningNo != 0);
-
-        // Update the debug text
-        debugText.text = asrResult.prediction;
-
-        if (resultPanelGO != null)
-            resultPanelGO.SetActive(true);
-
-        checkSurVey();
     }
 
     public IEnumerator NumberGamePost(
@@ -1323,22 +1155,78 @@ public class NetworkManager : MonoBehaviour
         public float range;
     }
 
+    // The DTA server's error envelope: {"detail": {"type": ..., "message": ...}}
+    [System.Serializable]
+    private class ApiErrorEnvelope
+    {
+        public ApiErrorDetail detail;
+    }
+
+    [System.Serializable]
+    private class ApiErrorDetail
+    {
+        public string type;
+        public string message;
+    }
+
+    /// <summary>
+    /// Turns a failed DTA request into something worth showing a learner, and puts the
+    /// server's own words in the console where they belong. Previously the raw
+    /// UnityWebRequest.error went straight on screen, so a deleted account showed up as
+    /// "HTTP/1.1 404 Not Found" while the useful part - USER_NOT_FOUND - was discarded.
+    ///
+    /// Branching is on the HTTP status rather than on detail.type on purpose: `detail` is
+    /// an object for normal errors but an array for 422, and JsonUtility cannot handle a
+    /// field that changes shape. The body is parsed best-effort for the log line only.
+    /// See docs/TO_BACKEND.md item 6 - we have asked for the envelope to be published in
+    /// the OpenAPI schema so this can become machine-checkable.
+    /// </summary>
+    private string DescribeError(UnityWebRequest uwr)
+    {
+        string body = uwr.downloadHandler != null ? uwr.downloadHandler.text : null;
+
+        string type = null;
+        if (!string.IsNullOrEmpty(body))
+        {
+            try
+            {
+                ApiErrorEnvelope envelope = JsonUtility.FromJson<ApiErrorEnvelope>(body);
+                if (envelope != null && envelope.detail != null)
+                {
+                    type = envelope.detail.type;
+                }
+            }
+            catch (System.Exception)
+            {
+                // 422 (detail is an array) and any non-JSON body land here. The status
+                // code below is enough to pick a message.
+            }
+        }
+
+        Debug.LogError($"{uwr.url} -> {uwr.responseCode} {type} | {body} | {uwr.error}");
+
+        switch (uwr.responseCode)
+        {
+            case 0:
+                return "No connection. Check your network and try again.";
+            case 403:
+                return "Consent is required to use this feature.";
+            case 404:
+                return "Your account was not found. You may need to set up the app again.";
+            case 413:
+                // We cap the recording length before uploading, so reaching this means
+                // our cap and the server's disagree - a bug, not something the learner did.
+                return "That recording is too long to send.";
+            case 503:
+                return "The server is busy. Please try again in a moment.";
+            default:
+                return "Something went wrong. Please try again.";
+        }
+    }
+
     public void ErrorHandling(UnityWebRequest uwr, TextMeshProUGUI errorText)
     {
         // Handle the errors for server posts
-        switch (uwr.result)
-        {
-            case UnityWebRequest.Result.ConnectionError:
-                errorText.text = uwr.error;
-                break;
-
-            case UnityWebRequest.Result.ProtocolError:
-                errorText.text = uwr.error;
-                break;
-
-            case UnityWebRequest.Result.DataProcessingError:
-                errorText.text = uwr.error;
-                break;
-        }
+        errorText.text = DescribeError(uwr);
     }
 }

@@ -249,7 +249,8 @@ public class AdvancePanel : MonoBehaviour
         // Check if secret code has been verified first
         if (!ASASecretCodePopUp.IsASASecretVerified())
         {
-            ASASecretCodePopUp secretCodePopUp = asaSecretCodePopUp.GetComponent<ASASecretCodePopUp>();
+            ASASecretCodePopUp secretCodePopUp =
+                asaSecretCodePopUp.GetComponent<ASASecretCodePopUp>();
             if (secretCodePopUp != null)
             {
                 secretCodePopUp.ShowSecretCodePopUp(() => ProceedToASA());

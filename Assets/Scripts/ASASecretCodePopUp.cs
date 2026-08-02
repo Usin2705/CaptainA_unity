@@ -6,7 +6,8 @@ public class ASASecretCodePopUp : MonoBehaviour
 {
     private const string SECRET_CODE = "dta2026test7765@mn";
     private const string PREF_ASA_VERIFIED = "ASASecretVerified";
-    private const string PROMPT_TEXT = "If you know what you're doing, then please enter the secret text below:";
+    private const string PROMPT_TEXT =
+        "If you know what you're doing, then please enter the secret text below:";
     private const string ERROR_TEXT = "Incorrect code. Try again.";
 
     [SerializeField]

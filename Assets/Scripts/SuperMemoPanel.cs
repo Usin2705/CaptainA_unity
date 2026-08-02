@@ -549,12 +549,25 @@ public class SuperMemoPanel : MonoBehaviour
             AudioManager
                 .GetManager()
                 .GetAudioAndPost(
+                    POSTType.MDD_TASK,
                     transcript,
-                    errorTextGO,
                     finnishCardText,
+                    predictionDebugText,
                     finWarningImageGO,
-                    null,
-                    predictionDebugText
+                    resultPanelGO: null,
+                    OnServerDone: serverOk =>
+                    {
+                        // errorTextGO is an error-only label here: it stays hidden unless
+                        // something went wrong. NetworkManager no longer touches it,
+                        // because MainPanel uses its equivalent as an always-visible
+                        // status line and the two cannot be served by the same code.
+                        errorTextGO.SetActive(!serverOk);
+                        if (!serverOk)
+                        {
+                            errorTextGO.GetComponent<TMPro.TextMeshProUGUI>().text =
+                                NetworkManager.GetManager().lastError;
+                        }
+                    }
                 );
 
             // TODO Make this part more efficiency
