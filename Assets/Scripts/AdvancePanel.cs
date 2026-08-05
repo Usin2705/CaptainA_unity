@@ -34,6 +34,13 @@ public class AdvancePanel : MonoBehaviour
     [SerializeField]
     GameObject refuseButtonGO;
 
+    // "I have read and understood the Privacy Notice." on the consent sheet.
+    // Continue stays disabled until this is ticked, so consent cannot be given by
+    // reflex-tapping the primary button. Optional: leave unassigned and the sheet
+    // behaves as it did before, with Continue always enabled.
+    [SerializeField]
+    Toggle consentReadToggle;
+
     [SerializeField]
     GameObject backgroundPopUpGO;
 
@@ -147,6 +154,16 @@ public class AdvancePanel : MonoBehaviour
 
         acceptButtonGO.GetComponent<Button>().onClick.AddListener(() => AcceptConsent());
         refuseButtonGO.GetComponent<Button>().onClick.AddListener(() => RefuseConsent());
+
+        // Continue follows the checkbox rather than being live from the start. Consent
+        // that was given without the notice being acknowledged is not worth much, and
+        // the disabled button is what tells the user why nothing happened.
+        if (consentReadToggle != null)
+        {
+            consentReadToggle.onValueChanged.AddListener(isOn =>
+                acceptButtonGO.GetComponent<Button>().interactable = isOn
+            );
+        }
 
         sendButtonGO.GetComponent<Button>().onClick.AddListener(() => GetUserInput());
 
@@ -288,9 +305,24 @@ public class AdvancePanel : MonoBehaviour
             && PlayerPrefs.GetInt("BackgroundFormCompleted", 0) == 0
         )
         {
+            ResetConsentSheet();
             consentPopUpGO.SetActive(true);
             dimPanelGO.SetActive(true);
         }
+    }
+
+    // The sheet is a single reused object, so clear it every time it opens. Without this
+    // a user who ticked the box, backed out, and came back would find Continue already
+    // enabled and could consent without seeing the notice again.
+    private void ResetConsentSheet()
+    {
+        if (consentReadToggle == null)
+        {
+            return;
+        }
+
+        consentReadToggle.isOn = false;
+        acceptButtonGO.GetComponent<Button>().interactable = false;
     }
 
     public void LinkButtonPressed()

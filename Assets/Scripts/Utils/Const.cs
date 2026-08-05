@@ -44,6 +44,29 @@ public static class Const
     *
     */
 
+    // ===================== UI FONT SIZE =====================
+    // The sizes above, as constants so new UI stops guessing.
+    //
+    // These are Canvas units, not points or dp. They only make sense against the
+    // CanvasScaler reference resolution, which is 900 x 1600 with ScreenMatchMode
+    // MatchWidthOrHeight. If that reference ever changes, every one of these changes with
+    // it. Counted across MainScene, existing text sits at 28-44 with 32 by far the most
+    // common, so anything in the teens or low twenties is half-scale and will look wrong.
+    //
+    // The same factor applies to geometry: against this reference a comfortable tap
+    // target is ~100 units tall, not ~50, and a 24-unit icon is too small to see.
+
+    public const float FONT_TITLE = 40f; // screen and modal headings
+    public const float FONT_HEADING = 36f; // sub-headings, primary button labels
+    public const float FONT_BODY = 32f; // default readable text, the workhorse size
+    public const float FONT_INFO = 30f; // explanations, instructions, consent statements
+    public const float FONT_SMALL = 20f; // credits and footnotes only
+
+    // Minimum comfortable tap target height, same units.
+    public const float TAP_TARGET_HEIGHT = 100f;
+
+    // =======================================================
+
     // ================= TEXR COLOR SCORE ===================
     // Rich text color tag for each type of scoring
     public const string BAD_COLOR = "#ff0000ff";
