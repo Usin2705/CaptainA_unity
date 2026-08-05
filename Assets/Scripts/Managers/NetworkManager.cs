@@ -86,6 +86,12 @@ public class NetworkManager : MonoBehaviour
     // instead - it is meant for us, not for the learner.
     public string lastError { get; private set; }
 
+    // The server's own detail.type for the last failure - USER_NOT_FOUND,
+    // VALIDATION_ERROR and so on. Null when the body was not the usual envelope.
+    // Worth showing next to lastError: the prose is for the user, the type is what makes
+    // a bug report or a support message actionable.
+    public string lastErrorType { get; private set; }
+
     public ASRResultASA asrResultASA { get; private set; }
     public string chatGPTTranscript { get; private set; }
     public string chatGPTGrading { get; private set; }
@@ -182,9 +188,11 @@ public class NetworkManager : MonoBehaviour
         form.AddField(backgroundFields.age.Item1, backgroundFields.age.Item2);
         form.AddField(backgroundFields.motherTongue.Item1, backgroundFields.motherTongue.Item2);
         form.AddField(backgroundFields.otherLanguages.Item1, backgroundFields.otherLanguages.Item2);
-        form.AddField(backgroundFields.movedToFinland.Item1, backgroundFields.movedToFinland.Item2);
-        form.AddField(backgroundFields.learnedFinnish.Item1, backgroundFields.learnedFinnish.Item2);
         form.AddField(backgroundFields.selfAssessment.Item1, backgroundFields.selfAssessment.Item2);
+
+        // moved_to_finland and finnish_learning_duration are deliberately absent: those
+        // questions were dropped from the background form. The server still marks both
+        // REQUIRED, so onboarding answers 422 until it is updated - docs/TO_BACKEND.md item 10.
 
         form.AddField("background_form_timestamp", PlayerPrefs.GetString("BackgroundTimestamp"));
         form.AddField("consent_accepted", PlayerPrefs.GetInt("ConsentGiven"));
@@ -194,10 +202,15 @@ public class NetworkManager : MonoBehaviour
     }
 
     // Send form and reate a new user
+    /// <param name="OnServerDone">
+    /// Called once with true only if the user genuinely exists on the server afterwards.
+    /// The caller must not record the user as onboarded on false: doing so strands them
+    /// with a guid the server has never heard of, and nothing ever asks again.
+    /// </param>
     public IEnumerator ServerPost_guid(
         POSTType postType,
         AdvancePanel.BackgroundFormData backgroundFields,
-        System.Action OnServerDone = null
+        System.Action<bool> OnServerDone = null
     )
     {
         WWWForm form = GetPOSTForm_guid(backgroundFields);
@@ -218,13 +231,15 @@ public class NetworkManager : MonoBehaviour
                 // onboarded, so let them through instead of blocking them at the door.
                 Debug.LogWarning("Onboarding: this guid is already registered, continuing.");
                 lastError = null;
-            }
-            else
-            {
-                lastError = DescribeError(uwr);
+                lastErrorType = null;
+
+                OnServerDone?.Invoke(true);
+                yield break;
             }
 
-            OnServerDone?.Invoke();
+            lastError = DescribeError(uwr);
+
+            OnServerDone?.Invoke(false);
             yield break;
         }
 
@@ -232,7 +247,8 @@ public class NetworkManager : MonoBehaviour
         Debug.Log(uwr.downloadHandler.text);
 
         lastError = null;
-        OnServerDone?.Invoke();
+        lastErrorType = null;
+        OnServerDone?.Invoke(true);
     }
 
     // Get the form for creating the profile panel
@@ -1204,6 +1220,7 @@ public class NetworkManager : MonoBehaviour
         }
 
         Debug.LogError($"{uwr.url} -> {uwr.responseCode} {type} | {body} | {uwr.error}");
+        lastErrorType = type;
 
         switch (uwr.responseCode)
         {
@@ -1213,6 +1230,11 @@ public class NetworkManager : MonoBehaviour
                 return "Consent is required to use this feature.";
             case 404:
                 return "Your account was not found. You may need to set up the app again.";
+            case 422:
+                // The client sent something the server rejected - the user cannot fix
+                // this by retrying, so say so rather than inviting them to try again.
+                return "This version of the app could not be accepted by the server. "
+                    + "Please update the app, or contact us if it is already up to date.";
             case 413:
                 // We cap the recording length before uploading, so reaching this means
                 // our cap and the server's disagree - a bug, not something the learner did.

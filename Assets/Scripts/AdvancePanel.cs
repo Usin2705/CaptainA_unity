@@ -92,20 +92,13 @@ public class AdvancePanel : MonoBehaviour
     [SerializeField]
     GameObject asaSecretCodePopUp;
 
+    // Other languages is now one open-ended field, and unlike the rest of the form it is
+    // optional - leaving it blank is a valid answer.
     [SerializeField]
     private TMP_InputField languageOtherField;
 
     [SerializeField]
-    private Toggle languageOther;
-
-    [SerializeField]
-    private GameObject languageOtherFieldGO;
-
-    [SerializeField]
     private TMP_InputField motherTongueOptions;
-
-    [SerializeField]
-    private GameObject otherLanguageOptionsGO;
 
     [SerializeField]
     private TextMeshProUGUI errorMessage;
@@ -113,10 +106,6 @@ public class AdvancePanel : MonoBehaviour
     public ToggleGroup genderOptions;
 
     public ToggleGroup ageOptions;
-
-    public ToggleGroup movedToFinlandOptions;
-
-    public ToggleGroup learnedFinnishOptions;
 
     public ToggleGroup selfAssessmentOptions;
 
@@ -127,8 +116,6 @@ public class AdvancePanel : MonoBehaviour
         public (string, string) age;
         public (string, string) motherTongue;
         public (string, string) otherLanguages;
-        public (string, string) movedToFinland;
-        public (string, string) learnedFinnish;
         public (string, string) selfAssessment;
     }
 
@@ -166,12 +153,6 @@ public class AdvancePanel : MonoBehaviour
         }
 
         sendButtonGO.GetComponent<Button>().onClick.AddListener(() => GetUserInput());
-
-        languageOtherFieldGO.SetActive(false);
-        languageOther.onValueChanged.AddListener(isOn =>
-        {
-            languageOtherFieldGO.SetActive(isOn);
-        });
 
         errorMessage.enabled = false;
 
@@ -377,29 +358,9 @@ public class AdvancePanel : MonoBehaviour
 
         var motherTongue = new List<string> { motherTongueOptions.text };
 
-        List<string> otherLanguages = new();
-        foreach (var toggle in otherLanguageOptionsGO.GetComponentsInChildren<Toggle>())
-        {
-            if (toggle.isOn)
-            {
-                otherLanguages.Add(toggle.gameObject.GetComponent<OptionValue>().value);
-            }
-        }
-
-        var otherLanguagesTextField = languageOtherField.text;
-        otherLanguages.Add(otherLanguagesTextField);
-
-        var movedToFinland = movedToFinlandOptions
-            .ActiveToggles()
-            .FirstOrDefault()
-            .gameObject.GetComponent<OptionValue>()
-            .value;
-
-        var learnedFinnish = learnedFinnishOptions
-            .ActiveToggles()
-            .FirstOrDefault()
-            .gameObject.GetComponent<OptionValue>()
-            .value;
+        // Open-ended and optional: whatever the user typed, or an empty string. The
+        // server accepts other_languages as free text and allows it to be empty.
+        var otherLanguages = languageOtherField.text.Trim();
 
         var selfAssessment = selfAssessmentOptions
             .ActiveToggles()
@@ -412,51 +373,89 @@ public class AdvancePanel : MonoBehaviour
         PlayerPrefs.Save();
 
         string motherWrapped = string.Join("\n", motherTongue);
-        string otherWrapped = string.Join("\n", otherLanguages);
 
-        // Prepare the form to be sent to the server
+        // Prepare the form to be sent to the server.
+        // moved_to_finland and finnish_learning_duration are no longer collected. Both
+        // are still REQUIRED by /onboarding, so this will be rejected with 422 until the
+        // server drops them - see docs/TO_BACKEND.md item 10.
         BackgroundFormData backgroundFormData = new()
         {
             gender = ("gender", gender),
             age = ("age_group", age),
             motherTongue = ("native_languages", motherWrapped),
-            otherLanguages = ("other_languages", otherWrapped),
-            movedToFinland = ("moved_to_finland", movedToFinland),
-            learnedFinnish = ("finnish_learning_duration", learnedFinnish),
+            otherLanguages = ("other_languages", otherLanguages),
             selfAssessment = ("finnish_self_assessment", selfAssessment),
         };
 
-        // Send consent and background form to server
+        // Send consent and background form to server.
+        //
+        // Nothing below this point may run until the server confirms the user exists.
+        // This used to mark BackgroundFormCompleted and open the task panel immediately,
+        // before the request had even been sent - so a failed onboarding still let the
+        // user into the assessment with a guid the server had never heard of. Every
+        // assessment then answered 404, and because the form was already flagged complete
+        // the app never asked again: a permanent dead end that only a reinstall cleared.
+        sendButtonGO.GetComponent<Button>().interactable = false;
+        errorMessage.enabled = false;
+
         StartCoroutine(
-            NetworkManager.GetManager().ServerPost_guid(POSTType.ASA_CONSENT, backgroundFormData)
+            NetworkManager
+                .GetManager()
+                .ServerPost_guid(
+                    POSTType.ASA_CONSENT,
+                    backgroundFormData,
+                    serverOk =>
+                    {
+                        sendButtonGO.GetComponent<Button>().interactable = true;
+
+                        if (!serverOk)
+                        {
+                            ShowOnboardingError();
+                            return;
+                        }
+
+                        // Only now is the user real on the server.
+                        PlayerPrefs.SetInt("BackgroundFormCompleted", 1);
+                        PlayerPrefs.Save();
+
+                        backgroundPopUpGO.SetActive(false);
+                        dimPanelGO.SetActive(false);
+                        taskPanelGO.SetActive(true);
+                    }
+                )
         );
+    }
 
-        PlayerPrefs.SetInt("BackgroundFormCompleted", 1);
-        PlayerPrefs.Save();
+    // Keeps the user on the background form and tells them why they are still there.
+    // The type is included because "something went wrong" is useless in a bug report,
+    // and for a 422 the user genuinely cannot fix it by trying again.
+    private void ShowOnboardingError()
+    {
+        NetworkManager network = NetworkManager.GetManager();
+        string reason = string.IsNullOrEmpty(network.lastError)
+            ? "Could not create your account."
+            : network.lastError;
 
-        backgroundPopUpGO.SetActive(false);
-        dimPanelGO.SetActive(false);
-        taskPanelGO.SetActive(true);
+        if (!string.IsNullOrEmpty(network.lastErrorType))
+        {
+            reason += $"\n({network.lastErrorType})";
+        }
+
+        errorMessage.text = reason;
+        errorMessage.enabled = true;
     }
 
     public bool ValidateInformation()
     {
-        // Make sure that background form is filled properly and no fields are empty, error message otherwise
+        // Every remaining question is mandatory except other languages, which is an
+        // open-ended field the user is allowed to leave blank.
         if (
             genderOptions.AnyTogglesOn()
             && ageOptions.AnyTogglesOn()
-            && movedToFinlandOptions.AnyTogglesOn()
-            && learnedFinnishOptions.AnyTogglesOn()
             && selfAssessmentOptions.AnyTogglesOn()
             && !string.IsNullOrWhiteSpace(motherTongueOptions.text)
         )
         {
-            if (languageOther.isOn && string.IsNullOrWhiteSpace(languageOtherField.text))
-            {
-                errorMessage.enabled = true;
-                return false;
-            }
-
             return true;
         }
         errorMessage.enabled = true;
