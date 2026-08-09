@@ -54,33 +54,6 @@ public class AdvancePanel : MonoBehaviour
     GameObject feedbackPanelGO;
 
     [SerializeField]
-    GameObject describeButtonAGO;
-
-    [SerializeField]
-    GameObject describeButtonBGO;
-
-    [SerializeField]
-    GameObject describeButtonCGO;
-
-    [SerializeField]
-    GameObject describeButtonA2GO;
-
-    [SerializeField]
-    GameObject describeButtonB2GO;
-
-    [SerializeField]
-    GameObject describeButtonC2GO;
-
-    [SerializeField]
-    GameObject describePanelAGO;
-
-    [SerializeField]
-    GameObject describePanelBGO;
-
-    [SerializeField]
-    GameObject describePanelCGO;
-
-    [SerializeField]
     GameObject loadingPopUpGO;
 
     [SerializeField]
@@ -88,9 +61,6 @@ public class AdvancePanel : MonoBehaviour
 
     [SerializeField]
     ASAPanel ASAPanel;
-
-    [SerializeField]
-    GameObject asaSecretCodePopUp;
 
     // Other languages is now one open-ended field, and unlike the rest of the form it is
     // optional - leaving it blank is a valid answer.
@@ -121,15 +91,9 @@ public class AdvancePanel : MonoBehaviour
 
     void OnEnable()
     {
-        // Check if the user has correct secret text
-        string secretText = PlayerPrefs.GetString(Const.PREF_SECRET_TEXT);
-        secretText = secretText.Replace("\r", "").Replace("\n", "").Trim();
-
-        // Remove the last character if there is a special character at the end
-        if (secretText.Length == Secret.SECRET_TEXT.Length + 1)
-        {
-            secretText = secretText[..^1];
-        }
+        // The secret text used to be read here to decide whether to wire up the
+        // DescribeButtons. Those are gone, and nothing else on this panel looks at it, so
+        // the check went with them. CardDeckPanel still uses Secret.SECRET_TEXT.
 
         refuseButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         acceptButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
@@ -156,64 +120,14 @@ public class AdvancePanel : MonoBehaviour
 
         errorMessage.enabled = false;
 
-        // This part is legacy code and these describeButton game objects are not currently active / in use
-        if (secretText == Secret.SECRET_TEXT)
-        {
-            describeButtonAGO
-                .GetComponent<Button>()
-                .onClick.AddListener(() => OnDescribeAButtonClicked());
-            describeButtonBGO
-                .GetComponent<Button>()
-                .onClick.AddListener(() => OnDescribeBButtonClicked());
-            describeButtonCGO
-                .GetComponent<Button>()
-                .onClick.AddListener(() => OnDescribeCButtonClicked());
-
-            describeButtonAGO.SetActive(false);
-            describeButtonBGO.SetActive(false);
-            describeButtonCGO.SetActive(false);
-
-            // English
-            describeButtonA2GO
-                .GetComponent<Button>()
-                .onClick.AddListener(() => OnDescribeAButtonClicked(DescribePanel.TaskType.A2));
-            describeButtonB2GO
-                .GetComponent<Button>()
-                .onClick.AddListener(() => OnDescribeBButtonClicked(DescribePanel.TaskType.B2));
-            describeButtonC2GO
-                .GetComponent<Button>()
-                .onClick.AddListener(() => OnDescribeCButtonClicked(DescribePanel.TaskType.C2));
-
-            describeButtonA2GO.SetActive(false);
-            describeButtonB2GO.SetActive(false);
-            describeButtonC2GO.SetActive(false);
-        }
-        else
-        {
-            describeButtonAGO.GetComponent<Button>().onClick.RemoveAllListeners();
-            describeButtonBGO.GetComponent<Button>().onClick.RemoveAllListeners();
-            describeButtonCGO.GetComponent<Button>().onClick.RemoveAllListeners();
-
-            describeButtonAGO.SetActive(false);
-            describeButtonBGO.SetActive(false);
-            describeButtonCGO.SetActive(false);
-
-            // English
-            describeButtonA2GO.GetComponent<Button>().onClick.RemoveAllListeners();
-            describeButtonB2GO.GetComponent<Button>().onClick.RemoveAllListeners();
-            describeButtonC2GO.GetComponent<Button>().onClick.RemoveAllListeners();
-
-            describeButtonA2GO.SetActive(false);
-            describeButtonB2GO.SetActive(false);
-            describeButtonC2GO.SetActive(false);
-        }
+        // The picture-description feature has been removed from the Advanced panel: the
+        // six DescribeButtons, their OnDescribe*ButtonClicked handlers, and the three
+        // describePanel objects are all gone, along with the secret-code gate that used
+        // to guard the assessment.
 
         // Set the proper panels and game objects as inactive at first
         numberGamePanelGO.SetActive(false);
         ASAPanelGO.SetActive(false);
-        describePanelAGO.SetActive(false);
-        describePanelBGO.SetActive(false);
-        describePanelCGO.SetActive(false);
         feedbackPanelGO.SetActive(false);
         taskPanelGO.SetActive(false);
         loadingPopUpGO.SetActive(false);
@@ -244,18 +158,9 @@ public class AdvancePanel : MonoBehaviour
 
     public void OnASAButtonClicked()
     {
-        // Check if secret code has been verified first
-        if (!ASASecretCodePopUp.IsASASecretVerified())
-        {
-            ASASecretCodePopUp secretCodePopUp =
-                asaSecretCodePopUp.GetComponent<ASASecretCodePopUp>();
-            if (secretCodePopUp != null)
-            {
-                secretCodePopUp.ShowSecretCodePopUp(() => ProceedToASA());
-            }
-            return;
-        }
-
+        // The assessment used to sit behind a secret code while it was being trialled.
+        // It is a public feature now, so the button goes straight through - consent and
+        // the background form are the only gates that remain.
         ProceedToASA();
     }
 
@@ -462,45 +367,10 @@ public class AdvancePanel : MonoBehaviour
         return false;
     }
 
-    // These describePanels are again legacy code and not currently in use / active
-    // They can't be seen because their respective describeButtons are currently never visible
-    public void OnDescribeAButtonClicked(DescribePanel.TaskType taskType = DescribePanel.TaskType.A)
-    {
-        describePanelAGO.SetActive(true);
-        DescribePanel describePanel = describePanelAGO.GetComponent<DescribePanel>();
-        if (describePanel != null)
-        {
-            describePanel.setTaskType(taskType);
-        }
-    }
-
-    public void OnDescribeBButtonClicked(DescribePanel.TaskType taskType = DescribePanel.TaskType.B)
-    {
-        describePanelBGO.SetActive(true);
-        DescribePanel describePanel = describePanelBGO.GetComponent<DescribePanel>();
-        if (describePanel != null)
-        {
-            describePanel.setTaskType(taskType);
-        }
-    }
-
-    public void OnDescribeCButtonClicked(DescribePanel.TaskType taskType = DescribePanel.TaskType.C)
-    {
-        describePanelCGO.SetActive(true);
-        DescribePanel describePanel = describePanelCGO.GetComponent<DescribePanel>();
-        if (describePanel != null)
-        {
-            describePanel.setTaskType(taskType);
-        }
-    }
-
     void OnDisable()
     // Need to destroy all game objects in the list to avoid creating a duplicate scorelist
     {
         numberGamePanelGO.SetActive(false);
         ASAPanelGO.SetActive(false);
-        describePanelAGO.SetActive(false);
-        describePanelBGO.SetActive(false);
-        describePanelCGO.SetActive(false);
     }
 }
