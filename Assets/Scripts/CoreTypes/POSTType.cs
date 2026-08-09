@@ -5,7 +5,10 @@ public enum POSTType
     PuheNumero_TASK,
     ASA_CONSENT,
     ASA_TASK,
-    ASA_FEEDBACK,
+    USER_ASA_FEEDBACK,
     ASA_PROFILE,
+
+    // POST /request/user with type=delete - the user asking for their data to be erased.
+    DATA_DEL_REQUEST,
     OTHER,
 }

@@ -323,7 +323,7 @@ public class FeedbackPanel : MonoBehaviour
                         NetworkManager
                             .GetManager()
                             .ServerPost_feedback(
-                                POSTType.ASA_FEEDBACK,
+                                POSTType.USER_ASA_FEEDBACK,
                                 "result_accuracy",
                                 accuracy.name,
                                 comment_accuracy
@@ -336,7 +336,7 @@ public class FeedbackPanel : MonoBehaviour
                         NetworkManager
                             .GetManager()
                             .ServerPost_feedback(
-                                POSTType.ASA_FEEDBACK,
+                                POSTType.USER_ASA_FEEDBACK,
                                 "result_understanding",
                                 understanding.name,
                                 comment_understanding

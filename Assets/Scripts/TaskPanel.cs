@@ -186,7 +186,7 @@ public class TaskPanel : MonoBehaviour
                     NetworkManager
                         .GetManager()
                         .ServerPost_feedback(
-                            POSTType.ASA_FEEDBACK,
+                            POSTType.USER_ASA_FEEDBACK,
                             "overall_experience",
                             overallRating.name,
                             comment_overall

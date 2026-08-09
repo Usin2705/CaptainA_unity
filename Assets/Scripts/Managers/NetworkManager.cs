@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.IO;
 using TMPro;
 using UnityEngine;
@@ -131,6 +131,12 @@ public class NetworkManager : MonoBehaviour
         return netWorkManager;
     }
 
+    void Start()
+    {
+        // Finish any deletion that was asked for but never confirmed by the server.
+        RetryPendingDeletion();
+    }
+
     void OnDestroy() { }
 
     // This function is used to get the URL for the POST request
@@ -148,10 +154,12 @@ public class NetworkManager : MonoBehaviour
                 return Secret.ASA_URL;
             case POSTType.ASA_CONSENT:
                 return Secret.ASA_CONSENT_URL;
-            case POSTType.ASA_FEEDBACK:
-                return Secret.ASA_FEEDBACK_URL;
+            case POSTType.USER_ASA_FEEDBACK:
+                return Secret.USER_ASA_FEEDBACK_URL;
             case POSTType.ASA_PROFILE:
                 return Secret.ASA_PROFILE_URL;
+            case POSTType.DATA_DEL_REQUEST:
+                return Secret.DATA_DEL_REQUEST_URL;
             default:
                 return asrURL;
         }
@@ -249,6 +257,197 @@ public class NetworkManager : MonoBehaviour
         lastError = null;
         lastErrorType = null;
         OnServerDone?.Invoke(true);
+    }
+
+    // Holds the guid of a deletion the server has not confirmed yet. Deliberately NOT
+    // cleared by ClearLocalASAData - it is the only thing left that can finish the job.
+    const string PREF_PENDING_DELETE = "PendingDeleteGuid";
+
+    [System.Serializable]
+    private class DeleteResponse
+    {
+        public string status;
+    }
+
+    /// <summary>
+    /// What the server said about the last deletion: "deleted" if the data is already
+    /// gone, "pending" if it hit an error and a maintainer will finish it, null if the
+    /// server did not say.
+    ///
+    /// This is what decides the confirmation wording. "Deleted" lets the UI state plainly
+    /// that the data is gone; anything else has to use the softer "removal is underway",
+    /// because promising a deletion that has not happened is the one thing not to get
+    /// wrong here.
+    /// </summary>
+    public string lastDeleteStatus { get; private set; }
+
+    /// <summary>True only when the server confirmed the data is already gone.</summary>
+    public bool DataConfirmedDeleted => lastDeleteStatus == "deleted";
+
+    // Reads {"status": ...} out of the 202 body. The field is optional: if the server has
+    // not added it yet the status stays null and the UI falls back to the careful wording,
+    // so this ships safely before the server side exists.
+    static string ReadDeleteStatus(string body)
+    {
+        if (string.IsNullOrEmpty(body))
+        {
+            return null;
+        }
+
+        try
+        {
+            DeleteResponse parsed = JsonUtility.FromJson<DeleteResponse>(body);
+            return parsed != null ? parsed.status : null;
+        }
+        catch (System.Exception)
+        {
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Deletes this user's data on the server, then wipes the local copy.
+    ///
+    /// The failure case is the one that matters. If the request never lands, the local
+    /// wipe still happens - the user asked to be forgotten and we honour that on the
+    /// device - but that would normally orphan their rows on the server forever, because
+    /// the app has just thrown away the only guid that identifies them.
+    ///
+    /// So the guid is written to PREF_PENDING_DELETE *before* anything is wiped, and
+    /// retried on every launch until the server confirms. A failed delete is a deferred
+    /// delete, not a silent one.
+    /// </summary>
+    /// <param name="OnServerDone">true only if the server confirmed the deletion.</param>
+    public IEnumerator ServerPost_deleteUser(System.Action<bool> OnServerDone = null)
+    {
+        string guid = PlayerPrefs.GetString("UserGuid");
+        if (string.IsNullOrEmpty(guid))
+        {
+            Debug.LogWarning("Delete requested but no guid is stored; clearing locally only.");
+            ClearLocalASAData();
+            OnServerDone?.Invoke(true);
+            yield break;
+        }
+
+        // Remember it before the wipe, so a failure can still be finished later.
+        PlayerPrefs.SetString(PREF_PENDING_DELETE, guid);
+        PlayerPrefs.Save();
+
+        bool deleted = false;
+        yield return DeleteUserOnServer(guid, ok => deleted = ok);
+
+        ClearLocalASAData();
+        OnServerDone?.Invoke(deleted);
+    }
+
+    /// <summary>
+    /// Finishes any deletion that was requested but never confirmed. Called on launch.
+    /// </summary>
+    public void RetryPendingDeletion()
+    {
+        string pending = PlayerPrefs.GetString(PREF_PENDING_DELETE, "");
+        if (string.IsNullOrEmpty(pending))
+        {
+            return;
+        }
+
+        Debug.LogWarning("Retrying an unconfirmed data deletion for guid " + pending);
+        StartCoroutine(DeleteUserOnServer(pending, null));
+    }
+
+    /// <summary>
+    /// Lodges the deletion request with the server. Deliberately POST /request/user and
+    /// NOT DELETE /users: the latter needs an admin key, and any key shipped inside the
+    /// app is extractable from the APK and would let anyone delete anyone. Handing the
+    /// deletion to the server keeps the client credential-free.
+    ///
+    /// The server deletes immediately on receipt and answers "request received" either
+    /// way - it does not report whether the deletion itself succeeded, and logs failures
+    /// for a maintainer instead. So a 2xx here means "the server has it and is acting on
+    /// it now", which is why the retry stops at that point: anything after arrival is the
+    /// server's to finish, and retrying would only duplicate a request it already holds.
+    /// </summary>
+    IEnumerator DeleteUserOnServer(string guid, System.Action<bool> done)
+    {
+        string url = GetPOSTURL(POSTType.DATA_DEL_REQUEST);
+
+        WWWForm form = new WWWForm();
+        form.AddField("guid", guid);
+        form.AddField("type", "delete");
+
+        using (UnityWebRequest uwr = UnityWebRequest.Post(url, form))
+        {
+            uwr.timeout = Const.TIME_OUT_SECS;
+
+            // A guardrail, not a security boundary. It raises the bar against casual or
+            // scripted abuse of this endpoint; it cannot stop anyone who decompiles the
+            // APK, because every string constant in here is recoverable.
+            //
+            // That is an acceptable trade HERE and only here: the worst a leaked key buys
+            // is the ability to *request* deletions, which the server reviews and can
+            // undo. It must therefore be a key that works on this route alone - never the
+            // admin key, which would make the same leak destructive on DELETE /users.
+            uwr.SetRequestHeader("X-Client-Key", Secret.SERVER_DELETE_KEY);
+
+            yield return uwr.SendWebRequest();
+
+            bool ok =
+                uwr.result != UnityWebRequest.Result.ConnectionError
+                && uwr.result != UnityWebRequest.Result.ProtocolError;
+
+            if (ok)
+            {
+                Debug.Log("Server accepted the deletion request for " + guid);
+                PlayerPrefs.DeleteKey(PREF_PENDING_DELETE);
+                PlayerPrefs.Save();
+                lastError = null;
+                lastErrorType = null;
+                lastDeleteStatus = ReadDeleteStatus(uwr.downloadHandler.text);
+            }
+            else
+            {
+                lastError = DescribeError(uwr);
+                // Loud, and with the guid. This is the one failure the server cannot see:
+                // the request never reached it, so only this log and the pending retry
+                // stand between the user and data that silently survives.
+                Debug.LogError(
+                    $"DELETION REQUEST FAILED to reach the server for guid {guid} - "
+                        + $"{uwr.responseCode} {lastErrorType}. Kept as pending and retried "
+                        + "on next launch."
+                );
+            }
+
+            done?.Invoke(ok);
+        }
+    }
+
+    /// <summary>
+    /// Removes everything this device stores about the ASA user, so the app is back to
+    /// its pre-onboarding state. Deliberately scoped: pronunciation scores, flashcard
+    /// progress, survey state and instruction popups belong to the rest of the app and
+    /// are left alone.
+    /// </summary>
+    public static void ClearLocalASAData()
+    {
+        // Identity and consent - without these the app re-runs onboarding.
+        PlayerPrefs.DeleteKey("UserGuid");
+        PlayerPrefs.DeleteKey("ConsentGiven");
+        PlayerPrefs.DeleteKey("ConsentTimestamp");
+        PlayerPrefs.DeleteKey("BackgroundFormCompleted");
+        PlayerPrefs.DeleteKey("BackgroundTimestamp");
+        PlayerPrefs.DeleteKey("AppVersion");
+
+        // Assessment history held on the device.
+        PlayerPrefs.DeleteKey("AssessmentId");
+        PlayerPrefs.DeleteKey("TasksSent");
+        PlayerPrefs.DeleteKey("OverallFeedbackSent");
+
+        // Left over from the removed secret-code gate; harmless, but it was part of the
+        // ASA flow so it goes with the rest.
+        PlayerPrefs.DeleteKey("ASASecretVerified");
+
+        PlayerPrefs.Save();
+        Debug.Log("Local ASA user data cleared.");
     }
 
     // Get the form for creating the profile panel

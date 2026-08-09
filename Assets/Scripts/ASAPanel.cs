@@ -321,7 +321,7 @@ public class ASAPanel : MonoBehaviour
                 NetworkManager
                     .GetManager()
                     .ServerPost_feedback(
-                        POSTType.ASA_FEEDBACK,
+                        POSTType.USER_ASA_FEEDBACK,
                         "self_assessment",
                         self_rating.name,
                         comment_self_rating

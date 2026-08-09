@@ -213,7 +213,7 @@ public class ASAProfilePanel : MonoBehaviour
                     NetworkManager
                         .GetManager()
                         .ServerPost_feedback(
-                            POSTType.ASA_FEEDBACK,
+                            POSTType.USER_ASA_FEEDBACK,
                             "comparison_ui",
                             helpful.name,
                             comment_helpful

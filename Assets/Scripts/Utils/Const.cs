@@ -67,6 +67,27 @@ public static class Const
 
     // =======================================================
 
+    // ===================== CEFR SCALE =====================
+    // The numeric axis the DTA server returns proficiency and the analytic dimensions on.
+    // This is a shared contract - the server must use the same numbers for the same
+    // labels or the stars will disagree with the scores. See docs/TO_BACKEND.md item 13.
+    //
+    //   < A1 = 0 | A1 = 1 | A2 = 2 | A2+ = 2.5 | B1 = 3 | B2 = 4 | C1 = 5 | C2 = 6
+    //
+    // Note the model cannot resolve above B1+ (3.5), so B2 and up are unreachable in
+    // practice today - which is why the star scale tops out at B1.
+
+    public const float CEFR_BELOW_A1 = 0f;
+    public const float CEFR_A1 = 1f;
+    public const float CEFR_A2 = 2f;
+    public const float CEFR_A2_PLUS = 2.5f;
+    public const float CEFR_B1 = 3f;
+    public const float CEFR_B2 = 4f;
+    public const float CEFR_C1 = 5f;
+    public const float CEFR_C2 = 6f;
+
+    // =======================================================
+
     // ================= TEXR COLOR SCORE ===================
     // Rich text color tag for each type of scoring
     public const string BAD_COLOR = "#ff0000ff";
