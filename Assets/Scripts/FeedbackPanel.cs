@@ -136,6 +136,12 @@ public class FeedbackPanel : MonoBehaviour
 
     public ToggleGroup understandingRatingOptions;
 
+    // Post each emoji on tap rather than waiting for Send. Built once and kept: they
+    // remember what the server already has, which is what stops Send re-posting an answer
+    // that has not changed since the tap.
+    private FeedbackAutoSend accuracyFeedback;
+    private FeedbackAutoSend understandingFeedback;
+
     [SerializeField]
     TMP_InputField accuracyFeedbackTextGO;
 
@@ -226,6 +232,24 @@ public class FeedbackPanel : MonoBehaviour
     void OnEnable()
     {
         networkManager = NetworkManager.GetManager();
+
+        // Both emoji rows now post the moment one is tapped, so a learner who answers and
+        // then closes the popup without pressing Send is still counted. Send keeps working
+        // and carries the typed comment - see the feedbackSendButtonGO handler below.
+        accuracyFeedback ??= new FeedbackAutoSend(this, "result_accuracy");
+        understandingFeedback ??= new FeedbackAutoSend(this, "result_understanding");
+
+        accuracyFeedback.Attach(accuracyRatingOptions, () => accuracyFeedbackTextGO.text);
+        understandingFeedback.Attach(
+            understandingRatingOptions,
+            () => understandingFeedbackTextGO.text
+        );
+
+        accuracyFeedback.AttachComment(accuracyFeedbackTextGO, accuracyRatingOptions);
+        understandingFeedback.AttachComment(
+            understandingFeedbackTextGO,
+            understandingRatingOptions
+        );
 
         // Reset all title animations at enable
         ResetTextSizeInTitleAnimation();
@@ -359,32 +383,18 @@ public class FeedbackPanel : MonoBehaviour
                     return;
                 }
 
-                // Send given feedbacks to server
+                // Send given feedbacks to server.
+                //
+                // Usually a no-op for the rating itself, which posted when it was tapped.
+                // What this still carries is the comment, typed after the emoji was
+                // chosen, and any tap made before the assessment id existed.
                 if (accuracy != null)
                 {
-                    StartCoroutine(
-                        NetworkManager
-                            .GetManager()
-                            .ServerPost_feedback(
-                                POSTType.USER_ASA_FEEDBACK,
-                                "result_accuracy",
-                                accuracy.name,
-                                comment_accuracy
-                            )
-                    );
+                    accuracyFeedback.Send(accuracy.name, comment_accuracy);
                 }
                 if (understanding != null)
                 {
-                    StartCoroutine(
-                        NetworkManager
-                            .GetManager()
-                            .ServerPost_feedback(
-                                POSTType.USER_ASA_FEEDBACK,
-                                "result_understanding",
-                                understanding.name,
-                                comment_understanding
-                            )
-                    );
+                    understandingFeedback.Send(understanding.name, comment_understanding);
                 }
 
                 // Reset feedback forms when done

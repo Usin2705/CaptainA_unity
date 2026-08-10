@@ -849,13 +849,22 @@ public class NetworkManager : MonoBehaviour
             || feedback_type == "result_understanding";
     }
 
+    // The recording the last assessment was stored as, or -1 before any result has come
+    // back. Feedback about a recording has to point at one; see RequiresAssessmentId.
+    public static int CurrentAssessmentId => PlayerPrefs.GetInt("AssessmentId", -1);
+
     // Send feedback to server
+    /// <param name="OnServerDone">
+    /// Called once with whether the server took it. FeedbackAutoSend needs to know: it
+    /// remembers what has already been delivered so it can skip identical re-sends, and a
+    /// failure must not be remembered as delivered or the retry never happens.
+    /// </param>
     public IEnumerator ServerPost_feedback(
         POSTType postType,
         string feedback_type,
         string grade,
         string comment,
-        System.Action OnServerDone = null,
+        System.Action<bool> OnServerDone = null,
         GameObject warningImageGO = null
     )
     {
@@ -881,7 +890,7 @@ public class NetworkManager : MonoBehaviour
                 // error UI for it, so record why it failed and let them carry on.
                 lastError = DescribeError(uwr);
 
-                OnServerDone?.Invoke();
+                OnServerDone?.Invoke(false);
                 yield break;
             }
             else
@@ -895,7 +904,7 @@ public class NetworkManager : MonoBehaviour
 
             Debug.Log("Here we are (feedback edition)");
         }
-        OnServerDone?.Invoke();
+        OnServerDone?.Invoke(true);
     }
 
     /// <summary>

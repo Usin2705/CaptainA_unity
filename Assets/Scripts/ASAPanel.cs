@@ -57,6 +57,11 @@ public class ASAPanel : MonoBehaviour
 
     public ToggleGroup ratingOptions;
 
+    // Posts the self-assessment emoji on tap rather than waiting for Results. Built once
+    // and kept: it remembers what the server already has, and that memory is what stops
+    // the Results button re-sending an answer that has not changed.
+    private FeedbackAutoSend selfAssessmentFeedback;
+
     [SerializeField]
     TMP_InputField feedbackTextGO;
 
@@ -139,6 +144,13 @@ public class ASAPanel : MonoBehaviour
         replayButtonGO.GetComponent<Button>().onClick.AddListener(() => OnReplayButtonClicked());
         resultsButtonGO.GetComponent<Button>().onClick.AddListener(() => OnResultsButtonClicked());
         backButtonGO.GetComponent<Button>().onClick.AddListener(() => OnBackButtonClicked());
+
+        // Each emoji now posts the moment it is tapped, so a learner who rates the result
+        // and then quits, or backs out to redo the task, is still counted. Results keeps
+        // sending as well - see OnResultsButtonClicked.
+        selfAssessmentFeedback ??= new FeedbackAutoSend(this, "self_assessment");
+        selfAssessmentFeedback.Attach(ratingOptions, () => feedbackTextGO.text);
+        selfAssessmentFeedback.AttachComment(feedbackTextGO, ratingOptions);
 
         replayBarGO.SetActive(false);
         progressBarBackgroundGO.SetActive(false);
@@ -330,16 +342,10 @@ public class ASAPanel : MonoBehaviour
 
         if (self_rating != null)
         {
-            StartCoroutine(
-                NetworkManager
-                    .GetManager()
-                    .ServerPost_feedback(
-                        POSTType.USER_ASA_FEEDBACK,
-                        "self_assessment",
-                        self_rating.name,
-                        comment_self_rating
-                    )
-            );
+            // Usually a no-op by now: the emoji posted itself when it was tapped. It still
+            // matters when a comment was typed afterwards, and when the tap happened
+            // before the assessment id existed.
+            selfAssessmentFeedback.Send(self_rating.name, comment_self_rating);
         }
     }
 
