@@ -87,6 +87,19 @@ public class ASAPanel : MonoBehaviour
 
     public int currentTaskSelected = -1;
 
+    /// <summary>
+    /// The id the DTA server knows this task by. Its task ids start at 1
+    /// (inference/assets/task_id_map.json: 1 = the friend borrowing money, 2 = cannot come
+    /// to work, ... 5), while currentTaskSelected is an index into the tasks array above
+    /// and starts at 0.
+    ///
+    /// Sending the index unshifted made task 1 fail with 400 "Unknown task_id 0" and -
+    /// far worse - scored tasks 2 to 5 against the PREVIOUS task's prompt, which returns
+    /// a plausible number and no error at all. Convert here and nowhere else, so the value
+    /// we send and the value we check the response against cannot drift apart.
+    /// </summary>
+    public int CurrentServerTaskId => currentTaskSelected + 1;
+
     private AudioClip recording;
 
     [SerializeField]

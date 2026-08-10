@@ -70,7 +70,7 @@ public static class Const
     // ===================== CEFR SCALE =====================
     // The numeric axis the DTA server returns proficiency and the analytic dimensions on.
     // This is a shared contract - the server must use the same numbers for the same
-    // labels or the stars will disagree with the scores. See docs/TO_BACKEND.md item 13.
+    // labels or the stars will disagree with the scores. See docs/TO_FRONTEND.md item 13.
     //
     //   < A1 = 0 | A1 = 1 | A2 = 2 | A2+ = 2.5 | B1 = 3 | B2 = 4 | C1 = 5 | C2 = 6
     //
@@ -183,7 +183,7 @@ public static class Const
     // client has to stay connected longer than that or it aborts first and the user
     // sees a generic transport error instead of the 503 we can retry.
     // 60s server budget + margin for upload and response on mobile data.
-    // This number is shared with the backend - see docs/TO_BACKEND.md item 5.
+    // This number is shared with the backend - see docs/TO_FRONTEND.md item 5.
     public const int TIME_OUT_ASA_SECS = 90;
 
     public const string FILE_NAME_POST = "speech_sample";

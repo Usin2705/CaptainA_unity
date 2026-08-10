@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,20 +19,62 @@ public class FeedbackRow : MonoBehaviour
     [SerializeField]
     private Image levels;
 
-    [SerializeField]
-    private Sprite levelA1;
+    // Level icons are loaded by name instead of being wired in the Inspector. There are
+    // five of these rows, so a serialised field per level meant twenty references to keep
+    // in sync, and a missed one showed up as a blank label at runtime with no error - the
+    // exact gap that left levelA2Plus unassigned when the A2+ tier was added.
+    //
+    // Adding a level is now: drop ic_level_<name>.png into Resources/app_icons and add a
+    // branch below. Nothing to wire.
+    //
+    // This requires the icons to be Sprite Mode: SINGLE. Resources.Load<Sprite> returns
+    // null for a Multiple texture, because its sprites are sub-assets rather than the
+    // asset itself. Most icons in that folder are Multiple; the ic_level_* set was
+    // deliberately converted for this.
+    const string LEVEL_ICON_PATH = "app_icons/ic_level_";
 
-    [SerializeField]
-    private Sprite levelA2;
+    // Resources.Load hits the disk cache on every call, and SetValue runs for five rows
+    // on every result, so the lookups are cached here. Static: the sprites are shared
+    // assets, identical for every row.
+    static readonly Dictionary<string, Sprite> levelIcons = new Dictionary<string, Sprite>();
 
-    [SerializeField]
-    private Sprite levelA2Plus;
+    static Sprite LevelIcon(string level)
+    {
+        if (levelIcons.TryGetValue(level, out Sprite cached))
+        {
+            return cached;
+        }
 
-    [SerializeField]
-    private Sprite levelB1;
+        Sprite loaded = Resources.Load<Sprite>(LEVEL_ICON_PATH + level);
+        if (loaded == null)
+        {
+            Debug.LogError(
+                $"FeedbackRow: no sprite at Resources/{LEVEL_ICON_PATH}{level}. "
+                    + "Check the file exists and its Sprite Mode is Single, not Multiple."
+            );
+        }
+
+        // Cached even when null, so a missing icon logs once rather than every frame.
+        levelIcons[level] = loaded;
+        return loaded;
+    }
 
     /// <summary>
     /// Maps a score on the CEFR 0-6 axis to a star count and the matching level label.
+    ///
+    /// PLANNED FOR THE NEXT UPDATE - display the server's cefr_label_fine instead of
+    /// deriving the label here. The server already derives it from the same score, so
+    /// having the rule in two codebases means it can silently drift: move the A2+
+    /// boundary off 2.5 server-side and this row keeps the old one, showing a label that
+    /// contradicts the score.
+    ///
+    /// The data is there: v1.2.0 added dimension_labels alongside cefr_label_fine, so all
+    /// five rows could read a server label today. Not switched in this release because it
+    /// is a UI change we are not making now. See docs/TO_FRONTEND.md item 13.
+    ///
+    /// Note the thresholds below do NOT disappear after that switch: the star tier is
+    /// still computed from the number, so these boundaries must keep matching the
+    /// server's or the stars will disagree with the label sitting next to them.
     ///
     /// The star boundaries ARE the CEFR boundaries, so the label and the stars cannot
     /// drift apart - both are set together in one branch:
@@ -57,27 +100,30 @@ public class FeedbackRow : MonoBehaviour
     {
         // Filled stars beyond the always-on first one, so 0 here means 1 star on screen.
         int fillStars;
+        string level;
 
         if (rating < Const.CEFR_A2)
         {
             fillStars = 0;
-            levels.sprite = levelA1;
+            level = "a1";
         }
         else if (rating < Const.CEFR_A2_PLUS)
         {
             fillStars = 1;
-            levels.sprite = levelA2;
+            level = "a2";
         }
         else if (rating < Const.CEFR_B1)
         {
             fillStars = 2;
-            levels.sprite = levelA2Plus;
+            level = "a2_plus";
         }
         else
         {
             fillStars = 3;
-            levels.sprite = levelB1;
+            level = "b1";
         }
+
+        levels.sprite = LevelIcon(level);
 
         for (int i = 0; i < stars.Length; i++)
         {

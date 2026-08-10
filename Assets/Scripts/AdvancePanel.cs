@@ -280,9 +280,9 @@ public class AdvancePanel : MonoBehaviour
         string motherWrapped = string.Join("\n", motherTongue);
 
         // Prepare the form to be sent to the server.
-        // moved_to_finland and finnish_learning_duration are no longer collected. Both
-        // are still REQUIRED by /onboarding, so this will be rejected with 422 until the
-        // server drops them - see docs/TO_BACKEND.md item 10.
+        // moved_to_finland and finnish_learning_duration are no longer collected. The
+        // server made both nullable in v1.2.0, so omitting them is accepted - see
+        // docs/TO_FRONTEND.md item 10.
         BackgroundFormData backgroundFormData = new()
         {
             gender = ("gender", gender),

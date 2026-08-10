@@ -199,8 +199,8 @@ public class NetworkManager : MonoBehaviour
         form.AddField(backgroundFields.selfAssessment.Item1, backgroundFields.selfAssessment.Item2);
 
         // moved_to_finland and finnish_learning_duration are deliberately absent: those
-        // questions were dropped from the background form. The server still marks both
-        // REQUIRED, so onboarding answers 422 until it is updated - docs/TO_BACKEND.md item 10.
+        // questions were dropped from the background form. The server made both nullable
+        // in v1.2.0, so omitting them is accepted - docs/TO_FRONTEND.md item 10.
 
         form.AddField("background_form_timestamp", PlayerPrefs.GetString("BackgroundTimestamp"));
         form.AddField("consent_accepted", PlayerPrefs.GetInt("ConsentGiven"));
@@ -221,42 +221,86 @@ public class NetworkManager : MonoBehaviour
         System.Action<bool> OnServerDone = null
     )
     {
-        WWWForm form = GetPOSTForm_guid(backgroundFields);
         string postURL = GetPOSTURL(postType);
 
-        using UnityWebRequest uwr = UnityWebRequest.Post(postURL, form);
-        uwr.timeout = Const.TIME_OUT_SECS;
-        yield return uwr.SendWebRequest();
+        // A 409 means the server already holds this guid. It must never be waved through.
+        // The guid IS the participant: continuing would file this person's recordings
+        // against somebody else's record, and the two sets of data could not be separated
+        // afterwards. So we mint a fresh guid and try again.
+        //
+        // A v4 guid does not collide by chance, so a 409 means something is actually
+        // wrong - a double submit is the likeliest cause - and it is logged as an error
+        // even though we recover from it.
+        const int maxAttempts = 3;
 
-        if (
-            uwr.result == UnityWebRequest.Result.ConnectionError
-            || uwr.result == UnityWebRequest.Result.ProtocolError
-        )
+        for (int attempt = 1; attempt <= maxAttempts; attempt++)
         {
-            if (uwr.responseCode == 409)
+            // Rebuilt each attempt: the form reads the guid out of PlayerPrefs when it is
+            // constructed, so a regenerated guid needs a new form.
+            WWWForm form = GetPOSTForm_guid(backgroundFields);
+
+            using (UnityWebRequest uwr = UnityWebRequest.Post(postURL, form))
             {
-                // The server already knows this guid. That is not a failure: the user is
-                // onboarded, so let them through instead of blocking them at the door.
-                Debug.LogWarning("Onboarding: this guid is already registered, continuing.");
-                lastError = null;
-                lastErrorType = null;
+                uwr.timeout = Const.TIME_OUT_SECS;
+                yield return uwr.SendWebRequest();
 
-                OnServerDone?.Invoke(true);
-                yield break;
+                bool failed =
+                    uwr.result == UnityWebRequest.Result.ConnectionError
+                    || uwr.result == UnityWebRequest.Result.ProtocolError;
+
+                if (!failed)
+                {
+                    Debug.Log("Form upload complete!");
+                    Debug.Log(uwr.downloadHandler.text);
+
+                    lastError = null;
+                    lastErrorType = null;
+                    OnServerDone?.Invoke(true);
+                    yield break;
+                }
+
+                if (uwr.responseCode != 409)
+                {
+                    lastError = DescribeError(uwr);
+                    OnServerDone?.Invoke(false);
+                    yield break;
+                }
+
+                Debug.LogError(
+                    $"Onboarding: the server already holds guid "
+                        + $"{PlayerPrefs.GetString("UserGuid")} (attempt {attempt} of "
+                        + $"{maxAttempts}). A v4 guid does not collide by chance - check "
+                        + "for a duplicate submit."
+                );
+
+                if (attempt < maxAttempts)
+                {
+                    RegenerateUserGuid();
+                }
             }
-
-            lastError = DescribeError(uwr);
-
-            OnServerDone?.Invoke(false);
-            yield break;
         }
 
-        Debug.Log("Form upload complete!");
-        Debug.Log(uwr.downloadHandler.text);
+        // Every attempt collided. Do not let the user through: there is still no guid the
+        // server has accepted, so nothing they record afterwards could be stored.
+        lastError = "Could not create your account. Please try again.";
+        lastErrorType = "GUID_COLLISION";
+        OnServerDone?.Invoke(false);
+    }
 
-        lastError = null;
-        lastErrorType = null;
-        OnServerDone?.Invoke(true);
+    /// <summary>
+    /// Issues this device a new identity and forgets the old one.
+    ///
+    /// Only for recovering from a guid the server has already registered. The consent
+    /// timestamp is deliberately left alone: the user consented once, and that fact does
+    /// not stop being true because the identifier under it changed.
+    /// </summary>
+    private static void RegenerateUserGuid()
+    {
+        string replacement = System.Guid.NewGuid().ToString();
+        PlayerPrefs.SetString("UserGuid", replacement);
+        PlayerPrefs.Save();
+
+        Debug.LogWarning("Onboarding: retrying with a new guid " + replacement);
     }
 
     // Holds the guid of a deletion the server has not confirmed yet. Deliberately NOT
@@ -356,10 +400,9 @@ public class NetworkManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Lodges the deletion request with the server. Deliberately POST /request/user and
-    /// NOT DELETE /users: the latter needs an admin key, and any key shipped inside the
-    /// app is extractable from the APK and would let anyone delete anyone. Handing the
-    /// deletion to the server keeps the client credential-free.
+    /// Lodges the deletion request with the server. Uses POST /request/user rather than
+    /// DELETE /users, which is the maintainer route and needs a credential that does not
+    /// belong in a shipped app.
     ///
     /// The server deletes immediately on receipt and answers "request received" either
     /// way - it does not report whether the deletion itself succeeded, and logs failures
@@ -379,14 +422,8 @@ public class NetworkManager : MonoBehaviour
         {
             uwr.timeout = Const.TIME_OUT_SECS;
 
-            // A guardrail, not a security boundary. It raises the bar against casual or
-            // scripted abuse of this endpoint; it cannot stop anyone who decompiles the
-            // APK, because every string constant in here is recoverable.
-            //
-            // That is an acceptable trade HERE and only here: the worst a leaked key buys
-            // is the ability to *request* deletions, which the server reviews and can
-            // undo. It must therefore be a key that works on this route alone - never the
-            // admin key, which would make the same leak destructive on DELETE /users.
+            // Required. The server answers 403 on a mismatch. The value is the one it
+            // checks on POST /request/user
             uwr.SetRequestHeader("X-Client-Key", Secret.SERVER_DELETE_KEY);
 
             yield return uwr.SendWebRequest();
@@ -532,8 +569,9 @@ public class NetworkManager : MonoBehaviour
             mimeType: "audio/wav"
         );
         form.AddField("guid", PlayerPrefs.GetString("UserGuid"));
-        int currentTask = ASAPanel.currentTaskSelected;
-        form.AddField("task_id", currentTask);
+        // Not currentTaskSelected: that is a 0-based array index and the server's ids
+        // start at 1. See ASAPanel.CurrentServerTaskId.
+        form.AddField("task_id", ASAPanel.CurrentServerTaskId);
 
         return form;
     }
@@ -605,8 +643,31 @@ public class NetworkManager : MonoBehaviour
             PlayerPrefs.SetInt("AssessmentId", asrResultASA.assessment_id);
 
             ASAPanel.isLoading = false;
-
             feedbackLoadingIconGO.SetActive(false);
+
+            // The server echoes the task it actually scored. A mismatch means the wrong
+            // task embedding was used, which produces a plausible but wrong score with no
+            // error anywhere - the one integration bug that testing cannot see. Loud on
+            // purpose; the result is not trustworthy.
+            int sentTaskId = ASAPanel.CurrentServerTaskId;
+            if (asrResultASA.task_id != 0 && asrResultASA.task_id != sentTaskId)
+            {
+                Debug.LogError(
+                    $"TASK ID MISMATCH: sent {sentTaskId}, server scored {asrResultASA.task_id}. "
+                        + "This score was produced against the wrong task and must not be trusted."
+                );
+            }
+
+            // An off-topic answer is still an answer: the recording was accepted, scored
+            // and stored, so the results screen opens exactly as it does for any other
+            // result. The scores will be 0.0, which the rows render as one star. What
+            // stops that reading as a verdict on the learner's Finnish is the warning
+            // FeedbackPanel puts above them - not hiding the result.
+            if (asrResultASA.IsOffTopic)
+            {
+                Debug.LogWarning("Relevance check: off_topic - " + asrResultASA.content.reason);
+            }
+
             resultsButtonGO.SetActive(true);
             SetLoadingTitle("Your results are ready. Tap below to see them.");
         }
@@ -641,7 +702,7 @@ public class NetworkManager : MonoBehaviour
 
         // Only feedback about a specific recording carries an assessment_id.
         // Feedback about a screen or about the app as a whole must not send the field
-        // at all - the server answers 422 if it is present. See docs/TO_BACKEND.md item 1.
+        // at all - the server answers 422 if it is present. See docs/TO_FRONTEND.md item 1.
         if (RequiresAssessmentId(feedback_type))
         {
             int assessmentId = PlayerPrefs.GetInt("AssessmentId", -1);
@@ -1358,6 +1419,78 @@ public class NetworkManager : MonoBehaviour
         public string transcript;
         public Scores scores;
         public int assessment_id;
+
+        // Echoed back so we can prove the server scored the task we meant. A mismatch is
+        // silent otherwise - the score looks perfectly plausible, just for a different
+        // question. See docs/TO_FRONTEND.md item 9.
+        public int task_id;
+
+        // Server-derived labels. Exactly four values ever: A1, A2, A2+, B1 - floored into
+        // the band, not rounded, so they agree with the star tiers by construction. There
+        // is no <A1, no A1+/B1+, and nothing above B1, so there is nothing to fold or cap.
+        public string cefr_label;
+        public string cefr_label_fine;
+
+        // Labels for the four analytic dimensions. Note proficiency is NOT in here - it
+        // uses cefr_label_fine above.
+        public DimensionLabels dimension_labels;
+
+        // True when the score sat on the model's ceiling or floor. We do not surface it:
+        // the four bands already cap the display at B1.
+        public bool clipped;
+
+        // Null when the relevance check did not run - older server, judge disabled, or
+        // judge errored. Null means "not checked", NEVER "off topic".
+        public ContentCheck content;
+
+        /// <summary>
+        /// True only when the server withheld the grading. On off_topic every score on
+        /// the wire is 0.0 and every label is "A1" - rendering those would tell a learner
+        /// their Finnish scored zero, which is the exact outcome the check exists to
+        /// prevent. Absent or unrecognised content is treated as on-topic, so a server
+        /// that never ran the judge still shows results normally.
+        /// </summary>
+        public bool IsOffTopic => content != null && content.relevance == "off_topic";
+
+        /// <summary>
+        /// The answer only partly addressed the task. The scores are real and must be
+        /// shown as normal; this only warrants a gentle tip alongside them.
+        /// </summary>
+        public bool IsPartial => content != null && content.relevance == "partial";
+    }
+
+    [System.Serializable]
+    public class DimensionLabels
+    {
+        public DimensionLabel accuracy;
+        public DimensionLabel fluency;
+        public DimensionLabel pronunciation;
+        public DimensionLabel range;
+    }
+
+    [System.Serializable]
+    public class DimensionLabel
+    {
+        public string label;
+        public string label_fine;
+    }
+
+    [System.Serializable]
+    public class ContentCheck
+    {
+        // on_topic | partial | off_topic
+        public string relevance;
+
+        // The server already applies its own 0.6 threshold before returning off_topic -
+        // an unsure verdict comes back as partial instead. Do not add a second threshold
+        // on top; branch on relevance alone.
+        public float confidence;
+
+        // A fixed English string for logs, not localisable prose. Localise from
+        // relevance instead.
+        public string reason;
+
+        public string judge;
     }
 
     [System.Serializable]
@@ -1393,14 +1526,15 @@ public class NetworkManager : MonoBehaviour
     /// Branching is on the HTTP status rather than on detail.type on purpose: `detail` is
     /// an object for normal errors but an array for 422, and JsonUtility cannot handle a
     /// field that changes shape. The body is parsed best-effort for the log line only.
-    /// See docs/TO_BACKEND.md item 6 - we have asked for the envelope to be published in
-    /// the OpenAPI schema so this can become machine-checkable.
+    /// The envelope is published in the OpenAPI schema as of v1.2.0, and 422 keeps its
+    /// array shape - see docs/TO_FRONTEND.md item 6.
     /// </summary>
     private string DescribeError(UnityWebRequest uwr)
     {
         string body = uwr.downloadHandler != null ? uwr.downloadHandler.text : null;
 
         string type = null;
+        string serverMessage = null;
         if (!string.IsNullOrEmpty(body))
         {
             try
@@ -1409,6 +1543,7 @@ public class NetworkManager : MonoBehaviour
                 if (envelope != null && envelope.detail != null)
                 {
                     type = envelope.detail.type;
+                    serverMessage = envelope.detail.message;
                 }
             }
             catch (System.Exception)
@@ -1440,8 +1575,20 @@ public class NetworkManager : MonoBehaviour
                 return "That recording is too long to send.";
             case 503:
                 return "The server is busy. Please try again in a moment.";
+            case 400:
+                // The server's own wording is the only thing that says WHICH bad request
+                // this is: "Unknown task_id 0" and a rejected filename are both 400 and
+                // otherwise indistinguishable. A generic apology here cost us a day
+                // finding the task_id offset, so show what the server said.
+                return string.IsNullOrEmpty(serverMessage)
+                    ? "The app sent something the server could not accept."
+                    : serverMessage;
             default:
-                return "Something went wrong. Please try again.";
+                // Same reasoning: an unrecognised status with a message is still far more
+                // use than "something went wrong", to the user and in a bug report.
+                return string.IsNullOrEmpty(serverMessage)
+                    ? "Something went wrong. Please try again."
+                    : serverMessage;
         }
     }
 

@@ -41,6 +41,15 @@ public class FeedbackPanel : MonoBehaviour
     [SerializeField]
     GameObject popupBackButtonGO;
 
+    // Shown above the score rows when the server's relevance check said the recording did
+    // not answer the task. Both are optional: if they are left unassigned the panel simply
+    // behaves as it did before, rather than throwing on a result screen.
+    [SerializeField]
+    GameObject offTopicWarningGO;
+
+    [SerializeField]
+    TMPro.TextMeshProUGUI offTopicWarningText;
+
     [SerializeField]
     FeedbackRow proficiencyScore;
 
@@ -389,6 +398,19 @@ public class FeedbackPanel : MonoBehaviour
         accuracyScore.SetValue(accuracyRating, 4);
         fluencyScore.SetValue(fluencyRating, 5);
 
+        // The server judged the answer to be about something other than the task. The
+        // scores above are shown unchanged - they are what the server returned - but they
+        // will all be 0.0, and a row at 0.0 draws one star and an A1 badge. Without this
+        // line the panel reads as "your Finnish is A1" when what actually happened is
+        // "this was not an answer to the question".
+        //
+        // "Check the task again" rather than "listen again": the task is written text,
+        // there is nothing to play.
+        ShowOffTopicWarning(
+            networkManager.asrResultASA.IsOffTopic,
+            "Your answer did not seem to match the task. Please check the task again."
+        );
+
         // Get the category with the lowest score
         float minRating = Mathf.Min(
             proficiencyRating,
@@ -441,6 +463,34 @@ public class FeedbackPanel : MonoBehaviour
 
                 anim.Play("Fluency Title Animation");
             }
+        }
+    }
+
+    /// <summary>
+    /// Shows or hides the "this did not answer the task" notice above the score rows.
+    ///
+    /// Always called, with false on a normal result: the panel is a reused object, so a
+    /// warning left over from a previous recording would otherwise still be on screen.
+    /// </summary>
+    private void ShowOffTopicWarning(bool offTopic, string message)
+    {
+        if (offTopicWarningText != null && offTopic)
+        {
+            offTopicWarningText.text = message;
+        }
+
+        if (offTopicWarningGO != null)
+        {
+            offTopicWarningGO.SetActive(offTopic);
+        }
+        else if (offTopic)
+        {
+            // The notice is the only thing separating "you scored A1" from "you answered
+            // a different question", so a missing object is worth saying out loud.
+            Debug.LogWarning(
+                "FeedbackPanel: off-topic result but offTopicWarningGO is not assigned - "
+                    + "the learner sees a one-star score with no explanation."
+            );
         }
     }
 
