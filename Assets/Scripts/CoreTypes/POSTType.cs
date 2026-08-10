@@ -8,7 +8,8 @@ public enum POSTType
     USER_ASA_FEEDBACK,
     ASA_PROFILE,
 
-    // POST /request/user with type=delete - the user asking for their data to be erased.
+    // DELETE /users - the user asking for their data to be erased. Sent with the guid as
+    // a form field and SERVER_DELETE_KEY in the X-Delete-Key header.
     DATA_DEL_REQUEST,
     OTHER,
 }

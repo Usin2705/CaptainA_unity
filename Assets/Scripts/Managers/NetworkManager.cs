@@ -189,7 +189,7 @@ public class NetworkManager : MonoBehaviour
     {
         WWWForm form = new WWWForm();
         form.AddField("app_version", PlayerPrefs.GetString("AppVersion"));
-        form.AddField("guid", PlayerPrefs.GetString("UserGuid"));
+        form.AddField("guid", EnsureUserGuid());
         form.AddField("consent_timestamp", PlayerPrefs.GetString("ConsentTimestamp"));
 
         form.AddField(backgroundFields.gender.Item1, backgroundFields.gender.Item2);
@@ -288,66 +288,74 @@ public class NetworkManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Issues this device a new identity and forgets the old one.
+    /// Creates and stores a new identity for this device, replacing any existing one.
     ///
-    /// Only for recovering from a guid the server has already registered. The consent
-    /// timestamp is deliberately left alone: the user consented once, and that fact does
-    /// not stop being true because the identifier under it changed.
+    /// The consent timestamp is deliberately left alone: the user consented once, and
+    /// that fact does not stop being true because the identifier under it changed.
+    /// </summary>
+    private static string MintUserGuid()
+    {
+        string guid = System.Guid.NewGuid().ToString();
+        PlayerPrefs.SetString("UserGuid", guid);
+        PlayerPrefs.Save();
+
+        return guid;
+    }
+
+    /// <summary>
+    /// Issues this device a new identity. Only for recovering from a guid the server has
+    /// already registered.
     /// </summary>
     private static void RegenerateUserGuid()
     {
-        string replacement = System.Guid.NewGuid().ToString();
-        PlayerPrefs.SetString("UserGuid", replacement);
-        PlayerPrefs.Save();
+        Debug.LogWarning("Onboarding: retrying with a new guid " + MintUserGuid());
+    }
 
-        Debug.LogWarning("Onboarding: retrying with a new guid " + replacement);
+    /// <summary>
+    /// The stored guid, minting one if there is none yet.
+    ///
+    /// Used by onboarding only. Onboarding is the one endpoint entitled to create an
+    /// identity; everywhere else the guid must already exist, and quietly minting one
+    /// there would replace a clear "you are not onboarded" failure with a user the server
+    /// has never heard of.
+    ///
+    /// Normally AcceptConsent does the minting, but it only runs when ConsentGiven is 0.
+    /// A partly cleared PlayerPrefs - ConsentGiven still 1, UserGuid gone - goes straight
+    /// to the background form, which then posted an empty guid with nothing checking it.
+    /// </summary>
+    private static string EnsureUserGuid()
+    {
+        string guid = PlayerPrefs.GetString("UserGuid", "");
+        if (!string.IsNullOrEmpty(guid))
+        {
+            return guid;
+        }
+
+        guid = MintUserGuid();
+        Debug.LogWarning(
+            "Onboarding: no guid was stored - consent had been recorded without one, "
+                + "which a partial PlayerPrefs reset can cause. Minted " + guid
+        );
+        return guid;
     }
 
     // Holds the guid of a deletion the server has not confirmed yet. Deliberately NOT
     // cleared by ClearLocalASAData - it is the only thing left that can finish the job.
     const string PREF_PENDING_DELETE = "PendingDeleteGuid";
 
-    [System.Serializable]
-    private class DeleteResponse
-    {
-        public string status;
-    }
-
     /// <summary>
-    /// What the server said about the last deletion: "deleted" if the data is already
-    /// gone, "pending" if it hit an error and a maintainer will finish it, null if the
-    /// server did not say.
+    /// What happened to the last deletion: "deleted" once the server has erased the data,
+    /// null if it has not answered yet or the request never reached it.
     ///
-    /// This is what decides the confirmation wording. "Deleted" lets the UI state plainly
-    /// that the data is gone; anything else has to use the softer "removal is underway",
-    /// because promising a deletion that has not happened is the one thing not to get
-    /// wrong here.
+    /// DELETE /users erases synchronously, so there is no half-state to report - the older
+    /// "pending" value belonged to the retired POST /request/user route, which only ever
+    /// acknowledged receipt. Anything other than "deleted" means the request is still
+    /// queued locally and will be retried.
     /// </summary>
     public string lastDeleteStatus { get; private set; }
 
     /// <summary>True only when the server confirmed the data is already gone.</summary>
     public bool DataConfirmedDeleted => lastDeleteStatus == "deleted";
-
-    // Reads {"status": ...} out of the 202 body. The field is optional: if the server has
-    // not added it yet the status stays null and the UI falls back to the careful wording,
-    // so this ships safely before the server side exists.
-    static string ReadDeleteStatus(string body)
-    {
-        if (string.IsNullOrEmpty(body))
-        {
-            return null;
-        }
-
-        try
-        {
-            DeleteResponse parsed = JsonUtility.FromJson<DeleteResponse>(body);
-            return parsed != null ? parsed.status : null;
-        }
-        catch (System.Exception)
-        {
-            return null;
-        }
-    }
 
     /// <summary>
     /// Deletes this user's data on the server, then wipes the local copy.
@@ -400,15 +408,17 @@ public class NetworkManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Lodges the deletion request with the server. Uses POST /request/user rather than
-    /// DELETE /users, which is the maintainer route and needs a credential that does not
-    /// belong in a shipped app.
+    /// Erases the user on the server: DELETE /users, with the guid as a form field and
+    /// SERVER_DELETE_KEY in the X-Delete-Key header.
     ///
-    /// The server deletes immediately on receipt and answers "request received" either
-    /// way - it does not report whether the deletion itself succeeded, and logs failures
-    /// for a maintainer instead. So a 2xx here means "the server has it and is acting on
-    /// it now", which is why the retry stops at that point: anything after arrival is the
-    /// server's to finish, and retrying would only duplicate a request it already holds.
+    /// Not POST /request/user. That route also carries an export request type, and this
+    /// app never exports user data, so the route is being retired rather than left
+    /// half-used - see docs/TO_BACKEND.md.
+    ///
+    /// This one erases synchronously and says so: 204 means the data is gone, 403 means
+    /// the key did not match, 500 means the erase itself failed. There is no "request
+    /// received, we will get to it" state to interpret, which is why 204 is reported
+    /// straight through as a confirmed deletion.
     /// </summary>
     IEnumerator DeleteUserOnServer(string guid, System.Action<bool> done)
     {
@@ -416,15 +426,23 @@ public class NetworkManager : MonoBehaviour
 
         WWWForm form = new WWWForm();
         form.AddField("guid", guid);
-        form.AddField("type", "delete");
 
-        using (UnityWebRequest uwr = UnityWebRequest.Post(url, form))
+        // Built by hand rather than with UnityWebRequest.Delete: that helper sends no
+        // body, and this endpoint reads the guid from a form field.
+        using (UnityWebRequest uwr = new UnityWebRequest(url, "DELETE"))
         {
+            uwr.uploadHandler = new UploadHandlerRaw(form.data);
+            uwr.downloadHandler = new DownloadHandlerBuffer();
             uwr.timeout = Const.TIME_OUT_SECS;
 
-            // Required. The server answers 403 on a mismatch. The value is the one it
-            // checks on POST /request/user
-            uwr.SetRequestHeader("X-Client-Key", Secret.SERVER_DELETE_KEY);
+            foreach (var header in form.headers)
+            {
+                uwr.SetRequestHeader(header.Key, header.Value);
+            }
+
+            // Required. The server compares this to its own key and answers 403 on a
+            // mismatch.
+            uwr.SetRequestHeader("X-Delete-Key", Secret.SERVER_DELETE_KEY);
 
             yield return uwr.SendWebRequest();
 
@@ -434,12 +452,14 @@ public class NetworkManager : MonoBehaviour
 
             if (ok)
             {
-                Debug.Log("Server accepted the deletion request for " + guid);
+                Debug.Log("Server deleted the data for " + guid);
                 PlayerPrefs.DeleteKey(PREF_PENDING_DELETE);
                 PlayerPrefs.Save();
                 lastError = null;
                 lastErrorType = null;
-                lastDeleteStatus = ReadDeleteStatus(uwr.downloadHandler.text);
+
+                // A 2xx from this route means the erase is done, not merely accepted.
+                lastDeleteStatus = "deleted";
             }
             else
             {
@@ -534,8 +554,10 @@ public class NetworkManager : MonoBehaviour
                 ASAProfilePanel.Stats Stats = JsonUtility.FromJson<ASAProfilePanel.Stats>(
                     uwr.downloadHandler.text
                 );
-                // If cohort size is too small or not enough tasks sent, perfcentile will be -1f
-                if (Stats.percentile == -1f)
+                // The unavailable responses carry a `status`; a real comparison does not.
+                // Branching on that rather than on percentile == -1, which cannot be told
+                // apart from a genuine bottom-of-cohort result.
+                if (!string.IsNullOrEmpty(Stats.status) || Stats.percentile == -1f)
                 {
                     ASAProfilePanel.InsufficientStats InsufficientStats =
                         JsonUtility.FromJson<ASAProfilePanel.InsufficientStats>(

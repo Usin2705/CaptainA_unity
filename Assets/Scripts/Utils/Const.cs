@@ -351,4 +351,80 @@ public static class Const
         + "While our resources are limited, we'll do our best to implement your ideas.";
 
     // ====================================================================
+
+    // ================= ASA USER-FACING TEXT =================
+    // Every string the Automatic Speaking Assessment shows a learner, kept together so a
+    // translator can be handed one block rather than sent hunting through the panels.
+    //
+    // Anything with {0}/{1} is a string.Format template - keep the placeholders when
+    // translating, and note that word order around them may need to change per language.
+
+    // --- relevance notices, shown above the score rows (FeedbackPanel) ---
+
+    // The recording did not address the task. Every score is 0.0 in this case, which the
+    // rows draw as one star, so this notice is what stops it reading as a verdict on the
+    // learner. "Check" not "listen": the task is written text, there is nothing to play.
+    public const string ASA_OFF_TOPIC =
+        "Your answer did not seem to match the task. Please check the task again.";
+
+    // The recording addressed the task only in part. These scores are real measurements,
+    // so this is a nudge, not a correction - it must not read as "your result is void".
+    // The second sentence is deliberate: relevance is judged by an LLM, which does get it
+    // wrong, and a learner who answered well has no way to argue with a notice that
+    // sounds certain.
+    public const string ASA_PARTIAL =
+        "Your answer only partly matched the task, so these scores may not reflect your "
+        + "true level. This check is automatic and can be wrong.";
+
+    // --- transcript (FeedbackPanel) ---
+
+    public const string ASA_TRANSCRIPT_EMPTY = "(nothing was recognised in this recording)";
+
+    // --- ranking unavailable (ASAProfilePanel) ---
+    // Three different reasons, and only the first is something the learner can act on, so
+    // it is the only one phrased as an instruction.
+
+    // {0} = required assessments, {1} = how many they have done.
+    public const string ASA_RANK_NEED_MORE_TASKS =
+        "Please complete at least {0} tasks to see your ranking. You have completed {1} "
+        + "out of {0} so far.";
+
+    // Depends on how many other learners share their level, so it is not phrased as
+    // something they can fix.
+    public const string ASA_RANK_COHORT_TOO_SMALL =
+        "There are not enough learners at your level yet for comparison. Please check "
+        + "back later.";
+
+    public const string ASA_RANK_UNAVAILABLE =
+        "Your ranking is not available at the moment. Please try again later.";
+
+    // Fallback when the server returns a status we do not recognise yet.
+    public const string ASA_RANK_UNAVAILABLE_GENERIC =
+        "Your ranking is not available at the moment.";
+
+    // --- data deletion (ASAProfilePanel) ---
+
+    public const string ASA_DELETE_WARNING =
+        "This will permanently delete your Automatic Speaking Assessment data, including "
+        + "your recordings, scores, and assessment account, from this device and our "
+        + "servers.\n\n"
+        + "This action cannot be undone. We will not be able to recover the deleted data "
+        + "for you.";
+
+    public const string ASA_DELETE_IN_PROGRESS = "Deleting your data...";
+
+    // Only when the server confirmed the erase.
+    public const string ASA_DELETE_CONFIRMED =
+        "Your data has been deleted. You can start again from the beginning at any time.";
+
+    // Also used when the request did not reach the server: the local data is gone either
+    // way and the deletion is retried on every launch, so the outcome is the same from
+    // the user's side.
+    public const string ASA_DELETE_RECEIVED =
+        "Your request has been received and your data is being removed.";
+
+    public const string ASA_DELETE_CANCEL_LABEL = "Cancel";
+    public const string ASA_DELETE_CLOSE_LABEL = "Close";
+
+    // ====================================================================
 }

@@ -2,6 +2,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Analytics;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class FeedbackPanel : MonoBehaviour
@@ -41,14 +42,47 @@ public class FeedbackPanel : MonoBehaviour
     [SerializeField]
     GameObject popupBackButtonGO;
 
-    // Shown above the score rows when the server's relevance check said the recording did
-    // not answer the task. Both are optional: if they are left unassigned the panel simply
-    // behaves as it did before, rather than throwing on a result screen.
+    // Shown above the score rows when the server's relevance check flagged the recording,
+    // for both off_topic and partial. Both fields are optional: left unassigned, the panel
+    // behaves as it did before rather than throwing on a result screen.
+    //
+    // FormerlySerializedAs keeps the existing Inspector wiring after the rename from
+    // offTopicWarning*, which happened when partial started using the same notice.
     [SerializeField]
-    GameObject offTopicWarningGO;
+    [FormerlySerializedAs("offTopicWarningGO")]
+    GameObject relevanceWarningGO;
 
     [SerializeField]
-    TMPro.TextMeshProUGUI offTopicWarningText;
+    [FormerlySerializedAs("offTopicWarningText")]
+    TMPro.TextMeshProUGUI relevanceWarningText;
+
+    // What the recogniser heard, shown at the bottom of the scrollable content. Worth
+    // seeing even on a good result: it is the only way a learner can tell a low score
+    // apart from a misheard word, and it is what makes an off_topic verdict checkable
+    // rather than something they have to take on trust.
+    [SerializeField]
+    TMPro.TextMeshProUGUI transcriptText;
+
+    // Hidden while a relevance notice is showing. The two occupy the same band, and the
+    // notice is the more urgent of the two - InfoText explains how to read the scores,
+    // which matters less than being told the scores may not mean what they appear to.
+    [SerializeField]
+    GameObject infoTextGO;
+
+    // The ScrollRect's Content, and the transcript box inside it. Both are resized at
+    // runtime by FitTranscript - see there for why they cannot be fixed heights.
+    [SerializeField]
+    RectTransform scrollContent;
+
+    [SerializeField]
+    RectTransform transcriptGroup;
+
+    // Geometry of the transcript box, matching how it is built in the prefab.
+    const float TRANSCRIPT_SIDE_PADDING = 20f; // left/right inset of the body text
+    const float TRANSCRIPT_HEADER = 68f; // title strip above the body text
+    const float TRANSCRIPT_BOTTOM_PADDING = 16f;
+    const float CONTENT_TAIL = 40f; // breathing room under the box
+    const float MIN_CONTENT_HEIGHT = 1620f; // never shrink below the fixed layout above
 
     [SerializeField]
     FeedbackRow proficiencyScore;
@@ -398,18 +432,22 @@ public class FeedbackPanel : MonoBehaviour
         accuracyScore.SetValue(accuracyRating, 4);
         fluencyScore.SetValue(fluencyRating, 5);
 
-        // The server judged the answer to be about something other than the task. The
-        // scores above are shown unchanged - they are what the server returned - but they
-        // will all be 0.0, and a row at 0.0 draws one star and an A1 badge. Without this
-        // line the panel reads as "your Finnish is A1" when what actually happened is
-        // "this was not an answer to the question".
-        //
-        // "Check the task again" rather than "listen again": the task is written text,
-        // there is nothing to play.
-        ShowOffTopicWarning(
-            networkManager.asrResultASA.IsOffTopic,
-            "Your answer did not seem to match the task. Please check the task again."
-        );
+        ShowRelevanceWarning(networkManager.asrResultASA);
+
+        if (transcriptText != null)
+        {
+            // Empty rather than left over from the previous recording: this panel is
+            // reused, and a stale transcript next to fresh scores is worse than none.
+            string heard = networkManager.asrResultASA == null
+                ? null
+                : networkManager.asrResultASA.transcript;
+
+            transcriptText.text = string.IsNullOrWhiteSpace(heard)
+                ? Const.ASA_TRANSCRIPT_EMPTY
+                : heard;
+
+            FitTranscript();
+        }
 
         // Get the category with the lowest score
         float minRating = Mathf.Min(
@@ -467,31 +505,97 @@ public class FeedbackPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// Shows or hides the "this did not answer the task" notice above the score rows.
+    /// Shows or hides the relevance notice above the score rows.
     ///
-    /// Always called, with false on a normal result: the panel is a reused object, so a
-    /// warning left over from a previous recording would otherwise still be on screen.
+    /// Two states get a notice, for different reasons:
+    ///
+    ///   off_topic - the scores really are 0.0, so the notice is what stops a fabricated
+    ///               "A1" being read as a verdict on the learner.
+    ///   partial   - the scores are genuine; the notice only explains why they may be
+    ///               lower than usual.
+    ///
+    /// The two are mutually exclusive - relevance is a single value from the server - so
+    /// off_topic is tested first and there is no case where both could apply.
+    ///
+    /// Always called, including on a clean result: the panel is a reused object, so a
+    /// notice left from a previous recording would otherwise stay on screen.
     /// </summary>
-    private void ShowOffTopicWarning(bool offTopic, string message)
+    private void ShowRelevanceWarning(NetworkManager.ASRResultASA result)
     {
-        if (offTopicWarningText != null && offTopic)
+        bool offTopic = result != null && result.IsOffTopic;
+        bool partial = result != null && result.IsPartial;
+        bool show = offTopic || partial;
+
+        if (relevanceWarningText != null && show)
         {
-            offTopicWarningText.text = message;
+            relevanceWarningText.text = offTopic ? Const.ASA_OFF_TOPIC : Const.ASA_PARTIAL;
         }
 
-        if (offTopicWarningGO != null)
+        if (relevanceWarningGO != null)
         {
-            offTopicWarningGO.SetActive(offTopic);
+            relevanceWarningGO.SetActive(show);
         }
-        else if (offTopic)
+        else if (show)
         {
-            // The notice is the only thing separating "you scored A1" from "you answered
-            // a different question", so a missing object is worth saying out loud.
+            // On off_topic this notice is the only thing separating "you scored A1" from
+            // "you answered a different question", so a missing object is worth saying
+            // out loud rather than failing silently.
             Debug.LogWarning(
-                "FeedbackPanel: off-topic result but offTopicWarningGO is not assigned - "
-                    + "the learner sees a one-star score with no explanation."
+                "FeedbackPanel: relevance was "
+                    + (offTopic ? "off_topic" : "partial")
+                    + " but relevanceWarningGO is not assigned - the learner sees the "
+                    + "score with no explanation."
             );
         }
+
+        // The notice and InfoText occupy the same band. Swapping them is cleaner than
+        // relying on one drawing over the other, and the notice is the more urgent of the
+        // two: how to read the scores matters less than being told what the scores mean.
+        if (infoTextGO != null)
+        {
+            infoTextGO.SetActive(!show);
+        }
+    }
+
+    /// <summary>
+    /// Grows the transcript box, and the scroll content under it, to fit the text.
+    ///
+    /// The transcript is the one element whose height is not knowable in advance - a long
+    /// answer runs to several hundred pixels. Everything else on this panel is fixed, so
+    /// the box and the ScrollRect's Content are the only things that have to move.
+    ///
+    /// Without this, a long transcript overflows a fixed-height box and the overflow sits
+    /// below the scrollable area: Content stops at its authored height, so scrolling hits
+    /// the end while text is still off screen and no amount of dragging reaches it.
+    /// </summary>
+    private void FitTranscript()
+    {
+        if (transcriptText == null || transcriptGroup == null)
+        {
+            return;
+        }
+
+        // Measured, not laid out: GetPreferredValues answers immediately, where waiting
+        // for a layout pass would leave Content at the wrong height for a frame.
+        float textWidth = transcriptGroup.sizeDelta.x - TRANSCRIPT_SIDE_PADDING * 2f;
+        float textHeight = transcriptText.GetPreferredValues(transcriptText.text, textWidth, 0f).y;
+
+        float groupHeight = TRANSCRIPT_HEADER + textHeight + TRANSCRIPT_BOTTOM_PADDING;
+        transcriptGroup.sizeDelta = new Vector2(transcriptGroup.sizeDelta.x, groupHeight);
+
+        if (scrollContent == null)
+        {
+            return;
+        }
+
+        // anchoredPosition.y is negative here - the box is anchored to Content's top edge,
+        // so this is how far below that edge it starts.
+        float groupTop = -transcriptGroup.anchoredPosition.y;
+
+        scrollContent.sizeDelta = new Vector2(
+            scrollContent.sizeDelta.x,
+            Mathf.Max(groupTop + groupHeight + CONTENT_TAIL, MIN_CONTENT_HEIGHT)
+        );
     }
 
     void OnDisable()
