@@ -402,6 +402,25 @@ public static class Const
     public const string ASA_RANK_UNAVAILABLE_GENERIC =
         "Your ranking is not available at the moment.";
 
+    // --- level change (ASAProfilePanel) ---
+    // Not user-facing text, but the two values the Advance and Revert buttons are built
+    // on, kept beside the strings they govern.
+
+    // The server CHECKs users.cefr_level against exactly these five, and the onboarding
+    // form offers the same five, so a user can start anywhere on this ladder. The order
+    // is the ladder: Advance and Revert are one step along it.
+    public static readonly string[] ASA_LEVELS = { "A1", "A2", "B1", "B2", "C1_plus" };
+
+    // Advance stops here. Revert has no ceiling of its own - it is offered from anywhere
+    // except A1 - so someone who self-assessed as B2 or C1+ can walk down the ladder but
+    // cannot climb back above B1.
+    public const string ASA_ADVANCE_CEILING = "B1";
+
+    // Backstop only. A blank Secret.ASA_SET_LEVEL_URL hides both buttons, so in practice
+    // nobody reaches a state where this needs showing.
+    public const string ASA_LEVEL_UNAVAILABLE =
+        "Changing your level is not available at the moment.";
+
     // --- data deletion (ASAProfilePanel) ---
 
     public const string ASA_DELETE_WARNING =

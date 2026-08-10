@@ -179,13 +179,14 @@ public class ASAProfilePanel : MonoBehaviour
         feedbackButtonGO.SetActive(true);
         insufficientDataNoticeGO.SetActive(false);
 
-        profileBackButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
+        ButtonUtils.Rewire(
+            profileBackButtonGO,
+            () =>
             {
                 profilePanelGO.SetActive(false);
                 loadingPopUpProfile.SetActive(false);
-            });
+            }
+        );
 
         settingsPopupGO.SetActive(false);
         dimPanelGO.SetActive(false);
@@ -193,53 +194,53 @@ public class ASAProfilePanel : MonoBehaviour
         guid = PlayerPrefs.GetString("UserGuid");
         guidTextGO.text = guid;
 
-        settingsButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
+        ButtonUtils.Rewire(
+            settingsButtonGO,
+            () =>
             {
                 settingsPopupGO.SetActive(true);
                 dimPanelGO.SetActive(true);
-            });
+            }
+        );
 
-        settingsBackButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
+        ButtonUtils.Rewire(
+            settingsBackButtonGO,
+            () =>
             {
                 settingsPopupGO.SetActive(false);
                 dimPanelGO.SetActive(false);
-            });
+            }
+        );
 
-        copyGuidButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
-            {
-                GUIUtility.systemCopyBuffer = guid;
-            });
+        ButtonUtils.Rewire(copyGuidButtonGO, () => GUIUtility.systemCopyBuffer = guid);
 
         SetUpDeleteData();
+        SetUpLevelChange();
 
-        feedbackButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
+        ButtonUtils.Rewire(
+            feedbackButtonGO,
+            () =>
             {
                 feedbackPopUpGO.SetActive(true);
                 dimPanelGO.SetActive(true);
-            });
+            }
+        );
 
-        feedbackBackButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
+        ButtonUtils.Rewire(
+            feedbackBackButtonGO,
+            () =>
             {
                 comparisonRatingOptions.SetAllTogglesOff();
                 comparisonFeedbackTextGO.text = "";
                 feedbackPopUpGO.SetActive(false);
                 dimPanelGO.SetActive(false);
                 errorPopupGO.SetActive(false);
-            });
+            }
+        );
 
-        feedbackSendButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
+        ButtonUtils.Rewire(
+            feedbackSendButtonGO,
+            () =>
             {
                 var helpful = comparisonRatingOptions.ActiveToggles().FirstOrDefault();
                 string comment_helpful = comparisonFeedbackTextGO.text;
@@ -274,7 +275,8 @@ public class ASAProfilePanel : MonoBehaviour
                 feedbackPopUpGO.SetActive(false);
                 dimPanelGO.SetActive(false);
                 errorPopupGO.SetActive(false);
-            });
+            }
+        );
     }
 
     /// <summary>
@@ -294,9 +296,9 @@ public class ASAProfilePanel : MonoBehaviour
 
         deleteConfirmPopupGO.SetActive(false);
 
-        deleteDataButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
+        ButtonUtils.Rewire(
+            deleteDataButtonGO,
+            () =>
             {
                 // Reset every time: the popup is reused, and the previous run may have
                 // left it in its finished state with the confirm button hidden.
@@ -311,11 +313,12 @@ public class ASAProfilePanel : MonoBehaviour
 
                 deleteConfirmPopupGO.SetActive(true);
                 dimPanelGO.SetActive(true);
-            });
+            }
+        );
 
-        deleteCancelButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
+        ButtonUtils.Rewire(
+            deleteCancelButtonGO,
+            () =>
             {
                 deleteConfirmPopupGO.SetActive(false);
 
@@ -341,11 +344,12 @@ public class ASAProfilePanel : MonoBehaviour
                 }
 
                 dimPanelGO.SetActive(false);
-            });
+            }
+        );
 
-        deleteConfirmButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
+        ButtonUtils.Rewire(
+            deleteConfirmButtonGO,
+            () =>
             {
                 // Both buttons go dead for the duration: a second tap would fire a second
                 // deletion for a guid the first one is already removing.
@@ -389,7 +393,8 @@ public class ASAProfilePanel : MonoBehaviour
                             }
                         })
                 );
-            });
+            }
+        );
     }
 
     private void SetDeleteButtonsInteractable(bool interactable)
@@ -466,19 +471,158 @@ public class ASAProfilePanel : MonoBehaviour
         ;
     }
 
+    /// <summary>
+    /// Decides whether Advance and Revert are offered, from the level and percentile the
+    /// server just sent.
+    ///
+    /// Both are set explicitly rather than only switched off. A level change reloads the
+    /// profile without re-enabling the panel, so OnEnable does not run again and anything
+    /// this method hid would stay hidden - the A1 user who advances to A2 has to get their
+    /// Revert button back.
+    /// </summary>
     public void ShowButtons(Stats user)
     {
-        // Can't go down a level if already at the lowest level
-        if (user.cefr_level == "A1")
+        RememberLevel(user.cefr_level);
+
+        int level = LevelIndex(currentLevel);
+        int ceiling = LevelIndex(Const.ASA_ADVANCE_CEILING);
+
+        // A level that is not on the ladder leaves no step to compute in either direction.
+        // Should not happen - the server CHECKs the same five values - but guessing a step
+        // from an unknown level is how a user ends up somewhere nobody intended.
+        bool onLadder = level >= 0;
+
+        // Going down is never gated on anything but having somewhere to go. Whatever
+        // reason a learner has for finding their level too hard, making them earn their
+        // way out of it is the wrong answer.
+        ShowRevertButton();
+
+        // Going up is: not past the ceiling, and not without being in the 90th percentile.
+        advanceLevelButtonGO.SetActive(
+            onLadder && level < ceiling && user.percentile >= 0.9f && LevelChangeConfigured
+        );
+    }
+
+    /// <summary>
+    /// Offers Revert whenever there is a level below the current one. Called from both the
+    /// ranked and the unranked paths - dropping back has no preconditions.
+    /// </summary>
+    private void ShowRevertButton()
+    {
+        revertLevelButtonGO.SetActive(LevelIndex(currentLevel) > 0 && LevelChangeConfigured);
+    }
+
+    /// <summary>
+    /// Records the level a step is measured from, ignoring an empty one.
+    ///
+    /// RANK_UNAVAILABLE carries no cefr_level. Overwriting with the blank would take the
+    /// Revert button with it, stranding whoever is on that screen at a level they may
+    /// have opened the panel specifically to leave - so the last level the server did
+    /// name is kept instead.
+    /// </summary>
+    private void RememberLevel(string cefrLevel)
+    {
+        if (!string.IsNullOrEmpty(cefrLevel))
         {
-            revertLevelButtonGO.SetActive(false);
+            currentLevel = cefrLevel;
+        }
+    }
+
+    // The level the server last reported, which is what a step is measured from. Set only
+    // from a server response - never from a change we assume went through.
+    private string currentLevel;
+
+    // The endpoint is still to be built, so ASA_SET_LEVEL_URL is blank in Secret.cs until
+    // it exists. A button that visibly does nothing is worse than no button, so both are
+    // hidden while it is. Filling the value in is all that is needed to bring them back.
+    private static bool LevelChangeConfigured =>
+        !string.IsNullOrEmpty(Secret.ASA_SET_LEVEL_URL);
+
+    private static int LevelIndex(string cefrLevel)
+    {
+        return Array.IndexOf(Const.ASA_LEVELS, cefrLevel);
+    }
+
+    /// <summary>
+    /// Wires Advance and Revert. Neither had a handler before - the Button components
+    /// carry an empty persistent call from the Inspector and nothing else - so tapping
+    /// them has never done anything.
+    /// </summary>
+    private void SetUpLevelChange()
+    {
+        ButtonUtils.Rewire(advanceLevelButtonGO, () => ChangeLevel(1));
+        ButtonUtils.Rewire(revertLevelButtonGO, () => ChangeLevel(-1));
+    }
+
+    /// <summary>
+    /// Moves the user one step along Const.ASA_LEVELS and reloads the profile.
+    /// </summary>
+    /// <param name="step">+1 to advance, -1 to revert.</param>
+    private void ChangeLevel(int step)
+    {
+        int level = LevelIndex(currentLevel);
+
+        if (level < 0)
+        {
+            Debug.LogWarning(
+                "Level change ignored: no level from the server to step from (got '"
+                    + currentLevel
+                    + "')."
+            );
+            return;
         }
 
-        // Can't advance level unless in the 90th percentile
-        if (user.percentile < 0.9f)
+        int target = level + step;
+
+        // The buttons are hidden when a step is not allowed, so reaching this is a bug
+        // rather than a user action - but the bounds are cheap and a wrong level is not.
+        if (target < 0 || target >= Const.ASA_LEVELS.Length)
         {
-            advanceLevelButtonGO.SetActive(false);
+            return;
         }
+
+        if (step > 0 && target > LevelIndex(Const.ASA_ADVANCE_CEILING))
+        {
+            return;
+        }
+
+        string targetLevel = Const.ASA_LEVELS[target];
+
+        SetLevelButtonsInteractable(false);
+
+        StartCoroutine(
+            NetworkManager
+                .GetManager()
+                .ServerPost_setLevel(
+                    POSTType.ASA_SET_LEVEL,
+                    targetLevel,
+                    stored =>
+                    {
+                        SetLevelButtonsInteractable(true);
+
+                        if (!stored)
+                        {
+                            // The loading popup is showing the failure with its own back
+                            // button, and the profile underneath is untouched, so the user
+                            // is still at the level they started from.
+                            return;
+                        }
+
+                        // Reloaded rather than applied locally. The cohort is a different
+                        // set of people now, so the rank and the percentile are different
+                        // numbers, and only the server knows them.
+                        StartCoroutine(
+                            NetworkManager.GetManager().ServerPost_profile(POSTType.ASA_PROFILE)
+                        );
+                    }
+                )
+        );
+    }
+
+    private void SetLevelButtonsInteractable(bool interactable)
+    {
+        advanceLevelButtonGO.GetComponent<Button>().interactable = interactable;
+        revertLevelButtonGO.GetComponent<Button>().interactable = interactable;
     }
 
     /// <summary>
@@ -537,7 +681,15 @@ public class ASAProfilePanel : MonoBehaviour
         levelTextGO.SetActive(hasLevel);
         levelDescriptionTextGO.SetActive(hasLevel);
 
-        revertLevelButtonGO.SetActive(false);
+        RememberLevel(user.cefr_level);
+
+        // Revert survives every one of these three states. There is no ranking to show
+        // here, but that is not a reason to trap someone at a level: a learner whose
+        // cohort is too small for a comparison still gets to drop back out of it.
+        ShowRevertButton();
+
+        // Advance does not. It is earned from a percentile, and there is no percentile on
+        // any of these responses.
         advanceLevelButtonGO.SetActive(false);
         performanceInfo.SetActive(false);
         rankInfo.SetActive(false);

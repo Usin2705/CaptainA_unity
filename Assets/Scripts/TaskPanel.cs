@@ -86,66 +86,39 @@ public class TaskPanel : MonoBehaviour
     {
         // Stops animated dropdown error message from appearing
         StopErrorAnimation();
-        // Reset listeners so that they won't get duplicated later
-        profileButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
-        feedbackSendButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
-        feedbackBackButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
 
         isLoading = false;
         Debug.Log(PlayerPrefs.GetInt("TasksSent"));
         // Ask general feedback if number of completed tasks so far is a multiple of 5
         OverallFeedback();
 
-        // Set proper game objects active and establish button behavior
-        backButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() => advancePanelGO.SetActive(true));
-        backButtonGO.GetComponent<Button>().onClick.AddListener(() => taskPanelGO.SetActive(false));
+        // Set proper game objects active and establish button behavior.
+        //
+        // Every button goes through ButtonUtils.Rewire, which clears the previous
+        // listener before adding this one. OnEnable runs on every reopen, so plain
+        // AddListener stacked: three of these used to be cleared by hand at the top of
+        // this method and the rest were not, which held only because the rest happen to be
+        // idempotent. Rewire makes that hold by construction instead of by luck.
+        ButtonUtils.Rewire(
+            backButtonGO,
+            () =>
+            {
+                // One handler doing both things, not two listeners. Rewire keeps a single
+                // listener per button, and these two always fired together anyway.
+                advancePanelGO.SetActive(true);
+                taskPanelGO.SetActive(false);
+            }
+        );
 
-        task1ButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
-            {
-                ASAPanel.DisplayTask(0);
-                ASAPanelGO.SetActive(true);
-                taskPanelGO.SetActive(false);
-            });
-        task2ButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
-            {
-                ASAPanel.DisplayTask(1);
-                ASAPanelGO.SetActive(true);
-                taskPanelGO.SetActive(false);
-            });
-        task3ButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
-            {
-                ASAPanel.DisplayTask(2);
-                ASAPanelGO.SetActive(true);
-                taskPanelGO.SetActive(false);
-            });
-        task4ButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
-            {
-                ASAPanel.DisplayTask(3);
-                ASAPanelGO.SetActive(true);
-                taskPanelGO.SetActive(false);
-            });
-        task5ButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
-            {
-                ASAPanel.DisplayTask(4);
-                ASAPanelGO.SetActive(true);
-                taskPanelGO.SetActive(false);
-            });
+        ButtonUtils.Rewire(task1ButtonGO, () => OpenTask(0));
+        ButtonUtils.Rewire(task2ButtonGO, () => OpenTask(1));
+        ButtonUtils.Rewire(task3ButtonGO, () => OpenTask(2));
+        ButtonUtils.Rewire(task4ButtonGO, () => OpenTask(3));
+        ButtonUtils.Rewire(task5ButtonGO, () => OpenTask(4));
 
-        profileButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
+        ButtonUtils.Rewire(
+            profileButtonGO,
+            () =>
             {
                 loadingPopUpGO.SetActive(true);
                 dimPanelGO.SetActive(true);
@@ -156,15 +129,14 @@ public class TaskPanel : MonoBehaviour
                 StartCoroutine(
                     NetworkManager.GetManager().ServerPost_profile(POSTType.ASA_PROFILE)
                 );
-            });
+            }
+        );
 
-        profileLoadingBackButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() => OnProfileLoadingBackButtonClicked());
+        ButtonUtils.Rewire(profileLoadingBackButtonGO, () => OnProfileLoadingBackButtonClicked());
 
-        feedbackSendButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
+        ButtonUtils.Rewire(
+            feedbackSendButtonGO,
+            () =>
             {
                 var overallRating = overallRatingOptions.ActiveToggles().FirstOrDefault();
                 string comment_overall = overallFeedbackTextGO.text;
@@ -199,18 +171,28 @@ public class TaskPanel : MonoBehaviour
                 overallFeedbackPopUpGO.SetActive(false);
                 dimPanelGO.SetActive(false);
                 errorPopupGO.SetActive(false);
-            });
+            }
+        );
 
-        feedbackBackButtonGO
-            .GetComponent<Button>()
-            .onClick.AddListener(() =>
+        ButtonUtils.Rewire(
+            feedbackBackButtonGO,
+            () =>
             {
                 overallRatingOptions.SetAllTogglesOff();
                 overallFeedbackTextGO.text = "";
                 overallFeedbackPopUpGO.SetActive(false);
                 dimPanelGO.SetActive(false);
                 errorPopupGO.SetActive(false);
-            });
+            }
+        );
+    }
+
+    // The five task buttons differ only by index.
+    private void OpenTask(int taskIndex)
+    {
+        ASAPanel.DisplayTask(taskIndex);
+        ASAPanelGO.SetActive(true);
+        taskPanelGO.SetActive(false);
     }
 
     public void OnProfileLoadingBackButtonClicked()

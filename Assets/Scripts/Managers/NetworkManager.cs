@@ -158,6 +158,8 @@ public class NetworkManager : MonoBehaviour
                 return Secret.USER_ASA_FEEDBACK_URL;
             case POSTType.ASA_PROFILE:
                 return Secret.ASA_PROFILE_URL;
+            case POSTType.ASA_SET_LEVEL:
+                return Secret.ASA_SET_LEVEL_URL;
             case POSTType.DATA_DEL_REQUEST:
                 return Secret.DATA_DEL_REQUEST_URL;
             default:
@@ -575,6 +577,102 @@ public class NetworkManager : MonoBehaviour
         }
 
         OnServerDone?.Invoke();
+    }
+
+    /// <summary>
+    /// Moves the user to a different CEFR level from the profile screen.
+    ///
+    /// This is not the onboarding self-assessment. That value records what the user said
+    /// about themselves at sign-up and is never revised - overwriting it would destroy the
+    /// only evidence of how well people judge their own Finnish. This is the level they
+    /// are practising at, and it is what the cohort ranking is keyed to.
+    ///
+    /// The new level is deliberately not applied locally on success. The caller reloads
+    /// the profile instead, so the level, the cohort, the rank and the percentile all
+    /// arrive together from the server rather than being half-guessed from a change we
+    /// assume took.
+    ///
+    /// Runs against the profile loading popup, which already carries an error state and a
+    /// back button, so a failure lands somewhere the user can see it and leaves the
+    /// profile untouched underneath.
+    /// </summary>
+    /// <param name="cefrLevel">One of A1, A2, B1, B2, C1_plus - see Const.ASA_LEVELS.</param>
+    /// <param name="OnServerDone">Called once with whether the server stored the change.</param>
+    public IEnumerator ServerPost_setLevel(
+        POSTType postType,
+        string cefrLevel,
+        System.Action<bool> OnServerDone = null
+    )
+    {
+        string postURL = GetPOSTURL(postType);
+
+        // An empty URL throws out of UnityWebRequest rather than failing the request, so
+        // it is caught here: the coroutine reports a refusal instead of dying mid-tap.
+        // Worth keeping after the endpoint exists - a fresh clone has a blank Secret.cs.
+        if (string.IsNullOrEmpty(postURL))
+        {
+            Debug.LogWarning(
+                "Level change to " + cefrLevel + " was not sent: Secret.ASA_SET_LEVEL_URL "
+                    + "is empty. The endpoint is still to be built - see docs/TO_BACKEND.md."
+            );
+            lastError = Const.ASA_LEVEL_UNAVAILABLE;
+            lastErrorType = "ENDPOINT_NOT_CONFIGURED";
+            OnServerDone?.Invoke(false);
+            yield break;
+        }
+
+        loadingPopUpProfileGO.SetActive(true);
+        profileLoadingIconGO.SetActive(true);
+        profileLoadingErrorTextGO.SetActive(false);
+        profileLoadingBackButtonGO.SetActive(false);
+        dimPanelGO.SetActive(true);
+
+        WWWForm form = new WWWForm();
+        form.AddField("guid", PlayerPrefs.GetString("UserGuid"));
+
+        // The target level, not a direction. "advance"/"revert" would make a duplicate
+        // request move the user two steps; an absolute level lands them in the same place
+        // however many times it arrives.
+        form.AddField("cefr_level", cefrLevel);
+
+        // Built by hand for the same reason DeleteUserOnServer is: UnityWebRequest has no
+        // PATCH helper that sends a body, and this endpoint reads both values from form
+        // fields.
+        using (UnityWebRequest uwr = new UnityWebRequest(postURL, "PATCH"))
+        {
+            uwr.uploadHandler = new UploadHandlerRaw(form.data);
+            uwr.downloadHandler = new DownloadHandlerBuffer();
+            uwr.timeout = Const.TIME_OUT_SECS;
+
+            foreach (var header in form.headers)
+            {
+                uwr.SetRequestHeader(header.Key, header.Value);
+            }
+
+            yield return uwr.SendWebRequest();
+
+            if (
+                uwr.result == UnityWebRequest.Result.ConnectionError
+                || uwr.result == UnityWebRequest.Result.ProtocolError
+            )
+            {
+                profileLoadingIconGO.SetActive(false);
+                profileLoadingErrorTextGO.SetActive(true);
+                profileLoadingBackButtonGO.SetActive(true);
+
+                ErrorHandling(uwr, profileErrorText);
+                lastError = profileErrorText.text;
+
+                OnServerDone?.Invoke(false);
+                yield break;
+            }
+
+            Debug.Log("Level change stored: " + cefrLevel);
+            lastError = null;
+            lastErrorType = null;
+        }
+
+        OnServerDone?.Invoke(true);
     }
 
     // Get the form for ASA audio recording
