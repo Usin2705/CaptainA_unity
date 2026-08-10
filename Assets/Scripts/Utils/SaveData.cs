@@ -426,18 +426,8 @@ public class OpenAIASRResponse
     public string text;
 }
 
-[System.Serializable]
-public class ImageInfo
-{
-    public string url;
-}
-
-[System.Serializable]
-public class OpenAIImageResponse
-{
-    public long created;
-    public ImageInfo[] data;
-}
+// ImageInfo and OpenAIImageResponse were the DALL-E response shape. Removed with
+// GPTImageGenerate - nothing parses that endpoint any more.
 
 [System.Serializable]
 public class OpenAIChatResponse

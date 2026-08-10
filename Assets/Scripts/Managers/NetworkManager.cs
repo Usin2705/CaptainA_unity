@@ -3,7 +3,6 @@ using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UIElements;
 
 public class NetworkManager : MonoBehaviour
 {
@@ -15,9 +14,6 @@ public class NetworkManager : MonoBehaviour
 
     [SerializeField]
     GameObject ASAPanelGO;
-
-    [SerializeField]
-    Image imageComponent;
 
     [SerializeField]
     GameObject loadingPopUpProfileGO;
@@ -1021,95 +1017,9 @@ public class NetworkManager : MonoBehaviour
         OnServerDone?.Invoke(true);
     }
 
-    public IEnumerator GPTImageGenerate(string prompt)
-    {
-        // OpenAI require Json format so this is the way to do it and not our normal webrequest
-        // ""style"": ""vivid"",
-        // ""style"": ""natural"",
-        // ""quality"": ""standard"",
-        // ""quality"": ""hd"",
-        string jsonData =
-            $@"
-		{{
-			""prompt"": ""{prompt.Replace("\"", "\\\"")}"",
-			""model"": ""dall-e-3"",
-			""n"": 1,
-			""size"": ""1024x1024"",
-			""quality"": ""hd"",
-			""style"": ""natural"",
-			""response_format"": ""url""
-		}}";
-
-        Debug.Log(jsonData);
-
-        using (
-            UnityWebRequest request = new UnityWebRequest(
-                "https://api.openai.com/v1/images/generations",
-                "POST"
-            )
-        )
-        {
-            // Convert JSON data to a byte array and set it as upload handler
-            byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(jsonData);
-            request.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
-            request.downloadHandler = new DownloadHandlerBuffer(); // Set the download handler
-
-            // Set headers
-            request.SetRequestHeader("Content-Type", "application/json");
-            request.SetRequestHeader("Authorization", "Bearer " + gptToken);
-
-            //Debug.Log(jsonData);
-            // Send the request and yield until it's done
-            yield return request.SendWebRequest();
-
-            Debug.Log(request.result);
-            Debug.Log(request.downloadHandler.text);
-
-            // Handle the response
-            if (request.result != UnityWebRequest.Result.Success)
-            {
-                Debug.LogError("Error: " + request.error);
-                Debug.LogError("Error: " + request.result);
-                Debug.LogError("Error: " + request.downloadHandler.text);
-            }
-            else
-            {
-                //Debug.Log(request.downloadHandler.text);
-                OpenAIImageResponse openAIImageResponse = JsonUtility.FromJson<OpenAIImageResponse>(
-                    request.downloadHandler.text
-                );
-                if (openAIImageResponse.data.Length > 0)
-                {
-                    StartCoroutine(DownloadAndDisplayImage(openAIImageResponse.data[0].url));
-                }
-            }
-        }
-    }
-
-    IEnumerator DownloadAndDisplayImage(string url)
-    {
-        UnityWebRequest request = UnityWebRequestTexture.GetTexture(url);
-        yield return request.SendWebRequest();
-
-        if (request.result != UnityWebRequest.Result.Success)
-        {
-            Debug.LogError("Error downloading image: " + request.error);
-        }
-        else
-        {
-            Texture2D texture = DownloadHandlerTexture.GetContent(request);
-            SaveData.SaveImageToFile(texture, "describeImage.png");
-
-            // Display the image
-            Sprite sprite = Sprite.Create(
-                texture,
-                new Rect(0.0f, 0.0f, 1024, 1024),
-                new Vector2(0.5f, 0.5f),
-                100.0f
-            );
-            imageComponent.sprite = sprite;
-        }
-    }
+    // GPTImageGenerate (DALL-E 3) and DownloadAndDisplayImage were removed here along with
+    // the imageComponent field they drew into. They belonged to the describe-the-picture
+    // task, whose panel is no longer attached to anything - see docs/legacy_gpt_vision.md.
 
     public IEnumerator GPTTranscribeWhisper(
         byte[] wavBuffer,

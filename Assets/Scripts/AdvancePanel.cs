@@ -79,7 +79,9 @@ public class AdvancePanel : MonoBehaviour
 
     public ToggleGroup selfAssessmentOptions;
 
-    [System.Serializable]
+    // Deliberately not [System.Serializable]. Unity cannot serialize a ValueTuple, so the
+    // attribute did nothing but raise a warning per field. This is a carrier: built in
+    // GetUserInput, handed to NetworkManager, never shown in the Inspector or saved.
     public class BackgroundFormData
     {
         public (string, string) gender;

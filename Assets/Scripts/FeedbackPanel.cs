@@ -225,7 +225,7 @@ public class FeedbackPanel : MonoBehaviour
 
     void OnEnable()
     {
-        networkManager = FindFirstObjectByType<NetworkManager>();
+        networkManager = NetworkManager.GetManager();
 
         // Reset all title animations at enable
         ResetTextSizeInTitleAnimation();
