@@ -2,6 +2,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Analytics;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class FeedbackPanel : MonoBehaviour
@@ -40,6 +41,48 @@ public class FeedbackPanel : MonoBehaviour
 
     [SerializeField]
     GameObject popupBackButtonGO;
+
+    // Shown above the score rows when the server's relevance check flagged the recording,
+    // for both off_topic and partial. Both fields are optional: left unassigned, the panel
+    // behaves as it did before rather than throwing on a result screen.
+    //
+    // FormerlySerializedAs keeps the existing Inspector wiring after the rename from
+    // offTopicWarning*, which happened when partial started using the same notice.
+    [SerializeField]
+    [FormerlySerializedAs("offTopicWarningGO")]
+    GameObject relevanceWarningGO;
+
+    [SerializeField]
+    [FormerlySerializedAs("offTopicWarningText")]
+    TMPro.TextMeshProUGUI relevanceWarningText;
+
+    // What the recogniser heard, shown at the bottom of the scrollable content. Worth
+    // seeing even on a good result: it is the only way a learner can tell a low score
+    // apart from a misheard word, and it is what makes an off_topic verdict checkable
+    // rather than something they have to take on trust.
+    [SerializeField]
+    TMPro.TextMeshProUGUI transcriptText;
+
+    // Hidden while a relevance notice is showing. The two occupy the same band, and the
+    // notice is the more urgent of the two - InfoText explains how to read the scores,
+    // which matters less than being told the scores may not mean what they appear to.
+    [SerializeField]
+    GameObject infoTextGO;
+
+    // The ScrollRect's Content, and the transcript box inside it. Both are resized at
+    // runtime by FitTranscript - see there for why they cannot be fixed heights.
+    [SerializeField]
+    RectTransform scrollContent;
+
+    [SerializeField]
+    RectTransform transcriptGroup;
+
+    // Geometry of the transcript box, matching how it is built in the prefab.
+    const float TRANSCRIPT_SIDE_PADDING = 20f; // left/right inset of the body text
+    const float TRANSCRIPT_HEADER = 68f; // title strip above the body text
+    const float TRANSCRIPT_BOTTOM_PADDING = 16f;
+    const float CONTENT_TAIL = 40f; // breathing room under the box
+    const float MIN_CONTENT_HEIGHT = 1620f; // never shrink below the fixed layout above
 
     [SerializeField]
     FeedbackRow proficiencyScore;
@@ -92,6 +135,12 @@ public class FeedbackPanel : MonoBehaviour
     public ToggleGroup accuracyRatingOptions;
 
     public ToggleGroup understandingRatingOptions;
+
+    // Post each emoji on tap rather than waiting for Send. Built once and kept: they
+    // remember what the server already has, which is what stops Send re-posting an answer
+    // that has not changed since the tap.
+    private FeedbackAutoSend accuracyFeedback;
+    private FeedbackAutoSend understandingFeedback;
 
     [SerializeField]
     TMP_InputField accuracyFeedbackTextGO;
@@ -182,7 +231,32 @@ public class FeedbackPanel : MonoBehaviour
 
     void OnEnable()
     {
-        networkManager = FindFirstObjectByType<NetworkManager>();
+        networkManager = NetworkManager.GetManager();
+
+        // Clear last result's notice before anything else runs. The real call is ~200
+        // lines below, after the button wiring and the score read, and anything that
+        // throws in between would leave the previous warning on screen - so a learner who
+        // was warned on one task would be warned again on the next however well they did.
+        // Passing null means "no result yet", which resolves to hidden.
+        ShowRelevanceWarning(null);
+
+        // Both emoji rows now post the moment one is tapped, so a learner who answers and
+        // then closes the popup without pressing Send is still counted. Send keeps working
+        // and carries the typed comment - see the feedbackSendButtonGO handler below.
+        accuracyFeedback ??= new FeedbackAutoSend(this, "result_accuracy");
+        understandingFeedback ??= new FeedbackAutoSend(this, "result_understanding");
+
+        accuracyFeedback.Attach(accuracyRatingOptions, () => accuracyFeedbackTextGO.text);
+        understandingFeedback.Attach(
+            understandingRatingOptions,
+            () => understandingFeedbackTextGO.text
+        );
+
+        accuracyFeedback.AttachComment(accuracyFeedbackTextGO, accuracyRatingOptions);
+        understandingFeedback.AttachComment(
+            understandingFeedbackTextGO,
+            understandingRatingOptions
+        );
 
         // Reset all title animations at enable
         ResetTextSizeInTitleAnimation();
@@ -316,32 +390,18 @@ public class FeedbackPanel : MonoBehaviour
                     return;
                 }
 
-                // Send given feedbacks to server
+                // Send given feedbacks to server.
+                //
+                // Usually a no-op for the rating itself, which posted when it was tapped.
+                // What this still carries is the comment, typed after the emoji was
+                // chosen, and any tap made before the assessment id existed.
                 if (accuracy != null)
                 {
-                    StartCoroutine(
-                        NetworkManager
-                            .GetManager()
-                            .ServerPost_feedback(
-                                POSTType.ASA_FEEDBACK,
-                                "result_accuracy",
-                                accuracy.name,
-                                comment_accuracy
-                            )
-                    );
+                    accuracyFeedback.Send(accuracy.name, comment_accuracy);
                 }
                 if (understanding != null)
                 {
-                    StartCoroutine(
-                        NetworkManager
-                            .GetManager()
-                            .ServerPost_feedback(
-                                POSTType.ASA_FEEDBACK,
-                                "result_understanding",
-                                understanding.name,
-                                comment_understanding
-                            )
-                    );
+                    understandingFeedback.Send(understanding.name, comment_understanding);
                 }
 
                 // Reset feedback forms when done
@@ -377,17 +437,43 @@ public class FeedbackPanel : MonoBehaviour
             });
 
         // Get scores from the server
-        float proficiencyRating = networkManager.asrResultASA.scores.proficiency;
-        float pronunciationRating = networkManager.asrResultASA.scores.pronunciation;
-        float rangeRating = networkManager.asrResultASA.scores.range;
-        float accuracyRating = networkManager.asrResultASA.scores.accuracy;
-        float fluencyRating = networkManager.asrResultASA.scores.fluency;
+        NetworkManager.ASRResultASA result = networkManager.asrResultASA;
 
-        proficiencyScore.SetValue(proficiencyRating, 1);
-        pronunciationScore.SetValue(pronunciationRating, 2);
-        rangeScore.SetValue(rangeRating, 3);
-        accuracyScore.SetValue(accuracyRating, 4);
-        fluencyScore.SetValue(fluencyRating, 5);
+        float proficiencyRating = result.scores.proficiency;
+        float pronunciationRating = result.scores.pronunciation;
+        float rangeRating = result.scores.range;
+        float accuracyRating = result.scores.accuracy;
+        float fluencyRating = result.scores.fluency;
+
+        // The band comes from the server, not from the number. The two used to be worked
+        // out here with local thresholds; v1.3.0 moved the boundaries and will move them
+        // again, so a client that keeps its own copy of the rule shows a band that
+        // disagrees with the learner's stored row and says nothing about it.
+        NetworkManager.DimensionLabels labels = result.dimension_labels;
+
+        proficiencyScore.SetValue(proficiencyRating, 1, result.cefr_label_fine);
+        pronunciationScore.SetValue(pronunciationRating, 2, LabelOf(labels?.pronunciation));
+        rangeScore.SetValue(rangeRating, 3, LabelOf(labels?.range));
+        accuracyScore.SetValue(accuracyRating, 4, LabelOf(labels?.accuracy));
+        fluencyScore.SetValue(fluencyRating, 5, LabelOf(labels?.fluency));
+
+        ShowRelevanceWarning(networkManager.asrResultASA);
+
+        if (transcriptText != null)
+        {
+            // Empty rather than left over from the previous recording: this panel is
+            // reused, and a stale transcript next to fresh scores is worse than none.
+            string heard =
+                networkManager.asrResultASA == null ? null : networkManager.asrResultASA.transcript;
+
+            transcriptText.text = string.IsNullOrWhiteSpace(heard)
+                ? Const.ASA_TRANSCRIPT_EMPTY
+                : heard;
+
+            FitTranscript();
+        }
+
+        ScrollToTop();
 
         // Get the category with the lowest score
         float minRating = Mathf.Min(
@@ -442,6 +528,134 @@ public class FeedbackPanel : MonoBehaviour
                 anim.Play("Fluency Title Animation");
             }
         }
+    }
+
+    /// <summary>
+    /// Shows or hides the relevance notice above the score rows.
+    ///
+    /// Two states get a notice, for different reasons:
+    ///
+    ///   off_topic - the scores really are 0.0, so the notice is what stops a fabricated
+    ///               "A1" being read as a verdict on the learner.
+    ///   partial   - the scores are genuine; the notice only explains why they may be
+    ///               lower than usual.
+    ///
+    /// The two are mutually exclusive - relevance is a single value from the server - so
+    /// off_topic is tested first and there is no case where both could apply.
+    ///
+    /// Always called, including on a clean result: the panel is a reused object, so a
+    /// notice left from a previous recording would otherwise stay on screen.
+    /// </summary>
+    // Null-safe read of one dimension's band. dimension_labels is absent on an older
+    // server and on any response we could not parse, and a null here is the row's signal
+    // to fall back to the score rather than draw a blank badge.
+    private static string LabelOf(NetworkManager.DimensionLabel dimension)
+    {
+        return dimension == null ? null : dimension.label_fine;
+    }
+
+    private void ShowRelevanceWarning(NetworkManager.ASRResultASA result)
+    {
+        bool offTopic = result != null && result.IsOffTopic;
+        bool partial = result != null && result.IsPartial;
+        bool show = offTopic || partial;
+
+        if (relevanceWarningText != null && show)
+        {
+            relevanceWarningText.text = offTopic ? Const.ASA_OFF_TOPIC : Const.ASA_PARTIAL;
+        }
+
+        if (relevanceWarningGO != null)
+        {
+            relevanceWarningGO.SetActive(show);
+        }
+        else if (show)
+        {
+            // On off_topic this notice is the only thing separating "you scored A1" from
+            // "you answered a different question", so a missing object is worth saying
+            // out loud rather than failing silently.
+            Debug.LogWarning(
+                "FeedbackPanel: relevance was "
+                    + (offTopic ? "off_topic" : "partial")
+                    + " but relevanceWarningGO is not assigned - the learner sees the "
+                    + "score with no explanation."
+            );
+        }
+
+        // The notice and InfoText occupy the same band. Swapping them is cleaner than
+        // relying on one drawing over the other, and the notice is the more urgent of the
+        // two: how to read the scores matters less than being told what the scores mean.
+        if (infoTextGO != null)
+        {
+            infoTextGO.SetActive(!show);
+        }
+    }
+
+    /// <summary>
+    /// Grows the transcript box, and the scroll content under it, to fit the text.
+    ///
+    /// The transcript is the one element whose height is not knowable in advance - a long
+    /// answer runs to several hundred pixels. Everything else on this panel is fixed, so
+    /// the box and the ScrollRect's Content are the only things that have to move.
+    ///
+    /// Without this, a long transcript overflows a fixed-height box and the overflow sits
+    /// below the scrollable area: Content stops at its authored height, so scrolling hits
+    /// the end while text is still off screen and no amount of dragging reaches it.
+    /// </summary>
+    /// <summary>
+    /// Puts the results back at the top before they are shown.
+    ///
+    /// This panel is one reused object, and a ScrollRect keeps whatever position it was
+    /// left at. Read to the bottom of one result, record the next task, and the new
+    /// scores open half-scrolled - past the relevance notice, which is the one thing on
+    /// this screen a learner must not miss.
+    ///
+    /// Found rather than wired: the prefab holds exactly one ScrollRect, so there is
+    /// nothing to pick wrong and nothing to forget to assign.
+    /// </summary>
+    private void ScrollToTop()
+    {
+        ScrollRect scroll = GetComponentInChildren<ScrollRect>(true);
+
+        if (scroll == null)
+        {
+            return;
+        }
+
+        // Both axes: the panel only scrolls vertically today, but a horizontal offset left
+        // behind would be just as invisible from here.
+        scroll.verticalNormalizedPosition = 1f;
+        scroll.horizontalNormalizedPosition = 0f;
+    }
+
+    private void FitTranscript()
+    {
+        if (transcriptText == null || transcriptGroup == null)
+        {
+            return;
+        }
+
+        // Measured, not laid out: GetPreferredValues answers immediately, where waiting
+        // for a layout pass would leave Content at the wrong height for a frame.
+        float textWidth = transcriptGroup.sizeDelta.x - TRANSCRIPT_SIDE_PADDING * 2f;
+        float textHeight = transcriptText.GetPreferredValues(transcriptText.text, textWidth, 0f).y;
+
+        float groupHeight = TRANSCRIPT_HEADER + textHeight + TRANSCRIPT_BOTTOM_PADDING;
+        transcriptGroup.sizeDelta = new Vector2(transcriptGroup.sizeDelta.x, groupHeight);
+
+        if (scrollContent == null)
+        {
+            return;
+        }
+
+        // anchoredPosition.y is negative here - the box is anchored to Content's top edge,
+        // so this is how far below that edge it starts.
+        float groupTop = -transcriptGroup.anchoredPosition.y;
+
+        scrollContent.sizeDelta = new Vector2(
+            scrollContent.sizeDelta.x,
+            Mathf.Max(groupTop + groupHeight + CONTENT_TAIL, MIN_CONTENT_HEIGHT)
+        );
     }
 
     void OnDisable()

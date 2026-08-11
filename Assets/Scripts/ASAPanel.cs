@@ -57,6 +57,11 @@ public class ASAPanel : MonoBehaviour
 
     public ToggleGroup ratingOptions;
 
+    // Posts the self-assessment emoji on tap rather than waiting for Results. Built once
+    // and kept: it remembers what the server already has, and that memory is what stops
+    // the Results button re-sending an answer that has not changed.
+    private FeedbackAutoSend selfAssessmentFeedback;
+
     [SerializeField]
     TMP_InputField feedbackTextGO;
 
@@ -86,6 +91,19 @@ public class ASAPanel : MonoBehaviour
     private float currentTime = 0;
 
     public int currentTaskSelected = -1;
+
+    /// <summary>
+    /// The id the DTA server knows this task by. Its task ids start at 1
+    /// (inference/assets/task_id_map.json: 1 = the friend borrowing money, 2 = cannot come
+    /// to work, ... 5), while currentTaskSelected is an index into the tasks array above
+    /// and starts at 0.
+    ///
+    /// Sending the index unshifted made task 1 fail with 400 "Unknown task_id 0" and -
+    /// far worse - scored tasks 2 to 5 against the PREVIOUS task's prompt, which returns
+    /// a plausible number and no error at all. Convert here and nowhere else, so the value
+    /// we send and the value we check the response against cannot drift apart.
+    /// </summary>
+    public int CurrentServerTaskId => currentTaskSelected + 1;
 
     private AudioClip recording;
 
@@ -127,6 +145,13 @@ public class ASAPanel : MonoBehaviour
         resultsButtonGO.GetComponent<Button>().onClick.AddListener(() => OnResultsButtonClicked());
         backButtonGO.GetComponent<Button>().onClick.AddListener(() => OnBackButtonClicked());
 
+        // Each emoji now posts the moment it is tapped, so a learner who rates the result
+        // and then quits, or backs out to redo the task, is still counted. Results keeps
+        // sending as well - see OnResultsButtonClicked.
+        selfAssessmentFeedback ??= new FeedbackAutoSend(this, "self_assessment");
+        selfAssessmentFeedback.Attach(ratingOptions, () => feedbackTextGO.text);
+        selfAssessmentFeedback.AttachComment(feedbackTextGO, ratingOptions);
+
         replayBarGO.SetActive(false);
         progressBarBackgroundGO.SetActive(false);
         progressBarGO.SetActive(false);
@@ -137,6 +162,12 @@ public class ASAPanel : MonoBehaviour
         replayButtonGO.SetActive(false);
         resultsButtonGO.SetActive(false);
         dimPanelASAGO.SetActive(false);
+
+        // The panel is reused, so it must open in a known state rather than whatever the
+        // last visit left behind. OnDisable already does this, but not every way out of a
+        // screen runs it - the app being backgrounded mid-recording does not - and the
+        // cost of being wrong here is a Stop button that never works again.
+        CancelRecording();
     }
 
     void StartTimer()
@@ -317,16 +348,10 @@ public class ASAPanel : MonoBehaviour
 
         if (self_rating != null)
         {
-            StartCoroutine(
-                NetworkManager
-                    .GetManager()
-                    .ServerPost_feedback(
-                        POSTType.ASA_FEEDBACK,
-                        "self_assessment",
-                        self_rating.name,
-                        comment_self_rating
-                    )
-            );
+            // Usually a no-op by now: the emoji posted itself when it was tapped. It still
+            // matters when a comment was typed afterwards, and when the tap happened
+            // before the assessment id existed.
+            selfAssessmentFeedback.Send(self_rating.name, comment_self_rating);
         }
     }
 
@@ -343,5 +368,47 @@ public class ASAPanel : MonoBehaviour
     void OnDisable()
     {
         audioManager.StopReplaying();
+        CancelRecording();
+    }
+
+    /// <summary>
+    /// Abandons a recording that is still running when the panel closes.
+    ///
+    /// Leaving mid-recording used to walk away from three things at once, and the third
+    /// one left the screen permanently unusable:
+    ///
+    ///   - The microphone stayed open. Nothing stopped it, so it kept recording behind
+    ///     the flashcards or the profile until its length ran out.
+    ///   - isRecording stayed true. Update() does not run on a disabled object, so the
+    ///     countdown froze; on returning it picked up from the stale currentTime and could
+    ///     fire StopRecord() on its own, part way through a screen the learner had just
+    ///     opened fresh.
+    ///   - The pause button stayed dead. OnRecordButtonClicked turns it off and schedules
+    ///     EnableAfterDelay to turn it back on 0.3s later - and disabling a GameObject
+    ///     kills its coroutines. Leave inside that window and the button is never
+    ///     re-enabled, so on the next recording Stop does nothing at all. That is the
+    ///     freeze: the recording runs to its full length with no way to end it early.
+    ///
+    /// The audio is deliberately discarded rather than kept. A half-finished answer the
+    /// learner walked away from is not one they meant to send.
+    /// </summary>
+    private void CancelRecording()
+    {
+        if (isRecording)
+        {
+            AudioManager.GetManager().StopRecording();
+        }
+
+        isRecording = false;
+        isReplaying = false;
+        currentTime = 0f;
+
+        // Undoes the interactable=false set by OnRecordButtonClicked, whose coroutine is
+        // about to be killed. Cheap to do unconditionally, and the one line that keeps the
+        // Stop button alive.
+        if (pauseButtonGO != null)
+        {
+            pauseButtonGO.GetComponent<Button>().interactable = true;
+        }
     }
 }

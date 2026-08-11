@@ -640,8 +640,14 @@ public class MainPanel : MonoBehaviour
 
     private IEnumerator StopRecordingAndProcessAudio()
     {
-        GameObject textErrorGO = textInputPanelGO.transform.Find("PromptText").gameObject;
-        GameObject resultTextGO = textInputPanelGO.transform.Find("ReadAloudText").gameObject;
+        // PromptText doubles as this panel's status line: it is always visible and shows
+        // either the prompt, the result banner, or an error.
+        TMPro.TextMeshProUGUI promptText = textInputPanelGO
+            .transform.Find("PromptText")
+            .GetComponent<TMPro.TextMeshProUGUI>();
+        TMPro.TextMeshProUGUI readAloudText = textInputPanelGO
+            .transform.Find("ReadAloudText")
+            .GetComponent<TMPro.TextMeshProUGUI>();
 
         // Toggle the loading
         waitIconGO.SetActive(true);
@@ -655,11 +661,29 @@ public class MainPanel : MonoBehaviour
             .GetAudioAndPost(
                 POSTType.MDD_TASK,
                 transcript,
-                textErrorGO,
-                resultTextGO,
-                null,
-                null,
-                OnServerDone
+                readAloudText,
+                debugText: null,
+                warningImageGO: null,
+                resultPanelGO: null,
+                OnServerDone: serverOk =>
+                {
+                    // The wording lives here rather than in NetworkManager, because
+                    // PromptText is this panel's element and only this panel knows it is
+                    // a status line rather than an error-only label.
+                    if (serverOk)
+                    {
+                        promptText.text = "Here are your results. \n Great effort!";
+
+                        // Set the result text to bold following design guideline
+                        readAloudText.fontStyle = TMPro.FontStyles.Bold;
+                    }
+                    else
+                    {
+                        promptText.text = NetworkManager.GetManager().lastError;
+                    }
+
+                    OnServerDone();
+                }
             );
 
         replayButtonGO.transform.GetComponent<Button>().onClick.RemoveAllListeners();

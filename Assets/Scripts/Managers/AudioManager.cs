@@ -2,6 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+#if UNITY_ANDROID && !UNITY_EDITOR
+using UnityEngine.Android;
+#endif
 
 public class AudioManager : MonoBehaviour
 {
@@ -23,6 +26,42 @@ public class AudioManager : MonoBehaviour
         }
         audioSource = GetComponent<AudioSource>();
         audioManager = this;
+
+        RequestMicrophonePermission();
+    }
+
+    /// <summary>
+    /// Asks for the microphone up front, at launch, rather than at the moment of the
+    /// first recording.
+    ///
+    /// Asking late was the cause of a confusing freeze: Android shows the permission
+    /// dialog and pauses the app, but the recording code carried on and indexed
+    /// Microphone.devices[0] - which is EMPTY until permission is granted. That threw,
+    /// the recording never started, and the countdown ran against nothing. The user had
+    /// to leave the task and come back, by which point the device list was populated.
+    ///
+    /// Asking here means the dialog is answered long before any record button exists.
+    /// </summary>
+    public static void RequestMicrophonePermission()
+    {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        if (!Permission.HasUserAuthorizedPermission(Permission.Microphone))
+        {
+            Permission.RequestUserPermission(Permission.Microphone);
+        }
+#endif
+    }
+
+    /// <summary>True when we are allowed to record and a microphone actually exists.</summary>
+    public static bool CanRecord()
+    {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        if (!Permission.HasUserAuthorizedPermission(Permission.Microphone))
+        {
+            return false;
+        }
+#endif
+        return Microphone.devices.Length > 0;
     }
 
     public static AudioManager GetManager()
@@ -62,16 +101,20 @@ public class AudioManager : MonoBehaviour
 
     void RecordSound(int lengthSec)
     {
-        // Debug.Log("Name: " + Microphone.devices[0]);
+        // Never index Microphone.devices without checking it. It is empty whenever the
+        // permission has not been granted yet, and indexing [0] there throws
+        // IndexOutOfRangeException from inside a coroutine - which surfaces as the
+        // recording quietly never starting while the countdown runs.
+        if (!CanRecord())
+        {
+            Debug.LogError(
+                "Cannot record: microphone permission not granted, or no input device. "
+                    + "Asking again - the user can grant it and retry."
+            );
+            RequestMicrophonePermission();
+            return;
+        }
 
-        // if (Application.HasUserAuthorization(UserAuthorization.Microphone))
-        // {
-        //     Debug.Log("Microphone found");
-        // }
-        // else
-        // {
-        //     Debug.Log("Microphone not found");
-        // }
         audioSource.clip = Microphone.Start(
             Microphone.devices[0],
             false,
@@ -111,17 +154,20 @@ public class AudioManager : MonoBehaviour
         );
     }
 
-    // These two GetAudioAndPost functions were here before us, so we're not entirely sure why there are two of them
-    // They might or might not be used somewhere, so don't just delete them carelessly
-    // But really, we don't really know
+    // Stop recording and post the audio to the legacy pronunciation server.
+    // Used by the sentence exercise (MainPanel) and flashcard practice (SuperMemoPanel).
+    // There used to be two overloads of this, one per panel, differing only in how they
+    // passed their text fields around; they are merged - see NetworkManager.ServerPost
+    // for what was reconciled. The panel owns its own error label and reads
+    // NetworkManager.lastError when OnServerDone reports false.
     public void GetAudioAndPost(
         POSTType postType,
         string transcript,
-        GameObject textErrorGO,
-        GameObject resultTextGO,
-        GameObject resultPanelGO,
-        GameObject debugTextGO,
-        System.Action OnServerDone = null
+        TMPro.TextMeshProUGUI resultText,
+        TMPro.TextMeshProUGUI debugText = null,
+        GameObject warningImageGO = null,
+        GameObject resultPanelGO = null,
+        System.Action<bool> OnServerDone = null
     )
     {
         Microphone.End("");
@@ -135,39 +181,11 @@ public class AudioManager : MonoBehaviour
                     postType,
                     transcript,
                     wavBuffer,
-                    textErrorGO,
-                    resultTextGO,
-                    resultPanelGO,
-                    debugTextGO,
-                    OnServerDone
-                )
-        );
-    }
-
-    public void GetAudioAndPost(
-        string transcript,
-        GameObject textErrorGO,
-        TMPro.TextMeshProUGUI resultTextTMP,
-        GameObject warningImageGO,
-        GameObject resultPanelGO,
-        TMPro.TextMeshProUGUI debugText
-    )
-    {
-        Microphone.End("");
-        byte[] wavBuffer = SavWav.GetWav(audioSource.clip, out uint length, trim: true);
-        SavWav.Save(Const.REPLAY_FILENAME, audioSource.clip, trim: true); // for debug purpose
-
-        StartCoroutine(
-            NetworkManager
-                .GetManager()
-                .ServerPost(
-                    transcript,
-                    wavBuffer,
-                    textErrorGO,
-                    resultTextTMP,
+                    resultText,
+                    debugText,
                     warningImageGO,
                     resultPanelGO,
-                    debugText
+                    OnServerDone
                 )
         );
     }

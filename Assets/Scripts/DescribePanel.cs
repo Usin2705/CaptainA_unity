@@ -18,9 +18,6 @@ public class DescribePanel : MonoBehaviour
     GameObject scoreButtonGO;
 
     [SerializeField]
-    GameObject PromptGeneratorGO;
-
-    [SerializeField]
     TaskType taskType;
 
     [SerializeField]
@@ -156,13 +153,8 @@ public class DescribePanel : MonoBehaviour
     *   Otherwise, the image will be selected from the Resources folder, based on the task number
     */
     {
-        RandomPromptGenerator promptGenerator =
-            PromptGeneratorGO.GetComponent<RandomPromptGenerator>();
-        string prompt =
-            "I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS: "
-            + promptGenerator.GeneratePrompt();
-        //Debug.Log(prompt.Replace("\"", "\\\""));
-        //StartCoroutine(NetworkManager.GetManager().GPTImageGenerate(prompt));
+        // The generated prompt was built here and handed to DALL-E for task types C and
+        // C2. That call is gone, so nothing reads the prompt any more.
         taskNumber += 1;
         if (taskNumber > 1)
             taskNumber = 0;
@@ -215,11 +207,9 @@ public class DescribePanel : MonoBehaviour
                 transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = taskText;
                 break;
 
-            case TaskType.C:
-            case TaskType.C2:
-                // Automatic generate new image
-                StartCoroutine(NetworkManager.GetManager().GPTImageGenerate(prompt));
-                break;
+            // TaskType.C and C2 generated their picture through DALL-E rather than loading
+            // one from Resources. With that call removed they have nothing left to do, so
+            // they fall through the switch untouched - same as the empty case they were.
         }
         Debug.Log("Task Type: " + taskType.ToString() + "Task Number: " + taskNumber.ToString());
     }

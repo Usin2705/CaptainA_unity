@@ -34,6 +34,13 @@ public class AdvancePanel : MonoBehaviour
     [SerializeField]
     GameObject refuseButtonGO;
 
+    // "I have read and understood the Privacy Notice." on the consent sheet.
+    // Continue stays disabled until this is ticked, so consent cannot be given by
+    // reflex-tapping the primary button. Optional: leave unassigned and the sheet
+    // behaves as it did before, with Continue always enabled.
+    [SerializeField]
+    Toggle consentReadToggle;
+
     [SerializeField]
     GameObject backgroundPopUpGO;
 
@@ -47,33 +54,6 @@ public class AdvancePanel : MonoBehaviour
     GameObject feedbackPanelGO;
 
     [SerializeField]
-    GameObject describeButtonAGO;
-
-    [SerializeField]
-    GameObject describeButtonBGO;
-
-    [SerializeField]
-    GameObject describeButtonCGO;
-
-    [SerializeField]
-    GameObject describeButtonA2GO;
-
-    [SerializeField]
-    GameObject describeButtonB2GO;
-
-    [SerializeField]
-    GameObject describeButtonC2GO;
-
-    [SerializeField]
-    GameObject describePanelAGO;
-
-    [SerializeField]
-    GameObject describePanelBGO;
-
-    [SerializeField]
-    GameObject describePanelCGO;
-
-    [SerializeField]
     GameObject loadingPopUpGO;
 
     [SerializeField]
@@ -82,20 +62,13 @@ public class AdvancePanel : MonoBehaviour
     [SerializeField]
     ASAPanel ASAPanel;
 
+    // Other languages is now one open-ended field, and unlike the rest of the form it is
+    // optional - leaving it blank is a valid answer.
     [SerializeField]
     private TMP_InputField languageOtherField;
 
     [SerializeField]
-    private Toggle languageOther;
-
-    [SerializeField]
-    private GameObject languageOtherFieldGO;
-
-    [SerializeField]
     private TMP_InputField motherTongueOptions;
-
-    [SerializeField]
-    private GameObject otherLanguageOptionsGO;
 
     [SerializeField]
     private TextMeshProUGUI errorMessage;
@@ -104,35 +77,25 @@ public class AdvancePanel : MonoBehaviour
 
     public ToggleGroup ageOptions;
 
-    public ToggleGroup movedToFinlandOptions;
-
-    public ToggleGroup learnedFinnishOptions;
-
     public ToggleGroup selfAssessmentOptions;
 
-    [System.Serializable]
+    // Deliberately not [System.Serializable]. Unity cannot serialize a ValueTuple, so the
+    // attribute did nothing but raise a warning per field. This is a carrier: built in
+    // GetUserInput, handed to NetworkManager, never shown in the Inspector or saved.
     public class BackgroundFormData
     {
         public (string, string) gender;
         public (string, string) age;
         public (string, string) motherTongue;
         public (string, string) otherLanguages;
-        public (string, string) movedToFinland;
-        public (string, string) learnedFinnish;
         public (string, string) selfAssessment;
     }
 
     void OnEnable()
     {
-        // Check if the user has correct secret text
-        string secretText = PlayerPrefs.GetString(Const.PREF_SECRET_TEXT);
-        secretText = secretText.Replace("\r", "").Replace("\n", "").Trim();
-
-        // Remove the last character if there is a special character at the end
-        if (secretText.Length == Secret.SECRET_TEXT.Length + 1)
-        {
-            secretText = secretText[..^1];
-        }
+        // The secret text used to be read here to decide whether to wire up the
+        // DescribeButtons. Those are gone, and nothing else on this panel looks at it, so
+        // the check went with them. CardDeckPanel still uses Secret.SECRET_TEXT.
 
         refuseButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         acceptButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
@@ -145,74 +108,28 @@ public class AdvancePanel : MonoBehaviour
         acceptButtonGO.GetComponent<Button>().onClick.AddListener(() => AcceptConsent());
         refuseButtonGO.GetComponent<Button>().onClick.AddListener(() => RefuseConsent());
 
-        sendButtonGO.GetComponent<Button>().onClick.AddListener(() => GetUserInput());
-
-        languageOtherFieldGO.SetActive(false);
-        languageOther.onValueChanged.AddListener(isOn =>
+        // Continue follows the checkbox rather than being live from the start. Consent
+        // that was given without the notice being acknowledged is not worth much, and
+        // the disabled button is what tells the user why nothing happened.
+        if (consentReadToggle != null)
         {
-            languageOtherFieldGO.SetActive(isOn);
-        });
+            consentReadToggle.onValueChanged.AddListener(isOn =>
+                acceptButtonGO.GetComponent<Button>().interactable = isOn
+            );
+        }
+
+        sendButtonGO.GetComponent<Button>().onClick.AddListener(() => GetUserInput());
 
         errorMessage.enabled = false;
 
-        // This part is legacy code and these describeButton game objects are not currently active / in use
-        if (secretText == Secret.SECRET_TEXT)
-        {
-            describeButtonAGO
-                .GetComponent<Button>()
-                .onClick.AddListener(() => OnDescribeAButtonClicked());
-            describeButtonBGO
-                .GetComponent<Button>()
-                .onClick.AddListener(() => OnDescribeBButtonClicked());
-            describeButtonCGO
-                .GetComponent<Button>()
-                .onClick.AddListener(() => OnDescribeCButtonClicked());
-
-            describeButtonAGO.SetActive(false);
-            describeButtonBGO.SetActive(false);
-            describeButtonCGO.SetActive(false);
-
-            // English
-            describeButtonA2GO
-                .GetComponent<Button>()
-                .onClick.AddListener(() => OnDescribeAButtonClicked(DescribePanel.TaskType.A2));
-            describeButtonB2GO
-                .GetComponent<Button>()
-                .onClick.AddListener(() => OnDescribeBButtonClicked(DescribePanel.TaskType.B2));
-            describeButtonC2GO
-                .GetComponent<Button>()
-                .onClick.AddListener(() => OnDescribeCButtonClicked(DescribePanel.TaskType.C2));
-
-            describeButtonA2GO.SetActive(false);
-            describeButtonB2GO.SetActive(false);
-            describeButtonC2GO.SetActive(false);
-        }
-        else
-        {
-            describeButtonAGO.GetComponent<Button>().onClick.RemoveAllListeners();
-            describeButtonBGO.GetComponent<Button>().onClick.RemoveAllListeners();
-            describeButtonCGO.GetComponent<Button>().onClick.RemoveAllListeners();
-
-            describeButtonAGO.SetActive(false);
-            describeButtonBGO.SetActive(false);
-            describeButtonCGO.SetActive(false);
-
-            // English
-            describeButtonA2GO.GetComponent<Button>().onClick.RemoveAllListeners();
-            describeButtonB2GO.GetComponent<Button>().onClick.RemoveAllListeners();
-            describeButtonC2GO.GetComponent<Button>().onClick.RemoveAllListeners();
-
-            describeButtonA2GO.SetActive(false);
-            describeButtonB2GO.SetActive(false);
-            describeButtonC2GO.SetActive(false);
-        }
+        // The picture-description feature has been removed from the Advanced panel: the
+        // six DescribeButtons, their OnDescribe*ButtonClicked handlers, and the three
+        // describePanel objects are all gone, along with the secret-code gate that used
+        // to guard the assessment.
 
         // Set the proper panels and game objects as inactive at first
         numberGamePanelGO.SetActive(false);
         ASAPanelGO.SetActive(false);
-        describePanelAGO.SetActive(false);
-        describePanelBGO.SetActive(false);
-        describePanelCGO.SetActive(false);
         feedbackPanelGO.SetActive(false);
         taskPanelGO.SetActive(false);
         loadingPopUpGO.SetActive(false);
@@ -243,6 +160,14 @@ public class AdvancePanel : MonoBehaviour
 
     public void OnASAButtonClicked()
     {
+        // The assessment used to sit behind a secret code while it was being trialled.
+        // It is a public feature now, so the button goes straight through - consent and
+        // the background form are the only gates that remain.
+        ProceedToASA();
+    }
+
+    private void ProceedToASA()
+    {
         // Go to ASA task selection if consent has been given and the background form has been filled
         // Open relevant pop-ups otherwise
         if (
@@ -268,9 +193,24 @@ public class AdvancePanel : MonoBehaviour
             && PlayerPrefs.GetInt("BackgroundFormCompleted", 0) == 0
         )
         {
+            ResetConsentSheet();
             consentPopUpGO.SetActive(true);
             dimPanelGO.SetActive(true);
         }
+    }
+
+    // The sheet is a single reused object, so clear it every time it opens. Without this
+    // a user who ticked the box, backed out, and came back would find Continue already
+    // enabled and could consent without seeing the notice again.
+    private void ResetConsentSheet()
+    {
+        if (consentReadToggle == null)
+        {
+            return;
+        }
+
+        consentReadToggle.isOn = false;
+        acceptButtonGO.GetComponent<Button>().interactable = false;
     }
 
     public void LinkButtonPressed()
@@ -325,29 +265,9 @@ public class AdvancePanel : MonoBehaviour
 
         var motherTongue = new List<string> { motherTongueOptions.text };
 
-        List<string> otherLanguages = new();
-        foreach (var toggle in otherLanguageOptionsGO.GetComponentsInChildren<Toggle>())
-        {
-            if (toggle.isOn)
-            {
-                otherLanguages.Add(toggle.gameObject.GetComponent<OptionValue>().value);
-            }
-        }
-
-        var otherLanguagesTextField = languageOtherField.text;
-        otherLanguages.Add(otherLanguagesTextField);
-
-        var movedToFinland = movedToFinlandOptions
-            .ActiveToggles()
-            .FirstOrDefault()
-            .gameObject.GetComponent<OptionValue>()
-            .value;
-
-        var learnedFinnish = learnedFinnishOptions
-            .ActiveToggles()
-            .FirstOrDefault()
-            .gameObject.GetComponent<OptionValue>()
-            .value;
+        // Open-ended and optional: whatever the user typed, or an empty string. The
+        // server accepts other_languages as free text and allows it to be empty.
+        var otherLanguages = languageOtherField.text.Trim();
 
         var selfAssessment = selfAssessmentOptions
             .ActiveToggles()
@@ -360,87 +280,93 @@ public class AdvancePanel : MonoBehaviour
         PlayerPrefs.Save();
 
         string motherWrapped = string.Join("\n", motherTongue);
-        string otherWrapped = string.Join("\n", otherLanguages);
 
-        // Prepare the form to be sent to the server
+        // Prepare the form to be sent to the server.
+        // moved_to_finland and finnish_learning_duration are no longer collected. The
+        // server made both nullable in v1.2.0, so omitting them is accepted - see
+        // docs/TO_FRONTEND.md item 10.
         BackgroundFormData backgroundFormData = new()
         {
             gender = ("gender", gender),
             age = ("age_group", age),
             motherTongue = ("native_languages", motherWrapped),
-            otherLanguages = ("other_languages", otherWrapped),
-            movedToFinland = ("moved_to_finland", movedToFinland),
-            learnedFinnish = ("finnish_learning_duration", learnedFinnish),
+            otherLanguages = ("other_languages", otherLanguages),
             selfAssessment = ("finnish_self_assessment", selfAssessment),
         };
 
-        // Send consent and background form to server
+        // Send consent and background form to server.
+        //
+        // Nothing below this point may run until the server confirms the user exists.
+        // This used to mark BackgroundFormCompleted and open the task panel immediately,
+        // before the request had even been sent - so a failed onboarding still let the
+        // user into the assessment with a guid the server had never heard of. Every
+        // assessment then answered 404, and because the form was already flagged complete
+        // the app never asked again: a permanent dead end that only a reinstall cleared.
+        sendButtonGO.GetComponent<Button>().interactable = false;
+        errorMessage.enabled = false;
+
         StartCoroutine(
-            NetworkManager.GetManager().ServerPost_guid(POSTType.ASA_CONSENT, backgroundFormData)
+            NetworkManager
+                .GetManager()
+                .ServerPost_guid(
+                    POSTType.ASA_CONSENT,
+                    backgroundFormData,
+                    serverOk =>
+                    {
+                        sendButtonGO.GetComponent<Button>().interactable = true;
+
+                        if (!serverOk)
+                        {
+                            ShowOnboardingError();
+                            return;
+                        }
+
+                        // Only now is the user real on the server.
+                        PlayerPrefs.SetInt("BackgroundFormCompleted", 1);
+                        PlayerPrefs.Save();
+
+                        backgroundPopUpGO.SetActive(false);
+                        dimPanelGO.SetActive(false);
+                        taskPanelGO.SetActive(true);
+                    }
+                )
         );
+    }
 
-        PlayerPrefs.SetInt("BackgroundFormCompleted", 1);
-        PlayerPrefs.Save();
+    // Keeps the user on the background form and tells them why they are still there.
+    // The type is included because "something went wrong" is useless in a bug report,
+    // and for a 422 the user genuinely cannot fix it by trying again.
+    private void ShowOnboardingError()
+    {
+        NetworkManager network = NetworkManager.GetManager();
+        string reason = string.IsNullOrEmpty(network.lastError)
+            ? "Could not create your account."
+            : network.lastError;
 
-        backgroundPopUpGO.SetActive(false);
-        dimPanelGO.SetActive(false);
-        taskPanelGO.SetActive(true);
+        if (!string.IsNullOrEmpty(network.lastErrorType))
+        {
+            reason += $"\n({network.lastErrorType})";
+        }
+
+        errorMessage.text = reason;
+        errorMessage.enabled = true;
     }
 
     public bool ValidateInformation()
     {
-        // Make sure that background form is filled properly and no fields are empty, error message otherwise
+        // Every remaining question is mandatory except other languages, which is an
+        // open-ended field the user is allowed to leave blank.
         if (
             genderOptions.AnyTogglesOn()
             && ageOptions.AnyTogglesOn()
-            && movedToFinlandOptions.AnyTogglesOn()
-            && learnedFinnishOptions.AnyTogglesOn()
             && selfAssessmentOptions.AnyTogglesOn()
             && !string.IsNullOrWhiteSpace(motherTongueOptions.text)
         )
         {
-            if (languageOther.isOn && string.IsNullOrWhiteSpace(languageOtherField.text))
-            {
-                errorMessage.enabled = true;
-                return false;
-            }
-
             return true;
         }
         errorMessage.enabled = true;
         return false;
-    }
-
-    // These describePanels are again legacy code and not currently in use / active
-    // They can't be seen because their respective describeButtons are currently never visible
-    public void OnDescribeAButtonClicked(DescribePanel.TaskType taskType = DescribePanel.TaskType.A)
-    {
-        describePanelAGO.SetActive(true);
-        DescribePanel describePanel = describePanelAGO.GetComponent<DescribePanel>();
-        if (describePanel != null)
-        {
-            describePanel.setTaskType(taskType);
-        }
-    }
-
-    public void OnDescribeBButtonClicked(DescribePanel.TaskType taskType = DescribePanel.TaskType.B)
-    {
-        describePanelBGO.SetActive(true);
-        DescribePanel describePanel = describePanelBGO.GetComponent<DescribePanel>();
-        if (describePanel != null)
-        {
-            describePanel.setTaskType(taskType);
-        }
-    }
-
-    public void OnDescribeCButtonClicked(DescribePanel.TaskType taskType = DescribePanel.TaskType.C)
-    {
-        describePanelCGO.SetActive(true);
-        DescribePanel describePanel = describePanelCGO.GetComponent<DescribePanel>();
-        if (describePanel != null)
-        {
-            describePanel.setTaskType(taskType);
-        }
     }
 
     void OnDisable()
@@ -448,8 +374,5 @@ public class AdvancePanel : MonoBehaviour
     {
         numberGamePanelGO.SetActive(false);
         ASAPanelGO.SetActive(false);
-        describePanelAGO.SetActive(false);
-        describePanelBGO.SetActive(false);
-        describePanelCGO.SetActive(false);
     }
 }

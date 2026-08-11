@@ -44,6 +44,72 @@ public static class Const
     *
     */
 
+    // ===================== UI FONT SIZE =====================
+    // The sizes above, as constants so new UI stops guessing.
+    //
+    // These are Canvas units, not points or dp. They only make sense against the
+    // CanvasScaler reference resolution, which is 900 x 1600 with ScreenMatchMode
+    // MatchWidthOrHeight. If that reference ever changes, every one of these changes with
+    // it. Counted across MainScene, existing text sits at 28-44 with 32 by far the most
+    // common, so anything in the teens or low twenties is half-scale and will look wrong.
+    //
+    // The same factor applies to geometry: against this reference a comfortable tap
+    // target is ~100 units tall, not ~50, and a 24-unit icon is too small to see.
+
+    public const float FONT_TITLE = 40f; // screen and modal headings
+    public const float FONT_HEADING = 36f; // sub-headings, primary button labels
+    public const float FONT_BODY = 32f; // default readable text, the workhorse size
+    public const float FONT_INFO = 30f; // explanations, instructions, consent statements
+    public const float FONT_SMALL = 20f; // credits and footnotes only
+
+    // Minimum comfortable tap target height, same units.
+    public const float TAP_TARGET_HEIGHT = 100f;
+
+    // =======================================================
+
+    // ===================== CEFR SCALE =====================
+    // The numeric axis the DTA server returns proficiency and the analytic dimensions on.
+    // This is a shared contract - the server must use the same numbers for the same
+    // labels or the stars will disagree with the scores. See docs/TO_FRONTEND.md item 13.
+    //
+    //   < A1 = 0 | A1 = 1 | A2 = 2 | A2+ = 2.5 | B1 = 3 | B2 = 4 | C1 = 5 | C2 = 6
+    //
+    // Note the model cannot resolve above B1+ (3.5), so B2 and up are unreachable in
+    // practice today - which is why the star scale tops out at B1.
+
+    public const float CEFR_BELOW_A1 = 0f;
+    public const float CEFR_A1 = 1f;
+    public const float CEFR_A2 = 2f;
+    public const float CEFR_A2_PLUS = 2.5f;
+    public const float CEFR_B1 = 3f;
+    public const float CEFR_B2 = 4f;
+    public const float CEFR_C1 = 5f;
+    public const float CEFR_C2 = 6f;
+
+    // =======================================================
+
+    // ================ CEFR BAND BOUNDARIES ================
+    // Where one displayed band ends and the next begins. NOT the same numbers as the scale
+    // above, and conflating the two is what went wrong before: the anchor point for A2 is
+    // 2.0, but the score at which a learner starts being *called* A2 is 1.55.
+    //
+    //   A1  < 1.55 | A2  < 2.40 | A2+ < 2.75 | B1 >= 2.75
+    //
+    // Server v1.3.0 moved these down from 2.0 / 2.5 / 3.0. The old cuts put 50.7% of
+    // learners in A1 and 0.6% in B1, which is not a usable label.
+    //
+    // **These are a fallback and nothing more.** FeedbackRow reads the band from the
+    // server's own cefr_label_fine; this copy is only reached when a response carries no
+    // label at all. They will move again as the study collects data, and a build holding
+    // stale numbers has no way to know it - which is exactly why the label is authoritative
+    // and these are the last resort.
+
+    public const float CEFR_BAND_A2 = 1.55f;
+    public const float CEFR_BAND_A2_PLUS = 2.40f;
+    public const float CEFR_BAND_B1 = 2.75f;
+
+    // =======================================================
+
     // ================= TEXR COLOR SCORE ===================
     // Rich text color tag for each type of scoring
     public const string BAD_COLOR = "#ff0000ff";
@@ -133,6 +199,14 @@ public static class Const
     // Maximum waiting time for Unity web request
     public const int TIME_OUT_SECS = 40;
     public const int TIME_OUT_ADVANCE_SECS = 30;
+
+    // Timeout for POST /speech/assess on the DTA server.
+    // The server abandons the scorer at 60s and answers with a retryable 503, so the
+    // client has to stay connected longer than that or it aborts first and the user
+    // sees a generic transport error instead of the 503 we can retry.
+    // 60s server budget + margin for upload and response on mobile data.
+    // This number is shared with the backend - see docs/TO_FRONTEND.md item 5.
+    public const int TIME_OUT_ASA_SECS = 90;
 
     public const string FILE_NAME_POST = "speech_sample";
 
@@ -297,6 +371,142 @@ public static class Const
         + "under the guidance of advisor Nhan Phan and supervisor Mikko Kurimo, with additional support from student Lauri Lappalainen.\n\n"
         + "These improvements are based on feedback from our users - so please keep sharing your suggestions! "
         + "While our resources are limited, we'll do our best to implement your ideas.";
+
+    // ====================================================================
+
+    // ================= ASA USER-FACING TEXT =================
+    // Every string the Automatic Speaking Assessment shows a learner, kept together so a
+    // translator can be handed one block rather than sent hunting through the panels.
+    //
+    // Anything with {0}/{1} is a string.Format template - keep the placeholders when
+    // translating, and note that word order around them may need to change per language.
+
+    // --- relevance notices, shown above the score rows (FeedbackPanel) ---
+
+    // DO NOT REWORD ASA_OFF_TOPIC OR ASA_PARTIAL. Both were written deliberately and
+    // settled after several rounds. A server release changing what triggers a verdict is
+    // not a reason to touch what the learner reads - raise it and leave the strings alone.
+
+    // The recording did not address the task. "Check" not "listen": the task is written
+    // text, there is nothing to play.
+    public const string ASA_OFF_TOPIC =
+        "Your answer did not seem to match the task. Please check the task again.";
+
+    // The recording addressed the task only in part. These scores are real measurements,
+    // so this is a nudge, not a correction - it must not read as "your result is void".
+    // The second sentence is deliberate: relevance is judged by an LLM, which does get it
+    // wrong, and a learner who answered well has no way to argue with a notice that
+    // sounds certain.
+    public const string ASA_PARTIAL =
+        "Your answer only partly matched the task, so these scores may not reflect your "
+        + "true level. This check is automatic and can be wrong.";
+
+    // --- transcript (FeedbackPanel) ---
+
+    public const string ASA_TRANSCRIPT_EMPTY = "(nothing was recognised in this recording)";
+
+    // --- cohort position (ASAProfilePanel) ---
+    // The server buckets the position and sends only the bucket; these render it. Do not
+    // add a threshold or a rounding rule here - the ladders are retuned server-side as the
+    // cohorts grow, and that has to reach installed apps without a client release.
+    //
+    // Nothing is shown at all for the bottom half of a cohort, so none of these strings
+    // needs a "not ranked" variant.
+
+    // {0} = bucket: 1, 5, 10, 25 or 50. {1} = CEFR band.
+    public const string ASA_RANK_TOP_PERCENT = "You are in the top {0}% of {1} learners";
+
+    // {0} = CEFR band.
+    public const string ASA_RANK_WITHIN_LEVEL = "Your position among other {0} learners";
+
+    // {0} = bucket: 2, 3, 5, 10, 25, 50 or 100. Rank 1 uses ASA_RANK_FIRST instead.
+    public const string ASA_RANK_TOP_RANK = "Top {0}";
+
+    public const string ASA_RANK_FIRST = "#1";
+
+    // Shown when the server sends no position at all, which happens for the bottom half of
+    // a cohort. Two things it must not do, and between them they rule out almost every
+    // obvious sentence:
+    //
+    //   - It must not hint at where they sit. Any explanation of the absence amounts to
+    //     "you are not in the top 50%", which is the message the bucketing exists to stop.
+    //   - It must not carry a count of users. How many learners we have is not something
+    //     the app discloses, so cohort_size is off limits even though the payload has it.
+    //
+    // What is left is a statement about the learner's own result and nothing else. It is
+    // thin on purpose - the alternative was an empty panel that read as a broken screen.
+    // One per box, so both stay filled and the panel keeps its shape rather than opening a
+    // hole where the position used to be.
+    public const string ASA_RANK_NO_POSITION = "Keep practising to see how you compare.";
+
+    // {0} = CEFR band.
+    public const string ASA_RANK_NO_POSITION_LABEL =
+        "Keep practising to see your position among other {0} learners.";
+
+    // --- ranking unavailable (ASAProfilePanel) ---
+    // Three different reasons, and only the first is something the learner can act on, so
+    // it is the only one phrased as an instruction.
+
+    // {0} = required assessments, {1} = how many they have done.
+    public const string ASA_RANK_NEED_MORE_TASKS =
+        "Please complete at least {0} tasks to see your ranking. You have completed {1} "
+        + "out of {0} so far.";
+
+    // Depends on how many other learners share their level, so it is not phrased as
+    // something they can fix.
+    public const string ASA_RANK_COHORT_TOO_SMALL =
+        "There are not enough learners at your level yet for comparison. Please check "
+        + "back later.";
+
+    public const string ASA_RANK_UNAVAILABLE =
+        "Your ranking is not available at the moment. Please try again later.";
+
+    // Fallback when the server returns a status we do not recognise yet.
+    public const string ASA_RANK_UNAVAILABLE_GENERIC =
+        "Your ranking is not available at the moment.";
+
+    // --- level change (ASAProfilePanel) ---
+    // Not user-facing text, but the two values the Advance and Revert buttons are built
+    // on, kept beside the strings they govern.
+
+    // The server CHECKs users.cefr_level against exactly these five, and the onboarding
+    // form offers the same five, so a user can start anywhere on this ladder. The order
+    // is the ladder: Advance and Revert are one step along it.
+    public static readonly string[] ASA_LEVELS = { "A1", "A2", "B1", "B2", "C1_plus" };
+
+    // Advance stops here. Revert has no ceiling of its own - it is offered from anywhere
+    // except A1 - so someone who self-assessed as B2 or C1+ can walk down the ladder but
+    // cannot climb back above B1.
+    public const string ASA_ADVANCE_CEILING = "B1";
+
+    // Backstop only. A blank Secret.ASA_SET_LEVEL_URL hides both buttons, so in practice
+    // nobody reaches a state where this needs showing.
+    public const string ASA_LEVEL_UNAVAILABLE =
+        "Changing your level is not available at the moment.";
+
+    // --- data deletion (ASAProfilePanel) ---
+
+    public const string ASA_DELETE_WARNING =
+        "This will permanently delete your Automatic Speaking Assessment data, including "
+        + "your recordings, scores, and assessment account, from this device and our "
+        + "servers.\n\n"
+        + "This action cannot be undone. We will not be able to recover the deleted data "
+        + "for you.";
+
+    public const string ASA_DELETE_IN_PROGRESS = "Deleting your data...";
+
+    // Only when the server confirmed the erase.
+    public const string ASA_DELETE_CONFIRMED =
+        "Your data has been deleted. You can start again from the beginning at any time.";
+
+    // Also used when the request did not reach the server: the local data is gone either
+    // way and the deletion is retried on every launch, so the outcome is the same from
+    // the user's side.
+    public const string ASA_DELETE_RECEIVED =
+        "Your request has been received and your data is being removed.";
+
+    public const string ASA_DELETE_CANCEL_LABEL = "Cancel";
+    public const string ASA_DELETE_CLOSE_LABEL = "Close";
 
     // ====================================================================
 }
