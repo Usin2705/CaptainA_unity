@@ -237,20 +237,58 @@ public class ASAPanel : MonoBehaviour
 
     public void OnRecordButtonClicked()
     {
-        // Start recording
-        AudioManager.GetManager().StartRecording((int)tasks[currentTaskSelected].recordingTime);
+        // Stop stays dead until the microphone is genuinely open. It used to be re-enabled
+        // by a 0.3s timer running alongside AudioManager's own 0.3s startup delay, so the
+        // two finished together and a quick tap could land Microphone.End() before the
+        // Microphone.Start() it was meant to cancel: the device then opened *after* the
+        // stop and recorded on unattended, while the file saved was whatever the clip held
+        // from before. Waiting for the callback removes the race rather than tuning it.
+        var stopButton = pauseButtonGO.GetComponent<Button>();
+        stopButton.interactable = false;
+
         StartTimer();
 
-        var btn = pauseButtonGO.GetComponent<Button>();
-        btn.interactable = false;
+        AudioManager
+            .GetManager()
+            .StartRecording(
+                (int)tasks[currentTaskSelected].recordingTime,
+                started =>
+                {
+                    if (started)
+                    {
+                        stopButton.interactable = true;
+                        return;
+                    }
 
-        StartCoroutine(EnableAfterDelay(btn, 0.3f));
+                    // No microphone - permission refused, or another app holds the device.
+                    // Put the panel back rather than counting down against a recording
+                    // that is not happening and then offering the silence for replay.
+                    Debug.LogError("Recording did not start; returning to the record button.");
+                    AbandonRecording();
+                }
+            );
     }
 
-    IEnumerator EnableAfterDelay(Button btn, float delay)
+    /// <summary>
+    /// Returns the panel to its ready-to-record state without producing a result.
+    /// Used when a recording never started, and when it captured nothing.
+    /// </summary>
+    private void AbandonRecording()
     {
-        yield return new WaitForSeconds(delay);
-        btn.interactable = true;
+        isRecording = false;
+        currentTime = 0f;
+
+        progressBarBackgroundGO.SetActive(false);
+        progressBarGO.SetActive(false);
+
+        pauseButtonGO.SetActive(false);
+        pauseButtonGO.GetComponent<Button>().interactable = true;
+        recordButtonGO.SetActive(true);
+
+        // Deliberately not offered: there is no new recording behind them, and the file on
+        // disk is still the previous answer.
+        sendButtonGO.SetActive(false);
+        replayButtonGO.SetActive(false);
     }
 
     public void StopRecord()
@@ -261,7 +299,17 @@ public class ASAPanel : MonoBehaviour
         progressBarGO.SetActive(false);
 
         // Stop recording and save the audio
-        AudioManager.GetManager().StopRecording();
+        bool saved = AudioManager.GetManager().StopRecording();
+
+        if (!saved)
+        {
+            // Stopped before the device captured anything - a tap the instant Stop became
+            // live, or a microphone that never opened. There is no answer here to send or
+            // replay, and offering the silence as one is how a learner ends up submitting
+            // 30 seconds of nothing.
+            AbandonRecording();
+            return;
+        }
 
         pauseButtonGO.SetActive(false);
         recordButtonGO.SetActive(true);

@@ -69,7 +69,14 @@ public class AudioManager : MonoBehaviour
         return audioManager;
     }
 
-    public void StartRecording(int lengthSec)
+    /// <param name="onStarted">
+    /// Called once the microphone is actually running, or with false if it could not be
+    /// started. Worth waiting for rather than assuming: this method returns immediately
+    /// but the device does not open for another 0.3s, and a stop issued inside that gap
+    /// lands before the start it was meant to cancel - which leaves the microphone running
+    /// unattended and saves whatever the clip held beforehand.
+    /// </param>
+    public void StartRecording(int lengthSec, System.Action<bool> onStarted = null)
     {
         /*
         *   We can skip this block since we no longer require a notification sound
@@ -82,16 +89,16 @@ public class AudioManager : MonoBehaviour
         //The new notification sound is just 0.3f long
         //Invoke(nameof(RecordSound), 0.31f);
         // audioSource.Stop();
-        StartCoroutine(StartRecordingSafe(lengthSec));
+        StartCoroutine(StartRecordingSafe(lengthSec, onStarted));
     }
 
-    IEnumerator StartRecordingSafe(int lengthSec)
+    IEnumerator StartRecordingSafe(int lengthSec, System.Action<bool> onStarted)
     {
         audioSource.Stop();
 
         yield return new WaitForSeconds(0.3f);
 
-        RecordSound(lengthSec);
+        onStarted?.Invoke(RecordSound(lengthSec));
     }
 
     public void StopReplaying()
@@ -99,7 +106,8 @@ public class AudioManager : MonoBehaviour
         audioSource.Stop();
     }
 
-    void RecordSound(int lengthSec)
+    /// <returns>True only if the microphone is now running.</returns>
+    bool RecordSound(int lengthSec)
     {
         // Never index Microphone.devices without checking it. It is empty whenever the
         // permission has not been granted yet, and indexing [0] there throws
@@ -112,7 +120,7 @@ public class AudioManager : MonoBehaviour
                     + "Asking again - the user can grant it and retry."
             );
             RequestMicrophonePermission();
-            return;
+            return false;
         }
 
         audioSource.clip = Microphone.Start(
@@ -121,6 +129,8 @@ public class AudioManager : MonoBehaviour
             lengthSec,
             Const.FREQUENCY
         );
+
+        return audioSource.clip != null;
     }
 
     public void PlayAudioClip(AudioClip audioClip)
@@ -234,11 +244,47 @@ public class AudioManager : MonoBehaviour
         );
     }
 
-    public void StopRecording()
+    /// <summary>
+    /// Ends the recording and writes it to Const.ASA_FILENAME.
+    /// </summary>
+    ///
+    /// <returns>
+    /// False when nothing was actually captured, in which case no file is written and the
+    /// previous one is left alone.
+    /// </returns>
+    ///
+    /// <remarks>
+    /// The check matters more than it looks. Microphone.Start allocates the whole
+    /// lengthSec up front and fills it as it goes, so a clip that was never recorded into
+    /// is not short - it is full-length silence. SavWav's trim does not save us either: it
+    /// walks in from each end looking for a non-zero sample, and when every sample is zero
+    /// neither loop ever breaks, so the bounds stay at the full buffer and it writes the
+    /// entire thing. That is the "maximum length empty file" - 30 seconds of nothing,
+    /// offered for replay and upload as if it were an answer.
+    ///
+    /// Microphone.GetPosition is how many samples the device has written, and it must be
+    /// read before Microphone.End because stopping the device resets it to zero.
+    /// </remarks>
+    public bool StopRecording()
     {
+        string device = Microphone.devices.Length > 0 ? Microphone.devices[0] : null;
+        int captured = Microphone.GetPosition(device);
+        bool wasRecording = Microphone.IsRecording(device);
+
         Microphone.End("");
-        byte[] wavBuffer = SavWav.GetWav(audioSource.clip, out uint length, trim: true);
+
+        if (audioSource.clip == null || !wasRecording || captured <= 0)
+        {
+            Debug.LogWarning(
+                "Nothing was recorded - not saving. "
+                    + $"clip={(audioSource.clip == null ? "null" : "present")}, "
+                    + $"wasRecording={wasRecording}, capturedSamples={captured}."
+            );
+            return false;
+        }
+
         SavWav.Save(Const.ASA_FILENAME, audioSource.clip, trim: true);
+        return true;
     }
 
     public IEnumerator LoadAudioClip(string filename, GameObject replayButtonGO)
