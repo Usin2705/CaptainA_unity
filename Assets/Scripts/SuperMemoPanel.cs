@@ -564,8 +564,9 @@ public class SuperMemoPanel : MonoBehaviour
                         errorTextGO.SetActive(!serverOk);
                         if (!serverOk)
                         {
-                            errorTextGO.GetComponent<TMPro.TextMeshProUGUI>().text =
-                                NetworkManager.GetManager().lastError;
+                            errorTextGO.GetComponent<TMPro.TextMeshProUGUI>().text = NetworkManager
+                                .GetManager()
+                                .lastError;
                         }
                     }
                 );

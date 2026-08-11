@@ -12,15 +12,20 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '10.0.x'
 
+      # Pinned on purpose. Unpinned, this pulled whatever CSharpier had released that
+      # morning, so a formatting rule changing upstream turned CI red on a commit that
+      # touched nothing - and it still looked fine locally, because your machine had
+      # whatever version you installed months ago. Bump this deliberately, and run
+      # `dotnet tool update -g csharpier --version <same>` so both agree.
       - name: Install CSharpier
-        run: dotnet tool install csharpier
+        run: dotnet tool install csharpier --version 1.3.0
 
       - name: Run CSharpier
         run: dotnet csharpier check ./Assets/Scripts

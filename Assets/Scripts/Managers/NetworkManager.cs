@@ -332,7 +332,8 @@ public class NetworkManager : MonoBehaviour
         guid = MintUserGuid();
         Debug.LogWarning(
             "Onboarding: no guid was stored - consent had been recorded without one, "
-                + "which a partial PlayerPrefs reset can cause. Minted " + guid
+                + "which a partial PlayerPrefs reset can cause. Minted "
+                + guid
         );
         return guid;
     }
@@ -660,7 +661,9 @@ public class NetworkManager : MonoBehaviour
         if (string.IsNullOrEmpty(postURL))
         {
             Debug.LogWarning(
-                "Level change to " + cefrLevel + " was not sent: Secret.ASA_SET_LEVEL_URL "
+                "Level change to "
+                    + cefrLevel
+                    + " was not sent: Secret.ASA_SET_LEVEL_URL "
                     + "is empty. The endpoint is still to be built - see docs/TO_BACKEND.md."
             );
             lastError = Const.ASA_LEVEL_UNAVAILABLE;
@@ -1015,9 +1018,7 @@ public class NetworkManager : MonoBehaviour
             )
             {
                 // The server's own words are for us, not for the learner.
-                Debug.LogError(
-                    $"{postType} failed: {uwr.error} | {uwr.downloadHandler.text}"
-                );
+                Debug.LogError($"{postType} failed: {uwr.error} | {uwr.downloadHandler.text}");
                 lastError = string.IsNullOrEmpty(uwr.error) ? "Network error!" : "Server error!";
 
                 OnServerDone?.Invoke(false);

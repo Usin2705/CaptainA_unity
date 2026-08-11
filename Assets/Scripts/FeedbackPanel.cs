@@ -463,9 +463,8 @@ public class FeedbackPanel : MonoBehaviour
         {
             // Empty rather than left over from the previous recording: this panel is
             // reused, and a stale transcript next to fresh scores is worse than none.
-            string heard = networkManager.asrResultASA == null
-                ? null
-                : networkManager.asrResultASA.transcript;
+            string heard =
+                networkManager.asrResultASA == null ? null : networkManager.asrResultASA.transcript;
 
             transcriptText.text = string.IsNullOrWhiteSpace(heard)
                 ? Const.ASA_TRANSCRIPT_EMPTY

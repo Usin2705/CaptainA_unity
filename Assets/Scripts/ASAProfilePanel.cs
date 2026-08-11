@@ -649,8 +649,7 @@ public class ASAProfilePanel : MonoBehaviour
     // The endpoint is still to be built, so ASA_SET_LEVEL_URL is blank in Secret.cs until
     // it exists. A button that visibly does nothing is worse than no button, so both are
     // hidden while it is. Filling the value in is all that is needed to bring them back.
-    private static bool LevelChangeConfigured =>
-        !string.IsNullOrEmpty(Secret.ASA_SET_LEVEL_URL);
+    private static bool LevelChangeConfigured => !string.IsNullOrEmpty(Secret.ASA_SET_LEVEL_URL);
 
     private static int LevelIndex(string cefrLevel)
     {
