@@ -59,68 +59,93 @@ public class FeedbackRow : MonoBehaviour
         return loaded;
     }
 
+    // The four bands the server floors every label into, in order. The position in this
+    // array IS the star tier, which is what keeps the label and the stars from ever
+    // disagreeing: they are read off the same index.
+    //
+    // There is no <A1, no A1+/B1+, and nothing above B1 - the model clips at B1+ (3.5), so
+    // a B2 tier would be unreachable UI.
+    static readonly string[] BANDS = { "A1", "A2", "A2+", "B1" };
+
     /// <summary>
-    /// Maps a score on the CEFR 0-6 axis to a star count and the matching level label.
-    ///
-    /// PLANNED FOR THE NEXT UPDATE - display the server's cefr_label_fine instead of
-    /// deriving the label here. The server already derives it from the same score, so
-    /// having the rule in two codebases means it can silently drift: move the A2+
-    /// boundary off 2.5 server-side and this row keeps the old one, showing a label that
-    /// contradicts the score.
-    ///
-    /// The data is there: v1.2.0 added dimension_labels alongside cefr_label_fine, so all
-    /// five rows could read a server label today. Not switched in this release because it
-    /// is a UI change we are not making now. See docs/TO_FRONTEND.md item 13.
-    ///
-    /// Note the thresholds below do NOT disappear after that switch: the star tier is
-    /// still computed from the number, so these boundaries must keep matching the
-    /// server's or the stars will disagree with the label sitting next to them.
-    ///
-    /// The star boundaries ARE the CEFR boundaries, so the label and the stars cannot
-    /// drift apart - both are set together in one branch:
-    ///
-    ///   below A2   (&lt; 2.0)       1 star    A1
-    ///   A2         (2.0 - 2.5)    2 stars   A2
-    ///   A2+        (2.5 - 3.0)    3 stars   A2+
-    ///   B1 and up  (&gt;= 3.0)      4 stars   B1
-    ///
-    /// NOTE the off-by-one: the first star is always lit and lives outside this array, so
-    /// `stars` holds only stars two to four. fillStars is therefore one LESS than the
-    /// count the user sees - 3 filled here reads as 4 stars on screen. The array is meant
-    /// to have 3 elements; do not "fix" it to 4.
-    ///
-    /// One star is the floor: every recording that scores at all is at least A1, and an
-    /// all-empty row would read as "we failed to score you" rather than "you are a
-    /// beginner".
-    ///
-    /// B2 and above are deliberately absent. The model clips at B1+ (3.5), so nothing
-    /// above B1 can be reached - a B2 label would be unreachable UI.
+    /// Shows one dimension as a star tier plus its CEFR badge.
     /// </summary>
-    public void SetValue(float rating, int row)
+    ///
+    /// <param name="labelFine">
+    /// The server's own label for this dimension - `cefr_label_fine` for proficiency,
+    /// `dimension_labels.&lt;name&gt;.label_fine` for the other four.
+    ///
+    /// **This is the value that decides what is shown.** The client used to derive the
+    /// band from the score with its own thresholds, which meant the rule lived in two
+    /// codebases and could drift apart silently. It did: v1.3.0 moved the boundaries to
+    /// A1 &lt;1.55, A2 &lt;2.40, A2+ &lt;2.75 because the old cuts put half of all
+    /// learners in A1, and they are expected to move again as the study collects data. A
+    /// client deriving its own band would now disagree with the row stored against the
+    /// learner - without throwing, without logging.
+    /// </param>
+    ///
+    /// <param name="rating">
+    /// Only a fallback, for a response that carries no label: an older server, or a shape
+    /// we failed to parse. It uses Const.CEFR_BAND_*, which track the server's current
+    /// cuts but will go stale the next time those move - a last resort to avoid a blank
+    /// row, not a second opinion.
+    /// </param>
+    ///
+    /// <param name="row">Picks the star colour - row 1 is blue, the rest yellow.</param>
+    public void SetValue(float rating, int row, string labelFine = null)
     {
         // Filled stars beyond the always-on first one, so 0 here means 1 star on screen.
+        //
+        // NOTE the off-by-one: the first star is always lit and lives outside the `stars`
+        // array, which holds only stars two to four. fillStars is therefore one LESS than
+        // the count on screen - 3 filled here reads as 4 stars. The array is meant to have
+        // 3 elements; do not "fix" it to 4.
+        //
+        // One star is the floor: every recording that scores at all is at least A1, and an
+        // all-empty row would read as "we failed to score you" rather than "you are a
+        // beginner".
         int fillStars;
         string level;
 
-        if (rating < Const.CEFR_A2)
+        int band = System.Array.IndexOf(BANDS, (labelFine ?? "").Trim());
+
+        if (band >= 0)
         {
-            fillStars = 0;
-            level = "a1";
-        }
-        else if (rating < Const.CEFR_A2_PLUS)
-        {
-            fillStars = 1;
-            level = "a2";
-        }
-        else if (rating < Const.CEFR_B1)
-        {
-            fillStars = 2;
-            level = "a2_plus";
+            fillStars = band;
+            level = BANDS[band].Replace("+", "_plus").ToLowerInvariant();
         }
         else
         {
-            fillStars = 3;
-            level = "b1";
+            if (!string.IsNullOrWhiteSpace(labelFine))
+            {
+                // A band we do not know. Worth a shout: it means the server added one and
+                // this row is about to draw the wrong thing from the number instead.
+                Debug.LogWarning(
+                    $"FeedbackRow: unrecognised CEFR label '{labelFine}'. Falling back to "
+                        + "the score, whose thresholds are the outdated pre-v1.3.0 ones."
+                );
+            }
+
+            if (rating < Const.CEFR_BAND_A2)
+            {
+                fillStars = 0;
+                level = "a1";
+            }
+            else if (rating < Const.CEFR_BAND_A2_PLUS)
+            {
+                fillStars = 1;
+                level = "a2";
+            }
+            else if (rating < Const.CEFR_BAND_B1)
+            {
+                fillStars = 2;
+                level = "a2_plus";
+            }
+            else
+            {
+                fillStars = 3;
+                level = "b1";
+            }
         }
 
         levels.sprite = LevelIcon(level);

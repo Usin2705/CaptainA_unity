@@ -121,16 +121,56 @@ public class ASAProfilePanel : MonoBehaviour
     [System.Serializable]
     public class Stats
     {
+        // Research values. Neither may be written on the screen as a number: they are
+        // finer than anything a learner should be told, and "you are in the 13th
+        // percentile" is precisely the claim v1.3.0 set out to remove. The numbers a
+        // learner reads come from `display`, already bucketed.
+        //
+        // percentile has two uses that are not a number on a screen, and both are fine:
+        // it fills the level ring, which shows no figure, and it gates whether the Advance
+        // button appears.
         public float percentile = -1f;
+        public int rank;
+
         public string cefr_level;
         public int cohort_size;
-        public int rank;
+
+        // The bucketed position, and the only part of this response that may be shown.
+        public Display display;
 
         // Present only when the comparison could NOT be produced. A successful
         // ComparisonResponse carries no status at all, so an empty string here is the
         // reliable "we got real numbers" signal - more reliable than percentile == -1,
         // which is indistinguishable from a genuine bottom-of-cohort result.
         public string status;
+    }
+
+    /// <summary>
+    /// The learner-facing position, already rounded into buckets by the server.
+    ///
+    /// The ladders are deliberately server-side: they get retuned as the cohorts grow, and
+    /// that has to reach installed apps without a client release. So nothing here is
+    /// recomputed, compared against a threshold, or interpolated - the numbers are
+    /// rendered as they arrive or not at all.
+    ///
+    /// The buckets round away from the learner, never toward: someone genuinely at 3.4%
+    /// is shown "top 5%". Every rendered claim is literally true and none of them flatter.
+    /// </summary>
+    [System.Serializable]
+    public class Display
+    {
+        // Server sends 1, 5, 10, 25, 50, or null. JsonUtility cannot hold a null int, so
+        // it lands here as 0 - which is safe, because 0 is not one of the buckets and
+        // therefore cannot be confused with a real position.
+        public int top_percent;
+
+        // 1, 2, 3, 5, 10, 25, 50, 100, or null (0 here). Null past #100.
+        public int top_rank;
+
+        // Both are null for anyone in the bottom half of their cohort. That means show no
+        // position at all - not a placeholder, not "unranked".
+        public bool HasPercent => top_percent > 0;
+        public bool HasRank => top_rank > 0;
     }
 
     [System.Serializable]
@@ -418,39 +458,113 @@ public class ASAProfilePanel : MonoBehaviour
         errorPopupGO.SetActive(false);
     }
 
+    /// <summary>
+    /// The ring around the grade letter, showing roughly where the learner sits.
+    ///
+    /// Driven by the bucket, not by `percentile`. A ring filled to an exact percentile is
+    /// still a display of it - a finer claim than the server is willing to make to a
+    /// learner - so it moves in the same steps as the text beside it. Top 5% fills 95%.
+    ///
+    /// Filled from `percentile`, which is sent on every successful comparison whether or
+    /// not a `display` bucket comes with it. That is why the ring keeps working for the
+    /// bottom half of a cohort, where both bucket fields are null.
+    ///
+    /// This is not the thing v1.3.0 asked us to stop showing. What it removed was the
+    /// precise figure - "you are in the 13th percentile" - and a ring carries no figure a
+    /// learner can read off it. The numbers beside it come from `display` and stay
+    /// bucketed.
+    ///
+    /// The ring is never hidden: it is the frame around the grade letter, and taking it
+    /// away leaves the badge looking broken.
+    /// </summary>
     public void UpdateLevelBar(Stats user)
     {
-        // Refers to the circular level bar around the grade letter + number in the profile panel
-        StartCoroutine(AnimateLevelBar(user));
+        levelBarGO.SetActive(true);
+
+        // Clamped because percentile defaults to -1 for "absent", and a negative fill
+        // would silently render as empty rather than as the missing value it is.
+        StartCoroutine(AnimateLevelBar(Mathf.Clamp01(user.percentile)));
     }
 
-    private IEnumerator AnimateLevelBar(Stats user)
+    private IEnumerator AnimateLevelBar(float target)
     {
-        // Sets level bar to user's position in their level with regards to others
         float filled = 0f;
 
-        while (filled < user.percentile)
+        while (filled < target)
         {
             levelBarGO.GetComponent<Image>().fillAmount = filled;
             filled += 0.01f;
 
             yield return null;
         }
+
+        // The loop overshoots by up to one step and then stops, leaving the ring a hair
+        // short of where it was asked to go. Pin it.
+        levelBarGO.GetComponent<Image>().fillAmount = target;
     }
 
+    /// <summary>
+    /// Fills in the profile from a successful comparison.
+    ///
+    /// The position comes from `display` and nowhere else. This used to print
+    /// `100 * percentile` and `#rank` straight from the research fields, which could tell
+    /// a learner they were "performing better than 13.4% of A2 users" - a truthful number
+    /// and a terrible thing to read. The server now buckets it, and both fields go absent
+    /// for the bottom half of a cohort, where the honest thing to show is nothing.
+    /// </summary>
     public void UpdateText(Stats user)
     {
-        // Updates profile panel text descriptions based on user level and other relevant data
-        string performance_text =
-            $"You are performing better than {100 * user.percentile}% of {user.cefr_level.Replace("_plus", "+")} users";
-        performanceText.text = performance_text;
-        levelText.text = user.cefr_level.Replace("_plus", "+");
-        string rank_text =
-            $"Your rank within other {user.cefr_level.Replace("_plus", "+")} level users";
-        rankText.text = rank_text;
-        string position_text = $"#{user.rank}";
-        positionText.text = position_text;
+        string level = user.cefr_level.Replace("_plus", "+");
+        levelText.text = level;
         GiveLevelDescriptions(user.cefr_level);
+
+        Display display = user.display;
+        bool hasPercent = display != null && display.HasPercent;
+        bool hasRank = display != null && display.HasRank;
+
+        if (hasPercent)
+        {
+            performanceText.text = string.Format(
+                Const.ASA_RANK_TOP_PERCENT,
+                display.top_percent,
+                level
+            );
+        }
+
+        if (hasRank)
+        {
+            rankText.text = string.Format(Const.ASA_RANK_WITHIN_LEVEL, level);
+
+            // "#1" reads better than "Top 1" for the one case where they mean the same.
+            positionText.text =
+                display.top_rank == 1
+                    ? Const.ASA_RANK_FIRST
+                    : string.Format(Const.ASA_RANK_TOP_RANK, display.top_rank);
+        }
+        else
+        {
+            // The box stays where it is; only the position itself is replaced. Hiding it
+            // left a hole in the middle of the panel.
+            rankText.text = string.Format(Const.ASA_RANK_NO_POSITION_LABEL, level);
+            positionText.text = "";
+        }
+
+        // No position is a valid outcome, not an error - but leaving the panel empty made
+        // it look like one, so the performance line stays visible either way.
+        //
+        // What it says is deliberately about the learner's own result and nothing else.
+        // It cannot explain the absence, because both fields go null only for the bottom
+        // half of a cohort and any explanation amounts to saying so; and it cannot fall
+        // back on cohort_size, because the number of users is not ours to disclose.
+        if (!hasPercent)
+        {
+            performanceText.text = Const.ASA_RANK_NO_POSITION;
+        }
+
+        // Both boxes always stay up. Their contents change when there is no position to
+        // show; the panel's shape does not.
+        performanceInfo.SetActive(true);
+        rankInfo.SetActive(true);
     }
 
     public void GiveLevelDescriptions(String cefr_level)
@@ -666,8 +780,6 @@ public class ASAProfilePanel : MonoBehaviour
                 break;
         }
 
-        levelBarGO.SetActive(false);
-
         // RANK_UNAVAILABLE carries no cefr_level, so the level display is skipped rather
         // than showing an empty badge - and the old unconditional .Replace() on it would
         // have thrown here.
@@ -680,6 +792,16 @@ public class ASAProfilePanel : MonoBehaviour
 
         levelTextGO.SetActive(hasLevel);
         levelDescriptionTextGO.SetActive(hasLevel);
+
+        // The ring is never hidden - it frames the grade letter, and taking it away leaves
+        // the badge looking broken on exactly the screens where the learner is told least.
+        //
+        // Solid, because these three responses carry no percentile at all: there is no
+        // comparison behind them, so there is nothing to fill it to. Note this is the one
+        // place the ring is not a position - a fill-type Image at 0 renders as nothing,
+        // which would be indistinguishable from hiding it.
+        levelBarGO.SetActive(true);
+        levelBarGO.GetComponent<Image>().fillAmount = 1f;
 
         RememberLevel(user.cefr_level);
 

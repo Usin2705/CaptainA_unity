@@ -233,6 +233,13 @@ public class FeedbackPanel : MonoBehaviour
     {
         networkManager = NetworkManager.GetManager();
 
+        // Clear last result's notice before anything else runs. The real call is ~200
+        // lines below, after the button wiring and the score read, and anything that
+        // throws in between would leave the previous warning on screen - so a learner who
+        // was warned on one task would be warned again on the next however well they did.
+        // Passing null means "no result yet", which resolves to hidden.
+        ShowRelevanceWarning(null);
+
         // Both emoji rows now post the moment one is tapped, so a learner who answers and
         // then closes the popup without pressing Send is still counted. Send keeps working
         // and carries the typed comment - see the feedbackSendButtonGO handler below.
@@ -430,17 +437,25 @@ public class FeedbackPanel : MonoBehaviour
             });
 
         // Get scores from the server
-        float proficiencyRating = networkManager.asrResultASA.scores.proficiency;
-        float pronunciationRating = networkManager.asrResultASA.scores.pronunciation;
-        float rangeRating = networkManager.asrResultASA.scores.range;
-        float accuracyRating = networkManager.asrResultASA.scores.accuracy;
-        float fluencyRating = networkManager.asrResultASA.scores.fluency;
+        NetworkManager.ASRResultASA result = networkManager.asrResultASA;
 
-        proficiencyScore.SetValue(proficiencyRating, 1);
-        pronunciationScore.SetValue(pronunciationRating, 2);
-        rangeScore.SetValue(rangeRating, 3);
-        accuracyScore.SetValue(accuracyRating, 4);
-        fluencyScore.SetValue(fluencyRating, 5);
+        float proficiencyRating = result.scores.proficiency;
+        float pronunciationRating = result.scores.pronunciation;
+        float rangeRating = result.scores.range;
+        float accuracyRating = result.scores.accuracy;
+        float fluencyRating = result.scores.fluency;
+
+        // The band comes from the server, not from the number. The two used to be worked
+        // out here with local thresholds; v1.3.0 moved the boundaries and will move them
+        // again, so a client that keeps its own copy of the rule shows a band that
+        // disagrees with the learner's stored row and says nothing about it.
+        NetworkManager.DimensionLabels labels = result.dimension_labels;
+
+        proficiencyScore.SetValue(proficiencyRating, 1, result.cefr_label_fine);
+        pronunciationScore.SetValue(pronunciationRating, 2, LabelOf(labels?.pronunciation));
+        rangeScore.SetValue(rangeRating, 3, LabelOf(labels?.range));
+        accuracyScore.SetValue(accuracyRating, 4, LabelOf(labels?.accuracy));
+        fluencyScore.SetValue(fluencyRating, 5, LabelOf(labels?.fluency));
 
         ShowRelevanceWarning(networkManager.asrResultASA);
 
@@ -458,6 +473,8 @@ public class FeedbackPanel : MonoBehaviour
 
             FitTranscript();
         }
+
+        ScrollToTop();
 
         // Get the category with the lowest score
         float minRating = Mathf.Min(
@@ -530,6 +547,14 @@ public class FeedbackPanel : MonoBehaviour
     /// Always called, including on a clean result: the panel is a reused object, so a
     /// notice left from a previous recording would otherwise stay on screen.
     /// </summary>
+    // Null-safe read of one dimension's band. dimension_labels is absent on an older
+    // server and on any response we could not parse, and a null here is the row's signal
+    // to fall back to the score rather than draw a blank badge.
+    private static string LabelOf(NetworkManager.DimensionLabel dimension)
+    {
+        return dimension == null ? null : dimension.label_fine;
+    }
+
     private void ShowRelevanceWarning(NetworkManager.ASRResultASA result)
     {
         bool offTopic = result != null && result.IsOffTopic;
@@ -578,6 +603,32 @@ public class FeedbackPanel : MonoBehaviour
     /// below the scrollable area: Content stops at its authored height, so scrolling hits
     /// the end while text is still off screen and no amount of dragging reaches it.
     /// </summary>
+    /// <summary>
+    /// Puts the results back at the top before they are shown.
+    ///
+    /// This panel is one reused object, and a ScrollRect keeps whatever position it was
+    /// left at. Read to the bottom of one result, record the next task, and the new
+    /// scores open half-scrolled - past the relevance notice, which is the one thing on
+    /// this screen a learner must not miss.
+    ///
+    /// Found rather than wired: the prefab holds exactly one ScrollRect, so there is
+    /// nothing to pick wrong and nothing to forget to assign.
+    /// </summary>
+    private void ScrollToTop()
+    {
+        ScrollRect scroll = GetComponentInChildren<ScrollRect>(true);
+
+        if (scroll == null)
+        {
+            return;
+        }
+
+        // Both axes: the panel only scrolls vertically today, but a horizontal offset left
+        // behind would be just as invisible from here.
+        scroll.verticalNormalizedPosition = 1f;
+        scroll.horizontalNormalizedPosition = 0f;
+    }
+
     private void FitTranscript()
     {
         if (transcriptText == null || transcriptGroup == null)

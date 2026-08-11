@@ -88,6 +88,28 @@ public static class Const
 
     // =======================================================
 
+    // ================ CEFR BAND BOUNDARIES ================
+    // Where one displayed band ends and the next begins. NOT the same numbers as the scale
+    // above, and conflating the two is what went wrong before: the anchor point for A2 is
+    // 2.0, but the score at which a learner starts being *called* A2 is 1.55.
+    //
+    //   A1  < 1.55 | A2  < 2.40 | A2+ < 2.75 | B1 >= 2.75
+    //
+    // Server v1.3.0 moved these down from 2.0 / 2.5 / 3.0. The old cuts put 50.7% of
+    // learners in A1 and 0.6% in B1, which is not a usable label.
+    //
+    // **These are a fallback and nothing more.** FeedbackRow reads the band from the
+    // server's own cefr_label_fine; this copy is only reached when a response carries no
+    // label at all. They will move again as the study collects data, and a build holding
+    // stale numbers has no way to know it - which is exactly why the label is authoritative
+    // and these are the last resort.
+
+    public const float CEFR_BAND_A2 = 1.55f;
+    public const float CEFR_BAND_A2_PLUS = 2.40f;
+    public const float CEFR_BAND_B1 = 2.75f;
+
+    // =======================================================
+
     // ================= TEXR COLOR SCORE ===================
     // Rich text color tag for each type of scoring
     public const string BAD_COLOR = "#ff0000ff";
@@ -361,9 +383,12 @@ public static class Const
 
     // --- relevance notices, shown above the score rows (FeedbackPanel) ---
 
-    // The recording did not address the task. Every score is 0.0 in this case, which the
-    // rows draw as one star, so this notice is what stops it reading as a verdict on the
-    // learner. "Check" not "listen": the task is written text, there is nothing to play.
+    // DO NOT REWORD ASA_OFF_TOPIC OR ASA_PARTIAL. Both were written deliberately and
+    // settled after several rounds. A server release changing what triggers a verdict is
+    // not a reason to touch what the learner reads - raise it and leave the strings alone.
+
+    // The recording did not address the task. "Check" not "listen": the task is written
+    // text, there is nothing to play.
     public const string ASA_OFF_TOPIC =
         "Your answer did not seem to match the task. Please check the task again.";
 
@@ -379,6 +404,44 @@ public static class Const
     // --- transcript (FeedbackPanel) ---
 
     public const string ASA_TRANSCRIPT_EMPTY = "(nothing was recognised in this recording)";
+
+    // --- cohort position (ASAProfilePanel) ---
+    // The server buckets the position and sends only the bucket; these render it. Do not
+    // add a threshold or a rounding rule here - the ladders are retuned server-side as the
+    // cohorts grow, and that has to reach installed apps without a client release.
+    //
+    // Nothing is shown at all for the bottom half of a cohort, so none of these strings
+    // needs a "not ranked" variant.
+
+    // {0} = bucket: 1, 5, 10, 25 or 50. {1} = CEFR band.
+    public const string ASA_RANK_TOP_PERCENT = "You are in the top {0}% of {1} learners";
+
+    // {0} = CEFR band.
+    public const string ASA_RANK_WITHIN_LEVEL = "Your position among other {0} learners";
+
+    // {0} = bucket: 2, 3, 5, 10, 25, 50 or 100. Rank 1 uses ASA_RANK_FIRST instead.
+    public const string ASA_RANK_TOP_RANK = "Top {0}";
+
+    public const string ASA_RANK_FIRST = "#1";
+
+    // Shown when the server sends no position at all, which happens for the bottom half of
+    // a cohort. Two things it must not do, and between them they rule out almost every
+    // obvious sentence:
+    //
+    //   - It must not hint at where they sit. Any explanation of the absence amounts to
+    //     "you are not in the top 50%", which is the message the bucketing exists to stop.
+    //   - It must not carry a count of users. How many learners we have is not something
+    //     the app discloses, so cohort_size is off limits even though the payload has it.
+    //
+    // What is left is a statement about the learner's own result and nothing else. It is
+    // thin on purpose - the alternative was an empty panel that read as a broken screen.
+    // One per box, so both stay filled and the panel keeps its shape rather than opening a
+    // hole where the position used to be.
+    public const string ASA_RANK_NO_POSITION = "Keep practising to see how you compare.";
+
+    // {0} = CEFR band.
+    public const string ASA_RANK_NO_POSITION_LABEL =
+        "Keep practising to see your position among other {0} learners.";
 
     // --- ranking unavailable (ASAProfilePanel) ---
     // Three different reasons, and only the first is something the learner can act on, so

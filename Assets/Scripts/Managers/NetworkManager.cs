@@ -341,6 +341,11 @@ public class NetworkManager : MonoBehaviour
     // cleared by ClearLocalASAData - it is the only thing left that can finish the job.
     const string PREF_PENDING_DELETE = "PendingDeleteGuid";
 
+    // How many times the server has answered 403 to this deletion. A rejected key is not a
+    // retryable condition, so this exists purely to allow exactly one more attempt before
+    // giving up, rather than retrying on every launch for the life of the install.
+    const string PREF_DELETE_KEY_REJECTED = "PendingDeleteKeyRejected";
+
     /// <summary>
     /// What happened to the last deletion: "deleted" once the server has erased the data,
     /// null if it has not answered yet or the request never reached it.
@@ -452,12 +457,59 @@ public class NetworkManager : MonoBehaviour
             {
                 Debug.Log("Server deleted the data for " + guid);
                 PlayerPrefs.DeleteKey(PREF_PENDING_DELETE);
+                PlayerPrefs.DeleteKey(PREF_DELETE_KEY_REJECTED);
                 PlayerPrefs.Save();
                 lastError = null;
                 lastErrorType = null;
 
                 // A 2xx from this route means the erase is done, not merely accepted.
                 lastDeleteStatus = "deleted";
+            }
+            else if (uwr.responseCode == 403)
+            {
+                // The delete key did not match. No number of retries can change that - the
+                // key either matches or it does not - so this must not join the launch
+                // retry queue, which would otherwise run forever.
+                //
+                // The user is told their request was received, same as any other failure,
+                // and that is accurate: the server logs the rejected guid at WARNING from
+                // v1.3.0, so a maintainer finishes the erase by hand. The difference is
+                // ours to resolve, not theirs to worry about.
+                //
+                // This only ever happens to a misconfigured build, and when it does it
+                // fails for every user of that build at once - hence the noise below.
+                lastError = DescribeError(uwr);
+                lastDeleteStatus = "key_rejected";
+
+                int attempts = PlayerPrefs.GetInt(PREF_DELETE_KEY_REJECTED, 0) + 1;
+
+                if (attempts < 2)
+                {
+                    // One retry, in case the first 403 was something transient in front of
+                    // the server rather than the key itself.
+                    PlayerPrefs.SetInt(PREF_DELETE_KEY_REJECTED, attempts);
+                    PlayerPrefs.Save();
+
+                    Debug.LogError(
+                        $"DELETION REJECTED for guid {guid}: the server did not accept "
+                            + "SERVER_DELETE_KEY (403). Retrying once on the next launch."
+                    );
+                }
+                else
+                {
+                    // Give up rather than retry forever. The guid stops being pending, so
+                    // this log is the last record of it on the device.
+                    PlayerPrefs.DeleteKey(PREF_PENDING_DELETE);
+                    PlayerPrefs.DeleteKey(PREF_DELETE_KEY_REJECTED);
+                    PlayerPrefs.Save();
+
+                    Debug.LogError(
+                        $"DELETION ABANDONED for guid {guid}: SERVER_DELETE_KEY was "
+                            + "rejected twice (403). THE SERVER STILL HOLDS THIS USER'S "
+                            + "DATA. Fix the key in Secret.cs, then have a maintainer "
+                            + "erase this guid by hand - the server logged it too."
+                    );
+                }
             }
             else
             {
@@ -1483,11 +1535,19 @@ public class NetworkManager : MonoBehaviour
         public ContentCheck content;
 
         /// <summary>
-        /// True only when the server withheld the grading. On off_topic every score on
-        /// the wire is 0.0 and every label is "A1" - rendering those would tell a learner
-        /// their Finnish scored zero, which is the exact outcome the check exists to
-        /// prevent. Absent or unrecognised content is treated as on-topic, so a server
-        /// that never ran the judge still shows results normally.
+        /// The recording did not appear to answer the task.
+        ///
+        /// From server v1.3.0 the scores alongside this are the model's real measurements.
+        /// Until v1.2.0 they were forced to 0.0 as a penalty, which is why this used to
+        /// gate the display; the penalty is gone and the verdict now only drives the
+        /// notice. A build talking to an older server still receives the zeros.
+        ///
+        /// v1.3.0 also made this deliberately hard to trigger - it needs p(bad) >= 0.70 -
+        /// so it now mostly means silence or an answer in another language. A fluent answer
+        /// on the wrong subject comes back `partial` instead.
+        ///
+        /// Absent or unrecognised content is treated as on-topic, so a server that never
+        /// ran the judge still shows results normally.
         /// </summary>
         public bool IsOffTopic => content != null && content.relevance == "off_topic";
 
