@@ -166,9 +166,6 @@ public static class Const
     // The extra record time after the button release is trimmed
     public const int MAX_REC_TIME = 8;
 
-    public const int MAX_REC_TIME_A = 45; //45
-    public const int MAX_REC_TIME_B = 30; //30
-
     public const int MAX_REC_NUMBERGAME_EASY = 3;
     public const int MAX_REC_NUMBERGAME_MEDIUM = 4;
     public const int MAX_REC_NUMBERGAME_HARD = 5;

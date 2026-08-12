@@ -200,32 +200,9 @@ public class AudioManager : MonoBehaviour
         );
     }
 
-    public void GetAudioAndASR(
-        GameObject transcriptGO,
-        GameObject scoreButtonGO,
-        DescribePanel.TaskType taskType,
-        int taskNumber,
-        bool isFinnish = true
-    )
-    {
-        Microphone.End("");
-        byte[] wavBuffer = SavWav.GetWav(audioSource.clip, out uint length, trim: true);
-        SavWav.Save(Const.DESCRIBE_FILENAME, audioSource.clip, trim: true); // for debug purpose
-
-        //StartCoroutine(NetworkManager.GetManager().GPTTranscribe(wavBuffer, transcriptGO, scoreButtonGO, taskType, taskNumber, isFinnish));
-        StartCoroutine(
-            NetworkManager
-                .GetManager()
-                .GPTTranscribeWhisper(
-                    wavBuffer,
-                    transcriptGO,
-                    scoreButtonGO,
-                    taskType,
-                    taskNumber,
-                    isFinnish
-                )
-        );
-    }
+    // GetAudioAndASR was removed with the describe-the-picture grading path: it uploaded
+    // the recording for Whisper transcription and GPT scoring, and nothing reached it once
+    // that panel stopped being attached to anything. See docs/legacy_gpt_vision.md.
 
     public void GetAudioAndNG(
         string number,

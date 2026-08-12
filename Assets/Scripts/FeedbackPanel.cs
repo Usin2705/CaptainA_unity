@@ -71,6 +71,16 @@ public class FeedbackPanel : MonoBehaviour
 
     // The ScrollRect's Content, and the transcript box inside it. Both are resized at
     // runtime by FitTranscript - see there for why they cannot be fixed heights.
+    //
+    // The Viewport above them carries an Image with alpha 0, Raycast Target on and Cull
+    // Transparent Mesh off. It draws nothing and it is not cruft - do not remove it. A
+    // ScrollRect only scrolls when the EventSystem's raycast lands on something, and every
+    // graphic inside this viewport that covers real estate - the transcript box, its title
+    // and its text, the relevance notice - has Raycast Target off. A drag over any of them
+    // therefore hit nothing and raised no event, so a long transcript filled the screen
+    // with a region the learner could not scroll away from. Cull Transparent Mesh must
+    // stay off too: a culled mesh reports depth -1 and GraphicRaycaster skips those, which
+    // would quietly undo the fix.
     [SerializeField]
     RectTransform scrollContent;
 

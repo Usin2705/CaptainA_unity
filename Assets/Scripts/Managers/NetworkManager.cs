@@ -89,8 +89,11 @@ public class NetworkManager : MonoBehaviour
     public string lastErrorType { get; private set; }
 
     public ASRResultASA asrResultASA { get; private set; }
-    public string chatGPTTranscript { get; private set; }
-    public string chatGPTGrading { get; private set; }
+
+    // chatGPTTranscript and chatGPTGrading were removed here. They carried the Whisper
+    // transcript and the GPT grade to GPTGradingPanel, and nothing had assigned either of
+    // them since the describe-the-picture grader was deleted - both read as null. The
+    // panel went with them; see docs/legacy_gpt_vision.md.
 
     [SerializeField]
     AdvancePanel AdvancePanel;
@@ -1083,78 +1086,12 @@ public class NetworkManager : MonoBehaviour
     // the imageComponent field they drew into. They belonged to the describe-the-picture
     // task, whose panel is no longer attached to anything - see docs/legacy_gpt_vision.md.
 
-    public IEnumerator GPTTranscribeWhisper(
-        byte[] wavBuffer,
-        GameObject transcriptGO,
-        GameObject scoreButtonGO,
-        DescribePanel.TaskType taskType,
-        int taskNumber,
-        bool isFinnish = true
-    )
-    {
-        WWWForm form = new WWWForm();
-        form.AddBinaryData(
-            "file",
-            wavBuffer,
-            fileName: "recorded_describe_speech.wav",
-            mimeType: "audio/wav"
-        );
-        form.AddField("model", "whisper-1");
-
-        // If not Finnish, set the language to English
-        if (!isFinnish)
-        {
-            form.AddField("language", "EN");
-        }
-        else
-        // The default language is Finnish
-        {
-            form.AddField("language", "FI");
-        }
-
-        UnityWebRequest www = UnityWebRequest.Post(
-            "https://api.openai.com/v1/audio/transcriptions",
-            form
-        );
-        www.SetRequestHeader("Authorization", "Bearer " + gptToken);
-
-        // Send the request and wait for response
-        yield return www.SendWebRequest();
-
-        if (www.result != UnityWebRequest.Result.Success)
-        {
-            Debug.LogError("Error: " + www.error);
-            Debug.LogError("Error: " + www.result);
-            Debug.LogError("Error: " + www.downloadHandler.text);
-        }
-        else
-        {
-            Debug.Log(www.downloadHandler.text);
-            OpenAIASRResponse response = JsonUtility.FromJson<OpenAIASRResponse>(
-                www.downloadHandler.text
-            );
-            transcriptGO.GetComponent<TMPro.TextMeshProUGUI>().text = response.text;
-            chatGPTTranscript = response.text;
-            StartCoroutine(
-                GPTRatingText(scoreButtonGO, response.text, taskType, taskNumber, isFinnish)
-            );
-            //StartCoroutine(GPTRatingTextFi(scoreButtonGO, response.text, taskType, taskNumber, isFinnish));
-        }
-
-        // For testing purpose
-        // yield return GPTRatingText(scoreButtonGO, "Huoneessa on iso. Sininen sova on oikea. Sen alla on paljon keltainen kuva. Punainen nuoja tuoli ja musta hullu on vasemmalla. Iso matto on lattialla ja viiveÃ¤ ovi");
-        // yield return GPT_TTS("Huoneessa on iso. Sininen sova on oikea. Sen alla on paljon keltainen kuva. Punainen nuoja tuoli ja musta hullu on vasemmalla. Iso matto on lattialla ja viiveÃ¤ ovi");
-        //yield return PostRequest("https://api.openai.com/v1/chat/completions", "Lattialla on sininen kissa, toinen kissa sohvatuolilla. SeinÃ¤llÃ¤ on kello oven ylÃ¤puolella.");
-    }
-
-    // Function to encode the image to base64
-    private string EncodeImageToBase64(string imagePath)
-    {
-        Debug.Log("Encoding image to base64");
-        byte[] imageBytes = File.ReadAllBytes(imagePath);
-        return System.Convert.ToBase64String(imageBytes);
-    }
-
+    // GPTTranscribeWhisper, GPTRatingText and EncodeImageToBase64 were removed here.
+    // They were the describe-the-picture grading chain: upload the recording, get a
+    // Whisper transcript, then score it against a reference description held in
+    // Secret.cs. Nothing reached them once that panel stopped being attached to
+    // anything, and the reference descriptions went with them. See
+    // docs/legacy_gpt_vision.md.
     public IEnumerator GPT_TTS(string transcript)
     {
         transcript = transcript.Replace("\r", " ").Replace("\"", "\\\""); // Escape double quotes
@@ -1200,192 +1137,6 @@ public class NetworkManager : MonoBehaviour
                 string filePath = Path.Combine(Application.persistentDataPath, "speech.mp3");
                 File.WriteAllBytes(filePath, results);
                 Debug.Log("TTS done, saved to: " + filePath);
-            }
-        }
-    }
-
-    private IEnumerator GPTRatingText(
-        GameObject scoreButtonGO,
-        string transcript,
-        DescribePanel.TaskType taskType,
-        int taskNumber,
-        bool isFinnish = true
-    )
-    {
-        string gradingInstructions = TextUtils.GetGradingInstruction(
-            taskType,
-            taskNumber,
-            isFinnish
-        );
-        gradingInstructions = gradingInstructions.Replace("\r", " ").Replace("\"", "\\\""); // Escape double quotes
-
-        // Create the messages JSON string using string formatting or interpolation
-        // the $ symbol before the string allows you to insert variables directly into
-        // the string with {}. The transcript.Replace("\"", "\\\"") is used to escape
-        // any double quotes that might be present in the transcript string, ensuring that
-        // the JSON remains valid.
-        //""model"": ""gpt-4-vision-preview"",
-        //""model"": ""gpt-4-0613"",
-        //""model"": ""gpt-3.5-turbo-1106"",
-
-        // This setup is for GPT-4, GPT-4o use diffent setup
-        // string jsonData = $@"
-        // {{
-        // 	""model"": ""gpt-4-0613"",
-        // 	""temperature"": 0.0,
-        // 	""seed"": 1011,
-        // 	""messages"": [
-        // 		{{
-        // 			""role"": ""system"",
-        // 			""content"": ""{gradingInstructions}""
-        // 		}},
-        // 		{{
-        // 			""role"": ""user"",
-        // 			""content"": ""{transcript.Replace("\"", "\\\"")}""
-        // 		}}
-        // 	],
-        // 	""max_tokens"": 2500
-        // }}";
-
-        string jsonData =
-            $@"
-		{{
-			""model"": ""gpt-4o-2024-05-13"",
-			""messages"": [
-				{{
-					""role"": ""system"",
-					""content"": [
-						{{
-							""type"": ""text"",
-							""text"": ""{gradingInstructions}""
-						}}
-					]
-				}},
-				{{
-					""role"": ""user"",
-					""content"": [
-						{{
-							""type"": ""text"",
-							""text"": ""{transcript.Replace("\"", "\\\"")}""
-						}}
-					]
-				}}
-			],
-			""temperature"": 0,
-			""max_tokens"": 2500,
-			""response_format"": {{
-				""type"": ""text""
-			}}
-		}}";
-
-        if (taskType == DescribePanel.TaskType.C || taskType == DescribePanel.TaskType.C2)
-        {
-            // If the task is C or C2, we need to include the image in the request
-            // since the prompt is not include the image description (random image generation)
-
-            // Load the image from the Resources folder
-            string imagePath = Path.Combine(Application.persistentDataPath, "describeImage.png");
-            if (!File.Exists(imagePath))
-            {
-                Debug.Log("Image not found, using default image");
-                Texture2D texture = Resources.Load<Texture2D>("GenAI/describeImage");
-                SaveData.SaveImageToFile(texture, "describeImage.png");
-                imagePath = Path.Combine(Application.persistentDataPath, "describeImage.png");
-            }
-
-            string base64Image = EncodeImageToBase64(imagePath);
-
-            jsonData =
-                $@"
-				{{
-					""model"": ""gpt-4o-2024-05-13"",
-					""messages"": [
-						{{
-							""role"": ""system"",
-							""content"": [
-								{{
-									""type"": ""text"",
-									""text"": ""{gradingInstructions}""
-								}}
-							]
-						}},
-						{{
-							""role"": ""user"",
-							""content"": [
-								{{
-									""type"": ""text"",
-									""text"": ""{transcript.Replace("\"", "\\\"")}""
-								}},
-								{{
-									""type"": ""image_url"",
-									""image_url"":
-										{{
-											""url"": ""data:image/jpeg;base64,{base64Image}""
-										}}
-								}}
-							]
-						}}
-					],
-					""temperature"": 0,
-					""max_tokens"": 3500,
-					""response_format"": {{
-						""type"": ""text""
-					}}
-				}}";
-        }
-
-        // Debug.Log(jsonData);
-
-        using (
-            UnityWebRequest request = new UnityWebRequest(
-                "https://api.openai.com/v1/chat/completions",
-                "POST"
-            )
-        )
-        {
-            // Convert JSON data to a byte array and set it as upload handler
-            byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(jsonData);
-            request.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
-            request.downloadHandler = new DownloadHandlerBuffer(); // Set the download handler
-
-            // Set headers
-            request.SetRequestHeader("Authorization", "Bearer " + gptToken);
-            request.SetRequestHeader("Content-Type", "application/json");
-
-            // Send the request and wait for response
-            yield return request.SendWebRequest();
-
-            if (request.result != UnityWebRequest.Result.Success)
-            {
-                Debug.LogError("Error: " + request.error);
-                Debug.LogError("Error: " + request.result);
-                Debug.LogError("Error: " + request.downloadHandler.text);
-            }
-            else
-            {
-                Debug.Log(request.downloadHandler.text);
-                OpenAIChatResponse response = JsonUtility.FromJson<OpenAIChatResponse>(
-                    request.downloadHandler.text
-                );
-                if (response != null && response.choices.Length > 0)
-                {
-                    string assistantResponse = response.choices[0].message.content;
-                    Debug.Log("Assistant says: " + assistantResponse);
-
-                    // Extract all text within "@" tags
-                    string finnishTTS = TextUtils.ExtractTextWithinAtTags(assistantResponse);
-                    // StartCoroutine(GPT_TTS(finnishTTS));
-
-                    // Replace "@" in assistantResponse with a new line
-                    assistantResponse = assistantResponse.Replace("@", "\n");
-                    scoreButtonGO.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Done";
-                    scoreButtonGO.SetActive(true);
-                    chatGPTGrading = assistantResponse;
-                }
-                else
-                {
-                    Debug.LogError("Invalid response or no choices available.");
-                }
             }
         }
     }

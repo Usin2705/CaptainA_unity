@@ -199,6 +199,20 @@ public class AdvancePanel : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Brings the task list back to the front, for a screen that needs to return to it
+    /// without holding its own reference. This panel owns every screen under it - OnEnable
+    /// is what switches them all off - so the reference stays here rather than being
+    /// duplicated into each child.
+    ///
+    /// Only turns the task list on. The caller switches itself off, because it is the one
+    /// that knows whether it has anything to clean up first.
+    /// </summary>
+    public void ShowTaskPanel()
+    {
+        taskPanelGO.SetActive(true);
+    }
+
     // The sheet is a single reused object, so clear it every time it opens. Without this
     // a user who ticked the box, backed out, and came back would find Continue already
     // enabled and could consent without seeing the notice again.
