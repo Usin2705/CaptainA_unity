@@ -1604,7 +1604,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 429.64285, y: -10}
+  m_AnchoredPosition: {x: 429.45813, y: -10}
   m_SizeDelta: {x: 320, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &39430974
@@ -5770,6 +5770,7 @@ MonoBehaviour:
   - {fileID: 805330315}
   - {fileID: 442258563}
   - {fileID: 1114609791}
+  newFeatureBadgeGO: {fileID: 523084016}
 --- !u!1 &217988254
 GameObject:
   m_ObjectHideFlags: 0
@@ -12529,6 +12530,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 522303798}
+  m_CullTransparentMesh: 1
+--- !u!1 &523084016
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 523084017}
+  - component: {fileID: 523084019}
+  - component: {fileID: 523084018}
+  m_Layer: 5
+  m_Name: NewFeatureBadgeGO
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &523084017
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523084016}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 983078108}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 130, y: -1500}
+  m_SizeDelta: {x: 40, y: 40}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &523084018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523084016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 1773e5609cd6af94f875f9fa6448b5d2, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &523084019
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523084016}
   m_CullTransparentMesh: 1
 --- !u!1 &525502270
 GameObject:
@@ -20178,7 +20254,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: How was your overall experience with Advaced Speaking Assessment so far?
+  m_text: How was your overall experience with Automatic Speaking Assessment so far?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
   m_sharedMaterial: {fileID: -459825320126915412, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
@@ -21772,7 +21848,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 109.64285, y: -10}
+  m_AnchoredPosition: {x: 109.45813, y: -10}
   m_SizeDelta: {x: 320, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &861050547
@@ -25448,6 +25524,7 @@ RectTransform:
   - {fileID: 1164813425}
   - {fileID: 19683656}
   - {fileID: 215614417}
+  - {fileID: 523084017}
   - {fileID: 1769915099}
   - {fileID: 2127582241}
   - {fileID: 455336490}
@@ -42719,7 +42796,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -359.99994}
+  m_AnchoredPosition: {x: 0, y: -360}
   m_SizeDelta: {x: -40, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1670868350
@@ -52761,7 +52838,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Advanced Speaking Assessment
+  m_text: Automatic Speaking Assessment
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -55145,11 +55222,11 @@ MonoBehaviour:
     the name <i>CaptainA</i>, its name was changed to <i>SaySuomi</i> during its
     long-term development. When Kielibuusti project ended in 2024, the Aalto ASR
     Research Group responsible for maintaining and further developing the app. The
-    Automated Speaking Assessment function was funded by Research Council of Finland
+    Automatic Speaking Assessment function was funded by Research Council of Finland
     in the DigiTala in Action project.\n\nThe app uses an idle server from Aalto
     University. Additional servers for research purposes are provided by CSC \u2013
     IT Center for Science. We thank CSC for generous computational resources in running
-    the Automated Speaking Assessment function.\n\nWe especially thank the authors
+    the Automatic Speaking Assessment function.\n\nWe especially thank the authors
     of Oma Suomi 1 \u2013 <b>Kristiina Kuparinen</b>, <b>Terhi Tapaninen</b>, and
     <b>Finn Lectura</b> \u2013 for granting us permission to use texts from Oma Suomi
     1 in the flashcard feature.\n\nWe also thank the authors of Suomen Mestari 1
@@ -55157,7 +55234,7 @@ MonoBehaviour:
     \u2013 for granting us permission to use texts from Suomen Mestari 1 in the flashcard
     feature.\n\nWe are grateful to <b>Apollo Ailus</b> and <b>Kia Raitanen</b> for
     their contributions to to user research and engagement, and to <b>Aalo Kailu</b>,
-    who designed the original user interface of the app.\n\nThe Automated Speaking
+    who designed the original user interface of the app.\n\nThe Automatic Speaking
     Assessment v1.0.0, which equivalent to the mobile app v2.0.0) was made by Laura
     Immonen, Aaron K\xE4hk\xF6nen, Iida Porola, Miika Ratilainen, Aaro Savolainen,
     Kim Takala, Miika Tonteri, Nhan Phan, Anna von Zansen. DOI 10.5281/zenodo.20021230\n\nThe

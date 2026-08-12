@@ -290,6 +290,13 @@ public static class Const
     public const string PREF_INS_PROFILE = "pref_instruction_profile";
     public const string PREF_INS_PHONE = "pref_instruction_phone";
 
+    // Highest announcement this user has acknowledged for the Advanced tab, written when
+    // they open it. Deliberately not PREF_INS_ADVANCE: that one is already set to 1 for
+    // everyone who has ever opened the tab - the exact people a new feature needs to reach
+    // - and PopUpManager.FinnishPanel writes 1 back into it every time the instruction
+    // popup closes, which would undo anything stored here.
+    public const string PREF_SEEN_ADVANCED = "pref_seen_advanced";
+
     // =======================================================
 
     // ===================== FLASH CARD CONST =====================
@@ -359,15 +366,24 @@ public static class Const
         + "The materials in this app are made by members of the Kielibuusti project. "
         + "We will add more materials in the future if it is available.";
 
-    public const int APP_VERSION = 2;
+    public const int APP_VERSION = 3;
+
+    // The badge on the Advanced tab shows while PREF_SEEN_ADVANCED is below this number,
+    // and opening the tab stores this number - so it appears once per user, per bump, and
+    // stays until they actually go and look.
+    //
+    // Raise it to announce the next thing. A fresh install and an upgrade from an older
+    // build both read 0, so neither needs detecting: no version string is parsed anywhere,
+    // and this is the only line to touch. Independent of APP_VERSION, which paces the
+    // what's-new popup instead.
+    public const int VER_MAX_SHOW_ADVANCED = 4;
     public const string NEW_VERSION_TEXT =
-        "Hi everyone! As you've probably noticed, the app now has a new name, icon, and user interface. "
-        + "These changes are the result of excellent work by Aalo Kailu, Apollo Ailus, and Kia Raitanen last summer. "
-        + "They are students from Aalto University who helped improve the app's UI/UX design as their ITP project.\n\n"
-        + "You also see a demo of new feature - <b>PuheNumero</b> - in the <b>Advanced</b> tab. This demo is based on the thesis work of Sy Hoang Mai, "
-        + "under the guidance of advisor Nhan Phan and supervisor Mikko Kurimo, with additional support from student Lauri Lappalainen.\n\n"
-        + "These improvements are based on feedback from our users - so please keep sharing your suggestions! "
-        + "While our resources are limited, we'll do our best to implement your ideas.";
+        "Hi everyone! We have added a new <b>Automatic Speaking Assessment</b> function in the <b>Advanced</b> tab.\n\n"
+        + "Using <b>Whisper</b> and <b>Qwen 3.5</b>, it estimates your Finnish speaking proficiency and provides four analytic scores: fluency, pronunciation, accuracy, and range.\n\n"
+        + "The feature is the result of the <b>DigiTala in Action</b> project, a collaboration between <b>Aalto University</b>, "
+        + "<b>University of Jyväskylä</b>, and <b>University of Helsinki</b>.\n\n"
+        + "By using this function, your speaking data will also help us improve automatic speaking assessment for Finnish learners. "
+        + "You can read the privacy notice before using it. Thank you for supporting our research!";
 
     // ====================================================================
 

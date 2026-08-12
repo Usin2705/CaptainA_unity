@@ -138,6 +138,12 @@ public class AdvancePanel : MonoBehaviour
         backgroundPopUpGO.SetActive(false);
         profilePanelGO.SetActive(false);
 
+        // Opening the tab is what clears its new-feature dot - the learner has now seen
+        // whatever it was pointing at. Recorded here rather than on the tab button so that
+        // every route in counts, and so the dot cannot be cleared by a tap that does not
+        // actually arrive. NavigationBar reads this back and hides the dot.
+        NewFeatureBadge.MarkSeen(Const.PREF_SEEN_ADVANCED, Const.VER_MAX_SHOW_ADVANCED);
+
         // Check if the instruction panel has been shown before
         if (!PlayerPrefs.HasKey(Const.PREF_INS_ADVANCE))
         {
