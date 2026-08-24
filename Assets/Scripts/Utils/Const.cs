@@ -166,6 +166,23 @@ public static class Const
     // The extra record time after the button release is trimmed
     public const int MAX_REC_TIME = 8;
 
+    // Microphone.Start returns a clip immediately, but the device is not delivering
+    // samples yet - it takes a moment to spin up, and longer the first time after launch
+    // while the audio stack is cold. Whatever sits at the head of the clip until then is
+    // not the learner: it is the artefact heard as a click at the start of the first few
+    // recordings. Two numbers deal with it.
+
+    // How long to keep waiting for the device to produce its first sample before giving up
+    // and reporting that recording could not start. Generous - a slow device should still
+    // record, and the only cost of waiting is the moment before Stop becomes live.
+    public const float MIC_START_TIMEOUT_SECS = 1f;
+
+    // How much of the front of the recording to throw away once it is over. Waiting for
+    // the first sample proves the device is running but says nothing about the quality of
+    // what it produced getting there, so the head is discarded outright. Recording begins
+    // well after the button is pressed, so this cannot reach a learner's first syllable.
+    public const int MIC_WARMUP_DISCARD_MS = 100;
+
     public const int MAX_REC_NUMBERGAME_EASY = 3;
     public const int MAX_REC_NUMBERGAME_MEDIUM = 4;
     public const int MAX_REC_NUMBERGAME_HARD = 5;
