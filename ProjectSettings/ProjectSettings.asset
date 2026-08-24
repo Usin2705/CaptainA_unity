@@ -89,7 +89,7 @@ PlayerSettings:
   androidApplicationEntry: 1
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
-  runInBackground: 0
+  runInBackground: 1
   muteOtherAudioSources: 1
   Prepare IOS For Recording: 1
   Force IOS Speakers When Recording: 1
