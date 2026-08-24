@@ -551,6 +551,10 @@ public class NetworkManager : MonoBehaviour
         // Assessment history held on the device.
         PlayerPrefs.DeleteKey("AssessmentId");
         PlayerPrefs.DeleteKey("TasksSent");
+        PlayerPrefs.DeleteKey(Const.PREF_OVERALL_FEEDBACK_ASKED_AT);
+
+        // The flag this replaced. Still deleted so an account erased on a device that has
+        // been through an older build does not leave it behind.
         PlayerPrefs.DeleteKey("OverallFeedbackSent");
 
         // Left over from the removed secret-code gate; harmless, but it was part of the
@@ -806,7 +810,6 @@ public class NetworkManager : MonoBehaviour
                 int value = PlayerPrefs.GetInt("TasksSent", 0);
                 value++;
                 PlayerPrefs.SetInt("TasksSent", value);
-                PlayerPrefs.SetInt("OverallFeedbackSent", 0);
                 PlayerPrefs.Save();
 
                 Debug.Log(PlayerPrefs.GetInt("TasksSent"));

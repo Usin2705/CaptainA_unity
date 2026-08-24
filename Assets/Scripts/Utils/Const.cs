@@ -492,6 +492,25 @@ public static class Const
     // cannot climb back above B1.
     public const string ASA_ADVANCE_CEILING = "B1";
 
+    // How many completed tasks between asks for overall feedback.
+    //
+    // There are five tasks, so this is two full passes: by then a learner has seen every
+    // task and repeated them, which is the first point they have something to say. Asking
+    // every 5 caught them the moment they finished their first pass, with the feature
+    // barely met. Raising it further trades away responses - four passes is more than most
+    // testers reach, and someone never asked leaves no feedback at all.
+    //
+    // A backlog, not a birthday: the test is how many tasks have been done SINCE the last
+    // ask, so a learner who passed the mark without ever opening the task list is still
+    // caught the next time they do. The count restarts whenever they answer or decline.
+    public const int ASA_OVERALL_FEEDBACK_EVERY = 10;
+
+    // The TasksSent value when overall feedback was last put in front of this learner,
+    // whether they answered it or dismissed it. Replaces the old OverallFeedbackSent flag,
+    // which could not express this: it was cleared after every upload, so a plain
+    // "have we asked?" boolean re-armed itself on the very next task.
+    public const string PREF_OVERALL_FEEDBACK_ASKED_AT = "pref_overall_feedback_asked_at";
+
     // Backstop only. A blank Secret.ASA_SET_LEVEL_URL hides both buttons, so in practice
     // nobody reaches a state where this needs showing.
     public const string ASA_LEVEL_UNAVAILABLE =

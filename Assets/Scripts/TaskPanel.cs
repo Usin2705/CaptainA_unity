@@ -165,7 +165,7 @@ public class TaskPanel : MonoBehaviour
                         )
                 );
                 // Reset feedback form when done
-                PlayerPrefs.SetInt("OverallFeedbackSent", 1);
+                MarkOverallFeedbackAsked();
                 overallRatingOptions.SetAllTogglesOff();
                 overallFeedbackTextGO.text = "";
                 overallFeedbackPopUpGO.SetActive(false);
@@ -178,6 +178,12 @@ public class TaskPanel : MonoBehaviour
             feedbackBackButtonGO,
             () =>
             {
+                // Declining restarts the count, exactly as answering does. It used to only
+                // hide the window and write nothing, so every return to the task list
+                // reopened it and the only ways out were sending feedback or completing
+                // another task.
+                MarkOverallFeedbackAsked();
+
                 overallRatingOptions.SetAllTogglesOff();
                 overallFeedbackTextGO.text = "";
                 overallFeedbackPopUpGO.SetActive(false);
@@ -185,6 +191,25 @@ public class TaskPanel : MonoBehaviour
                 errorPopupGO.SetActive(false);
             }
         );
+    }
+
+    /// <summary>
+    /// Restarts the countdown to the next overall-feedback ask.
+    ///
+    /// Called for both Send and Cancel: what is recorded is that the learner was asked at
+    /// this point, not what they said. That is enough to pace the question, and it means
+    /// declining is respected for a full interval rather than until the next task.
+    ///
+    /// Saved immediately - a decision lost to the app being killed is a learner who gets
+    /// asked again anyway, which is the behaviour this exists to stop.
+    /// </summary>
+    private void MarkOverallFeedbackAsked()
+    {
+        PlayerPrefs.SetInt(
+            Const.PREF_OVERALL_FEEDBACK_ASKED_AT,
+            PlayerPrefs.GetInt("TasksSent", 0)
+        );
+        PlayerPrefs.Save();
     }
 
     // The five task buttons differ only by index.
@@ -203,12 +228,18 @@ public class TaskPanel : MonoBehaviour
 
     public void OverallFeedback()
     {
-        // Ask overall feedback after every 5 completed tasks
-        if (
-            PlayerPrefs.GetInt("TasksSent", 0) % 5 == 0
-            && PlayerPrefs.GetInt("TasksSent", 0) > 0
-            && PlayerPrefs.GetInt("OverallFeedbackSent", 0) == 0
-        )
+        // Ask for overall feedback once Const.ASA_OVERALL_FEEDBACK_EVERY tasks have been
+        // completed since the last time we asked.
+        //
+        // Deliberately >= rather than landing on a multiple. The check only runs when the
+        // task list opens, so an exact test silently skipped anyone who finished their
+        // tenth task and went straight on to an eleventh - the one moment they were owed
+        // the question was the one moment nobody was looking. A backlog cannot be missed:
+        // it just waits until they next open the list.
+        int tasksSent = PlayerPrefs.GetInt("TasksSent", 0);
+        int askedAt = PlayerPrefs.GetInt(Const.PREF_OVERALL_FEEDBACK_ASKED_AT, 0);
+
+        if (tasksSent - askedAt >= Const.ASA_OVERALL_FEEDBACK_EVERY)
         {
             overallFeedbackPopUpGO.SetActive(true);
             dimPanelGO.SetActive(true);
