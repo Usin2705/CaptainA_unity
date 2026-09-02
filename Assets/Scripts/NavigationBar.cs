@@ -39,6 +39,17 @@ public class NavigationBar : MonoBehaviour
     [SerializeField]
     GameObject[] tabs;
 
+    /// <summary>
+    /// The "something new here" dot over the Advanced tab (MainView/NewFeature).
+    ///
+    /// Owned here because this object is never switched off, so it can set the dot's
+    /// opening state and refresh it after every tab change. Which tab clears it is not
+    /// decided here - the panel itself records that it was opened, and this only reads the
+    /// result back. Leave it unassigned to take the dot out of a build.
+    /// </summary>
+    [SerializeField]
+    GameObject newFeatureBadgeGO;
+
     private float swipeThreshold = 100f; // Minimum swipe distance to be considered a swipe
     private float thresholdFraction = 0.15f; // suggest 0.15f
     private Vector2 startPos;
@@ -49,6 +60,32 @@ public class NavigationBar : MonoBehaviour
     void Awake()
     {
         swipeThreshold = Mathf.Min(Screen.width, Screen.height) * thresholdFraction;
+    }
+
+    void Start()
+    {
+        RefreshNewFeatureBadge();
+    }
+
+    /// <summary>
+    /// Puts the new-feature dot into the state the stored preference asks for.
+    ///
+    /// Called once at launch and again after every tab change rather than only when the
+    /// badged tab is opened, because the panel records the visit inside its own OnEnable.
+    /// SetActive below runs that synchronously, so by the time this is reached the
+    /// preference is already written and the dot switches off in the same frame it was
+    /// earned - no waiting for the next launch.
+    /// </summary>
+    private void RefreshNewFeatureBadge()
+    {
+        if (newFeatureBadgeGO == null)
+        {
+            return;
+        }
+
+        newFeatureBadgeGO.SetActive(
+            NewFeatureBadge.ShouldShow(Const.PREF_SEEN_ADVANCED, Const.VER_MAX_SHOW_ADVANCED)
+        );
     }
 
     void Update()
@@ -150,6 +187,10 @@ public class NavigationBar : MonoBehaviour
         activePanel.SetActive(true);
 
         ChangeSourceImage(currentPanelIndex, true);
+
+        // After the panel is up, so a tab that just recorded itself as seen loses its dot
+        // on the way in rather than on the next launch.
+        RefreshNewFeatureBadge();
     }
 
     private void ChangeSourceImage(int index, bool isActive)

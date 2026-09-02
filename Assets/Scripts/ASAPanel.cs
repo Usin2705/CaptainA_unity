@@ -204,6 +204,72 @@ public class ASAPanel : MonoBehaviour
         {
             AnimateLoading();
         }
+
+        // Handle back button press on new Input System
+        if (UnityEngine.InputSystem.Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            OnPhoneBackPressed();
+        }
+    }
+
+    /// <summary>
+    /// Android's back button and back gesture, which Unity reports as Escape.
+    ///
+    /// Until now this screen had no way out at all: it has no back button of its own, so a
+    /// learner who opened a task was stuck there until they finished it. Back now leaves
+    /// the task the same way the New task button does.
+    ///
+    /// The rule is that back does whatever the visible back affordance does, and nothing
+    /// when there is none - so it cannot reach a state the buttons on screen would not.
+    /// Both screens that can sit in front of this one are siblings rather than children,
+    /// which means switching this panel off would leave them on screen; each has to be
+    /// ruled out before falling through to leaving the task.
+    /// </summary>
+    private void OnPhoneBackPressed()
+    {
+        // Not while the microphone is open. Leaving would throw the recording away, and
+        // there is no back affordance on screen to say so - what is showing is Stop. The
+        // learner is not stuck either: stop first, then back.
+        if (isRecording)
+        {
+            return;
+        }
+
+        // The results screen opens on top of this one without switching it off, so this
+        // Update carries on running behind it. It owns the key while it is up.
+        if (feedbackPanelGO.activeSelf)
+        {
+            return;
+        }
+
+        if (loadingPopUpGO.activeSelf)
+        {
+            // The popup only shows its own Back button when the upload failed. While the
+            // request is in flight there is nothing to go back to, and once the result has
+            // arrived the way on is Results - backing out there would throw away a score
+            // the learner cannot get again without recording the task a second time.
+            if (backButtonGO.activeSelf)
+            {
+                OnBackButtonClicked();
+            }
+
+            return;
+        }
+
+        ReturnToTaskPanel();
+    }
+
+    /// <summary>
+    /// Leaves the task for the task list - the exact reverse of TaskPanel.OpenTask.
+    ///
+    /// Only reached with the microphone closed, so nothing is being thrown away mid-flight.
+    /// A finished recording that was never sent does go, which is the intended reading of
+    /// backing out: an answer the learner chose not to submit.
+    /// </summary>
+    private void ReturnToTaskPanel()
+    {
+        AdvancePanel.ShowTaskPanel();
+        gameObject.SetActive(false);
     }
 
     void UpdateProgressBar()
@@ -237,20 +303,58 @@ public class ASAPanel : MonoBehaviour
 
     public void OnRecordButtonClicked()
     {
-        // Start recording
-        AudioManager.GetManager().StartRecording((int)tasks[currentTaskSelected].recordingTime);
+        // Stop stays dead until the microphone is genuinely open. It used to be re-enabled
+        // by a 0.3s timer running alongside AudioManager's own 0.3s startup delay, so the
+        // two finished together and a quick tap could land Microphone.End() before the
+        // Microphone.Start() it was meant to cancel: the device then opened *after* the
+        // stop and recorded on unattended, while the file saved was whatever the clip held
+        // from before. Waiting for the callback removes the race rather than tuning it.
+        var stopButton = pauseButtonGO.GetComponent<Button>();
+        stopButton.interactable = false;
+
         StartTimer();
 
-        var btn = pauseButtonGO.GetComponent<Button>();
-        btn.interactable = false;
+        AudioManager
+            .GetManager()
+            .StartRecording(
+                (int)tasks[currentTaskSelected].recordingTime,
+                started =>
+                {
+                    if (started)
+                    {
+                        stopButton.interactable = true;
+                        return;
+                    }
 
-        StartCoroutine(EnableAfterDelay(btn, 0.3f));
+                    // No microphone - permission refused, or another app holds the device.
+                    // Put the panel back rather than counting down against a recording
+                    // that is not happening and then offering the silence for replay.
+                    Debug.LogError("Recording did not start; returning to the record button.");
+                    AbandonRecording();
+                }
+            );
     }
 
-    IEnumerator EnableAfterDelay(Button btn, float delay)
+    /// <summary>
+    /// Returns the panel to its ready-to-record state without producing a result.
+    /// Used when a recording never started, and when it captured nothing.
+    /// </summary>
+    private void AbandonRecording()
     {
-        yield return new WaitForSeconds(delay);
-        btn.interactable = true;
+        isRecording = false;
+        currentTime = 0f;
+
+        progressBarBackgroundGO.SetActive(false);
+        progressBarGO.SetActive(false);
+
+        pauseButtonGO.SetActive(false);
+        pauseButtonGO.GetComponent<Button>().interactable = true;
+        recordButtonGO.SetActive(true);
+
+        // Deliberately not offered: there is no new recording behind them, and the file on
+        // disk is still the previous answer.
+        sendButtonGO.SetActive(false);
+        replayButtonGO.SetActive(false);
     }
 
     public void StopRecord()
@@ -261,7 +365,17 @@ public class ASAPanel : MonoBehaviour
         progressBarGO.SetActive(false);
 
         // Stop recording and save the audio
-        AudioManager.GetManager().StopRecording();
+        bool saved = AudioManager.GetManager().StopRecording();
+
+        if (!saved)
+        {
+            // Stopped before the device captured anything - a tap the instant Stop became
+            // live, or a microphone that never opened. There is no answer here to send or
+            // replay, and offering the silence as one is how a learner ends up submitting
+            // 30 seconds of nothing.
+            AbandonRecording();
+            return;
+        }
 
         pauseButtonGO.SetActive(false);
         recordButtonGO.SetActive(true);

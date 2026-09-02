@@ -258,58 +258,7 @@ public static class TextUtils
         return warn_text;
     }
 
-    public static string GetGradingInstruction(
-        DescribePanel.TaskType taskType,
-        int taskNumber,
-        bool isFinnish = true
-    )
-    {
-        if (taskNumber < 0)
-            taskNumber = 0;
-        if (taskNumber > 1)
-            taskNumber = 1;
-        //string language_instruction = isFinnish ? "The primary task for the users is to speak in Finnish.\\n" : "The primary task for the users is to speak in English\\n";
-        string language_instruction = "";
-
-        switch (taskType)
-        {
-            case DescribePanel.TaskType.A:
-            case DescribePanel.TaskType.A2:
-                switch (taskNumber)
-                {
-                    case 0:
-                        return isFinnish
-                            ? language_instruction + Secret.ROOM_DESCRIPTION_A0
-                            : language_instruction + Secret.ROOM_DESCRIPTION_A0_EN;
-                    case 1:
-                        return isFinnish
-                            ? language_instruction + Secret.ROOM_DESCRIPTION_A1
-                            : language_instruction + Secret.ROOM_DESCRIPTION_A1_EN;
-                }
-                break;
-            case DescribePanel.TaskType.B:
-            case DescribePanel.TaskType.B2:
-                switch (taskNumber)
-                {
-                    case 0:
-                        return isFinnish
-                            ? language_instruction + Secret.MISSING_ITEM_B0
-                            : language_instruction + Secret.MISSING_ITEM_B0_EN;
-                    case 1:
-                        return isFinnish
-                            ? language_instruction + Secret.MISSING_ITEM_B1
-                            : language_instruction + Secret.MISSING_ITEM_B1_EN;
-                }
-                break;
-            case DescribePanel.TaskType.C:
-            case DescribePanel.TaskType.C2:
-            // only return 1 case
-            default:
-                return isFinnish
-                    ? language_instruction + Secret.RANDOM_ROOM_DESCRIPTION_C
-                    : language_instruction + Secret.RANDOM_ROOM_DESCRIPTION_C_EN;
-        }
-
-        return Secret.ROOM_DESCRIPTION_A0;
-    }
+    // GetGradingInstruction was removed here. It picked the reference description for a
+    // describe-the-picture task out of Secret.cs and handed it to the GPT grader. That
+    // grader is gone, so the descriptions went with it - see docs/legacy_gpt_vision.md.
 }

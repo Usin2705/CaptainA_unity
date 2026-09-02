@@ -67,6 +67,18 @@ public class FeedbackRow : MonoBehaviour
     // a B2 tier would be unreachable UI.
     static readonly string[] BANDS = { "A1", "A2", "A2+", "B1" };
 
+    // Icon suffix per band, index-aligned with BANDS above - Resources/app_icons/ic_level_*.
+    //
+    // Kept separate from the band name because the top tier deliberately shows something
+    // other than what it matched on. The model clips at B1+ (3.5), so a genuine B2 or C1
+    // speaker is scored B1 as well; a bare "B1" badge reads to them as a verdict that
+    // their Finnish stops there. ">= B1" is the same result stated honestly - it says the
+    // assessment cannot see any higher, rather than that the learner cannot go any higher.
+    //
+    // Only the predicted band is written this way. The level on the profile screen is the
+    // learner's own declared one and runs to C1_plus, so it stays exact.
+    static readonly string[] BAND_ICONS = { "a1", "a2", "a2_plus", "b1_geq" };
+
     /// <summary>
     /// Shows one dimension as a star tier plus its CEFR badge.
     /// </summary>
@@ -112,7 +124,7 @@ public class FeedbackRow : MonoBehaviour
         if (band >= 0)
         {
             fillStars = band;
-            level = BANDS[band].Replace("+", "_plus").ToLowerInvariant();
+            level = BAND_ICONS[band];
         }
         else
         {
@@ -129,23 +141,23 @@ public class FeedbackRow : MonoBehaviour
             if (rating < Const.CEFR_BAND_A2)
             {
                 fillStars = 0;
-                level = "a1";
             }
             else if (rating < Const.CEFR_BAND_A2_PLUS)
             {
                 fillStars = 1;
-                level = "a2";
             }
             else if (rating < Const.CEFR_BAND_B1)
             {
                 fillStars = 2;
-                level = "a2_plus";
             }
             else
             {
                 fillStars = 3;
-                level = "b1";
             }
+
+            // Same index, same lookup as the label path above, so the fallback cannot end
+            // up showing a different badge than the server would have asked for.
+            level = BAND_ICONS[fillStars];
         }
 
         levels.sprite = LevelIcon(level);

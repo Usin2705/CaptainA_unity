@@ -166,8 +166,22 @@ public static class Const
     // The extra record time after the button release is trimmed
     public const int MAX_REC_TIME = 8;
 
-    public const int MAX_REC_TIME_A = 45; //45
-    public const int MAX_REC_TIME_B = 30; //30
+    // Microphone.Start returns a clip immediately, but the device is not delivering
+    // samples yet - it takes a moment to spin up, and longer the first time after launch
+    // while the audio stack is cold. Whatever sits at the head of the clip until then is
+    // not the learner: it is the artefact heard as a click at the start of the first few
+    // recordings. Two numbers deal with it.
+
+    // How long to keep waiting for the device to produce its first sample before giving up
+    // and reporting that recording could not start. Generous - a slow device should still
+    // record, and the only cost of waiting is the moment before Stop becomes live.
+    public const float MIC_START_TIMEOUT_SECS = 1f;
+
+    // How much of the front of the recording to throw away once it is over. Waiting for
+    // the first sample proves the device is running but says nothing about the quality of
+    // what it produced getting there, so the head is discarded outright. Recording begins
+    // well after the button is pressed, so this cannot reach a learner's first syllable.
+    public const int MIC_WARMUP_DISCARD_MS = 100;
 
     public const int MAX_REC_NUMBERGAME_EASY = 3;
     public const int MAX_REC_NUMBERGAME_MEDIUM = 4;
@@ -293,6 +307,13 @@ public static class Const
     public const string PREF_INS_PROFILE = "pref_instruction_profile";
     public const string PREF_INS_PHONE = "pref_instruction_phone";
 
+    // Highest announcement this user has acknowledged for the Advanced tab, written when
+    // they open it. Deliberately not PREF_INS_ADVANCE: that one is already set to 1 for
+    // everyone who has ever opened the tab - the exact people a new feature needs to reach
+    // - and PopUpManager.FinnishPanel writes 1 back into it every time the instruction
+    // popup closes, which would undo anything stored here.
+    public const string PREF_SEEN_ADVANCED = "pref_seen_advanced";
+
     // =======================================================
 
     // ===================== FLASH CARD CONST =====================
@@ -343,9 +364,19 @@ public static class Const
         + "Your task is to learn 20 new cards a day. You can long press on the deck to learn more.\n\n"
         + "We welcome volunteers to help translate the cards "
         + "into other languages. Please get in touch with us if you are interested.";
+
+    // Shown once, the first time the Advanced tab is opened. Deliberately short: it only
+    // has to orient someone who has just arrived, and NEW_VERSION_TEXT already carries the
+    // detail about the models, the project and the privacy notice.
+    //
+    // PuheNumero keeps one sentence rather than being dropped. Both features have a button
+    // on that screen, so naming only one would leave a first-time user wondering what the
+    // other does.
     public const string INSTRUCTION_ADVANCE =
-        "You can practice speaking either writen number or spoken number with PuheNumero. Please note that this function has higher pronunciation requirement. \n\n"
-        + "We will add more advance functions to help you learning Finnish in the future.";
+        "The Automatic Speaking Assessment estimates your Finnish speaking level. "
+        + "Choose a task, record your answer, and you will get an overall level plus "
+        + "scores for fluency, pronunciation, accuracy and range.\n\n"
+        + "You can also practise speaking numbers with PuheNumero.";
     public const string INSTRUCTION_PROFILE =
         "Your profile shows the average score you got for each phone. <b>Click</b> on the label "
         + "for instruction (text, photo, and video) on how to pronounce the phoneme correctly. \n\n"
@@ -362,15 +393,24 @@ public static class Const
         + "The materials in this app are made by members of the Kielibuusti project. "
         + "We will add more materials in the future if it is available.";
 
-    public const int APP_VERSION = 2;
+    public const int APP_VERSION = 3;
+
+    // The badge on the Advanced tab shows while PREF_SEEN_ADVANCED is below this number,
+    // and opening the tab stores this number - so it appears once per user, per bump, and
+    // stays until they actually go and look.
+    //
+    // Raise it to announce the next thing. A fresh install and an upgrade from an older
+    // build both read 0, so neither needs detecting: no version string is parsed anywhere,
+    // and this is the only line to touch. Independent of APP_VERSION, which paces the
+    // what's-new popup instead.
+    public const int VER_MAX_SHOW_ADVANCED = 4;
     public const string NEW_VERSION_TEXT =
-        "Hi everyone! As you've probably noticed, the app now has a new name, icon, and user interface. "
-        + "These changes are the result of excellent work by Aalo Kailu, Apollo Ailus, and Kia Raitanen last summer. "
-        + "They are students from Aalto University who helped improve the app's UI/UX design as their ITP project.\n\n"
-        + "You also see a demo of new feature - <b>PuheNumero</b> - in the <b>Advanced</b> tab. This demo is based on the thesis work of Sy Hoang Mai, "
-        + "under the guidance of advisor Nhan Phan and supervisor Mikko Kurimo, with additional support from student Lauri Lappalainen.\n\n"
-        + "These improvements are based on feedback from our users - so please keep sharing your suggestions! "
-        + "While our resources are limited, we'll do our best to implement your ideas.";
+        "Hi everyone! We have added a new <b>Automatic Speaking Assessment</b> function in the <b>Advanced</b> tab.\n\n"
+        + "Using <b>Whisper</b> and <b>Qwen 3.5</b>, it estimates your Finnish speaking proficiency and provides four analytic scores: fluency, pronunciation, accuracy, and range.\n\n"
+        + "The feature is the result of the <b>DigiTala in Action</b> project, a collaboration between <b>Aalto University</b>, "
+        + "<b>University of Jyväskylä</b>, and <b>University of Helsinki</b>.\n\n"
+        + "By using this function, your speaking data will also help us improve automatic speaking assessment for Finnish learners. "
+        + "You can read the privacy notice before using it. Thank you for supporting our research!";
 
     // ====================================================================
 
@@ -478,6 +518,41 @@ public static class Const
     // except A1 - so someone who self-assessed as B2 or C1+ can walk down the ladder but
     // cannot climb back above B1.
     public const string ASA_ADVANCE_CEILING = "B1";
+
+    // How far up their own level's cohort a learner has to be before Advance is offered.
+    // Compared against the raw `percentile` from the comparison response, which is never
+    // shown as a number - only this gate and the level ring read it.
+    //
+    // Set to match the server's `display.top_percent` ladder, whose buckets are 1, 5, 10,
+    // 25 and 50. At 0.75 the button appears exactly when the badge says "top 25%", so what
+    // the learner is told and what the screen offers them agree. A value between two
+    // buckets - 0.8, say - would leave two learners both shown "top 25%" with different
+    // buttons and nothing on screen to explain the difference.
+    //
+    // Relaxed from 0.9, which gated the feature to a tenth of each cohort. Going up is the
+    // reversible direction: Revert is ungated and one tap away, so offering it too readily
+    // costs a learner nothing they cannot undo, while offering it too rarely leaves them
+    // stuck in a cohort they have outgrown.
+    public const float ASA_ADVANCE_MIN_PERCENTILE = 0.75f;
+
+    // How many completed tasks between asks for overall feedback.
+    //
+    // There are five tasks, so this is two full passes: by then a learner has seen every
+    // task and repeated them, which is the first point they have something to say. Asking
+    // every 5 caught them the moment they finished their first pass, with the feature
+    // barely met. Raising it further trades away responses - four passes is more than most
+    // testers reach, and someone never asked leaves no feedback at all.
+    //
+    // A backlog, not a birthday: the test is how many tasks have been done SINCE the last
+    // ask, so a learner who passed the mark without ever opening the task list is still
+    // caught the next time they do. The count restarts whenever they answer or decline.
+    public const int ASA_OVERALL_FEEDBACK_EVERY = 10;
+
+    // The TasksSent value when overall feedback was last put in front of this learner,
+    // whether they answered it or dismissed it. Replaces the old OverallFeedbackSent flag,
+    // which could not express this: it was cleared after every upload, so a plain
+    // "have we asked?" boolean re-armed itself on the very next task.
+    public const string PREF_OVERALL_FEEDBACK_ASKED_AT = "pref_overall_feedback_asked_at";
 
     // Backstop only. A blank Secret.ASA_SET_LEVEL_URL hides both buttons, so in practice
     // nobody reaches a state where this needs showing.

@@ -16,6 +16,19 @@ public class AudioManager : MonoBehaviour
 
     private AudioClip replayClip;
 
+    // The microphone actually in use, captured when recording starts so that stopping and
+    // polling both address the same device the whole way through.
+    private string recordingDevice;
+
+    // The replay handler this class added, and the button it went on. Kept so it can be
+    // taken off again: LoadAudioClip runs once per recording, and without this each run
+    // left another copy behind. Two copies means two Stop-then-Play pairs in one frame,
+    // which is audible as a stutter, and it got worse with every recording in a session.
+    // MainPanel happened to be safe only because it clears the button first; ASAPanel did
+    // not, so the leak lived there.
+    private Button replayButton;
+    private UnityEngine.Events.UnityAction replayHandler;
+
     void Awake()
     {
         // Destroy existing AudioManager(s) to avoid duplicates
@@ -69,7 +82,14 @@ public class AudioManager : MonoBehaviour
         return audioManager;
     }
 
-    public void StartRecording(int lengthSec)
+    /// <param name="onStarted">
+    /// Called once the microphone is actually running, or with false if it could not be
+    /// started. Worth waiting for rather than assuming: this method returns immediately
+    /// but the device does not open for another 0.3s, and a stop issued inside that gap
+    /// lands before the start it was meant to cancel - which leaves the microphone running
+    /// unattended and saves whatever the clip held beforehand.
+    /// </param>
+    public void StartRecording(int lengthSec, System.Action<bool> onStarted = null)
     {
         /*
         *   We can skip this block since we no longer require a notification sound
@@ -82,16 +102,48 @@ public class AudioManager : MonoBehaviour
         //The new notification sound is just 0.3f long
         //Invoke(nameof(RecordSound), 0.31f);
         // audioSource.Stop();
-        StartCoroutine(StartRecordingSafe(lengthSec));
+        StartCoroutine(StartRecordingSafe(lengthSec, onStarted));
     }
 
-    IEnumerator StartRecordingSafe(int lengthSec)
+    IEnumerator StartRecordingSafe(int lengthSec, System.Action<bool> onStarted)
     {
         audioSource.Stop();
 
         yield return new WaitForSeconds(0.3f);
 
-        RecordSound(lengthSec);
+        if (!RecordSound(lengthSec))
+        {
+            onStarted?.Invoke(false);
+            yield break;
+        }
+
+        // Microphone.Start having returned is not the same as the microphone running. It
+        // hands back a clip straight away and the device fills it later, so reporting
+        // "started" here used to be a guess - and the samples sitting in the clip until the
+        // device caught up are what the first recordings played back as a click.
+        //
+        // GetPosition moving off zero is the device's own signal that it is delivering.
+        float deadline = Time.realtimeSinceStartup + Const.MIC_START_TIMEOUT_SECS;
+
+        while (Microphone.GetPosition(recordingDevice) <= 0)
+        {
+            if (Time.realtimeSinceStartup > deadline)
+            {
+                Debug.LogError(
+                    $"Microphone '{recordingDevice}' never produced a sample within "
+                        + $"{Const.MIC_START_TIMEOUT_SECS}s - giving up rather than counting "
+                        + "down against a recording that is not happening."
+                );
+
+                Microphone.End(recordingDevice);
+                onStarted?.Invoke(false);
+                yield break;
+            }
+
+            yield return null;
+        }
+
+        onStarted?.Invoke(true);
     }
 
     public void StopReplaying()
@@ -99,7 +151,8 @@ public class AudioManager : MonoBehaviour
         audioSource.Stop();
     }
 
-    void RecordSound(int lengthSec)
+    /// <returns>True only if the microphone is now running.</returns>
+    bool RecordSound(int lengthSec)
     {
         // Never index Microphone.devices without checking it. It is empty whenever the
         // permission has not been granted yet, and indexing [0] there throws
@@ -112,15 +165,17 @@ public class AudioManager : MonoBehaviour
                     + "Asking again - the user can grant it and retry."
             );
             RequestMicrophonePermission();
-            return;
+            return false;
         }
 
-        audioSource.clip = Microphone.Start(
-            Microphone.devices[0],
-            false,
-            lengthSec,
-            Const.FREQUENCY
-        );
+        // Remembered rather than looked up again later. Stopping is addressed to a device
+        // by name, and re-reading devices[0] at that point assumes the list has not changed
+        // since - a headset unplugged mid-recording is enough to end the wrong one.
+        recordingDevice = Microphone.devices[0];
+
+        audioSource.clip = Microphone.Start(recordingDevice, false, lengthSec, Const.FREQUENCY);
+
+        return audioSource.clip != null;
     }
 
     public void PlayAudioClip(AudioClip audioClip)
@@ -190,32 +245,9 @@ public class AudioManager : MonoBehaviour
         );
     }
 
-    public void GetAudioAndASR(
-        GameObject transcriptGO,
-        GameObject scoreButtonGO,
-        DescribePanel.TaskType taskType,
-        int taskNumber,
-        bool isFinnish = true
-    )
-    {
-        Microphone.End("");
-        byte[] wavBuffer = SavWav.GetWav(audioSource.clip, out uint length, trim: true);
-        SavWav.Save(Const.DESCRIBE_FILENAME, audioSource.clip, trim: true); // for debug purpose
-
-        //StartCoroutine(NetworkManager.GetManager().GPTTranscribe(wavBuffer, transcriptGO, scoreButtonGO, taskType, taskNumber, isFinnish));
-        StartCoroutine(
-            NetworkManager
-                .GetManager()
-                .GPTTranscribeWhisper(
-                    wavBuffer,
-                    transcriptGO,
-                    scoreButtonGO,
-                    taskType,
-                    taskNumber,
-                    isFinnish
-                )
-        );
-    }
+    // GetAudioAndASR was removed with the describe-the-picture grading path: it uploaded
+    // the recording for Whisper transcription and GPT scoring, and nothing reached it once
+    // that panel stopped being attached to anything. See docs/legacy_gpt_vision.md.
 
     public void GetAudioAndNG(
         string number,
@@ -234,11 +266,79 @@ public class AudioManager : MonoBehaviour
         );
     }
 
-    public void StopRecording()
+    /// <summary>
+    /// Ends the recording and writes it to Const.ASA_FILENAME.
+    /// </summary>
+    ///
+    /// <returns>
+    /// False when nothing was actually captured, in which case no file is written and the
+    /// previous one is left alone.
+    /// </returns>
+    ///
+    /// <remarks>
+    /// The check matters more than it looks. Microphone.Start allocates the whole
+    /// lengthSec up front and fills it as it goes, so a clip that was never recorded into
+    /// is not short - it is full-length silence. SavWav's trim does not save us either: it
+    /// walks in from each end looking for a non-zero sample, and when every sample is zero
+    /// neither loop ever breaks, so the bounds stay at the full buffer and it writes the
+    /// entire thing. That is the "maximum length empty file" - 30 seconds of nothing,
+    /// offered for replay and upload as if it were an answer.
+    ///
+    /// Microphone.GetPosition is how many samples the device has written, and it must be
+    /// read before Microphone.End because stopping the device resets it to zero.
+    /// </remarks>
+    public bool StopRecording()
     {
-        Microphone.End("");
-        byte[] wavBuffer = SavWav.GetWav(audioSource.clip, out uint length, trim: true);
+        int captured = Microphone.GetPosition(recordingDevice);
+        bool wasRecording = Microphone.IsRecording(recordingDevice);
+
+        Microphone.End(recordingDevice);
+
+        if (audioSource.clip == null || !wasRecording || captured <= 0)
+        {
+            Debug.LogWarning(
+                "Nothing was recorded - not saving. "
+                    + $"clip={(audioSource.clip == null ? "null" : "present")}, "
+                    + $"wasRecording={wasRecording}, capturedSamples={captured}."
+            );
+            return false;
+        }
+
+        DiscardMicWarmUp(audioSource.clip, captured);
+
         SavWav.Save(Const.ASA_FILENAME, audioSource.clip, trim: true);
+        return true;
+    }
+
+    /// <summary>
+    /// Silences the first Const.MIC_WARMUP_DISCARD_MS of a finished recording.
+    ///
+    /// Silenced rather than cut out, because SavWav's trim already drops leading silence -
+    /// so zeroing the head makes the existing pass remove it, instead of adding a second
+    /// place where the start of the audio is decided.
+    ///
+    /// This is what actually removes the click. Waiting for the device to deliver its
+    /// first sample proves it is awake; it says nothing about whether the frames it
+    /// produced while waking are worth keeping.
+    /// </summary>
+    ///
+    /// <param name="capturedSamples">
+    /// How much the device really wrote. Guards the case where the whole recording is
+    /// shorter than the discard window - a very quick stop would otherwise be wiped out
+    /// entirely and read as "nothing was recorded".
+    /// </param>
+    private static void DiscardMicWarmUp(AudioClip clip, int capturedSamples)
+    {
+        int warmUpSamples = Const.FREQUENCY * Const.MIC_WARMUP_DISCARD_MS / 1000;
+
+        if (warmUpSamples <= 0 || capturedSamples <= warmUpSamples)
+        {
+            return;
+        }
+
+        // Zero-initialised by C#, so writing it over the head IS the silencing.
+        float[] silence = new float[warmUpSamples * clip.channels];
+        clip.SetData(silence, 0);
     }
 
     public IEnumerator LoadAudioClip(string filename, GameObject replayButtonGO)
@@ -286,9 +386,19 @@ public class AudioManager : MonoBehaviour
                     replayClip = dlHandler.audioClip;
                     if (replayButtonGO != null)
                     {
-                        replayButtonGO
-                            .transform.GetComponent<Button>()
-                            .onClick.AddListener(() => GetManager().PlayAudioClip(replayClip));
+                        // Take the previous one off before adding another. Not
+                        // RemoveAllListeners: the panel owning this button has its own
+                        // handler on it - ASAPanel drives the replay progress bar from
+                        // one - and clearing the lot would silently break that.
+                        if (replayButton != null && replayHandler != null)
+                        {
+                            replayButton.onClick.RemoveListener(replayHandler);
+                        }
+
+                        replayButton = replayButtonGO.transform.GetComponent<Button>();
+                        replayHandler = () => GetManager().PlayAudioClip(replayClip);
+                        replayButton.onClick.AddListener(replayHandler);
+
                         replayButtonGO.SetActive(true);
                     }
                 }

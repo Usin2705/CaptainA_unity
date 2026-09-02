@@ -138,6 +138,12 @@ public class AdvancePanel : MonoBehaviour
         backgroundPopUpGO.SetActive(false);
         profilePanelGO.SetActive(false);
 
+        // Opening the tab is what clears its new-feature dot - the learner has now seen
+        // whatever it was pointing at. Recorded here rather than on the tab button so that
+        // every route in counts, and so the dot cannot be cleared by a tap that does not
+        // actually arrive. NavigationBar reads this back and hides the dot.
+        NewFeatureBadge.MarkSeen(Const.PREF_SEEN_ADVANCED, Const.VER_MAX_SHOW_ADVANCED);
+
         // Check if the instruction panel has been shown before
         if (!PlayerPrefs.HasKey(Const.PREF_INS_ADVANCE))
         {
@@ -197,6 +203,20 @@ public class AdvancePanel : MonoBehaviour
             consentPopUpGO.SetActive(true);
             dimPanelGO.SetActive(true);
         }
+    }
+
+    /// <summary>
+    /// Brings the task list back to the front, for a screen that needs to return to it
+    /// without holding its own reference. This panel owns every screen under it - OnEnable
+    /// is what switches them all off - so the reference stays here rather than being
+    /// duplicated into each child.
+    ///
+    /// Only turns the task list on. The caller switches itself off, because it is the one
+    /// that knows whether it has anything to clean up first.
+    /// </summary>
+    public void ShowTaskPanel()
+    {
+        taskPanelGO.SetActive(true);
     }
 
     // The sheet is a single reused object, so clear it every time it opens. Without this

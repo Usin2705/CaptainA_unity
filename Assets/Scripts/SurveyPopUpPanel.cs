@@ -30,8 +30,8 @@ public class SurveyPopUpPanel : MonoBehaviour
 
     void Update()
     {
-        // Handle back button press on phone
-        if (Input.GetKeyDown(KeyCode.Escape))
+        // Handle back button press on new Input System
+        if (UnityEngine.InputSystem.Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             surveyPopUpPanelGO.SetActive(false);
         }

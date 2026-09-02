@@ -94,12 +94,25 @@ public static class SavWav
 
         if (trim)
         {
+            // Walk in from both ends to the first sample that is not silent.
+            //
+            // These start at -1 rather than at the buffer bounds on purpose. Written the
+            // obvious way - seeding `start`/`end` with 0 and sampleCount-1 and letting the
+            // loops narrow them - a clip in which EVERY sample is silent never breaks out
+            // of either loop, so both keep their seed values and the "trimmed" range is
+            // the whole buffer. Trimming then does the exact opposite of its job in the
+            // one case it exists for: a recording that captured nothing is written at full
+            // length, and 30 seconds of digital silence gets replayed and uploaded as
+            // though it were an answer.
+            var firstAudible = -1;
+            var lastAudible = -1;
+
             for (var i = 0; i < sampleCount; i++)
             {
                 if ((short)(samples[i] * RescaleFactor) == 0)
                     continue;
 
-                start = i;
+                firstAudible = i;
                 break;
             }
 
@@ -108,8 +121,22 @@ public static class SavWav
                 if ((short)(samples[i] * RescaleFactor) == 0)
                     continue;
 
-                end = i;
+                lastAudible = i;
                 break;
+            }
+
+            if (firstAudible < 0)
+            {
+                // Nothing audible anywhere. An empty range, so the copy loop below writes
+                // no samples and the result is a valid header-only WAV - honestly empty,
+                // rather than a large file that merely sounds empty.
+                start = 0;
+                end = -1;
+            }
+            else
+            {
+                start = firstAudible;
+                end = lastAudible;
             }
         }
 
