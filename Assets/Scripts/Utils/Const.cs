@@ -364,6 +364,7 @@ public static class Const
         + "Your task is to learn 20 new cards a day. You can long press on the deck to learn more.\n\n"
         + "We welcome volunteers to help translate the cards "
         + "into other languages. Please get in touch with us if you are interested.";
+
     // Shown once, the first time the Advanced tab is opened. Deliberately short: it only
     // has to orient someone who has just arrived, and NEW_VERSION_TEXT already carries the
     // detail about the models, the project and the privacy notice.

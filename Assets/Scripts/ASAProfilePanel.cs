@@ -615,9 +615,9 @@ public class ASAProfilePanel : MonoBehaviour
         // Const.ASA_ADVANCE_MIN_PERCENTILE for where that bar sits and why.
         advanceLevelButtonGO.SetActive(
             onLadder
-            && level < ceiling
-            && user.percentile >= Const.ASA_ADVANCE_MIN_PERCENTILE
-            && LevelChangeConfigured
+                && level < ceiling
+                && user.percentile >= Const.ASA_ADVANCE_MIN_PERCENTILE
+                && LevelChangeConfigured
         );
     }
 
