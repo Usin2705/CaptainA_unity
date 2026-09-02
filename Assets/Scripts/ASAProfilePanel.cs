@@ -611,9 +611,13 @@ public class ASAProfilePanel : MonoBehaviour
         // way out of it is the wrong answer.
         ShowRevertButton();
 
-        // Going up is: not past the ceiling, and not without being in the 90th percentile.
+        // Going up is: not past the ceiling, and not without having earned it - see
+        // Const.ASA_ADVANCE_MIN_PERCENTILE for where that bar sits and why.
         advanceLevelButtonGO.SetActive(
-            onLadder && level < ceiling && user.percentile >= 0.9f && LevelChangeConfigured
+            onLadder
+            && level < ceiling
+            && user.percentile >= Const.ASA_ADVANCE_MIN_PERCENTILE
+            && LevelChangeConfigured
         );
     }
 

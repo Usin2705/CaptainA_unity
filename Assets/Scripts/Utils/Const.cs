@@ -364,9 +364,18 @@ public static class Const
         + "Your task is to learn 20 new cards a day. You can long press on the deck to learn more.\n\n"
         + "We welcome volunteers to help translate the cards "
         + "into other languages. Please get in touch with us if you are interested.";
+    // Shown once, the first time the Advanced tab is opened. Deliberately short: it only
+    // has to orient someone who has just arrived, and NEW_VERSION_TEXT already carries the
+    // detail about the models, the project and the privacy notice.
+    //
+    // PuheNumero keeps one sentence rather than being dropped. Both features have a button
+    // on that screen, so naming only one would leave a first-time user wondering what the
+    // other does.
     public const string INSTRUCTION_ADVANCE =
-        "You can practice speaking either writen number or spoken number with PuheNumero. Please note that this function has higher pronunciation requirement. \n\n"
-        + "We will add more advance functions to help you learning Finnish in the future.";
+        "The Automatic Speaking Assessment estimates your Finnish speaking level. "
+        + "Choose a task, record your answer, and you will get an overall level plus "
+        + "scores for fluency, pronunciation, accuracy and range.\n\n"
+        + "You can also practise speaking numbers with PuheNumero.";
     public const string INSTRUCTION_PROFILE =
         "Your profile shows the average score you got for each phone. <b>Click</b> on the label "
         + "for instruction (text, photo, and video) on how to pronounce the phoneme correctly. \n\n"
@@ -508,6 +517,22 @@ public static class Const
     // except A1 - so someone who self-assessed as B2 or C1+ can walk down the ladder but
     // cannot climb back above B1.
     public const string ASA_ADVANCE_CEILING = "B1";
+
+    // How far up their own level's cohort a learner has to be before Advance is offered.
+    // Compared against the raw `percentile` from the comparison response, which is never
+    // shown as a number - only this gate and the level ring read it.
+    //
+    // Set to match the server's `display.top_percent` ladder, whose buckets are 1, 5, 10,
+    // 25 and 50. At 0.75 the button appears exactly when the badge says "top 25%", so what
+    // the learner is told and what the screen offers them agree. A value between two
+    // buckets - 0.8, say - would leave two learners both shown "top 25%" with different
+    // buttons and nothing on screen to explain the difference.
+    //
+    // Relaxed from 0.9, which gated the feature to a tenth of each cohort. Going up is the
+    // reversible direction: Revert is ungated and one tap away, so offering it too readily
+    // costs a learner nothing they cannot undo, while offering it too rarely leaves them
+    // stuck in a cohort they have outgrown.
+    public const float ASA_ADVANCE_MIN_PERCENTILE = 0.75f;
 
     // How many completed tasks between asks for overall feedback.
     //
