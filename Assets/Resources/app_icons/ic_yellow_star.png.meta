@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9c767168518fc849aa1890dc75849518
+guid: 7372854ab1b7d67c68282110de126944
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3078508036873924028
-    second: Star 2 (1)_0
+      213: -3482072028455300371
+    second: ic_yellow_star 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,53 +96,27 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ic_yellow_star
+      name: ic_yellow_star 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 80
-        height: 78
+        width: 512
+        height: 493
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cbd2e08bfbe09ba20800000000000000
-      internalID: 3078508036873924028
+      spriteID: de2199d50f13dafc0800000000000000
+      internalID: -3482072028455300371
       vertices: []
       indices: 
       edges: []
@@ -151,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 78e416e89b1f59a2d8f459e087ad55c1
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ic_yellow_star: 3078508036873924028
+      ic_yellow_star 1_0: -3482072028455300371
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

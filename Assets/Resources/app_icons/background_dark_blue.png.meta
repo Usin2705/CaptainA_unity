@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 109c4002af6bd6b7b903f5e0763c3442
+guid: 83b1ed565bd0a1126a5a1e9031981298
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1374870777273957214
-    second: ic_new_task_button_0
+      213: 3403023561668900463
+    second: background_dark_blue_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ic_new_task_button_0
+      name: background_dark_blue_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 512
-        height: 126
+        height: 164
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2a4458cff4a7bece0800000000000000
-      internalID: -1374870777273957214
+      spriteID: f663f8b36e7f93f20800000000000000
+      internalID: 3403023561668900463
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ic_new_task_button_0: -1374870777273957214
+      background_dark_blue_0: 3403023561668900463
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

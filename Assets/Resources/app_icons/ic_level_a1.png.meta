@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7e7d3b8eba84bd04080a79f0abece274
+guid: ccdb487ca337be734a132481bfec6afb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -435981762229496587
-    second: Box 4_0
+      213: -8959836884262555408
+    second: ic_level_a1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,53 +96,27 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ic_level_a1
+      name: ic_level_a1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 70
-        height: 99
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5f413cda5e413f9f0800000000000000
-      internalID: -435981762229496587
+      spriteID: 0f0761433d348a380800000000000000
+      internalID: -8959836884262555408
       vertices: []
       indices: 
       edges: []
@@ -151,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 57ea33e1910956ce4bb1d2b31b0eee7f
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ic_level_a1: -435981762229496587
+      ic_level_a1_0: -8959836884262555408
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
