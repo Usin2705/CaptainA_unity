@@ -35591,8 +35591,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -490}
-  m_SizeDelta: {x: -40, y: 100}
+  m_AnchoredPosition: {x: 0, y: -498}
+  m_SizeDelta: {x: -56, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1399056237
 MonoBehaviour:
@@ -42918,7 +42918,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -360}
-  m_SizeDelta: {x: -40, y: 100}
+  m_SizeDelta: {x: -56, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1670868350
 MonoBehaviour:
@@ -48968,8 +48968,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Number Practice
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
+  m_sharedMaterial: {fileID: -459825320126915412, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -48993,8 +48993,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34
-  m_fontSizeBase: 34
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -53076,8 +53076,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Automatic Speaking Assessment
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
+  m_sharedMaterial: {fileID: -459825320126915412, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -53101,8 +53101,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34
-  m_fontSizeBase: 34
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
