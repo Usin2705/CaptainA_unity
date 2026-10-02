@@ -35,6 +35,9 @@ public class ASAPanel : MonoBehaviour
     GameObject progressBarGO;
 
     [SerializeField]
+    GameObject backButtonASAGO;
+
+    [SerializeField]
     GameObject feedbackPanelGO;
 
     [SerializeField]
@@ -144,6 +147,21 @@ public class ASAPanel : MonoBehaviour
         replayButtonGO.GetComponent<Button>().onClick.AddListener(() => OnReplayButtonClicked());
         resultsButtonGO.GetComponent<Button>().onClick.AddListener(() => OnResultsButtonClicked());
         backButtonGO.GetComponent<Button>().onClick.AddListener(() => OnBackButtonClicked());
+
+        ButtonUtils.Rewire(
+            backButtonASAGO,
+            () =>
+            {
+                if (isRecording)
+                {
+                    StopRecord();
+                }
+                else
+                {
+                    ReturnToTaskPanel();
+                }
+            }
+        );
 
         // Each emoji now posts the moment it is tapped, so a learner who rates the result
         // and then quits, or backs out to redo the task, is still counted. Results keeps

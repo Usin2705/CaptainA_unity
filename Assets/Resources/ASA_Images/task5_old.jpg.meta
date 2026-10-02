@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 56ed7b179b72323679daa5c5e82c3478
+guid: b3bc2904e4b5deb45be6fcab6e50ebcc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4754905817030143
-    second: superkauppa_square_0
+      213: 4898315220327073453
+    second: teht_5_kuva_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -24,7 +24,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: superkauppa_square_0
+      name: teht_5_kuva_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1500
-        height: 1500
+        width: 1587
+        height: 2245
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 102e5d7307b1feff0800000000000000
-      internalID: -4754905817030143
+      spriteID: da60c719dbf4af340800000000000000
+      internalID: 4898315220327073453
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      superkauppa_square_0: -4754905817030143
+      teht_5_kuva_0: 4898315220327073453
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
