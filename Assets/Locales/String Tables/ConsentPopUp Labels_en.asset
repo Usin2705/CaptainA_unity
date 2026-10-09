@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: ConsentPopUp Labels_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 0075310c114e552f7a8f6c29aa12bb32, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1369811542016
+    m_Localized: Privacy Notice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1773848846336
+    m_Localized: 'The Automatic Speaking Assessment needs to collect your data for
+      automatic scoring and improving the AI model. Please review how we process
+      your data.
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1963590770688
+    m_Localized: <u>Read Privacy Notice</u>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2135594983424
+    m_Localized: I have read and understood the Privacy Notice.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2467083411456
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2504827953152
+    m_Localized: Not now
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

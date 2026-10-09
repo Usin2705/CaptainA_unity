@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: FeedbackPanel Labels_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: db69d3d55aef5df5fa3b2c531d1f5502, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 616762007552
+    m_Localized: Below you can view your results. The recording is automatically
+      assessed by an AI model.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 669878673408
+    m_Localized: Proficiency level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3049957449728
+    m_Localized: OVERALL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2876388761600
+    m_Localized: Pronunciation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2907997036544
+    m_Localized: Range
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2925197877248
+    m_Localized: Accuracy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2951772987392
+    m_Localized: Fluency
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3382343458816
+    m_Localized: What did you think?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3550702821376
+    m_Localized: New task
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3698728198144
+    m_Localized: What we heard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4093949075456
+    m_Localized: Your answer did not seem to match the task. Please check the task
+      again.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4361424035840
+    m_Localized: Your answer only partly matched the task, so these scores may not
+      reflect your true level. This check is automatic and can be wrong.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4677976547328
+    m_Localized: (nothing was recognised in this recording)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5920983703552
+    m_Localized: Good to know!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6000499318784
+    m_Localized: 'You can get additional information about the feedback by pressing
+      the stars under the titles:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6150844145664
+    m_Localized: "You can also see your current level of each measured category according
+      to the Common European Framework of Reference for Languages \u200B\u200B(A1,
+      A2, A2+, B1) next to the stars:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6162076491776
+    m_Localized: 'Please keep in mind that with this application it is not possible
+      to reach B2 or higher level of proficiency.  '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6343601774592
+    m_Localized: Measures the overall speech ability.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6757755740160
+    m_Localized: Checks whether you pronounced the words correctly. Measures how
+      well the machine understands your speech.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6846674984960
+    m_Localized: Measures the versatility of the language used.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6874936205312
+    m_Localized: Measures precision, correctness, and how well you followed grammar
+      rules.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6939780145152
+    m_Localized: Measures the speed, pauses and hesitations in your speech.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7719484481536
+    m_Localized: Do you think the result is accurate?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8025454764032
+    m_Localized: Was the result easy to understand?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8115305144320
+    m_Localized: Here you can provide additional feedback (max. 250 characters).
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8203180007424
+    m_Localized: Send
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10626791464960
+    m_Localized: Feedback
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

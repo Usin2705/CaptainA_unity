@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: FeedbackPanel Labels Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: FeedbackPanel Labels
+  m_TableCollectionNameGuidString: db69d3d55aef5df5fa3b2c531d1f5502
+  m_Entries:
+  - m_Id: 616762007552
+    m_Key: feedbackPanel.infoText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 669878673408
+    m_Key: feedbackPanel.proficiencyTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2876388761600
+    m_Key: feedbackPanel.pronunciationTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2907997036544
+    m_Key: feedbackPanel.rangeTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2925197877248
+    m_Key: feedbackPanel.accuracyTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2951772987392
+    m_Key: feedbackPanel.fluencyTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3049957449728
+    m_Key: feedbackPanel.overallTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3382343458816
+    m_Key: feedbackPanel.feedbackButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3550702821376
+    m_Key: feedbackPanel.newTaskButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3698728198144
+    m_Key: feedbackPanel.transcriptTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4093949075456
+    m_Key: feedbackPanel.answerOffTopicNotice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4361424035840
+    m_Key: feedbackPanel.answerPartialNotice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4677976547328
+    m_Key: feedbackPanel.emptyTranscriptNotice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5920983703552
+    m_Key: feedbackPanel.infoPopUpTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6000499318784
+    m_Key: feedbackPanel.infoPopUpText1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6150844145664
+    m_Key: feedbackPanel.infoPopUpText2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6162076491776
+    m_Key: feedbackPanel.infoPopUpText3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6343601774592
+    m_Key: feedbackPanel.proficiencyPopUpText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6757755740160
+    m_Key: feedbackPanel.pronunciationPopUpText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6846674984960
+    m_Key: feedbackPanel.rangePopUpText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6874936205312
+    m_Key: feedbackPanel.accuracyPopUpText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6939780145152
+    m_Key: feedbackPanel.fluencyPopUpText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7719484481536
+    m_Key: feedbackPopUp.accuracyTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8025454764032
+    m_Key: feedbackPopUp.understandingTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8115305144320
+    m_Key: feedbackPopUp.textField
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8203180007424
+    m_Key: feedbackPopUp.sendButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10626791464960
+    m_Key: feedbackPanel.topPanelTitle
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 5595283954798690402
+  references:
+    version: 2
+    RefIds:
+    - rid: 5595283954798690402
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1791198416274

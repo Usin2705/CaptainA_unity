@@ -3,6 +3,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UI;
 
 public class ASAPanel : MonoBehaviour
@@ -71,13 +72,15 @@ public class ASAPanel : MonoBehaviour
     [System.Serializable]
     public class TaskAttributes
     {
-        public string taskText;
+        public LocalizedString taskText;
         public Sprite taskImage;
         public float recordingTime = 0;
     }
 
     [SerializeField]
     private TaskAttributes[] tasks;
+
+    private LocalizedString currentTaskText;
 
     [SerializeField]
     private TMPro.TextMeshProUGUI taskTextGO;
@@ -119,7 +122,16 @@ public class ASAPanel : MonoBehaviour
         currentTaskSelected = taskSelected;
         TaskAttributes task = tasks[taskSelected];
 
-        taskTextGO.text = task.taskText;
+        taskTextGO.gameObject.SetActive(false);
+
+        if (currentTaskText != null)
+        {
+            currentTaskText.StringChanged -= UpdateTaskText;
+        }
+
+        currentTaskText = task.taskText;
+        currentTaskText.StringChanged += UpdateTaskText;
+        currentTaskText.RefreshString();
 
         if (task.taskImage != null)
         {
@@ -130,6 +142,12 @@ public class ASAPanel : MonoBehaviour
         {
             taskImageGO.gameObject.SetActive(false);
         }
+    }
+
+    private void UpdateTaskText(string localizedText)
+    {
+        taskTextGO.text = localizedText;
+        taskTextGO.gameObject.SetActive(true);
     }
 
     void OnEnable()

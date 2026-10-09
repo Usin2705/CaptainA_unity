@@ -1,0 +1,168 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: ASAProfilePanel Labels_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 850ceabc4262bb1acb39b8a91b2fcf93, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 399266373632
+    m_Localized: Current status
+    m_Metadata:
+      m_Items: []
+  - m_Id: 531886071808
+    m_Localized: Beginner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8894137065472
+    m_Localized: Elementary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13267697229824
+    m_Localized: Intermediate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13450052984832
+    m_Localized: Upper Intermediate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13467077664768
+    m_Localized: Advanced/Fluent
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14087016767488
+    m_Localized: Change to a lower level?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14207070330880
+    m_Localized: Advance to the next level?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14536994283520
+    m_Localized: Please complete at least {0} tasks to see your ranking. You have
+      completed {1} out of {0} so far.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19380538793984
+    m_Localized: Top {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16883006922752
+    m_Localized: You are in the top {0}% of {1} learners.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17416568528896
+    m_Localized: Your position among other {0} learners
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19467973255168
+    m_Localized: Keep practising to see how you compare.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19548101238784
+    m_Localized: Keep practising to see your position among other {0} learners.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20111354322944
+    m_Localized: There are not enough learners at your level yet for comparison.
+      Please check back later.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20288265871360
+    m_Localized: Your ranking is not available at the moment. Please try again later.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20790462472192
+    m_Localized: Your ranking is not available at the moment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20982267994112
+    m_Localized: What did you think?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33204755062784
+    m_Localized: Was this comparision helpful?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33286875340800
+    m_Localized: Here you can provide additional feedback (max. 250 characters).
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33519696961536
+    m_Localized: Send
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33665952342016
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33710621679616
+    m_Localized: Your user ID is needed in case you want to contact support.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33884240699392
+    m_Localized: Copy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34023055384576
+    m_Localized: 'Delete my data '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34292610719744
+    m_Localized: Delete your data?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34375829905408
+    m_Localized: 'This will permanently delete your Automatic Speaking Assessment
+      data, including your recordings, scores, and assessment account, from this
+      device and our servers.
+
+
+      This action cannot be undone. We will not be
+      able to recover the deleted data for you.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34516402003968
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34665522094080
+    m_Localized: Delete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34784963289088
+    m_Localized: Deleting your data...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35377484226560
+    m_Localized: Your data has been deleted. You can start again from the beginning
+      at any time.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36367994281984
+    m_Localized: Your request has been received and your data is being removed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36505856860160
+    m_Localized: Changing your level is not available at the moment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44672477126656
+    m_Localized: Close
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
