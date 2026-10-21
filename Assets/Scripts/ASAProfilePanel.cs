@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UI;
 
 public class ASAProfilePanel : MonoBehaviour
@@ -107,13 +108,33 @@ public class ASAProfilePanel : MonoBehaviour
     GameObject levelDescriptionTextGO;
 
     [SerializeField]
+    private TextMeshProUGUI levelDescriptionText;
+
+    [SerializeField]
+    private LocalizedString levelDescriptionA1;
+
+    [SerializeField]
+    private LocalizedString levelDescriptionA2;
+
+    [SerializeField]
+    private LocalizedString levelDescriptionB1;
+
+    [SerializeField]
+    private LocalizedString levelDescriptionB2;
+
+    [SerializeField]
+    private LocalizedString levelDescriptionC1Plus;
+
+    private LocalizedTextHelper levelDescriptionHelper;
+
+    [SerializeField]
     GameObject errorPopupGO;
 
     [SerializeField]
     TMP_InputField comparisonFeedbackTextGO;
 
     [SerializeField]
-    TMP_Text insufficientDataNotice;
+    TextMeshProUGUI insufficientDataNotice;
 
     [SerializeField]
     private FeedbackPanel FeedbackPanel;
@@ -144,6 +165,44 @@ public class ASAProfilePanel : MonoBehaviour
         // which is indistinguishable from a genuine bottom-of-cohort result.
         public string status;
     }
+
+    [SerializeField]
+    private LocalizedString rankPercentText;
+
+    [SerializeField]
+    private LocalizedString rankPositionText;
+
+    [SerializeField]
+    private LocalizedString topRankText;
+
+    [SerializeField]
+    private LocalizedString rankFirstText;
+
+    [SerializeField]
+    private LocalizedString noRankNotice;
+
+    [SerializeField]
+    private LocalizedString noPositionNotice;
+
+    [SerializeField]
+    private LocalizedString insufficientTasksNotice;
+
+    [SerializeField]
+    private LocalizedString cohortSizeNotice;
+
+    [SerializeField]
+    private LocalizedString rankUnavailableNotice;
+
+    [SerializeField]
+    private LocalizedString rankUnavailableGeneralNotice;
+
+    private LocalizedTextHelper rankPercentHelper;
+
+    private LocalizedTextHelper rankPositionHelper;
+
+    private LocalizedTextHelper rankTopPositionHelper;
+
+    private LocalizedTextHelper insufficientDataHelper;
 
     /// <summary>
     /// The learner-facing position, already rounded into buckets by the server.
@@ -196,8 +255,6 @@ public class ASAProfilePanel : MonoBehaviour
     }
 
     public TMP_Text guidTextGO;
-
-    public TMP_Text descriptionText;
 
     public ToggleGroup comparisonRatingOptions;
 
@@ -524,29 +581,53 @@ public class ASAProfilePanel : MonoBehaviour
 
         if (hasPercent)
         {
-            performanceText.text = string.Format(
-                Const.ASA_RANK_TOP_PERCENT,
-                display.top_percent,
-                level
-            );
+            rankPercentHelper ??= new LocalizedTextHelper(performanceText);
+
+            // Used Const.ASA_RANK_TOP_PERCENT before
+            rankPercentText.Arguments = new object[] { display.top_percent, level };
+            rankPercentHelper?.SetText(rankPercentText);
         }
 
         if (hasRank)
         {
-            rankText.text = string.Format(Const.ASA_RANK_WITHIN_LEVEL, level);
+            rankPositionHelper ??= new LocalizedTextHelper(rankText);
+
+            // Used Const.ASA_RANK_WITHIN_LEVEL before
+            rankPositionText.Arguments = new object[] { level };
+            rankPositionHelper?.SetText(rankPositionText);
 
             // "#1" reads better than "Top 1" for the one case where they mean the same.
-            positionText.text =
-                display.top_rank == 1
-                    ? Const.ASA_RANK_FIRST
-                    : string.Format(Const.ASA_RANK_TOP_RANK, display.top_rank);
+            rankTopPositionHelper ??= new LocalizedTextHelper(positionText);
+
+            if (display.top_rank == 1)
+            {
+                // Used Const.ASA_RANK_FIRST before
+                rankTopPositionHelper?.SetText(rankFirstText);
+            }
+            else
+            {
+                // Used Const.ASA_RANK_TOP_RANK before
+                topRankText.Arguments = new object[] { display.top_rank };
+                rankTopPositionHelper?.SetText(topRankText);
+            }
         }
-        else
+
+        if (!hasRank)
         {
             // The box stays where it is; only the position itself is replaced. Hiding it
             // left a hole in the middle of the panel.
-            rankText.text = string.Format(Const.ASA_RANK_NO_POSITION_LABEL, level);
-            positionText.text = "";
+            rankPositionHelper ??= new LocalizedTextHelper(rankText);
+
+            // Used Const.ASA_RANK_NO_POSITION_LABEL before
+            noPositionNotice.Arguments = new object[] { level };
+            rankPositionHelper?.SetText(noPositionNotice);
+
+            rankTopPositionHelper?.ClearText();
+
+            if (positionText == null)
+            {
+                positionText.text = "";
+            }
         }
 
         // No position is a valid outcome, not an error - but leaving the panel empty made
@@ -558,7 +639,10 @@ public class ASAProfilePanel : MonoBehaviour
         // back on cohort_size, because the number of users is not ours to disclose.
         if (!hasPercent)
         {
-            performanceText.text = Const.ASA_RANK_NO_POSITION;
+            rankPercentHelper ??= new LocalizedTextHelper(performanceText);
+
+            // Used Const.ASA_RANK_NO_POSITION before
+            rankPercentHelper?.SetText(noRankNotice);
         }
 
         // Both boxes always stay up. Their contents change when there is no position to
@@ -567,22 +651,24 @@ public class ASAProfilePanel : MonoBehaviour
         rankInfo.SetActive(true);
     }
 
-    public void GiveLevelDescriptions(String cefr_level)
+    public void GiveLevelDescriptions(string cefr_level)
     {
         // Gives the CEFR level descriptions in words
-        var levelDescriptions = new Dictionary<string, string>
+        LocalizedString levelDescription = cefr_level switch
         {
-            ["A1"] = "Beginner",
-            ["A2"] = "Elementary",
-            ["B1"] = "Intermediate",
-            ["B2"] = "Upper Intermediate",
-            ["C1_plus"] = "Advanced/\nFluent",
+            "A1" => levelDescriptionA1,
+            "A2" => levelDescriptionA2,
+            "B1" => levelDescriptionB1,
+            "B2" => levelDescriptionB2,
+            "C1_plus" => levelDescriptionC1Plus,
+            _ => null,
         };
-        if (levelDescriptions.TryGetValue(cefr_level, out description))
+
+        if (levelDescription != null)
         {
-            descriptionText.text = description;
+            levelDescriptionHelper ??= new LocalizedTextHelper(levelDescriptionText);
+            levelDescriptionHelper?.SetText(levelDescription);
         }
-        ;
     }
 
     /// <summary>
@@ -751,6 +837,8 @@ public class ASAProfilePanel : MonoBehaviour
     /// </summary>
     public void NotEnoughTasks(InsufficientStats user)
     {
+        insufficientDataHelper ??= new LocalizedTextHelper(insufficientDataNotice);
+
         switch (user.status)
         {
             case "USER_ASSESSMENT_DATA_INSUFFICIENT":
@@ -759,27 +847,43 @@ public class ASAProfilePanel : MonoBehaviour
                 // the fallback if it is missing, so raising it server-side needs no
                 // client change.
                 int needed = user.required_assessments > 0 ? user.required_assessments : 3;
-                insufficientDataNotice.text = string.Format(
-                    Const.ASA_RANK_NEED_MORE_TASKS,
+
+                // Used Const.ASA_RANK_NEED_MORE_TASKS before
+                insufficientTasksNotice.Arguments = new object[]
+                {
                     needed,
-                    user.current_assessments
-                );
+                    user.current_assessments,
+                };
+                insufficientDataHelper?.SetText(insufficientTasksNotice);
                 break;
 
             case "COHORT_SIZE_TOO_SMALL":
-                insufficientDataNotice.text = Const.ASA_RANK_COHORT_TOO_SMALL;
+                // Used Const.ASA_RANK_COHORT_TOO_SMALL before
+                insufficientDataHelper?.SetText(cohortSizeNotice);
                 break;
 
             case "RANK_UNAVAILABLE":
-                insufficientDataNotice.text = Const.ASA_RANK_UNAVAILABLE;
+                // Used Const.ASA_RANK_UNAVAILABLE before
+                insufficientDataHelper?.SetText(rankUnavailableNotice);
                 break;
 
             default:
                 // An unrecognised status: the server's own wording beats anything we could
                 // guess, and this is how a newly added case degrades gracefully.
-                insufficientDataNotice.text = string.IsNullOrEmpty(user.message)
-                    ? Const.ASA_RANK_UNAVAILABLE_GENERIC
-                    : user.message;
+                if (string.IsNullOrEmpty(user.message))
+                {
+                    // Used Const.ASA_RANK_UNAVAILABLE_GENERIC before
+                    insufficientDataHelper?.SetText(rankUnavailableGeneralNotice);
+                }
+                else
+                {
+                    insufficientDataHelper?.ClearText();
+
+                    if (insufficientDataNotice != null)
+                    {
+                        insufficientDataNotice.text = user.message;
+                    }
+                }
                 break;
         }
 
@@ -820,5 +924,14 @@ public class ASAProfilePanel : MonoBehaviour
         rankInfo.SetActive(false);
         feedbackButtonGO.SetActive(false);
         insufficientDataNoticeGO.SetActive(true);
+    }
+
+    void OnDisable()
+    {
+        levelDescriptionHelper?.ClearText();
+        rankPercentHelper?.ClearText();
+        rankPositionHelper?.ClearText();
+        rankTopPositionHelper?.ClearText();
+        insufficientDataHelper?.ClearText();
     }
 }

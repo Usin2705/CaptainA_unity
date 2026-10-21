@@ -2,6 +2,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Analytics;
+using UnityEngine.Localization;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -54,14 +55,27 @@ public class FeedbackPanel : MonoBehaviour
 
     [SerializeField]
     [FormerlySerializedAs("offTopicWarningText")]
-    TMPro.TextMeshProUGUI relevanceWarningText;
+    TextMeshProUGUI relevanceWarningText;
+
+    [SerializeField]
+    private LocalizedString answerOffTopicNotice;
+
+    [SerializeField]
+    private LocalizedString answerPartialNotice;
+
+    private LocalizedTextHelper relevanceWarningHelper;
 
     // What the recogniser heard, shown at the bottom of the scrollable content. Worth
     // seeing even on a good result: it is the only way a learner can tell a low score
     // apart from a misheard word, and it is what makes an off_topic verdict checkable
     // rather than something they have to take on trust.
     [SerializeField]
-    TMPro.TextMeshProUGUI transcriptText;
+    TextMeshProUGUI transcriptText;
+
+    [SerializeField]
+    private LocalizedString emptyTranscriptNotice;
+
+    private LocalizedTextHelper transcriptNoticeHelper;
 
     // Hidden while a relevance notice is showing. The two occupy the same band, and the
     // notice is the more urgent of the two - InfoText explains how to read the scores,
@@ -114,12 +128,6 @@ public class FeedbackPanel : MonoBehaviour
 
     [SerializeField]
     GameObject sendButtonGO;
-
-    [SerializeField]
-    private TMPro.TextMeshProUGUI titleTextGO;
-
-    [SerializeField]
-    private TMPro.TextMeshProUGUI popupTextGO;
 
     [SerializeField]
     GameObject infoButtonGO;
@@ -182,12 +190,23 @@ public class FeedbackPanel : MonoBehaviour
     [System.Serializable]
     public class PopupAttributes
     {
-        public string TitleText;
-        public string PopupText;
+        public LocalizedString titleText;
+        public LocalizedString popupText;
     }
 
     [SerializeField]
     private PopupAttributes[] panels;
+
+    [SerializeField]
+    private TextMeshProUGUI titleTextGO;
+
+    [SerializeField]
+    private TextMeshProUGUI popupTextGO;
+
+    private LocalizedTextHelper popupTitleTextHelper;
+
+    private LocalizedTextHelper popupTextHelper;
+
     private int currentPopupOpen = -1;
 
     public void DisplayPopup(int popupOpen)
@@ -196,8 +215,11 @@ public class FeedbackPanel : MonoBehaviour
         currentPopupOpen = popupOpen;
         PopupAttributes popup = panels[popupOpen];
 
-        titleTextGO.text = popup.TitleText;
-        popupTextGO.text = popup.PopupText;
+        popupTitleTextHelper ??= new LocalizedTextHelper(titleTextGO);
+        popupTitleTextHelper?.SetText(popup.titleText);
+
+        popupTextHelper ??= new LocalizedTextHelper(popupTextGO);
+        popupTextHelper?.SetText(popup.popupText);
     }
 
     void ResetTextSizeInTitleAnimation()
@@ -476,9 +498,16 @@ public class FeedbackPanel : MonoBehaviour
             string heard =
                 networkManager.asrResultASA == null ? null : networkManager.asrResultASA.transcript;
 
-            transcriptText.text = string.IsNullOrWhiteSpace(heard)
-                ? Const.ASA_TRANSCRIPT_EMPTY
-                : heard;
+            if (string.IsNullOrWhiteSpace(heard))
+            {
+                transcriptNoticeHelper ??= new LocalizedTextHelper(transcriptText);
+                transcriptNoticeHelper?.SetText(emptyTranscriptNotice);
+            }
+            else
+            {
+                transcriptNoticeHelper?.ClearText();
+                transcriptText.text = heard;
+            }
 
             FitTranscript();
         }
@@ -572,7 +601,8 @@ public class FeedbackPanel : MonoBehaviour
 
         if (relevanceWarningText != null && show)
         {
-            relevanceWarningText.text = offTopic ? Const.ASA_OFF_TOPIC : Const.ASA_PARTIAL;
+            relevanceWarningHelper ??= new LocalizedTextHelper(relevanceWarningText);
+            relevanceWarningHelper?.SetText(offTopic ? answerOffTopicNotice : answerPartialNotice);
         }
 
         if (relevanceWarningGO != null)
@@ -671,6 +701,11 @@ public class FeedbackPanel : MonoBehaviour
     void OnDisable()
     {
         // Clear up listeners
+        popupTitleTextHelper?.ClearText();
+        popupTextHelper?.ClearText();
+        relevanceWarningHelper?.ClearText();
+        transcriptNoticeHelper?.ClearText();
+
         newTaskButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         proficiencyButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         pronunciationButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();

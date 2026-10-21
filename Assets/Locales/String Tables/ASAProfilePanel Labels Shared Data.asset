@@ -48,7 +48,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 14536994283520
-    m_Key: ASAProfilePanel.insufficientDataNotice
+    m_Key: ASAProfilePanel.insufficientTasksNotice
     m_Metadata:
       m_Items: []
   - m_Id: 16883006922752
@@ -149,6 +149,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 44672477126656
     m_Key: deleteConfirmPopup.closeButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3305175840284672
+    m_Key: ASAProfilePanel.topPanelTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5902470477864960
+    m_Key: ASAProfilePanel.rankFirstText
     m_Metadata:
       m_Items: []
   m_Metadata:

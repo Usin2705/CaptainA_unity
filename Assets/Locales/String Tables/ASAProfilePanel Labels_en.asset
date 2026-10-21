@@ -39,7 +39,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13467077664768
-    m_Localized: Advanced/Fluent
+    m_Localized: Advanced/\nFluent
     m_Metadata:
       m_Items: []
   - m_Id: 14087016767488
@@ -161,6 +161,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 44672477126656
     m_Localized: Close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3305175840284672
+    m_Localized: Profile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5902470477864960
+    m_Localized: '#1'
     m_Metadata:
       m_Items: []
   references:

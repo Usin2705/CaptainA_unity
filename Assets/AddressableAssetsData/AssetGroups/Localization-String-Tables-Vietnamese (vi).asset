@@ -20,6 +20,7 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-vi
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 92944d6fcf492774a953d45e08ac778a
     m_Address: TaskPanel Labels_vi
@@ -40,24 +41,28 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-vi
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a7553324eccfa7da4b749dd3e253b8a6
     m_Address: ConsentPopUp Labels_vi
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-vi
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d85cf0bbb5e2e7e94aef431c2ab80c3b
     m_Address: BackgroundPopUp Labels_vi
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-vi
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f90b1d9742ba83645b502b7b19df9d43
     m_Address: ASAProfilePanel Labels_vi
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-vi
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 8f8457ecdc9910a2dbd74db0fe4ba00e, type: 2}

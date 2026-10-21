@@ -27,12 +27,14 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-fi
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2780af45eeb3510d18b8206d05d1f381
     m_Address: ConsentPopUp Labels_fi
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-fi
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6b2f090eb1b7586f18688dfe500f9581
     m_Address: AdvancePanel Labels_fi
@@ -46,18 +48,21 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-fi
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 94f986e6c8557687dba5541147a58f90
     m_Address: ASAPanel Labels_fi
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-fi
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ccdb80f4a8d1c45948175498efdafc7e
     m_Address: FeedbackPanel Labels_fi
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-fi
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 8f8457ecdc9910a2dbd74db0fe4ba00e, type: 2}

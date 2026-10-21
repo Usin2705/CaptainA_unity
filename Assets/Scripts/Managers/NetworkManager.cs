@@ -2,6 +2,7 @@ using System.Collections;
 using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.Networking;
 
 public class NetworkManager : MonoBehaviour
@@ -47,6 +48,17 @@ public class NetworkManager : MonoBehaviour
     // still claims to be sending while the results button is sitting there waiting.
     [SerializeField]
     TMPro.TextMeshProUGUI feedbackLoadingTitleText;
+
+    [SerializeField]
+    private LocalizedString loadingText;
+
+    [SerializeField]
+    private LocalizedString loadingFailedNotice;
+
+    [SerializeField]
+    private LocalizedString loadingCompletedNotice;
+
+    private LocalizedTextHelper loadingTitleHelper;
 
     [SerializeField]
     GameObject profileLoadingErrorTextGO;
@@ -136,7 +148,10 @@ public class NetworkManager : MonoBehaviour
         RetryPendingDeletion();
     }
 
-    void OnDestroy() { }
+    void OnDestroy()
+    {
+        loadingTitleHelper?.ClearText();
+    }
 
     // This function is used to get the URL for the POST request
     private string GetPOSTURL(POSTType postType)
@@ -770,7 +785,7 @@ public class NetworkManager : MonoBehaviour
         // The popup is reused for every recording, so put the title back to its sending
         // state here rather than at the call site. Otherwise the second recording spins
         // underneath whatever the first one finished with.
-        SetLoadingTitle("Sending the audio...");
+        SetLoadingTitle(loadingText);
 
         // Use a `using` statement for UnityWebRequest to handle resource cleanup
         // This is a good practice to avoid memory leaks
@@ -791,7 +806,7 @@ public class NetworkManager : MonoBehaviour
                 feedbackLoadingIconGO.SetActive(false);
                 feedbackLoadingErrorTextGO.SetActive(true);
                 feedbackLoadingBackButtonGO.SetActive(true);
-                SetLoadingTitle("Could not send the audio");
+                SetLoadingTitle(loadingFailedNotice);
 
                 // Shows a readable message and logs the server's own detail.type.
                 ErrorHandling(uwr, feedbackErrorText);
@@ -846,7 +861,7 @@ public class NetworkManager : MonoBehaviour
             }
 
             resultsButtonGO.SetActive(true);
-            SetLoadingTitle("Your results are ready. Tap below to see them.");
+            SetLoadingTitle(loadingCompletedNotice);
         }
         OnServerDone?.Invoke();
     }
@@ -854,12 +869,10 @@ public class NetworkManager : MonoBehaviour
     // The ASA loading popup is a shared prefab instance, so its title is whatever the
     // last request left behind. Every caller goes through here so the null check for an
     // unassigned reference lives in one place.
-    private void SetLoadingTitle(string message)
+    private void SetLoadingTitle(LocalizedString message)
     {
-        if (feedbackLoadingTitleText != null)
-        {
-            feedbackLoadingTitleText.text = message;
-        }
+        loadingTitleHelper ??= new LocalizedTextHelper(feedbackLoadingTitleText);
+        loadingTitleHelper?.SetText(message);
     }
 
     // Get form for feedback (grade and optional comment)

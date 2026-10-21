@@ -80,10 +80,10 @@ public class ASAPanel : MonoBehaviour
     [SerializeField]
     private TaskAttributes[] tasks;
 
-    private LocalizedString currentTaskText;
-
     [SerializeField]
-    private TMPro.TextMeshProUGUI taskTextGO;
+    private TextMeshProUGUI taskTextGO;
+
+    private LocalizedTextHelper taskTextHelper;
 
     [SerializeField]
     private Image taskImageGO;
@@ -122,16 +122,8 @@ public class ASAPanel : MonoBehaviour
         currentTaskSelected = taskSelected;
         TaskAttributes task = tasks[taskSelected];
 
-        taskTextGO.gameObject.SetActive(false);
-
-        if (currentTaskText != null)
-        {
-            currentTaskText.StringChanged -= UpdateTaskText;
-        }
-
-        currentTaskText = task.taskText;
-        currentTaskText.StringChanged += UpdateTaskText;
-        currentTaskText.RefreshString();
+        taskTextHelper ??= new LocalizedTextHelper(taskTextGO);
+        taskTextHelper?.SetText(task.taskText);
 
         if (task.taskImage != null)
         {
@@ -142,12 +134,6 @@ public class ASAPanel : MonoBehaviour
         {
             taskImageGO.gameObject.SetActive(false);
         }
-    }
-
-    private void UpdateTaskText(string localizedText)
-    {
-        taskTextGO.text = localizedText;
-        taskTextGO.gameObject.SetActive(true);
     }
 
     void OnEnable()
@@ -517,6 +503,8 @@ public class ASAPanel : MonoBehaviour
 
     void OnDisable()
     {
+        taskTextHelper?.ClearText();
+
         audioManager.StopReplaying();
         CancelRecording();
     }

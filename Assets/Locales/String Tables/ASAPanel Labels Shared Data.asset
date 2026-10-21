@@ -43,14 +43,6 @@ MonoBehaviour:
     m_Key: ASAPanel.resultsButton
     m_Metadata:
       m_Items: []
-  - m_Id: 7815626317824
-    m_Key: loadingPopUp.loadingText
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7948766109696
-    m_Key: loadingPopUp.infoText
-    m_Metadata:
-      m_Items: []
   - m_Id: 9693009371136
     m_Key: loadingPopUp.resultsButton
     m_Metadata:
@@ -65,6 +57,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 9990498770944
     m_Key: loadingPopUp.feedbackTextField
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2573893778890752
+    m_Key: loadingPopUp.loadingText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2574131100999680
+    m_Key: loadingPopUp.loadingFailedNotice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2574532344897536
+    m_Key: loadingPopUp.loadingCompletedNotice
     m_Metadata:
       m_Items: []
   m_Metadata:
