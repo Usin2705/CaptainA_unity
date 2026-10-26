@@ -580,8 +580,5 @@ public static class Const
     public const string ASA_DELETE_RECEIVED =
         "Your request has been received and your data is being removed.";
 
-    public const string ASA_DELETE_CANCEL_LABEL = "Cancel";
-    public const string ASA_DELETE_CLOSE_LABEL = "Close";
-
     // ====================================================================
 }

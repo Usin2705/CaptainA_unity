@@ -19,27 +19,31 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 144860864512
-    m_Localized: 
+    m_Localized: "Valitse teht\xE4v\xE4, jota haluat harjoitella."
     m_Metadata:
       m_Items: []
   - m_Id: 352181116928
-    m_Localized: 
+    m_Localized: Reagoi tilanteessa A
     m_Metadata:
       m_Items: []
   - m_Id: 444262866944
-    m_Localized: 
+    m_Localized: Reagoi tilanteessa B
     m_Metadata:
       m_Items: []
   - m_Id: 453825880064
-    m_Localized: 
+    m_Localized: Monologi A
     m_Metadata:
       m_Items: []
   - m_Id: 465494433792
-    m_Localized: 
+    m_Localized: Monologi B
     m_Metadata:
       m_Items: []
   - m_Id: 491620753408
-    m_Localized: 
+    m_Localized: Kerro kuvasta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1013349871607808
+    m_Localized: "Teht\xE4v\xE4t"
     m_Metadata:
       m_Items: []
   references:

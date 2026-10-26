@@ -59,12 +59,29 @@ public class ASAProfilePanel : MonoBehaviour
     GameObject deleteCancelButtonGO;
 
     [SerializeField]
-    TMP_Text deleteStatusText;
+    TextMeshProUGUI deleteStatusText;
 
-    // The cancel button doubles as "close" once the deletion has run, because by then
+    [SerializeField]
+    private LocalizedString deleteWarningText;
+
+    [SerializeField]
+    private LocalizedString deleteLoadingText;
+
+    [SerializeField]
+    private LocalizedString deleteConfirmedNotice;
+
+    [SerializeField]
+    private LocalizedString deleteReceivedNotice;
+
+    private LocalizedTextHelper deleteStatusHelper;
+
+    // The cancel button doubles as "OK" once the deletion has run, because by then
     // there is nothing left to cancel.
     [SerializeField]
-    TMP_Text deleteCancelLabel;
+    TextMeshProUGUI deleteCancelLabel;
+
+    [SerializeField]
+    TextMeshProUGUI deleteOkLabel;
 
     // Closed along with the profile after a deletion: the task list is where the guid was
     // reachable from, and there is no account behind it any more.
@@ -260,8 +277,6 @@ public class ASAProfilePanel : MonoBehaviour
 
     public string guid;
 
-    string description = "";
-
     void OnEnable()
     {
         // Stops animated dropdown error message from appearing
@@ -399,15 +414,12 @@ public class ASAProfilePanel : MonoBehaviour
             {
                 // Reset every time: the popup is reused, and the previous run may have
                 // left it in its finished state with the confirm button hidden.
-                deleteStatusText.text = Const.ASA_DELETE_WARNING;
+                deleteStatusHelper ??= new LocalizedTextHelper(deleteStatusText);
+                deleteStatusHelper.SetText(deleteWarningText);
                 deleteConfirmButtonGO.SetActive(true);
                 SetDeleteButtonsInteractable(true);
-
-                if (deleteCancelLabel != null)
-                {
-                    deleteCancelLabel.text = Const.ASA_DELETE_CANCEL_LABEL;
-                }
-
+                deleteCancelLabel.gameObject.SetActive(true);
+                deleteOkLabel.gameObject.SetActive(false);
                 deleteConfirmPopupGO.SetActive(true);
                 dimPanelGO.SetActive(true);
             }
@@ -451,7 +463,7 @@ public class ASAProfilePanel : MonoBehaviour
                 // Both buttons go dead for the duration: a second tap would fire a second
                 // deletion for a guid the first one is already removing.
                 SetDeleteButtonsInteractable(false);
-                deleteStatusText.text = Const.ASA_DELETE_IN_PROGRESS;
+                deleteStatusHelper.SetText(deleteLoadingText);
 
                 StartCoroutine(
                     NetworkManager
@@ -462,11 +474,11 @@ public class ASAProfilePanel : MonoBehaviour
 
                             if (network.DataConfirmedDeleted)
                             {
-                                deleteStatusText.text = Const.ASA_DELETE_CONFIRMED;
+                                deleteStatusHelper.SetText(deleteConfirmedNotice);
                             }
                             else if (serverConfirmed)
                             {
-                                deleteStatusText.text = Const.ASA_DELETE_RECEIVED;
+                                deleteStatusHelper.SetText(deleteReceivedNotice);
                             }
                             else
                             {
@@ -477,17 +489,14 @@ public class ASAProfilePanel : MonoBehaviour
                                 // the same and the difference is ours to resolve, not
                                 // theirs to worry about. The console still carries the
                                 // real failure for us; see DeleteUserOnServer.
-                                deleteStatusText.text = Const.ASA_DELETE_RECEIVED;
+                                deleteStatusHelper.SetText(deleteReceivedNotice);
                             }
 
                             // Nothing left to confirm; the cancel button becomes the way out.
                             deleteConfirmButtonGO.SetActive(false);
                             SetDeleteButtonsInteractable(true);
-
-                            if (deleteCancelLabel != null)
-                            {
-                                deleteCancelLabel.text = Const.ASA_DELETE_CLOSE_LABEL;
-                            }
+                            deleteCancelLabel.gameObject.SetActive(false);
+                            deleteOkLabel.gameObject.SetActive(true);
                         })
                 );
             }
@@ -928,6 +937,7 @@ public class ASAProfilePanel : MonoBehaviour
 
     void OnDisable()
     {
+        deleteStatusHelper?.ClearText();
         levelDescriptionHelper?.ClearText();
         rankPercentHelper?.ClearText();
         rankPositionHelper?.ClearText();

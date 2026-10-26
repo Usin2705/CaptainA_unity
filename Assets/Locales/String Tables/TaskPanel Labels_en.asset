@@ -50,10 +50,6 @@ MonoBehaviour:
     m_Localized: Loading profile...
     m_Metadata:
       m_Items: []
-  - m_Id: 1015264634298368
-    m_Localized: Something went wrong!
-    m_Metadata:
-      m_Items: []
   - m_Id: 1015467844132864
     m_Localized: How was your overall experience with Automatic Speaking Assessment
       so far?

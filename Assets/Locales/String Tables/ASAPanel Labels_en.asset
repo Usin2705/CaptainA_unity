@@ -65,8 +65,8 @@ MonoBehaviour:
     m_Localized: Results
     m_Metadata:
       m_Items: []
-  - m_Id: 9732582629376
-    m_Localized: Something went wrong!
+  - m_Id: 6320358917496832
+    m_Localized: No connection. Check your network and try again.
     m_Metadata:
       m_Items: []
   - m_Id: 9854129364992
@@ -79,6 +79,35 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 2574532344897536
     m_Localized: Your results are ready. Tap below to see them.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321177507225600
+    m_Localized: Consent is required to use this feature.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321228962947072
+    m_Localized: Your account was not found. You may need to set up the app again.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321274882187264
+    m_Localized: This version of the app could not be accepted by the server. Please
+      update the app, or contact us if it is already up to date.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321523981901824
+    m_Localized: The recording is too long to send.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321580026191872
+    m_Localized: The server is busy. Please try again in a moment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321609004638208
+    m_Localized: The app sent something the server could not accept.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321645155344384
+    m_Localized: Something went wrong. Please try again.
     m_Metadata:
       m_Items: []
   references:

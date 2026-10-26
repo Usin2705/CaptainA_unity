@@ -8,7 +8,7 @@ using UnityEngine.Localization;
 public class LocalizedTextHelper
 {
     private LocalizedString currentString;
-    private readonly TextMeshProUGUI textComponent;
+    public TextMeshProUGUI textComponent;
 
     public LocalizedTextHelper(TextMeshProUGUI targetString)
     {

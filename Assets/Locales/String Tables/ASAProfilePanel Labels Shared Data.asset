@@ -120,7 +120,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 34375829905408
-    m_Key: deleteConfirmPopup.infoText
+    m_Key: deleteConfirmPopup.deleteWarningText
     m_Metadata:
       m_Items: []
   - m_Id: 34516402003968
@@ -132,7 +132,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 34784963289088
-    m_Key: deleteConfirmPopup.loadingText
+    m_Key: deleteConfirmPopup.deleteLoadingText
     m_Metadata:
       m_Items: []
   - m_Id: 35377484226560
@@ -145,10 +145,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 36505856860160
     m_Key: ASAProfilePanel.levelUnavailableNotice
-    m_Metadata:
-      m_Items: []
-  - m_Id: 44672477126656
-    m_Key: deleteConfirmPopup.closeButton
     m_Metadata:
       m_Items: []
   - m_Id: 3305175840284672

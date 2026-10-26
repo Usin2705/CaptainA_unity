@@ -47,10 +47,6 @@ MonoBehaviour:
     m_Key: loadingPopUp.resultsButton
     m_Metadata:
       m_Items: []
-  - m_Id: 9732582629376
-    m_Key: loadingPopUp.errorText
-    m_Metadata:
-      m_Items: []
   - m_Id: 9854129364992
     m_Key: loadingPopUp.feedbackTitle
     m_Metadata:
@@ -69,6 +65,38 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 2574532344897536
     m_Key: loadingPopUp.loadingCompletedNotice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6320358917496832
+    m_Key: loadingPopUp.noConnectionNotice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321177507225600
+    m_Key: loadingPopUp.noConsentNotice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321228962947072
+    m_Key: loadingPopUp.accountNotFoundNotice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321274882187264
+    m_Key: loadingPopUp.versionMismatchNotice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321523981901824
+    m_Key: loadingPopUp.recordingTooLongNotice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321580026191872
+    m_Key: loadingPopUp.serverBusyNotice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321609004638208
+    m_Key: loadingPopUp.badRequestNotice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321645155344384
+    m_Key: loadingPopUp.defaultNotice
     m_Metadata:
       m_Items: []
   m_Metadata:

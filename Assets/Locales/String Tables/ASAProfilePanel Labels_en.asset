@@ -125,13 +125,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 34375829905408
-    m_Localized: 'This will permanently delete your Automatic Speaking Assessment
+    m_Localized: This will permanently delete your Automatic Speaking Assessment
       data, including your recordings, scores, and assessment account, from this
-      device and our servers.
-
-
-      This action cannot be undone. We will not be
-      able to recover the deleted data for you.'
+      device and our servers.\n\nThis action cannot be undone. We will not be able
+      to recover the deleted data for you.
     m_Metadata:
       m_Items: []
   - m_Id: 34516402003968
@@ -157,10 +154,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 36505856860160
     m_Localized: Changing your level is not available at the moment.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 44672477126656
-    m_Localized: Close
     m_Metadata:
       m_Items: []
   - m_Id: 3305175840284672

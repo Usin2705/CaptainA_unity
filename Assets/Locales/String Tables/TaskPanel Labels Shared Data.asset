@@ -47,10 +47,6 @@ MonoBehaviour:
     m_Key: loadingPopUpProfile.loadingText
     m_Metadata:
       m_Items: []
-  - m_Id: 1015264634298368
-    m_Key: loadingPopUpProfile.errorText
-    m_Metadata:
-      m_Items: []
   - m_Id: 1015467844132864
     m_Key: overallFeedbackPopUp.title
     m_Metadata:
