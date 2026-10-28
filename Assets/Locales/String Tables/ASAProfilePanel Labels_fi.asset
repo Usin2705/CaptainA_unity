@@ -17,7 +17,155 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: 850ceabc4262bb1acb39b8a91b2fcf93, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 399266373632
+    m_Localized: Nykytilanne
+    m_Metadata:
+      m_Items: []
+  - m_Id: 531886071808
+    m_Localized: Alkeistaso
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8894137065472
+    m_Localized: Perustaso
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13267697229824
+    m_Localized: Keskitaso
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13450052984832
+    m_Localized: Ylempi keskitaso
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13467077664768
+    m_Localized: Edistynyt/\nSujuva taso
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14087016767488
+    m_Localized: Vaihda alemmalle tasolle?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14207070330880
+    m_Localized: Etene seuraavalle tasolle?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14536994283520
+    m_Localized: "Tee v\xE4hint\xE4\xE4n {0} teht\xE4v\xE4\xE4, ett\xE4 n\xE4et sijoituksesi.
+      T\xE4h\xE4n menness\xE4 olet tehnyt {1} teht\xE4v\xE4\xE4 {0} teht\xE4v\xE4st\xE4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16883006922752
+    m_Localized: Olet {0}% joukossa {1} oppijasta.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17416568528896
+    m_Localized: Sijoituksesi muiden {0} oppijoiden joukossa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19380538793984
+    m_Localized: Top {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19467973255168
+    m_Localized: Jatka harjoittelua, niin voit verrata kielitaitoasi.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19548101238784
+    m_Localized: "Jatka harjoittelua, niin n\xE4et sijoituksesi muiden {0} oppijoiden
+      joukossa."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20111354322944
+    m_Localized: "Sinun taitotasaollasi ei ole viel\xE4 riitt\xE4v\xE4n paljon oppijoita,
+      ett\xE4 vertailu olisi mahdollista. Yrit\xE4 my\xF6hemmin uudestaan."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20288265871360
+    m_Localized: "Sijoituksesi ei ole juuri nyt saatavilla. Yrit\xE4 my\xF6hemmin
+      uudestaan."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20790462472192
+    m_Localized: Sijoituksesi ei ole juuri nyt saatavilla.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20982267994112
+    m_Localized: "Mit\xE4 mielt\xE4 olit?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33204755062784
+    m_Localized: "Oliko t\xE4m\xE4 vertailu hy\xF6dyllinen?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33286875340800
+    m_Localized: "Voit antaa lis\xE4\xE4 palautetta (max. 250 merkki\xE4)."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33519696961536
+    m_Localized: "L\xE4het\xE4"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33665952342016
+    m_Localized: Asetukset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33710621679616
+    m_Localized: "Tarvitset k\xE4ytt\xE4j\xE4tunnuksesi, jos haluat olla yhteydess\xE4
+      tukipalveluun."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33884240699392
+    m_Localized: Kopioi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34023055384576
+    m_Localized: Poista datani
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34292610719744
+    m_Localized: Poistetaanko datasi?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34375829905408
+    m_Localized: "T\xE4m\xE4 toiminto poistaa lopullisesti automaattisen arvioinnin
+      datasi eli \xE4\xE4nitykset, tulokset ja arviointitilin t\xE4lt\xE4 laitteelta
+      ja servereilt\xE4.\\n\\nT\xE4t\xE4 toimintoa ei voi peruuttaa. Emme voi palauttaa
+      dataasi."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34516402003968
+    m_Localized: Peruuta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34665522094080
+    m_Localized: Poista
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34784963289088
+    m_Localized: Dataasi poistetaan...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35377484226560
+    m_Localized: Datasi on poistettu. Voit aloittaa alusta milloin tahansa.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36367994281984
+    m_Localized: "Pyynt\xF6si on vastaanotettu ja datasi poistetaan."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36505856860160
+    m_Localized: Tason vaihtaminen ei ole juuri nyt mahdollista.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3305175840284672
+    m_Localized: Profiili
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5902470477864960
+    m_Localized: '#1'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

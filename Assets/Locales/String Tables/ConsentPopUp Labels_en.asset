@@ -23,11 +23,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1773848846336
-    m_Localized: 'The Automatic Speaking Assessment needs to collect your data for
+    m_Localized: The Automatic Speaking Assessment needs to collect your data for
       automatic scoring and improving the AI model. Please review how we process
       your data.
-
-'
     m_Metadata:
       m_Items: []
   - m_Id: 1963590770688

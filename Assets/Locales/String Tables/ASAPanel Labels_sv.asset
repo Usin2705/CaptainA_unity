@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: ASAPanel Labels_sv
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: sv
+  m_SharedData: {fileID: 11400000, guid: d3a4387299faa8b81aed682b3107b9e1, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 5787193794560
+    m_Localized: "<b>Din v\xE4n har inte mycket pengar och vill l\xE5na 100 euro
+      av dig. Vad svarar du?</b>\\nDu har 30 sekunder f\xF6r uppgiften."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5905867431936
+    m_Localized: "<b>Du kan inte komma till kursen/jobbet idag. Skicka ett r\xF6stmeddelande
+      till l\xE4raren/chefen och ber\xE4tta varf\xF6r du inte kan komma. Vad s\xE4ger
+      du?</b>\\nDu har 30 sekunder f\xF6r uppgiften."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5937198882816
+    m_Localized: "<b>Ber\xE4tta vad du brukar g\xF6ra hemma.</b>\\nDu har en minut
+      f\xF6r uppgiften."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5953061740544
+    m_Localized: "<b>Ber\xE4tta vilka spr\xE5k du anv\xE4nder och n\xE4r du anv\xE4nder
+      dem.</b>\\n\u25CF Vilket spr\xE5k talar du hemma, i aff\xE4ren, p\xE5 jobbet...?\\n\u25CF
+      Tittar du p\xE5 tv eller lyssnar p\xE5 musik: p\xE5 vilket spr\xE5k?\\n\u25CF
+      P\xE5 vilka spr\xE5k kan du l\xE4sa och skriva?\\nDu har en minut f\xF6r uppgiften."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5968836517888
+    m_Localized: "<b>Svara genom att ber\xE4tta vad du brukar handla eller ber\xE4tta
+      om bilden.</b>\\n\u25CF Vad brukar du handla i aff\xE4ren?\\n\u25CF Vad brukar
+      du inte handla?\\n\u25CF N\xE4r g\xE5r du till aff\xE4ren?\\nDu har en minut
+      f\xF6r uppgiften."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7498574684160
+    m_Localized: Lyssna!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7558490316800
+    m_Localized: Resultaten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9693009371136
+    m_Localized: Resultaten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9854129364992
+    m_Localized: Vad tyckte du om uppgiften?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9990498770944
+    m_Localized: Du kan ge mer feedback (max 250 tecken).
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2573893778890752
+    m_Localized: Skickar in ljudet...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2574131100999680
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2574532344897536
+    m_Localized: "Resultaten \xE4r f\xE4rdiga. Klicka nedan s\xE5 ser du dem."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6320358917496832
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321177507225600
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321228962947072
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321274882187264
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321523981901824
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321580026191872
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321609004638208
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321645155344384
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

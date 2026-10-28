@@ -19,15 +19,15 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 5390735597568
-    m_Localized: Test
+    m_Localized: Puhumisen automaattinen arviointi
     m_Metadata:
       m_Items: []
   - m_Id: 8795784830976
-    m_Localized: Test
+    m_Localized: Numeroharjoittelu
     m_Metadata:
       m_Items: []
   - m_Id: 29612396601344
-    m_Localized: Test
+    m_Localized: Edistynyt
     m_Metadata:
       m_Items: []
   references:

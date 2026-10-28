@@ -1,0 +1,168 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: ASAProfilePanel Labels_et
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: et
+  m_SharedData: {fileID: 11400000, guid: 850ceabc4262bb1acb39b8a91b2fcf93, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 399266373632
+    m_Localized: Hetkeseisang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 531886071808
+    m_Localized: Algaja
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8894137065472
+    m_Localized: Esmane keeleoskus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13267697229824
+    m_Localized: Kesktase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13450052984832
+    m_Localized: "Edasij\xF5udnu tase"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13467077664768
+    m_Localized: Vilunud
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14087016767488
+    m_Localized: Liigu madalamale tasemele?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14207070330880
+    m_Localized: "Liigu k\xF5rgemale tasemele?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14536994283520
+    m_Localized: "Palun tee v\xE4hemalt {0} sooritust, et oma kohta pingereas n\xE4ha.
+      Hetkel oled teinud {1} sooritust {0} sooritusest."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16883006922752
+    m_Localized: "Oled {0} \xF5pilasest \xFClemise {0}% seas."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17416568528896
+    m_Localized: "Sinu koht pingereas {0} \xF5pilase seas."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19380538793984
+    m_Localized: Topp {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19467973255168
+    m_Localized: "J\xE4tka harjutamist, et v\xF5rrelda keeleoskust."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19548101238784
+    m_Localized: "J\xE4tka harjutamist, et n\xE4ha oma kohta {0} \xF5pilase seas."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20111354322944
+    m_Localized: "SInu tasemel pole v\xF5rdluseks piisavalt \xF5pilasi. Naase hiljem."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20288265871360
+    m_Localized: "Sinu koht pingereas pole hetkel k\xE4ttesaadav. Palun proovi hiljem
+      uuesti."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20790462472192
+    m_Localized: "Sinu koht pingereas pole hetkel k\xE4ttesaadav."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20982267994112
+    m_Localized: Mida arvasid?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33204755062784
+    m_Localized: "Kas see v\xF5rdlus oli kasulik?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33286875340800
+    m_Localized: "Siin saad lisada muud tagasisidet (maksimaalselt 250 t\xE4hem\xE4rki)."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33519696961536
+    m_Localized: Saada
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33665952342016
+    m_Localized: "S\xE4tted"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33710621679616
+    m_Localized: Kasutajatoega kontakteerumiseks on vaja sinu kasutajakoodi.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33884240699392
+    m_Localized: Kopeeri
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34023055384576
+    m_Localized: "H\xE4vita minu andmed"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34292610719744
+    m_Localized: "H\xE4vita oma andmed?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34375829905408
+    m_Localized: "Sellega h\xE4vitatakse sinu automaatse k\xF5neoskuse hindamise
+      andmed, sealhulgas sinu salvestised, tulemused ja hindamise kasutaja sellelt
+      seadmelt ja meie serveritelt.\\n\\nSeda sammu ei saa tagasi v\xF5tta. Me ei
+      saa h\xE4vitatud andmeid sinu jaoks taastada."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34516402003968
+    m_Localized: "T\xFChista"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34665522094080
+    m_Localized: "H\xE4vita"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34784963289088
+    m_Localized: "Andmeid h\xE4vitatakse..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35377484226560
+    m_Localized: "Sinu andmed on h\xE4vitatud. Sa saad igal hetkel otsast peale alata."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36367994281984
+    m_Localized: "Sinu n\xF5ue on vastu v\xF5etud ja sinu andmed on h\xE4vitamisel."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36505856860160
+    m_Localized: "Taseme muutmine pole hetkel k\xE4ttesaadav."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3305175840284672
+    m_Localized: Profiil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5902470477864960
+    m_Localized: '#1'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

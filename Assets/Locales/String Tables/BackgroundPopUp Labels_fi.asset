@@ -17,7 +17,83 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: 3a16f354804db3506bbf35430dba64b9, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 77265461248
+    m_Localized: Ennen kuin aloitat, tarvitsemme hieman taustatietoja.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 192822730752
+    m_Localized: 1. Sukupuoli *
+    m_Metadata:
+      m_Items: []
+  - m_Id: 278487195648
+    m_Localized: Nainen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 317800407040
+    m_Localized: Mies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 329296994304
+    m_Localized: Muu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 339820503040
+    m_Localized: En halua vastata
+    m_Metadata:
+      m_Items: []
+  - m_Id: 506409869312
+    m_Localized: "2. Ik\xE4 *"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 583144660992
+    m_Localized: 62 tai vanhempi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2623191212032
+    m_Localized: 3. Miten arvioit suomen kielen taitosi? *
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2807337934848
+    m_Localized: A1 (Alkeistaso)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2844952453120
+    m_Localized: A2 (Perustaso)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2858856570880
+    m_Localized: B1 (Keskitaso)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2872630665216
+    m_Localized: B2 (Ylempi keskitaso)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2888006983680
+    m_Localized: C1 tai ylempi (Edistynyt/Sujuva taso)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3531392245760
+    m_Localized: "4. \xC4idinkieli *"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3572320264192
+    m_Localized: 5. Muut kielet, joita puhut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3598673076224
+    m_Localized: Kirjoita...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3631447367680
+    m_Localized: "L\xE4het\xE4"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3840030105600
+    m_Localized: Vastaa kaikkiin pakollisiin kysymyksiin.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

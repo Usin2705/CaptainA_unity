@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: TaskPanel Labels_et
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: et
+  m_SharedData: {fileID: 11400000, guid: bda6418bb25523a35b9d84d897d057a4, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 144860864512
+    m_Localized: "Vali \xFClesanne, mida soovid harjutada"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352181116928
+    m_Localized: Reageeri situatsioonile A
+    m_Metadata:
+      m_Items: []
+  - m_Id: 444262866944
+    m_Localized: Reageeri situatsioonile B
+    m_Metadata:
+      m_Items: []
+  - m_Id: 453825880064
+    m_Localized: Monoloog A
+    m_Metadata:
+      m_Items: []
+  - m_Id: 465494433792
+    m_Localized: Monoloog B
+    m_Metadata:
+      m_Items: []
+  - m_Id: 491620753408
+    m_Localized: Kirjelda pilti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1013349871607808
+    m_Localized: "\xDClesanded"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1013404976373760
+    m_Localized: Profiili laetakse...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1015467844132864
+    m_Localized: "Kuidas on olnud senimaani sinu kogemus automaatse k\xF5neoskuse
+      hindamisega?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1015961052340224
+    m_Localized: "Siia saad lisada muud tagasisidet (maksimaalselt 250 t\xE4hem\xE4rki)."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1016582945988608
+    m_Localized: Saada
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

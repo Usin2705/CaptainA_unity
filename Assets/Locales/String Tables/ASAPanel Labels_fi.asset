@@ -19,11 +19,98 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 5787193794560
-    m_Localized: Test
+    m_Localized: "<b>Sinun yst\xE4v\xE4ll\xE4 ei ole paljon rahaa, ja h\xE4n pyyt\xE4\xE4
+      sinulta 100 euroa. Mit\xE4 sin\xE4 vastaat h\xE4nelle?</b>\\nSinulla on 30
+      sekuntia aikaa."
     m_Metadata:
       m_Items: []
   - m_Id: 5905867431936
-    m_Localized: Test
+    m_Localized: "<b>Sin\xE4 et voi tulla t\xE4n\xE4\xE4n kurssille/t\xF6ihin. Sin\xE4
+      l\xE4het\xE4t \xE4\xE4niviestin opettajalle/pomolle ja kerrot, miksi et voi
+      tulla. Mit\xE4 sin\xE4 sanot viestiss\xE4?</b>\\nSinulla on 30 sekuntia aikaa."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5937198882816
+    m_Localized: "<b>Kerro, mit\xE4 kaikkea sin\xE4 teet normaalisti kotona.</b>\\nSinulla
+      on 1 minuutti aikaa."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5953061740544
+    m_Localized: "<b>Kerro, mit\xE4 kieli\xE4 sin\xE4 k\xE4yt\xE4t ja miss\xE4.</b>\\n\u25CF
+      Mit\xE4 kieli\xE4 sin\xE4 puhut kotona, kaupassa, ty\xF6ss\xE4...?\\n\u25CF
+      Katsotko televisiota tai kuunteletko musiikkia: mit\xE4 kieli\xE4 sin\xE4 kuulet?\\n\u25CF
+      Ent\xE4 mit\xE4 kieli\xE4 luet ja kirjoitat?\\nSinulla on 1 minuutti aikaa."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5968836517888
+    m_Localized: "<b>Vastaa kertomalla sinun ostostavoista tai kuvasta.</b>\\n\u25CF
+      Mit\xE4 sin\xE4 normaalisti ostat kaupasta?\\n\u25CF Mit\xE4 sin\xE4 et normaalisti
+      osta kaupasta?\\n\u25CF Milloin sin\xE4 normaalisti k\xE4yt kaupassa?\\nSinulla
+      on 1 minuutti aikaa."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7498574684160
+    m_Localized: Kuuntele!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7558490316800
+    m_Localized: Tulokset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9693009371136
+    m_Localized: Tulokset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9854129364992
+    m_Localized: "Mit\xE4 mielt\xE4 olit t\xE4st\xE4 teht\xE4v\xE4st\xE4?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9990498770944
+    m_Localized: "Voit antaa lis\xE4\xE4 palautetta (max. 250 merkki\xE4)."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2573893778890752
+    m_Localized: "L\xE4hett\xE4\xE4 audiota..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2574532344897536
+    m_Localized: "Tulokset ovat valmiit. Napauta alapuolella niin n\xE4et ne."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2574131100999680
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6320358917496832
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321177507225600
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321228962947072
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321274882187264
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321523981901824
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321580026191872
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321609004638208
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321645155344384
+    m_Localized: '*Missing translation'
     m_Metadata:
       m_Items: []
   references:

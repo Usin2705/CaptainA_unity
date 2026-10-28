@@ -46,6 +46,23 @@ MonoBehaviour:
     m_Localized: "Teht\xE4v\xE4t"
     m_Metadata:
       m_Items: []
+  - m_Id: 1013404976373760
+    m_Localized: Profiilia ladataan...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1015467844132864
+    m_Localized: "Milt\xE4 puhumisen automaattinen arviointi on tuntunut t\xE4h\xE4n
+      menness\xE4?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1015961052340224
+    m_Localized: "Voit antaa lis\xE4\xE4 palautetta (max. 250 merkki\xE4)."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1016582945988608
+    m_Localized: "L\xE4het\xE4"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

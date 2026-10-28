@@ -24,19 +24,20 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5905867431936
-    m_Localized: '<b>You can''t come to class/work today. You send a voice message
-      to your teacher/boss and tell them why you can''t come. What do you say in
-      the message?</b>\nYou have 30 seconds. '
+    m_Localized: <b>You can't come to class/work today. You send a voice message
+      to your teacher/boss and tell them why you can't come. What do you say in the
+      message?</b>\nYou have 30 seconds.
     m_Metadata:
       m_Items: []
   - m_Id: 5937198882816
-    m_Localized: '<b>Describe what you normally do at home.</b>\nYou have 1 minute. '
+    m_Localized: <b>Describe what you normally do at home.</b>\nYou have 1 minute.
     m_Metadata:
       m_Items: []
   - m_Id: 5953061740544
     m_Localized: "<b>Describe what languages you use and where.</b>\\n\u25CF What
       languages do you speak at home, in the shop, at work...?\\n\u25CF Do you watch
-      TV or listen to music in another language?\\nYou have 1 minute. "
+      TV or listen to music in another language?\\n\u25CF What languages do you read
+      and write?\\nYou have 1 minute."
     m_Metadata:
       m_Items: []
   - m_Id: 5968836517888
@@ -46,7 +47,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7498574684160
-    m_Localized: Listen!
+    m_Localized: Listen
     m_Metadata:
       m_Items: []
   - m_Id: 7558490316800

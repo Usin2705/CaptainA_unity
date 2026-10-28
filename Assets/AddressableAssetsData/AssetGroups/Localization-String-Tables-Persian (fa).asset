@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-String-Tables-Persian (fa)
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Localization-String-Tables-Persian (fa)
+  m_GUID: 77a391ed75578af3492e90aff3f3be8c
+  m_SerializeEntries:
+  - m_GUID: 1a8ef88520f9f20cc861645669b76d05
+    m_Address: ConsentPopUp Labels_fa
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-fa
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f7b8b3ddab92418d8ae73083776df08
+    m_Address: ASAProfilePanel Labels_fa
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-fa
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b601440791f926818bb2992c200aaca4
+    m_Address: TaskPanel Labels_fa
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-fa
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bfae68777861a953a821ba7a2a8db279
+    m_Address: BackgroundPopUp Labels_fa
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-fa
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c402f3b00fdc8fedb84a7d8ce8260884
+    m_Address: FeedbackPanel Labels_fa
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-fa
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cabac47806dd5965392187b274fb8565
+    m_Address: ASAPanel Labels_fa
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-fa
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fca601138e2f26f6a847f7bfab8a77c3
+    m_Address: AdvancePanel Labels_fa
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-fa
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: 8f8457ecdc9910a2dbd74db0fe4ba00e, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 381aa0f1345c9c3d3a9129aed84f9568, type: 2}
+    - {fileID: 11400000, guid: 6a993d04cc61169d285e3e1c10ea0537, type: 2}
+    - {fileID: 11400000, guid: d41a856c59e9eedd58567046d6309390, type: 2}

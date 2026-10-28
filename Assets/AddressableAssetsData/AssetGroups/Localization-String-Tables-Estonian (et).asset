@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-String-Tables-Estonian (et)
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Localization-String-Tables-Estonian (et)
+  m_GUID: 43968f92e46fe990aa24829b8e2bff78
+  m_SerializeEntries:
+  - m_GUID: 184edf65113f8685ead4f20108ff1e26
+    m_Address: ConsentPopUp Labels_et
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-et
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 189b50ff234ab43c7a4ea40bdbab3318
+    m_Address: AdvancePanel Labels_et
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-et
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 36fdc3e65e4833480bbbebed56993c74
+    m_Address: ASAProfilePanel Labels_et
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-et
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a74a0268763f0a2e1bb24373d2758187
+    m_Address: BackgroundPopUp Labels_et
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-et
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce5e12d8641e98d0a8ee764d04dfca0b
+    m_Address: FeedbackPanel Labels_et
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-et
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d64ec54c4ce9c3f5b8fd137518ab0db8
+    m_Address: ASAPanel Labels_et
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-et
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eaebae2ab6abfea1ba2997d597072208
+    m_Address: TaskPanel Labels_et
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-et
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: 8f8457ecdc9910a2dbd74db0fe4ba00e, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 23c0982864d9162abad22e13bd743eb2, type: 2}
+    - {fileID: 11400000, guid: 99a609cc486de8619877bf8f08880aa6, type: 2}
+    - {fileID: 11400000, guid: 69cc6422e866775d19acfee04d12ddc5, type: 2}

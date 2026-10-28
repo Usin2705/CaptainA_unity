@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: FeedbackPanel Labels_sv
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: sv
+  m_SharedData: {fileID: 11400000, guid: db69d3d55aef5df5fa3b2c531d1f5502, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 616762007552
+    m_Localized: "Du ser resultaten nedan. AI-modellen bed\xF6mde inspelningen automatiskt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 669878673408
+    m_Localized: "F\xE4rdighetsniv\xE5"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2876388761600
+    m_Localized: Uttal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2907997036544
+    m_Localized: "Omf\xE5ng"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2925197877248
+    m_Localized: Korrekthet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2951772987392
+    m_Localized: Flyt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3049957449728
+    m_Localized: "Generell bed\xF6mning"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3382343458816
+    m_Localized: Vad tyckte du om detta?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3550702821376
+    m_Localized: En ny uppgift
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3698728198144
+    m_Localized: "Vad h\xF6rde vi?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4093949075456
+    m_Localized: "Ditt svar passade inte f\xF6r uppgiften."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4361424035840
+    m_Localized: "Ditt svar passade bara delvis f\xF6r uppgiften och d\xE4rf\xF6r
+      motsvarar resultaten kanske inte korrekt din f\xE4rdighetsniv\xE5. Bed\xF6mningen
+      \xE4r automatisk och kan d\xE4rf\xF6r vara felaktig."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4677976547328
+    m_Localized: (Ingenting identifierades i inspelningen.)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5920983703552
+    m_Localized: Bra att veta!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6000499318784
+    m_Localized: "Du f\xE5r veta mer om feedbacken, om du klickar p\xE5 stj\xE4rnorna
+      under rubriken."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6150844145664
+    m_Localized: "Bredvid stj\xE4rnorna kan du se din spr\xE5kf\xE4rdighet i alla
+      bed\xF6mda kategorier. Bed\xF6mningarna grundar sig p\xE5 gemensam europeisk
+      referensam (A1, A2, A2+, B1)."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6162076491776
+    m_Localized: "Kom ih\xE5g att applikationen inte visar niv\xE5 B2 eller h\xF6gre
+      niv\xE5er."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6343601774592
+    m_Localized: "Ger en generell bed\xF6mning av muntlig f\xE4rdighet."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6757755740160
+    m_Localized: "Kontrollerar om du har uttalat orden korrekt. Bed\xF6mer hur v\xE4l
+      maskinen f\xF6rst\xE5r ditt tal."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6846674984960
+    m_Localized: "Bed\xF6mer hur m\xE5ngsidigt spr\xE5ket \xE4r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6874936205312
+    m_Localized: "Bed\xF6mer noggrannheten av ordf\xF6rr\xE5d och grammatik."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6939780145152
+    m_Localized: "Bed\xF6mer taltempo, pauser och tvekan."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7719484481536
+    m_Localized: "Tycker du att resultatet \xE4r korrekt?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8025454764032
+    m_Localized: "Tycker du att resultatet var l\xE4tt att f\xF6rst\xE5?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8115305144320
+    m_Localized: Du kan ge mer feedback (max 250 tecken).
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8203180007424
+    m_Localized: Skicka in
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10626791464960
+    m_Localized: Feedback
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

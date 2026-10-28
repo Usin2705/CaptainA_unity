@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: ASAPanel Labels_et
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: et
+  m_SharedData: {fileID: 11400000, guid: d3a4387299faa8b81aed682b3107b9e1, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 5787193794560
+    m_Localized: "<b>Sinu s\xF5bral pole palju raha ja ta k\xFCsib sult 100 eurot.
+      Mida sa neile vastad?</b>\\nSul on 30 sekundit."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5905867431936
+    m_Localized: "<b>Sa ei saa t\xE4na tundi/t\xF6\xF6le tulla. Saada h\xE4\xE4ls\xF5num
+      oma \xF5petajale/\xFClemusele ja seleta neile, miks sa ei saa tulla. Mida sa
+      s\xF5numis \xFCtled?</b>\\nSul on 30 sekundit."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5937198882816
+    m_Localized: <b>Kirjelda, mida sa tavaliselt kodus teed.</b>\nSul on 1 minut.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5953061740544
+    m_Localized: "<b>Seleta, mis keeli sa kasutad ja kus.</b>\\n\u25CF Mis keeli
+      kasutad sa kodus, poes, t\xF6\xF6l...?\\n\u25CF Kas sa vaatad televisiooni
+      v\xF5i kuulad muusikat m\xF5ned muus keeles?\\n\u25CF Mis keeli sa loed ja
+      kirjutada?\\nSul on 1 minut."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5968836517888
+    m_Localized: "<b>Palun vasta vastavalt pildile v\xF5i iseenda ostlemisharjumustele.</b>\\n\u25CF
+      Mida sa tavaliselt poest ostad?\\n\u25CF Mida sa tavaliselt poest ei osta?\\n\u25CF
+      Millal sa tavaliselt ostlemas k\xE4id?\\nSul on 1 minut."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7498574684160
+    m_Localized: Kuula!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7558490316800
+    m_Localized: Tulemused
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9693009371136
+    m_Localized: Tulemused
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9854129364992
+    m_Localized: Mida arvasid sellest harjutusest?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9990498770944
+    m_Localized: "Siin saad lisada muud tagasisidet (maksimaalselt 250 t\xE4hem\xE4rki)."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2573893778890752
+    m_Localized: Helisalvestist saadetakse...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2574131100999680
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2574532344897536
+    m_Localized: "Sinu tulemused on valmis. Vajuta allapoole, et neid n\xE4ha."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6320358917496832
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321177507225600
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321228962947072
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321274882187264
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321523981901824
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321580026191872
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321609004638208
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6321645155344384
+    m_Localized: '*Missing translation'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

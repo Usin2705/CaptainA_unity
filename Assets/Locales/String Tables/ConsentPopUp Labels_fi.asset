@@ -17,7 +17,33 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: 0075310c114e552f7a8f6c29aa12bb32, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 1369811542016
+    m_Localized: Tietosuojaseloste
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1773848846336
+    m_Localized: "Automaattinen puhumisen arviointi ker\xE4\xE4 tietojasi ja niiden
+      avulla arvioidaan kielitaitoasi ja kehitet\xE4\xE4n teko\xE4lymallia. Voit
+      lukea, miten tietojasi k\xE4sitell\xE4\xE4n."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1963590770688
+    m_Localized: <u>Lue tietosuojaseloste</u>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2135594983424
+    m_Localized: "Olen lukenut ja ymm\xE4rt\xE4nyt tietosuojaselosteen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2467083411456
+    m_Localized: Jatka
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2504827953152
+    m_Localized: Ei nyt
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

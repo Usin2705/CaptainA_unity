@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-String-Tables-Ukrainian (uk)
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Localization-String-Tables-Ukrainian (uk)
+  m_GUID: b70097661e6149f20aeed48688fff411
+  m_SerializeEntries:
+  - m_GUID: 0a146aa477b91364ebd680f2becfaa35
+    m_Address: ASAProfilePanel Labels_uk
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-uk
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0cfb3f1a7aad9c8a3b7f90439a20e8be
+    m_Address: BackgroundPopUp Labels_uk
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-uk
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 206caac9ed859afdc8c5754912d457a5
+    m_Address: ConsentPopUp Labels_uk
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-uk
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ac4d4591f54a19d68de2825d04e1340
+    m_Address: AdvancePanel Labels_uk
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-uk
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 48f02ad23e9cb0ea082a5a201aedce58
+    m_Address: ASAPanel Labels_uk
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-uk
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 49dfaba73e61c708a9e5212c4611ad5f
+    m_Address: FeedbackPanel Labels_uk
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-uk
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f776bc6865820768aabd6dfc67628cfd
+    m_Address: TaskPanel Labels_uk
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-uk
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: 8f8457ecdc9910a2dbd74db0fe4ba00e, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b19a826bb16b1b324bd72ce7f33340ba, type: 2}
+    - {fileID: 11400000, guid: 503f43b4cfe2ba65685e79a2d89a204c, type: 2}
+    - {fileID: 11400000, guid: f97313e04c7c39a10a6865d121f51d26, type: 2}

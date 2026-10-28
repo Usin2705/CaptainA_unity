@@ -17,7 +17,124 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: db69d3d55aef5df5fa3b2c531d1f5502, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 616762007552
+    m_Localized: "N\xE4et tulokset alapuolella. Teko\xE4lymalli arvioi \xE4\xE4nitteen
+      automaattisesti."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 669878673408
+    m_Localized: Taitotaso
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2876388761600
+    m_Localized: "\xC4\xE4nt\xE4minen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2907997036544
+    m_Localized: Laajuus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2925197877248
+    m_Localized: Tarkkuus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2951772987392
+    m_Localized: Sujuvuus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3049957449728
+    m_Localized: Yleisarvio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3382343458816
+    m_Localized: "Mit\xE4 mielt\xE4 olit?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3550702821376
+    m_Localized: "Uusi teht\xE4v\xE4"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3698728198144
+    m_Localized: "Mit\xE4 kuulimme"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4093949075456
+    m_Localized: "Vastauksesi ei sopinut teht\xE4v\xE4\xE4n."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4361424035840
+    m_Localized: "Vastauksesi sopi teht\xE4v\xE4\xE4n vain osittain ja siksi n\xE4m\xE4
+      tulokset eiv\xE4t ehk\xE4 vastaa oikeaa taitotasoasi. T\xE4m\xE4 tulos on automaattinen
+      ja voi olla v\xE4\xE4r\xE4ss\xE4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4677976547328
+    m_Localized: "(T\xE4st\xE4 \xE4\xE4nityksest\xE4 ei tunnistettu mit\xE4\xE4n)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5920983703552
+    m_Localized: "Hyv\xE4 tiet\xE4\xE4!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6000499318784
+    m_Localized: "Saat lis\xE4tietoa palautteesta, kun klikkaat t\xE4hti\xE4 otsikon
+      alapuolella:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6150844145664
+    m_Localized: "T\xE4htien vieress\xE4 voit n\xE4hd\xE4 kielitaidon tasosi kaikissa
+      eri kategorioissa. Ne perustuvat eurooppalaiseen viitekehykseen (A1, A2, A2+,
+      B1):"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6162076491776
+    m_Localized: "Muista, ett\xE4 t\xE4m\xE4 sovellus ei n\xE4yt\xE4 taitotasoa B2
+      tai sit\xE4 ylemp\xE4\xE4 tasoa."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6343601774592
+    m_Localized: Tekee yleisarvion puhetaidosta.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6757755740160
+    m_Localized: "Tarkistaa sanojen oikean \xE4\xE4nt\xE4misen. Arvioi, miten kone
+      ymm\xE4rt\xE4\xE4 puhetta."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6846674984960
+    m_Localized: Arvioi, miten monipuolipuolista kieli on.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6874936205312
+    m_Localized: "Arvioi, miten tarkkaa ja t\xE4sm\xE4llist\xE4 sanasto ja kielioppi
+      on."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6939780145152
+    m_Localized: "Arvioi puheen nopeutta, taukoja ja ep\xE4r\xF6inti\xE4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7719484481536
+    m_Localized: "Oliko tulos mielest\xE4si oikea?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8025454764032
+    m_Localized: "Oliko tulos helppo ymm\xE4rt\xE4\xE4?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8115305144320
+    m_Localized: "Voit antaa lis\xE4\xE4 palautetta (max. 250 merkki\xE4)."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8203180007424
+    m_Localized: "L\xE4het\xE4"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10626791464960
+    m_Localized: Palaute
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
