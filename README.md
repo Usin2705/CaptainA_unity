@@ -48,13 +48,14 @@ All authors contributed equally.
 
 - `Assets/`: Unity app source files.
 - `Packages/` and `ProjectSettings/`: Unity package and project configuration.
-- `docs/`: ASA release documentation, historical plans, legacy server notes, and development notes.
+- `docs/`: ASA release documentation, historical plans, legacy server notes, user behaviour events, and development notes.
 - `MDD_Server/`: legacy/server-side project files kept for project context.
 
 ## Documentation
 
 - [ASA release documentation](docs/asa_release/SaySuomi-ASA%20doc.pdf)
 - [ASA front-end development plan](docs/ASA_frontend_plan.md)
+- [ASA user behaviour events (client)](docs/USER_BEHAVIOUR.md)
 - [Legacy CaptainA pronunciation server and API notes](docs/legacy_pronunciation_server.md)
 - [Future development notes](docs/development_notes.md)
 
