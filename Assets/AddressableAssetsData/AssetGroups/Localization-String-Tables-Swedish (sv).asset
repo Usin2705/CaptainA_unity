@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-String-Tables-Swedish (sv)
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Localization-String-Tables-Swedish (sv)
+  m_GUID: 41da0bccb2d60f07db05dc9b2772204a
+  m_SerializeEntries:
+  - m_GUID: 3b41804de7c7d3134aaf1f16ac954149
+    m_Address: BackgroundPopUp Labels_sv
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4035b86e7500c69ca8814fa67847c3e5
+    m_Address: AdvancePanel Labels_sv
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 57a5380da5bfb03bba0172db5027929c
+    m_Address: ConsentPopUp Labels_sv
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61d6b32f82b8214fda359158bc12ffcd
+    m_Address: ASAPanel Labels_sv
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 633b20a85077335d9abf7c621d245d3b
+    m_Address: FeedbackPanel Labels_sv
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79a970735745dd68f9eebf0716713345
+    m_Address: TaskPanel Labels_sv
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe1ec51e545f0e9f49cfbc3eec1f0857
+    m_Address: ASAProfilePanel Labels_sv
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: 8f8457ecdc9910a2dbd74db0fe4ba00e, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 955ab34da65baa6918084d542c74cd70, type: 2}
+    - {fileID: 11400000, guid: f222ad0fda594a977a4e30e68ccf2cfe, type: 2}
+    - {fileID: 11400000, guid: e1a6594881d7677229533f1bc4dbfa44, type: 2}

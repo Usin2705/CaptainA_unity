@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: BackgroundPopUp Labels_ru
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: ru
+  m_SharedData: {fileID: 11400000, guid: 3a16f354804db3506bbf35430dba64b9, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 77265461248
+    m_Localized: "\u041F\u0440\u0435\u0436\u0434\u0435 \u0447\u0435\u043C \u043D\u0430\u0447\u0430\u0442\u044C,
+      \u043D\u0430\u043C \u043D\u0443\u0436\u043D\u0430 \u043D\u0435\u0431\u043E\u043B\u044C\u0448\u0430\u044F
+      \u0441\u043F\u0440\u0430\u0432\u043E\u0447\u043D\u0430\u044F \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 192822730752
+    m_Localized: "1. \u041F\u043E\u043B *"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 278487195648
+    m_Localized: "\u0416\u0435\u043D\u0449\u0438\u043D\u0430"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 317800407040
+    m_Localized: "\u041C\u0443\u0436\u0447\u0438\u043D\u0430"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 329296994304
+    m_Localized: "\u0414\u0440\u0443\u0433\u043E\u0435"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 339820503040
+    m_Localized: "\u041F\u0440\u0435\u0434\u043F\u043E\u0447\u0438\u0442\u0430\u044E
+      \u043D\u0435 \u043E\u0442\u0432\u0435\u0447\u0430\u0442\u044C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 506409869312
+    m_Localized: "2. \u0412\u043E\u0437\u0440\u0430\u0441\u0442 *"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 583144660992
+    m_Localized: "62 \u0438\u043B\u0438 \u0441\u0442\u0430\u0440\u0448\u0435"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2623191212032
+    m_Localized: "3. \u041A\u0430\u043A \u0431\u044B \u0442\u044B \u043E\u0446\u0435\u043D\u0438\u043B
+      \u0441\u0432\u043E\u0439 \u0443\u0440\u043E\u0432\u0435\u043D\u044C \u0432\u043B\u0430\u0434\u0435\u043D\u0438\u044F
+      \u0444\u0438\u043D\u0441\u043A\u0438\u043C \u044F\u0437\u044B\u043A\u043E\u043C?
+      *"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2807337934848
+    m_Localized: "A1 (\u041D\u0430\u0447\u0438\u043D\u0430\u044E\u0449\u0438\u0439)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2844952453120
+    m_Localized: "A2 (\u0411\u0430\u0437\u043E\u0432\u044B\u0439)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2858856570880
+    m_Localized: "B1 (\u0421\u0440\u0435\u0434\u043D\u0438\u0439)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2872630665216
+    m_Localized: "B2 (\u0412\u044B\u0448\u0435 \u0441\u0440\u0435\u0434\u043D\u0435\u0433\u043E)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2888006983680
+    m_Localized: "C1 \u0438\u043B\u0438 \u0432\u044B\u0448\u0435 (\u041F\u0440\u043E\u0434\u0432\u0438\u043D\u0443\u0442\u044B\u0439/\u0421\u0432\u043E\u0431\u043E\u0434\u043D\u043E\u0435
+      \u0432\u043B\u0430\u0434\u0435\u043D\u0438\u0435)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3531392245760
+    m_Localized: "4. \u0420\u043E\u0434\u043D\u043E\u0439 \u044F\u0437\u044B\u043A
+      *"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3572320264192
+    m_Localized: "5. \u0414\u0440\u0443\u0433\u0438\u0435 \u044F\u0437\u044B\u043A\u0438,
+      \u043A\u043E\u0442\u043E\u0440\u044B\u043C\u0438 \u0442\u044B \u0432\u043B\u0430\u0434\u0435\u0435\u0448\u044C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3598673076224
+    m_Localized: "\u0412\u0432\u0435\u0434\u0438 \u0442\u0435\u043A\u0441\u0442..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3631447367680
+    m_Localized: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3840030105600
+    m_Localized: "\u041F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430, \u043E\u0442\u0432\u0435\u0442\u044C
+      \u043D\u0430 \u0432\u0441\u0435 \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435
+      \u0432\u043E\u043F\u0440\u043E\u0441\u044B."
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

@@ -2,6 +2,7 @@ using System.Collections;
 using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.Networking;
 
 public class NetworkManager : MonoBehaviour
@@ -47,6 +48,17 @@ public class NetworkManager : MonoBehaviour
     // still claims to be sending while the results button is sitting there waiting.
     [SerializeField]
     TMPro.TextMeshProUGUI feedbackLoadingTitleText;
+
+    [SerializeField]
+    private LocalizedString loadingText;
+
+    [SerializeField]
+    private LocalizedString loadingFailedNotice;
+
+    [SerializeField]
+    private LocalizedString loadingCompletedNotice;
+
+    private LocalizedTextHelper loadingTitleHelper;
 
     [SerializeField]
     GameObject profileLoadingErrorTextGO;
@@ -108,10 +120,38 @@ public class NetworkManager : MonoBehaviour
     TaskPanel taskPanel;
 
     [SerializeField]
-    private TMPro.TextMeshProUGUI feedbackErrorText;
+    private TextMeshProUGUI feedbackErrorText;
 
     [SerializeField]
-    private TMPro.TextMeshProUGUI profileErrorText;
+    private TextMeshProUGUI profileErrorText;
+
+    [SerializeField]
+    private LocalizedString noConnectionNotice;
+
+    [SerializeField]
+    private LocalizedString noConsentNotice;
+
+    [SerializeField]
+    private LocalizedString accountNotFoundNotice;
+
+    [SerializeField]
+    private LocalizedString versionMismatchNotice;
+
+    [SerializeField]
+    private LocalizedString recordingTooLongNotice;
+
+    [SerializeField]
+    private LocalizedString serverBusyNotice;
+
+    [SerializeField]
+    private LocalizedString badRequestNotice;
+
+    [SerializeField]
+    private LocalizedString defaultNotice;
+
+    private LocalizedTextHelper feedbackErrorHelper;
+
+    private LocalizedTextHelper profileErrorHelper;
 
     void Awake()
     {
@@ -135,8 +175,6 @@ public class NetworkManager : MonoBehaviour
         // Finish any deletion that was asked for but never confirmed by the server.
         RetryPendingDeletion();
     }
-
-    void OnDestroy() { }
 
     // This function is used to get the URL for the POST request
     private string GetPOSTURL(POSTType postType)
@@ -770,7 +808,7 @@ public class NetworkManager : MonoBehaviour
         // The popup is reused for every recording, so put the title back to its sending
         // state here rather than at the call site. Otherwise the second recording spins
         // underneath whatever the first one finished with.
-        SetLoadingTitle("Sending the audio...");
+        SetLoadingTitle(loadingText);
 
         // Use a `using` statement for UnityWebRequest to handle resource cleanup
         // This is a good practice to avoid memory leaks
@@ -791,7 +829,7 @@ public class NetworkManager : MonoBehaviour
                 feedbackLoadingIconGO.SetActive(false);
                 feedbackLoadingErrorTextGO.SetActive(true);
                 feedbackLoadingBackButtonGO.SetActive(true);
-                SetLoadingTitle("Could not send the audio");
+                SetLoadingTitle(loadingFailedNotice);
 
                 // Shows a readable message and logs the server's own detail.type.
                 ErrorHandling(uwr, feedbackErrorText);
@@ -846,7 +884,7 @@ public class NetworkManager : MonoBehaviour
             }
 
             resultsButtonGO.SetActive(true);
-            SetLoadingTitle("Your results are ready. Tap below to see them.");
+            SetLoadingTitle(loadingCompletedNotice);
         }
         OnServerDone?.Invoke();
     }
@@ -854,12 +892,10 @@ public class NetworkManager : MonoBehaviour
     // The ASA loading popup is a shared prefab instance, so its title is whatever the
     // last request left behind. Every caller goes through here so the null check for an
     // unassigned reference lives in one place.
-    private void SetLoadingTitle(string message)
+    private void SetLoadingTitle(LocalizedString message)
     {
-        if (feedbackLoadingTitleText != null)
-        {
-            feedbackLoadingTitleText.text = message;
-        }
+        loadingTitleHelper ??= new LocalizedTextHelper(feedbackLoadingTitleText);
+        loadingTitleHelper?.SetText(message);
     }
 
     // Get form for feedback (grade and optional comment)
@@ -1385,10 +1421,78 @@ public class NetworkManager : MonoBehaviour
     /// </summary>
     private string DescribeError(UnityWebRequest uwr)
     {
-        string body = uwr.downloadHandler != null ? uwr.downloadHandler.text : null;
+        string serverMessage = GetServerErrorMessage(uwr);
 
+        return uwr.responseCode switch
+        {
+            0 => "No connection. Check your network and try again.",
+
+            403 => "Consent is required to use this feature.",
+
+            404 => "Your account was not found. You may need to set up the app again.",
+
+            // The client sent something the server rejected - the user cannot fix
+            // this by retrying, so say so rather than inviting them to try again.
+            422 => "This version of the app could not be accepted by the server. "
+                + "Please update the app, or contact us if it is already up to date.",
+
+            // We cap the recording length before uploading, so reaching this means
+            // our cap and the server's disagree - a bug, not something the learner did.
+            413 => "That recording is too long to send.",
+
+            503 => "The server is busy. Please try again in a moment.",
+
+            // The server's own wording is the only thing that says WHICH bad request
+            // this is: "Unknown task_id 0" and a rejected filename are both 400 and
+            // otherwise indistinguishable. A generic apology here cost us a day
+            // finding the task_id offset, so show what the server said.
+            400 => string.IsNullOrEmpty(serverMessage)
+                ? "The app sent something the server could not accept."
+                : serverMessage,
+
+            // Same reasoning: an unrecognised status with a message is still far more
+            // use than "something went wrong", to the user and in a bug report.
+            _ => string.IsNullOrEmpty(serverMessage)
+                ? "Something went wrong. Please try again."
+                : serverMessage,
+        };
+    }
+
+    private void DescribeLocalizedError(
+        UnityWebRequest uwr,
+        LocalizedTextHelper localizedTextHelper
+    )
+    {
+        if (uwr != null && localizedTextHelper != null)
+        {
+            string serverMessage = GetServerErrorMessage(uwr);
+
+            if (
+                uwr.responseCode != 0
+                && uwr.responseCode != 403
+                && uwr.responseCode != 404
+                && uwr.responseCode != 422
+                && uwr.responseCode != 413
+                && uwr.responseCode != 503
+                && !string.IsNullOrEmpty(serverMessage)
+            )
+            {
+                localizedTextHelper.ClearText();
+                localizedTextHelper.textComponent.text = serverMessage;
+            }
+            else
+            {
+                localizedTextHelper.SetText(GetLocalizedErrorMessage(uwr.responseCode));
+            }
+        }
+    }
+
+    private string GetServerErrorMessage(UnityWebRequest uwr)
+    {
+        string body = uwr.downloadHandler?.text;
         string type = null;
         string serverMessage = null;
+
         if (!string.IsNullOrEmpty(body))
         {
             try
@@ -1403,52 +1507,52 @@ public class NetworkManager : MonoBehaviour
             catch (System.Exception)
             {
                 // 422 (detail is an array) and any non-JSON body land here. The status
-                // code below is enough to pick a message.
+                // code is enough to pick a message.
             }
         }
 
         Debug.LogError($"{uwr.url} -> {uwr.responseCode} {type} | {body} | {uwr.error}");
         lastErrorType = type;
+        return serverMessage;
+    }
 
-        switch (uwr.responseCode)
+    private LocalizedString GetLocalizedErrorMessage(long responseCode)
+    {
+        return responseCode switch
         {
-            case 0:
-                return "No connection. Check your network and try again.";
-            case 403:
-                return "Consent is required to use this feature.";
-            case 404:
-                return "Your account was not found. You may need to set up the app again.";
-            case 422:
-                // The client sent something the server rejected - the user cannot fix
-                // this by retrying, so say so rather than inviting them to try again.
-                return "This version of the app could not be accepted by the server. "
-                    + "Please update the app, or contact us if it is already up to date.";
-            case 413:
-                // We cap the recording length before uploading, so reaching this means
-                // our cap and the server's disagree - a bug, not something the learner did.
-                return "That recording is too long to send.";
-            case 503:
-                return "The server is busy. Please try again in a moment.";
-            case 400:
-                // The server's own wording is the only thing that says WHICH bad request
-                // this is: "Unknown task_id 0" and a rejected filename are both 400 and
-                // otherwise indistinguishable. A generic apology here cost us a day
-                // finding the task_id offset, so show what the server said.
-                return string.IsNullOrEmpty(serverMessage)
-                    ? "The app sent something the server could not accept."
-                    : serverMessage;
-            default:
-                // Same reasoning: an unrecognised status with a message is still far more
-                // use than "something went wrong", to the user and in a bug report.
-                return string.IsNullOrEmpty(serverMessage)
-                    ? "Something went wrong. Please try again."
-                    : serverMessage;
-        }
+            0 => noConnectionNotice,
+            403 => noConsentNotice,
+            404 => accountNotFoundNotice,
+            422 => versionMismatchNotice,
+            413 => recordingTooLongNotice,
+            503 => serverBusyNotice,
+            400 => badRequestNotice,
+            _ => defaultNotice,
+        };
     }
 
     public void ErrorHandling(UnityWebRequest uwr, TextMeshProUGUI errorText)
     {
         // Handle the errors for server posts
-        errorText.text = DescribeError(uwr);
+        if (errorText != null)
+        {
+            if (errorText == feedbackErrorText)
+            {
+                feedbackErrorHelper ??= new LocalizedTextHelper(errorText);
+                DescribeLocalizedError(uwr, feedbackErrorHelper);
+            }
+            else if (errorText == profileErrorText)
+            {
+                profileErrorHelper ??= new LocalizedTextHelper(errorText);
+                DescribeLocalizedError(uwr, profileErrorHelper);
+            }
+        }
+    }
+
+    void OnDestroy()
+    {
+        loadingTitleHelper?.ClearText();
+        feedbackErrorHelper?.ClearText();
+        profileErrorHelper?.ClearText();
     }
 }

@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: FeedbackPanel Labels_et
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: et
+  m_SharedData: {fileID: 11400000, guid: db69d3d55aef5df5fa3b2c531d1f5502, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 616762007552
+    m_Localized: "Allpool saad n\xE4ha oma tulemusi. Helisavlestis on automaatselt
+      hinnatud tehisaru mudeliga."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 669878673408
+    m_Localized: Keeleoskuse tase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2876388761600
+    m_Localized: "H\xE4\xE4ldus"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2907997036544
+    m_Localized: "S\xF5navara ulatus"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2925197877248
+    m_Localized: Grammatiline korrektsus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2951772987392
+    m_Localized: Sujuvus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3049957449728
+    m_Localized: "\xDCldine keelekasutus"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3382343458816
+    m_Localized: Mida arvasid?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3550702821376
+    m_Localized: Uus harjutus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3698728198144
+    m_Localized: Mida me kuulsime
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4093949075456
+    m_Localized: Sinu vastus paistis mitte olevat vastavuses harjutusega. Palun proovi
+      harjutust uuesti.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4361424035840
+    m_Localized: "Sinu vastus paistis olevat vaid osaliselt vastavuses harjutusega,
+      nii et tulemused ei pruugi kajastada sinu t\xF5elist taset. See kontroll on
+      automaatne ja v\xF5ib olla vale."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4677976547328
+    m_Localized: (Selles salvestises ei tuvastatud midagi.)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5920983703552
+    m_Localized: Hea teada!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6000499318784
+    m_Localized: "V\xF5id saada lisateavet tagasiside kohta vajutades t\xE4htedele
+      pealkirjade all."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6150844145664
+    m_Localized: "V\xF5id samuti n\xE4ha oma hetkest taset t\xE4htede k\xF5rval igas
+      hinnatud kategoorias, vasatavalt Euroopa keele\xF5ppe raamdokumendile (A1,
+      A2, A2+, B1):"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6162076491776
+    m_Localized: "Palun pea meeles, et antud \xE4ppiga pole v\xF5imalik j\xF5uda
+      B2 v\xF5i k\xF5rgemale tasemele."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6343601774592
+    m_Localized: "Hindab \xFCldist k\xF5nelemis oskust."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6757755740160
+    m_Localized: "Kontrollib, kas sa h\xE4\xE4ldasid s\xF5nu \xF5igesti. Hindab,
+      kui h\xE4sti masin sinu k\xF5net m\xF5istab."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6846674984960
+    m_Localized: Hindab kasutatud keele mitmekesisust.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6874936205312
+    m_Localized: "Hindab t\xE4psust, korrektsust ja kui h\xE4sti sa j\xE4rgisid grammatikareegleid."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6939780145152
+    m_Localized: "Hindab kiirust, pause ja k\xF5hklusi k\xF5nes."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7719484481536
+    m_Localized: "Kas sa arvad, et tulemused on t\xE4psed?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8025454764032
+    m_Localized: "Kas tulemusi oli kerge m\xF5ista?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8115305144320
+    m_Localized: "Siin saad lisada muud tagasisidet (maksimaalselt 250 t\xE4hem\xE4rki)."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8203180007424
+    m_Localized: Saada
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10626791464960
+    m_Localized: Tagasiside
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

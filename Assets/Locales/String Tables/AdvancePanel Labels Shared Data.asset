@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: AdvancePanel Labels Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: AdvancePanel Labels
+  m_TableCollectionNameGuidString: 6aa268833314d0017ae7b60b0d29b20f
+  m_Entries:
+  - m_Id: 5390735597568
+    m_Key: advancePanel.ASAButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8795784830976
+    m_Key: advancePanel.numberGameButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29612396601344
+    m_Key: advancePanel.topPanelTitle
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 5595283884134105434
+  references:
+    version: 2
+    RefIds:
+    - rid: 5595283884134105434
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1790941380821

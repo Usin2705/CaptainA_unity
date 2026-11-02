@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: ConsentPopUp Labels_sv
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: sv
+  m_SharedData: {fileID: 11400000, guid: 0075310c114e552f7a8f6c29aa12bb32, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1369811542016
+    m_Localized: Dataskyddsmeddelande
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1773848846336
+    m_Localized: "Automatisk bed\xF6mning av tal samlar in dina data, och din spr\xE5kf\xE4rdighet
+      bed\xF6ms och AI-modellen utvecklas med hj\xE4lp av dem. Du kan l\xE4sa hur
+      dina data hanteras."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1963590770688
+    m_Localized: "<u>L\xE4s dataskyddsmeddelandet</u>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2135594983424
+    m_Localized: "Jag har l\xE4st och f\xF6rst\xE5tt dataskyddsmeddelandet."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2467083411456
+    m_Localized: "Forts\xE4tt"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2504827953152
+    m_Localized: Inte nu
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

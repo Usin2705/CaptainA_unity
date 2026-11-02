@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: ConsentPopUp Labels_et
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: et
+  m_SharedData: {fileID: 11400000, guid: 0075310c114e552f7a8f6c29aa12bb32, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1369811542016
+    m_Localized: Privaatsusteade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1773848846336
+    m_Localized: "Automaatne k\xF5ne hindamine vajab oskuse hindamiseks ja tehisaru
+      parendamiseks sinu andmeid. Palun vaata \xFCle, kuidas me sinu andmeid k\xE4sitleme."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1963590770688
+    m_Localized: <u>Loe privaatsusteadet</u>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2135594983424
+    m_Localized: "Olen lugenud ja m\xF5istnud privaatsusteadet."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2467083411456
+    m_Localized: "J\xE4tka"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2504827953152
+    m_Localized: Hetkel mitte
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

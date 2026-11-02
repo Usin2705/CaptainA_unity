@@ -3,6 +3,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UI;
 
 public class ASAPanel : MonoBehaviour
@@ -33,6 +34,9 @@ public class ASAPanel : MonoBehaviour
 
     [SerializeField]
     GameObject progressBarGO;
+
+    [SerializeField]
+    GameObject backButtonASAGO;
 
     [SerializeField]
     GameObject feedbackPanelGO;
@@ -68,7 +72,7 @@ public class ASAPanel : MonoBehaviour
     [System.Serializable]
     public class TaskAttributes
     {
-        public string taskText;
+        public LocalizedString taskText;
         public Sprite taskImage;
         public float recordingTime = 0;
     }
@@ -77,7 +81,9 @@ public class ASAPanel : MonoBehaviour
     private TaskAttributes[] tasks;
 
     [SerializeField]
-    private TMPro.TextMeshProUGUI taskTextGO;
+    private TextMeshProUGUI taskTextGO;
+
+    private LocalizedTextHelper taskTextHelper;
 
     [SerializeField]
     private Image taskImageGO;
@@ -116,7 +122,8 @@ public class ASAPanel : MonoBehaviour
         currentTaskSelected = taskSelected;
         TaskAttributes task = tasks[taskSelected];
 
-        taskTextGO.text = task.taskText;
+        taskTextHelper ??= new LocalizedTextHelper(taskTextGO);
+        taskTextHelper?.SetText(task.taskText);
 
         if (task.taskImage != null)
         {
@@ -144,6 +151,21 @@ public class ASAPanel : MonoBehaviour
         replayButtonGO.GetComponent<Button>().onClick.AddListener(() => OnReplayButtonClicked());
         resultsButtonGO.GetComponent<Button>().onClick.AddListener(() => OnResultsButtonClicked());
         backButtonGO.GetComponent<Button>().onClick.AddListener(() => OnBackButtonClicked());
+
+        ButtonUtils.Rewire(
+            backButtonASAGO,
+            () =>
+            {
+                if (isRecording)
+                {
+                    StopRecord();
+                }
+                else
+                {
+                    ReturnToTaskPanel();
+                }
+            }
+        );
 
         // Each emoji now posts the moment it is tapped, so a learner who rates the result
         // and then quits, or backs out to redo the task, is still counted. Results keeps
@@ -481,6 +503,8 @@ public class ASAPanel : MonoBehaviour
 
     void OnDisable()
     {
+        taskTextHelper?.ClearText();
+
         audioManager.StopReplaying();
         CancelRecording();
     }
