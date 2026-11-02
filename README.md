@@ -79,17 +79,17 @@ All authors contributed equally.
                 </a>
             </td>
             <td align="center">
-                <a href="https://github.com/AaroMKS">
-                    <img src="https://avatars.githubusercontent.com/u/183390925?v=4" width="100;" alt="AaroMKS"/>
-                    <br />
-                    <sub><b>AaroMKS</b></sub>
-                </a>
-            </td>
-            <td align="center">
                 <a href="https://github.com/choerubi">
                     <img src="https://avatars.githubusercontent.com/u/156372096?v=4" width="100;" alt="choerubi"/>
                     <br />
                     <sub><b>Iida Porola</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/AaroMKS">
+                    <img src="https://avatars.githubusercontent.com/u/183390925?v=4" width="100;" alt="AaroMKS"/>
+                    <br />
+                    <sub><b>AaroMKS</b></sub>
                 </a>
             </td>
             <td align="center">
