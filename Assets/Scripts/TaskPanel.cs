@@ -32,6 +32,10 @@ public class TaskPanel : MonoBehaviour
     [SerializeField]
     GameObject task5ButtonGO;
 
+    // Experimental task: An Important Place. Server task id 6 (DTA task 04_a).
+    [SerializeField]
+    GameObject task6ButtonGO;
+
     [SerializeField]
     ASAPanel ASAPanel;
 
@@ -115,6 +119,16 @@ public class TaskPanel : MonoBehaviour
         ButtonUtils.Rewire(task3ButtonGO, () => OpenTask(2));
         ButtonUtils.Rewire(task4ButtonGO, () => OpenTask(3));
         ButtonUtils.Rewire(task5ButtonGO, () => OpenTask(4));
+        // Guarded: Rewire throws on a missing button, and an exception here would abort
+        // OnEnable before the profile and feedback buttons below are wired.
+        if (task6ButtonGO != null)
+        {
+            ButtonUtils.Rewire(task6ButtonGO, () => OpenTask(5));
+        }
+        else
+        {
+            Debug.LogWarning("TaskPanel: task6ButtonGO is not assigned in the scene.");
+        }
 
         ButtonUtils.Rewire(
             profileButtonGO,
@@ -212,7 +226,7 @@ public class TaskPanel : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    // The five task buttons differ only by index.
+    // The six task buttons differ only by index.
     private void OpenTask(int taskIndex)
     {
         ASAPanel.DisplayTask(taskIndex);

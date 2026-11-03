@@ -63,6 +63,10 @@ MonoBehaviour:
     m_Localized: "L\xE4het\xE4"
     m_Metadata:
       m_Items: []
+  - m_Id: 11672586668589056
+    m_Localized: "Uusi teht\xE4v\xE4: T\xE4rke\xE4 paikka"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

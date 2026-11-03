@@ -113,6 +113,16 @@ MonoBehaviour:
     m_Localized: '*Missing translation'
     m_Metadata:
       m_Items: []
+  - m_Id: 10617230223851520
+    m_Localized: "<b>T\xE4m\xE4 on uusi kokeellinen teht\xE4v\xE4. Automaattiset
+      arviot eiv\xE4t viel\xE4 ole luotettavia. Tulokset voivat olla virheellisi\xE4.</b>\\n\\nKerro
+      sinulle t\xE4rke\xE4st\xE4 paikasta (enint\xE4\xE4n 1 minuutti). \xC4l\xE4
+      kerro nimi\xE4, osoitteita tai liian henkil\xF6kohtaisia asioita. Kerro esimerkiksi:
+      Miksi paikka on sinulle t\xE4rke\xE4? Mik\xE4 on t\xE4ss\xE4 paikassa parasta?
+      Miksi? Mit\xE4 teet t\xE4ss\xE4 paikassa? Millainen t\xE4m\xE4 paikka on? Kuinka
+      kauan t\xE4m\xE4 paikka on ollut sinulle t\xE4rke\xE4?"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
