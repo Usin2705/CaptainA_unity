@@ -112,6 +112,14 @@ MonoBehaviour:
     m_Localized: '*Missing translation'
     m_Metadata:
       m_Items: []
+  - m_Id: 10617230223851520
+    m_Localized: '<b>This task is experimental. The automated assessment is not yet
+      reliable, so the results may be inaccurate.</b>\n\nTell about a place that
+      is important to you (maximum 1 minute). Do not share names, addresses, or personal
+      details. Tell example: Why is it important to you? What is best about it? Why?
+      What do you do there? What is it like? For how long has it been important?'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

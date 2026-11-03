@@ -173,7 +173,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 43838}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -262,6 +262,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'This will permanently delete your Automatic Speaking Assessment
+    data, including your recordings, scores, and assessment account, from this device
+    and our server.
+
+
+    This action cannot be undone. We will not be able to recover
+    the deleted data for you.'
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &4699219
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,7 +321,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4699219}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -392,6 +404,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Your user ID is needed in case you want to contact support.
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &4699222
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -486,7 +504,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 12913043}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -570,6 +588,13 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'y /y/: round and narrow your lips. Put tongue close to the roof
+    of the mouth, positioned forward.'
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &12913046
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -762,7 +787,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 17663545}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -845,6 +870,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Delete your data?
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &17663548
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1251,7 +1282,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 23389763}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -1334,6 +1365,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'Experimental task: An Important Place'
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &23389767
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1529,7 +1566,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 34380453}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -1612,6 +1649,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Enter the secret text here...
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &34380457
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2029,7 +2072,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 49180365}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -2112,6 +2155,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Here you can provide additional feedback (max. 250 characters).
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &49180369
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2334,7 +2383,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -82}
+  m_AnchoredPosition: {x: 0, y: -82.000244}
   m_SizeDelta: {x: 0, y: -464}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &59781728
@@ -2988,7 +3037,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 81515376}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -3071,6 +3120,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Created by CaptainA
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &81515379
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3620,7 +3675,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 101704034}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -3703,6 +3758,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &101704037
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3966,7 +4027,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 109333458}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -4049,6 +4110,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Later
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &109333461
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4220,7 +4287,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 114749299}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -4303,6 +4370,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: New task
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &114749303
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4357,7 +4430,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 118945413}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -4440,6 +4513,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: FIN
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &118945416
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4494,7 +4573,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 128083760}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -4577,6 +4656,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Option A
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 0
 --- !u!222 &128083763
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4792,7 +4877,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 135519329}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -4875,6 +4960,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Results
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &135519333
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4930,7 +5021,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 135807614}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -5013,6 +5104,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 4. Mother tongue *
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &135807617
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5088,7 +5185,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 146856543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -5171,6 +5268,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &146856545
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5345,7 +5448,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 156690635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -5429,6 +5532,13 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: (I) graduated as a Bachelor of Business Administration in three and
+    a half years.
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &156690639
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5528,7 +5638,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 159449526}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -5611,6 +5721,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Delete my data
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &159449529
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5695,7 +5811,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -250}
+  m_AnchoredPosition: {x: 0, y: -250.00024}
   m_SizeDelta: {x: -26.233, y: -404.43}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &168680338
@@ -5796,7 +5912,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 172170820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -5879,6 +5995,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 5. Other languages you speak
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &172170823
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6270,7 +6392,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 192512506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -6353,6 +6475,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 20%
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &192512509
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6911,6 +7039,10 @@ PrefabInstance:
       propertyPath: m_fontStyle
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2582976612945691992, guid: cbed33220454ba2328ef2cf5ab758961, type: 3}
+      propertyPath: originalText
+      value: Progress
+      objectReference: {fileID: 0}
     - target: {fileID: 6722823532450105979, guid: cbed33220454ba2328ef2cf5ab758961, type: 3}
       propertyPath: m_Name
       value: TopPanelNew
@@ -7171,7 +7303,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 250954093}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -7254,6 +7386,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 3. How would you rate your Finnish? *
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &250954096
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7520,7 +7658,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 263908111}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -7603,6 +7741,13 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: "H\xE4n tilaa harvoin ruokaa ravintolasta, yleens\xE4 tekee ruokaa
+    kotona."
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &263908115
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7701,7 +7846,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 277549719}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -7784,6 +7929,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &277549722
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9997,6 +10148,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2582976612945691992, guid: cbed33220454ba2328ef2cf5ab758961, type: 3}
+      propertyPath: originalText
+      value: Say it!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2582976612945691992, guid: cbed33220454ba2328ef2cf5ab758961, type: 3}
       propertyPath: m_fontSizeBase
       value: 90
       objectReference: {fileID: 0}
@@ -10815,7 +10970,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 427018978}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -10898,6 +11053,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Verbi rektio
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &427018981
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11053,7 +11214,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 430137483}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -11136,6 +11297,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &430137486
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11676,7 +11843,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 449531610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -11759,6 +11926,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &449531613
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12050,6 +12223,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Learn it!
       objectReference: {fileID: 0}
+    - target: {fileID: 2582976612945691992, guid: cbed33220454ba2328ef2cf5ab758961, type: 3}
+      propertyPath: originalText
+      value: Learn it!
+      objectReference: {fileID: 0}
     - target: {fileID: 6722823532450105979, guid: cbed33220454ba2328ef2cf5ab758961, type: 3}
       propertyPath: m_Name
       value: TopPanelNew
@@ -12308,7 +12485,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 471562742}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -12391,6 +12568,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: AGAIN
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &471562745
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14323,7 +14506,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 562032254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -14406,6 +14589,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Did you find a new Finnish word or sentence?
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &562032257
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15671,7 +15860,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 621128074}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -15754,6 +15943,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 1234-1234-1234-1234
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &621532555
 GameObject:
   m_ObjectHideFlags: 0
@@ -15800,7 +15995,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 621532555}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -15883,6 +16078,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &621532558
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16080,6 +16281,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2582976612945691992, guid: cbed33220454ba2328ef2cf5ab758961, type: 3}
       propertyPath: m_text
+      value: Say it!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2582976612945691992, guid: cbed33220454ba2328ef2cf5ab758961, type: 3}
+      propertyPath: originalText
       value: Say it!
       objectReference: {fileID: 0}
     - target: {fileID: 6230787905428746577, guid: cbed33220454ba2328ef2cf5ab758961, type: 3}
@@ -16299,7 +16504,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 635353449}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -16382,6 +16587,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &635353452
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16436,7 +16647,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 639692755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -16519,6 +16730,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Created by Hagaga
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &639692758
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16563,7 +16780,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 369.66824, y: -96}
+  m_AnchoredPosition: {x: 369.45813, y: -96}
   m_SizeDelta: {x: 112, y: 112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &641419166
@@ -17580,7 +17797,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 663933479}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -17663,6 +17880,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Done
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &663933482
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17711,7 +17934,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 369.66824, y: -625.4032}
+  m_AnchoredPosition: {x: 369.45813, y: -625.4032}
   m_SizeDelta: {x: 648, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &674078350
@@ -18126,7 +18349,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 683520348}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -18209,6 +18432,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: '#12'
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &683520351
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18263,7 +18492,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 686287218}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -18346,6 +18575,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: FIN
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &686287221
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18541,7 +18776,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 691991872}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -18624,6 +18859,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Send
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &691991876
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19095,7 +19336,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 711000422}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -19178,6 +19419,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 20%
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &711000425
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19646,7 +19893,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -23.9204}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &732283783
@@ -19960,7 +20207,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 744009024}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -20043,6 +20290,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Send
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &744009027
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20563,7 +20816,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 767363029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -20646,6 +20899,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Current status
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &767363032
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -21317,7 +21576,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 785027208}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -21400,6 +21659,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &785027211
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -21705,7 +21970,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 802679380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -21788,6 +22053,13 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: How was your overall experience with Automatic Speaking Assessment
+    so far?
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &802679383
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22843,7 +23115,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 848969640}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -22926,6 +23198,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: ENG
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &848969643
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22980,7 +23258,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 853590694}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -23063,6 +23341,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: < 15 min
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &853590697
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23655,7 +23939,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 871862529}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -23738,6 +24022,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Option A
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 0
 --- !u!222 &871862532
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24302,7 +24592,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 899722102}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -24313,7 +24603,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SaySuomi v2.3.0
+  m_text: SaySuomi v2.4.5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
   m_sharedMaterial: {fileID: -459825320126915412, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
@@ -24385,6 +24675,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: SaySuomi v2.4.5
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &899722105
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24439,7 +24735,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 900551913}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -24522,6 +24818,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: GOOD
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &900551916
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24850,7 +25152,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 908949681}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -24933,6 +25235,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &908949684
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25378,7 +25686,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 928252227}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -25461,6 +25769,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &928252229
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25601,7 +25915,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 931520613}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -25684,6 +25998,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'You are performing better than 16% of other A2 level users '
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &931520615
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25853,7 +26173,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 945711246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -25936,6 +26256,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Write it here
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &945711250
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -26536,7 +26862,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 966166844}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -26619,6 +26945,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: What you said
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &966166847
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -26674,7 +27006,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 969449112}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -26757,6 +27089,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Loading profile...
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &969449115
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -26852,7 +27190,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 970476594}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -26935,6 +27273,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Listen!
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &970476597
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -27105,7 +27449,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 974793952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -27188,6 +27532,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Settings
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &974793955
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -27705,7 +28055,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 983208441}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -27788,6 +28138,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Here you can provide additional feedback (max. 250 characters).
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &983208445
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -27959,7 +28315,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 996547771}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -28042,6 +28398,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: What did you think?
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &996547774
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -28271,7 +28633,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1003782397}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -28354,6 +28716,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 1. Gender *
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1003782400
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -29581,7 +29949,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 28}
+  m_SizeDelta: {x: 0, y: 68}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1070706062
 GameObject:
@@ -29901,7 +30269,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1094551360}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -29984,6 +30352,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 12345 78910 12 17192123 26283032 353739 4244464850
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1094551363
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -30893,7 +31267,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1126125766}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -30976,6 +31350,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: This is a debug text
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1126125769
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -31495,7 +31875,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1145246080}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -31578,6 +31958,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: <u>Read Privacy Notice</u>
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1145246083
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -31672,7 +32058,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1147529915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -31755,6 +32141,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Something went wrong!
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1147529918
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -32085,7 +32477,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1155783383}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -32168,6 +32560,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: OVERALL
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1155783387
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -32262,7 +32660,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1159498326}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -32345,6 +32743,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1159498329
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -32371,7 +32775,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1164813425
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32525,7 +32929,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1165680312}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -32608,6 +33012,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: New
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1165680315
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -32844,7 +33254,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1168930710}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -32927,6 +33337,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: New Text
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1168930712
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -33084,7 +33500,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1185862041}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -33167,6 +33583,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 5 d
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &1186766480
 GameObject:
   m_ObjectHideFlags: 0
@@ -33213,7 +33635,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1186766480}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -33296,6 +33718,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Placeholder text
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1186766483
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -33878,7 +34306,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1225000240}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -33961,6 +34389,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Please answer all the required questions.
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1225000243
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -34153,7 +34587,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1232312621}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -34236,6 +34670,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Here you can provide additional feedback (max. 250 characters).
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1232312625
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -35039,7 +35479,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1254202179}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -35122,6 +35562,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 999
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1254202182
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -35177,7 +35623,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1267839147}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -35260,6 +35706,13 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'If you know what you''re doing, then please enter the secret text
+    below:'
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1267839150
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -35393,7 +35846,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1274829587}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -35476,6 +35929,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Please select an expression
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1274829590
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -35607,7 +36066,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1277031807}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -35690,6 +36149,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Not now
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1277031810
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -35860,7 +36325,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1285590526}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -35943,6 +36408,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 1 d
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1285590529
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -36493,7 +36964,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1324411288}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -36576,6 +37047,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Please select an expression
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1324411291
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -36630,7 +37107,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1324659953}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -36714,6 +37191,13 @@ MonoBehaviour:
   m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Please complete at least three tasks to see your ranking. You have
+    completed x out of 3 tasks so far.
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1324659956
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -36967,7 +37451,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1340387682}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -37050,6 +37534,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: EASY
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1340387685
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -37509,7 +37999,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1368690861}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -37592,6 +38082,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: How did you find this task?
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1368690864
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -37687,7 +38183,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1369903914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -37770,6 +38266,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: What did you think?
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1369903917
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -38165,7 +38667,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1398457842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -38248,6 +38750,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1398457845
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -39038,7 +39546,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 369.66824, y: -418.2016}
+  m_AnchoredPosition: {x: 369.45813, y: -418.2016}
   m_SizeDelta: {x: 685.86, y: 256.4032}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1444508579
@@ -39050,7 +39558,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1444508577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -39134,6 +39642,14 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: The Automatic Speaking Assessment needs to collect your data for
+    automatic scoring and improving the AI model. Please review how we process your
+    data.
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1444508580
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -39641,7 +40157,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1453477434}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -39724,6 +40240,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'Your rank within other A2 level users: '
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &1454303700
 GameObject:
   m_ObjectHideFlags: 0
@@ -39954,7 +40476,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1463325333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -40037,6 +40559,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Delete
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1463325336
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -40131,7 +40659,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1465469383}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -40214,6 +40742,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'Top images: NOT LICENSED. Bottom images: Aino Huhtaniemi.'
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1465469386
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -40354,7 +40888,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1497807197}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -40437,6 +40971,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Continue
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1497807200
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -40746,7 +41286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 369.66824, y: -759.4032}
+  m_AnchoredPosition: {x: 369.45813, y: -759.4032}
   m_SizeDelta: {x: 643.3365, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1501005295
@@ -41070,7 +41610,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1523942761}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -41153,6 +41693,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Something went wrong!
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1523942764
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -41297,7 +41843,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1527932911}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -41380,6 +41926,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Please select an expression
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1527932914
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -41510,7 +42062,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1547881117}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -41593,6 +42145,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: SHOW ANSWER
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1547881120
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -41722,7 +42280,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1551593073}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -41805,6 +42363,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: ENG
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1551593076
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -42122,7 +42686,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1568642623}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -42205,6 +42769,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Enter text...
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1568642627
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -42375,7 +42945,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1573300126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -42458,6 +43028,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Advance to the next level?
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1573300129
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -42802,7 +43378,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1579493174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -42885,6 +43461,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Select the game difficult and start speaking.
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1579493177
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -42921,7 +43503,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1579633793}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -43004,6 +43586,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Cancel
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1579633795
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -43429,7 +44017,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1605393131}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -43512,6 +44100,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Okay
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1605393134
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -43690,7 +44284,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 369.66824, y: -893.4032}
+  m_AnchoredPosition: {x: 369.45813, y: -893.4032}
   m_SizeDelta: {x: 643.3365, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1612940491
@@ -44375,7 +44969,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1626960010}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -44458,6 +45052,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: SuperMemo2 vocabulary learning
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1626960013
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -44503,7 +45103,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 369.66824, y: -1022.4032}
+  m_AnchoredPosition: {x: 369.45813, y: -1022.4032}
   m_SizeDelta: {x: 643.3365, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1626977475
@@ -45178,7 +45778,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1648031361}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -45261,6 +45861,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: FIN
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1648031364
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -46160,7 +46766,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1696794697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -46243,6 +46849,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1696794700
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -46341,7 +46953,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1697066194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -46424,6 +47036,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: OK
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1697066197
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -46670,7 +47288,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50}
+  m_AnchoredPosition: {x: 0, y: -50.000244}
   m_SizeDelta: {x: 0, y: -400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1704925815
@@ -46903,7 +47521,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1707262841}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -46986,6 +47604,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Results
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1707262845
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -47041,7 +47665,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1709425916}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -47124,6 +47748,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Was this comparision helpful?
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1709425919
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -47218,7 +47848,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1710521869}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -47301,6 +47931,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Created by CaptainA
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1710521872
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -47420,7 +48056,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 369.66824, y: -221}
+  m_AnchoredPosition: {x: 369.45813, y: -221}
   m_SizeDelta: {x: 700.0364, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1716683016
@@ -47432,7 +48068,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1716683014}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -47515,6 +48151,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Privacy Notice
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1716683017
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -48640,7 +49282,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1765732676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -48723,6 +49365,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: I have read and understood the Privacy Notice.
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1765732679
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -49342,7 +49990,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1779554311}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -49425,6 +50073,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Advanced
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1779554314
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -49519,7 +50173,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1792711288}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -49605,6 +50259,15 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Help us improve SaySuomi!  By completing a <b>brief survey</b>, which
+    will take less than 10 minutes, you'll help us enhance app performance and contribute
+    to important research in the field. We will upgrade the app accordingly to your
+    feedback. Your responses may be published (anonymously). Thank you for your participation!
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1792711291
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -49970,7 +50633,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1805818989}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -50053,6 +50716,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Copy
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1805818993
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -50974,7 +51643,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1838987043}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -51057,6 +51726,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 2. Age *
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1838987046
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -51450,7 +52125,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1856111325}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -51533,6 +52208,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Cancel
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1856111328
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -51987,7 +52668,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1883555715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -52070,6 +52751,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Before you start, we need a little background information.
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1883555718
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -52238,7 +52925,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1884848379}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -52321,6 +53008,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: (Wiktionary) = mind's + attach + INEN 1 2 3 4 5 6 7 8
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &1891404291
 GameObject:
   m_ObjectHideFlags: 0
@@ -52444,7 +53137,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1894903082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -52527,6 +53220,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Number Practice
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1894903085
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -53129,7 +53828,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1918366998}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -53212,6 +53911,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: ONLY FOR DEMO PURPOSE
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1918367001
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -53386,7 +54091,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1926060216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -53469,6 +54174,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: HARD
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1926060219
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -54372,7 +55083,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1969231988}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -54455,6 +55166,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Enter text...
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1969231992
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -55324,7 +56041,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1994821941}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -55407,6 +56124,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Change to a lower level?
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &1994821944
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -56061,7 +56784,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2028663497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -56144,6 +56867,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: < 10 min
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &2028663500
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -56444,7 +57173,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2032425001}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -56527,6 +57256,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: FIN
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &2032425004
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -56582,7 +57317,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2034197164}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -56665,6 +57400,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Send
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &2034197167
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -57027,7 +57768,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2040180662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -57110,6 +57851,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Automatic Speaking Assessment
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &2040180665
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -57929,7 +58676,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2077223273}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -58012,6 +58759,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Send
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &2077223277
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -58142,7 +58895,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2088594090}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -58225,6 +58978,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Oma Suomi
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &2088594093
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -58279,7 +59038,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2093427569}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -58362,6 +59121,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: A1
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &2093427572
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -58733,7 +59498,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2103911155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -58816,6 +59581,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Okay
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &2103911158
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -59308,7 +60079,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2141644255}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -59391,6 +60162,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Correct sound
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &2141644258
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -59445,7 +60222,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2143720644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -59457,47 +60234,49 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "The app was originally funded by the <b>Kielibuusti</b> project under
-    the name <i>CaptainA</i>, its name was changed to <i>SaySuomi</i> during its
-    long-term development. When Kielibuusti project ended in 2024, the Aalto ASR
-    Research Group responsible for maintaining and further developing the app. The
-    Automatic Speaking Assessment function was funded by Research Council of Finland
-    in the DigiTala in Action project.\n\nThe app uses an idle server from Aalto
-    University. Additional servers for research purposes are provided by CSC \u2013
-    IT Center for Science. We thank CSC for generous computational resources in running
-    the Automatic Speaking Assessment function.\n\nWe especially thank the authors
-    of Oma Suomi 1 \u2013 <b>Kristiina Kuparinen</b>, <b>Terhi Tapaninen</b>, and
-    <b>Finn Lectura</b> \u2013 for granting us permission to use texts from Oma Suomi
-    1 in the flashcard feature.\n\nWe also thank the authors of Suomen Mestari 1
-    \u2013 <b>Sonja Gehring</b>, <b>Sanni Heinzmann</b>, and <b>Finn Lectura</b>
-    \u2013 for granting us permission to use texts from Suomen Mestari 1 in the flashcard
-    feature.\n\nWe are grateful to <b>Apollo Ailus</b> and <b>Kia Raitanen</b> for
-    their contributions to to user research and engagement, and to <b>Aalo Kailu</b>,
-    who designed the original user interface of the app.\n\nThe Automatic Speaking
-    Assessment v1.0.0, which equivalent to the mobile app v2.0.0) was made by Laura
-    Immonen, Aaron K\xE4hk\xF6nen, Iida Porola, Miika Ratilainen, Aaro Savolainen,
-    Kim Takala, Miika Tonteri, Nhan Phan, Anna von Zansen. DOI 10.5281/zenodo.20021230\n\nThe
-    app was created with the help of members from the Aalto ASR Research Group.\n\nThe
+    the name <i>CaptainA</i>. Its name was changed to <i>SaySuomi</i> during its
+    long-term development. When the Kielibuusti project ended in 2024, the Aalto
+    ASR Research Group became responsible for maintaining and further developing
+    the app. The Automatic Speaking Assessment function was funded by the Research
+    Council of Finland in the DigiTala in Action project.\r\n\r\nThe app uses an
+    idle server from Aalto University. Additional servers for research purposes are
+    provided by CSC \u2013 IT Center for Science. We thank CSC for the generous computational
+    resources for running the Automatic Speaking Assessment function.\r\n\r\nWe especially
+    thank the authors of Oma Suomi 1 \u2013 <b>Kristiina Kuparinen</b>, <b>Terhi
+    Tapaninen</b>, and <b>Finn Lectura</b> \u2013 for granting us permission to use
+    texts from Oma Suomi 1 in the flashcard feature.\r\n\r\nWe also thank the authors
+    of Suomen Mestari 1 \u2013 <b>Sonja Gehring</b>, <b>Sanni Heinzmann</b>, and
+    <b>Finn Lectura</b> \u2013 for granting us permission to use texts from Suomen
+    Mestari 1 in the flashcard feature.\r\n\r\nWe are grateful to <b>Apollo Ailus</b>
+    and <b>Kia Raitanen</b> for their contributions to user research and engagement,
+    and to <b>Aalo Kailu</b>, who designed the original user interface of the app.\r\n\r\nThe
+    Automatic Speaking Assessment v1.0.0 (equivalent to the mobile app v2.0.0) was
+    made by Laura Immonen, Aaron K\xE4hk\xF6nen, Iida Porola, Miika Ratilainen, Aaro
+    Savolainen, Kim Takala, Miika Tonteri, Riina Immonen, Nhan Phan, and Anna von
+    Zansen (DOI: 10.5281/zenodo.20021230).\r\n\r\nIida Porola and Aaron K\xE4hk\xF6nen
+    have continued developing the app since the student project ended.\r\n\r\nThe
+    app was created with the help of members from the Aalto ASR Research Group.\r\n\r\nThe
     models used in this application were trained using computing resources from the
-    Aalto University School of Science \"Science-IT\" project.\n\nThe vocabulary
-    learning is based on SuperMemo2 algorithm ( https://www.supermemo.com/), with
-    implementation inspired by the Anki application (licensed under the GNU Affero
-    General Public License).\n\nIcons used in the application are from Google, under
-    the Apache License 2.0.\n\nIllustration photos and some video content were created
-    with the assistance of Aija Elg and Noora Helki\xF6 from the Aalto University
-    Language Centre.\n\nIllustration pictures were provided by Aino Huhtaniemi, used
-    with permission. Some animations were modified to include indicators of voiced
-    sounds and tongue movement. Based on the work of P\xE4ivi Virkkunen.\n\nImages
-    used in definition of Finnish words are created by Midjourney and ChatGPT.\n\nDescriptions
-    of Finnish phoneme and their International Phonetic Alphabet (IPA) transcriptions
+    Aalto University School of Science \"Science-IT\" project.\r\n\r\nThe vocabulary
+    learning is based on the SuperMemo2 algorithm (https://www.supermemo.com/), with
+    an implementation inspired by the Anki application (licensed under the GNU Affero
+    General Public License).\r\n\r\nIcons used in the application are from Google,
+    under the Apache License 2.0.\r\n\r\nIllustration photos and some video content
+    were created with the assistance of Aija Elg and Noora Helki\xF6 from the Aalto
+    University Language Centre.\r\n\r\nIllustration pictures were provided by Aino
+    Huhtaniemi, used with permission. Some animations were modified to include indicators
+    of voiced sounds and tongue movement. Based on the work of P\xE4ivi Virkkunen.\r\n\r\nImages
+    used in the definitions of Finnish words were created with Midjourney and ChatGPT.\r\n\r\nDescriptions
+    of Finnish phonemes and their International Phonetic Alphabet (IPA) transcriptions
     are based on the following sources: \"Finnish sound structure: phonetics, phonology,
-    phonotactics and prosody\" by  Kari Suomi, Juhani Toivanen & Riikka Ylitalo.
-    \"Fonetiikkaa suomen kielen oppijoille\" (Phonetics for Finnish learners) by
-    Eija Aho, Aino Huhtaniemi & Mari Nikonen.\n\nMost definitions and etymologies
-    are from Wiktionary.org and Sanakirja.org\n\nMost of the audio samples are generated
-    by AI models, including: FinSyn TTS by Antti Suni from Helsinki University phonetics
-    group, Narakeet, and OpenAI text-to-speech.\n\nAdditional audio samples are from
-    Aalto University Language Centre, Common Voice 11.0, licensed under Creative
-    Commons Zero 1.0, LibriVox in the Public Domain.\n\nLink to licenses:\nhttps://www.apache.org/licenses/LICENSE-2.0.txt\nhttps://creativecommons.org/publicdomain/zero/1.0/\nhttps://creativecommons.org/licenses/by-sa/3.0/"
+    phonotactics and prosody\" by Kari Suomi, Juhani Toivanen & Riikka Ylitalo. \"Fonetiikkaa
+    suomen kielen oppijoille\" (Phonetics for Finnish learners) by Eija Aho, Aino
+    Huhtaniemi & Mari Nikonen.\r\n\r\nMost definitions and etymologies are from Wiktionary.org
+    and Sanakirja.org.\r\n\r\nMost of the audio samples are generated by AI models,
+    including FinSyn TTS by Antti Suni from the University of Helsinki phonetics
+    group, Narakeet, and OpenAI text-to-speech.\r\n\r\nAdditional audio samples are
+    from the Aalto University Language Centre, Common Voice 11.0 (licensed under
+    Creative Commons Zero 1.0), and LibriVox (public domain).\r\n\r\nLinks to licenses:\r\nhttps://www.apache.org/licenses/LICENSE-2.0.txt\r\nhttps://creativecommons.org/publicdomain/zero/1.0/\r\nhttps://creativecommons.org/licenses/by-sa/3.0/"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
   m_sharedMaterial: {fileID: -459825320126915412, guid: 418d8dc9f3826bb4fba5d28a15f9ccf5, type: 2}
@@ -59569,6 +60348,55 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: "The app was originally funded by the <b>Kielibuusti</b> project
+    under the name <i>CaptainA</i>. Its name was changed to <i>SaySuomi</i> during
+    its long-term development. When the Kielibuusti project ended in 2024, the Aalto
+    ASR Research Group became responsible for maintaining and further developing
+    the app. The Automatic Speaking Assessment function was funded by the Research
+    Council of Finland in the DigiTala in Action project.\r\n\r\nThe app uses an
+    idle server from Aalto University. Additional servers for research purposes are
+    provided by CSC \u2013 IT Center for Science. We thank CSC for the generous computational
+    resources for running the Automatic Speaking Assessment function.\r\n\r\nWe especially
+    thank the authors of Oma Suomi 1 \u2013 <b>Kristiina Kuparinen</b>, <b>Terhi
+    Tapaninen</b>, and <b>Finn Lectura</b> \u2013 for granting us permission to use
+    texts from Oma Suomi 1 in the flashcard feature.\r\n\r\nWe also thank the authors
+    of Suomen Mestari 1 \u2013 <b>Sonja Gehring</b>, <b>Sanni Heinzmann</b>, and
+    <b>Finn Lectura</b> \u2013 for granting us permission to use texts from Suomen
+    Mestari 1 in the flashcard feature.\r\n\r\nWe are grateful to <b>Apollo Ailus</b>
+    and <b>Kia Raitanen</b> for their contributions to user research and engagement,
+    and to <b>Aalo Kailu</b>, who designed the original user interface of the app.\r\n\r\nThe
+    Automatic Speaking Assessment v1.0.0 (equivalent to the mobile app v2.0.0) was
+    made by Laura Immonen, Aaron K\xE4hk\xF6nen, Iida Porola, Miika Ratilainen, Aaro
+    Savolainen, Kim Takala, Miika Tonteri, Riina Immonen, Nhan Phan, and Anna von
+    Zansen (DOI: 10.5281/zenodo.20021230).\r\n\r\nIida Porola and Aaron K\xE4hk\xF6nen
+    have continued developing the app since the student project ended.\r\n\r\nThe
+    app was created with the help of members from the Aalto ASR Research Group.\r\n\r\nThe
+    models used in this application were trained using computing resources from the
+    Aalto University School of Science \"Science-IT\" project.\r\n\r\nThe vocabulary
+    learning is based on the SuperMemo2 algorithm (https://www.supermemo.com/), with
+    an implementation inspired by the Anki application (licensed under the GNU Affero
+    General Public License).\r\n\r\nIcons used in the application are from Google,
+    under the Apache License 2.0.\r\n\r\nIllustration photos and some video content
+    were created with the assistance of Aija Elg and Noora Helki\xF6 from the Aalto
+    University Language Centre.\r\n\r\nIllustration pictures were provided by Aino
+    Huhtaniemi, used with permission. Some animations were modified to include indicators
+    of voiced sounds and tongue movement. Based on the work of P\xE4ivi Virkkunen.\r\n\r\nImages
+    used in the definitions of Finnish words were created with Midjourney and ChatGPT.\r\n\r\nDescriptions
+    of Finnish phonemes and their International Phonetic Alphabet (IPA) transcriptions
+    are based on the following sources: \"Finnish sound structure: phonetics, phonology,
+    phonotactics and prosody\" by Kari Suomi, Juhani Toivanen & Riikka Ylitalo. \"Fonetiikkaa
+    suomen kielen oppijoille\" (Phonetics for Finnish learners) by Eija Aho, Aino
+    Huhtaniemi & Mari Nikonen.\r\n\r\nMost definitions and etymologies are from Wiktionary.org
+    and Sanakirja.org.\r\n\r\nMost of the audio samples are generated by AI models,
+    including FinSyn TTS by Antti Suni from the University of Helsinki phonetics
+    group, Narakeet, and OpenAI text-to-speech.\r\n\r\nAdditional audio samples are
+    from the Aalto University Language Centre, Common Voice 11.0 (licensed under
+    Creative Commons Zero 1.0), and LibriVox (public domain).\r\n\r\nLinks to licenses:\r\nhttps://www.apache.org/licenses/LICENSE-2.0.txt\r\nhttps://creativecommons.org/publicdomain/zero/1.0/\r\nhttps://creativecommons.org/licenses/by-sa/3.0/"
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &2143720647
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -59614,7 +60442,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -105}
+  m_AnchoredPosition: {x: 0, y: -105.000244}
   m_SizeDelta: {x: 0, y: -209.99988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2145471003
@@ -59773,7 +60601,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1580410457451264052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -59857,6 +60685,13 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'Please keep in mind that with this application it is not possible
+    to reach B2 or higher level of proficiency.  '
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &131685547455384239
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -60046,7 +60881,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4385178135172755684}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -60130,6 +60965,13 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Below you can view your results. The recording is automatically assessed
+    by an AI model.
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!224 &300848838427649405
 RectTransform:
   m_ObjectHideFlags: 0
@@ -60547,7 +61389,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5590995256441757583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -60632,6 +61474,14 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'Accuracy
+
+'
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &592860883234407762
 GameObject:
   m_ObjectHideFlags: 0
@@ -60687,7 +61537,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7781697649824133822}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -60770,6 +61620,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Monologue B
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!114 &621540868165212560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61672,7 +62528,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6056780808468580221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -61755,6 +62611,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Text here...
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &1231317075058997250
 GameObject:
   m_ObjectHideFlags: 0
@@ -62048,7 +62910,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3113782063893979184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -62131,6 +62993,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Text
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!114 &1436200314206071869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62285,7 +63153,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 718132262959717016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -62368,6 +63236,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Title
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!224 &1466490747449514761
 RectTransform:
   m_ObjectHideFlags: 0
@@ -63664,7 +64538,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8352929215058629846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -63747,6 +64621,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Tasks
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!114 &2582976613011524042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63756,7 +64636,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8352929216084381423}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -63839,6 +64719,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Profile
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &2601348928162055160
 GameObject:
   m_ObjectHideFlags: 0
@@ -63930,7 +64816,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5270389900362978938}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -64013,6 +64899,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: (transcript appears here)
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!114 &2713883482625043107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64851,7 +65743,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1846700323743005512}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -64934,6 +65826,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Do you think the result is accurate?
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!114 &3155815541871733713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65092,7 +65990,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1865334445702576955}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -65175,6 +66073,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Monologue A
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &3303310446587031191
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -65326,7 +66230,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1075708253433458862}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -65409,6 +66313,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Please select an expression
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &3400324025174537997
 GameObject:
   m_ObjectHideFlags: 0
@@ -65493,7 +66403,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6667288572296943929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -65576,6 +66486,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Describe a picture
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &3470324171812664894
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -65796,7 +66712,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -125}
+  m_AnchoredPosition: {x: 0, y: -125.000244}
   m_SizeDelta: {x: 0, y: -250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &3623022624730852999
@@ -65952,7 +66868,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1654205324647444674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -66035,6 +66951,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Select the task you want to practice.
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &3732181023720131732
 GameObject:
   m_ObjectHideFlags: 0
@@ -66502,7 +67424,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5748075586321091256}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -66585,6 +67507,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Was the result easy to understand?
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!114 &4032980700220987401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66983,7 +67911,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3077969331409330345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -67068,6 +67996,14 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'Proficiency level
+
+'
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &4253319599287483581
 GameObject:
   m_ObjectHideFlags: 0
@@ -67696,7 +68632,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1164220370325772201}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -67779,6 +68715,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Feedback
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!114 &4619328812646797453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68436,7 +69378,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5528512350833161674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -68521,6 +69463,14 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'Pronunciation
+
+'
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &5065590651091690331
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -69025,7 +69975,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6446663914741619404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -69108,6 +70058,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: What we heard
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!224 &5489840414943666387
 RectTransform:
   m_ObjectHideFlags: 0
@@ -69537,7 +70493,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3118084665219719897}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -69620,6 +70576,13 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Your answer did not seem to match the task. Please check the task
+    again.
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &5856481543353187569
 GameObject:
   m_ObjectHideFlags: 0
@@ -69638,7 +70601,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &5888765818981576422
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -69749,7 +70712,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2622066001935080204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -69832,6 +70795,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Good to know!
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &5948880917539192641
 GameObject:
   m_ObjectHideFlags: 0
@@ -70075,7 +71044,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8935463795528124467}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -70160,6 +71129,14 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'Range
+
+'
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!224 &6101030020086550571
 RectTransform:
   m_ObjectHideFlags: 0
@@ -70511,7 +71488,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4058530599836169728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -70594,6 +71571,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Here you can provide additional feedback (max. 250 characters).
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!222 &6280655769020367649
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -72601,7 +73584,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 196964350017639978}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -72684,6 +73667,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Here you can provide additional feedback (max. 250 characters).
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!114 &7506025095937007881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73093,7 +74082,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4316346908164124290}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -73176,6 +74165,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: React to a situation B
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!114 &7727713938184569314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73283,7 +74278,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 290551513866102734}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -73366,6 +74361,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: React to a situation A
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!114 &7757037646745931258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73588,7 +74589,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3638094296573170700}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -73673,6 +74674,14 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'Fluency
+
+'
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!114 &7821285904729934418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74952,7 +75961,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1348165385084043677}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -75037,6 +76046,14 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: "You can also see your current level of each measured category according
+    to the Common European Framework of Reference for Languages \u200B\u200B(A1,
+    A2, A2+, B1) next to the stars:"
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!114 &8657750032233363432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75407,7 +76424,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3732181023720131732}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -75491,6 +76508,13 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'You can get additional information about the feedback by pressing
+    the stars under the titles:'
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!114 &8908154387090478955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75638,7 +76662,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8950545351012071258}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -75721,6 +76745,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Oma Suomi
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!224 &8950545351012071257
 RectTransform:
   m_ObjectHideFlags: 0
@@ -75783,7 +76813,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8950545351178358333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -75866,6 +76896,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!224 &8950545351178358332
 RectTransform:
   m_ObjectHideFlags: 0
