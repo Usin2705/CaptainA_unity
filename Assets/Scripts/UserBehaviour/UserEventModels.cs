@@ -238,7 +238,8 @@ namespace SaySuomi.UserBehaviour
 
         /// <summary>Checks <c>task_id</c> and <c>assessment_id</c>.</summary>
         public string? Validate() =>
-            EventRules.ServerId("task_id", TaskId) ?? EventRules.ServerId("assessment_id", AssessmentId);
+            EventRules.ServerId("task_id", TaskId)
+            ?? EventRules.ServerId("assessment_id", AssessmentId);
 
         /// <summary>Writes <c>task_id</c> and <c>assessment_id</c>.</summary>
         public void WriteProperties(JsonWriter json) =>
@@ -284,7 +285,11 @@ namespace SaySuomi.UserBehaviour
         /// </summary>
         public string? Validate() =>
             EventRules.ServerId("task_id", TaskId)
-            ?? (Enum.IsDefined(typeof(ScoreDimension), Dimension) ? null : $"{Dimension} is not a ScoreDimension value");
+            ?? (
+                Enum.IsDefined(typeof(ScoreDimension), Dimension)
+                    ? null
+                    : $"{Dimension} is not a ScoreDimension value"
+            );
 
         /// <summary>Writes <c>task_id</c> and <c>dimension</c>.</summary>
         public void WriteProperties(JsonWriter json) =>
@@ -352,7 +357,8 @@ namespace SaySuomi.UserBehaviour
         public string Name => "feedback_panel_scrolled";
 
         /// <summary>Checks <c>depth</c> and <c>task_id</c>.</summary>
-        public string? Validate() => EventRules.Depth(Depth) ?? EventRules.ServerId("task_id", TaskId);
+        public string? Validate() =>
+            EventRules.Depth(Depth) ?? EventRules.ServerId("task_id", TaskId);
 
         /// <summary>Writes <c>depth</c> (3 decimals) and <c>task_id</c>.</summary>
         public void WriteProperties(JsonWriter json) =>

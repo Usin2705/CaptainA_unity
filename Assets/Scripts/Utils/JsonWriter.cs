@@ -96,7 +96,11 @@ namespace SaySuomi.Utils
         {
             if (!double.IsFinite(value))
             {
-                throw new ArgumentOutOfRangeException(nameof(value), value, "JSON has no NaN or infinity.");
+                throw new ArgumentOutOfRangeException(
+                    nameof(value),
+                    value,
+                    "JSON has no NaN or infinity."
+                );
             }
 
             string number = value.ToString("R", CultureInfo.InvariantCulture);
@@ -172,7 +176,8 @@ namespace SaySuomi.Utils
                         text.Append("\\t");
                         break;
                     case < ' ':
-                        text.Append("\\u").Append(((int)c).ToString("x4", CultureInfo.InvariantCulture));
+                        text.Append("\\u")
+                            .Append(((int)c).ToString("x4", CultureInfo.InvariantCulture));
                         break;
                     default:
                         text.Append(c);

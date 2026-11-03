@@ -60,9 +60,12 @@ namespace SaySuomi.UserBehaviour
                     return new UserEventOutbox(path, snapshot?.events ?? new List<QueuedEvent>());
                 }
             }
-            catch (Exception e) when (e is IOException or UnauthorizedAccessException or ArgumentException)
+            catch (Exception e)
+                when (e is IOException or UnauthorizedAccessException or ArgumentException)
             {
-                Debug.LogWarning($"[UserEvents] Outbox could not be read; starting empty. {e.Message}");
+                Debug.LogWarning(
+                    $"[UserEvents] Outbox could not be read; starting empty. {e.Message}"
+                );
             }
 
             return new UserEventOutbox(path, new List<QueuedEvent>());
@@ -77,7 +80,9 @@ namespace SaySuomi.UserBehaviour
             {
                 int dropped = events.Count - MaxEvents;
                 events.RemoveRange(0, dropped);
-                Debug.LogWarning($"[UserEvents] Outbox full ({MaxEvents}); dropped the {dropped} oldest event(s).");
+                Debug.LogWarning(
+                    $"[UserEvents] Outbox full ({MaxEvents}); dropped the {dropped} oldest event(s)."
+                );
             }
         }
 
@@ -94,7 +99,11 @@ namespace SaySuomi.UserBehaviour
 
             QueuedEvent first = events[0];
             return events
-                .Where(e => e.userGuid == first.userGuid && e.sessionId == first.sessionId && e.appVersion == first.appVersion)
+                .Where(e =>
+                    e.userGuid == first.userGuid
+                    && e.sessionId == first.sessionId
+                    && e.appVersion == first.appVersion
+                )
                 .Take(maxSize)
                 .ToList();
         }

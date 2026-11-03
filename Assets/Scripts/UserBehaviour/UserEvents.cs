@@ -46,14 +46,17 @@ namespace SaySuomi.UserBehaviour
             UserEventManager.Instance?.EndSession(reason, DateTime.UtcNow);
 
         /// <summary>Sends the toggle event of the panel with active: true.</summary>
-        public static void PanelOpened(IPanelEvent panel) => UserEventManager.Instance?.OpenPanel(panel);
+        public static void PanelOpened(IPanelEvent panel) =>
+            UserEventManager.Instance?.OpenPanel(panel);
 
         /// <summary>Sends active: false with the properties the panel opened with.</summary>
         public static void PanelClosed<TPanel>()
-            where TPanel : struct, IPanelEvent => UserEventManager.Instance?.ClosePanel(default(TPanel).Name);
+            where TPanel : struct, IPanelEvent =>
+            UserEventManager.Instance?.ClosePanel(default(TPanel).Name);
 
         /// <summary>Records a tap or scroll.</summary>
-        public static void Track(IInteractionEvent interaction) => UserEventManager.Instance?.Track(interaction);
+        public static void Track(IInteractionEvent interaction) =>
+            UserEventManager.Instance?.Track(interaction);
 
         /// <summary>Drops the session and queued events unsent. Call on account deletion.</summary>
         public static void Forget() => UserEventManager.Instance?.Forget();

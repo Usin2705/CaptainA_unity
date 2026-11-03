@@ -56,7 +56,8 @@ namespace SaySuomi.UserBehaviour
 
             cancellationToken.ThrowIfCancellationRequested();
 
-            string detail = $"{request.responseCode} {request.error} {request.downloadHandler.text}";
+            string detail =
+                $"{request.responseCode} {request.error} {request.downloadHandler.text}";
             return (Classify(request), detail);
         }
 
@@ -91,7 +92,10 @@ namespace SaySuomi.UserBehaviour
         static SendOutcome Classify(UnityWebRequest request)
         {
             // No response at all (offline, DNS, timeout).
-            if (request.result == UnityWebRequest.Result.ConnectionError || request.responseCode == 0)
+            if (
+                request.result == UnityWebRequest.Result.ConnectionError
+                || request.responseCode == 0
+            )
             {
                 return SendOutcome.RetryLater;
             }

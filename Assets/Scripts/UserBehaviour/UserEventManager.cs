@@ -59,7 +59,9 @@ namespace SaySuomi.UserBehaviour
         void Awake()
         {
             instance = this;
-            outbox = UserEventOutbox.Load(Path.Combine(Application.persistentDataPath, OutboxFileName));
+            outbox = UserEventOutbox.Load(
+                Path.Combine(Application.persistentDataPath, OutboxFileName)
+            );
             EndSessionFromLastRun();
         }
 
@@ -202,7 +204,10 @@ namespace SaySuomi.UserBehaviour
         {
             if (sessionId is not null)
             {
-                PlayerPrefs.SetString(PrefLastSeenTicks, atUtc.Ticks.ToString(CultureInfo.InvariantCulture));
+                PlayerPrefs.SetString(
+                    PrefLastSeenTicks,
+                    atUtc.Ticks.ToString(CultureInfo.InvariantCulture)
+                );
             }
         }
 
@@ -292,7 +297,10 @@ namespace SaySuomi.UserBehaviour
                     appVersion = Application.version,
                     eventId = Guid.NewGuid().ToString(),
                     // UTC with milliseconds. The server requires a timezone.
-                    occurredAt = atUtc.ToString("yyyy-MM-dd'T'HH:mm:ss.fff'Z'", CultureInfo.InvariantCulture),
+                    occurredAt = atUtc.ToString(
+                        "yyyy-MM-dd'T'HH:mm:ss.fff'Z'",
+                        CultureInfo.InvariantCulture
+                    ),
                     name = userEvent.Name,
                     propertiesJson = properties.EndObject().ToString(),
                 }
@@ -345,7 +353,11 @@ namespace SaySuomi.UserBehaviour
             {
                 while (outbox.NextBatch(MaxBatchSize) is { Count: > 0 } batch)
                 {
-                    var (outcome, detail) = await UserEventSender.SendAsync(url, batch, destroyCancellationToken);
+                    var (outcome, detail) = await UserEventSender.SendAsync(
+                        url,
+                        batch,
+                        destroyCancellationToken
+                    );
 
                     switch (outcome)
                     {
@@ -354,11 +366,15 @@ namespace SaySuomi.UserBehaviour
                             return;
 
                         case SendOutcome.Malformed:
-                            Debug.LogError($"[UserEvents] Server rejected a batch as malformed; dropped. {detail}");
+                            Debug.LogError(
+                                $"[UserEvents] Server rejected a batch as malformed; dropped. {detail}"
+                            );
                             break;
 
                         case SendOutcome.Refused:
-                            Debug.LogWarning($"[UserEvents] Server refused a batch (no consent or no user); dropped. {detail}");
+                            Debug.LogWarning(
+                                $"[UserEvents] Server refused a batch (no consent or no user); dropped. {detail}"
+                            );
                             break;
                     }
 
