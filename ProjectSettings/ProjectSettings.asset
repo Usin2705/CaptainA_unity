@@ -150,10 +150,11 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 2.2.0
+  bundleVersion: 2.4.0
   preloadedAssets:
   - {fileID: 11400000, guid: 8067280dffed40e4886563dc0bcd2397, type: 2}
   - {fileID: -944628639613478452, guid: e35a8dd9c07c58e4986c114233f837a5, type: 3}
+  - {fileID: 11400000, guid: e4ecb9bb4fe0e9321a02f2615168b527, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   xboxOneDisableKinectGpuReservation: 1
@@ -182,7 +183,7 @@ PlayerSettings:
     iPhone: 25
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 31
+  AndroidBundleVersionCode: 33
   AndroidMinSdkVersion: 26
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
