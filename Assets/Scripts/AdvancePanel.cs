@@ -432,7 +432,8 @@ public class AdvancePanel : MonoBehaviour
         for (int i = 0; i < locales.Count; i++)
         {
             // Temporarily disable Bangla and Persian
-            if (locales[i].Identifier.Code == "bn" || locales[i].Identifier.Code == "fa")
+            //if (locales[i].Identifier.Code == "bn" || locales[i].Identifier.Code == "fa")
+            if (locales[i].Identifier.Code == "bn")
             {
                 continue;
             }
@@ -440,12 +441,14 @@ public class AdvancePanel : MonoBehaviour
             languageOptions.Add(
                 locales[i].Identifier.Code switch
                 {
-                    // "bn" => "বাংলা",
+                    // Temporarily disable Bangla
+                    "bn" => "বাংলা",
                     "zh" => "简体中文",
                     "en" => "English",
                     "et" => "Eesti",
                     "fi" => "Suomi",
-                    // "fa" => "فارسی",
+                    // Temporarily disable Persian
+                    "fa" => "فارسی",
                     "ru" => "Русский",
                     "sv" => "Svenska",
                     "uk" => "Українська",

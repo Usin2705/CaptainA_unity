@@ -1594,7 +1594,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1314481068698039316}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -1679,6 +1679,14 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'Range
+
+'
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!95 &2946281247573925983
 Animator:
   serializedVersion: 7
@@ -2692,7 +2700,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2448156239879354015}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -2775,6 +2783,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Was the result easy to understand?
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &2476194536704197603
 GameObject:
   m_ObjectHideFlags: 0
@@ -2950,7 +2964,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2487647095933929965}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -3035,6 +3049,14 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'Pronunciation
+
+'
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!95 &5943008858861129339
 Animator:
   serializedVersion: 7
@@ -3188,7 +3210,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2570405279433974696}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -3273,6 +3295,14 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'Accuracy
+
+'
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!95 &6815263761738414839
 Animator:
   serializedVersion: 7
@@ -3575,7 +3605,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2817268590919068253}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -3658,6 +3688,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: (transcript appears here)
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &3079522465791320356
 GameObject:
   m_ObjectHideFlags: 0
@@ -4046,7 +4082,34 @@ MonoBehaviour:
   popupBackButtonGO: {fileID: 2476194536704197603}
   relevanceWarningGO: {fileID: 1708949053810417645}
   relevanceWarningText: {fileID: 4546087359241742511}
+  answerOffTopicNotice:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  answerPartialNotice:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   transcriptText: {fileID: 5440299854945665991}
+  emptyTranscriptNotice:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   infoTextGO: {fileID: 5973907447740468419}
   scrollContent: {fileID: 5223722941049436349}
   transcriptGroup: {fileID: 2093588788904125029}
@@ -4057,8 +4120,6 @@ MonoBehaviour:
   fluencyScore: {fileID: 2411753905756191708}
   replayButtonGO: {fileID: 0}
   sendButtonGO: {fileID: 0}
-  titleTextGO: {fileID: 8825491712571349566}
-  popupTextGO: {fileID: 9076237209000868525}
   infoButtonGO: {fileID: 1404707291573609979}
   infoPopupGO: {fileID: 6582783205841824470}
   infoBackButtonGO: {fileID: 3759826249853309337}
@@ -4078,18 +4139,101 @@ MonoBehaviour:
   TaskPanelGO: {fileID: 0}
   errorPopupGO: {fileID: 7973188621727763584}
   panels:
-  - TitleText: 'Proficiency level '
-    PopupText: Measures the overall speech ability.
-  - TitleText: Pronunciation
-    PopupText: Checks whether you pronounced the words correctly. Measures how well
-      the machine understands your speech.
-  - TitleText: Range
-    PopupText: Measures the versatility of the language used.
-  - TitleText: Accuracy
-    PopupText: Measures precision, correctness, and how well you followed grammar
-      rules.
-  - TitleText: Fluency
-    PopupText: Measures the speed, pauses and hesitations in your speech.
+  - titleText:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    popupText:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - titleText:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    popupText:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - titleText:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    popupText:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - titleText:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    popupText:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - titleText:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    popupText:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  titleTextGO: {fileID: 8825491712571349566}
+  popupTextGO: {fileID: 9076237209000868525}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &3651658795200281346
 GameObject:
   m_ObjectHideFlags: 0
@@ -4836,7 +4980,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3984555128008566507}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -4919,6 +5063,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: What we heard
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &4122113310470669401
 GameObject:
   m_ObjectHideFlags: 0
@@ -5756,7 +5906,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4939315912069782670}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -5841,6 +5991,14 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'Proficiency level
+
+'
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!95 &3821478141339512530
 Animator:
   serializedVersion: 7
@@ -5917,7 +6075,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4974996690802809879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -6000,6 +6158,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Text
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &5006160072907824894
 GameObject:
   m_ObjectHideFlags: 0
@@ -6054,7 +6218,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5006160072907824894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -6137,6 +6301,13 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Your answer did not seem to match the task. Please check the task
+    again.
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &5120074436676216545
 GameObject:
   m_ObjectHideFlags: 0
@@ -6567,7 +6738,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5359193712273499947}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -6650,6 +6821,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Good to know!
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &5465990643672970328
 GameObject:
   m_ObjectHideFlags: 0
@@ -7123,7 +7300,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5973907447740468419}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -7207,6 +7384,13 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Below you can view your results. The recording is automatically assessed
+    by an AI model.
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &6190759769564440203
 GameObject:
   m_ObjectHideFlags: 0
@@ -7440,7 +7624,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6227934543020558887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -7523,6 +7707,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Here you can provide additional feedback (max. 250 characters).
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!114 &448159080963169334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8212,7 +8402,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6647812327850108971}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -8297,6 +8487,14 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'Fluency
+
+'
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!95 &7136580107556894445
 Animator:
   serializedVersion: 7
@@ -8493,7 +8691,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6771025384296378547}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -8577,6 +8775,13 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'You can get additional information about the feedback by pressing
+    the stars under the titles:'
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &6945374598868495045
 GameObject:
   m_ObjectHideFlags: 0
@@ -8706,7 +8911,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6976484422760713353}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -8789,6 +8994,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Please select an expression
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &7165308152934472387
 GameObject:
   m_ObjectHideFlags: 0
@@ -9261,7 +9472,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7479225634764334783}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -9344,6 +9555,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Title
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &7487419083601845682
 GameObject:
   m_ObjectHideFlags: 0
@@ -9743,7 +9960,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7820253792114190861}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -9826,6 +10043,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Here you can provide additional feedback (max. 250 characters).
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!114 &1237934853247294975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10440,7 +10663,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8618782764514494319}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -10523,6 +10746,12 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: Do you think the result is accurate?
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &8858931657003972356
 GameObject:
   m_ObjectHideFlags: 0
@@ -10652,7 +10881,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8922303331760096275}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -10736,6 +10965,13 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'Please keep in mind that with this application it is not possible
+    to reach B2 or higher level of proficiency.  '
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &8973835870603853242
 GameObject:
   m_ObjectHideFlags: 0
@@ -10790,7 +11026,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8973835870603853242}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -10875,6 +11111,14 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: "You can also see your current level of each measured category according
+    to the Common European Framework of Reference for Languages \u200B\u200B(A1,
+    A2, A2+, B1) next to the stars:"
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &8978809611011008868
 GameObject:
   m_ObjectHideFlags: 0
@@ -11638,6 +11882,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2582976612945691992, guid: cbed33220454ba2328ef2cf5ab758961, type: 3}
       propertyPath: m_text
+      value: Feedback
+      objectReference: {fileID: 0}
+    - target: {fileID: 2582976612945691992, guid: cbed33220454ba2328ef2cf5ab758961, type: 3}
+      propertyPath: originalText
       value: Feedback
       objectReference: {fileID: 0}
     - target: {fileID: 6722823532450105979, guid: cbed33220454ba2328ef2cf5ab758961, type: 3}

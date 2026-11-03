@@ -54,7 +54,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6056780809512834516}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
@@ -139,6 +139,14 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: 'Proficiency level
+
+'
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1
 --- !u!1 &6247044282950875631
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +399,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7436880726354358368}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db6cab3c71a0ba428e89ff76be6bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -475,3 +483,10 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  preserveNumbers: 0
+  farsi: 1
+  originalText: "The proficiency level according to the Common European Framework
+    of Reference for Languages \u200B\u200B(A1, A2, B1, B2, C1, C2)."
+  fixTags: 1
+  forceFix: 0
+  mirrorAlignmentForRtl: 1

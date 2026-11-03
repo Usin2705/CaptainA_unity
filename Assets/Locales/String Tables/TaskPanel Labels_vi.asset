@@ -65,6 +65,10 @@ MonoBehaviour:
     m_Localized: "G\u1EEDi"
     m_Metadata:
       m_Items: []
+  - m_Id: 11672586668589056
+    m_Localized: 'Experimental task: An Important Place'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
