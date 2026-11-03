@@ -99,6 +99,10 @@ MonoBehaviour:
     m_Key: loadingPopUp.defaultNotice
     m_Metadata:
       m_Items: []
+  - m_Id: 10617230223851520
+    m_Key: ASAPanel.task6Text
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
