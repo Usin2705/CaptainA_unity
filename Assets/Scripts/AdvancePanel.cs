@@ -422,16 +422,16 @@ public class AdvancePanel : MonoBehaviour
             languageOptions.Add(
                 locales[i].Identifier.Code switch
                 {
-                    // "bn" => "Bangla",
-                    "zh" => "Chinese",
+                    // "bn" => "বাংলা",
+                    "zh" => "简体中文",
                     "en" => "English",
-                    "et" => "Estonian",
-                    "fi" => "Finnish",
-                    // "fa" => "Persian",
-                    "ru" => "Russian",
-                    "sv" => "Swedish",
-                    "uk" => "Ukrainian",
-                    "vi" => "Vietnamese",
+                    "et" => "Eesti",
+                    "fi" => "Suomi",
+                    // "fa" => "فارسی",
+                    "ru" => "Русский",
+                    "sv" => "Svenska",
+                    "uk" => "Українська",
+                    "vi" => "Tiếng Việt",
                     _ => locales[i].name,
                 }
             );

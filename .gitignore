@@ -84,3 +84,6 @@ SaySuomi_BurstDebugInformation_DoNotShip/*
 
 docs/TO_FRONTEND.md
 docs/TO_BACKEND.md
+
+# Claude Code settings (local permissions and machine paths)
+.claude/
