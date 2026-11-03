@@ -246,7 +246,7 @@ public class AdvancePanel : MonoBehaviour
 
     public void LinkButtonPressed()
     {
-        Application.OpenURL("https://aalto-speech.github.io/privacy-notices/saysuomi-privacy.html");
+        Application.OpenURL("https://www.helsinki.fi/en/projects/digitala-action/about/privacy-notice");
     }
 
     public void AcceptConsent()
