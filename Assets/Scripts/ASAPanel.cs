@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Linq;
 using System.Runtime.Serialization.Formatters;
+using SaySuomi.UserBehaviour;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -138,8 +139,8 @@ public class ASAPanel : MonoBehaviour
         RectTransform textRect = taskTextGO.rectTransform;
         taskTextPosYWithImage ??= textRect.anchoredPosition.y;
 
-        // This is mostly a cosmetic adjustment: the text is placed below the picture, 
-        // and without one that gap is wasted and a long prompt runs into the record button. 
+        // This is mostly a cosmetic adjustment: the text is placed below the picture,
+        // and without one that gap is wasted and a long prompt runs into the record button.
         // Only task 6 has no picture today, so it's mostly for task 6, which has
         // a very long warning text.
         if (task.taskImage != null)
@@ -159,6 +160,16 @@ public class ASAPanel : MonoBehaviour
                 taskTextPosYWithoutImage
             );
         }
+
+        UserEvents.PanelOpened(new TaskPanelToggled(CurrentServerTaskId));
+    }
+
+    void Awake()
+    {
+        PanelEventWatcher.Attach(
+            loadingPopUpGO,
+            () => new LoadingModalToggled(CurrentServerTaskId)
+        );
     }
 
     void OnEnable()
@@ -171,7 +182,15 @@ public class ASAPanel : MonoBehaviour
         backButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
 
         recordButtonGO.GetComponent<Button>().onClick.AddListener(() => OnRecordButtonClicked());
-        pauseButtonGO.GetComponent<Button>().onClick.AddListener(() => StopRecord());
+        pauseButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                // Here rather than in StopRecord: the timer and the back button also call it,
+                // and only taps count.
+                TrackMicButton(MicButton.Stop);
+                StopRecord();
+            });
         sendButtonGO.GetComponent<Button>().onClick.AddListener(() => OnSendButtonClicked());
         replayButtonGO.GetComponent<Button>().onClick.AddListener(() => OnReplayButtonClicked());
         resultsButtonGO.GetComponent<Button>().onClick.AddListener(() => OnResultsButtonClicked());
@@ -348,8 +367,15 @@ public class ASAPanel : MonoBehaviour
         }
     }
 
+    private void TrackMicButton(MicButton button)
+    {
+        UserEvents.Track(new MicButtonClicked(button, CurrentServerTaskId));
+    }
+
     public void OnRecordButtonClicked()
     {
+        TrackMicButton(MicButton.Record);
+
         // Stop stays dead until the microphone is genuinely open. It used to be re-enabled
         // by a 0.3s timer running alongside AudioManager's own 0.3s startup delay, so the
         // two finished together and a quick tap could land Microphone.End() before the
@@ -435,6 +461,8 @@ public class ASAPanel : MonoBehaviour
 
     public void OnReplayButtonClicked()
     {
+        TrackMicButton(MicButton.Replay);
+
         // Retrieve audio and set the relevant variables for playing the animation
         recording = audioManager.GetReplayClip();
         currentTime = recording.length;
@@ -528,6 +556,8 @@ public class ASAPanel : MonoBehaviour
 
     void OnDisable()
     {
+        UserEvents.PanelClosed<TaskPanelToggled>();
+
         taskTextHelper?.ClearText();
 
         audioManager.StopReplaying();

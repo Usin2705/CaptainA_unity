@@ -25,7 +25,7 @@ namespace SaySuomi.UserBehaviour
         RetryLater,
     }
 
-    /// <summary>Posts one batch to POST /analytics/events.</summary>
+    /// <summary>Posts one batch to POST /events.</summary>
     internal static class UserEventSender
     {
         // Short: events are not urgent, and a hung send blocks the next.

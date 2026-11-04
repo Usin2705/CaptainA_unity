@@ -288,6 +288,10 @@ namespace SaySuomi.UserBehaviour
             }
 
             userEvent.WriteProperties(properties);
+            string propertiesJson = properties.EndObject().ToString();
+
+            // TEMP: remove after debugging.
+            Debug.Log($"[UserEvents] {userEvent.Name} {propertiesJson} session={sessionId}");
 
             outbox.Add(
                 new QueuedEvent
@@ -302,7 +306,7 @@ namespace SaySuomi.UserBehaviour
                         CultureInfo.InvariantCulture
                     ),
                     name = userEvent.Name,
-                    propertiesJson = properties.EndObject().ToString(),
+                    propertiesJson = propertiesJson,
                 }
             );
             outbox.Save();

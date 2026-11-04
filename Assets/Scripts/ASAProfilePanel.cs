@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using SaySuomi.UserBehaviour;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -277,8 +278,18 @@ public class ASAProfilePanel : MonoBehaviour
 
     public string guid;
 
+    void Awake()
+    {
+        ScrollDepthReporter.Attach(
+            GetComponent<ScrollRect>(),
+            depth => UserEvents.Track(new ProfilePanelScrolled(depth))
+        );
+    }
+
     void OnEnable()
     {
+        UserEvents.PanelOpened(new ProfilePanelToggled());
+
         // Stops animated dropdown error message from appearing
         StopErrorAnimation();
 
@@ -301,6 +312,8 @@ public class ASAProfilePanel : MonoBehaviour
         );
 
         settingsPopupGO.SetActive(false);
+        // A session timeout can switch this panel off with the popup still open.
+        feedbackPopUpGO.SetActive(false);
         dimPanelGO.SetActive(false);
 
         guid = PlayerPrefs.GetString("UserGuid");
@@ -937,6 +950,8 @@ public class ASAProfilePanel : MonoBehaviour
 
     void OnDisable()
     {
+        UserEvents.PanelClosed<ProfilePanelToggled>();
+
         deleteStatusHelper?.ClearText();
         levelDescriptionHelper?.ClearText();
         rankPercentHelper?.ClearText();

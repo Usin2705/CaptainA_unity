@@ -12,7 +12,7 @@ namespace SaySuomi.UserBehaviour
     /// </summary>
     /// <example>
     /// <code>
-    /// UserEvents.StartSession();                                  // tap on the ASA button
+    /// UserEvents.StartSession();                                  // the task list is opening
     /// UserEvents.PanelOpened(new TaskPanelToggled(taskId));       // a panel appears
     /// UserEvents.Track(new MicButtonClicked(MicButton.Record, taskId));
     /// UserEvents.PanelClosed&lt;TaskPanelToggled&gt;();                // it goes away
@@ -32,9 +32,9 @@ namespace SaySuomi.UserBehaviour
         internal static void OnSessionTimedOut() => SessionTimedOut?.Invoke();
 
         /// <summary>
-        /// Starts a session unless one is running. Call when the learner taps the Automatic
-        /// Speaking Assessment button, and again once onboarding succeeds: a first-time
-        /// learner has no guid at the tap, so no session can start then.
+        /// Starts a session unless one is running. Call just before the task list opens, not at
+        /// the tap: a learner still on the consent or background form is not on the server yet,
+        /// so it would refuse their events.
         /// </summary>
         public static void StartSession() => UserEventManager.Instance?.StartSession();
 

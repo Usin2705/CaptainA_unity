@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using SaySuomi.UserBehaviour;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -101,6 +102,8 @@ public class AdvancePanel : MonoBehaviour
 
     void OnEnable()
     {
+        UserEvents.SessionTimedOut += ShowTaskListAfterTimeout;
+
         // The secret text used to be read here to decide whether to wire up the
         // DescribeButtons. Those are gone, and nothing else on this panel looks at it, so
         // the check went with them. CardDeckPanel still uses Secret.SECRET_TEXT.
@@ -193,6 +196,9 @@ public class AdvancePanel : MonoBehaviour
         )
         {
             Debug.Log(PlayerPrefs.GetString("UserGuid"));
+            // Only here and after onboarding: until then the server does not know this learner
+            // and would refuse the events.
+            UserEvents.StartSession();
             taskPanelGO.SetActive(true);
         }
 
@@ -230,6 +236,15 @@ public class AdvancePanel : MonoBehaviour
         taskPanelGO.SetActive(true);
     }
 
+    private void ShowTaskListAfterTimeout()
+    {
+        ASAPanelGO.SetActive(false);
+        feedbackPanelGO.SetActive(false);
+        loadingPopUpGO.SetActive(false);
+        profilePanelGO.SetActive(false);
+        taskPanelGO.SetActive(true);
+    }
+
     // The sheet is a single reused object, so clear it every time it opens. Without this
     // a user who ticked the box, backed out, and came back would find Continue already
     // enabled and could consent without seeing the notice again.
@@ -246,7 +261,9 @@ public class AdvancePanel : MonoBehaviour
 
     public void LinkButtonPressed()
     {
-        Application.OpenURL("https://www.helsinki.fi/en/projects/digitala-action/about/privacy-notice");
+        Application.OpenURL(
+            "https://www.helsinki.fi/en/projects/digitala-action/about/privacy-notice"
+        );
     }
 
     public void AcceptConsent()
@@ -358,6 +375,7 @@ public class AdvancePanel : MonoBehaviour
 
                         backgroundPopUpGO.SetActive(false);
                         dimPanelGO.SetActive(false);
+                        UserEvents.StartSession();
                         taskPanelGO.SetActive(true);
                     }
                 )
@@ -487,5 +505,8 @@ public class AdvancePanel : MonoBehaviour
 
         numberGamePanelGO.SetActive(false);
         ASAPanelGO.SetActive(false);
+
+        UserEvents.SessionTimedOut -= ShowTaskListAfterTimeout;
+        UserEvents.EndSession();
     }
 }

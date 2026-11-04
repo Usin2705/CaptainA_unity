@@ -9,7 +9,7 @@ namespace SaySuomi.UserBehaviour
     // drops events that do not match, so keep names, keys and bounds in sync.
     // To add an event: copy the closest type and pick the interface for how it is sent.
 
-    /// <summary>An event for POST /analytics/events.</summary>
+    /// <summary>An event for POST /events.</summary>
     /// <example>
     /// Defining an event (server model: <c>task_id: TaskId</c>):
     /// <code>

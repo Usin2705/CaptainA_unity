@@ -15,7 +15,7 @@ namespace SaySuomi.UserBehaviour
     /// </summary>
     /// <example>
     /// <code>
-    /// void OnEnable()
+    /// void Awake()
     /// {
     ///     ScrollDepthReporter.Attach(
     ///         GetComponentInChildren&lt;ScrollRect&gt;(true),
@@ -36,7 +36,7 @@ namespace SaySuomi.UserBehaviour
         const float RestingSpeedSqr = 1f;
 
         // Hold time before a scroll counts as at rest, so each wheel notch is not its own report.
-        const float SettleSeconds = 0.3f;
+        const float SettleSeconds = 0.15f;
 
         // Smaller changes are not reported.
         const float MinDepthChange = 0.01f;

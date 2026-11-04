@@ -4,23 +4,32 @@ How the Unity client records what learners do in the Automatic Speaking Assessme
 and sends it to the server. Server contract: dta-server `docs/USER_EVENTS.md` and
 `app/models/events.py`.
 
-Status: first draft. The system is in `Assets/Scripts/UserBehaviour/` but is not yet
-called from the ASA screens (see [Wiring](#wiring)).
+Status: first draft. The system is in `Assets/Scripts/UserBehaviour/` and is called from
+the ASA screens (see [Wiring](#wiring)).
 
 ## How it works
 
-1. **Session.** Events are only recorded inside an ASA session. It starts when the learner
-   taps **Automatic Speaking Assessment** (`StartSession()` sends `asa_session_started`
-   with a new `asa_session_id`) and ends only when they quit: leaving the assessment
+1. **Session.** Events are only recorded inside an ASA session. It starts when the task
+   list opens, after a tap on **Automatic Speaking Assessment** or at the end of onboarding
+   (`StartSession()` sends `asa_session_started` with a new `asa_session_id`), and ends
+   only when they quit: leaving the assessment
    (`EndSession()`), closing the app, or 30 s or more in the background (after which a new
    session starts on the task list). Ending closes any open
-   panels, then sends `asa_session_ended`. Outside a session every call does nothing.
+   panels, then sends `asa_session_ended`, except after a kill or crash (see
+   [Lifecycle](#lifecycle-on-a-phone)). Outside a session every call does nothing.
 2. **Record.** Each event is checked against the server's rules (ids ≥ 1, depth 0–1, and
    a dimension in range, since it is cast from a popup index). Invalid ones are logged
    and skipped. Valid ones get an
    `event_id` and a UTC timestamp and are written to `user_events_outbox.json` straight away.
-3. **Send.** Every 60 s, at 20 queued events, and when a session ends, queued events are
-   posted to `Secret.ASA_EVENTS_URL` in batches of ≤ 100, one session per batch.
+
+   Only the server checks the rest. An `occurred_at` over 30 days old or over 5 minutes
+   ahead of the server clock drops that event, and the batch still gets a normal 202. An
+   `app_version` that is over 32 characters or does not match `^[0-9A-Za-z.+-]+$` gets a
+   422 for the whole batch.
+
+3. **Send.** At launch, every 60 s, at 20 queued events, when a session ends and when the
+   app goes to the background, queued events are posted to `Secret.ASA_EVENTS_URL` in
+   batches of ≤ 100. A batch shares one guid, session and app version.
 4. **Response.**
 
    | Status                     | Action                                       |
@@ -28,7 +37,7 @@ called from the ASA screens (see [Wiring](#wiring)).
    | 2xx                        | Remove batch.                                |
    | 400/413/415/422, other 4xx | Remove batch, log error (client bug).        |
    | 403/404/409                | Remove batch, log warning (no consent/user). |
-   | 5xx, 429, offline          | Keep batch; the next 60 s tick retries.      |
+   | 5xx, 429, offline          | Keep batch; the next send retries.           |
 
    A resent event keeps its `event_id`, so the server stores it once.
 
@@ -44,7 +53,10 @@ A panel event says _which_ panel and _what it shows_; the manager adds `active`.
 - `PanelEventWatcher.Attach(go, () => new LoadingModalToggled(id))` reports a script-less
   popup from its own enable/disable.
 - `ScrollDepthReporter.Attach(scrollRect, depth => ...)` reports scroll depth once a
-  learner's scroll comes to rest (0 = top, 1 = bottom). Programmatic resets don't count.
+  learner's scroll comes to rest (0 = top, 1 = bottom). Programmatic resets do not count.
+- Panels can overlap. The task list stays open behind the profile, and the task panel stays
+  open behind the loading popup and the results. So `task_selection_panel_toggled` durations
+  include profile time, and `task_panel_toggled` durations include loading and results.
 
 ## Events
 
@@ -80,6 +92,15 @@ To add an event: copy the closest struct in `UserEventModels.cs`, change `Name`,
 | Account deleted                  | `UserEvents.Forget()` drops the session and queue unsent.                                                                                                                  |
 | Offline                          | Events stay queued; max 200 on device, oldest dropped first.                                                                                                               |
 
+After a kill or crash:
+
+- Panels that were open are not closed, because the list of open panels is only in memory.
+  The server leaves their `closed_at` and `duration_ms` as NULL.
+- Last-seen time is the last recorded event or the time the app was left, and only the time
+  the app was left is always written to disk straight away. A crash in the foreground can
+  lose the newest value, so the session ends at an older saved time, or at the next launch
+  if none was saved.
+
 ## Files
 
 | File                                 | Role                                                           |
@@ -95,29 +116,58 @@ To add an event: copy the closest struct in `UserEventModels.cs`, change `Name`,
 
 ## Wiring
 
-Not done yet. Where the calls belong:
+All of it is in code, so the scene does not change.
 
-- **Start:** `AdvancePanel.OnASAButtonClicked` → `StartSession()`. Also after onboarding
-  succeeds in `AdvancePanel.GetUserInput`: a first-time learner has no guid at the tap.
-- **End:** leaving the assessment → `EndSession()`: the TaskPanel back button and
-  `AdvancePanel.OnDisable` (another tab). Closing the app is automatic.
-  `NetworkManager.ClearLocalASAData` → `Forget()`.
-- **Task list / profile:** open in `OnEnable`, close in `OnDisable`.
-- **Task panel:** open in `ASAPanel.DisplayTask`; close in `ReturnToTaskPanel`, the
-  feedback panel's "new task" handler, and `OnDisable`. Not `OnEnable`: `ASAPanel` stays
-  active under the task list, so it does not re-enable for the next task.
-- **Mic:** `Track(...)` in the record/stop/replay click handlers in `ASAPanel.OnEnable`.
-  Only taps count, so not in `StopRecord`: the timer running out and the back button also
-  call it.
-- **Popups:** `PanelEventWatcher` on the loading, info and dimension popups; ids from
-  `asrResultASA` in the feedback panel.
-- **Scroll:** `ScrollDepthReporter` on the feedback and profile scroll views.
-- **Timeout:** subscribe to `UserEvents.SessionTimedOut` (e.g. in `AdvancePanel.OnEnable`,
-  unsubscribe in `OnDisable`). The handler switches off the current task (`ASAPanelGO`),
-  results (`feedbackPanelGO`), the loading popup, the profile and the dim panel, then
-  switches on the task list (`taskPanelGO`). `ASAPanel.OnDisable` already cancels a
-  recording in progress. Check in Play mode that no popup outside these stays on screen.
+Each box is a screen with the calls it owns: "open" is `PanelOpened` and "close" is
+`PanelClosed`. Each arrow is something the learner does, with any session call it makes.
 
-## Open questions
+```mermaid
+flowchart TD
+    Advanced(["Advanced tab (AdvancePanel)"])
+    Elsewhere(["Another tab"])
 
-- What should trigger `reason: error`? Nothing does yet.
+    subgraph Session["Inside a session"]
+        TaskList["<b>Task list</b> (TaskPanel)<br/>open: OnEnable<br/>close: OnDisable"]
+        Profile["<b>Profile</b> (ASAProfilePanel)<br/>open: OnEnable<br/>close: OnDisable<br/>scroll: ScrollDepthReporter, set in Awake"]
+        Task["<b>Task</b> (ASAPanel)<br/>open: DisplayTask<br/>close: OnDisable<br/>mic: Track on record, replay and stop taps"]
+        Loading["<b>Loading popup</b><br/>PanelEventWatcher, set in ASAPanel.Awake"]
+        Results["<b>Results</b> (FeedbackPanel)<br/>open: OnEnable<br/>close: OnDisable<br/>scroll: ScrollDepthReporter, set in Awake"]
+        Popups["<b>Info and dimension popups</b><br/>PanelEventWatcher, set in FeedbackPanel.Awake"]
+    end
+
+    Advanced -->|"ASA tap, consent and form done<br/>StartSession in ProceedToASA"| TaskList
+    Advanced -->|"onboarding succeeds<br/>StartSession in GetUserInput"| TaskList
+    TaskList -->|"back button<br/>EndSession"| Advanced
+    TaskList -->|"tap profile"| Profile
+    Profile -->|"back"| TaskList
+    Profile -->|"account deleted<br/>Forget in ClearLocalASAData"| Advanced
+    TaskList -->|"tap task"| Task
+    Task -->|"back"| TaskList
+    Task -->|"send"| Loading
+    Loading -->|"back after a failed upload"| Task
+    Loading -->|"results"| Results
+    Results <-->|"tap info or a dimension"| Popups
+    Results -->|"new task<br/>switches ASAPanel off"| TaskList
+    Session -.->|"EndSession in AdvancePanel.OnDisable"| Elsewhere
+```
+
+- **Start:** not at the tap. A learner still on the consent or background form is not on the
+  server yet, so their events would be refused.
+- **End:** closing the app is automatic, so it needs no call from a screen.
+- **Mic:** `Track(...)` is in `OnRecordButtonClicked`, `OnReplayButtonClicked` and the stop
+  button's listener. It is not in `StopRecord`, because the timer running out and the back
+  button also call that, and only taps count.
+- **New task:** the handler switches `ASAPanel` off, so no task stays active under the task
+  list.
+- **Results ids:** the feedback panel and its popups read `task_id` and `assessment_id` from
+  `asrResultASA`, the result on screen.
+- **Timeout:** `AdvancePanel` subscribes to `UserEvents.SessionTimedOut` in `OnEnable` and
+  unsubscribes in `OnDisable`. The handler switches off the current task (`ASAPanelGO`),
+  results (`feedbackPanelGO`), the assessment loading popup (`loadingPopUpGO`) and the
+  profile, then switches on the task list (`taskPanelGO`). `ASAPanel.OnDisable` cancels a
+  recording in progress. The task, results and profile screens each have their own dim panel
+  and reset it in `OnEnable`, and the feedback and profile panels also close their popups
+  there, so none reappears on the next visit. The task list is different: `LoadingPopUpProfile`
+  and its dim panel stay on through a timeout. `NetworkManager` clears them when the profile
+  loads, which then opens the profile in the new session, and the popup's back button also
+  clears them.
