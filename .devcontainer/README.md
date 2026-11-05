@@ -22,29 +22,31 @@ The first build takes a few minutes. Later starts reuse the built container.
 
 ## What is included
 
-| Tool      | Purpose                                     | Source                             |
-| --------- | ------------------------------------------- | ---------------------------------- |
-| .NET SDK  | C# language support and the Unity extension | Base image `devcontainers/dotnet`  |
-| Node.js   | Runtime for Prettier                        | `node` feature                     |
-| Python    | Runtime for the Python scripts              | `python` feature                   |
-| CSharpier | C# formatter                                | [`post-create.sh`](post-create.sh) |
-| Prettier  | Markdown formatter                          | [`post-create.sh`](post-create.sh) |
-| Ruff      | Python linter and formatter                 | `python` feature                   |
+| Tool      | Purpose                                     | Source                                            |
+| --------- | ------------------------------------------- | ------------------------------------------------- |
+| .NET SDK  | C# language support and the Unity extension | Base image `devcontainers/dotnet`                 |
+| Node.js   | Runtime for Prettier                        | `node` feature                                    |
+| Python    | Runtime for the Python scripts              | `python` feature                                  |
+| CSharpier | C# formatter                                | [`dotnet-tools.json`](/.config/dotnet-tools.json) |
+| Prettier  | Markdown formatter                          | [`post-create.sh`](/.devcontainer/post-create.sh) |
+| Ruff      | Python linter and formatter                 | `python` feature                                  |
 
 The container also installs the matching VS Code extensions, so the editor
 uses the same formatters.
 
 ## Files
 
-- [`devcontainer.json`](devcontainer.json): the container definition, with the
+- [`devcontainer.json`](/.devcontainer/devcontainer.json): the container definition, with the
   base image, features and VS Code extensions.
-- [`devcontainer-lock.json`](devcontainer-lock.json): the exact feature
+- [`devcontainer-lock.json`](/.devcontainer/devcontainer-lock.json): the exact feature
   versions, so every build uses the same ones.
-- [`post-create.sh`](post-create.sh): runs once after the container is created.
+- [`post-create.sh`](/.devcontainer/post-create.sh): runs once after the container is created.
   It installs CSharpier and Prettier, prints the version of each tool and
-  enables the [Git hooks](../.githooks/README.md).
+  enables the [Git hooks](/.githooks/README.md).
 
-To change the CSharpier or Prettier version, edit the version at the top of
+CSharpier is pinned in [`.config/dotnet-tools.json`](/.config/dotnet-tools.json),
+which CI uses too. To change its version, edit it there and run
+`dotnet tool restore`. To change the Prettier version, edit it at the top of
 `post-create.sh` and rebuild the container with **Dev Containers: Rebuild
 Container**.
 

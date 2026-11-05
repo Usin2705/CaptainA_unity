@@ -1,7 +1,7 @@
 # Git hooks
 
 Git hooks shared by the repository. The `pre-commit` hook runs
-[`tools/format.sh`](../tools/format.sh) before each commit, so commits with
+[`tools/format.sh`](/tools/format.sh) before each commit, so commits with
 unformatted C#, Markdown or Python files are blocked.
 
 ## Install
@@ -15,15 +15,16 @@ Outside the devcontainer, run this once from the repository root:
 bash .githooks/setup.sh
 ```
 
-The hook uses these tools from your `PATH`, and skips any that are not
-installed:
+The hook uses these tools, and skips any that are not installed:
 
-- [CSharpier](https://csharpier.com) for C#
+- [CSharpier](https://csharpier.com) for C#, installed with
+  `dotnet tool restore` at the version in
+  [`.config/dotnet-tools.json`](/.config/dotnet-tools.json)
 - [Prettier](https://prettier.io) for Markdown
 - [Ruff](https://docs.astral.sh/ruff/) for Python
 
-The versions the devcontainer installs are in
-[`.devcontainer/post-create.sh`](../.devcontainer/post-create.sh).
+The Prettier version the devcontainer installs is in
+[`.devcontainer/post-create.sh`](/.devcontainer/post-create.sh).
 
 ## Use
 

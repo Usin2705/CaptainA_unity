@@ -4,9 +4,12 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
+# CSharpier is a local .NET tool, pinned in .config/dotnet-tools.json.
+csharpier() { dotnet csharpier "$@"; }
+
 # Skips a tool that is not installed, so the other tools still run.
 run() {
-  if command -v "$1" >/dev/null; then
+  if "$1" --version &>/dev/null; then
     "$@"
   else
     echo "format.sh: $1 is not installed, skipping" >&2
