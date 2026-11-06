@@ -87,3 +87,12 @@ docs/TO_BACKEND.md
 
 # Claude Code settings (local permissions and machine paths)
 .claude/
+
+# Ignore local devcontainer configurations
+.devcontainer/*local*
+
+# Temporary files and directories
+# *.tmp
+*.temp
+tmp/
+temp/
