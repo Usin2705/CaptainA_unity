@@ -246,7 +246,8 @@ public class AdvancePanel : MonoBehaviour
 
     public void LinkButtonPressed()
     {
-        Application.OpenURL("https://aalto-speech.github.io/privacy-notices/saysuomi-privacy.html");
+        Application.OpenURL(
+            "https://www.helsinki.fi/en/projects/digitala-action/about/privacy-notice");
     }
 
     public void AcceptConsent()
@@ -414,7 +415,8 @@ public class AdvancePanel : MonoBehaviour
         for (int i = 0; i < locales.Count; i++)
         {
             // Temporarily disable Bangla and Persian
-            if (locales[i].Identifier.Code == "bn" || locales[i].Identifier.Code == "fa")
+            //if (locales[i].Identifier.Code == "bn" || locales[i].Identifier.Code == "fa")
+            if (locales[i].Identifier.Code == "bn")
             {
                 continue;
             }
@@ -422,16 +424,18 @@ public class AdvancePanel : MonoBehaviour
             languageOptions.Add(
                 locales[i].Identifier.Code switch
                 {
-                    // "bn" => "Bangla",
-                    "zh" => "Chinese",
+                    // Temporarily disable Bangla
+                    "bn" => "বাংলা",
+                    "zh" => "简体中文",
                     "en" => "English",
-                    "et" => "Estonian",
-                    "fi" => "Finnish",
-                    // "fa" => "Persian",
-                    "ru" => "Russian",
-                    "sv" => "Swedish",
-                    "uk" => "Ukrainian",
-                    "vi" => "Vietnamese",
+                    "et" => "Eesti",
+                    "fi" => "Suomi",
+                    // Temporarily disable Persian
+                    "fa" => "فارسی",
+                    "ru" => "Русский",
+                    "sv" => "Svenska",
+                    "uk" => "Українська",
+                    "vi" => "Tiếng Việt",
                     _ => locales[i].name,
                 }
             );

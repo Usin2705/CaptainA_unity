@@ -59,6 +59,10 @@ MonoBehaviour:
     m_Key: overallFeedbackPopUp.sendButton
     m_Metadata:
       m_Items: []
+  - m_Id: 11672586668589056
+    m_Key: taskPanel.task6Title
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

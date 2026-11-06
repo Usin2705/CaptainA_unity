@@ -88,6 +88,16 @@ public class ASAPanel : MonoBehaviour
     [SerializeField]
     private Image taskImageGO;
 
+    // Where the task text sits when the task has no picture. In the scene the text is
+    // placed below the picture (PosY -175); without one, that gap is wasted and a long
+    // prompt runs into the record button. Only task 6 has no picture today.
+    [SerializeField]
+    private float taskTextPosYWithoutImage = 0f;
+
+    // The scene's own PosY for the text, read on the first DisplayTask so tasks with a
+    // picture are put back exactly where the scene has them.
+    private float? taskTextPosYWithImage;
+
     private bool isRecording = false;
 
     private bool isReplaying = false;
@@ -101,8 +111,8 @@ public class ASAPanel : MonoBehaviour
     /// <summary>
     /// The id the DTA server knows this task by. Its task ids start at 1
     /// (inference/assets/task_id_map.json: 1 = the friend borrowing money, 2 = cannot come
-    /// to work, ... 5), while currentTaskSelected is an index into the tasks array above
-    /// and starts at 0.
+    /// to work, ... 5, and 6 = the experimental "An Important Place", DTA task 04_a), while
+    /// currentTaskSelected is an index into the tasks array above and starts at 0.
     ///
     /// Sending the index unshifted made task 1 fail with 400 "Unknown task_id 0" and -
     /// far worse - scored tasks 2 to 5 against the PREVIOUS task's prompt, which returns
@@ -125,14 +135,29 @@ public class ASAPanel : MonoBehaviour
         taskTextHelper ??= new LocalizedTextHelper(taskTextGO);
         taskTextHelper?.SetText(task.taskText);
 
+        RectTransform textRect = taskTextGO.rectTransform;
+        taskTextPosYWithImage ??= textRect.anchoredPosition.y;
+
+        // This is mostly a cosmetic adjustment: the text is placed below the picture, 
+        // and without one that gap is wasted and a long prompt runs into the record button. 
+        // Only task 6 has no picture today, so it's mostly for task 6, which has
+        // a very long warning text.
         if (task.taskImage != null)
         {
             taskImageGO.gameObject.SetActive(true);
             taskImageGO.sprite = task.taskImage;
+            textRect.anchoredPosition = new Vector2(
+                textRect.anchoredPosition.x,
+                taskTextPosYWithImage.Value
+            );
         }
         else
         {
             taskImageGO.gameObject.SetActive(false);
+            textRect.anchoredPosition = new Vector2(
+                textRect.anchoredPosition.x,
+                taskTextPosYWithoutImage
+            );
         }
     }
 
