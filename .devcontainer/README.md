@@ -7,6 +7,11 @@ The Unity Editor does not run in the container. Open the project in Unity on
 the host as usual, and use the container for editing code and running the
 formatters.
 
+The container mounts the host's `~/Unity/Hub/Editor` folder read-only, at the
+same path, so that C# language support can find the Unity libraries. Unity
+writes their absolute host paths into the generated `.csproj` files. The folder
+must exist on the host, which is where Unity Hub installs editors on Linux.
+
 ## Open the container
 
 1. Install [Podman](https://podman.io/docs/installation) (or
