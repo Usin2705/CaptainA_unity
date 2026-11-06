@@ -55,8 +55,9 @@ A panel event says _which_ panel and _what it shows_; the manager adds `active`.
 - `ScrollDepthReporter.Attach(scrollRect, depth => ...)` reports scroll depth once a
   learner's scroll comes to rest (0 = top, 1 = bottom). Programmatic resets do not count.
 - Panels can overlap. The task list stays open behind the profile, and the task panel stays
-  open behind the loading popup and the results. So `task_selection_panel_toggled` durations
-  include profile time, and `task_panel_toggled` durations include loading and results.
+  open behind the loading popup. So `task_selection_panel_toggled` durations include profile
+  time, and `task_panel_toggled` durations include loading. The task panel closes when the
+  results open, so its durations do not include results.
 
 ## Events
 
@@ -129,7 +130,7 @@ flowchart TD
     subgraph Session["Inside a session"]
         TaskList["<b>Task list</b> (TaskPanel)<br/>open: OnEnable<br/>close: OnDisable"]
         Profile["<b>Profile</b> (ASAProfilePanel)<br/>open: OnEnable<br/>close: OnDisable<br/>scroll: ScrollDepthReporter, set in Awake"]
-        Task["<b>Task</b> (ASAPanel)<br/>open: DisplayTask<br/>close: OnDisable<br/>mic: Track on record, replay and stop taps"]
+        Task["<b>Task</b> (ASAPanel)<br/>open: DisplayTask<br/>close: OnResultsButtonClicked, OnDisable<br/>mic: Track on record, replay and stop taps"]
         Loading["<b>Loading popup</b><br/>PanelEventWatcher, set in ASAPanel.Awake"]
         Results["<b>Results</b> (FeedbackPanel)<br/>open: OnEnable<br/>close: OnDisable<br/>scroll: ScrollDepthReporter, set in Awake"]
         Popups["<b>Info and dimension popups</b><br/>PanelEventWatcher, set in FeedbackPanel.Awake"]
@@ -145,9 +146,9 @@ flowchart TD
     Task -->|"back"| TaskList
     Task -->|"send"| Loading
     Loading -->|"back after a failed upload"| Task
-    Loading -->|"results"| Results
+    Loading -->|"results<br/>closes the task, switches ASAPanel off"| Results
     Results <-->|"tap info or a dimension"| Popups
-    Results -->|"new task<br/>switches ASAPanel off"| TaskList
+    Results -->|"new task"| TaskList
     Session -.->|"EndSession in AdvancePanel.OnDisable"| Elsewhere
 ```
 
@@ -157,8 +158,11 @@ flowchart TD
 - **Mic:** `Track(...)` is in `OnRecordButtonClicked`, `OnReplayButtonClicked` and the stop
   button's listener. It is not in `StopRecord`, because the timer running out and the back
   button also call that, and only taps count.
-- **New task:** the handler switches `ASAPanel` off, so no task stays active under the task
-  list.
+- **Results:** `OnResultsButtonClicked` closes the task with `PanelClosed`, then switches
+  `ASAPanel` off. The close is explicit, so it does not depend on the panel being hidden.
+  Closing the first-time info popup on the results switches `ASAPanel` back on, without
+  reopening the task event. So the new task handler switches it off again, and no task stays
+  active under the task list.
 - **Results ids:** the feedback panel and its popups read `task_id` and `assessment_id` from
   `asrResultASA`, the result on screen.
 - **Timeout:** `AdvancePanel` subscribes to `UserEvents.SessionTimedOut` in `OnEnable` and

@@ -304,8 +304,9 @@ public class ASAPanel : MonoBehaviour
             return;
         }
 
-        // The results screen opens on top of this one without switching it off, so this
-        // Update carries on running behind it. It owns the key while it is up.
+        // Opening the results switches this panel off, but closing their first-time info
+        // popup switches it back on, so this Update can run behind them. The results own
+        // the key while they are up.
         if (feedbackPanelGO.activeSelf)
         {
             return;
@@ -537,6 +538,9 @@ public class ASAPanel : MonoBehaviour
         loadingPopUpGO.SetActive(false);
         dimPanelASAGO.SetActive(false);
         feedbackPanelGO.SetActive(true);
+        // The task ends when its results open. Closed here so this does not depend on
+        // OnDisable, which only runs because the panel is hidden next.
+        UserEvents.PanelClosed<TaskPanelToggled>();
         ASAPanelGO.SetActive(false);
 
         if (self_rating != null)

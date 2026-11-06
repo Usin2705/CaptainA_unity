@@ -323,8 +323,8 @@ public class FeedbackPanel : MonoBehaviour
                 feedbackPanelGO.SetActive(false);
                 replayButtonGO.SetActive(false);
                 sendButtonGO.SetActive(false);
-                // Otherwise the task stays recorded as open behind the task list, and is
-                // uncovered when the back button ends the session.
+                // Closing the first-time info popup switches the task back on behind the
+                // results. Otherwise it stays active under the task list.
                 ASAPanelGO.SetActive(false);
                 TaskPanelGO.SetActive(true);
             });
