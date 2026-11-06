@@ -40,7 +40,9 @@ and CSharpier installed, so you can skip this setup there.
 
 ### **Steps:**
 
-- **Checkout repository:** Retrieves the latest code from the repository.
+- **Checkout repository:** Downloads and checks out only `Assets/Scripts`,
+  `.config` and the files at the repository root, so the large Unity assets are
+  never downloaded.
 - **Set up .NET:** Sets up a `.NET CLI` environment.
 - **Restore .NET tools:** Installs the pinned version with `dotnet tool restore`.
 - **Run format check:** Checks code style in the `Assets/Scripts` directory.

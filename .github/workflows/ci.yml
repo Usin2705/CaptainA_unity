@@ -16,6 +16,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
+        with:
+          sparse-checkout: |
+            Assets/Scripts
+            .config
+          filter: blob:none
 
       - name: Set up .NET
         uses: actions/setup-dotnet@v6
