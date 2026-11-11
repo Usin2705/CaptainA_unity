@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4311a99dfd1c3e407b6f0b75a68b0a1f
+guid: e92e148c2ef6fae4393b061bc5b1fac7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1501442503099534766
-    second: info highlight stars 2_0
+      213: -7642470557474341160
+    second: info_popup_stars_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: info highlight stars 2_0
+      name: info_popup_stars_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 600
-        height: 140
+        width: 754
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 25234189ffdc92be0800000000000000
-      internalID: -1501442503099534766
+      spriteID: 8de3c5ff48d70f590800000000000000
+      internalID: -7642470557474341160
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      info highlight stars 2_0: -1501442503099534766
+      info_popup_stars_0: -7642470557474341160
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
