@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Linq;
 using System.Runtime.Serialization.Formatters;
 using SaySuomi.UserBehaviour;
@@ -31,7 +30,7 @@ public class ASAPanel : MonoBehaviour
     GameObject replayButtonGO;
 
     [SerializeField]
-    GameObject replayBarGO;
+    GameObject stopReplayButtonGO;
 
     [SerializeField]
     GameObject progressBarBackgroundGO;
@@ -181,6 +180,7 @@ public class ASAPanel : MonoBehaviour
         pauseButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         sendButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         replayButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
+        stopReplayButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         resultsButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         backButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
 
@@ -196,6 +196,7 @@ public class ASAPanel : MonoBehaviour
             });
         sendButtonGO.GetComponent<Button>().onClick.AddListener(() => OnSendButtonClicked());
         replayButtonGO.GetComponent<Button>().onClick.AddListener(() => OnReplayButtonClicked());
+        stopReplayButtonGO.GetComponent<Button>().onClick.AddListener(() => OnStopReplayButtonClicked());
         resultsButtonGO.GetComponent<Button>().onClick.AddListener(() => OnResultsButtonClicked());
         backButtonGO.GetComponent<Button>().onClick.AddListener(() => OnBackButtonClicked());
 
@@ -221,7 +222,7 @@ public class ASAPanel : MonoBehaviour
         selfAssessmentFeedback.Attach(ratingOptions, () => feedbackTextGO.text);
         selfAssessmentFeedback.AttachComment(feedbackTextGO, ratingOptions);
 
-        replayBarGO.SetActive(false);
+        stopReplayButtonGO.SetActive(false);
         progressBarBackgroundGO.SetActive(false);
         progressBarGO.SetActive(false);
 
@@ -249,7 +250,7 @@ public class ASAPanel : MonoBehaviour
         pauseButtonGO.SetActive(true);
         sendButtonGO.SetActive(false);
         replayButtonGO.SetActive(false);
-        replayBarGO.SetActive(false);
+        stopReplayButtonGO.SetActive(false);
 
         // Show the countdown progress bar
         progressBarBackgroundGO.SetActive(true);
@@ -267,7 +268,7 @@ public class ASAPanel : MonoBehaviour
         }
         if (isReplaying)
         {
-            UpdateReplayBar();
+            UpdateReplayTimer();
         }
         if (isLoading)
         {
@@ -358,17 +359,11 @@ public class ASAPanel : MonoBehaviour
         }
     }
 
-    void UpdateReplayBar()
+    void UpdateReplayTimer()
     {
-        // Same principle as with UpdateProgressBar(), but this time comparing with the length of the recording
         currentTime -= Time.deltaTime;
-        replayBarGO.GetComponent<Image>().fillAmount = currentTime / recording.length;
         if (currentTime <= 0)
-        {
-            currentTime = 0;
-            replayBarGO.SetActive(false);
-            isReplaying = false;
-        }
+            EndReplay();
     }
 
     private void TrackMicButton(MicButton button)
@@ -470,8 +465,21 @@ public class ASAPanel : MonoBehaviour
         // Retrieve audio and set the relevant variables for playing the animation
         recording = audioManager.GetReplayClip();
         currentTime = recording.length;
-        replayBarGO.SetActive(true);
+        stopReplayButtonGO.SetActive(true);
         isReplaying = true;
+    }
+
+    public void OnStopReplayButtonClicked()
+    {
+        audioManager.StopReplaying();
+        EndReplay();
+    }
+
+    void EndReplay()
+    {
+        currentTime = 0;
+        stopReplayButtonGO.SetActive(false);
+        isReplaying = false;
     }
 
     public void OnSendButtonClicked()
@@ -479,7 +487,7 @@ public class ASAPanel : MonoBehaviour
         audioManager.StopReplaying();
         isReplaying = false;
         replayButtonGO.SetActive(false);
-        replayBarGO.SetActive(false);
+        stopReplayButtonGO.SetActive(false);
 
         // Send the audio to the server when clicked
         AudioManager

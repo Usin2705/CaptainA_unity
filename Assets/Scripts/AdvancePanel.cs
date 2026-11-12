@@ -1,12 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using SaySuomi.UserBehaviour;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Localization;
-using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 public class AdvancePanel : MonoBehaviour
@@ -95,11 +92,6 @@ public class AdvancePanel : MonoBehaviour
         public (string, string) selfAssessment;
     }
 
-    [SerializeField]
-    private TMP_Dropdown languageDropdown;
-
-    private readonly List<Locale> dropdownLocales = new();
-
     void OnEnable()
     {
         UserEvents.SessionTimedOut += ShowTaskListAfterTimeout;
@@ -107,9 +99,6 @@ public class AdvancePanel : MonoBehaviour
         // The secret text used to be read here to decide whether to wire up the
         // DescribeButtons. Those are gone, and nothing else on this panel looks at it, so
         // the check went with them. CardDeckPanel still uses Secret.SECRET_TEXT.
-
-        languageDropdown.gameObject.SetActive(false);
-        StartCoroutine(InitializeLanguageDropdown());
 
         refuseButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         acceptButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
@@ -418,94 +407,9 @@ public class AdvancePanel : MonoBehaviour
         return false;
     }
 
-    private IEnumerator InitializeLanguageDropdown()
-    {
-        yield return LocalizationSettings.InitializationOperation;
-
-        var locales = LocalizationSettings.AvailableLocales.Locales;
-        var languageOptions = new List<string>();
-        dropdownLocales.Clear();
-
-        string selectedLanguage = PlayerPrefs.GetString("SelectedLanguage", "en");
-        int currentIndex = -1;
-
-        for (int i = 0; i < locales.Count; i++)
-        {
-            // Temporarily disable Bangla and Persian
-            //if (locales[i].Identifier.Code == "bn" || locales[i].Identifier.Code == "fa")
-            if (locales[i].Identifier.Code == "bn")
-            {
-                continue;
-            }
-
-            languageOptions.Add(
-                locales[i].Identifier.Code switch
-                {
-                    // Temporarily disable Bangla
-                    "bn" => "বাংলা",
-                    "zh" => "简体中文",
-                    "en" => "English",
-                    "et" => "Eesti",
-                    "fi" => "Suomi",
-                    // Temporarily disable Persian
-                    "fa" => "فارسی",
-                    "ru" => "Русский",
-                    "sv" => "Svenska",
-                    "uk" => "Українська",
-                    "vi" => "Tiếng Việt",
-                    _ => locales[i].name,
-                }
-            );
-
-            dropdownLocales.Add(locales[i]);
-
-            if (locales[i].Identifier.Code == selectedLanguage)
-            {
-                currentIndex = languageOptions.Count - 1;
-            }
-        }
-
-        if (currentIndex < 0)
-        {
-            currentIndex = dropdownLocales.FindIndex(locale => locale.Identifier.Code == "en");
-        }
-
-        if (currentIndex < 0)
-        {
-            currentIndex = 0;
-        }
-
-        LocalizationSettings.SelectedLocale = dropdownLocales[currentIndex];
-
-        languageDropdown.ClearOptions();
-        languageDropdown.AddOptions(languageOptions);
-
-        languageDropdown.SetValueWithoutNotify(currentIndex);
-        languageDropdown.RefreshShownValue();
-
-        languageDropdown.onValueChanged.RemoveListener(SwitchLanguage);
-        languageDropdown.onValueChanged.AddListener(SwitchLanguage);
-
-        languageDropdown.gameObject.SetActive(true);
-    }
-
-    private void SwitchLanguage(int currentIndex)
-    {
-        var locale = dropdownLocales[currentIndex];
-        LocalizationSettings.SelectedLocale = locale;
-
-        PlayerPrefs.SetString("SelectedLanguage", locale.Identifier.Code);
-        PlayerPrefs.Save();
-    }
-
     void OnDisable()
     // Need to destroy all game objects in the list to avoid creating a duplicate scorelist
     {
-        if (languageDropdown != null)
-        {
-            languageDropdown.onValueChanged.RemoveListener(SwitchLanguage);
-        }
-
         numberGamePanelGO.SetActive(false);
         ASAPanelGO.SetActive(false);
 
