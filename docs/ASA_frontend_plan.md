@@ -7,8 +7,8 @@ This document preserves the original front-end development brief that was previo
 Our main goals for front-end project is to develop a automatic speech asessment (ASA) feature and implement new UI/UX design to the mobile app. Specifically:
 
 - A new **ASA feature** in the mobile app: an interface to display a speaking task (usually with picture and text description - with option for translation). User then speak and record their answer (about 30~60s). The mobile app will then send the speech data to the server. After the server finish, mobile app will receive 5 speech ratings scores: `fluency, pronunciation, range, accuracy, holistic` and display them to the user. Those data will be store on their mobile app, and user can later access them in a different interface to review their progress.
-    -  We will also need an interface/function to collect user's consent and some background information. Those will also be sent to the server (with consent).
-	-  Some functions (audio record, server connection) are already available, you can reuse them.
+  - We will also need an interface/function to collect user's consent and some background information. Those will also be sent to the server (with consent).
+  - Some functions (audio record, server connection) are already available, you can reuse them.
 - As a real mobile app, we also targeting user experience (**UX**) and user interface (**UI**). Therefore, we also need a nice front end.
   - A spider chart (as we discussed) could be a nice way to display the scores.
   - Unity's Animation System is also nice and surprisingly easy to implement, but not required.

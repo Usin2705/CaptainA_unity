@@ -24,7 +24,7 @@ If you use or refer to the ASA student release, please cite it as follows.
 
 **APA 7th**
 
-Immonen, L., Kähkönen, A., Porola, I., Ratilainen, M., Savolainen, A., Takala, K., Tonteri, M., Immonen, R., Phan, N., & von Zansen, A. (2026). *SaySuomi: Automatic Speaking Assessment Student Release v1.0.0* (Version v1.0.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.20021230
+Immonen, L., Kähkönen, A., Porola, I., Ratilainen, M., Savolainen, A., Takala, K., Tonteri, M., Immonen, R., Phan, N., & von Zansen, A. (2026). _SaySuomi: Automatic Speaking Assessment Student Release v1.0.0_ (Version v1.0.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.20021230
 
 All authors contributed equally.
 
