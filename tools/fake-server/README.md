@@ -84,7 +84,7 @@ To test **no connection**, stop the server.
 | `POST /api/v1/feedback`             | `USER_ASA_FEEDBACK_URL` | Stored, or 422 if `assessment_id` is wrongly sent or missing   |
 | `POST /api/v1/analytics/comparison` | `ASA_PROFILE_URL`       | Profile stats, depending on `profile`                          |
 | `PATCH /api/v1/users/level`         | `ASA_SET_LEVEL_URL`     | Stores the level, which the profile then uses                  |
-| `POST /api/v1/events`               | `ASA_EVENTS_URL`        | Counts the batch, 400 if malformed, or 413 over 100 events     |
+| `POST /api/v1/events`               | `ASA_EVENTS_URL`        | Counts the batch, 400 if malformed, or 422 over 200 events     |
 | `DELETE /api/v1/users`              | `DATA_DEL_REQUEST_URL`  | 204, or 403 if `X-Delete-Key` is wrong                         |
 | `POST /asr_unity`                   | `AUDIO_URL`             | One score per character, with one mistake                      |
 | `POST /asr_number`                  | `NUMBER_AUDIO_URL`      | The same, for the number                                       |

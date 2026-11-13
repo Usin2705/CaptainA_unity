@@ -29,7 +29,7 @@ the ASA screens (see [Wiring](#wiring)).
 
 3. **Send.** At launch, every 60 s, at 20 queued events, when a session ends and when the
    app goes to the background, queued events are posted to `Secret.ASA_EVENTS_URL` in
-   batches of ≤ 100. A batch shares one guid, session and app version.
+   batches of ≤ 200. A batch shares one guid, session and app version.
 4. **Response.**
 
    | Status                     | Action                                       |
@@ -130,7 +130,7 @@ flowchart TD
     subgraph Session["Inside a session"]
         TaskList["<b>Task list</b> (TaskPanel)<br/>open: OnEnable<br/>close: OnDisable"]
         Profile["<b>Profile</b> (ASAProfilePanel)<br/>open: OnEnable<br/>close: OnDisable<br/>scroll: ScrollDepthReporter, set in Awake"]
-        Task["<b>Task</b> (ASAPanel)<br/>open: DisplayTask<br/>close: OnResultsButtonClicked, OnDisable<br/>mic: Track on record, replay and stop taps"]
+        Task["<b>Task</b> (ASAPanel)<br/>open: DisplayTask<br/>close: OnResultsButtonClicked, OnDisable<br/>mic: Track on record, replay and stop-recording taps"]
         Loading["<b>Loading popup</b><br/>PanelEventWatcher, set in ASAPanel.Awake"]
         Results["<b>Results</b> (FeedbackPanel)<br/>open: OnEnable<br/>close: OnDisable<br/>scroll: ScrollDepthReporter, set in Awake"]
         Popups["<b>Info and dimension popups</b><br/>PanelEventWatcher, set in FeedbackPanel.Awake"]
@@ -155,9 +155,10 @@ flowchart TD
 - **Start:** not at the tap. A learner still on the consent or background form is not on the
   server yet, so their events would be refused.
 - **End:** closing the app is automatic, so it needs no call from a screen.
-- **Mic:** `Track(...)` is in `OnRecordButtonClicked`, `OnReplayButtonClicked` and the stop
-  button's listener. It is not in `StopRecord`, because the timer running out and the back
-  button also call that, and only taps count.
+- **Mic:** `Track(...)` is in `OnRecordButtonClicked`, `OnReplayButtonClicked` and the
+  stop-recording button's listener (`pauseButtonGO`). It is not in `StopRecord`, because the
+  timer running out and the back button also call that, and only taps count. The stop-replay
+  button (`OnStopReplayButtonClicked`) is not tracked.
 - **Results:** `OnResultsButtonClicked` closes the task with `PanelClosed`, then switches
   `ASAPanel` off. The close is explicit, so it does not depend on the panel being hidden.
   Closing the first-time info popup on the results switches `ASAPanel` back on, without

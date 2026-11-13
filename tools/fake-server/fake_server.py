@@ -358,8 +358,8 @@ def handle_events(state, body):
                 event[key]
     except (ValueError, KeyError, TypeError) as error:
         raise ApiError(400, f"Malformed event batch: {error!r}")
-    if len(events) > 100:
-        raise ApiError(413, "A batch holds at most 100 events.")
+    if len(events) > 200:
+        raise ApiError(422, "A batch holds at most 200 events.")
 
     state.events_received += len(events)
     return 200, {"received": len(events)}

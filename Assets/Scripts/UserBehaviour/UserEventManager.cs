@@ -17,7 +17,7 @@ namespace SaySuomi.UserBehaviour
     [DisallowMultipleComponent]
     public sealed class UserEventManager : MonoBehaviour
     {
-        const int MaxBatchSize = 100; // Server limit.
+        const int MaxBatchSize = 200; // Server limit.
         const int SendAtQueueSize = 20;
         const float SendEverySeconds = 60f;
         const string OutboxFileName = "user_events_outbox.json";

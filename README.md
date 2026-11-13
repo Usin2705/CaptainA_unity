@@ -50,6 +50,7 @@ All authors contributed equally.
 - `Packages/` and `ProjectSettings/`: Unity package and project configuration.
 - `docs/`: ASA release documentation, historical plans, legacy server notes, user behaviour events, and development notes.
 - `MDD_Server/`: legacy/server-side project files kept for project context.
+- `tools/`: development tools: `format.sh` to format and lint the code, and a [fake server](tools/fake-server/README.md) to test the app without a backend.
 
 ## Documentation
 
