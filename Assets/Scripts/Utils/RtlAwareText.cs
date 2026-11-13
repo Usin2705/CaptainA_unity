@@ -39,6 +39,11 @@ public class RtlAwareText : RTLTextMeshPro
                 value = UnescapeControlCharacters(value);
             }
             ForceFix = rtl;
+            // Keep digits as the translator wrote them: "1." and "A1" stay Western, "۱۰۰"
+            // stays Persian. RTLTMPro's default turns Western digits into Persian ones;
+            // PreserveNumbers keeps them but mis-orders Persian digits ("۱۰۰" -> "۰۰۱"), so it
+            // is only used when the text has no Persian digits. No translation mixes both.
+            PreserveNumbers = rtl && !ContainsNativeDigits(value);
             base.text = value;
             MatchAlignment();
         }
@@ -101,6 +106,19 @@ public class RtlAwareText : RTLTextMeshPro
         {
             horizontalAlignment = wanted;
         }
+    }
+
+    // Persian (U+06F0-06F9) or Arabic-Indic (U+0660-0669) digits.
+    static bool ContainsNativeDigits(string value)
+    {
+        foreach (char c in value)
+        {
+            if (c is >= '۰' and <= '۹' or >= '٠' and <= '٩')
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     static bool ContainsRtl(string value)
