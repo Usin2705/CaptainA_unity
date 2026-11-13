@@ -1,6 +1,7 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 using SaySuomi.Utils;
 
 namespace SaySuomi.UserBehaviour
@@ -122,6 +123,30 @@ namespace SaySuomi.UserBehaviour
             float.IsFinite(value) && value >= 0f && value <= 1f
                 ? null
                 : FormattableString.Invariant($"depth must be within [0, 1], was {value}");
+
+        /// <summary>
+        /// App language codes, mirroring the Language enum on the server. These are the Unity
+        /// locale codes (Assets/Locales), so a new locale needs adding here and on the server.
+        /// </summary>
+        static readonly HashSet<string> LanguageCodes = new()
+        {
+            "bn",
+            "en",
+            "et",
+            "fa",
+            "fi",
+            "ru",
+            "sv",
+            "uk",
+            "vi",
+            "zh",
+        };
+
+        /// <summary>The code is one of the app's languages.</summary>
+        public static string? Language(string field, string? code) =>
+            code is not null && LanguageCodes.Contains(code)
+                ? null
+                : $"{field} must be an app language code, was '{code}'";
     }
 
     // ===================== Session =====================
@@ -130,13 +155,28 @@ namespace SaySuomi.UserBehaviour
     /// <summary><c>asa_session_started</c>: the first event of a session.</summary>
     public readonly struct AsaSessionStarted : IUserEvent
     {
+        /// <summary>
+        /// Creates the event with the app language at the start (a Unity locale code), or null
+        /// to send no properties.
+        /// </summary>
+        public AsaSessionStarted(string? language) => Language = language;
+
+        public string? Language { get; }
+
         public string Name => "asa_session_started";
 
-        /// <summary>No properties to check.</summary>
-        public string? Validate() => null;
+        /// <summary>Checks <c>language</c> when it is sent.</summary>
+        public string? Validate() =>
+            Language is null ? null : EventRules.Language("language", Language);
 
-        /// <summary>No properties to write.</summary>
-        public void WriteProperties(JsonWriter json) { }
+        /// <summary>Writes <c>language</c> when it is sent.</summary>
+        public void WriteProperties(JsonWriter json)
+        {
+            if (Language is not null)
+            {
+                json.String("language", Language);
+            }
+        }
     }
 
     /// <summary><c>asa_session_ended</c>: the last event of a session, at the quit time.</summary>
@@ -363,5 +403,34 @@ namespace SaySuomi.UserBehaviour
         /// <summary>Writes <c>depth</c> (3 decimals) and <c>task_id</c>.</summary>
         public void WriteProperties(JsonWriter json) =>
             json.Number("depth", Math.Round(Depth, 3)).Int("task_id", TaskId);
+    }
+
+    /// <summary>
+    /// <c>language_changed</c>: the learner picked another language in a language dropdown.
+    /// Codes are Unity locale codes ("en", "fi", "fa", ...).
+    /// </summary>
+    public readonly struct LanguageChanged : IInteractionEvent
+    {
+        /// <summary>Creates the event for a switch from one language to another.</summary>
+        public LanguageChanged(string fromLanguage, string toLanguage)
+        {
+            FromLanguage = fromLanguage;
+            ToLanguage = toLanguage;
+        }
+
+        public string FromLanguage { get; }
+
+        public string ToLanguage { get; }
+
+        public string Name => "language_changed";
+
+        /// <summary>Checks <c>from_language</c> and <c>to_language</c>.</summary>
+        public string? Validate() =>
+            EventRules.Language("from_language", FromLanguage)
+            ?? EventRules.Language("to_language", ToLanguage);
+
+        /// <summary>Writes <c>from_language</c> and <c>to_language</c>.</summary>
+        public void WriteProperties(JsonWriter json) =>
+            json.String("from_language", FromLanguage).String("to_language", ToLanguage);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using SaySuomi.UserBehaviour;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -89,10 +90,16 @@ public class LanguageDropdown : MonoBehaviour
     private void SwitchLanguage(int index)
     {
         var locale = dropdownLocales[index];
+        string previous = LocalizationSettings.SelectedLocale?.Identifier.Code;
         LocalizationSettings.SelectedLocale = locale;
 
         PlayerPrefs.SetString("SelectedLanguage", locale.Identifier.Code);
         PlayerPrefs.Save();
+
+        if (previous != null && previous != locale.Identifier.Code)
+        {
+            UserEvents.LanguagePicked(previous, locale.Identifier.Code);
+        }
     }
 
     private void OnLanguageSwitched(Locale locale)

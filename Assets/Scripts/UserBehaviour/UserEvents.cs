@@ -58,6 +58,14 @@ namespace SaySuomi.UserBehaviour
         public static void Track(IInteractionEvent interaction) =>
             UserEventManager.Instance?.Track(interaction);
 
+        /// <summary>
+        /// Records that the learner picked another language (locale codes, e.g. "en" to "fi").
+        /// Inside a session it is sent at once. Outside one (the Advanced tab) it is sent when the
+        /// next session starts, as one change from the language the server last heard about.
+        /// </summary>
+        public static void LanguagePicked(string fromLanguage, string toLanguage) =>
+            UserEventManager.Instance?.LanguagePicked(fromLanguage, toLanguage);
+
         /// <summary>Drops the session and queued events unsent. Call on account deletion.</summary>
         public static void Forget() => UserEventManager.Instance?.Forget();
     }
