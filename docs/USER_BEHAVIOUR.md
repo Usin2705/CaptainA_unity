@@ -63,7 +63,7 @@ A panel event says _which_ panel and _what it shows_; the manager adds `active`.
 
 | Event                          | Properties                           | Call                                              |
 | ------------------------------ | ------------------------------------ | ------------------------------------------------- |
-| `asa_session_started`          | –                                    | `UserEvents.StartSession()`                       |
+| `asa_session_started`          | `language` (see below)               | `UserEvents.StartSession()`                       |
 | `asa_session_ended`            | `reason`: quit/timeout/error         | `UserEvents.EndSession(reason)`                   |
 | `task_selection_panel_toggled` | `active`                             | `PanelOpened(new TaskSelectionPanelToggled())`    |
 | `profile_panel_toggled`        | `active`                             | `PanelOpened(new ProfilePanelToggled())`          |
@@ -75,8 +75,21 @@ A panel event says _which_ panel and _what it shows_; the manager adds `active`.
 | `mic_button_clicked`           | `button_id`, `task_id`               | `Track(new MicButtonClicked(button, id))`         |
 | `profile_panel_scrolled`       | `depth`                              | `Track(new ProfilePanelScrolled(depth))`          |
 | `feedback_panel_scrolled`      | `depth`, `task_id`                   | `Track(new FeedbackPanelScrolled(depth, id))`     |
+| `language_changed`             | `from_language`, `to_language`       | `UserEvents.LanguagePicked(from, to)`             |
 
 `task_id` is the server id (1-based): use `ASAPanel.CurrentServerTaskId`, not the array index.
+
+`language_changed` uses Unity locale codes (`en`, `fi`, `fa`, ...). `LanguageDropdown` calls
+`LanguagePicked` on every pick. Inside a session the event is sent at once. A pick outside a
+session (the Advanced tab) cannot be sent then, so the manager remembers the language the
+server last heard about, and the next session start sends one `language_changed` from it to the
+current language, right after `asa_session_started`. Switching back before then sends nothing.
+
+`asa_session_started` also carries `language`, the app language when the session starts,
+so every session's language is known even if the learner never changes it. It needs the
+server release that accepts the property to be live before the app ships: an older server
+rejects an event with an unknown property, so every session start would be lost. To ship
+against an older server, set `SendSessionLanguage` in `UserEventManager.cs` to false.
 
 To add an event: copy the closest struct in `UserEventModels.cs`, change `Name`, fields,
 `Validate` and `WriteProperties`, and keep it in step with `events.py`.

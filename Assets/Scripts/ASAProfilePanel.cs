@@ -214,6 +214,11 @@ public class ASAProfilePanel : MonoBehaviour
     [SerializeField]
     private LocalizedString rankUnavailableGeneralNotice;
 
+    // The highest rank the server sends exactly, i.e. where its rank rungs stop being every
+    // integer (app/utils/ranking.py, _RANK_RUNGS = 1, 2, 3, 5, 10, ...). Must match the
+    // server: set it higher only once a server that sends those ranks exactly is live.
+    const int ExactRankUpTo = 3;
+
     private LocalizedTextHelper rankPercentHelper;
 
     private LocalizedTextHelper rankPositionHelper;
@@ -618,13 +623,22 @@ public class ASAProfilePanel : MonoBehaviour
             rankPositionText.Arguments = new object[] { level };
             rankPositionHelper?.SetText(rankPositionText);
 
-            // "#1" reads better than "Top 1" for the one case where they mean the same.
+            // Ranks up to ExactRankUpTo arrive exact and read as a place ("#2"); above it the
+            // server has rounded the rank up ("4th" arrives as 5), so it stays "Top 5": "#5"
+            // would claim a place the learner does not hold.
             rankTopPositionHelper ??= new LocalizedTextHelper(positionText);
 
             if (display.top_rank == 1)
             {
                 // Used Const.ASA_RANK_FIRST before
                 rankTopPositionHelper?.SetText(rankFirstText);
+            }
+            else if (display.top_rank <= ExactRankUpTo)
+            {
+                // "#" and a number carry no words to translate, so this is not a table
+                // string. Stop the helper first, or a language change would overwrite it.
+                rankTopPositionHelper?.ClearText();
+                positionText.text = $"#{display.top_rank}";
             }
             else
             {
@@ -644,9 +658,12 @@ public class ASAProfilePanel : MonoBehaviour
             noPositionNotice.Arguments = new object[] { level };
             rankPositionHelper?.SetText(noPositionNotice);
 
+            // ClearText only stops the helper listening; it leaves the text in place. So the
+            // box is emptied here as well, or it keeps showing either an earlier position
+            // or the scene's placeholder ("#12"), a position this learner does not have.
             rankTopPositionHelper?.ClearText();
 
-            if (positionText == null)
+            if (positionText != null)
             {
                 positionText.text = "";
             }

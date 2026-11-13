@@ -467,6 +467,11 @@ public class NetworkManager : MonoBehaviour
     /// </summary>
     IEnumerator DeleteUserOnServer(string guid, System.Action<bool> done)
     {
+        // Each attempt starts unanswered. The failure branch below sets no status, so without
+        // this a "deleted" left by an earlier deletion this session would report a deletion
+        // that never reached the server as confirmed.
+        lastDeleteStatus = null;
+
         string url = GetPOSTURL(POSTType.DATA_DEL_REQUEST);
 
         WWWForm form = new WWWForm();

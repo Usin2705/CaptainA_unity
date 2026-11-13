@@ -7,6 +7,8 @@ using System.IO;
 using System.Threading;
 using SaySuomi.Utils;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 namespace SaySuomi.UserBehaviour
 {
@@ -29,6 +31,16 @@ namespace SaySuomi.UserBehaviour
         const string PrefSessionId = "UserEvents.SessionId";
         const string PrefSessionUserGuid = "UserEvents.SessionGuid";
         const string PrefLastSeenTicks = "UserEvents.LastSeenTicks";
+
+        // The app language the server last heard about. A change made outside a session (the
+        // Advanced tab) is sent when the next session starts, from this language to the current.
+        const string PrefReportedLanguage = "UserEvents.ReportedLanguage";
+
+        // Whether asa_session_started carries the app language. Needs the server release that
+        // accepts `language` on that event (docs/TO_BACKEND.md item 3) to be live before this
+        // build ships: an older server rejects the whole event for an unknown property, and
+        // every session would lose its start. Set to false to ship against an older server.
+        static bool SendSessionLanguage = true;
 
         static UserEventManager? instance;
 
@@ -133,7 +145,8 @@ namespace SaySuomi.UserBehaviour
             PlayerPrefs.SetString(PrefSessionUserGuid, userGuid);
             PlayerPrefs.Save();
 
-            Record(new AsaSessionStarted(), DateTime.UtcNow);
+            Record(new AsaSessionStarted(SessionLanguage()), DateTime.UtcNow);
+            ReportLanguageChangedOutsideSession();
         }
 
         /// <summary>Closes open panels, sends asa_session_ended at <paramref name="atUtc"/>, and sends the queue.</summary>
@@ -168,7 +181,82 @@ namespace SaySuomi.UserBehaviour
             outbox.Clear();
             outbox.Save();
             ClearSavedSession();
+
+            // A new account starts with a server that has heard nothing about its language.
+            PlayerPrefs.DeleteKey(PrefReportedLanguage);
+            PlayerPrefs.Save();
         }
+
+        // ===================== Language =====================
+
+        /// <summary>
+        /// Sends language_changed at once inside a session. Outside one, only remembers the
+        /// language before the first unreported change; the session start sends the rest.
+        /// </summary>
+        internal void LanguagePicked(string fromLanguage, string toLanguage)
+        {
+            if (sessionId is not null)
+            {
+                if (Record(new LanguageChanged(fromLanguage, toLanguage), DateTime.UtcNow))
+                {
+                    PlayerPrefs.SetString(PrefReportedLanguage, toLanguage);
+                    PlayerPrefs.Save();
+                }
+                return;
+            }
+
+            if (!PlayerPrefs.HasKey(PrefReportedLanguage))
+            {
+                PlayerPrefs.SetString(PrefReportedLanguage, fromLanguage);
+                PlayerPrefs.Save();
+            }
+        }
+
+        /// <summary>
+        /// Sends one language_changed if the language now differs from the one the server last
+        /// heard about, i.e. it was changed outside a session. Switching back and forth in
+        /// between sends nothing.
+        /// </summary>
+        void ReportLanguageChangedOutsideSession()
+        {
+            if (CurrentLanguage() is not string current)
+            {
+                return;
+            }
+
+            string reported = PlayerPrefs.GetString(PrefReportedLanguage, "");
+            if (reported.Length > 0 && reported != current)
+            {
+                Record(new LanguageChanged(reported, current), DateTime.UtcNow);
+            }
+
+            PlayerPrefs.SetString(PrefReportedLanguage, current);
+            PlayerPrefs.Save();
+        }
+
+        /// <summary>
+        /// The language for asa_session_started, or null to send none: switched off, not known
+        /// yet, or a code the server would refuse (which would cost the whole start event).
+        /// </summary>
+        static string? SessionLanguage()
+        {
+            if (!SendSessionLanguage || CurrentLanguage() is not string language)
+            {
+                return null;
+            }
+
+            return EventRules.Language("language", language) is null ? language : null;
+        }
+
+        /// <summary>
+        /// The app language as a Unity locale code, or null if localization is not ready. It is
+        /// long ready by the time the task list opens; this skips rather than blocks on it.
+        /// </summary>
+        static string? CurrentLanguage() =>
+            LocalizationSettings.InitializationOperation.IsDone
+            && LocalizationSettings.SelectedLocale is Locale locale
+                ? locale.Identifier.Code
+                : null;
 
         /// <summary>
         /// Ends a session left open by a killed or crashed run, as a timeout at the last-seen time.
@@ -291,7 +379,7 @@ namespace SaySuomi.UserBehaviour
             string propertiesJson = properties.EndObject().ToString();
 
             // TEMP: remove after debugging.
-            Debug.Log($"[UserEvents] {userEvent.Name} {propertiesJson} session={sessionId}");
+            // Debug.Log($"[UserEvents] {userEvent.Name} {propertiesJson} session={sessionId}");
 
             outbox.Add(
                 new QueuedEvent
