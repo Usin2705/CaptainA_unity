@@ -1,4 +1,5 @@
 using System.Linq;
+using SaySuomi.UserBehaviour;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Analytics;
@@ -261,9 +262,29 @@ public class FeedbackPanel : MonoBehaviour
         errorPopupGO.SetActive(false);
     }
 
+    private static int ResultTaskId => NetworkManager.GetManager().asrResultASA.task_id;
+
+    void Awake()
+    {
+        PanelEventWatcher.Attach(infoPopupGO, () => new InfoModalToggled(ResultTaskId));
+        PanelEventWatcher.Attach(
+            popupPanelGO,
+            () => new DimensionModalToggled(ResultTaskId, (ScoreDimension)currentPopupOpen)
+        );
+        ScrollDepthReporter.Attach(
+            GetComponentInChildren<ScrollRect>(true),
+            depth => UserEvents.Track(new FeedbackPanelScrolled(depth, ResultTaskId))
+        );
+    }
+
     void OnEnable()
     {
         networkManager = NetworkManager.GetManager();
+
+        // First, so the results open before the info popup that can appear on top of them.
+        UserEvents.PanelOpened(
+            new FeedbackPanelToggled(ResultTaskId, networkManager.asrResultASA.assessment_id)
+        );
 
         // Clear last result's notice before anything else runs. The real call is ~200
         // lines below, after the button wiring and the score read, and anything that
@@ -302,6 +323,9 @@ public class FeedbackPanel : MonoBehaviour
                 feedbackPanelGO.SetActive(false);
                 replayButtonGO.SetActive(false);
                 sendButtonGO.SetActive(false);
+                // Closing the first-time info popup switches the task back on behind the
+                // results. Otherwise it stays active under the task list.
+                ASAPanelGO.SetActive(false);
                 TaskPanelGO.SetActive(true);
             });
 
@@ -444,6 +468,10 @@ public class FeedbackPanel : MonoBehaviour
                 feedbackPopUpGO.SetActive(false);
                 dimPanelGO.SetActive(false);
             });
+
+        // A session timeout can switch this panel off with either popup still open.
+        popupPanelGO.SetActive(false);
+        feedbackPopUpGO.SetActive(false);
 
         if (PlayerPrefs.GetInt("InfoPopupSeen", 0) == 0)
         {
@@ -700,6 +728,8 @@ public class FeedbackPanel : MonoBehaviour
 
     void OnDisable()
     {
+        UserEvents.PanelClosed<FeedbackPanelToggled>();
+
         // Clear up listeners
         popupTitleTextHelper?.ClearText();
         popupTextHelper?.ClearText();

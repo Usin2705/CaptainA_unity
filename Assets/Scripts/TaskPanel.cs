@@ -1,4 +1,5 @@
 using System.Linq;
+using SaySuomi.UserBehaviour;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -88,6 +89,8 @@ public class TaskPanel : MonoBehaviour
 
     void OnEnable()
     {
+        UserEvents.PanelOpened(new TaskSelectionPanelToggled());
+
         // Stops animated dropdown error message from appearing
         StopErrorAnimation();
 
@@ -111,6 +114,7 @@ public class TaskPanel : MonoBehaviour
                 // listener per button, and these two always fired together anyway.
                 advancePanelGO.SetActive(true);
                 taskPanelGO.SetActive(false);
+                UserEvents.EndSession();
             }
         );
 
@@ -205,6 +209,11 @@ public class TaskPanel : MonoBehaviour
                 errorPopupGO.SetActive(false);
             }
         );
+    }
+
+    void OnDisable()
+    {
+        UserEvents.PanelClosed<TaskSelectionPanelToggled>();
     }
 
     /// <summary>
