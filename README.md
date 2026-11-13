@@ -24,7 +24,7 @@ If you use or refer to the ASA student release, please cite it as follows.
 
 **APA 7th**
 
-Immonen, L., Kähkönen, A., Porola, I., Ratilainen, M., Savolainen, A., Takala, K., Tonteri, M., Immonen, R., Phan, N., & von Zansen, A. (2026). *SaySuomi: Automatic Speaking Assessment Student Release v1.0.0* (Version v1.0.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.20021230
+Immonen, L., Kähkönen, A., Porola, I., Ratilainen, M., Savolainen, A., Takala, K., Tonteri, M., Immonen, R., Phan, N., & von Zansen, A. (2026). _SaySuomi: Automatic Speaking Assessment Student Release v1.0.0_ (Version v1.0.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.20021230
 
 All authors contributed equally.
 
@@ -48,13 +48,15 @@ All authors contributed equally.
 
 - `Assets/`: Unity app source files.
 - `Packages/` and `ProjectSettings/`: Unity package and project configuration.
-- `docs/`: ASA release documentation, historical plans, legacy server notes, and development notes.
+- `docs/`: ASA release documentation, historical plans, legacy server notes, user behaviour events, and development notes.
 - `MDD_Server/`: legacy/server-side project files kept for project context.
+- `tools/`: development tools: `format.sh` to format and lint the code, and a [fake server](tools/fake-server/README.md) to test the app without a backend.
 
 ## Documentation
 
 - [ASA release documentation](docs/asa_release/SaySuomi-ASA%20doc.pdf)
 - [ASA front-end development plan](docs/ASA_frontend_plan.md)
+- [ASA user behaviour events (client)](docs/USER_BEHAVIOUR.md)
 - [Legacy CaptainA pronunciation server and API notes](docs/legacy_pronunciation_server.md)
 - [Future development notes](docs/development_notes.md)
 

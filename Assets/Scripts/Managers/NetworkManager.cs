@@ -578,6 +578,9 @@ public class NetworkManager : MonoBehaviour
     /// </summary>
     public static void ClearLocalASAData()
     {
+        // First, so nothing more is queued for an account that is going away.
+        SaySuomi.UserBehaviour.UserEvents.Forget();
+
         // Identity and consent - without these the app re-runs onboarding.
         PlayerPrefs.DeleteKey("UserGuid");
         PlayerPrefs.DeleteKey("ConsentGiven");

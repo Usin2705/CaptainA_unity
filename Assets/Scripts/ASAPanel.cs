@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Linq;
 using System.Runtime.Serialization.Formatters;
+using SaySuomi.UserBehaviour;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -15,6 +15,9 @@ public class ASAPanel : MonoBehaviour
     private AdvancePanel AdvancePanel;
 
     [SerializeField]
+    GameObject ASAPanelGO;
+
+    [SerializeField]
     GameObject recordButtonGO;
 
     [SerializeField]
@@ -27,7 +30,7 @@ public class ASAPanel : MonoBehaviour
     GameObject replayButtonGO;
 
     [SerializeField]
-    GameObject replayBarGO;
+    GameObject stopReplayButtonGO;
 
     [SerializeField]
     GameObject progressBarBackgroundGO;
@@ -138,8 +141,8 @@ public class ASAPanel : MonoBehaviour
         RectTransform textRect = taskTextGO.rectTransform;
         taskTextPosYWithImage ??= textRect.anchoredPosition.y;
 
-        // This is mostly a cosmetic adjustment: the text is placed below the picture, 
-        // and without one that gap is wasted and a long prompt runs into the record button. 
+        // This is mostly a cosmetic adjustment: the text is placed below the picture,
+        // and without one that gap is wasted and a long prompt runs into the record button.
         // Only task 6 has no picture today, so it's mostly for task 6, which has
         // a very long warning text.
         if (task.taskImage != null)
@@ -159,6 +162,16 @@ public class ASAPanel : MonoBehaviour
                 taskTextPosYWithoutImage
             );
         }
+
+        UserEvents.PanelOpened(new TaskPanelToggled(CurrentServerTaskId));
+    }
+
+    void Awake()
+    {
+        PanelEventWatcher.Attach(
+            loadingPopUpGO,
+            () => new LoadingModalToggled(CurrentServerTaskId)
+        );
     }
 
     void OnEnable()
@@ -167,13 +180,25 @@ public class ASAPanel : MonoBehaviour
         pauseButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         sendButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         replayButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
+        stopReplayButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         resultsButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         backButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
 
         recordButtonGO.GetComponent<Button>().onClick.AddListener(() => OnRecordButtonClicked());
-        pauseButtonGO.GetComponent<Button>().onClick.AddListener(() => StopRecord());
+        pauseButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() =>
+            {
+                // Here rather than in StopRecord: the timer and the back button also call it,
+                // and only taps count.
+                TrackMicButton(MicButton.Stop);
+                StopRecord();
+            });
         sendButtonGO.GetComponent<Button>().onClick.AddListener(() => OnSendButtonClicked());
         replayButtonGO.GetComponent<Button>().onClick.AddListener(() => OnReplayButtonClicked());
+        stopReplayButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() => OnStopReplayButtonClicked());
         resultsButtonGO.GetComponent<Button>().onClick.AddListener(() => OnResultsButtonClicked());
         backButtonGO.GetComponent<Button>().onClick.AddListener(() => OnBackButtonClicked());
 
@@ -199,7 +224,7 @@ public class ASAPanel : MonoBehaviour
         selfAssessmentFeedback.Attach(ratingOptions, () => feedbackTextGO.text);
         selfAssessmentFeedback.AttachComment(feedbackTextGO, ratingOptions);
 
-        replayBarGO.SetActive(false);
+        stopReplayButtonGO.SetActive(false);
         progressBarBackgroundGO.SetActive(false);
         progressBarGO.SetActive(false);
 
@@ -227,7 +252,7 @@ public class ASAPanel : MonoBehaviour
         pauseButtonGO.SetActive(true);
         sendButtonGO.SetActive(false);
         replayButtonGO.SetActive(false);
-        replayBarGO.SetActive(false);
+        stopReplayButtonGO.SetActive(false);
 
         // Show the countdown progress bar
         progressBarBackgroundGO.SetActive(true);
@@ -245,7 +270,7 @@ public class ASAPanel : MonoBehaviour
         }
         if (isReplaying)
         {
-            UpdateReplayBar();
+            UpdateReplayTimer();
         }
         if (isLoading)
         {
@@ -282,8 +307,9 @@ public class ASAPanel : MonoBehaviour
             return;
         }
 
-        // The results screen opens on top of this one without switching it off, so this
-        // Update carries on running behind it. It owns the key while it is up.
+        // Opening the results switches this panel off, but closing their first-time info
+        // popup switches it back on, so this Update can run behind them. The results own
+        // the key while they are up.
         if (feedbackPanelGO.activeSelf)
         {
             return;
@@ -335,21 +361,22 @@ public class ASAPanel : MonoBehaviour
         }
     }
 
-    void UpdateReplayBar()
+    void UpdateReplayTimer()
     {
-        // Same principle as with UpdateProgressBar(), but this time comparing with the length of the recording
         currentTime -= Time.deltaTime;
-        replayBarGO.GetComponent<Image>().fillAmount = currentTime / recording.length;
         if (currentTime <= 0)
-        {
-            currentTime = 0;
-            replayBarGO.SetActive(false);
-            isReplaying = false;
-        }
+            EndReplay();
+    }
+
+    private void TrackMicButton(MicButton button)
+    {
+        UserEvents.Track(new MicButtonClicked(button, CurrentServerTaskId));
     }
 
     public void OnRecordButtonClicked()
     {
+        TrackMicButton(MicButton.Record);
+
         // Stop stays dead until the microphone is genuinely open. It used to be re-enabled
         // by a 0.3s timer running alongside AudioManager's own 0.3s startup delay, so the
         // two finished together and a quick tap could land Microphone.End() before the
@@ -435,11 +462,26 @@ public class ASAPanel : MonoBehaviour
 
     public void OnReplayButtonClicked()
     {
+        TrackMicButton(MicButton.Replay);
+
         // Retrieve audio and set the relevant variables for playing the animation
         recording = audioManager.GetReplayClip();
         currentTime = recording.length;
-        replayBarGO.SetActive(true);
+        stopReplayButtonGO.SetActive(true);
         isReplaying = true;
+    }
+
+    public void OnStopReplayButtonClicked()
+    {
+        audioManager.StopReplaying();
+        EndReplay();
+    }
+
+    void EndReplay()
+    {
+        currentTime = 0;
+        stopReplayButtonGO.SetActive(false);
+        isReplaying = false;
     }
 
     public void OnSendButtonClicked()
@@ -447,7 +489,7 @@ public class ASAPanel : MonoBehaviour
         audioManager.StopReplaying();
         isReplaying = false;
         replayButtonGO.SetActive(false);
-        replayBarGO.SetActive(false);
+        stopReplayButtonGO.SetActive(false);
 
         // Send the audio to the server when clicked
         AudioManager
@@ -506,6 +548,10 @@ public class ASAPanel : MonoBehaviour
         loadingPopUpGO.SetActive(false);
         dimPanelASAGO.SetActive(false);
         feedbackPanelGO.SetActive(true);
+        // The task ends when its results open. Closed here so this does not depend on
+        // OnDisable, which only runs because the panel is hidden next.
+        UserEvents.PanelClosed<TaskPanelToggled>();
+        ASAPanelGO.SetActive(false);
 
         if (self_rating != null)
         {
@@ -528,6 +574,8 @@ public class ASAPanel : MonoBehaviour
 
     void OnDisable()
     {
+        UserEvents.PanelClosed<TaskPanelToggled>();
+
         taskTextHelper?.ClearText();
 
         audioManager.StopReplaying();

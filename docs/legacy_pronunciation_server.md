@@ -65,8 +65,8 @@ Random example of an ops list, converted from `Levenshtein.editops(transcript, p
 
 ```json
 [
-  {"ops": "insert", "tran_index": 0, "pred_index": 2},
-  {"ops": "delete", "tran_index": 3, "pred_index": 4},
-  {"ops": "replace", "tran_index": 5, "pred_index": 6}
+  { "ops": "insert", "tran_index": 0, "pred_index": 2 },
+  { "ops": "delete", "tran_index": 3, "pred_index": 4 },
+  { "ops": "replace", "tran_index": 5, "pred_index": 6 }
 ]
 ```

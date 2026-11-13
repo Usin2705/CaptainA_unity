@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Checks formatting before each commit. With FORMAT_HOOK=fix it formats and
+# re-stages the staged files first. Skip it with `git commit --no-verify`.
+set -euo pipefail
+
+if [[ "${FORMAT_HOOK:-}" == fix ]]; then
+  # Re-staging a partially staged file would also commit its unstaged hunks.
+  partly_staged=$(comm -12 <(git diff --cached --name-only | sort) <(git diff --name-only | sort))
+  if [[ -z "$partly_staged" ]]; then
+    tools/format.sh --fix
+    git diff --cached --name-only -z --diff-filter=ACMR | xargs -0 -r git add --
+  else
+    printf 'pre-commit: not fixing, these files are partially staged:\n%s\n' "$partly_staged" >&2
+  fi
+fi
+
+if ! tools/format.sh --check; then
+  echo "pre-commit: run tools/format.sh --fix, or commit with FORMAT_HOOK=fix" >&2
+  exit 1
+fi

@@ -65,9 +65,9 @@ If you do restore it, note:
 [`Secret.cs.template`](../Assets/Scripts/Utils/Secret.cs.template). Values are not in the
 repository — ask a maintainer.
 
-| Field | Used for |
-| --- | --- |
-| `AZUREGPT_API` | `Ocp-Apim-Subscription-Key` header on the Aalto Azure gateway |
+| Field             | Used for                                                                                 |
+| ----------------- | ---------------------------------------------------------------------------------------- |
+| `AZUREGPT_API`    | `Ocp-Apim-Subscription-Key` header on the Aalto Azure gateway                            |
 | `AALTO_GPT4O_URL` | The gateway's GPT-4o endpoint, used by the commented-out Azure branch in `GPTRatingText` |
 
 Both fields are still declared in `Secret.cs.template`, but **neither is read by any live
