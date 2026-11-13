@@ -196,7 +196,9 @@ public class ASAPanel : MonoBehaviour
             });
         sendButtonGO.GetComponent<Button>().onClick.AddListener(() => OnSendButtonClicked());
         replayButtonGO.GetComponent<Button>().onClick.AddListener(() => OnReplayButtonClicked());
-        stopReplayButtonGO.GetComponent<Button>().onClick.AddListener(() => OnStopReplayButtonClicked());
+        stopReplayButtonGO
+            .GetComponent<Button>()
+            .onClick.AddListener(() => OnStopReplayButtonClicked());
         resultsButtonGO.GetComponent<Button>().onClick.AddListener(() => OnResultsButtonClicked());
         backButtonGO.GetComponent<Button>().onClick.AddListener(() => OnBackButtonClicked());
 

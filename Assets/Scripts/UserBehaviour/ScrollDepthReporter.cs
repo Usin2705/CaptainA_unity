@@ -32,14 +32,14 @@ namespace SaySuomi.UserBehaviour
             IEndDragHandler,
             IScrollHandler
     {
-        // ScrollRect zeroes inertia below 1 unit/s.
-        const float RestingSpeedSqr = 1f;
+        // Inertia left that would move the depth by less than this counts as at rest, well under MinDepthChange.
+        const float SettleDepth = 0.1f;
 
         // Hold time before a scroll counts as at rest, so each wheel notch is not its own report.
-        const float SettleSeconds = 0.15f;
+        const float SettleSeconds = 0.05f;
 
         // Smaller changes are not reported.
-        const float MinDepthChange = 0.01f;
+        const float MinDepthChange = 0.1f;
 
         ScrollRect? scrollRect;
         Action<float>? report;
@@ -106,7 +106,7 @@ namespace SaySuomi.UserBehaviour
                 return;
             }
 
-            if (scrollRect.velocity.sqrMagnitude > RestingSpeedSqr)
+            if (!IsSettled(scrollRect))
             {
                 lastMovedAt = Time.unscaledTime;
                 return;
@@ -130,6 +130,25 @@ namespace SaySuomi.UserBehaviour
 
             lastReportedDepth = depth;
             report?.Invoke(depth);
+        }
+
+        // Waiting for the speed to reach zero takes seconds of invisible creep after a flick.
+        static bool IsSettled(ScrollRect scrollRect)
+        {
+            RectTransform viewport =
+                scrollRect.viewport != null
+                    ? scrollRect.viewport
+                    : (RectTransform)scrollRect.transform;
+            float scrollable = scrollRect.content.rect.height - viewport.rect.height;
+            if (scrollable <= 0f)
+            {
+                return true;
+            }
+
+            // Inertia decays exponentially, so the travel left is speed / -ln(decelerationRate).
+            float remainingTravel =
+                Mathf.Abs(scrollRect.velocity.y) / -Mathf.Log(scrollRect.decelerationRate);
+            return remainingTravel / scrollable < SettleDepth;
         }
     }
 }
