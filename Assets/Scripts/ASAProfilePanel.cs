@@ -10,973 +10,974 @@ using UnityEngine.UI;
 
 namespace SaySuomi.Legacy
 {
-public class ASAProfilePanel : MonoBehaviour
-{
-    [SerializeField]
-    GameObject levelBarGO;
-
-    [SerializeField]
-    private TextMeshProUGUI levelText;
-
-    [SerializeField]
-    private TextMeshProUGUI performanceText;
-
-    [SerializeField]
-    private TextMeshProUGUI rankText;
-
-    [SerializeField]
-    private TextMeshProUGUI positionText;
-
-    [SerializeField]
-    GameObject profileBackButtonGO;
-
-    [SerializeField]
-    GameObject profilePanelGO;
-
-    [SerializeField]
-    GameObject settingsButtonGO;
-
-    [SerializeField]
-    GameObject settingsBackButtonGO;
-
-    [SerializeField]
-    GameObject settingsPopupGO;
-
-    [SerializeField]
-    GameObject dimPanelGO;
-
-    [SerializeField]
-    GameObject copyGuidButtonGO;
-
-    // Data deletion, run from the app so nobody has to service requests by hand.
-    [SerializeField]
-    GameObject deleteDataButtonGO;
-
-    [SerializeField]
-    GameObject deleteConfirmPopupGO;
-
-    [SerializeField]
-    GameObject deleteConfirmButtonGO;
-
-    [SerializeField]
-    GameObject deleteCancelButtonGO;
-
-    [SerializeField]
-    TextMeshProUGUI deleteStatusText;
-
-    [SerializeField]
-    private LocalizedString deleteWarningText;
-
-    [SerializeField]
-    private LocalizedString deleteLoadingText;
-
-    [SerializeField]
-    private LocalizedString deleteConfirmedNotice;
-
-    [SerializeField]
-    private LocalizedString deleteReceivedNotice;
-
-    private LocalizedTextHelper deleteStatusHelper;
-
-    // The cancel button doubles as "OK" once the deletion has run, because by then
-    // there is nothing left to cancel.
-    [SerializeField]
-    TextMeshProUGUI deleteCancelLabel;
-
-    [SerializeField]
-    TextMeshProUGUI deleteOkLabel;
-
-    // Closed along with the profile after a deletion: the task list is where the guid was
-    // reachable from, and there is no account behind it any more.
-    [SerializeField]
-    GameObject taskPanelGO;
-
-    [SerializeField]
-    GameObject feedbackButtonGO;
-
-    [SerializeField]
-    GameObject feedbackPopUpGO;
-
-    [SerializeField]
-    GameObject feedbackBackButtonGO;
-
-    [SerializeField]
-    GameObject feedbackSendButtonGO;
-
-    [SerializeField]
-    GameObject loadingPopUpProfile;
-
-    [SerializeField]
-    GameObject performanceInfo;
-
-    [SerializeField]
-    GameObject rankInfo;
-
-    [SerializeField]
-    GameObject revertLevelButtonGO;
-
-    [SerializeField]
-    GameObject advanceLevelButtonGO;
-
-    [SerializeField]
-    GameObject insufficientDataNoticeGO;
-
-    [SerializeField]
-    GameObject levelTextGO;
-
-    [SerializeField]
-    GameObject levelDescriptionTextGO;
-
-    [SerializeField]
-    private TextMeshProUGUI levelDescriptionText;
-
-    [SerializeField]
-    private LocalizedString levelDescriptionA1;
-
-    [SerializeField]
-    private LocalizedString levelDescriptionA2;
-
-    [SerializeField]
-    private LocalizedString levelDescriptionB1;
-
-    [SerializeField]
-    private LocalizedString levelDescriptionB2;
-
-    [SerializeField]
-    private LocalizedString levelDescriptionC1Plus;
-
-    private LocalizedTextHelper levelDescriptionHelper;
-
-    [SerializeField]
-    GameObject errorPopupGO;
-
-    [SerializeField]
-    TMP_InputField comparisonFeedbackTextGO;
-
-    [SerializeField]
-    TextMeshProUGUI insufficientDataNotice;
-
-    [SerializeField]
-    private FeedbackPanel FeedbackPanel;
-
-    [System.Serializable]
-    public class Stats
+    public class ASAProfilePanel : MonoBehaviour
     {
-        // Research values. Neither may be written on the screen as a number: they are
-        // finer than anything a learner should be told, and "you are in the 13th
-        // percentile" is precisely the claim v1.3.0 set out to remove. The numbers a
-        // learner reads come from `display`, already bucketed.
-        //
-        // percentile has two uses that are not a number on a screen, and both are fine:
-        // it fills the level ring, which shows no figure, and it gates whether the Advance
-        // button appears.
-        public float percentile = -1f;
-        public int rank;
+        [SerializeField]
+        GameObject levelBarGO;
 
-        public string cefr_level;
-        public int cohort_size;
+        [SerializeField]
+        private TextMeshProUGUI levelText;
 
-        // The bucketed position, and the only part of this response that may be shown.
-        public Display display;
+        [SerializeField]
+        private TextMeshProUGUI performanceText;
 
-        // Present only when the comparison could NOT be produced. A successful
-        // ComparisonResponse carries no status at all, so an empty string here is the
-        // reliable "we got real numbers" signal - more reliable than percentile == -1,
-        // which is indistinguishable from a genuine bottom-of-cohort result.
-        public string status;
-    }
+        [SerializeField]
+        private TextMeshProUGUI rankText;
 
-    [SerializeField]
-    private LocalizedString rankPercentText;
+        [SerializeField]
+        private TextMeshProUGUI positionText;
 
-    [SerializeField]
-    private LocalizedString rankPositionText;
+        [SerializeField]
+        GameObject profileBackButtonGO;
 
-    [SerializeField]
-    private LocalizedString topRankText;
+        [SerializeField]
+        GameObject profilePanelGO;
 
-    [SerializeField]
-    private LocalizedString rankFirstText;
+        [SerializeField]
+        GameObject settingsButtonGO;
 
-    [SerializeField]
-    private LocalizedString noRankNotice;
+        [SerializeField]
+        GameObject settingsBackButtonGO;
 
-    [SerializeField]
-    private LocalizedString noPositionNotice;
+        [SerializeField]
+        GameObject settingsPopupGO;
 
-    [SerializeField]
-    private LocalizedString insufficientTasksNotice;
+        [SerializeField]
+        GameObject dimPanelGO;
 
-    [SerializeField]
-    private LocalizedString cohortSizeNotice;
+        [SerializeField]
+        GameObject copyGuidButtonGO;
 
-    [SerializeField]
-    private LocalizedString rankUnavailableNotice;
+        // Data deletion, run from the app so nobody has to service requests by hand.
+        [SerializeField]
+        GameObject deleteDataButtonGO;
 
-    [SerializeField]
-    private LocalizedString rankUnavailableGeneralNotice;
+        [SerializeField]
+        GameObject deleteConfirmPopupGO;
 
-    // The highest rank the server sends exactly, i.e. where its rank rungs stop being every
-    // integer (app/utils/ranking.py, _RANK_RUNGS = 1, 2, 3, 5, 10, ...). Must match the
-    // server: set it higher only once a server that sends those ranks exactly is live.
-    const int ExactRankUpTo = 3;
+        [SerializeField]
+        GameObject deleteConfirmButtonGO;
 
-    private LocalizedTextHelper rankPercentHelper;
+        [SerializeField]
+        GameObject deleteCancelButtonGO;
 
-    private LocalizedTextHelper rankPositionHelper;
+        [SerializeField]
+        TextMeshProUGUI deleteStatusText;
 
-    private LocalizedTextHelper rankTopPositionHelper;
+        [SerializeField]
+        private LocalizedString deleteWarningText;
 
-    private LocalizedTextHelper insufficientDataHelper;
+        [SerializeField]
+        private LocalizedString deleteLoadingText;
 
-    /// <summary>
-    /// The learner-facing position, already rounded into buckets by the server.
-    ///
-    /// The ladders are deliberately server-side: they get retuned as the cohorts grow, and
-    /// that has to reach installed apps without a client release. So nothing here is
-    /// recomputed, compared against a threshold, or interpolated - the numbers are
-    /// rendered as they arrive or not at all.
-    ///
-    /// The buckets round away from the learner, never toward: someone genuinely at 3.4%
-    /// is shown "top 5%". Every rendered claim is literally true and none of them flatter.
-    /// </summary>
-    [System.Serializable]
-    public class Display
-    {
-        // Server sends 1, 5, 10, 25, 50, or null. JsonUtility cannot hold a null int, so
-        // it lands here as 0 - which is safe, because 0 is not one of the buckets and
-        // therefore cannot be confused with a real position.
-        public int top_percent;
+        [SerializeField]
+        private LocalizedString deleteConfirmedNotice;
 
-        // 1, 2, 3, 5, 10, 25, 50, 100, or null (0 here). Null past #100.
-        public int top_rank;
+        [SerializeField]
+        private LocalizedString deleteReceivedNotice;
 
-        // Both are null for anyone in the bottom half of their cohort. That means show no
-        // position at all - not a placeholder, not "unranked".
-        public bool HasPercent => top_percent > 0;
-        public bool HasRank => top_rank > 0;
-    }
+        private LocalizedTextHelper deleteStatusHelper;
 
-    [System.Serializable]
-    public class InsufficientStats
-    {
-        // Which of the three unavailable cases this is. The fields below are populated
-        // per case, not all at once - see NotEnoughTasks.
-        public string status;
+        // The cancel button doubles as "OK" once the deletion has run, because by then
+        // there is nothing left to cancel.
+        [SerializeField]
+        TextMeshProUGUI deleteCancelLabel;
 
-        // The server's own wording. Used as the fallback if it ever adds a status we do
-        // not recognise, so a new case degrades to "slightly generic" rather than "wrong".
-        public string message;
+        [SerializeField]
+        TextMeshProUGUI deleteOkLabel;
 
-        // Absent on RANK_UNAVAILABLE.
-        public string cefr_level;
+        // Closed along with the profile after a deletion: the task list is where the guid was
+        // reachable from, and there is no account behind it any more.
+        [SerializeField]
+        GameObject taskPanelGO;
 
-        // USER_ASSESSMENT_DATA_INSUFFICIENT only.
-        public int current_assessments;
-        public int required_assessments;
+        [SerializeField]
+        GameObject feedbackButtonGO;
 
-        // COHORT_SIZE_TOO_SMALL only.
-        public int cohort_size;
-    }
+        [SerializeField]
+        GameObject feedbackPopUpGO;
 
-    public TMP_Text guidTextGO;
+        [SerializeField]
+        GameObject feedbackBackButtonGO;
 
-    public ToggleGroup comparisonRatingOptions;
+        [SerializeField]
+        GameObject feedbackSendButtonGO;
 
-    public string guid;
+        [SerializeField]
+        GameObject loadingPopUpProfile;
 
-    void Awake()
-    {
-        ScrollDepthReporter.Attach(
-            GetComponent<ScrollRect>(),
-            depth => UserEvents.Track(new ProfilePanelScrolled(depth))
-        );
-    }
+        [SerializeField]
+        GameObject performanceInfo;
 
-    void OnEnable()
-    {
-        UserEvents.PanelOpened(new ProfilePanelToggled());
+        [SerializeField]
+        GameObject rankInfo;
 
-        // Stops animated dropdown error message from appearing
-        StopErrorAnimation();
+        [SerializeField]
+        GameObject revertLevelButtonGO;
 
-        // Set proper game objects active and establish button behavior
-        levelBarGO.SetActive(true);
-        revertLevelButtonGO.SetActive(true);
-        advanceLevelButtonGO.SetActive(true);
-        performanceInfo.SetActive(true);
-        rankInfo.SetActive(true);
-        feedbackButtonGO.SetActive(true);
-        insufficientDataNoticeGO.SetActive(false);
+        [SerializeField]
+        GameObject advanceLevelButtonGO;
 
-        ButtonUtils.Rewire(
-            profileBackButtonGO,
-            () =>
-            {
-                profilePanelGO.SetActive(false);
-                loadingPopUpProfile.SetActive(false);
-            }
-        );
+        [SerializeField]
+        GameObject insufficientDataNoticeGO;
 
-        settingsPopupGO.SetActive(false);
-        // A session timeout can switch this panel off with the popup still open.
-        feedbackPopUpGO.SetActive(false);
-        dimPanelGO.SetActive(false);
+        [SerializeField]
+        GameObject levelTextGO;
 
-        guid = PlayerPrefs.GetString("UserGuid");
-        guidTextGO.text = guid;
+        [SerializeField]
+        GameObject levelDescriptionTextGO;
 
-        ButtonUtils.Rewire(
-            settingsButtonGO,
-            () =>
-            {
-                settingsPopupGO.SetActive(true);
-                dimPanelGO.SetActive(true);
-            }
-        );
+        [SerializeField]
+        private TextMeshProUGUI levelDescriptionText;
 
-        ButtonUtils.Rewire(
-            settingsBackButtonGO,
-            () =>
-            {
-                settingsPopupGO.SetActive(false);
-                dimPanelGO.SetActive(false);
-            }
-        );
+        [SerializeField]
+        private LocalizedString levelDescriptionA1;
 
-        ButtonUtils.Rewire(copyGuidButtonGO, () => GUIUtility.systemCopyBuffer = guid);
+        [SerializeField]
+        private LocalizedString levelDescriptionA2;
 
-        SetUpDeleteData();
-        SetUpLevelChange();
+        [SerializeField]
+        private LocalizedString levelDescriptionB1;
 
-        ButtonUtils.Rewire(
-            feedbackButtonGO,
-            () =>
-            {
-                feedbackPopUpGO.SetActive(true);
-                dimPanelGO.SetActive(true);
-            }
-        );
+        [SerializeField]
+        private LocalizedString levelDescriptionB2;
 
-        ButtonUtils.Rewire(
-            feedbackBackButtonGO,
-            () =>
-            {
-                comparisonRatingOptions.SetAllTogglesOff();
-                comparisonFeedbackTextGO.text = "";
-                feedbackPopUpGO.SetActive(false);
-                dimPanelGO.SetActive(false);
-                errorPopupGO.SetActive(false);
-            }
-        );
+        [SerializeField]
+        private LocalizedString levelDescriptionC1Plus;
 
-        ButtonUtils.Rewire(
-            feedbackSendButtonGO,
-            () =>
-            {
-                var helpful = comparisonRatingOptions.ActiveToggles().FirstOrDefault();
-                string comment_helpful = comparisonFeedbackTextGO.text;
+        private LocalizedTextHelper levelDescriptionHelper;
 
-                // Show and error popup if user tries to send feeback without choosing any of the emojis
-                if (helpful == null)
-                {
-                    Animator anim = errorPopupGO.GetComponent<Animator>();
+        [SerializeField]
+        GameObject errorPopupGO;
 
-                    errorPopupGO.SetActive(true);
+        [SerializeField]
+        TMP_InputField comparisonFeedbackTextGO;
 
-                    anim.enabled = true;
+        [SerializeField]
+        TextMeshProUGUI insufficientDataNotice;
 
-                    anim.Play("Error Popup Animation");
+        [SerializeField]
+        private FeedbackPanel FeedbackPanel;
 
-                    return;
-                }
-                // Send feedback to server
-                StartCoroutine(
-                    NetworkManager
-                        .GetManager()
-                        .ServerPost_feedback(
-                            POSTType.USER_ASA_FEEDBACK,
-                            "comparison_ui",
-                            helpful.name,
-                            comment_helpful
-                        )
-                );
-                // Reset feedback form when done
-                comparisonRatingOptions.SetAllTogglesOff();
-                comparisonFeedbackTextGO.text = "";
-                feedbackPopUpGO.SetActive(false);
-                dimPanelGO.SetActive(false);
-                errorPopupGO.SetActive(false);
-            }
-        );
-    }
-
-    /// <summary>
-    /// Wires the delete-my-data flow: red button in settings, then a confirmation the user
-    /// has to pass before anything is sent.
-    ///
-    /// The deletion itself lives in NetworkManager.ServerPost_deleteUser, which clears the
-    /// local data whatever the server says, and records whether the server confirmed the
-    /// erase. Both outcomes are shown honestly here.
-    /// </summary>
-    private void SetUpDeleteData()
-    {
-        if (deleteDataButtonGO == null || deleteConfirmPopupGO == null)
+        [System.Serializable]
+        public class Stats
         {
-            return;
+            // Research values. Neither may be written on the screen as a number: they are
+            // finer than anything a learner should be told, and "you are in the 13th
+            // percentile" is precisely the claim v1.3.0 set out to remove. The numbers a
+            // learner reads come from `display`, already bucketed.
+            //
+            // percentile has two uses that are not a number on a screen, and both are fine:
+            // it fills the level ring, which shows no figure, and it gates whether the Advance
+            // button appears.
+            public float percentile = -1f;
+            public int rank;
+
+            public string cefr_level;
+            public int cohort_size;
+
+            // The bucketed position, and the only part of this response that may be shown.
+            public Display display;
+
+            // Present only when the comparison could NOT be produced. A successful
+            // ComparisonResponse carries no status at all, so an empty string here is the
+            // reliable "we got real numbers" signal - more reliable than percentile == -1,
+            // which is indistinguishable from a genuine bottom-of-cohort result.
+            public string status;
         }
 
-        deleteConfirmPopupGO.SetActive(false);
+        [SerializeField]
+        private LocalizedString rankPercentText;
 
-        ButtonUtils.Rewire(
-            deleteDataButtonGO,
-            () =>
-            {
-                // Reset every time: the popup is reused, and the previous run may have
-                // left it in its finished state with the confirm button hidden.
-                deleteStatusHelper ??= new LocalizedTextHelper(deleteStatusText);
-                deleteStatusHelper.SetText(deleteWarningText);
-                deleteConfirmButtonGO.SetActive(true);
-                SetDeleteButtonsInteractable(true);
-                deleteCancelLabel.gameObject.SetActive(true);
-                deleteOkLabel.gameObject.SetActive(false);
-                deleteConfirmPopupGO.SetActive(true);
-                dimPanelGO.SetActive(true);
-            }
-        );
+        [SerializeField]
+        private LocalizedString rankPositionText;
 
-        ButtonUtils.Rewire(
-            deleteCancelButtonGO,
-            () =>
-            {
-                deleteConfirmPopupGO.SetActive(false);
+        [SerializeField]
+        private LocalizedString topRankText;
 
-                bool accountGone = string.IsNullOrEmpty(PlayerPrefs.GetString("UserGuid", ""));
+        [SerializeField]
+        private LocalizedString rankFirstText;
 
-                if (!accountGone)
-                {
-                    // Cancelled. This returns to the settings popup, which is still open
-                    // underneath - so the dim stays on. Turning it off here left the popup
-                    // sitting on an undimmed screen.
-                    return;
-                }
+        [SerializeField]
+        private LocalizedString noRankNotice;
 
-                // Deleted. There is no account left to show a profile or a guid for, so
-                // everything closes back to the task list rather than returning to numbers
-                // that no longer belong to anyone.
-                settingsPopupGO.SetActive(false);
-                profilePanelGO.SetActive(false);
+        [SerializeField]
+        private LocalizedString noPositionNotice;
 
-                if (taskPanelGO != null)
-                {
-                    taskPanelGO.SetActive(false);
-                }
+        [SerializeField]
+        private LocalizedString insufficientTasksNotice;
 
-                dimPanelGO.SetActive(false);
-            }
-        );
+        [SerializeField]
+        private LocalizedString cohortSizeNotice;
 
-        ButtonUtils.Rewire(
-            deleteConfirmButtonGO,
-            () =>
-            {
-                // Both buttons go dead for the duration: a second tap would fire a second
-                // deletion for a guid the first one is already removing.
-                SetDeleteButtonsInteractable(false);
-                deleteStatusHelper.SetText(deleteLoadingText);
+        [SerializeField]
+        private LocalizedString rankUnavailableNotice;
 
-                StartCoroutine(
-                    NetworkManager
-                        .GetManager()
-                        .ServerPost_deleteUser(serverConfirmed =>
-                        {
-                            NetworkManager network = NetworkManager.GetManager();
+        [SerializeField]
+        private LocalizedString rankUnavailableGeneralNotice;
 
-                            if (network.DataConfirmedDeleted)
-                            {
-                                deleteStatusHelper.SetText(deleteConfirmedNotice);
-                            }
-                            else if (serverConfirmed)
-                            {
-                                deleteStatusHelper.SetText(deleteReceivedNotice);
-                            }
-                            else
-                            {
-                                // Same wording as a server-acknowledged request. The local
-                                // data really is gone, and the guid is queued in
-                                // PendingDeleteGuid and retried on every launch until the
-                                // server takes it - so from the user's side the outcome is
-                                // the same and the difference is ours to resolve, not
-                                // theirs to worry about. The console still carries the
-                                // real failure for us; see DeleteUserOnServer.
-                                deleteStatusHelper.SetText(deleteReceivedNotice);
-                            }
+        // The highest rank the server sends exactly, i.e. where its rank rungs stop being every
+        // integer (app/utils/ranking.py, _RANK_RUNGS = 1, 2, 3, 5, 10, ...). Must match the
+        // server: set it higher only once a server that sends those ranks exactly is live.
+        const int ExactRankUpTo = 3;
 
-                            // Nothing left to confirm; the cancel button becomes the way out.
-                            deleteConfirmButtonGO.SetActive(false);
-                            SetDeleteButtonsInteractable(true);
-                            deleteCancelLabel.gameObject.SetActive(false);
-                            deleteOkLabel.gameObject.SetActive(true);
-                        })
-                );
-            }
-        );
-    }
+        private LocalizedTextHelper rankPercentHelper;
 
-    private void SetDeleteButtonsInteractable(bool interactable)
-    {
-        if (deleteConfirmButtonGO != null)
+        private LocalizedTextHelper rankPositionHelper;
+
+        private LocalizedTextHelper rankTopPositionHelper;
+
+        private LocalizedTextHelper insufficientDataHelper;
+
+        /// <summary>
+        /// The learner-facing position, already rounded into buckets by the server.
+        ///
+        /// The ladders are deliberately server-side: they get retuned as the cohorts grow, and
+        /// that has to reach installed apps without a client release. So nothing here is
+        /// recomputed, compared against a threshold, or interpolated - the numbers are
+        /// rendered as they arrive or not at all.
+        ///
+        /// The buckets round away from the learner, never toward: someone genuinely at 3.4%
+        /// is shown "top 5%". Every rendered claim is literally true and none of them flatter.
+        /// </summary>
+        [System.Serializable]
+        public class Display
         {
-            deleteConfirmButtonGO.GetComponent<Button>().interactable = interactable;
+            // Server sends 1, 5, 10, 25, 50, or null. JsonUtility cannot hold a null int, so
+            // it lands here as 0 - which is safe, because 0 is not one of the buckets and
+            // therefore cannot be confused with a real position.
+            public int top_percent;
+
+            // 1, 2, 3, 5, 10, 25, 50, 100, or null (0 here). Null past #100.
+            public int top_rank;
+
+            // Both are null for anyone in the bottom half of their cohort. That means show no
+            // position at all - not a placeholder, not "unranked".
+            public bool HasPercent => top_percent > 0;
+            public bool HasRank => top_rank > 0;
         }
 
-        if (deleteCancelButtonGO != null)
+        [System.Serializable]
+        public class InsufficientStats
         {
-            deleteCancelButtonGO.GetComponent<Button>().interactable = interactable;
-        }
-    }
+            // Which of the three unavailable cases this is. The fields below are populated
+            // per case, not all at once - see NotEnoughTasks.
+            public string status;
 
-    public void StopErrorAnimation()
-    {
-        // Stops the drop-down error message animation
-        Animator anim = errorPopupGO.GetComponent<Animator>();
-        anim.enabled = false;
-        errorPopupGO.SetActive(false);
-    }
+            // The server's own wording. Used as the fallback if it ever adds a status we do
+            // not recognise, so a new case degrades to "slightly generic" rather than "wrong".
+            public string message;
 
-    /// <summary>
-    /// The ring around the grade letter, showing roughly where the learner sits.
-    ///
-    /// Driven by the bucket, not by `percentile`. A ring filled to an exact percentile is
-    /// still a display of it - a finer claim than the server is willing to make to a
-    /// learner - so it moves in the same steps as the text beside it. Top 5% fills 95%.
-    ///
-    /// Filled from `percentile`, which is sent on every successful comparison whether or
-    /// not a `display` bucket comes with it. That is why the ring keeps working for the
-    /// bottom half of a cohort, where both bucket fields are null.
-    ///
-    /// This is not the thing v1.3.0 asked us to stop showing. What it removed was the
-    /// precise figure - "you are in the 13th percentile" - and a ring carries no figure a
-    /// learner can read off it. The numbers beside it come from `display` and stay
-    /// bucketed.
-    ///
-    /// The ring is never hidden: it is the frame around the grade letter, and taking it
-    /// away leaves the badge looking broken.
-    /// </summary>
-    public void UpdateLevelBar(Stats user)
-    {
-        levelBarGO.SetActive(true);
+            // Absent on RANK_UNAVAILABLE.
+            public string cefr_level;
 
-        // Clamped because percentile defaults to -1 for "absent", and a negative fill
-        // would silently render as empty rather than as the missing value it is.
-        StartCoroutine(AnimateLevelBar(Mathf.Clamp01(user.percentile)));
-    }
+            // USER_ASSESSMENT_DATA_INSUFFICIENT only.
+            public int current_assessments;
+            public int required_assessments;
 
-    private IEnumerator AnimateLevelBar(float target)
-    {
-        float filled = 0f;
-
-        while (filled < target)
-        {
-            levelBarGO.GetComponent<Image>().fillAmount = filled;
-            filled += 0.01f;
-
-            yield return null;
+            // COHORT_SIZE_TOO_SMALL only.
+            public int cohort_size;
         }
 
-        // The loop overshoots by up to one step and then stops, leaving the ring a hair
-        // short of where it was asked to go. Pin it.
-        levelBarGO.GetComponent<Image>().fillAmount = target;
-    }
+        public TMP_Text guidTextGO;
 
-    /// <summary>
-    /// Fills in the profile from a successful comparison.
-    ///
-    /// The position comes from `display` and nowhere else. This used to print
-    /// `100 * percentile` and `#rank` straight from the research fields, which could tell
-    /// a learner they were "performing better than 13.4% of A2 users" - a truthful number
-    /// and a terrible thing to read. The server now buckets it, and both fields go absent
-    /// for the bottom half of a cohort, where the honest thing to show is nothing.
-    /// </summary>
-    public void UpdateText(Stats user)
-    {
-        string level = user.cefr_level.Replace("_plus", "+");
-        levelText.text = level;
-        GiveLevelDescriptions(user.cefr_level);
+        public ToggleGroup comparisonRatingOptions;
 
-        Display display = user.display;
-        bool hasPercent = display != null && display.HasPercent;
-        bool hasRank = display != null && display.HasRank;
+        public string guid;
 
-        if (hasPercent)
+        void Awake()
         {
-            rankPercentHelper ??= new LocalizedTextHelper(performanceText);
-
-            // Used Const.ASA_RANK_TOP_PERCENT before
-            rankPercentText.Arguments = new object[] { display.top_percent, level };
-            rankPercentHelper?.SetText(rankPercentText);
-        }
-
-        if (hasRank)
-        {
-            rankPositionHelper ??= new LocalizedTextHelper(rankText);
-
-            // Used Const.ASA_RANK_WITHIN_LEVEL before
-            rankPositionText.Arguments = new object[] { level };
-            rankPositionHelper?.SetText(rankPositionText);
-
-            // Ranks up to ExactRankUpTo arrive exact and read as a place ("#2"); above it the
-            // server has rounded the rank up ("4th" arrives as 5), so it stays "Top 5": "#5"
-            // would claim a place the learner does not hold.
-            rankTopPositionHelper ??= new LocalizedTextHelper(positionText);
-
-            if (display.top_rank == 1)
-            {
-                // Used Const.ASA_RANK_FIRST before
-                rankTopPositionHelper?.SetText(rankFirstText);
-            }
-            else if (display.top_rank <= ExactRankUpTo)
-            {
-                // "#" and a number carry no words to translate, so this is not a table
-                // string. Stop the helper first, or a language change would overwrite it.
-                rankTopPositionHelper?.ClearText();
-                positionText.text = $"#{display.top_rank}";
-            }
-            else
-            {
-                // Used Const.ASA_RANK_TOP_RANK before
-                topRankText.Arguments = new object[] { display.top_rank };
-                rankTopPositionHelper?.SetText(topRankText);
-            }
-        }
-
-        if (!hasRank)
-        {
-            // The box stays where it is; only the position itself is replaced. Hiding it
-            // left a hole in the middle of the panel.
-            rankPositionHelper ??= new LocalizedTextHelper(rankText);
-
-            // Used Const.ASA_RANK_NO_POSITION_LABEL before
-            noPositionNotice.Arguments = new object[] { level };
-            rankPositionHelper?.SetText(noPositionNotice);
-
-            // ClearText only stops the helper listening; it leaves the text in place. So the
-            // box is emptied here as well, or it keeps showing either an earlier position
-            // or the scene's placeholder ("#12"), a position this learner does not have.
-            rankTopPositionHelper?.ClearText();
-
-            if (positionText != null)
-            {
-                positionText.text = "";
-            }
-        }
-
-        // No position is a valid outcome, not an error - but leaving the panel empty made
-        // it look like one, so the performance line stays visible either way.
-        //
-        // What it says is deliberately about the learner's own result and nothing else.
-        // It cannot explain the absence, because both fields go null only for the bottom
-        // half of a cohort and any explanation amounts to saying so; and it cannot fall
-        // back on cohort_size, because the number of users is not ours to disclose.
-        if (!hasPercent)
-        {
-            rankPercentHelper ??= new LocalizedTextHelper(performanceText);
-
-            // Used Const.ASA_RANK_NO_POSITION before
-            rankPercentHelper?.SetText(noRankNotice);
-        }
-
-        // Both boxes always stay up. Their contents change when there is no position to
-        // show; the panel's shape does not.
-        performanceInfo.SetActive(true);
-        rankInfo.SetActive(true);
-    }
-
-    public void GiveLevelDescriptions(string cefr_level)
-    {
-        // Gives the CEFR level descriptions in words
-        LocalizedString levelDescription = cefr_level switch
-        {
-            "A1" => levelDescriptionA1,
-            "A2" => levelDescriptionA2,
-            "B1" => levelDescriptionB1,
-            "B2" => levelDescriptionB2,
-            "C1_plus" => levelDescriptionC1Plus,
-            _ => null,
-        };
-
-        if (levelDescription != null)
-        {
-            levelDescriptionHelper ??= new LocalizedTextHelper(levelDescriptionText);
-            levelDescriptionHelper?.SetText(levelDescription);
-        }
-    }
-
-    /// <summary>
-    /// Decides whether Advance and Revert are offered, from the level and percentile the
-    /// server just sent.
-    ///
-    /// Both are set explicitly rather than only switched off. A level change reloads the
-    /// profile without re-enabling the panel, so OnEnable does not run again and anything
-    /// this method hid would stay hidden - the A1 user who advances to A2 has to get their
-    /// Revert button back.
-    /// </summary>
-    public void ShowButtons(Stats user)
-    {
-        RememberLevel(user.cefr_level);
-
-        int level = LevelIndex(currentLevel);
-        int ceiling = LevelIndex(Const.ASA_ADVANCE_CEILING);
-
-        // A level that is not on the ladder leaves no step to compute in either direction.
-        // Should not happen - the server CHECKs the same five values - but guessing a step
-        // from an unknown level is how a user ends up somewhere nobody intended.
-        bool onLadder = level >= 0;
-
-        // Going down is never gated on anything but having somewhere to go. Whatever
-        // reason a learner has for finding their level too hard, making them earn their
-        // way out of it is the wrong answer.
-        ShowRevertButton();
-
-        // Going up is: not past the ceiling, and not without having earned it - see
-        // Const.ASA_ADVANCE_MIN_PERCENTILE for where that bar sits and why.
-        advanceLevelButtonGO.SetActive(
-            onLadder
-                && level < ceiling
-                && user.percentile >= Const.ASA_ADVANCE_MIN_PERCENTILE
-                && LevelChangeConfigured
-        );
-    }
-
-    /// <summary>
-    /// Offers Revert whenever there is a level below the current one. Called from both the
-    /// ranked and the unranked paths - dropping back has no preconditions.
-    /// </summary>
-    private void ShowRevertButton()
-    {
-        revertLevelButtonGO.SetActive(LevelIndex(currentLevel) > 0 && LevelChangeConfigured);
-    }
-
-    /// <summary>
-    /// Records the level a step is measured from, ignoring an empty one.
-    ///
-    /// RANK_UNAVAILABLE carries no cefr_level. Overwriting with the blank would take the
-    /// Revert button with it, stranding whoever is on that screen at a level they may
-    /// have opened the panel specifically to leave - so the last level the server did
-    /// name is kept instead.
-    /// </summary>
-    private void RememberLevel(string cefrLevel)
-    {
-        if (!string.IsNullOrEmpty(cefrLevel))
-        {
-            currentLevel = cefrLevel;
-        }
-    }
-
-    // The level the server last reported, which is what a step is measured from. Set only
-    // from a server response - never from a change we assume went through.
-    private string currentLevel;
-
-    // The endpoint is still to be built, so ASA_SET_LEVEL_URL is blank in Secret.cs until
-    // it exists. A button that visibly does nothing is worse than no button, so both are
-    // hidden while it is. Filling the value in is all that is needed to bring them back.
-    private static bool LevelChangeConfigured => !string.IsNullOrEmpty(Secret.ASA_SET_LEVEL_URL);
-
-    private static int LevelIndex(string cefrLevel)
-    {
-        return Array.IndexOf(Const.ASA_LEVELS, cefrLevel);
-    }
-
-    /// <summary>
-    /// Wires Advance and Revert. Neither had a handler before - the Button components
-    /// carry an empty persistent call from the Inspector and nothing else - so tapping
-    /// them has never done anything.
-    /// </summary>
-    private void SetUpLevelChange()
-    {
-        ButtonUtils.Rewire(advanceLevelButtonGO, () => ChangeLevel(1));
-        ButtonUtils.Rewire(revertLevelButtonGO, () => ChangeLevel(-1));
-    }
-
-    /// <summary>
-    /// Moves the user one step along Const.ASA_LEVELS and reloads the profile.
-    /// </summary>
-    /// <param name="step">+1 to advance, -1 to revert.</param>
-    private void ChangeLevel(int step)
-    {
-        int level = LevelIndex(currentLevel);
-
-        if (level < 0)
-        {
-            Debug.LogWarning(
-                "Level change ignored: no level from the server to step from (got '"
-                    + currentLevel
-                    + "')."
+            ScrollDepthReporter.Attach(
+                GetComponent<ScrollRect>(),
+                depth => UserEvents.Track(new ProfilePanelScrolled(depth))
             );
-            return;
         }
 
-        int target = level + step;
-
-        // The buttons are hidden when a step is not allowed, so reaching this is a bug
-        // rather than a user action - but the bounds are cheap and a wrong level is not.
-        if (target < 0 || target >= Const.ASA_LEVELS.Length)
+        void OnEnable()
         {
-            return;
-        }
+            UserEvents.PanelOpened(new ProfilePanelToggled());
 
-        if (step > 0 && target > LevelIndex(Const.ASA_ADVANCE_CEILING))
-        {
-            return;
-        }
+            // Stops animated dropdown error message from appearing
+            StopErrorAnimation();
 
-        string targetLevel = Const.ASA_LEVELS[target];
+            // Set proper game objects active and establish button behavior
+            levelBarGO.SetActive(true);
+            revertLevelButtonGO.SetActive(true);
+            advanceLevelButtonGO.SetActive(true);
+            performanceInfo.SetActive(true);
+            rankInfo.SetActive(true);
+            feedbackButtonGO.SetActive(true);
+            insufficientDataNoticeGO.SetActive(false);
 
-        SetLevelButtonsInteractable(false);
+            ButtonUtils.Rewire(
+                profileBackButtonGO,
+                () =>
+                {
+                    profilePanelGO.SetActive(false);
+                    loadingPopUpProfile.SetActive(false);
+                }
+            );
 
-        StartCoroutine(
-            NetworkManager
-                .GetManager()
-                .ServerPost_setLevel(
-                    POSTType.ASA_SET_LEVEL,
-                    targetLevel,
-                    stored =>
+            settingsPopupGO.SetActive(false);
+            // A session timeout can switch this panel off with the popup still open.
+            feedbackPopUpGO.SetActive(false);
+            dimPanelGO.SetActive(false);
+
+            guid = PlayerPrefs.GetString("UserGuid");
+            guidTextGO.text = guid;
+
+            ButtonUtils.Rewire(
+                settingsButtonGO,
+                () =>
+                {
+                    settingsPopupGO.SetActive(true);
+                    dimPanelGO.SetActive(true);
+                }
+            );
+
+            ButtonUtils.Rewire(
+                settingsBackButtonGO,
+                () =>
+                {
+                    settingsPopupGO.SetActive(false);
+                    dimPanelGO.SetActive(false);
+                }
+            );
+
+            ButtonUtils.Rewire(copyGuidButtonGO, () => GUIUtility.systemCopyBuffer = guid);
+
+            SetUpDeleteData();
+            SetUpLevelChange();
+
+            ButtonUtils.Rewire(
+                feedbackButtonGO,
+                () =>
+                {
+                    feedbackPopUpGO.SetActive(true);
+                    dimPanelGO.SetActive(true);
+                }
+            );
+
+            ButtonUtils.Rewire(
+                feedbackBackButtonGO,
+                () =>
+                {
+                    comparisonRatingOptions.SetAllTogglesOff();
+                    comparisonFeedbackTextGO.text = "";
+                    feedbackPopUpGO.SetActive(false);
+                    dimPanelGO.SetActive(false);
+                    errorPopupGO.SetActive(false);
+                }
+            );
+
+            ButtonUtils.Rewire(
+                feedbackSendButtonGO,
+                () =>
+                {
+                    var helpful = comparisonRatingOptions.ActiveToggles().FirstOrDefault();
+                    string comment_helpful = comparisonFeedbackTextGO.text;
+
+                    // Show and error popup if user tries to send feeback without choosing any of the emojis
+                    if (helpful == null)
                     {
-                        SetLevelButtonsInteractable(true);
+                        Animator anim = errorPopupGO.GetComponent<Animator>();
 
-                        if (!stored)
-                        {
-                            // The loading popup is showing the failure with its own back
-                            // button, and the profile underneath is untouched, so the user
-                            // is still at the level they started from.
-                            return;
-                        }
+                        errorPopupGO.SetActive(true);
 
-                        // Reloaded rather than applied locally. The cohort is a different
-                        // set of people now, so the rank and the percentile are different
-                        // numbers, and only the server knows them.
-                        StartCoroutine(
-                            NetworkManager.GetManager().ServerPost_profile(POSTType.ASA_PROFILE)
-                        );
+                        anim.enabled = true;
+
+                        anim.Play("Error Popup Animation");
+
+                        return;
                     }
-                )
-        );
-    }
+                    // Send feedback to server
+                    StartCoroutine(
+                        NetworkManager
+                            .GetManager()
+                            .ServerPost_feedback(
+                                POSTType.USER_ASA_FEEDBACK,
+                                "comparison_ui",
+                                helpful.name,
+                                comment_helpful
+                            )
+                    );
+                    // Reset feedback form when done
+                    comparisonRatingOptions.SetAllTogglesOff();
+                    comparisonFeedbackTextGO.text = "";
+                    feedbackPopUpGO.SetActive(false);
+                    dimPanelGO.SetActive(false);
+                    errorPopupGO.SetActive(false);
+                }
+            );
+        }
 
-    private void SetLevelButtonsInteractable(bool interactable)
-    {
-        advanceLevelButtonGO.GetComponent<Button>().interactable = interactable;
-        revertLevelButtonGO.GetComponent<Button>().interactable = interactable;
-    }
-
-    /// <summary>
-    /// Shown when the server could not produce a comparison. There are three reasons and
-    /// they are not interchangeable - this used to print the "complete three tasks" line
-    /// for all of them, which told a user with 20 assessments to go and do three.
-    ///
-    /// Branching is on `status`, which only appears on the unavailable responses.
-    /// </summary>
-    public void NotEnoughTasks(InsufficientStats user)
-    {
-        insufficientDataHelper ??= new LocalizedTextHelper(insufficientDataNotice);
-
-        switch (user.status)
+        /// <summary>
+        /// Wires the delete-my-data flow: red button in settings, then a confirmation the user
+        /// has to pass before anything is sent.
+        ///
+        /// The deletion itself lives in NetworkManager.ServerPost_deleteUser, which clears the
+        /// local data whatever the server says, and records whether the server confirmed the
+        /// erase. Both outcomes are shown honestly here.
+        /// </summary>
+        private void SetUpDeleteData()
         {
-            case "USER_ASSESSMENT_DATA_INSUFFICIENT":
-                // The one case the user can act on, so it says how far along they are.
-                // The requirement comes from the server (MIN_USER_ASSESSMENTS); 3 is only
-                // the fallback if it is missing, so raising it server-side needs no
-                // client change.
-                int needed = user.required_assessments > 0 ? user.required_assessments : 3;
+            if (deleteDataButtonGO == null || deleteConfirmPopupGO == null)
+            {
+                return;
+            }
 
-                // Used Const.ASA_RANK_NEED_MORE_TASKS before
-                insufficientTasksNotice.Arguments = new object[]
+            deleteConfirmPopupGO.SetActive(false);
+
+            ButtonUtils.Rewire(
+                deleteDataButtonGO,
+                () =>
                 {
-                    needed,
-                    user.current_assessments,
-                };
-                insufficientDataHelper?.SetText(insufficientTasksNotice);
-                break;
+                    // Reset every time: the popup is reused, and the previous run may have
+                    // left it in its finished state with the confirm button hidden.
+                    deleteStatusHelper ??= new LocalizedTextHelper(deleteStatusText);
+                    deleteStatusHelper.SetText(deleteWarningText);
+                    deleteConfirmButtonGO.SetActive(true);
+                    SetDeleteButtonsInteractable(true);
+                    deleteCancelLabel.gameObject.SetActive(true);
+                    deleteOkLabel.gameObject.SetActive(false);
+                    deleteConfirmPopupGO.SetActive(true);
+                    dimPanelGO.SetActive(true);
+                }
+            );
 
-            case "COHORT_SIZE_TOO_SMALL":
-                // Used Const.ASA_RANK_COHORT_TOO_SMALL before
-                insufficientDataHelper?.SetText(cohortSizeNotice);
-                break;
-
-            case "RANK_UNAVAILABLE":
-                // Used Const.ASA_RANK_UNAVAILABLE before
-                insufficientDataHelper?.SetText(rankUnavailableNotice);
-                break;
-
-            default:
-                // An unrecognised status: the server's own wording beats anything we could
-                // guess, and this is how a newly added case degrades gracefully.
-                if (string.IsNullOrEmpty(user.message))
+            ButtonUtils.Rewire(
+                deleteCancelButtonGO,
+                () =>
                 {
-                    // Used Const.ASA_RANK_UNAVAILABLE_GENERIC before
-                    insufficientDataHelper?.SetText(rankUnavailableGeneralNotice);
+                    deleteConfirmPopupGO.SetActive(false);
+
+                    bool accountGone = string.IsNullOrEmpty(PlayerPrefs.GetString("UserGuid", ""));
+
+                    if (!accountGone)
+                    {
+                        // Cancelled. This returns to the settings popup, which is still open
+                        // underneath - so the dim stays on. Turning it off here left the popup
+                        // sitting on an undimmed screen.
+                        return;
+                    }
+
+                    // Deleted. There is no account left to show a profile or a guid for, so
+                    // everything closes back to the task list rather than returning to numbers
+                    // that no longer belong to anyone.
+                    settingsPopupGO.SetActive(false);
+                    profilePanelGO.SetActive(false);
+
+                    if (taskPanelGO != null)
+                    {
+                        taskPanelGO.SetActive(false);
+                    }
+
+                    dimPanelGO.SetActive(false);
+                }
+            );
+
+            ButtonUtils.Rewire(
+                deleteConfirmButtonGO,
+                () =>
+                {
+                    // Both buttons go dead for the duration: a second tap would fire a second
+                    // deletion for a guid the first one is already removing.
+                    SetDeleteButtonsInteractable(false);
+                    deleteStatusHelper.SetText(deleteLoadingText);
+
+                    StartCoroutine(
+                        NetworkManager
+                            .GetManager()
+                            .ServerPost_deleteUser(serverConfirmed =>
+                            {
+                                NetworkManager network = NetworkManager.GetManager();
+
+                                if (network.DataConfirmedDeleted)
+                                {
+                                    deleteStatusHelper.SetText(deleteConfirmedNotice);
+                                }
+                                else if (serverConfirmed)
+                                {
+                                    deleteStatusHelper.SetText(deleteReceivedNotice);
+                                }
+                                else
+                                {
+                                    // Same wording as a server-acknowledged request. The local
+                                    // data really is gone, and the guid is queued in
+                                    // PendingDeleteGuid and retried on every launch until the
+                                    // server takes it - so from the user's side the outcome is
+                                    // the same and the difference is ours to resolve, not
+                                    // theirs to worry about. The console still carries the
+                                    // real failure for us; see DeleteUserOnServer.
+                                    deleteStatusHelper.SetText(deleteReceivedNotice);
+                                }
+
+                                // Nothing left to confirm; the cancel button becomes the way out.
+                                deleteConfirmButtonGO.SetActive(false);
+                                SetDeleteButtonsInteractable(true);
+                                deleteCancelLabel.gameObject.SetActive(false);
+                                deleteOkLabel.gameObject.SetActive(true);
+                            })
+                    );
+                }
+            );
+        }
+
+        private void SetDeleteButtonsInteractable(bool interactable)
+        {
+            if (deleteConfirmButtonGO != null)
+            {
+                deleteConfirmButtonGO.GetComponent<Button>().interactable = interactable;
+            }
+
+            if (deleteCancelButtonGO != null)
+            {
+                deleteCancelButtonGO.GetComponent<Button>().interactable = interactable;
+            }
+        }
+
+        public void StopErrorAnimation()
+        {
+            // Stops the drop-down error message animation
+            Animator anim = errorPopupGO.GetComponent<Animator>();
+            anim.enabled = false;
+            errorPopupGO.SetActive(false);
+        }
+
+        /// <summary>
+        /// The ring around the grade letter, showing roughly where the learner sits.
+        ///
+        /// Driven by the bucket, not by `percentile`. A ring filled to an exact percentile is
+        /// still a display of it - a finer claim than the server is willing to make to a
+        /// learner - so it moves in the same steps as the text beside it. Top 5% fills 95%.
+        ///
+        /// Filled from `percentile`, which is sent on every successful comparison whether or
+        /// not a `display` bucket comes with it. That is why the ring keeps working for the
+        /// bottom half of a cohort, where both bucket fields are null.
+        ///
+        /// This is not the thing v1.3.0 asked us to stop showing. What it removed was the
+        /// precise figure - "you are in the 13th percentile" - and a ring carries no figure a
+        /// learner can read off it. The numbers beside it come from `display` and stay
+        /// bucketed.
+        ///
+        /// The ring is never hidden: it is the frame around the grade letter, and taking it
+        /// away leaves the badge looking broken.
+        /// </summary>
+        public void UpdateLevelBar(Stats user)
+        {
+            levelBarGO.SetActive(true);
+
+            // Clamped because percentile defaults to -1 for "absent", and a negative fill
+            // would silently render as empty rather than as the missing value it is.
+            StartCoroutine(AnimateLevelBar(Mathf.Clamp01(user.percentile)));
+        }
+
+        private IEnumerator AnimateLevelBar(float target)
+        {
+            float filled = 0f;
+
+            while (filled < target)
+            {
+                levelBarGO.GetComponent<Image>().fillAmount = filled;
+                filled += 0.01f;
+
+                yield return null;
+            }
+
+            // The loop overshoots by up to one step and then stops, leaving the ring a hair
+            // short of where it was asked to go. Pin it.
+            levelBarGO.GetComponent<Image>().fillAmount = target;
+        }
+
+        /// <summary>
+        /// Fills in the profile from a successful comparison.
+        ///
+        /// The position comes from `display` and nowhere else. This used to print
+        /// `100 * percentile` and `#rank` straight from the research fields, which could tell
+        /// a learner they were "performing better than 13.4% of A2 users" - a truthful number
+        /// and a terrible thing to read. The server now buckets it, and both fields go absent
+        /// for the bottom half of a cohort, where the honest thing to show is nothing.
+        /// </summary>
+        public void UpdateText(Stats user)
+        {
+            string level = user.cefr_level.Replace("_plus", "+");
+            levelText.text = level;
+            GiveLevelDescriptions(user.cefr_level);
+
+            Display display = user.display;
+            bool hasPercent = display != null && display.HasPercent;
+            bool hasRank = display != null && display.HasRank;
+
+            if (hasPercent)
+            {
+                rankPercentHelper ??= new LocalizedTextHelper(performanceText);
+
+                // Used Const.ASA_RANK_TOP_PERCENT before
+                rankPercentText.Arguments = new object[] { display.top_percent, level };
+                rankPercentHelper?.SetText(rankPercentText);
+            }
+
+            if (hasRank)
+            {
+                rankPositionHelper ??= new LocalizedTextHelper(rankText);
+
+                // Used Const.ASA_RANK_WITHIN_LEVEL before
+                rankPositionText.Arguments = new object[] { level };
+                rankPositionHelper?.SetText(rankPositionText);
+
+                // Ranks up to ExactRankUpTo arrive exact and read as a place ("#2"); above it the
+                // server has rounded the rank up ("4th" arrives as 5), so it stays "Top 5": "#5"
+                // would claim a place the learner does not hold.
+                rankTopPositionHelper ??= new LocalizedTextHelper(positionText);
+
+                if (display.top_rank == 1)
+                {
+                    // Used Const.ASA_RANK_FIRST before
+                    rankTopPositionHelper?.SetText(rankFirstText);
+                }
+                else if (display.top_rank <= ExactRankUpTo)
+                {
+                    // "#" and a number carry no words to translate, so this is not a table
+                    // string. Stop the helper first, or a language change would overwrite it.
+                    rankTopPositionHelper?.ClearText();
+                    positionText.text = $"#{display.top_rank}";
                 }
                 else
                 {
-                    insufficientDataHelper?.ClearText();
-
-                    if (insufficientDataNotice != null)
-                    {
-                        insufficientDataNotice.text = user.message;
-                    }
+                    // Used Const.ASA_RANK_TOP_RANK before
+                    topRankText.Arguments = new object[] { display.top_rank };
+                    rankTopPositionHelper?.SetText(topRankText);
                 }
-                break;
+            }
+
+            if (!hasRank)
+            {
+                // The box stays where it is; only the position itself is replaced. Hiding it
+                // left a hole in the middle of the panel.
+                rankPositionHelper ??= new LocalizedTextHelper(rankText);
+
+                // Used Const.ASA_RANK_NO_POSITION_LABEL before
+                noPositionNotice.Arguments = new object[] { level };
+                rankPositionHelper?.SetText(noPositionNotice);
+
+                // ClearText only stops the helper listening; it leaves the text in place. So the
+                // box is emptied here as well, or it keeps showing either an earlier position
+                // or the scene's placeholder ("#12"), a position this learner does not have.
+                rankTopPositionHelper?.ClearText();
+
+                if (positionText != null)
+                {
+                    positionText.text = "";
+                }
+            }
+
+            // No position is a valid outcome, not an error - but leaving the panel empty made
+            // it look like one, so the performance line stays visible either way.
+            //
+            // What it says is deliberately about the learner's own result and nothing else.
+            // It cannot explain the absence, because both fields go null only for the bottom
+            // half of a cohort and any explanation amounts to saying so; and it cannot fall
+            // back on cohort_size, because the number of users is not ours to disclose.
+            if (!hasPercent)
+            {
+                rankPercentHelper ??= new LocalizedTextHelper(performanceText);
+
+                // Used Const.ASA_RANK_NO_POSITION before
+                rankPercentHelper?.SetText(noRankNotice);
+            }
+
+            // Both boxes always stay up. Their contents change when there is no position to
+            // show; the panel's shape does not.
+            performanceInfo.SetActive(true);
+            rankInfo.SetActive(true);
         }
 
-        // RANK_UNAVAILABLE carries no cefr_level, so the level display is skipped rather
-        // than showing an empty badge - and the old unconditional .Replace() on it would
-        // have thrown here.
-        bool hasLevel = !string.IsNullOrEmpty(user.cefr_level);
-        if (hasLevel)
+        public void GiveLevelDescriptions(string cefr_level)
         {
-            levelText.text = user.cefr_level.Replace("_plus", "+");
-            GiveLevelDescriptions(user.cefr_level);
+            // Gives the CEFR level descriptions in words
+            LocalizedString levelDescription = cefr_level switch
+            {
+                "A1" => levelDescriptionA1,
+                "A2" => levelDescriptionA2,
+                "B1" => levelDescriptionB1,
+                "B2" => levelDescriptionB2,
+                "C1_plus" => levelDescriptionC1Plus,
+                _ => null,
+            };
+
+            if (levelDescription != null)
+            {
+                levelDescriptionHelper ??= new LocalizedTextHelper(levelDescriptionText);
+                levelDescriptionHelper?.SetText(levelDescription);
+            }
         }
 
-        levelTextGO.SetActive(hasLevel);
-        levelDescriptionTextGO.SetActive(hasLevel);
+        /// <summary>
+        /// Decides whether Advance and Revert are offered, from the level and percentile the
+        /// server just sent.
+        ///
+        /// Both are set explicitly rather than only switched off. A level change reloads the
+        /// profile without re-enabling the panel, so OnEnable does not run again and anything
+        /// this method hid would stay hidden - the A1 user who advances to A2 has to get their
+        /// Revert button back.
+        /// </summary>
+        public void ShowButtons(Stats user)
+        {
+            RememberLevel(user.cefr_level);
 
-        // The ring is never hidden - it frames the grade letter, and taking it away leaves
-        // the badge looking broken on exactly the screens where the learner is told least.
-        //
-        // Solid, because these three responses carry no percentile at all: there is no
-        // comparison behind them, so there is nothing to fill it to. Note this is the one
-        // place the ring is not a position - a fill-type Image at 0 renders as nothing,
-        // which would be indistinguishable from hiding it.
-        levelBarGO.SetActive(true);
-        levelBarGO.GetComponent<Image>().fillAmount = 1f;
+            int level = LevelIndex(currentLevel);
+            int ceiling = LevelIndex(Const.ASA_ADVANCE_CEILING);
 
-        RememberLevel(user.cefr_level);
+            // A level that is not on the ladder leaves no step to compute in either direction.
+            // Should not happen - the server CHECKs the same five values - but guessing a step
+            // from an unknown level is how a user ends up somewhere nobody intended.
+            bool onLadder = level >= 0;
 
-        // Revert survives every one of these three states. There is no ranking to show
-        // here, but that is not a reason to trap someone at a level: a learner whose
-        // cohort is too small for a comparison still gets to drop back out of it.
-        ShowRevertButton();
+            // Going down is never gated on anything but having somewhere to go. Whatever
+            // reason a learner has for finding their level too hard, making them earn their
+            // way out of it is the wrong answer.
+            ShowRevertButton();
 
-        // Advance does not. It is earned from a percentile, and there is no percentile on
-        // any of these responses.
-        advanceLevelButtonGO.SetActive(false);
-        performanceInfo.SetActive(false);
-        rankInfo.SetActive(false);
-        feedbackButtonGO.SetActive(false);
-        insufficientDataNoticeGO.SetActive(true);
+            // Going up is: not past the ceiling, and not without having earned it - see
+            // Const.ASA_ADVANCE_MIN_PERCENTILE for where that bar sits and why.
+            advanceLevelButtonGO.SetActive(
+                onLadder
+                    && level < ceiling
+                    && user.percentile >= Const.ASA_ADVANCE_MIN_PERCENTILE
+                    && LevelChangeConfigured
+            );
+        }
+
+        /// <summary>
+        /// Offers Revert whenever there is a level below the current one. Called from both the
+        /// ranked and the unranked paths - dropping back has no preconditions.
+        /// </summary>
+        private void ShowRevertButton()
+        {
+            revertLevelButtonGO.SetActive(LevelIndex(currentLevel) > 0 && LevelChangeConfigured);
+        }
+
+        /// <summary>
+        /// Records the level a step is measured from, ignoring an empty one.
+        ///
+        /// RANK_UNAVAILABLE carries no cefr_level. Overwriting with the blank would take the
+        /// Revert button with it, stranding whoever is on that screen at a level they may
+        /// have opened the panel specifically to leave - so the last level the server did
+        /// name is kept instead.
+        /// </summary>
+        private void RememberLevel(string cefrLevel)
+        {
+            if (!string.IsNullOrEmpty(cefrLevel))
+            {
+                currentLevel = cefrLevel;
+            }
+        }
+
+        // The level the server last reported, which is what a step is measured from. Set only
+        // from a server response - never from a change we assume went through.
+        private string currentLevel;
+
+        // The endpoint is still to be built, so ASA_SET_LEVEL_URL is blank in Secret.cs until
+        // it exists. A button that visibly does nothing is worse than no button, so both are
+        // hidden while it is. Filling the value in is all that is needed to bring them back.
+        private static bool LevelChangeConfigured =>
+            !string.IsNullOrEmpty(Secret.ASA_SET_LEVEL_URL);
+
+        private static int LevelIndex(string cefrLevel)
+        {
+            return Array.IndexOf(Const.ASA_LEVELS, cefrLevel);
+        }
+
+        /// <summary>
+        /// Wires Advance and Revert. Neither had a handler before - the Button components
+        /// carry an empty persistent call from the Inspector and nothing else - so tapping
+        /// them has never done anything.
+        /// </summary>
+        private void SetUpLevelChange()
+        {
+            ButtonUtils.Rewire(advanceLevelButtonGO, () => ChangeLevel(1));
+            ButtonUtils.Rewire(revertLevelButtonGO, () => ChangeLevel(-1));
+        }
+
+        /// <summary>
+        /// Moves the user one step along Const.ASA_LEVELS and reloads the profile.
+        /// </summary>
+        /// <param name="step">+1 to advance, -1 to revert.</param>
+        private void ChangeLevel(int step)
+        {
+            int level = LevelIndex(currentLevel);
+
+            if (level < 0)
+            {
+                Debug.LogWarning(
+                    "Level change ignored: no level from the server to step from (got '"
+                        + currentLevel
+                        + "')."
+                );
+                return;
+            }
+
+            int target = level + step;
+
+            // The buttons are hidden when a step is not allowed, so reaching this is a bug
+            // rather than a user action - but the bounds are cheap and a wrong level is not.
+            if (target < 0 || target >= Const.ASA_LEVELS.Length)
+            {
+                return;
+            }
+
+            if (step > 0 && target > LevelIndex(Const.ASA_ADVANCE_CEILING))
+            {
+                return;
+            }
+
+            string targetLevel = Const.ASA_LEVELS[target];
+
+            SetLevelButtonsInteractable(false);
+
+            StartCoroutine(
+                NetworkManager
+                    .GetManager()
+                    .ServerPost_setLevel(
+                        POSTType.ASA_SET_LEVEL,
+                        targetLevel,
+                        stored =>
+                        {
+                            SetLevelButtonsInteractable(true);
+
+                            if (!stored)
+                            {
+                                // The loading popup is showing the failure with its own back
+                                // button, and the profile underneath is untouched, so the user
+                                // is still at the level they started from.
+                                return;
+                            }
+
+                            // Reloaded rather than applied locally. The cohort is a different
+                            // set of people now, so the rank and the percentile are different
+                            // numbers, and only the server knows them.
+                            StartCoroutine(
+                                NetworkManager.GetManager().ServerPost_profile(POSTType.ASA_PROFILE)
+                            );
+                        }
+                    )
+            );
+        }
+
+        private void SetLevelButtonsInteractable(bool interactable)
+        {
+            advanceLevelButtonGO.GetComponent<Button>().interactable = interactable;
+            revertLevelButtonGO.GetComponent<Button>().interactable = interactable;
+        }
+
+        /// <summary>
+        /// Shown when the server could not produce a comparison. There are three reasons and
+        /// they are not interchangeable - this used to print the "complete three tasks" line
+        /// for all of them, which told a user with 20 assessments to go and do three.
+        ///
+        /// Branching is on `status`, which only appears on the unavailable responses.
+        /// </summary>
+        public void NotEnoughTasks(InsufficientStats user)
+        {
+            insufficientDataHelper ??= new LocalizedTextHelper(insufficientDataNotice);
+
+            switch (user.status)
+            {
+                case "USER_ASSESSMENT_DATA_INSUFFICIENT":
+                    // The one case the user can act on, so it says how far along they are.
+                    // The requirement comes from the server (MIN_USER_ASSESSMENTS); 3 is only
+                    // the fallback if it is missing, so raising it server-side needs no
+                    // client change.
+                    int needed = user.required_assessments > 0 ? user.required_assessments : 3;
+
+                    // Used Const.ASA_RANK_NEED_MORE_TASKS before
+                    insufficientTasksNotice.Arguments = new object[]
+                    {
+                        needed,
+                        user.current_assessments,
+                    };
+                    insufficientDataHelper?.SetText(insufficientTasksNotice);
+                    break;
+
+                case "COHORT_SIZE_TOO_SMALL":
+                    // Used Const.ASA_RANK_COHORT_TOO_SMALL before
+                    insufficientDataHelper?.SetText(cohortSizeNotice);
+                    break;
+
+                case "RANK_UNAVAILABLE":
+                    // Used Const.ASA_RANK_UNAVAILABLE before
+                    insufficientDataHelper?.SetText(rankUnavailableNotice);
+                    break;
+
+                default:
+                    // An unrecognised status: the server's own wording beats anything we could
+                    // guess, and this is how a newly added case degrades gracefully.
+                    if (string.IsNullOrEmpty(user.message))
+                    {
+                        // Used Const.ASA_RANK_UNAVAILABLE_GENERIC before
+                        insufficientDataHelper?.SetText(rankUnavailableGeneralNotice);
+                    }
+                    else
+                    {
+                        insufficientDataHelper?.ClearText();
+
+                        if (insufficientDataNotice != null)
+                        {
+                            insufficientDataNotice.text = user.message;
+                        }
+                    }
+                    break;
+            }
+
+            // RANK_UNAVAILABLE carries no cefr_level, so the level display is skipped rather
+            // than showing an empty badge - and the old unconditional .Replace() on it would
+            // have thrown here.
+            bool hasLevel = !string.IsNullOrEmpty(user.cefr_level);
+            if (hasLevel)
+            {
+                levelText.text = user.cefr_level.Replace("_plus", "+");
+                GiveLevelDescriptions(user.cefr_level);
+            }
+
+            levelTextGO.SetActive(hasLevel);
+            levelDescriptionTextGO.SetActive(hasLevel);
+
+            // The ring is never hidden - it frames the grade letter, and taking it away leaves
+            // the badge looking broken on exactly the screens where the learner is told least.
+            //
+            // Solid, because these three responses carry no percentile at all: there is no
+            // comparison behind them, so there is nothing to fill it to. Note this is the one
+            // place the ring is not a position - a fill-type Image at 0 renders as nothing,
+            // which would be indistinguishable from hiding it.
+            levelBarGO.SetActive(true);
+            levelBarGO.GetComponent<Image>().fillAmount = 1f;
+
+            RememberLevel(user.cefr_level);
+
+            // Revert survives every one of these three states. There is no ranking to show
+            // here, but that is not a reason to trap someone at a level: a learner whose
+            // cohort is too small for a comparison still gets to drop back out of it.
+            ShowRevertButton();
+
+            // Advance does not. It is earned from a percentile, and there is no percentile on
+            // any of these responses.
+            advanceLevelButtonGO.SetActive(false);
+            performanceInfo.SetActive(false);
+            rankInfo.SetActive(false);
+            feedbackButtonGO.SetActive(false);
+            insufficientDataNoticeGO.SetActive(true);
+        }
+
+        void OnDisable()
+        {
+            UserEvents.PanelClosed<ProfilePanelToggled>();
+
+            deleteStatusHelper?.ClearText();
+            levelDescriptionHelper?.ClearText();
+            rankPercentHelper?.ClearText();
+            rankPositionHelper?.ClearText();
+            rankTopPositionHelper?.ClearText();
+            insufficientDataHelper?.ClearText();
+        }
     }
-
-    void OnDisable()
-    {
-        UserEvents.PanelClosed<ProfilePanelToggled>();
-
-        deleteStatusHelper?.ClearText();
-        levelDescriptionHelper?.ClearText();
-        rankPercentHelper?.ClearText();
-        rankPositionHelper?.ClearText();
-        rankTopPositionHelper?.ClearText();
-        insufficientDataHelper?.ClearText();
-    }
-}
 }

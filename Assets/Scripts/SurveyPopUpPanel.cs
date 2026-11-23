@@ -4,39 +4,39 @@ using UnityEngine;
 
 namespace SaySuomi.Legacy
 {
-public class SurveyPopUpPanel : MonoBehaviour
-{
-    [SerializeField]
-    GameObject surveyPopUpPanelGO;
-
-    // No longer have NO option :D
-    public void OnNoButtonClick()
+    public class SurveyPopUpPanel : MonoBehaviour
     {
-        PlayerPrefs.SetInt(Const.PREF_NO_SURVEY, 1);
-        PlayerPrefs.Save();
-        surveyPopUpPanelGO.SetActive(false);
-    }
+        [SerializeField]
+        GameObject surveyPopUpPanelGO;
 
-    public void OnLaterButtonClick()
-    {
-        surveyPopUpPanelGO.SetActive(false);
-    }
+        // No longer have NO option :D
+        public void OnNoButtonClick()
+        {
+            PlayerPrefs.SetInt(Const.PREF_NO_SURVEY, 1);
+            PlayerPrefs.Save();
+            surveyPopUpPanelGO.SetActive(false);
+        }
 
-    public void OnYesButtonClick()
-    {
-        Application.OpenURL(Const.SURVEY_URL);
-        PlayerPrefs.SetInt(Const.PREF_SURVEY_V1_DONE, 1);
-        PlayerPrefs.Save();
-        surveyPopUpPanelGO.SetActive(false);
-    }
-
-    void Update()
-    {
-        // Handle back button press on new Input System
-        if (UnityEngine.InputSystem.Keyboard.current.escapeKey.wasPressedThisFrame)
+        public void OnLaterButtonClick()
         {
             surveyPopUpPanelGO.SetActive(false);
         }
+
+        public void OnYesButtonClick()
+        {
+            Application.OpenURL(Const.SURVEY_URL);
+            PlayerPrefs.SetInt(Const.PREF_SURVEY_V1_DONE, 1);
+            PlayerPrefs.Save();
+            surveyPopUpPanelGO.SetActive(false);
+        }
+
+        void Update()
+        {
+            // Handle back button press on new Input System
+            if (UnityEngine.InputSystem.Keyboard.current.escapeKey.wasPressedThisFrame)
+            {
+                surveyPopUpPanelGO.SetActive(false);
+            }
+        }
     }
-}
 }

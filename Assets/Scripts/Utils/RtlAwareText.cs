@@ -10,10 +10,10 @@
 /// - Text typed into the normal TextMeshPro inspector box is kept. RTLTextMeshPro would replace
 ///   it with its own stored copy on the next refresh.
 /// - In play mode, left-aligned text is right-aligned while it shows right-to-left text.
-
 using RTLTMPro;
 using TMPro;
 using UnityEngine;
+
 /// </summary>
 [ExecuteAlways]
 public class RtlAwareText : RTLTextMeshPro

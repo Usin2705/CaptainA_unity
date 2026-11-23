@@ -5,41 +5,41 @@ using UnityEngine;
 
 namespace SaySuomi.Legacy
 {
-public class SecretPopUpPanel : MonoBehaviour
-{
-    [SerializeField]
-    GameObject secretPopUpPanelGO;
-
-    [SerializeField]
-    TMPro.TextMeshProUGUI secretTextTMP;
-
-    // No longer have NO option :D
-    public void OnNoButtonClick()
+    public class SecretPopUpPanel : MonoBehaviour
     {
-        secretPopUpPanelGO.SetActive(false);
-    }
+        [SerializeField]
+        GameObject secretPopUpPanelGO;
 
-    public void OnLaterButtonClick()
-    {
-        secretPopUpPanelGO.SetActive(false);
-    }
+        [SerializeField]
+        TMPro.TextMeshProUGUI secretTextTMP;
 
-    public void OnYesButtonClick()
-    {
-        string secretText = secretTextTMP.text;
-        secretText = secretText.Replace("\r", "").Replace("\n", "").Trim();
-        PlayerPrefs.SetString(Const.PREF_SECRET_TEXT, secretText);
-        PlayerPrefs.Save();
-        secretPopUpPanelGO.SetActive(false);
-    }
-
-    void Update()
-    {
-        // Handle back button press on new Input System
-        if (UnityEngine.InputSystem.Keyboard.current.escapeKey.wasPressedThisFrame)
+        // No longer have NO option :D
+        public void OnNoButtonClick()
         {
             secretPopUpPanelGO.SetActive(false);
         }
+
+        public void OnLaterButtonClick()
+        {
+            secretPopUpPanelGO.SetActive(false);
+        }
+
+        public void OnYesButtonClick()
+        {
+            string secretText = secretTextTMP.text;
+            secretText = secretText.Replace("\r", "").Replace("\n", "").Trim();
+            PlayerPrefs.SetString(Const.PREF_SECRET_TEXT, secretText);
+            PlayerPrefs.Save();
+            secretPopUpPanelGO.SetActive(false);
+        }
+
+        void Update()
+        {
+            // Handle back button press on new Input System
+            if (UnityEngine.InputSystem.Keyboard.current.escapeKey.wasPressedThisFrame)
+            {
+                secretPopUpPanelGO.SetActive(false);
+            }
+        }
     }
-}
 }
