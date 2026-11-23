@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.UI;
 
+namespace SaySuomi.Legacy
+{
 public class ASAPanel : MonoBehaviour
 {
     [SerializeField]
@@ -622,4 +624,5 @@ public class ASAPanel : MonoBehaviour
             pauseButtonGO.GetComponent<Button>().interactable = true;
         }
     }
+}
 }

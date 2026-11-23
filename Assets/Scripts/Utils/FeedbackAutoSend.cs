@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace SaySuomi.Legacy
+{
 /// <summary>
 /// Sends one rating group's answer as soon as the learner taps an emoji, and again
 /// whenever they change their mind.
@@ -202,4 +204,5 @@ public class FeedbackAutoSend
                 )
         );
     }
+}
 }

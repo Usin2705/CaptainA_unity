@@ -9,6 +9,8 @@ using Unity.Notifications.Android;
 using Unity.Notifications.iOS;
 #endif // UNITY_IOS
 
+namespace SaySuomi.Legacy
+{
 public class NotificationManager : MonoBehaviour
 {
     private const string ChannelId = "channel_id";
@@ -137,4 +139,5 @@ public class NotificationManager : MonoBehaviour
     }
 
 #endif // UNITY_IOS
+}
 }

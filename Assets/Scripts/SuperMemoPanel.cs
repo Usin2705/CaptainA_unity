@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
+namespace SaySuomi.Legacy
+{
 /// <summary>
 /// The default state of the Panel is disabled, and it will be enabled when the user clicks the FlashCard button in the main menu.
 /// <para>
@@ -659,4 +661,5 @@ public class SuperMemoPanel : MonoBehaviour
             yield break;
         }
     }
+}
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace SaySuomi.Legacy
+{
 [CreateAssetMenu(menuName = "Word List", fileName = "Word List", order = 0)]
 public class SOword : ScriptableObject
 {
@@ -19,4 +21,5 @@ public class SOword : ScriptableObject
 
     [SerializeField]
     public AudioClip sampleAudio;
+}
 }

@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 
+namespace SaySuomi.Legacy
+{
 /// <summary>
 /// Manages the navigation bar within the game, handling the activation and deactivation of panels and tabs.
 /// This class is responsible for the UI logic related to the navigation bar which includes changing the
@@ -211,4 +213,5 @@ public class NavigationBar : MonoBehaviour
             Debug.LogError("Source image not found: " + sourceImageName);
         }
     }
+}
 }

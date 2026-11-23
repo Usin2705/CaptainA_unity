@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace SaySuomi.Legacy
+{
 public class ProfilePanel : MonoBehaviour
 {
     [SerializeField]
@@ -116,4 +118,5 @@ public class ProfilePanel : MonoBehaviour
         foreach (GameObject go in listItems)
             Destroy(go);
     }
+}
 }

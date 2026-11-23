@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace SaySuomi.Legacy
+{
 public class PopUpManager : MonoBehaviour
 {
     [SerializeField]
@@ -53,4 +55,5 @@ public class PopUpManager : MonoBehaviour
     {
         FinnishPanel();
     }
+}
 }

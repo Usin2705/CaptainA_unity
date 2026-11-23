@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+namespace SaySuomi.Legacy
+{
 public class SecretPopUpPanel : MonoBehaviour
 {
     [SerializeField]
@@ -39,4 +41,5 @@ public class SecretPopUpPanel : MonoBehaviour
             secretPopUpPanelGO.SetActive(false);
         }
     }
+}
 }

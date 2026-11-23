@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace SaySuomi.Legacy
+{
 public class SurveyPopUpPanel : MonoBehaviour
 {
     [SerializeField]
@@ -36,4 +38,5 @@ public class SurveyPopUpPanel : MonoBehaviour
             surveyPopUpPanelGO.SetActive(false);
         }
     }
+}
 }

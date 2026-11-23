@@ -1,3 +1,5 @@
+namespace SaySuomi.Legacy
+{
 public enum Topics
 {
     Easy,
@@ -45,4 +47,5 @@ public static class TopicDetail
                 return "";
         }
     }
+}
 }

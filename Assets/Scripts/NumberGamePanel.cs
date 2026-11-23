@@ -6,6 +6,8 @@ using UnityEngine.Diagnostics;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
+namespace SaySuomi.Legacy
+{
 public class NumberGamePanel : MonoBehaviour
 {
     [SerializeField]
@@ -324,4 +326,5 @@ public class NumberGamePanel : MonoBehaviour
             yield break;
         }
     }
+}
 }

@@ -7,6 +7,8 @@ using UnityEngine.Localization;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
+namespace SaySuomi.Legacy
+{
 public class FeedbackPanel : MonoBehaviour
 {
     NetworkManager networkManager;
@@ -749,4 +751,5 @@ public class FeedbackPanel : MonoBehaviour
         feedbackBackButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
         feedbackSendButtonGO.GetComponent<Button>().onClick.RemoveAllListeners();
     }
+}
 }

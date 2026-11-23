@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+namespace SaySuomi.Legacy
+{
 public class InputManager : MonoBehaviour
 {
     #region Events
@@ -54,4 +56,5 @@ public class InputManager : MonoBehaviour
             OnEndTouch(touchPosition, touchTime);
         }
     }
+}
 }

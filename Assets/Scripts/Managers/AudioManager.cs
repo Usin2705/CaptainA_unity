@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using UnityEngine.Android;
 #endif
 
+namespace SaySuomi.Legacy
+{
 public class AudioManager : MonoBehaviour
 {
     static AudioManager audioManager;
@@ -407,4 +409,5 @@ public class AudioManager : MonoBehaviour
             yield break;
         }
     }
+}
 }

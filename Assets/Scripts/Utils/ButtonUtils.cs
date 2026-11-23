@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
+namespace SaySuomi.Legacy
+{
 /// <summary>
 /// Helpers for wiring UI buttons from code.
 /// </summary>
@@ -28,4 +30,5 @@ public static class ButtonUtils
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(handler);
     }
+}
 }

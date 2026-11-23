@@ -1,7 +1,3 @@
-using RTLTMPro;
-using TMPro;
-using UnityEngine;
-
 /// <summary>
 /// TextMeshPro UI text that also displays Persian correctly. Right-to-left text is shaped and
 /// ordered by RTLTMPro; text in every other language passes through unchanged.
@@ -14,6 +10,10 @@ using UnityEngine;
 /// - Text typed into the normal TextMeshPro inspector box is kept. RTLTextMeshPro would replace
 ///   it with its own stored copy on the next refresh.
 /// - In play mode, left-aligned text is right-aligned while it shows right-to-left text.
+
+using RTLTMPro;
+using TMPro;
+using UnityEngine;
 /// </summary>
 [ExecuteAlways]
 public class RtlAwareText : RTLTextMeshPro

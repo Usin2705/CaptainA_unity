@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+namespace SaySuomi.Legacy
+{
 /// <summary>
 /// This class is used to manage the Card Deck Panel
 /// The Card Deck Panel is the panel that contains all the card decks
@@ -249,4 +251,5 @@ public class CardDeckPanel : MonoBehaviour
         CardQueueManager.GetQueueManager.MakeQueue(flashCard, newCards, dueCards);
         superMemoPanelGO.SetActive(true);
     }
+}
 }

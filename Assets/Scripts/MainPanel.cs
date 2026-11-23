@@ -2,6 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace SaySuomi.Legacy
+{
 public class MainPanel : MonoBehaviour
 {
     [SerializeField]
@@ -716,4 +718,5 @@ public class MainPanel : MonoBehaviour
                 );
         }
     }
+}
 }

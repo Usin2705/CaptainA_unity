@@ -1226,7 +1226,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AdvancePanel, Assembly-CSharp
+        m_TargetAssemblyTypeName: SaySuomi.Legacy.AdvancePanel, Assembly-CSharp
         m_MethodName: feedbackWhileLoading
         m_Mode: 1
         m_Arguments:
@@ -1323,7 +1323,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AdvancePanel, Assembly-CSharp
+        m_TargetAssemblyTypeName: SaySuomi.Legacy.AdvancePanel, Assembly-CSharp
         m_MethodName: feedbackWhileLoading
         m_Mode: 1
         m_Arguments:
@@ -4068,7 +4068,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39450f052511973cfbfc095bf682d235, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FeedbackPanel
+  m_EditorClassIdentifier: Assembly-CSharp::SaySuomi.Legacy.FeedbackPanel
   feedbackPanelGO: {fileID: 3647871488460471125}
   ASAPanelGO: {fileID: 0}
   newTaskButtonGO: {fileID: 4687329965885655850}
@@ -6912,7 +6912,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AdvancePanel, Assembly-CSharp
+        m_TargetAssemblyTypeName: SaySuomi.Legacy.AdvancePanel, Assembly-CSharp
         m_MethodName: feedbackWhileLoading
         m_Mode: 1
         m_Arguments:
@@ -7084,7 +7084,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AdvancePanel, Assembly-CSharp
+        m_TargetAssemblyTypeName: SaySuomi.Legacy.AdvancePanel, Assembly-CSharp
         m_MethodName: feedbackWhileLoading
         m_Mode: 1
         m_Arguments:
@@ -9646,7 +9646,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AdvancePanel, Assembly-CSharp
+        m_TargetAssemblyTypeName: SaySuomi.Legacy.AdvancePanel, Assembly-CSharp
         m_MethodName: feedbackWhileLoading
         m_Mode: 1
         m_Arguments:
@@ -9893,7 +9893,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AdvancePanel, Assembly-CSharp
+        m_TargetAssemblyTypeName: SaySuomi.Legacy.AdvancePanel, Assembly-CSharp
         m_MethodName: feedbackWhileLoading
         m_Mode: 1
         m_Arguments:
@@ -10154,7 +10154,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AdvancePanel, Assembly-CSharp
+        m_TargetAssemblyTypeName: SaySuomi.Legacy.AdvancePanel, Assembly-CSharp
         m_MethodName: feedbackWhileLoading
         m_Mode: 1
         m_Arguments:
@@ -10251,7 +10251,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AdvancePanel, Assembly-CSharp
+        m_TargetAssemblyTypeName: SaySuomi.Legacy.AdvancePanel, Assembly-CSharp
         m_MethodName: feedbackWhileLoading
         m_Mode: 1
         m_Arguments:
@@ -10597,7 +10597,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AdvancePanel, Assembly-CSharp
+        m_TargetAssemblyTypeName: SaySuomi.Legacy.AdvancePanel, Assembly-CSharp
         m_MethodName: feedbackWhileLoading
         m_Mode: 1
         m_Arguments:
@@ -11491,7 +11491,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AdvancePanel, Assembly-CSharp
+        m_TargetAssemblyTypeName: SaySuomi.Legacy.AdvancePanel, Assembly-CSharp
         m_MethodName: feedbackWhileLoading
         m_Mode: 1
         m_Arguments:

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace SaySuomi.Legacy
+{
 public class DetailScorePanel : MonoBehaviour
 {
     [SerializeField]
@@ -300,4 +302,5 @@ public class DetailScorePanel : MonoBehaviour
             Destroy(go);
         }
     }
+}
 }

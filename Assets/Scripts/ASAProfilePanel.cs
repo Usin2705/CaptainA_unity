@@ -8,6 +8,8 @@ using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.UI;
 
+namespace SaySuomi.Legacy
+{
 public class ASAProfilePanel : MonoBehaviour
 {
     [SerializeField]
@@ -976,4 +978,5 @@ public class ASAProfilePanel : MonoBehaviour
         rankTopPositionHelper?.ClearText();
         insufficientDataHelper?.ClearText();
     }
+}
 }

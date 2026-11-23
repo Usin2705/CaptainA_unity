@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Networking;
 
+namespace SaySuomi.Legacy
+{
 public class NetworkManager : MonoBehaviour
 {
     [SerializeField]
@@ -1563,4 +1565,5 @@ public class NetworkManager : MonoBehaviour
         feedbackErrorHelper?.ClearText();
         profileErrorHelper?.ClearText();
     }
+}
 }

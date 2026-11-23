@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+namespace SaySuomi.Legacy
+{
 public class PhonemePanel : MonoBehaviour
 {
     [SerializeField]
@@ -108,4 +110,5 @@ public class PhonemePanel : MonoBehaviour
     {
         phonemePanel.SetActive(false);
     }
+}
 }

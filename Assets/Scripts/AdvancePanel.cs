@@ -6,6 +6,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace SaySuomi.Legacy
+{
 public class AdvancePanel : MonoBehaviour
 {
     [SerializeField]
@@ -416,4 +418,5 @@ public class AdvancePanel : MonoBehaviour
         UserEvents.SessionTimedOut -= ShowTaskListAfterTimeout;
         UserEvents.EndSession();
     }
+}
 }

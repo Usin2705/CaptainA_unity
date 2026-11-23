@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace SaySuomi.Legacy
+{
 public class TaskPanel : MonoBehaviour
 {
     [SerializeField]
@@ -289,4 +291,5 @@ public class TaskPanel : MonoBehaviour
         // Change value -6.0f to change rotation speed
         loadingIconGO.transform.Rotate(0, 0, -6.0f, Space.Self);
     }
+}
 }

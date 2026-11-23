@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace SaySuomi.Legacy
+{
 public class InfoPanel : MonoBehaviour
 {
     [SerializeField]
@@ -39,4 +41,5 @@ public class InfoPanel : MonoBehaviour
     {
         secretPanel.SetActive(true);
     }
+}
 }
