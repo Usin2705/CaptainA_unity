@@ -133,9 +133,7 @@ def parse_fail(text):
     for item in text.split(","):
         route, _, status = item.partition(":")
         if route not in ROUTES:
-            raise ValueError(
-                f"Unknown route {route!r}. Routes: {', '.join(sorted(ROUTES))}"
-            )
+            raise ValueError(f"Unknown route {route!r}. Routes: {', '.join(sorted(ROUTES))}")
         fail[route] = int(status)
     return fail
 
@@ -246,10 +244,7 @@ def handle_assess(state, fields, files):
         "task_id": task_id,
         "cefr_label": coarse_label(base),
         "cefr_label_fine": fine_label(base),
-        "dimension_labels": {
-            name: label(scores[name])
-            for name in ("accuracy", "fluency", "pronunciation", "range")
-        },
+        "dimension_labels": {name: label(scores[name]) for name in ("accuracy", "fluency", "pronunciation", "range")},
         "clipped": False,
     }
     if state.relevance != "none":
@@ -383,9 +378,7 @@ def pronunciation_result(state, text):
 
     substitute = "a" if text[middle : middle + 1] != "a" else "e"
     return {
-        "levenshtein": [{"ops": "replace", "tran_index": middle, "pred_index": middle}]
-        if text
-        else [],
+        "levenshtein": [{"ops": "replace", "tran_index": middle, "pred_index": middle}] if text else [],
         "prediction": text[:middle] + substitute + text[middle + 1 :] if text else "",
         "score": score,
         "warning": state.warning,
@@ -436,15 +429,10 @@ class Handler(BaseHTTPRequestHandler):
                     threading.Thread(target=self.server.shutdown, daemon=True).start()
                     return
                 if url.path == "/__fake/set":
-                    query = {
-                        k: v[0]
-                        for k, v in parse_qs(url.query, keep_blank_values=True).items()
-                    }
+                    query = {k: v[0] for k, v in parse_qs(url.query, keep_blank_values=True).items()}
                     self.state.apply(query)
                 elif url.path not in ("/", "/__fake", "/__fake/"):
-                    self.reply(
-                        404, {"detail": {"type": "NOT_FOUND", "message": url.path}}
-                    )
+                    self.reply(404, {"detail": {"type": "NOT_FOUND", "message": url.path}})
                     return
             except ValueError as error:
                 self.reply(400, {"error": str(error)})
@@ -484,17 +472,11 @@ class Handler(BaseHTTPRequestHandler):
         fields, files = parse_form(content_type, body)
 
         if route == "delete":
-            return handle_delete(
-                self.state, fields, files, self.headers.get("X-Delete-Key", "")
-            )
+            return handle_delete(self.state, fields, files, self.headers.get("X-Delete-Key", ""))
         return FORM_HANDLERS[route](self.state, fields, files)
 
     def reply(self, status, payload):
-        data = (
-            b""
-            if payload is None
-            else json.dumps(payload, ensure_ascii=False).encode("utf-8")
-        )
+        data = b"" if payload is None else json.dumps(payload, ensure_ascii=False).encode("utf-8")
         self.send_response(status)
         if payload is not None:
             self.send_header("Content-Type", "application/json; charset=utf-8")
@@ -512,27 +494,20 @@ def make_server(host, port, state):
 
 
 def secret_lines(base_url):
-    lines = [
-        f'public const string {constant} = "{base_url}{path}";'
-        for _, path, constant in ROUTES.values()
-    ]
+    lines = [f'public const string {constant} = "{base_url}{path}";' for _, path, constant in ROUTES.values()]
     lines.append(f'public const string SERVER_DELETE_KEY = "{DELETE_KEY}";')
     return "\n".join(lines)
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(
-        description="Local fake server for testing the app."
-    )
+    parser = argparse.ArgumentParser(description="Local fake server for testing the app.")
     parser.add_argument(
         "--host",
         default="127.0.0.1",
         help="use 0.0.0.0 to accept a phone on your network",
     )
     parser.add_argument("--port", type=int, default=8765)
-    parser.add_argument(
-        "--public-host", help="address --print-secret uses, such as your computer's IP"
-    )
+    parser.add_argument("--public-host", help="address --print-secret uses, such as your computer's IP")
     parser.add_argument(
         "--print-secret",
         action="store_true",
@@ -554,9 +529,7 @@ def main():
         return
 
     server = make_server(args.host, args.port, State(args.strict_users))
-    print(
-        f"Fake server on http://{args.host}:{args.port}  (Ctrl+C to stop)", flush=True
-    )
+    print(f"Fake server on http://{args.host}:{args.port}  (Ctrl+C to stop)", flush=True)
     print(f"Settings and controls: http://127.0.0.1:{args.port}/__fake/", flush=True)
     if args.host != "127.0.0.1":
         print(

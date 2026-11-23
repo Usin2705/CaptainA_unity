@@ -61,9 +61,7 @@ class FakeServerTest(unittest.TestCase):
 
     def form(self, method, path, fields, headers=None):
         body = urllib.parse.urlencode(fields).encode("utf-8")
-        status, data = self.request(
-            method, path, body, "application/x-www-form-urlencoded", headers
-        )
+        status, data = self.request(method, path, body, "application/x-www-form-urlencoded", headers)
         return status, json.loads(data) if data else None
 
     def upload(self, path, fields, filename="answer.wav"):
@@ -98,9 +96,7 @@ class FakeServerTest(unittest.TestCase):
 
     def test_assess_echoes_task_and_uses_known_bands(self):
         for task in range(1, 7):
-            status, result = self.upload(
-                f"{API}/speech/assess", {"guid": "g", "task_id": task}
-            )
+            status, result = self.upload(f"{API}/speech/assess", {"guid": "g", "task_id": task})
             self.assertEqual(status, 200)
             self.assertEqual(result["task_id"], task)
             self.assertIn(result["cefr_label_fine"], ("A1", "A2", "A2+", "B1"))
@@ -112,15 +108,9 @@ class FakeServerTest(unittest.TestCase):
         self.assertEqual(result["assessment_id"], 6)
 
     def test_assess_rejects_what_the_real_server_rejects(self):
-        status, result = self.upload(
-            f"{API}/speech/assess", {"guid": "g", "task_id": 0}
-        )
-        self.assertEqual(
-            (status, result["detail"]["message"]), (400, "Unknown task_id 0")
-        )
-        status, _ = self.upload(
-            f"{API}/speech/assess", {"guid": "g", "task_id": 1}, filename="answer"
-        )
+        status, result = self.upload(f"{API}/speech/assess", {"guid": "g", "task_id": 0})
+        self.assertEqual((status, result["detail"]["message"]), (400, "Unknown task_id 0"))
+        status, _ = self.upload(f"{API}/speech/assess", {"guid": "g", "task_id": 1}, filename="answer")
         self.assertEqual(status, 400)
 
     def test_relevance_can_be_changed_or_removed(self):
@@ -147,17 +137,13 @@ class FakeServerTest(unittest.TestCase):
         base = {"guid": "g", "reaction_value": 3, "comment": ""}
         scoped = {**base, "feedback_classification": "self_assessment"}
         general = {**base, "feedback_classification": "overall_experience"}
-        self.assertEqual(
-            self.form("POST", path, {**scoped, "assessment_id": 1})[0], 200
-        )
+        self.assertEqual(self.form("POST", path, {**scoped, "assessment_id": 1})[0], 200)
         self.assertEqual(self.form("POST", path, general)[0], 200)
 
         status, result = self.form("POST", path, scoped)
         self.assertEqual(status, 422)
         self.assertIsInstance(result["detail"], list)
-        self.assertEqual(
-            self.form("POST", path, {**general, "assessment_id": 1})[0], 422
-        )
+        self.assertEqual(self.form("POST", path, {**general, "assessment_id": 1})[0], 422)
 
     def test_profile_scenarios(self):
         path = f"{API}/analytics/comparison"
@@ -166,14 +152,10 @@ class FakeServerTest(unittest.TestCase):
         self.assertLess(result["percentile"], 0.75)
 
         self.control("profile=top")
-        self.assertGreaterEqual(
-            self.form("POST", path, {"guid": "g"})[1]["percentile"], 0.75
-        )
+        self.assertGreaterEqual(self.form("POST", path, {"guid": "g"})[1]["percentile"], 0.75)
 
         self.control("profile=bottom")
-        self.assertIsNone(
-            self.form("POST", path, {"guid": "g"})[1]["display"]["top_rank"]
-        )
+        self.assertIsNone(self.form("POST", path, {"guid": "g"})[1]["display"]["top_rank"])
 
         expected = {
             "insufficient": "USER_ASSESSMENT_DATA_INSUFFICIENT",
@@ -182,41 +164,29 @@ class FakeServerTest(unittest.TestCase):
         }
         for name, status in expected.items():
             self.control(f"profile={name}")
-            self.assertEqual(
-                self.form("POST", path, {"guid": "g"})[1]["status"], status
-            )
+            self.assertEqual(self.form("POST", path, {"guid": "g"})[1]["status"], status)
         self.assertNotIn("cefr_level", self.form("POST", path, {"guid": "g"})[1])
 
     def test_level_change_reaches_profile(self):
         self.assertEqual(
-            self.form("PATCH", f"{API}/users/level", {"guid": "g", "cefr_level": "B1"})[
-                0
-            ],
+            self.form("PATCH", f"{API}/users/level", {"guid": "g", "cefr_level": "B1"})[0],
             200,
         )
         self.assertEqual(
-            self.form("POST", f"{API}/analytics/comparison", {"guid": "g"})[1][
-                "cefr_level"
-            ],
+            self.form("POST", f"{API}/analytics/comparison", {"guid": "g"})[1]["cefr_level"],
             "B1",
         )
         self.assertEqual(
-            self.form("PATCH", f"{API}/users/level", {"guid": "g", "cefr_level": "Z9"})[
-                0
-            ],
+            self.form("PATCH", f"{API}/users/level", {"guid": "g", "cefr_level": "Z9"})[0],
             422,
         )
 
     def test_delete_needs_the_key_and_returns_no_body(self):
         self.form("POST", f"{API}/onboarding", {"guid": "g"})
         path = f"{API}/users"
+        self.assertEqual(self.form("DELETE", path, {"guid": "g"}, {"X-Delete-Key": "wrong"})[0], 403)
         self.assertEqual(
-            self.form("DELETE", path, {"guid": "g"}, {"X-Delete-Key": "wrong"})[0], 403
-        )
-        self.assertEqual(
-            self.form(
-                "DELETE", path, {"guid": "g"}, {"X-Delete-Key": "fake-delete-key"}
-            ),
+            self.form("DELETE", path, {"guid": "g"}, {"X-Delete-Key": "fake-delete-key"}),
             (204, None),
         )
         self.assertEqual(self.form("POST", f"{API}/onboarding", {"guid": "g"})[0], 200)
@@ -230,34 +200,24 @@ class FakeServerTest(unittest.TestCase):
             "app_version": "1",
             "events": [event],
         }
-        status, data = self.request(
-            "POST", path, json.dumps(batch).encode(), "application/json"
-        )
+        status, data = self.request("POST", path, json.dumps(batch).encode(), "application/json")
         self.assertEqual((status, json.loads(data)), (200, {"received": 1}))
         self.assertEqual(self.request("POST", path, b"{}", "application/json")[0], 400)
 
     def test_forced_failure_uses_error_envelope_then_clears(self):
         self.assertEqual(self.control("fail=assess:503")[0], 200)
-        status, result = self.upload(
-            f"{API}/speech/assess", {"guid": "g", "task_id": 1}
-        )
-        self.assertEqual(
-            (status, result["detail"]["type"]), (503, "SERVICE_UNAVAILABLE")
-        )
+        status, result = self.upload(f"{API}/speech/assess", {"guid": "g", "task_id": 1})
+        self.assertEqual((status, result["detail"]["type"]), (503, "SERVICE_UNAVAILABLE"))
 
         self.control("reset=1")
-        self.assertEqual(
-            self.upload(f"{API}/speech/assess", {"guid": "g", "task_id": 1})[0], 200
-        )
+        self.assertEqual(self.upload(f"{API}/speech/assess", {"guid": "g", "task_id": 1})[0], 200)
 
     def test_requests_wait_within_the_range_but_controls_do_not(self):
         self.state.delay = DEFAULT_DELAY
         with mock.patch("fake_server.time.sleep") as sleep:
             self.upload(f"{API}/speech/assess", {"guid": "u", "task_id": "1"})
             sleep.assert_called_once()
-            self.assertTrue(
-                DEFAULT_DELAY[0] <= sleep.call_args.args[0] <= DEFAULT_DELAY[1]
-            )
+            self.assertTrue(DEFAULT_DELAY[0] <= sleep.call_args.args[0] <= DEFAULT_DELAY[1])
 
             sleep.reset_mock()
             self.form("POST", f"{API}/analytics/comparison", {"guid": "u"})

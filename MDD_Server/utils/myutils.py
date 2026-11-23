@@ -376,15 +376,7 @@ def backtrack(trellis, emission, tokens, extra_frame=2, blank_id=0, space_id=0):
         # print(f'index {t-1}, token {j} padding_score {padding_score}, token_score {token_score}, prob {emission[t - 1, tokens[j - 1]].exp()}')
 
         # 2. Store the path with frame-wise probability.
-        all_prob = (
-            (
-                emission[
-                    t - 1, tokens[j - 1] if token_score > padding_score else blank_id
-                ]
-            )
-            .exp()
-            .item()
-        )
+        all_prob = (emission[t - 1, tokens[j - 1] if token_score > padding_score else blank_id]).exp().item()
         token_prob = emission[t - 1, tokens[j - 1]].exp().item()
 
         # Return token index and time index in non-trellis coordinate.

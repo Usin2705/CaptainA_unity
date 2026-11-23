@@ -76,9 +76,7 @@ def pronunc_eval_unity():
         audio_length = waveform.shape[1] / SAMPLING_RATE
 
         if audio_length > 8.2:
-            raise ValueError(
-                "Audio is too long. Please provide an audio file that is less than 8 seconds."
-            )
+            raise ValueError("Audio is too long. Please provide an audio file that is less than 8 seconds.")
 
         # Since the recordings are often stereo with 2 channels,
         # while wav2vec2 input expect 1 channel. We can extract only 1 channel
@@ -92,9 +90,7 @@ def pronunc_eval_unity():
         # We can also you mean to use mean to get the mean signal as input audio for the model
         input_audio = waveform.mean(dim=0)
 
-        input_values = processor(
-            input_audio, sampling_rate=SAMPLING_RATE, return_tensors="pt"
-        ).input_values
+        input_values = processor(input_audio, sampling_rate=SAMPLING_RATE, return_tensors="pt").input_values
 
         with torch.no_grad():
             logits = model(input_values).logits
@@ -106,12 +102,8 @@ def pronunc_eval_unity():
         log_softmax = torch.log_softmax(logits, dim=-1)
         emission = log_softmax[0].cpu().detach()
 
-        trellis = myutils.get_trellis(
-            emission, tokens, blank_id=model.config.pad_token_id
-        )
-        path = myutils.backtrack(
-            trellis, emission, tokens, blank_id=model.config.pad_token_id
-        )
+        trellis = myutils.get_trellis(emission, tokens, blank_id=model.config.pad_token_id)
+        path = myutils.backtrack(trellis, emission, tokens, blank_id=model.config.pad_token_id)
         segments = myutils.merge_repeats(transcript, path)
 
         fa_score = []
@@ -135,9 +127,7 @@ def pronunc_eval_unity():
         # Convert back to easier list for Unity
         ops_list = []
         for item in ops:
-            ops_list.append(
-                {"ops": item[0], "tran_index": item[1], "pred_index": item[2]}
-            )
+            ops_list.append({"ops": item[0], "tran_index": item[1], "pred_index": item[2]})
 
         return {
             "levenshtein": ops_list,
