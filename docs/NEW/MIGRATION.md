@@ -16,8 +16,9 @@ How the app moves from the old panels to the new navigation system.
 | 5: ASA flow                                    | Done                 | Done       | Passed                          |
 | Freestyle code wiring                          | Done                 | None       | Not run                         |
 | Launch binding, shared back button             | Done                 | None       | Not run                         |
-| Language dropdown and text fitting from `main` | Done                 | Waiting    | Not run                         |
-| Task 6 from `main`                             | Done                 | Waiting    | Not run                         |
+| Language dropdown and text fitting from `main` | Done                 | Done       | Not run                         |
+| Task 6 from `main`                             | Done                 | Done       | Not run                         |
+| `main` changes up to 2.5.5                     | Done                 | Done       | Not run                         |
 | 6: Update the documentation                    | Done                 | –          | –                               |
 | 7: Cutover                                     | Waiting for go-ahead | –          | –                               |
 
@@ -103,16 +104,26 @@ for each modal, because `ModalDim` has one colour.
 
 Delete `MainSceneLookWindow` once this is done.
 
-### Task 6 scene update
+### Changes from `main` up to 2.5.5
 
-The experimental task from `6889c94` is ported to the scripts. `TESTING_SCENE` still needs:
+`TESTING_SCENE` was brought up to date with `MainScene` as of 2.5.5 (`bdd095a`). Objects that
+`TESTING_SCENE` had not changed took the `MainScene` values. Where both scenes had changed an
+object, `TESTING_SCENE` kept its own layout and only the intended change was carried over. Ported:
 
-1. Duplicate `Task5` under `ASATaskListScreen`, name it `Task6`, and keep it directly after `Task5`.
-2. Set its Pos Y to -1216, and set the entry on `ASAText`'s `LocalizeStringEvent` to
-   `taskPanel.task6Title`.
-3. Add it as the last entry of `ASATaskListScreen`'s Task Buttons.
-4. Add a sixth entry to `ASATaskScreen`'s Tasks, with no image, a recording time of 60, and the
-   text `ASAPanel.task6Text`.
+- Persian (`4cf439b`): texts use `RtlAwareText`, and the language list includes Persian.
+- Larger hit areas on the smaller buttons (`f9ef5d3`), and the white Advanced background (`496ffff`).
+- The `LanguageDropdown` prefab (`06c2edb`) on `AdvancedScreen`, `ASATaskListScreen` and
+  `ASATaskScreen`. It replaces the copied dropdown, and its own `LanguageDropdown` component now
+  does what `AdvancedScreen` did.
+- Stop replay (`88231db`): `ReplayBar` became `StopReplayButton`, and `ASATaskScreen.replayBarGO`
+  became `stopReplayButtonGO`.
+- The info popup screenshots (`ab85843`), the wider answer boxes in the background form
+  (`5472105`), and the profile podium and empty rank placeholders (`bdd095a`).
+- Task 6 (`6889c94`): the button under `ASATaskListScreen`, the sixth entry in its Task Buttons,
+  and the sixth entry in `ASATaskScreen`'s Tasks.
+
+The back button fix from `e734191` needs no port, because `Navigator` hides the task screen
+when results open.
 
 ## Stage 1 scene update
 
@@ -238,8 +249,8 @@ These match the old code and were left as they were:
 - **Onboarding gate:** consent missing with the form marked complete has no branch, so the ASA
   button does nothing in that state.
 - **Instruction popup:** one reusable popup with no queue, so the last caller wins.
-- **Saved language:** only applied when Advanced opens, so after a restart the app uses the
-  phone's language until then. If no language was ever picked, opening Advanced switches the app
+- **Saved language:** only applied when a language dropdown is shown, on Advanced, the task list or
+  a task, so after a restart the app uses the phone's language until then. If no language was ever picked, opening Advanced switches the app
   to English.
 - **User behaviour events:** still not called from the screens. See
   [the wiring notes](USER_BEHAVIOUR.md#wiring).

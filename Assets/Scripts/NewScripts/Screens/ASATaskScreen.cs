@@ -7,6 +7,7 @@ using SaySuomi.Navigation;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace SaySuomi.Screens
@@ -52,9 +53,10 @@ namespace SaySuomi.Screens
         [SerializeField]
         private GameObject replayButtonGO;
 
-        [Tooltip("Fill that shows replay progress.")]
+        [Tooltip("Shown while the recording replays, and stops the replay.")]
+        [FormerlySerializedAs("replayBarGO")]
         [SerializeField]
-        private GameObject replayBarGO;
+        private GameObject stopReplayButtonGO;
 
         [SerializeField]
         private GameObject sendButtonGO;
@@ -141,6 +143,10 @@ namespace SaySuomi.Screens
             ButtonWiring.Replace(pauseButtonGO.GetComponent<Button>(), StopRecord);
             ButtonWiring.Replace(sendButtonGO.GetComponent<Button>(), OnSendButtonClicked);
             ButtonWiring.Replace(replayButtonGO.GetComponent<Button>(), OnReplayButtonClicked);
+            ButtonWiring.Replace(
+                stopReplayButtonGO.GetComponent<Button>(),
+                OnStopReplayButtonClicked
+            );
             ButtonWiring.Replace(taskBackButton, () => navigator.Back());
             ButtonWiring.Replace(resultsButtonGO.GetComponent<Button>(), OnResultsButtonClicked);
             ButtonWiring.Replace(backButtonGO.GetComponent<Button>(), () => navigator.Back());
@@ -173,7 +179,7 @@ namespace SaySuomi.Screens
 
         private void OnEnable()
         {
-            replayBarGO.SetActive(false);
+            stopReplayButtonGO.SetActive(false);
             progressBarBackgroundGO.SetActive(false);
             progressBarGO.SetActive(false);
 
@@ -198,7 +204,7 @@ namespace SaySuomi.Screens
             }
             if (isReplaying)
             {
-                UpdateReplayBar();
+                UpdateReplayTimer();
             }
         }
 
@@ -337,8 +343,14 @@ namespace SaySuomi.Screens
             // Retrieve audio and set the relevant variables for playing the animation
             recording = AudioManager.GetManager().GetReplayClip();
             currentTime = recording.length;
-            replayBarGO.SetActive(true);
+            stopReplayButtonGO.SetActive(true);
             isReplaying = true;
+        }
+
+        public void OnStopReplayButtonClicked()
+        {
+            AudioManager.GetManager().StopReplaying();
+            EndReplay();
         }
 
         public void OnSendButtonClicked()
@@ -346,7 +358,7 @@ namespace SaySuomi.Screens
             AudioManager.GetManager().StopReplaying();
             isReplaying = false;
             replayButtonGO.SetActive(false);
-            replayBarGO.SetActive(false);
+            stopReplayButtonGO.SetActive(false);
 
             // The popup is reused for every recording, so put the title back to its sending
             // state here. Otherwise the second recording spins underneath whatever the first
@@ -418,7 +430,7 @@ namespace SaySuomi.Screens
             pauseButtonGO.SetActive(true);
             sendButtonGO.SetActive(false);
             replayButtonGO.SetActive(false);
-            replayBarGO.SetActive(false);
+            stopReplayButtonGO.SetActive(false);
 
             // Show the countdown progress bar
             progressBarBackgroundGO.SetActive(true);
@@ -443,17 +455,21 @@ namespace SaySuomi.Screens
             }
         }
 
-        private void UpdateReplayBar()
+        private void UpdateReplayTimer()
         {
-            // Same principle as with UpdateProgressBar(), but this time comparing with the length of the recording
+            // Counts down the length of the recording, so the stop button hides when it ends
             currentTime -= Time.deltaTime;
-            replayBarGO.GetComponent<Image>().fillAmount = currentTime / recording.length;
             if (currentTime <= 0)
             {
-                currentTime = 0;
-                replayBarGO.SetActive(false);
-                isReplaying = false;
+                EndReplay();
             }
+        }
+
+        private void EndReplay()
+        {
+            currentTime = 0;
+            stopReplayButtonGO.SetActive(false);
+            isReplaying = false;
         }
 
         /// <summary>

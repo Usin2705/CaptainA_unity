@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using SaySuomi.Managers;
@@ -7,8 +6,6 @@ using SaySuomi.Modals;
 using SaySuomi.Navigation;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Localization;
-using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 namespace SaySuomi.Screens
@@ -21,9 +18,6 @@ namespace SaySuomi.Screens
 
         [SerializeField]
         private Button numberGameButton;
-
-        [SerializeField]
-        private TMP_Dropdown languageDropdown;
 
         [Header("Consent Modal")]
         [SerializeField]
@@ -80,8 +74,6 @@ namespace SaySuomi.Screens
         private ModalScreen consentModal;
         private ModalScreen backgroundModal;
 
-        private readonly List<Locale> dropdownLocales = new();
-
         public override bool IsTabRoot => true;
 
         protected override void Bind()
@@ -100,15 +92,10 @@ namespace SaySuomi.Screens
 
             consentModal = ModalScreen.Attach(consentPopUpGO);
             backgroundModal = ModalScreen.Attach(backgroundPopUpGO);
-
-            languageDropdown.onValueChanged.AddListener(SwitchLanguage);
         }
 
         private void OnEnable()
         {
-            languageDropdown.gameObject.SetActive(false);
-            StartCoroutine(InitializeLanguageDropdown());
-
             errorMessage.enabled = false;
 
             // Opening the tab is what clears its new-feature dot - the learner has now seen
@@ -336,80 +323,6 @@ namespace SaySuomi.Screens
             }
             errorMessage.enabled = true;
             return false;
-        }
-
-        private IEnumerator InitializeLanguageDropdown()
-        {
-            yield return LocalizationSettings.InitializationOperation;
-
-            var locales = LocalizationSettings.AvailableLocales.Locales;
-            var languageOptions = new List<string>();
-            dropdownLocales.Clear();
-
-            string selectedLanguage = PlayerPrefs.GetString("SelectedLanguage", "en");
-            int currentIndex = -1;
-
-            for (int i = 0; i < locales.Count; i++)
-            {
-                // Temporarily disable Bangla and Persian
-                if (locales[i].Identifier.Code == "bn" || locales[i].Identifier.Code == "fa")
-                {
-                    continue;
-                }
-
-                languageOptions.Add(
-                    locales[i].Identifier.Code switch
-                    {
-                        // "bn" => "Bangla",
-                        "zh" => "Chinese",
-                        "en" => "English",
-                        "et" => "Estonian",
-                        "fi" => "Finnish",
-                        // "fa" => "Persian",
-                        "ru" => "Russian",
-                        "sv" => "Swedish",
-                        "uk" => "Ukrainian",
-                        "vi" => "Vietnamese",
-                        _ => locales[i].name,
-                    }
-                );
-
-                dropdownLocales.Add(locales[i]);
-
-                if (locales[i].Identifier.Code == selectedLanguage)
-                {
-                    currentIndex = languageOptions.Count - 1;
-                }
-            }
-
-            if (currentIndex < 0)
-            {
-                currentIndex = dropdownLocales.FindIndex(locale => locale.Identifier.Code == "en");
-            }
-
-            if (currentIndex < 0)
-            {
-                currentIndex = 0;
-            }
-
-            LocalizationSettings.SelectedLocale = dropdownLocales[currentIndex];
-
-            languageDropdown.ClearOptions();
-            languageDropdown.AddOptions(languageOptions);
-
-            languageDropdown.SetValueWithoutNotify(currentIndex);
-            languageDropdown.RefreshShownValue();
-
-            languageDropdown.gameObject.SetActive(true);
-        }
-
-        private void SwitchLanguage(int currentIndex)
-        {
-            var locale = dropdownLocales[currentIndex];
-            LocalizationSettings.SelectedLocale = locale;
-
-            PlayerPrefs.SetString("SelectedLanguage", locale.Identifier.Code);
-            PlayerPrefs.Save();
         }
     }
 }
